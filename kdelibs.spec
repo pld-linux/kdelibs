@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040501
+%define		_snap		040504
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -25,8 +25,9 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	08164d4891c1d9adb8b4c28654c50918
+#Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+Source0:	%{name}-%{_snap}.tar.bz2
+# Source0-md5:	7da5c19d6244f4969b737d304340afa0
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
 Source2:	%{name}-wmfplugin.tar.bz2 
