@@ -5,8 +5,9 @@
 %bcond_with	verbose	# verbose build
 
 %define		_state		stable
-%define		_ver		3.3.2
-%define		artsver		13:1.3.2
+%define		_ver		3.4.0
+
+%define		artsver		13:1.4.0
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,24 +18,22 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	0473fb4c6c2cd2bc0f267cfa201f3fd8
+# Source0-md5:	e5961a78b44a3005a7af6ada249e5888
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
-Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
-Patch6:		post-%{_ver}-%{name}-kioslave.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -76,7 +75,7 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_apidocs:BuildRequires:	qt-doc}
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildConflicts:	kdepim-korganizer-libs
@@ -129,6 +128,7 @@ Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.2.90
 Obsoletes:	openoffice-mimelinks
+Obsoletes:	kde-style-plastik
 Conflicts:	kdepim-devel < 3:3.2.90
 Conflicts:	kmplayer < 1:0.83-0.040705.2
 Conflicts:	kplayer < 0.5.1-5
@@ -290,32 +290,25 @@ innych u¿ytkowników lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p0
-
-echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
-echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	kresources/kresources.desktop
 
 %build
-
 cp %{_datadir}/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
+CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
@@ -342,9 +335,6 @@ rm -rf $RPM_BUILD_ROOT
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
-
-#{__make} install \
-#	DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
 	$RPM_BUILD_ROOT/etc/security \
@@ -378,7 +368,7 @@ touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 %{__sed} -i -e "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
 
 if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
-mv -f $RPM_BUILD_ROOT{%{_kdedocdir}/en/%{name}-%{version}-apidocs,%{_kdedocdir}/en/%{name}-apidocs}
+	mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
 fi
 
 %clean
@@ -390,6 +380,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%ghost /etc/security/fileshare.conf
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
@@ -403,16 +394,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
-%attr(755,root,root) %{_bindir}/ghns
-%ghost /etc/security/fileshare.conf
+#%attr(755,root,root) %{_bindir}/ghns
 %attr(2755,root,fileshare) %{_bindir}/filesharelist
 %attr(2755,root,fileshare) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
+%attr(755,root,root) %{_bindir}/kcmshell
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
-#%%attr(755,root,root) %{_bindir}/kdb2html
 %attr(755,root,root) %{_bindir}/kde-config
 %attr(755,root,root) %{_bindir}/kde-menu
 %attr(755,root,root) %{_bindir}/kded
@@ -444,7 +434,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
-#%attr(755,root,root) %{_bindir}/xml2man
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
@@ -475,6 +464,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
 %{_libdir}/libkdeinit_kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
+%{_libdir}/libkdeinit_kcmshell.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kcmshell.so
 %{_libdir}/libkdeinit_kconf_update.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
 %{_libdir}/libkdeinit_kcookiejar.la
@@ -497,6 +488,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesu.so.*.*.*
 %{_libdir}/libkdeui.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
+%{_libdir}/libkdnssd.la
+%attr(755,root,root) %{_libdir}/libkdnssd.so.*.*.*
 %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
 %{_libdir}/libkimproxy.la
@@ -509,12 +502,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
 %{_libdir}/libkmdi.la
 %attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
+%{_libdir}/libkmdi2.la
+%attr(755,root,root) %{_libdir}/libkmdi2.so.*.*.*
 %{_libdir}/libkmediaplayer.la
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
 %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
 %{_libdir}/libknewstuff.la
 %attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
+%{_libdir}/libkntlm.la
+%attr(755,root,root) %{_libdir}/libkntlm.so.*.*.*
 %{_libdir}/libkparts.la
 %attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
 %{_libdir}/libkresources.la
@@ -535,8 +532,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
-#%{_libdir}/libqt-addon.la
-#%attr(755,root,root) %{_libdir}/libqt-addon.so.*.*.*
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
@@ -550,6 +545,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
 %{_libdir}/kde3/kbzip2filter.la
 %attr(755,root,root) %{_libdir}/kde3/kbzip2filter.so
+%{_libdir}/kde3/kcmshell.la
+%attr(755,root,root) %{_libdir}/kde3/kcmshell.so
 %{_libdir}/kde3/kconf_update.la
 %attr(755,root,root) %{_libdir}/kde3/kconf_update.so
 %{_libdir}/kde3/kcookiejar.la
@@ -600,12 +597,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kimg_jp2.so
 %{_libdir}/kde3/kimg_pcx.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_pcx.so
+%{_libdir}/kde3/kimg_psd.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_psd.so
 %{_libdir}/kde3/kimg_rgb.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_rgb.so
 %{_libdir}/kde3/kimg_tga.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_tga.so
 %{_libdir}/kde3/kimg_tiff.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_tiff.so
+%{_libdir}/kde3/kimg_xcf.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_xcf.so
 %{_libdir}/kde3/kimg_xview.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_xview.so
 %{_libdir}/kde3/kio_file.la
@@ -634,8 +635,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
 %{_libdir}/kde3/kspell_ispell.la
 %attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
-%{_libdir}/kde3/ktexteditor_autobookmarker.la
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
+%{_libdir}/kde3/kstyle_plastik_config.la
+%attr(755,root,root) %{_libdir}/kde3/kstyle_plastik_config.so
+#%{_libdir}/kde3/ktexteditor_autobookmarker.la
+#%attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
 %{_libdir}/kde3/ktexteditor_docwordcompletion.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_docwordcompletion.so
 %{_libdir}/kde3/ktexteditor_insertfile.la
@@ -665,12 +668,16 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/kde3/plugins/styles
 %{_libdir}/kde3/plugins/styles/highcolor.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcolor.so
+%{_libdir}/kde3/plugins/styles/highcontrast.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcontrast.so
 %{_libdir}/kde3/plugins/styles/keramik.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/keramik.so
 %{_libdir}/kde3/plugins/styles/kthemestyle.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/kthemestyle.so
 %{_libdir}/kde3/plugins/styles/light.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
+%{_libdir}/kde3/plugins/styles/plastik.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/styles/plastik.so
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
@@ -703,10 +710,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/proxyscout
 %dir %{_datadir}/autostart
 %{_datadir}/config
+%dir %{_datadir}/emoticons
+%{_datadir}/emoticons/Default
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
+%{_datadir}/services/kresources/kabc_manager.desktop
 %{_datadir}/services/kded
 %{_datadir}/services/http_cache_cleaner.desktop
 %{_datadir}/services/katepart.desktop
@@ -722,7 +732,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/knotify.desktop
 %{_datadir}/services/kspell_aspell.desktop
 %{_datadir}/services/kspell_ispell.desktop
-%{_datadir}/services/ktexteditor_autobookmarker.desktop
+#%{_datadir}/services/ktexteditor_autobookmarker.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
@@ -736,15 +746,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/jp2.kimgio
 %{_datadir}/services/jpeg.kimgio
 #%{_datadir}/services/krl.kimgio
+%{_datadir}/services/mng.kimgio
 %{_datadir}/services/pbm.kimgio
 %{_datadir}/services/pcx.kimgio
 %{_datadir}/services/pgm.kimgio
 %{_datadir}/services/png.kimgio
 %{_datadir}/services/ppm.kimgio
+%{_datadir}/services/psd.kimgio
 %{_datadir}/services/rgb.kimgio
 %{_datadir}/services/tga.kimgio
 %{_datadir}/services/tiff.kimgio
 %{_datadir}/services/xbm.kimgio
+%{_datadir}/services/xcf.kimgio
 %{_datadir}/services/xpm.kimgio
 %{_datadir}/services/xv.kimgio
 %{_datadir}/services/data.protocol
@@ -765,11 +778,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/services/wmfthumbnail.desktop
+%{_datadir}/services/mmst.protocol
+%{_datadir}/services/mmsu.protocol
+%{_datadir}/services/rtspt.protocol
+%{_datadir}/services/rtspu.protocol
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
+%{_iconsdir}/hicolor/*/actions/*.png
 %{_mandir}/man1/checkXML.1*
 %{_mandir}/man1/cupsdconf.1*
 %{_mandir}/man1/cupsdoprint.1*
@@ -869,15 +887,18 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesasl.so
 %attr(755,root,root) %{_libdir}/libkdesu.so
 %attr(755,root,root) %{_libdir}/libkdeui.so
+%attr(755,root,root) %{_libdir}/libkdnssd.so
 %attr(755,root,root) %{_libdir}/libkhtml.so
 %attr(755,root,root) %{_libdir}/libkimproxy.so
 %attr(755,root,root) %{_libdir}/libkio.so
 %attr(755,root,root) %{_libdir}/libkjava.so
 %attr(755,root,root) %{_libdir}/libkjs.so
 %attr(755,root,root) %{_libdir}/libkmdi.so
+%attr(755,root,root) %{_libdir}/libkmdi2.so
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so
 %attr(755,root,root) %{_libdir}/libkmid.so
 %attr(755,root,root) %{_libdir}/libknewstuff.so
+%attr(755,root,root) %{_libdir}/libkntlm.so
 %attr(755,root,root) %{_libdir}/libkparts.so
 %attr(755,root,root) %{_libdir}/libkresources.so
 %attr(755,root,root) %{_libdir}/libkscreensaver.so
