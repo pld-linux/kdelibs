@@ -339,7 +339,6 @@ Internationalization and localization files for kdelibs.
 %description i18n -l pl
 Pliki umiêdzynarodawiaj±ce kdelibs.
 
-
 %prep 
 %setup -q -n %{name}
 %patch0 -p1
@@ -384,6 +383,13 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 	kde_libs_htmldir=%{_kdedocdir}
 
+# Workaround for doc caches (unsermake bug?)
+cd doc
+for i in `find . -name index.cache.bz2`; do
+	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
+done
+cd -	 
+
 install -d \
 	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
@@ -398,9 +404,7 @@ install -d \
 
 # Debian manpages
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
-
 cd debian/man
-
 %{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
     ksendbugmail.sgml
 
@@ -410,15 +414,7 @@ for f in *.sgml ; do
 	db2man $f
 	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
 done
-
 cd -
-
-# Workaround for doc caches (unsermake bug?)
-cd doc
-for i in `find . -name index.cache.bz2`; do
-	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
-done
-cd -	 
 
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
