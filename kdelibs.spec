@@ -27,6 +27,7 @@ Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
+Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
@@ -290,6 +291,7 @@ innych u¿ytkowników lokalnych.
 
 %prep
 %setup -q -a1
+%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
