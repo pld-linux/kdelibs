@@ -329,33 +329,33 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libc*.??
 %attr(755,root,root) %{_libdir}/libk[afhijmpt]*.so.*.*
-%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.la
+%{_libdir}/libk[afhijmpt]*.la
 %attr(755,root,root) %{_libdir}/libkcertpart.??
-%attr(755,root,root) %{_libdir}/libkscreensaver.la
-%attr(755,root,root) %{_libdir}/libkscript.la
-%attr(755,root,root) %{_libdir}/libkspell.la
+%{_libdir}/libkscreensaver.la
+%{_libdir}/libkscript.la
+%{_libdir}/libkspell.la
 %attr(755,root,root) %{_libdir}/libks[cp]*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
-%attr(755,root,root) %{_libdir}/libD*.la
+%{_libdir}/libD*.la
 %attr(755,root,root) %{_libdir}/libkatepart.so
 %attr(755,root,root) %{_libdir}/libkdecore.so.*.*
-%attr(755,root,root) %{_libdir}/libkdecore.la
+%{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
-%attr(755,root,root) %{_libdir}/libkdefakes.la
-%attr(755,root,root) %{_libdir}/libkdefx.la
+%{_libdir}/libkdefakes.la
+%{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeprint*.la
+%{_libdir}/libkdeprint*.la
 %attr(755,root,root) %{_libdir}/libkdesasl.so.*.*
-%attr(755,root,root) %{_libdir}/libkdesasl.la
+%{_libdir}/libkdesasl.la
 %attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
-%attr(755,root,root) %{_libdir}/libkdesu*.la
+%{_libdir}/libkdesu*.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeui.la
-%attr(755,root,root) %{_libdir}/libshellscript.la
+%{_libdir}/libkdeui.la
+%{_libdir}/libshellscript.la
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*
-%attr(755,root,root) %{_libdir}/libvcard.la
+%{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/kde3
 
 %config %{_datadir}/config
