@@ -24,6 +24,7 @@ Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	2b896ce9a6942e4cc4fe1758236bafa3
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
