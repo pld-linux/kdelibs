@@ -145,7 +145,7 @@ Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KD
 Summary(ru):	èÅÄÅÒÙ É ÄÏËÕÍÅÎÔÁÃÉÑ ÄÌÑ ËÏÍÐÉÌÌÑÃÉÉ ÐÒÏÇÒÁÍÍ KDE
 Summary(uk):	èÅÄÅÒÉ ÔÁ ÄÏËÕÍÅÎÔÁÃ¦Ñ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ KDE
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	arts-devel >= 1.1-1
 Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
@@ -184,7 +184,7 @@ KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
 Summary:        KDE static libraries
 Summary(pl):    Statyczne biblioteki KDE
 Group:          X11/Libraries
-Requires:       %{name} >= %{version}-%{release}
+Requires:       %{name} >= %{epoch}:%{version}-%{release}
 
 %description static
 KDE static libraries.
@@ -196,7 +196,7 @@ Statyczne biblioteki KDE.
 Summary:	KDE dependent part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Requires:	%{name} >= %{version}-%{release}
+Requires:	%{name} >= %{epoch}:%{version}-%{release}
 
 %description -n arts-kde
 KDE dependent part of aRts.
@@ -208,19 +208,19 @@ Czê¶æ aRts wymagaj±ca KDE.
 Summary:	Headers for KDE dependent part of aRts
 Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Requires:	arts-kde = %{version}-%{release}
+Requires:	arts-kde = %{epoch}:%{version}-%{release}
 
 %description -n arts-kde-devel
 Headers for KDE dependent part of aRts.
 
 %description -n arts-kde-devel -l pl
-Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
+Nag³ówki dla czê¶ci aRts wymagaj±ca KDE.
 
 %package -n arts-message
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
@@ -235,7 +235,7 @@ Summary:	TODO
 Summary(pl):	TODO
 Group:		X11/Applications
 Requires:	kdebase-core
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description kabc
 TODO.
