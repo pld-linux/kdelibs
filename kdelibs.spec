@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		1.3
+%define		_rel		1.4
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -207,7 +207,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang %{name} --with-kde --all-name
+%find_lang kdelibs --with-kde --all-name
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
