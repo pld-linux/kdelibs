@@ -5,9 +5,8 @@
 %bcond_with	verbose	# verbose build
 
 %define		_state		unstable
-%define		_ver		3.3.89
-%define		_snap		041113
-%define         artsver         13:1.3.89
+%define		_ver		3.3.91
+%define		artsver		13:1.3.91
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,18 +16,15 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	%{_ver}.%{_snap}
+Version:	%{_ver}
 Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-Source0:	http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	18220e2bb3d0f0aa3ef6da6c27d3c1d9
-# Source0-size:	15573765
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+# Source0-md5:	4bccce0b432bea5ea8c8c876d6b7913d
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
-# Source1-size:	3376
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Patch0:		kde-common-PLD.patch
@@ -36,8 +32,7 @@ Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
-Patch5:         %{name}-appicon_themable.patch
-Icon:		kdelibs.xpm
+Patch5:		%{name}-appicon_themable.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -221,11 +216,11 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 
 %description devel -l pt_BR
 Este pacote contém os arquivos de inclusão que são necessários para
-compilar aplicativos KDE. 
+compilar aplicativos KDE.
 
 %description devel -l ru
 üÔÏÔ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÈÅÄÅÒÙ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍÐÉÌÑÃÉÉ ÐÒÏÇÒÁÍÍ ÄÌÑ
-KDE. 
+KDE.
 
 %description devel -l uk
 ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÈÅÄÅÒÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ ÄÌÑ KDE.
@@ -292,29 +287,27 @@ nieobs³uguj±cej pts-ów typu Unix98 i obawiasz siê inwigilacji ze strony
 innych u¿ytkowników lokalnych.
 
 %prep
-%setup -q -n %{name}-%{_snap} -a1
-#%patch100 -p1
+%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1 
-%patch5 -p1 
+%patch4 -p1
+%patch5 -p1
 
-#echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
-#echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
+echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
+echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	kresources/kresources.desktop
 
 %build
-
 cp %{_datadir}/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 
-#export UNSERMAKE=%{_datadir}/unsermake/unsermake
+export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -365,7 +358,7 @@ install -d \
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 cd debian/man
 %{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-    ksendbugmail.sgml
+	ksendbugmail.sgml
 
 for f in *.sgml ; do
 	base="$(basename $f .sgml)"
@@ -377,7 +370,11 @@ cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-%{__sed} -i -e  "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
+%{__sed} -i -e "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
+
+if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
+mv -f $RPM_BUILD_ROOT{%{_kdedocdir}/en/%{name}-%{version}-apidocs,%{_kdedocdir}/en/%{name}-apidocs}
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -408,6 +405,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
+%attr(755,root,root) %{_bindir}/kcmshell
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
 #%%attr(755,root,root) %{_bindir}/kdb2html
@@ -473,6 +471,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
 %{_libdir}/libkdeinit_kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
+%{_libdir}/libkdeinit_kcmshell.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kcmshell.so
 %{_libdir}/libkdeinit_kconf_update.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
 %{_libdir}/libkdeinit_kcookiejar.la
@@ -495,6 +495,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesu.so.*.*.*
 %{_libdir}/libkdeui.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
+%{_libdir}/libkdnssd.la
+%attr(755,root,root) %{_libdir}/libkdnssd.so.*.*.*
 %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
 %{_libdir}/libkimproxy.la
@@ -552,6 +554,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
 %{_libdir}/kde3/kbzip2filter.la
 %attr(755,root,root) %{_libdir}/kde3/kbzip2filter.so
+%{_libdir}/kde3/kcmshell.la
+%attr(755,root,root) %{_libdir}/kde3/kcmshell.so
 %{_libdir}/kde3/kconf_update.la
 %attr(755,root,root) %{_libdir}/kde3/kconf_update.so
 %{_libdir}/kde3/kcookiejar.la
@@ -602,6 +606,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kimg_jp2.so
 %{_libdir}/kde3/kimg_pcx.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_pcx.so
+%{_libdir}/kde3/kimg_psd.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_psd.so
 %{_libdir}/kde3/kimg_rgb.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_rgb.so
 %{_libdir}/kde3/kimg_tga.la
@@ -751,6 +757,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/pgm.kimgio
 %{_datadir}/services/png.kimgio
 %{_datadir}/services/ppm.kimgio
+%{_datadir}/services/psd.kimgio
 %{_datadir}/services/rgb.kimgio
 %{_datadir}/services/tga.kimgio
 %{_datadir}/services/tiff.kimgio
