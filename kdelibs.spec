@@ -1,6 +1,10 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
+#
+# Conditional build:
+# _with_ra		- use it if You're building for Ra dist 
 # _without_alsa - disable alsa
+#
 
 %define		_state		stable
 %define		_ver		3.1
@@ -47,7 +51,11 @@ BuildRequires:	motif-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxslt-devel >= 1.0.7
+%if %{?_with_ra:1}0
+BuildRequires:	openssl-devel = 0.9.6i
+%else
 BuildRequires:	openssl-devel >= 0.9.7
+%endif
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1
 BuildRequires:	zlib-devel
