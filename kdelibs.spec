@@ -27,17 +27,16 @@ Patch9:		%{name}-kstddirs-symlinks.patch
 Patch10:	%{name}-kssl-wrongwarnings.patch
 Patch11:	%{name}-kicondialog.cpp.patch
 Patch12:	%{name}-kdeprint-PPD-O-Matic.patch
-Patch13:	%{name}-kfileshare.v9.patch
-Patch14:	%{name}-fix-cups-config-dialogbox-use-kintvalidator.patch
-Patch15:	%{name}-fix-cupsdconf.patch
-Patch16:	%{name}-fix-file-dialogbox-dont-add-separator-in-bookmaks-when-bookmarks-is-empty.patch
-Patch17:	%{name}-fix-filter-dlg.patch
-Patch18:	%{name}-fix-kdeprint-preview-button.patch
-Patch19:	%{name}-fix-kintvalidator.patch
-Patch20:	%{name}-fix-kjs-mem-leak.patch
-Patch21:	%{name}-fix-special-printer.patch
-Patch22:	%{name}-fix-popupmenu-image.patch
-Patch23:	%{name}-disable-ok-button-in-properties-dialogbox-when-filename-is-empty.patch
+Patch13:	%{name}-fix-cups-config-dialogbox-use-kintvalidator.patch
+Patch14:	%{name}-fix-cupsdconf.patch
+Patch15:	%{name}-fix-file-dialogbox-dont-add-separator-in-bookmaks-when-bookmarks-is-empty.patch
+Patch16:	%{name}-fix-filter-dlg.patch
+Patch17:	%{name}-fix-kdeprint-preview-button.patch
+Patch18:	%{name}-fix-kintvalidator.patch
+Patch19:	%{name}-fix-kjs-mem-leak.patch
+Patch20:	%{name}-fix-special-printer.patch
+Patch21:	%{name}-fix-popupmenu-image.patch
+Patch22:	%{name}-disable-ok-button-in-properties-dialogbox-when-filename-is-empty.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -295,7 +294,6 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
-%patch23 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
