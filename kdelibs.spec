@@ -92,7 +92,6 @@ Obsoletes:	kde-i18n-Ukrainian kde-i18n-Venda kde-i18n-Vietnamese
 Obsoletes:	kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
 Obsoletes:	kde-i18n-Zulu
 
-%define		_prefix		/usr/X11R6
 %define		_htmldir	/usr/share/doc/kde/HTML
 
 %define		no_install_post_chrpath		1
