@@ -102,7 +102,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/kde/kderc
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-%find_lang kde %{_builddir}/kde.lang
+%find_lang kde
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -150,9 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
-%{_libdir}/lib*.so*
-%{_libdir}/lib*.la
+%{_libdir}/lib*.so
 %{_includedir}/*.h
 
 %changelog
