@@ -279,7 +279,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 
 # create in toplevel %%{_pixmapsdir} links to icons
 for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/filesystems/{desktop,network,socket}.png \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/{cdaudio_unmount,scanner}.png
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/{cdaudio_unmount,scanner}.png \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/mimetypes/{cdtrack,html,image,sound}.png
 do
 %if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
