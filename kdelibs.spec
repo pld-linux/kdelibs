@@ -2,13 +2,14 @@
 # 	space.
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
+Summary(ko):	KDE - ∂Û¿Ã∫Í∑Ø∏Æ.
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.0.3
-Release:	3
+Version:	3.0.4
+Release:	1
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -19,7 +20,12 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
 Patch2:		%{name}-am.patch
 Patch3:		%{name}-resize-icons.patch
-Patch4:		ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
+Patch4:		%{name}-ksyscoca.patch
+Patch5:		%{name}-dtfix.patch
+Patch6:		%{name}-lang.patch
+Patch7:		%{name}-alignment.patch
+Patch8:  	%{name}-katetextbuffermultibyte.patch
+Patch9:		%{name}-dock.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -218,9 +224,12 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch1 -p1
 #%patch2 -p0
 %patch3 -p1
-cd khtml
-%patch4 -p0
-cd ..
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
