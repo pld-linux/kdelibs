@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.2
+Release:	0.%{sver}.3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -166,6 +166,12 @@ gzip arts/doc/{README,NEWS,TODO}
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%post   core -p /sbin/ldconfig
+%postun core -p /sbin/ldconfig
+
+%post   -n arts -p /sbin/ldconfig
+%postun -n arts -p /sbin/ldconfig
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -241,6 +247,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib[amqsx]*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
+%attr(755,root,root) %{_libdir}/libartskde.so
 %{_libdir}/mcop/*
 
 %files -n arts-devel
@@ -248,7 +255,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc arts/doc/*.gz
 %attr(755,root,root) %{_bindir}/artsc-config
 %attr(755,root,root) %{_bindir}/mcopidl
-%{_libdir}/lib[amqsx]*.so
+%{_libdir}/lib[mqsx]*.so
+%{_libdir}/libarts[!k]*.so
 %{_libdir}/libkmedia*.so
 %{_includedir}/arts
 %{_includedir}/artsc
