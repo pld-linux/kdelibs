@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_snap		040128
-%define		_ver		3.2.0
+%define		_ver		3.2.90
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
