@@ -1,4 +1,4 @@
-%define		REV	20000330
+%define		REV	20000418
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
