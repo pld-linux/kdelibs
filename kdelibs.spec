@@ -6,8 +6,8 @@
 #
 
 %define		_state		snapshots
-%define		_ver		3.1.91
-%define		_snap		030918
+%define		_ver		3.1.92
+%define		_snap		030930
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,13 +18,13 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	de98ac610b6fa5f0cf7e2718119b0cfd
+# Source0-md5:	99c20d35e62e99972f4b03be6b4408f9
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
@@ -33,8 +33,8 @@ BuildRequires:	XFree86-devel >= 4.2.99
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
-BuildRequires:	arts-devel >= 1.1-1
-BuildRequires:	arts-qt >= 1.1-1
+BuildRequires:	arts-devel >= 12:1.2.0.%{_snap}
+BuildRequires:	arts-qt >= 12:1.2.0.%{_snap}
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,13 +56,13 @@ BuildRequires:	mad-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openmotif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.2-0.030606.1
+BuildRequires:	qt-devel >= 6:3.2.1-4
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
-Requires:	arts >= 1.2
-Requires:	qt >= 3.2-0.030606.1
+Requires:	arts >= 12:1.2.0.%{_snap}
+Requires:	qt >= 6:3.2.1-4
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	arts-kde
@@ -149,8 +149,8 @@ Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	arts-devel >= 1.1-1
-Requires:	qt-devel >= 3.1
+Requires:	arts-devel >= 12:1.2.0.%{_snap}
+Requires:	qt-devel >= 6:3.2.1-4
 Obsoletes:	arts-kde-devel
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
@@ -304,6 +304,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kinstalltheme
 %attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
 %attr(755,root,root) %{_bindir}/kio_uiserver
+%attr(755,root,root) %{_bindir}/kioexec
 %attr(755,root,root) %{_bindir}/kioslave
 %attr(755,root,root) %{_bindir}/klauncher
 %attr(755,root,root) %{_bindir}/kmailservice
