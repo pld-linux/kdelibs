@@ -320,9 +320,6 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 	--enable-final \
 	--enable-mitshm \
 	--with-ldap=no \
-%ifarch %{ix86}
-	--enable-fast-malloc=full \
-%endif
 	--with%{!?with_alsa:out}-alsa \
 	--with-qt-libraries=%{_libdir}
 
