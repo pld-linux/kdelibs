@@ -4,6 +4,7 @@
 # Conditional build:
 # _with_nas	- with NAS support
 # _without_alsa - disable alsa
+# _without_ldap - disable openldap
 #
 
 %define		_state		stable
@@ -56,6 +57,7 @@ BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
+%{!?_without_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
@@ -244,6 +246,8 @@ CXXFLAGS="%{rpmcflags}"
 	--disable-mysql \
 	--disable-informix \
 	--enable-mitshm \
+	%{?_without_ldap:--without-ldap} \
+	%{!?_without_ldap:--with-ldap} \
 	--with%{?_without_alsa:out}-alsa
 
 %if %{?_with_nas:0}1
