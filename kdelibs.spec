@@ -2,7 +2,7 @@ Summary:     K Desktop Environment - Libraries
 Summary(pl): K Desktop Environment - biblioteki
 Name:        kdelibs
 Version:     1.0
-Release:     3
+Release:     4
 Source:      ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
 Group:       X11/KDE/Base
 Copyright:   LGPL
@@ -51,9 +51,11 @@ w³asnych programów wykorzystuj±cych kdelibs.
 %setup -q
 
 %build
-export KDEDIR=/usr
+export KDEDIR=/usr/X11R6
 CXXFLAGS="$RPM_OPT_FLAGS -Wall" CFLAGS="$RPM_OPT_FLAGS -Wall" \
-./configure --prefix=/usr --disable-path-check 
+./configure --prefix=/usr \
+	--disable-path-check \
+	--with-qt-includes=/usr/X11R6/include/qt
 make KDEDIR=$KDEDIR
 
 (cd mediatool/Documentation; make)
@@ -61,10 +63,10 @@ dvips -f < mediatool/Documentation | gzip -9nf > mediatool.gz
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export KDEDIR=/usr
+export KDEDIR=/usr/X11R6
 make prefix=$RPM_BUILD_ROOT$KDEDIR install
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,44 +76,48 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644, root, root, 755)
-%attr(755, root, root) /usr/lib/lib*.so.*.*
-/usr/share/apps/*
-/usr/share/config
-/usr/share/doc
-/usr/share/toolbar
+%attr(755, root, root) /usr/X11R6/lib/lib*.so.*.*
+/usr/X11R6/share/apps/*
+/usr/X11R6/share/config
+/usr/X11R6/share/doc
+/usr/X11R6/share/toolbar
 
-%lang(ca) /usr/share/locale/ca/LC_MESSAGES/kde.mo
-%lang(cs) /usr/share/locale/cs/LC_MESSAGES/kde.mo
-%lang(da) /usr/share/locale/da/LC_MESSAGES/kde.mo
-%lang(de) /usr/share/locale/de/LC_MESSAGES/kde.mo
-%lang(el) /usr/share/locale/el/LC_MESSAGES/kde.mo
-%lang(en) /usr/share/locale/en*/LC_MESSAGES/kde.mo
-%lang(es) /usr/share/locale/es/LC_MESSAGES/kde.mo
-%lang(fi) /usr/share/locale/fi/LC_MESSAGES/kde.mo
-%lang(fr) /usr/share/locale/fr/LC_MESSAGES/kde.mo
-%lang(hr) /usr/share/locale/hr/LC_MESSAGES/kde.mo
-%lang(hu) /usr/share/locale/hu/LC_MESSAGES/kde.mo
-%lang(it) /usr/share/locale/it/LC_MESSAGES/kde.mo
-%lang(mk) /usr/share/locale/mk/LC_MESSAGES/kde.mo
-%lang(nl) /usr/share/locale/nl/LC_MESSAGES/kde.mo
-%lang(no) /usr/share/locale/no/LC_MESSAGES/kde.mo
-%lang(pl) /usr/share/locale/pl/LC_MESSAGES/kde.mo
-%lang(pt) /usr/share/locale/pt*/LC_MESSAGES/kde.mo
-%lang(ro) /usr/share/locale/ro/LC_MESSAGES/kde.mo
-%lang(ru) /usr/share/locale/ru/LC_MESSAGES/kde.mo
-%lang(sk) /usr/share/locale/sk/LC_MESSAGES/kde.mo
-%lang(sl) /usr/share/locale/sl/LC_MESSAGES/kde.mo
-%lang(sv) /usr/share/locale/sv/LC_MESSAGES/kde.mo
-%lang(zh) /usr/share/locale/zh*/LC_MESSAGES/kde.mo
+%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kde.mo
+%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kde.mo
+%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/kde.mo
+%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kde.mo
+%lang(el) /usr/X11R6/share/locale/el/LC_MESSAGES/kde.mo
+%lang(en) /usr/X11R6/share/locale/en*/LC_MESSAGES/kde.mo
+%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/kde.mo
+%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kde.mo
+%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/kde.mo
+%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kde.mo
+%lang(hu) /usr/X11R6/share/locale/hu/LC_MESSAGES/kde.mo
+%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/kde.mo
+%lang(mk) /usr/X11R6/share/locale/mk/LC_MESSAGES/kde.mo
+%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kde.mo
+%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kde.mo
+%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kde.mo
+%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kde.mo
+%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/kde.mo
+%lang(ru) /usr/X11R6/share/locale/ru/LC_MESSAGES/kde.mo
+%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kde.mo
+%lang(sl) /usr/X11R6/share/locale/sl/LC_MESSAGES/kde.mo
+%lang(sv) /usr/X11R6/share/locale/sv/LC_MESSAGES/kde.mo
+%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kde.mo
 
 %files devel
 %defattr(644, root, root, 755)
 %doc mediatool.gz
-/usr/lib/lib*.so
-/usr/lib/lib*.la
-/usr/include/*.h
+/usr/X11R6/lib/lib*.so
+/usr/X11R6/lib/lib*.la
+/usr/X11R6/include/*.h
 
 %changelog
+* Tue Sep 15 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0-4]
+- changed KDEDIR to /usr/X11R6.
+
 * Mon Aug  3 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0-3]
 - removed using macros kdename, version and kderelease,
