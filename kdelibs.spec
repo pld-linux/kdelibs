@@ -4,9 +4,10 @@
 %bcond_without	apidocs	# do not prepare API documentation
 %bcond_with	verbose	# verbose build
 
-%define		_state		stable
-%define		_ver		3.3.1
-%define         artsver         13:1.3.1
+%define		_state		unstable
+%define		_ver		3.3.89
+%define		_snap		041113
+%define         artsver         13:1.3.89
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -16,20 +17,20 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	%{_ver}
-Release:	3
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	8636c93405b20eceadb12af5c5483508
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+Source0:	http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	18220e2bb3d0f0aa3ef6da6c27d3c1d9
 # Source0-size:	15573765
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 # Source1-size:	3376
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
-Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
@@ -290,7 +291,7 @@ nieobs³uguj±cej pts-ów typu Unix98 i obawiasz siê inwigilacji ze strony
 innych u¿ytkowników lokalnych.
 
 %prep
-%setup -q -a1
+%setup -q -n %{name}-%{_snap} -a1
 #%patch100 -p1
 %patch0 -p1
 %patch1 -p1
@@ -299,8 +300,8 @@ innych u¿ytkowników lokalnych.
 %patch4 -p1 
 %patch5 -p1 
 
-echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
-echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
+#echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
+#echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	kresources/kresources.desktop
@@ -312,7 +313,7 @@ cp %{_datadir}/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -505,12 +506,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
 %{_libdir}/libkmdi.la
 %attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
+%{_libdir}/libkmdi2.la
+%attr(755,root,root) %{_libdir}/libkmdi2.so.*.*.*
 %{_libdir}/libkmediaplayer.la
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
 %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
 %{_libdir}/libknewstuff.la
 %attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
+%{_libdir}/libkntlm.la
+%attr(755,root,root) %{_libdir}/libkntlm.so.*.*.*
 %{_libdir}/libkparts.la
 %attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
 %{_libdir}/libkresources.la
@@ -602,6 +607,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kimg_tga.so
 %{_libdir}/kde3/kimg_tiff.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_tiff.so
+%{_libdir}/kde3/kimg_xcf.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_xcf.so
 %{_libdir}/kde3/kimg_xview.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_xview.so
 %{_libdir}/kde3/kio_file.la
@@ -630,6 +637,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
 %{_libdir}/kde3/kspell_ispell.la
 %attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
+%{_libdir}/kde3/kstyle_plastik_config.la
+%attr(755,root,root) %{_libdir}/kde3/kstyle_plastik_config.so
 %{_libdir}/kde3/ktexteditor_autobookmarker.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
 %{_libdir}/kde3/ktexteditor_docwordcompletion.la
@@ -667,6 +676,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/kthemestyle.so
 %{_libdir}/kde3/plugins/styles/light.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
+%{_libdir}/kde3/plugins/styles/plastik.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/styles/plastik.so
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
@@ -703,6 +714,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
+%{_datadir}/services/kresources/kabc_manager.desktop
 %{_datadir}/services/kded
 %{_datadir}/services/http_cache_cleaner.desktop
 %{_datadir}/services/katepart.desktop
@@ -732,6 +744,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/jp2.kimgio
 %{_datadir}/services/jpeg.kimgio
 #%{_datadir}/services/krl.kimgio
+%{_datadir}/services/mng.kimgio
 %{_datadir}/services/pbm.kimgio
 %{_datadir}/services/pcx.kimgio
 %{_datadir}/services/pgm.kimgio
@@ -741,6 +754,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/tga.kimgio
 %{_datadir}/services/tiff.kimgio
 %{_datadir}/services/xbm.kimgio
+%{_datadir}/services/xcf.kimgio
 %{_datadir}/services/xpm.kimgio
 %{_datadir}/services/xv.kimgio
 %{_datadir}/services/data.protocol
@@ -871,9 +885,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkjava.so
 %attr(755,root,root) %{_libdir}/libkjs.so
 %attr(755,root,root) %{_libdir}/libkmdi.so
+%attr(755,root,root) %{_libdir}/libkmdi2.so
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so
 %attr(755,root,root) %{_libdir}/libkmid.so
 %attr(755,root,root) %{_libdir}/libknewstuff.so
+%attr(755,root,root) %{_libdir}/libkntlm.so
 %attr(755,root,root) %{_libdir}/libkparts.so
 %attr(755,root,root) %{_libdir}/libkresources.so
 %attr(755,root,root) %{_libdir}/libkscreensaver.so
