@@ -12,7 +12,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.9
-Release:	2
+Release:	2.1
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -55,6 +55,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
+Requires:	applnk 
 Requires:	arts >= 1.0.0
 Requires:	qt >= 3.1
 URL:		http://www.kde.org/
@@ -259,7 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE/System
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
@@ -327,9 +328,7 @@ done
 %attr(755,root,root) %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/kde3
 %config %{_datadir}/config
-%dir %{_applnkdir}/Settings
-%dir %{_applnkdir}/Settings/KDE
-%{_applnkdir}/Settings/KDE/*
+%{_applnkdir}/Settings/KDE
 %{_pixmapsdir}/*
 %{_datadir}/apps
 %{_datadir}/autostart
