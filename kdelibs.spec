@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.2
+Release:	0.3
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -72,8 +72,8 @@ BuildRequires:	perl-base
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	sed
 BuildRequires:	zlib-devel
-Requires:	XFree86-libs >= 4.2.99
-Requires:	applnk >= 1.6.2-1
+Requires:	XFree86-libs
+Requires:	applnk
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
