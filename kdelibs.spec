@@ -8,7 +8,7 @@
 #
 
 %define		_state		stable
-%define		_ver		3.1.2
+%define		_ver		3.1.3
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -19,20 +19,20 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	0.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	2b896ce9a6942e4cc4fe1758236bafa3
+# Source0-md5:	0069e199dd69f27f20afbd5b64449725
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		%{name}-vfolders.patch
-Patch4:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-http.patch
-Patch5:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-khtml.patch
+#Patch4:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-http.patch
+#Patch5:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-khtml.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
@@ -226,9 +226,9 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch2 -p1
 %patch3 -p1
 cd kioslave/http 
-%patch4 -p0
+#%patch4 -p0
 cd ../../khtml
-%patch5 -p0
+#%patch5 -p0
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
