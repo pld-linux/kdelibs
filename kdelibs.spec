@@ -5,10 +5,10 @@
 %bcond_without	alsa	# build without ALSA support
 %bcond_with	i18n	# [not ready] include i18n files in package
 #
-%define		_state		stable
+%define		_state		snapshots
+%define		_snap		040128
 %define		_ver		3.2.0
-#%%define		_snap		040110
-%define         artsver         13:1.1.95
+%define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,14 +18,14 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	%{_ver}
-Release:	0.1
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	24be0d558725f4d3441fb9d580129720	
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
+##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 %endif
@@ -250,7 +250,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw demona.
 #oraz jej konwersjÍ.
 
 %prep 
-%setup -q
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -317,7 +317,6 @@ for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
 
-# XXX: separate kabc
 %find_lang %{name} --with-kde --all-name
 %endif
 
@@ -387,8 +386,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
-%{_libdir}/libcupsdconf.la
-%attr(755,root,root) %{_libdir}/libcupsdconf.so
 %{_libdir}/libkabc.la
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
 %{_libdir}/libkabc_dir.la
@@ -409,6 +406,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
 %{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
+%{_libdir}/libkdeinit_cupsdconf.la
+%attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %{_libdir}/libkdeinit_dcopserver.la
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
 %{_libdir}/libkdeinit_kaddprinterwizard.la
@@ -465,8 +464,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
 %{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
-%{_libdir}/libshellscript.la
-%attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
 %{_libdir}/libkwalletbackend.la
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
@@ -474,6 +471,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libvcard.la
 %attr(0755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
+%{_libdir}/kde3/cupsdconf.la
+%attr(755,root,root) %{_libdir}/kde3/cupsdconf.so
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
 %{_libdir}/kde3/kaddprinterwizard.la
@@ -570,6 +569,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkhtmlpart.so
 %{_libdir}/kde3/libkmultipart.la
 %attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
+%{_libdir}/kde3/libshellscript.la
+%attr(755,root,root) %{_libdir}/kde3/libshellscript.so
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
 %{_libdir}/kde3/plugins/designer/kdewidgets.la
@@ -748,7 +749,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %{_kdedocdir}/en/%{name}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
@@ -783,7 +783,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkspell.so
 %attr(755,root,root) %{_libdir}/libktexteditor.so
 %attr(755,root,root) %{_libdir}/libkutils.so
-%attr(755,root,root) %{_libdir}/libshellscript.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
 %attr(755,root,root) %{_libdir}/libvcard.so
@@ -792,7 +791,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/arts/*
 %{_mandir}/man1/dcopidl.1*
 %{_mandir}/man1/dcopidl2cpp.1*
-#%%lang(en) %{_docdir}/kde/HTML/en/kde-%{_snap}-apidocs
+%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 
 %files artsmessage
 %defattr(644,root,root,755)
