@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -344,6 +344,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
+%exclude %{_datadir}/mimelnk/image/x-pcx.desktop 
 %{_datadir}/services
 %{_datadir}/servicetypes
 %dir /usr/share/doc/kde
