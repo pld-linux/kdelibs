@@ -452,6 +452,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
+%{_libdir}/libvcard.la
+%attr(0755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
@@ -664,8 +666,6 @@ rm -rf $RPM_BUILD_ROOT
 
 # merged kabc files
 %attr(0755,root,root) %{_bindir}/kab2kabc
-%{_libdir}/libvcard.la
-%attr(0755,root,root) %{_libdir}/libvcard.so*
 %{_libdir}/kde3/kabc_dir.la
 %attr(0755,root,root) %{_libdir}/kde3/kabc_dir.so
 %{_libdir}/kde3/kabc_file.la
@@ -728,6 +728,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libshellscript.so
 %{_libdir}/libkwalletbackend.so
 %{_libdir}/libkwalletclient.so
+%{_libdir}/libvcard.so
 #%%lang(en) %{_docdir}/kde/HTML/en/kde-%{_snap}-apidocs
 
 %files artsmessage
