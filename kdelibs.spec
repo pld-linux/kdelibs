@@ -13,7 +13,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.1
-Release:	3
+Release:	4
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -254,6 +254,9 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
+
+install -d \
+    $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 
