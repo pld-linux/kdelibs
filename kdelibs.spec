@@ -5,8 +5,8 @@
 %bcond_with	verbose	# verbose build
 
 %define		_state		stable
-%define		_ver		3.3.0
-%define         artsver         13:1.3.0
+%define		_ver		3.3.1
+%define         artsver         13:1.3.1
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,13 +17,14 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	9
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	http://download.kde.org/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2
-Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	1c208724987433fc1929d22928c1a358
+#Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2
+Source0:	http://ftp.pld-linux.org/software/kde/%{name}-%{_ver}.tar.bz2
+# Source0-md5:	5a961628fa569f3b53a21574a6656b02
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Source2:	pnm.protocol
@@ -289,7 +290,7 @@ innych uøytkownikÛw lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p1
+#%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -370,16 +371,6 @@ cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-
-# Problem with 'common' symlink
-cd $RPM_BUILD_ROOT%{_kdedocdir}/en/kspell
-ln -sf %{_kdedocdir}/en/common common
-cd -
-%if %{with apidocs}
-cd $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-apidocs
-ln -sf %{_kdedocdir}/en/common common
-cd -
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
