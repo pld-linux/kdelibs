@@ -267,6 +267,10 @@ sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	> config.h.tmp
 mv -f config.h{.tmp,}
 
+cd khtml/css 
+%{__make} parser
+cd ../../
+
 %{__make}
 
 %install
