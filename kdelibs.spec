@@ -60,6 +60,7 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libart_lgpl-devel
+BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
@@ -76,13 +77,12 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_apidocs:BuildRequires:	qt-doc}
-BuildRequires:	rpmbuild(macros) >= 1.129
-Requires:	setup >= 2.4.6-7
-BuildRequires:	zlib-devel
-BuildRequires:	libidn-devel
 BuildRequires:	unsermake >= 040511
+BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	zlib-devel
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
+PreReq:		setup >= 2.4.6-7
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
