@@ -5,10 +5,9 @@
 %bcond_without	alsa	# build without ALSA support
 %bcond_with	i18n	# [not ready] include i18n files in package
 #
-%define		_state		snapshots
+%define		_state		unstable
 %define		_ver		3.1.94
 %define		_snap		040110
-%define		artsver		12:1.2.0.%{_snap}
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,16 +17,17 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	%{_ver}.%{_snap}
+Version:	3.1.95
 # Please dont downgrade this release, it was a msitake of mine but it went to builders
 # so its too late.
-Release:	22
-Epoch:		9
+Release:	0.1
+Epoch:		10
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	dbf9a425bffc79bfa606bcf0c61bba55
+Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+# Source0-md5:	472b9e0862ae408caff2e20d417ef2df	
+%define         artsver         13:%{version}
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 %endif
@@ -73,7 +73,7 @@ BuildRequires:	xrender-devel
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk >= 1.6.2-1
-Requires:	arts >= 12:1.2.0.%{_snap}
+Requires:	arts >= %{_artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
@@ -249,7 +249,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 #oraz jej konwersjê.
 
 %prep
-%setup -q -n %{name}-%{_snap}
+%setup -q -n %{name}-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -286,7 +286,7 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 install -d \
-	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
+	$RPM_BUILD_ROOT%{_bindir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
@@ -657,7 +657,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_kdedocdir}/en/kspell
 
 # 3rdparty directories
-%dir %{_libdir}/kconf_update_bin
+%dir %{_bindir}/kconf_update_bin
 %dir %{_datadir}/applnk
 %dir %{_datadir}/applnk/.hidden
 %dir %{_datadir}/apps/profiles
@@ -689,7 +689,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
+%lang(en) %{_kdedocdir}/en/%{name}-%{version}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
