@@ -325,9 +325,6 @@ EOF
 # these are provided by openoffice:
 rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
 
-# this is provided by pixieplus:
-rm -f $RPM_BUILD_ROOT%{_datadir}/mimelnk/image/x-pcx.desktop
-
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
 for i in {actions/misc,devices/{cdaudio_unmount,mouse,scanner}}.png \
 	 filesystems/{desktop,folder_home,network,socket}.png; do
