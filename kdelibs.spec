@@ -190,6 +190,7 @@ Summary:	KDE dependent part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
 Group:		X11/Libraries
 Requires:	%{name} >= %{epoch}:%{version}
+Requires:	arts-qt >= 1.1-1
 
 %description -n arts-kde
 KDE dependent part of aRts.
@@ -204,6 +205,7 @@ Group:		X11/Libraries
 Requires:	arts-kde = %{epoch}:%{version}
 Requires:	%{name}-devel = %{epoch}:%{version}
 %{!?_without_alsa:Requires:	alsa-lib-devel}
+Requires:	arts-devel >= 1.1-1
 Requires:	audiofile-devel
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
@@ -343,7 +345,7 @@ for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
 
-#%find_lang kdelibs --with-kde --all-name > %{name}.lang
+#%%find_lang %{name} --with-kde --all-name
 
 %find_lang	kabc_dir		--with-kde
 %find_lang	kabc_ldap		--with-kde
@@ -360,7 +362,7 @@ topics="common cupsdconf desktop_kde-i18n katepart kdelibs-apidocs kmcop \
 %find_lang	kdelibs			--with-kde
 for i in $topics; do
 	%find_lang $i --with-kde
-	cat $i.lang >> kdelibs.lang
+	cat $i.lang >> %{name}.lang
 done
 
 %clean
@@ -372,7 +374,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n arts-kde -p /sbin/ldconfig
 %postun	-n arts-kde -p /sbin/ldconfig
 
-%files -f kdelibs.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/[!adk]*
 %attr(755,root,root) %{_bindir}/dcop
@@ -436,8 +438,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkcertpart.la
 %dir %{_libdir}/kde3
 %attr(755,root,root) %{_libdir}/kde3/[!k]*.so
-%attr(755,root,root) %{_libdir}/kde3/k[!ac]*.so
 %{_libdir}/kde3/[!k]*.la
+%attr(755,root,root) %{_libdir}/kde3/k[!ac]*.so
 %{_libdir}/kde3/k[!ac]*.la
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
@@ -470,14 +472,14 @@ rm -rf $RPM_BUILD_ROOT
 %files kabc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kab2kabc
-%{_libdir}/kde3/kabc_dir.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
-%{_libdir}/kde3/kabc_ldap.la
+%{_libdir}/kde3/kabc_dir.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
-%{_libdir}/kde3/kabcformat_binary.la
+%{_libdir}/kde3/kabc_ldap.la
 %attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-%{_libdir}/kde3/kcm_kabc.la
+%{_libdir}/kde3/kabcformat_binary.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kabc.so
+%{_libdir}/kde3/kcm_kabc.la
 %{_datadir}/apps/kabc
 %{_datadir}/autostart/kab2kabc.desktop
 %{_applnkdir}/Settings/KDE/Components/kabc.desktop
