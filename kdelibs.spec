@@ -15,6 +15,7 @@ Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-Japanese.patch
 Patch4:		%{name}-klauncher-escape.patch
+Patch5:		%{name}-2.1-pre-2.1.1.diff.bz2
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -117,6 +118,7 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 
