@@ -7,7 +7,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	3.0
-Release:	0.%{_sub_ver}.1
+Release:	0.%{_sub_ver}.2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -358,6 +358,7 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(755,root,root) %{_libdir}/libksycoca.la
 %attr(755,root,root) %{_libdir}/libkwallet*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwallet*.la
+%attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %attr(755,root,root) %{_libdir}/libvcard.la
 #%attr(755,root,root) %{_libdir}/mega.so
@@ -409,7 +410,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artsrec
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
-%attr(755,root,root) %{_libdir}/lib[ams]*.so.*.*
+%attr(755,root,root) %{_libdir}/lib[am]*.so.*.*
+%attr(755,root,root) %{_libdir}/libs[!h]*.so.*.*
 %attr(755,root,root) %{_libdir}/lib[ams]*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
