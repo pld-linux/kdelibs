@@ -131,7 +131,7 @@ Czê¶æ aRts wymagaj±ca QT
 %package -n arts-devel
 Summary:	sound server - header files
 Summary(pl):	serwer d¼wiêku - pliki nag³ówkowe
-Group:		Developement/Libraries
+Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 
 %description -n arts-devel
