@@ -63,11 +63,12 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	docbook-utils
-BuildRequires:	ed
+BuildRequires:	expat-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libart_lgpl-devel
+BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
@@ -85,12 +86,10 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
-BuildRequires:	libidn-devel
-BuildRequires:	expat-devel
 %if %{with apidocs}
-BuildRequires:	qt-doc >= %{qtver}
 BuildRequires:	doxygen
 BuildRequires:	graphviz
+BuildRequires:	qt-doc >= %{qtver}
 %endif
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk >= 1.6.2-1
@@ -99,13 +98,12 @@ Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	qt >= %{qtver}
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
-Obsoletes:	%{name}-kabc
+Obsoletes:	kdelibs-kabc
+Obsoletes:	kdelibs-sound
 Obsoletes:	kdelibs2
 Obsoletes:	kdelibs2-sound
-Obsoletes:	kdelibs-sound
 Obsoletes:	kdesupport
 Obsoletes:	kdesupport-devel
 Obsoletes:	kdesupport-static
@@ -138,6 +136,7 @@ Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.1.91.030918-1
 Conflicts:	pixieplus < 0.3-4
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package includes libraries that are central to the development
