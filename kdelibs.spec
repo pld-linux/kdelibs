@@ -2,7 +2,7 @@
 # 	space.
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc3
+%define         _kdever         kde-3.1-rc4
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -11,7 +11,7 @@ Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
 Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
-Version:	3.0.99
+Version:	3.1
 Release:	1
 Epoch:		7
 License:	LGPL
