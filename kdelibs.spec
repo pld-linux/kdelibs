@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030428
+%define		_snap		030501
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -30,8 +30,8 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		%{name}-vmenu_location.patch
-Patch4:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
-Patch5:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
+#Patch4:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
+#Patch5:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -63,7 +63,7 @@ BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.1-3
+BuildRequires:	qt-devel >= 3.2-0.030428.1
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	arts >= 1.2
@@ -233,8 +233,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
+#%patch4 -p1
+#%patch5 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -255,12 +255,9 @@ done
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	--enable-final \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
-	--disable-mysql \
-	--disable-informix \
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
@@ -285,12 +282,9 @@ rm -rf $RPM_BUILD_ROOT
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
-install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
-
 install -d \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
-
-install -d \
+	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 %clean
