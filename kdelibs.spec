@@ -249,8 +249,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 Summary:	API documentation
 Summary(pl):	Dokumentacja API
 Group:		Development/Docs
-#Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description apidocs
 API documentation.
@@ -768,9 +767,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kresources.desktop
 %{_mandir}/man1/kab2kabc.1*
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %lang(en) %{_kdedocdir}/en/%{name}-apidocs
+%endif
 
 %files devel
 %defattr(644,root,root,755)
