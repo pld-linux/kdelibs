@@ -1,21 +1,19 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.1
-Release:	5
+Version:	2.1.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/stable/2.1/distribution/tar/generic/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
-Patch3:		%{name}-Japanese.patch
-Patch4:		%{name}-klauncher-escape.patch
-Patch5:		%{name}-prevent-Unsupported-action-listDir.patch
+Patch3:		%{name}-klauncher-escape.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -26,9 +24,9 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	kdesupport-mimelib-devel = %{version}
+BuildRequires:	kdesupport-mimelib-devel => 2.1
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 2.2.4
+BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	unixODBC-devel
 BuildRequires:	gettext-devel
 BuildRequires:	zlib-devel
@@ -117,8 +115,6 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
