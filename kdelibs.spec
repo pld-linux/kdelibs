@@ -2,7 +2,7 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.0pre
+Version:	2.0pre_%{REV}
 Release:	2
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
