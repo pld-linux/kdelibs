@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -376,6 +376,10 @@ cd -
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 %{__sed} -i -e  "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
+
+if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
+mv -f $RPM_BUILD_ROOT{%{_kdedocdir}/en/%{name}-%{version}-apidocs,%{_kdedocdir}/en/%{name}-apidocs}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
