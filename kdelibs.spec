@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.7
+Release:	0.8
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -66,7 +66,7 @@ BuildRequires:	mad-devel
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 %{!?_without_ldap:BuildRequires:	openldap-devel}
-BuildRequires:	openssl-devel >= 0.9.6j
+BuildRequires:	openssl-devel >= 0.9.6k
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	perl-base
 BuildRequires:	qt-devel >= 3.1-3
