@@ -23,7 +23,7 @@ BuildRequires:	kdesupport-uulib-devel = %{version}
 BuildRequires:	kdesupport-qwspritefield-devel = %{version}
 Requires:	qt >= 2.0
 URL:		http://www.kde.org/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix 		/usr/X11R6
 %define		_sysconfdir		/etc/X11/kde
@@ -153,7 +153,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
-
 
 #%lang(br) %{_kde_locale}/br/charset
 #%lang(ca) %{_kde_locale}/ca/charset
