@@ -253,13 +253,13 @@ Group:		Documentation
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description apidocs
-Annotated reference of KDE programming interface including:
+Annotated reference of KDE libraries programming interface including:
 - class lists
 - class members
 - namespaces
 
 %description apidocs -l pl
-Dokumentacja interfejsu programowania KDE z przypisami. Zawieta:
+Dokumentacja interfejsu programowania KDE z przypisami. Zawiera:
 - listy klas i ich sk³adników
 - listê przestrzeni nazw (namespace)
 
