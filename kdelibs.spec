@@ -53,6 +53,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
+BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
@@ -61,7 +62,6 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
@@ -195,15 +195,22 @@ Czê¶æ aRts wymagaj±ca KDE.
 
 %package -n arts-kde-devel
 Summary:	Headers for KDE dependent part of aRts
-Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±ca KDE
+Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±cej KDE
 Group:		X11/Libraries
 Requires:	arts-kde = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
+%{!?_without_alsa:Requires:	alsa-lib-devel}
+Requires:	audiofile-devel
+Requires:	fam-devel
+Requires:	libart_lgpl-devel
+Requires:	libmad-devel
+Requires:	libvorbis-devel
 
 %description -n arts-kde-devel
 Headers for KDE dependent part of aRts.
 
 %description -n arts-kde-devel -l pl
-Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
+Nag³ówki dla czê¶ci aRts wymagaj±cej KDE.
 
 %package -n arts-message
 Summary:	Program which can be used to display aRts daemon messages
