@@ -27,7 +27,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	openssl-devel >= 0.9.6b
 BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	gettext-devel
 BuildRequires:	zlib-devel
@@ -40,6 +40,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	nas-devel
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
+%requires_eq	openssl
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
