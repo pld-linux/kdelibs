@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1.3
+Release:	1.4
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -36,7 +36,7 @@ Patch4:		%{name}-fonts.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
-BuildRequires:	XFree86-devel >= 4.2.99
+BuildRequires:	XFree86-devel >= 4.2.1
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
@@ -66,12 +66,12 @@ BuildRequires:	mad-devel
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 %{!?_without_ldap:BuildRequires:	openldap-devel}
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.6j
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
-BuildRequires:	sed >= 4.0
+BuildRequires:	sed
 BuildRequires:	zlib-devel
-Requires:	XFree86-libs >= 4.2.99
+Requires:	XFree86-libs >= 4.2.1
 Requires:	applnk >= 1.6.2-1
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
@@ -87,6 +87,7 @@ Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
+%define		_prefix		/usr/X11R6
 %define		_htmldir	%{_docdir}/kde/HTML
 %define		no_install_post_chrpath		1
 
@@ -241,7 +242,7 @@ cd -
 
 for plik in `find ./ -name *.desktop` ; do
 	echo $plik
-	sed -i -e "s/\[nb\]/\[no\]/g" $plik
+	perl -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
 %{__libtoolize}
@@ -288,13 +289,13 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-#find_lang kdelibs --with-kde --all-name > %{name}.lang
-topics="common kdelibs-apidocs kspell"
+%find_lang kdelibs --with-kde --all-name > %{name}.lang
+#topics="common kdelibs-apidocs kspell"
 
-for i in $topics; do
-	%find_lang $i --with-kde
-	cat $i.lang >> %{name}.lang
-done
+#for i in $topics; do
+#	%find_lang $i --with-kde
+#	cat $i.lang >> %{name}.lang
+#done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
