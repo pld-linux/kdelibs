@@ -49,7 +49,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	gettext-devel
-BuildRequires:	kernel-headers
+%{?!_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
