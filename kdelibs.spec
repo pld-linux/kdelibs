@@ -9,7 +9,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.4
-Release:	3
+Release:	4
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
