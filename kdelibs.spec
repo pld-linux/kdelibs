@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.2
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -25,6 +25,7 @@ Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-libxml_closecallback.patch
 Patch5:		%{name}-cookieperms.patch
+Patch6:		%{name}-qt_docdir.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -258,6 +259,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
