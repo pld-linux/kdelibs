@@ -269,10 +269,10 @@ oraz jej konwersjê.
 #%%patch3 -p1
 %patch4 -p1
 %patch5 -p0
-%patch6 -p0
-%patch7 -p1
+%patch6 -p1
+%patch7 -p0
 %patch8 -p0
-%patch9 -p0
+%patch9 -p1
 %patch10 -p0
 
 %build
