@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -346,12 +346,12 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 
 %prep 
 %setup -q -n %{name} -a2
+#%setup -q -n %{name}-%{_snap} -a2
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-
 
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
@@ -926,6 +926,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkmdi.so
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so
 %attr(755,root,root) %{_libdir}/libkmid.so
+%attr(755,root,root) %{_libdir}/libknewstuff.so
 %attr(755,root,root) %{_libdir}/libkparts.so
 %attr(755,root,root) %{_libdir}/libkresources.so
 %attr(755,root,root) %{_libdir}/libkscreensaver.so
@@ -937,7 +938,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
 %attr(755,root,root) %{_libdir}/libqt-addon.so
 %attr(755,root,root) %{_libdir}/libvcard.so
-%attr(755,root,root) %{_libdir}/libknewstuff.so
 %{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
