@@ -150,7 +150,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcopserver
-%attr(755,root,root) %{_bindir}/[lks]*
+%attr(755,root,root) %{_bindir}/make*
+%attr(755,root,root) %{_bindir}/[ilkps]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.la
@@ -168,7 +169,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %dir %{_libdir}/mcop
 
 %config %{_datadir}/config
-%{_htmldir}/default
 %{_pixmapsdir}
 %{_datadir}/apps
 %{_datadir}/mimelnk
@@ -192,6 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artscat
 %attr(755,root,root) %{_bindir}/artsd
 %attr(755,root,root) %{_bindir}/artsdsp
+%attr(755,root,root) %{_bindir}/artsmessage
 %attr(755,root,root) %{_bindir}/artsplay
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
