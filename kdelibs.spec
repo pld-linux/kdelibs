@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -39,6 +39,8 @@ Patch3:		%{name}-idn.patch
 Patch4:		kde-common-QTDOCDIR.patch
 Patch5:		%{name}-kdefx-no-altivec.patch
 Patch6:		%{name}-appicon_themable.patch
+Patch7:		post-3.2.3-%{name}-dcopserver.patch
+Patch8:		post-3.2.3-%{name}-kstandarddirs.patch
 Patch100:	%{name}-branch.diff
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
@@ -273,7 +275,8 @@ Zawiera:
 %patch4 -p1
 %patch5 -p0
 %patch6 -p1
-
+%patch7 -p1
+%patch8 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
