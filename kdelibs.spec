@@ -36,8 +36,7 @@ Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
-BuildRequires:	arts-devel >= %{artsver}
-BuildRequires:	arts-qt >= %{artsver}
+BuildRequires:	arts-qt-devel >= %{artsver}
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
@@ -175,6 +174,8 @@ Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	arts-devel >= %{artsver}
+Requires:	fam-devel
+Requires:	libart_lgpl-devel
 Requires:	qt-devel >= 6:3.2.1-4
 Obsoletes:	arts-kde-devel
 Obsoletes:	kdelibs-sound-devel
