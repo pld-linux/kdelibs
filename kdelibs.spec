@@ -4,7 +4,7 @@
 
 %define         _state          unstable
 %define         _ver		3.1
-%define         _rcver		rc6
+%define         _rcver		rc7
 %define         _kdever		kde-%{_ver}-%{_rcver}
 
 
@@ -15,9 +15,9 @@ Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
 Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
-Version:	%{_ver}%{_rcver}
-Release:	2
-Epoch:		7
+Version:	%{_ver}
+Release:	5
+Epoch:		8
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
