@@ -22,7 +22,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	4
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -34,6 +34,8 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
+Patch3:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-http.patch
+Patch4:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-khtml.patch
 # Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
@@ -242,6 +244,10 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+cd kioslave/http
+%patch3 -p0
+cd ../../khtml
+%patch4 -p0
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
