@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -34,6 +34,7 @@ Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
+Patch6:		post-%{_ver}-%{name}-kioslave.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -296,6 +297,7 @@ innych u¿ytkowników lokalnych.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p0
 
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
