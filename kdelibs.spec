@@ -270,6 +270,8 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
+install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
+
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 #%find_lang kdelibs --with-kde --all-name
