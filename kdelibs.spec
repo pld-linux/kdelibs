@@ -51,9 +51,11 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	docbook-utils
+%{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	ed
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
+%{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libICE-devel
 BuildRequires:	libXrender-devel
