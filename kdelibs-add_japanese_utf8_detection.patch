@@ -1,79 +1,31 @@
---- kdelibs/khtml/misc/decoder.cpp.orig	2004-01-28 19:57:36.000000000 +0900
-+++ kdelibs/khtml/misc/decoder.cpp	2004-01-28 20:05:34.000000000 +0900
-@@ -45,75 +45,39 @@
+Use of tainted arguments in exec is deprecated at /var/www/cgi-bin/cvsweb.cgi line 2043.
+===================================================================
+RCS file: /home2/webcvs/mirror/kdelibs/khtml/misc/decoder.cpp,v
+retrieving revision 1.69
+retrieving revision 1.70
+diff -u -p -r1.69 -r1.70
+--- kdelibs/khtml/misc/decoder.cpp	2003/09/16 16:41:20	1.69
++++ kdelibs/khtml/misc/decoder.cpp	2004/02/03 12:36:52	1.70
+@@ -23,7 +23,7 @@
+ //----------------------------------------------------------------------------
+ //
+ // KDE HTML Widget -- decoder for input stream
+-// $Id$
++// $Id$
+ 
+ #undef DECODE_DEBUG
+ //#define DECODE_DEBUG
+@@ -45,230 +45,467 @@ using namespace khtml;
  #include <kdebug.h>
  #include <klocale.h>
  
 -namespace khtml {
--
--class KanjiCode
--{
--public:
--    enum Type {ASCII, JIS, EUC, SJIS, UNICODE, UTF8 };
--    static enum Type judge(const char *str, int length);
--    static const int ESC;
--    static const int _SS2_;
--    static const unsigned char kanji_map_sjis[];
--    static int ISkanji(int code)
--    {
--	if (code >= 0x100)
--		    return 0;
--	return (kanji_map_sjis[code & 0xff] & 1);
--    }
--
--    static int ISkana(int code)
--    {
--	if (code >= 0x100)
--		    return 0;
--	return (kanji_map_sjis[code & 0xff] & 2);
--    }
--
--};
--
--}
--
--const int KanjiCode::ESC = 0x1b;
--const int KanjiCode::_SS2_ = 0x8e;
--
--const unsigned char KanjiCode::kanji_map_sjis[] =
--{
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
--    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
--    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
--    0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
--    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
--    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
--    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
--    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
--    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0
--};
--
- /*
-- * EUC-JP is
-- *     [0xa1 - 0xfe][0xa1 - 0xfe]
-- *     0x8e[0xa1 - 0xfe](SS2)
-- *     0x8f[0xa1 - 0xfe][0xa1 - 0xfe](SS3)
-+ * KanjiCode::guess_jp() is based on guess_jp() from gauche
++/*
++ * JapaneseCode::guess_jp() is based on guess_jp() from gauche
 + *     http://www.shiro.dreamhost.com/scheme/gauche/index.html
-  *
-- * Shift_Jis is
-- *     [0x81 - 0x9f, 0xe0 - 0xef(0xfe?)][0x40 - 0x7e, 0x80 - 0xfc]
++ *
 + * Copyright (c) 2000-2003 Shiro Kawai, All rights reserved.
-  *
-- * Shift_Jis Hankaku Kana is
-- *     [0xa1 - 0xdf]
-- */
--
--/*
-- * KanjiCode::judge() is based on judge_jcode() from jvim
-- *     http://hp.vector.co.jp/authors/VA003457/vim/
++ *
 + * Redistribution and use in source and binary forms, with or without
 + * modification, are permitted provided that the following conditions
 + * are met:
@@ -100,78 +52,43 @@
 + * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 + * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 + * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-- * Special Thanks to Kenichi Tsuchida
-  */
++ *
++ */
  
- /*
-@@ -121,154 +85,391 @@
-  * But it fails detection. It's not useful.
-  */
+-class KanjiCode
+-{
+-public:
+-    enum Type {ASCII, JIS, EUC, SJIS, UNICODE, UTF8 };
+-    static enum Type judge(const char *str, int length);
+-    static const int ESC;
+-    static const int _SS2_;
+-    static const unsigned char kanji_map_sjis[];
+-    static int ISkanji(int code)
+-    {
+-	if (code >= 0x100)
+-		    return 0;
+-	return (kanji_map_sjis[code & 0xff] & 1);
+-    }
++/*
++ * Maybe we should use QTextCodec::heuristicContentMatch()
++ * But it fails detection. It's not useful.
++ */
  
--enum KanjiCode::Type KanjiCode::judge(const char *str, int length)
+-    static int ISkana(int code)
+-    {
+-	if (code >= 0x100)
+-		    return 0;
+-	return (kanji_map_sjis[code & 0xff] & 2);
+-    }
 +namespace khtml {
-+    class KanjiCode
-+    {
++    class guess_arc {
 +    public:
-+        enum Type {ASCII, JIS, EUC, SJIS, UNICODE, UTF8 };
-+        static enum Type guess_jp(const char* buf, int buflen);
-+    };
-+
-+    typedef struct guess_arc_rec {
 +        unsigned int next;          /* next state */
 +        double score;               /* score */
-+    } guess_arc;
-+
-+    class guess_dfa {
-+    public:
-+        guess_arc *arcs;
-+        int state;
-+        double score;
 +    };
-+
-+    class guess_dfa_euc : public guess_dfa {
-+    public:
-+        signed char (*states)[4][256];
-+    };
-+
-+    class guess_dfa_sjis : public guess_dfa {
-+    public:
-+        signed char (*states)[2][256];
-+    };
-+
-+    class guess_dfa_utf8 : public guess_dfa {
-+    public:
-+        signed char (*states)[6][256];
-+    };
-+    
 +}
 +
-+#define DFA_INIT(dfa, st, ar)                    \
-+    {                                            \
-+        dfa.states = &st;                        \
-+        dfa.arcs = ar;                           \
-+        dfa.state = 0;                           \
-+        dfa.score = 1.0;                         \
-+    }
-+
-+#define DFA_NEXT(dfa, ch)                               \
-+    do {                                                \
-+        int arc__;                                      \
-+        if (dfa.state >= 0) {                           \
-+            arc__ = (*dfa.states)[dfa.state][ch];       \
-+            if (arc__ < 0) {                            \
-+                dfa.state = -1;                         \
-+            } else {                                    \
-+                dfa.state = dfa.arcs[arc__].next;       \
-+                dfa.score *= dfa.arcs[arc__].score;     \
-+            }                                           \
-+        }                                               \
-+    } while (0)
-+
-+#define DFA_ALIVE(dfa)  (dfa.state >= 0)
-+
-+static signed char guess_eucj_st[][256] = {
++static const signed char guess_eucj_st[4][256] = {
 + { /* state init */
 +  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 +  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -245,8 +162,8 @@
 +  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6,  6, -1,
 + },
 +};
-+
-+static guess_arc guess_eucj_ar[] = {
+ 
++static guess_arc guess_eucj_ar[7] = {
 + {  0, 1.0   }, /* init -> init */
 + {  1, 0.8   }, /* init -> jis0201_kana */
 + {  3, 0.95  }, /* init -> jis0213_2 */
@@ -254,9 +171,10 @@
 + {  0, 1.0   }, /* jis0201_kana -> init */
 + {  0, 1.0   }, /* jis0213_1 -> init */
 + {  0, 1.0   }, /* jis0213_2 -> init */
-+};
-+
-+static signed char guess_sjis_st[][256] = {
+ };
+ 
+-}
++static const signed char guess_sjis_st[2][256] = {
 + { /* state init */
 +  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 +  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -294,8 +212,10 @@
 +  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5, -1, -1, -1,
 + },
 +};
-+
-+static guess_arc guess_sjis_ar[] = {
+ 
+-const int KanjiCode::ESC = 0x1b;
+-const int KanjiCode::_SS2_ = 0x8e;
++static guess_arc guess_sjis_ar[6] = {
 + {  0, 1.0   }, /* init -> init */
 + {  1, 1.0   }, /* init -> jis0213 */
 + {  0, 0.8   }, /* init -> init */
@@ -303,8 +223,26 @@
 + {  0, 0.8   }, /* init -> init */
 + {  0, 1.0   }, /* jis0213 -> init */
 +};
-+
-+static signed char guess_utf8_st[][256] = {
+ 
+-const unsigned char KanjiCode::kanji_map_sjis[] =
+-{
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+-    0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+-    0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0
++static const signed char guess_utf8_st[6][256] = {
 + { /* state init */
 +  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 +  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -413,9 +351,21 @@
 + -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 + -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 + },
-+};
-+
-+static guess_arc guess_utf8_ar[] = {
+ };
+ 
+-/*
+- * EUC-JP is
+- *     [0xa1 - 0xfe][0xa1 - 0xfe]
+- *     0x8e[0xa1 - 0xfe](SS2)
+- *     0x8f[0xa1 - 0xfe][0xa1 - 0xfe](SS3)
+- *
+- * Shift_Jis is
+- *     [0x81 - 0x9f, 0xe0 - 0xef(0xfe?)][0x40 - 0x7e, 0x80 - 0xfc]
+- *
+- * Shift_Jis Hankaku Kana is
+- *     [0xa1 - 0xdf]
+- */
++static guess_arc guess_utf8_ar[11] = {
 + {  0, 1.0   }, /* init -> init */
 + {  1, 1.0   }, /* init -> 1byte_more */
 + {  2, 1.0   }, /* init -> 2byte_more */
@@ -428,8 +378,107 @@
 + {  3, 1.0   }, /* 4byte_more -> 3byte_more */
 + {  4, 1.0   }, /* 5byte_more -> 4byte_more */
 +};
+ 
+-/*
+- * KanjiCode::judge() is based on judge_jcode() from jvim
+- *     http://hp.vector.co.jp/authors/VA003457/vim/
+- *
+- * Special Thanks to Kenichi Tsuchida
+- */
++namespace khtml {
+ 
+-/*
+- * Maybe we should use QTextCodec::heuristicContentMatch()
+- * But it fails detection. It's not useful.
+- */
++    class guess_dfa {
++    public:
++        guess_arc *arcs;
++        int state;
++        double score;
 +
-+enum KanjiCode::Type KanjiCode::guess_jp(const char *buf, int buflen)
++        guess_dfa () {
++            state = 0;
++            score = 1.0;
++        }
++    };
++
++    class guess_dfa_euc : public guess_dfa {
++    public:
++        const signed char (*states)[4][256];
++
++        guess_dfa_euc () {
++            states = &guess_eucj_st;
++            arcs = guess_eucj_ar;
++        }
++    };
++
++    class guess_dfa_sjis : public guess_dfa {
++    public:
++        const signed char (*states)[2][256];
+ 
+-enum KanjiCode::Type KanjiCode::judge(const char *str, int length)
++        guess_dfa_sjis() {
++            states = &guess_sjis_st;
++            arcs = guess_sjis_ar;
++        }
++    };
++
++    class guess_dfa_utf8 : public guess_dfa {
++    public:
++        const signed char (*states)[6][256];
++
++        guess_dfa_utf8() {
++            states = &guess_utf8_st;
++            arcs = guess_utf8_ar;
++        }
++    };
++
++    class JapaneseCode
++    {
++    public:
++        enum Type {ASCII, JIS, EUC, SJIS, UNICODE, UTF8 };
++        enum Type guess_jp(const char* buf, int buflen);
++
++        JapaneseCode () {
++            eucj = new guess_dfa_euc();
++            sjis = new guess_dfa_sjis();
++            utf8 = new guess_dfa_utf8();
++            last_JIS_escape = false;
++        }
++
++        ~JapaneseCode () {
++            if (eucj) delete eucj;
++            if (sjis) delete sjis;
++            if (utf8) delete utf8;
++        }
++
++    protected:
++        guess_dfa_euc  *eucj;
++        guess_dfa_sjis *sjis;
++        guess_dfa_utf8 *utf8;
++
++        bool last_JIS_escape;
++    };
++}
++
++#define DFA_NEXT(dfa, ch)                               \
++    do {                                                \
++        int arc__;                                      \
++        if (dfa->state >= 0) {                          \
++            arc__ = (*dfa->states)[dfa->state][ch];     \
++            if (arc__ < 0) {                            \
++                dfa->state = -1;                        \
++            } else {                                    \
++                dfa->state = dfa->arcs[arc__].next;     \
++                dfa->score *= dfa->arcs[arc__].score;   \
++            }                                           \
++        }                                               \
++    } while (0)
++
++#define DFA_ALIVE(dfa)  (dfa->state >= 0)
++
++enum JapaneseCode::Type JapaneseCode::guess_jp(const char *buf, int buflen)
  {
 -    enum Type code;
      int i;
@@ -574,90 +623,137 @@
 -	} else if (sjis < euc) {
 -	    code = EUC;
 -	}
-+
-+    guess_dfa_euc eucj;
-+    DFA_INIT(eucj, guess_eucj_st, guess_eucj_ar);
-+    guess_dfa_sjis sjis;
-+    DFA_INIT(sjis, guess_sjis_st, guess_sjis_ar);
-+    guess_dfa_utf8 utf8;
-+    DFA_INIT(utf8, guess_utf8_st, guess_utf8_ar);    
-+    
 +    guess_dfa *top = NULL;
 +
 +    for (i=0; i<buflen; i++) {
 +        int c = (unsigned char)buf[i];
 +
 +        /* special treatment of jis escape sequence */
-+        if (c == 0x1b) {
++        if (c == 0x1b || last_JIS_escape) {
 +            if (i < buflen-1) {
-+                c = (unsigned char)buf[++i];
-+                if (c == '$' || c == '(') return KanjiCode::JIS;
++                if (last_JIS_escape)
++                    c = (unsigned char)buf[i];
++                else
++                    c = (unsigned char)buf[++i];
++                last_JIS_escape = false;
++
++                if (c == '$' || c == '(') {
++                    return JapaneseCode::JIS;
++                }
++            } else {
++                last_JIS_escape = true;
 +            }
 +        }
-+        
++
 +        if (DFA_ALIVE(eucj)) {
-+            if (!DFA_ALIVE(sjis) && !DFA_ALIVE(utf8)) return KanjiCode::EUC;
++            if (!DFA_ALIVE(sjis) && !DFA_ALIVE(utf8)) return JapaneseCode::EUC;
 +            DFA_NEXT(eucj, c);
 +        }
 +        if (DFA_ALIVE(sjis)) {
-+            if (!DFA_ALIVE(eucj) && !DFA_ALIVE(utf8)) return KanjiCode::SJIS;
++            if (!DFA_ALIVE(eucj) && !DFA_ALIVE(utf8)) return JapaneseCode::SJIS;
 +            DFA_NEXT(sjis, c);
 +        }
 +        if (DFA_ALIVE(utf8)) {
-+            if (!DFA_ALIVE(sjis) && !DFA_ALIVE(eucj)) return KanjiCode::UTF8;
++            if (!DFA_ALIVE(sjis) && !DFA_ALIVE(eucj)) return JapaneseCode::UTF8;
 +            DFA_NEXT(utf8, c);
 +        }
 +
 +        if (!DFA_ALIVE(eucj) && !DFA_ALIVE(sjis) && !DFA_ALIVE(utf8)) {
 +            /* we ran out the possibilities */
-+            return KanjiCode::ASCII;
++            return JapaneseCode::ASCII;
++        }
++    }
++
++    /* Now, we have ambigous code.  Pick the highest score.  If more than
++       one candidate tie, pick the default encoding. */
++    if (DFA_ALIVE(eucj)) top = eucj;
++    if (DFA_ALIVE(utf8)) {
++        if (top) {
++            if (top->score <  utf8->score) top = utf8;
++        } else {
++            top = utf8;
++        }
++    }
++    if (DFA_ALIVE(sjis)) {
++        if (top) {
++            if (top->score <= sjis->score) top = sjis;
++        } else {
++            top = sjis;
 +        }
      }
 -breakBreak:
 -    return (code);
 +
-+    /* Now, we have ambigous code.  Pick the highest score.  If more than
-+       one candidate tie, pick the default encoding. */
-+    if (DFA_ALIVE(eucj)) top = &eucj;
-+    if (DFA_ALIVE(utf8)) {
-+        if (top) {
-+            if (top->score <  utf8.score) top = &utf8;
-+        } else {
-+            top = &utf8;
-+        }
-+    }
-+    if (DFA_ALIVE(sjis)) {
-+        if (top) {
-+            if (top->score <= sjis.score)  top = &sjis;
-+        } else {
-+            top = &sjis;
-+        }
-+    }
++    if (top == eucj) return JapaneseCode::EUC;
++    if (top == utf8) return JapaneseCode::UTF8;
++    if (top == sjis) return JapaneseCode::SJIS;
 +
-+    if (top == &eucj) return KanjiCode::EUC;
-+    if (top == &utf8) return KanjiCode::UTF8;
-+    if (top == &sjis) return KanjiCode::SJIS;
-+    
-+    return ASCII;
++    return JapaneseCode::ASCII;
  }
  
  Decoder::Decoder()
-@@ -494,7 +695,7 @@
+@@ -282,10 +519,14 @@ Decoder::Decoder()
+     visualRTL = false;
+     haveEncoding = false;
+     m_autoDetectLanguage = SemiautomaticDetection;
++    kc = NULL;
+ }
++
+ Decoder::~Decoder()
+ {
+     delete m_decoder;
++    if (kc)
++        delete kc;
+ }
+ 
+ void Decoder::setEncoding(const char *_encoding, bool force)
+@@ -494,20 +735,7 @@ QString Decoder::decode(const char *data
              enc = automaticDetectionForHebrew( (const unsigned char*) data, len );
              break;
          case Decoder::Japanese:
 -            switch ( KanjiCode::judge( data, len ) ) {
-+            switch ( KanjiCode::guess_jp( data, len ) ) {
-                 case KanjiCode::JIS:
-                     enc = "jis7";
-                     break;
-@@ -504,6 +705,9 @@
-                 case KanjiCode::SJIS:
-                     enc = "sjis";
-                     break;
-+                case KanjiCode::UTF8:
-+                    enc = "utf8";
-+                    break;
-                 default:
-                     enc = NULL;
-                     break;
+-                case KanjiCode::JIS:
+-                    enc = "jis7";
+-                    break;
+-                case KanjiCode::EUC:
+-                    enc = "eucjp";
+-                    break;
+-                case KanjiCode::SJIS:
+-                    enc = "sjis";
+-                    break;
+-                default:
+-                    enc = NULL;
+-                    break;
+-            }
++            enc = automaticDetectionForJapanese( (const unsigned char*) data, len );
+             break;
+         case Decoder::Turkish:
+             enc = automaticDetectionForTurkish( (const unsigned char*) data, len );
+@@ -702,6 +930,27 @@ QCString Decoder::automaticDetectionForH
+     return "iso-8859-8-i";
+ }
+ 
++QCString Decoder::automaticDetectionForJapanese( const unsigned char* ptr, int size )
++{
++    if (!kc)
++        kc = new JapaneseCode();
++
++    switch ( kc->guess_jp( (const char*)ptr, size ) ) {
++    case JapaneseCode::JIS:
++        return "jis7";
++    case JapaneseCode::EUC:
++        return "eucjp";
++    case JapaneseCode::SJIS:
++        return "sjis";
++     case JapaneseCode::UTF8:
++        return "utf8";
++    default:
++        break;
++    }
++
++    return "";
++}
++
+ QCString Decoder::automaticDetectionForTurkish( const unsigned char* ptr, int size )
+ {
+     for ( int i = 0; i < size; ++i ) {
