@@ -119,7 +119,7 @@ export CXXFLAGS LDFLAGS
 %configure \
 	--with-qt-dir=%{_prefix} \
 	--disable-path-check
-make
+%{__make}
 
 #(cd mediatool/Documentation; make)
 #dvips -f < mediatool/Documentation/Doc.dvi | gzip -9nf > mediatool.ps.gz
