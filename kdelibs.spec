@@ -20,7 +20,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -84,7 +84,8 @@ BuildRequires:	qt-devel >= 6:3.3.3-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
-%if %{with brokenRpm}
+BuildRequires:	mDNSResponder
+%if %{with broken_rpm}
 BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
