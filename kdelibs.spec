@@ -289,18 +289,20 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d \
+	$RPM_BUILD_ROOT%{_datadir}/{apps/khtml/kpartplugins,wallpapers} \
+	$RPM_BUILD_ROOT%{_icondir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
+	$RPM_BUILD_ROOT%{_icondir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_appsdir=%{_applnkdir} \
 	kde_htmldir=%{_htmldir}
 	
-install -d \
-	$RPM_BUILD_ROOT%{_datadir}/{apps/khtml/kpartplugins,wallpapers} \
-	$RPM_BUILD_ROOT%{_icondir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
-	$RPM_BUILD_ROOT%{_icondir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
-
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
+
+# this is provided by openoffice:
+rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
