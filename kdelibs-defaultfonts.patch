@@ -6,8 +6,8 @@
      // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _generalFont = new QFont("helvetica", 12);
 -    _generalFont->setPointSize(12);
-+    _generalFont = new QFont("helvetica", 11);
-+    _generalFont->setPointSize(11);
++    _generalFont = new QFont("helvetica", 9);
++    _generalFont->setPointSize(9);
      _generalFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
@@ -17,8 +17,8 @@
      // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _fixedFont = new QFont("courier", 12);
 -    _fixedFont->setPointSize(12);
-+    _fixedFont = new QFont("courier", 11);
-+    _fixedFont->setPointSize(11);
++    _fixedFont = new QFont("courier", 9);
++    _fixedFont->setPointSize(9);
      _fixedFont->setStyleHint(QFont::TypeWriter);
  
      KConfig *c = KGlobal::config();
@@ -28,8 +28,8 @@
      // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _toolBarFont = new QFont("helvetica", 10);
 -    _toolBarFont->setPointSize(10);
-+    _toolBarFont = new QFont("helvetica", 11);
-+    _toolBarFont->setPointSize(11);
++    _toolBarFont = new QFont("helvetica", 8);
++    _toolBarFont->setPointSize(8);
      _toolBarFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
@@ -39,8 +39,8 @@
      // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _menuFont = new QFont("helvetica", 12);
 -    _menuFont->setPointSize(12);
-+    _menuFont = new QFont("helvetica", 11);
-+    _menuFont->setPointSize(11);
++    _menuFont = new QFont("helvetica", 9);
++    _menuFont->setPointSize(9);
      _menuFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
