@@ -14,8 +14,8 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.1
-Release:	1
-Epoch:		8
+Release:	2
+Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
