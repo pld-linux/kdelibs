@@ -18,12 +18,13 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.%{_snap}.0.2
+Release:	0.%{_snap}.0.3
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source2:	x-wmv.desktop
+Source3:	%{name}-default_applications.menu
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
@@ -274,8 +275,10 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
+
+mv $RPM_BUILD_ROOT%{_applnkdir}/default_applications.menu{,.orig}
+install %{SOURCE3} $RPM_BUILD_ROOT%{_applnkdir}/default_applications.menu
 
 install -d \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
@@ -313,9 +316,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
+# should be kdebase part imo
 %{_applnkdir}/default_applications.menu
 # contains Components/kabc.desktop only
-%{_applnkdir}/Settings/KDE
+%dir %{_applnkdir}/Settings/KDE
+%{_applnkdir}/Settings/KDE/Components
 %{_pixmapsdir}/*
 %{_docdir}/kde
 
