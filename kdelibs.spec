@@ -7,9 +7,9 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040414
+%define		_snap		040424
 %define         artsver         13:1.2.0
-%define		_packager	djurban
+%define		_packager	adgor
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -25,9 +25,8 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-#Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-Source0:      	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	08164d4891c1d9adb8b4c28654c50918
+Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+##%% Source0-md5:	08164d4891c1d9adb8b4c28654c50918
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
 Source2:	%{name}-wmfplugin.tar.bz2 
@@ -331,8 +330,7 @@ Internationalization and localization files for kdelibs.
 Pliki umiêdzynarodawiaj±ce kdelibs.
 
 %prep 
-%setup -q -n %{name} -a2
-#%setup -q -n %{name}-%{_snap} -a2
+%setup -q -n %{name}-%{_snap} -a2
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -345,8 +343,6 @@ echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 cp /usr/share/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
-
-#export kde_libs_htmldir=%{_kdedocdir}
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
@@ -929,7 +925,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-#%{_kdedocdir}/en/%{name}-apidocs
 %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 %endif
 
