@@ -439,7 +439,7 @@ for i in $files; do
 	grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
 	mv ${i}.lang.1 ${i}.lang
 done
-cd $RPM_BUILD_ROOT
+cd $RPM_BUILD_ROOT%{_libdir}
 ln -sf knewstuff.so.1.0.0 knewstuff.so
 
 %clean
