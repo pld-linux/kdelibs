@@ -189,16 +189,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libk[afijpt]*.la
 %attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeprint*.la
-%attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
-%attr(755,root,root) %{_libdir}/libkdesu*.la
 %attr(755,root,root) %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkscreensaver.la
 %attr(755,root,root) %{_libdir}/libkspell.la
-%attr(755,root,root) %{_libdir}/libkssl.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*
 %attr(755,root,root) %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkhtmli*.??
-%attr(755,root,root) %{_libdir}/libks[!y]*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libks[!ys]*.so.*.*.*
 %attr(755,root,root) %{_libdir}/mega.so
 %attr(755,root,root) %{_libdir}/mega.la
 %attr(755,root,root) %{_libdir}/webstyle.so
@@ -228,6 +225,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeui.la
+%attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
+%attr(755,root,root) %{_libdir}/libkdesu*.la
+%attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkssl.la
 %attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
 %attr(755,root,root) %{_libdir}/libksycoca.la
 
