@@ -37,6 +37,7 @@ Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-QTDOCDIR.patch
 Patch4:		%{name}-exr.patch
+Patch5:		%{name}-kspell2.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -334,8 +335,12 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
+
+# Allready in kspell2.patch
+#echo "KDE_OPTIONS = nofinal" >> kspell2/Makefile.am
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -413,15 +418,12 @@ done
 %find_lang %{name} --with-kde --all-name
 
 files=%{name}
-
 for i in $files; do
 	echo "%defattr(644,root,root,755)" > ${i}_en.lang
 	grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
 	grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
 	mv ${i}.lang.1 ${i}.lang
 done
-cd $RPM_BUILD_ROOT%{_libdir}
-ln -sf knewstuff.so.1.0.0 knewstuff.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
