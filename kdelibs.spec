@@ -401,18 +401,14 @@ done
 
 %find_lang %{name} --with-kde --all-name
 
+files=%{name}
 
-### Dont uncomment, left here in case more lang files are to be process
-
-#files=%{name}
-i=%{name}
-
-# for i in $files; do
+for i in $files; do
 echo "%defattr(644,root,root,755)" > ${i}_en.lang
 grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
 grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
 mv ${i}.lang.1 ${i}.lang
-# done
+done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
