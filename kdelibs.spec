@@ -210,7 +210,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%{__make} -f Makefile.cvs
+autoconf
+#%{__make} -f Makefile.cvs
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
