@@ -276,6 +276,7 @@ done
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
+	--enable-final \
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
