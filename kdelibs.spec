@@ -762,7 +762,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
 # contains also 3rdparty crystalsvg/apps trees
-%{_iconsdir}/crystalvsg
+%{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
 %{_mandir}/man1/checkXML.1*
 %{_mandir}/man1/cupsdconf.1*
