@@ -47,7 +47,7 @@ BuildRequires:	motif-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1
 BuildRequires:	zlib-devel
