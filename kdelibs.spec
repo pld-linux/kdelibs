@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	0.8
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -47,7 +47,6 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
-BuildRequires:	ed
 BuildRequires:	esound-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
@@ -57,7 +56,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:1.5-2
 BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
@@ -69,6 +68,7 @@ BuildRequires:	motif-devel
 %{!?_without_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.6k
 BuildRequires:	pcre-devel >= 3.5
+BuildRequires:	perl-base
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	sed
 BuildRequires:	zlib-devel
@@ -237,8 +237,6 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch4 -p1
 
 %build
-echo -e ',s/ --tag=CXX//\n,w' | ed admin/am_edit
-
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
@@ -250,9 +248,9 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-for plik in `find ./ -name *.desktop | grep -l '\[nb\]'` ; do
+for plik in `find ./ -name *.desktop` ; do
 	echo $plik
-	echo -e ',s/\[nb\]/[no]/\n,w' | ed $plik
+	perl -pi -e "s/\[nb\]/\[no\]/g" $plik
 done
 
 %{__libtoolize}
