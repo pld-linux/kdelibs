@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0
 #define		_sub_ver
-%define		_rel		3
+%define		_rel		4
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -69,7 +69,7 @@ BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
-Requires:	arts >= 0.9.9
+Requires:	arts >= 1.0.0
 Requires:	qt >= 3.0.3
 %requires_eq	openssl
 URL:		http://www.kde.org/
@@ -130,7 +130,7 @@ Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
 Group(ru):	X11/Разработка/Библиотеки
 Group(uk):	X11/Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
-Requires:	arts-devel >= 0.9.9
+Requires:	arts-devel >= 1.0.0
 Requires:	qt-devel >= 3.0.3
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
