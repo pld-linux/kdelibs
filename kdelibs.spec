@@ -64,7 +64,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
-Requires:	applnk
+Requires:	applnk >= 1.6
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
