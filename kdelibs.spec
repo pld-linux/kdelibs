@@ -665,7 +665,7 @@ rm -rf $RPM_BUILD_ROOT
 # merged kabc files
 %attr(0755,root,root) %{_bindir}/kab2kabc
 %{_libdir}/libvcard.la
-%attr(0755,root,root) %{_libdir}/libvcard.so.*
+%attr(0755,root,root) %{_libdir}/libvcard.so*
 %{_libdir}/kde3/kabc_dir.la
 %attr(0755,root,root) %{_libdir}/kde3/kabc_dir.so
 %{_libdir}/kde3/kabc_file.la
