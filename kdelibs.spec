@@ -2,7 +2,7 @@
 # 	space.
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-beta2
+%define         _kdever         kde-3.1-rc1
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -11,8 +11,8 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.0.8
-Release:	1.1
+Version:	3.0.9
+Release:	1
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -23,7 +23,7 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
 Patch2:		%{name}-am.patch
-Patch3:		%{name}-resize-icons.patch
+#Patch3:		%{name}-resize-icons.patch
 #Patch4:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
@@ -224,7 +224,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch0 -p1
 %patch1 -p1
 ##%patch2 -p0
-%patch3 -p1
+#%patch3 -p1
 #cd khtml
 #%patch4 -p0
 #cd ..
@@ -284,7 +284,7 @@ done
 %postun -n arts-kde -p /sbin/ldconfig
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
