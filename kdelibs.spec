@@ -4,7 +4,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -18,6 +18,8 @@ Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-no_nas.patch
 Patch5:		%{name}-libxml_closecallback.patch
+#Patch6:		http://www.research.att.com/~leonb/objprelink/kde-admin-acinclude.patch
+#Patch6:		%{name}-objprelink.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -42,6 +44,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pcre-devel
 #BuildRequires:	glib2-devel >= 1.3.3
+BuildRequires:	cups-devel
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 %requires_eq	openssl
@@ -169,6 +172,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+#%patch6 -p0
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -185,7 +189,8 @@ CXXFLAGS="%{rpmcflags}"
 	--disable-mysql \
 	--disable-informix \
 	--with-alsa \
-	--enable-mitshm
+	--enable-mitshm \
+	--enable-objprelink
 
 %{__make}
 
@@ -217,6 +222,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mein*
 %attr(755,root,root) %{_bindir}/[cilkpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
+%attr(755,root,root) %{_libdir}/libc*.??
 %attr(755,root,root) %{_libdir}/libartskde.so
 %attr(755,root,root) %{_libdir}/libk[afhjpt]*.so.*.*
 %attr(755,root,root) %{_libdir}/libk[afjpt]*.la
