@@ -154,68 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*.h
 
 %changelog
-* Mon May 24 1999 Wojciech "Sas" Cieciwa <cieciwa@alpha.zarz.agh.edu.pl>
-  [1.1.1-2]
-- fixes locations,
-- fixes problem with language extension.
-  
-* Tue May 18 1999 Wojciech "Sas" Cieciwa <cieciwa@alpha.zarz.agh.edu.pl>
+* Fri May 28 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.1-1]
-- fixes file in devel package,
-- fixes locale locations,
-- added kde.pot to documentation.
-
-* Mon Apr  3 1999 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
-  [1.1-2]
-- URL added
-- more locales added
-- charset files added
-- lib*.so.* files added
-
-* Mon Dec  9 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0-7]
-- recompiled against libstdc++.so.2.9.
-
-* Sun Sep 27 1998 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
-  [1.0-6]
-- prefix changed to $KDEDIR,
-- Group changed to /X11/KDE/Libraries.
-
-* Sun Sep 27 1998 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
-  [1.0-5]
-- added custom kderc file to properly configure icons path (for
-  icons from fvwm) ,
-- make basic KDE directories owned by this package,
-- changed filename "mediatool.gz" to "mediatool.ps.gz" for file type
-  to be clear,
-- changed directory structure - config dirs to /etc/X11/kde,
-  other shared to /usr/X11R6/share/kde,
-- added script "kdelnk2wmconfig" to devel package, to make packaging KDE
-  applications easier,
-- changed qt-includes to /usr/X11R6/include/X11/qt to be compatible with PLD's
-  qt-devel package.
-  
-* Tue Sep 15 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0-4]
-- changed KDEDIR to /usr/X11R6.
-
-* Mon Aug  3 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
-  [1.0-3]
-- removed using macros kdename, version and kderelease,
-- added pl translation,
-- added real %files,
-- added using $RPM_OPT_FLAGS during compilation,
-- added postscript %doc for mediatool (devel),
-- removed qt-egcs-10x, redhat-release from Requires list,
-- added devel subpackage,
-- removed Packager field from spec (if you want recompile package and
-  redistribute this package later put this in your private .rpmrc),
-- removed Distribution field (this also must be placed in private .rpmrc),
-- removed comment about RH from %description,
-- base dir changed to /usr,
-- added -q an emoved -n %setup parameter,
-- Buildroot changed to /tmp/%%{name}-%%{version}-root,
-- simplified %post{un} and now ldconfig is -p parameter this sections,
-- added using %%{name} and %%{version} macros in Source,
-- added %lang macros for /usr/share/locale/*/LC_MESSAGES/ files,
-- "rm -rf $RPM_BUILD_ROOT" moved from %prep to %install.
+- based on RH spec,
+- spec rewrited by PLD team.
