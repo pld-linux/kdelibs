@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.91
+Release:	1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
