@@ -13,7 +13,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.4
-Release:	5
+Release:	6
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -279,6 +279,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 # create in toplevel %%{_pixmapsdir} links to icons
 for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/filesystems/{desktop,network,socket}.png \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/cdaudio_unmount.png
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/mimetypes/html.png
 do
 %if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
 	ln -sf `echo $i | sed "s:^$RPM_BUILD_ROOT%{_pixmapsdir}/::"` $RPM_BUILD_ROOT%{_pixmapsdir}	
@@ -291,7 +292,7 @@ bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
 # moved
-rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,desktop,network,socket}.png
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,desktop,html,network,socket}.png
 # resized
 # Note: arts is moved from kdebase, encrypted should be removed only from actions
 rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{editcopy,history,launch,spellcheck}.png
