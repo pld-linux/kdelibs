@@ -251,6 +251,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch2 -p1
 
 %build
+cp /usr/share/automake/config.sub admin
 for plik in `find . -name \*.desktop -o -name \*rc -o -name \*.print -o \
 	     -name all_languages -o -name \*.kimgio | xargs grep -l '\[nb\]'` ; do
 	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $plik 2>/dev/null
@@ -261,6 +262,7 @@ done
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--disable-rpath \
+	--with-qt-libraries=%{_libdir} \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
