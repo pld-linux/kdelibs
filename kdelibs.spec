@@ -2,7 +2,6 @@
 # 	space.
 #
 # Conditional build:
-# _with_ra		- use it if You're building for Ra dist 
 # _without_alsa - disable alsa
 #
 
@@ -55,20 +54,13 @@ BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
-%if %{?_with_ra:1}0
-BuildRequires:	openssl-devel >= 0.9.6i
-%else
 BuildRequires:	openssl-devel >= 0.9.7
-%endif
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk
 Requires:	arts >= 1.1-1
-%if %{?_with_ra:1}0
-Requires:	openssl >= 0.9.6i
-%endif
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
