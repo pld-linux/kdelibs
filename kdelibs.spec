@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.10
+Release:	0.%{sver}.11
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -37,7 +37,6 @@ BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pcre-devel
-BuildRequires:	nas-devel
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 %requires_eq	openssl
