@@ -121,9 +121,6 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %endif
 
 %build
-automake -a -c --no-force -i
-aclocal
-autoconf
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
