@@ -17,7 +17,6 @@ Version:	3.0.4
 Release:	9
 Epoch:		7
 License:	LGPL
-Vendor:		The KDE Team
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
