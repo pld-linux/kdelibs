@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -204,7 +204,9 @@ Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±cej KDE
 Group:		X11/Libraries
 Requires:	arts-kde = %{epoch}:%{version}
 Requires:	%{name}-devel = %{epoch}:%{version}
+%ifnarch sparc sparc64
 %{!?_without_alsa:Requires:	alsa-lib-devel}
+%endif
 Requires:	arts-devel >= 1.1-1
 Requires:	audiofile-devel
 Requires:	fam-devel
