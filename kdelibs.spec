@@ -10,6 +10,7 @@
 
 %define		_state		stable
 %define		_ver		3.1.4
+%define		artsver		12:1.1-1
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -39,8 +40,8 @@ URL:		http://www.kde.org/
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
-BuildRequires:	arts-devel >= 1.1-1
-BuildRequires:	arts-qt >= 1.1-1
+BuildRequires:	arts-devel >= %{artsver}
+BuildRequires:	arts-qt >= %{artsver}
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6
@@ -72,7 +73,7 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
 Requires:	applnk >= 1.6.2-1
-Requires:	arts >= 1.1-1
+Requires:	arts >= %{artsver}
 Requires:	qt >= 3.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kde-theme-keramik
@@ -148,7 +149,7 @@ Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
-Requires:	arts-devel >= 1.1-1
+Requires:	arts-devel >= %{artsver}
 Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
@@ -185,6 +186,7 @@ Summary:	KDE dependent part of aRts
 Summary(pl):	CzЙ╤Ф aRts wymagaj╠ca KDE
 Group:		X11/Libraries
 Requires:	%{name} >= %{epoch}:%{version}
+Requires:	arts-qt >= %{artsver}
 
 %description -n arts-kde
 KDE dependent part of aRts.
@@ -199,6 +201,7 @@ Group:		X11/Libraries
 Requires:	arts-kde = %{epoch}:%{version}
 Requires:	%{name}-devel = %{epoch}:%{version}
 %{!?_without_alsa:Requires:	alsa-lib-devel}
+Requires:	arts-devel >= %{artsver}
 Requires:	audiofile-devel
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
