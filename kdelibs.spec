@@ -262,7 +262,7 @@ Dokumentacja API.
 %patch3 -p1
 ###%patch4 -p1
 %patch5 -p0
-%patch6 -p0
+%patch6 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
