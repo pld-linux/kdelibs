@@ -40,6 +40,7 @@ Patch4:		%{name}-idn.patch
 Patch5:		kde-common-QTDOCDIR.patch
 Patch6:		%{name}-kdefx-no-altivec.patch
 Patch7:		%{name}-appicon_themable.patch
+Patch100:	%{name}-3.2branch.diff
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	unsermake >= 040511
@@ -249,7 +250,6 @@ demona.
 Summary:	API documentation
 Summary(pl):	Dokumentacja API
 Group:		Documentation	
-######		Unknown group!
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description apidocs
@@ -259,7 +259,8 @@ Annotated reference of KDE libraries programming interface including:
 - namespaces
 
 %description apidocs -l pl
-Dokumentacja interfejsu programowania KDE z przypisami. Zawiera:
+Dokumentacja interfejsu programowania bibliotek KDE z przypisami.
+Zawiera:
 - listy klas i ich sk³adników
 - listê przestrzeni nazw (namespace)
 
@@ -273,6 +274,7 @@ Dokumentacja interfejsu programowania KDE z przypisami. Zawiera:
 %patch5 -p1
 %patch6 -p0
 %patch7 -p1
+%patch100 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
@@ -283,6 +285,7 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 %build
 cp %{_datadir}/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
 export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
 
@@ -295,7 +298,6 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %endif
 	--enable-final \
 	--enable-mitshm \
-	--with-ldap=no \
 	--with%{!?with_alsa:out}-alsa
 
 %{__make}
@@ -309,7 +311,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_libs_htmldir=%{_kdedocdir}
+	kde_libs_htmldir=%{_kdedocdir} \
+	kde_htmldir=%{_kdedocdir}
 
 install -d \
 	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
