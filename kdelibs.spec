@@ -7,8 +7,8 @@
 %endif
 
 %define		_state		snapshots
-%define		_ver		3.1.92
-%define		_snap		031024
+%define		_ver		3.1.93
+%define		_snap		031103
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -25,10 +25,11 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	a10e786b75d7c53e1bd0306d71f007a1
+# Source0-md5:	9ee341775bdec9a1e5603a032c926813
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
+Patch3:		%{name}-kjs_grammar.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -94,8 +95,6 @@ Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
-
-%define		no_install_post_chrpath		1
 
 %description
 Libraries for the K Desktop Environment.
@@ -223,6 +222,7 @@ TODO.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 
@@ -230,15 +230,21 @@ for f in `find . -name *.desktop` ; do
 	sed -i 's/\[nb\]/\[no\]/g' $f
 done
 
+#echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
+	--disable-rpath \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
+	--enable-final \
 	--enable-mitshm \
 	--with%{?without_alsa:out}-alsa
+
+%{__make} -C kjs parser
 
 %{__make}
 
@@ -292,6 +298,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kcookiejar
 %attr(755,root,root) %{_bindir}/kdb2html
 %attr(755,root,root) %{_bindir}/kde-config
+%attr(755,root,root) %{_bindir}/kde-menu
 %attr(755,root,root) %{_bindir}/kded
 %attr(755,root,root) %{_bindir}/kdeinit
 %attr(755,root,root) %{_bindir}/kdeinit_shutdown
