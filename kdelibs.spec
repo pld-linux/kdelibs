@@ -8,7 +8,7 @@
 %define		_state		stable
 %define		_ver		3.2.0
 #%%define		_snap		040110
-%define         artsver         13:1.2.0
+%define		artsver		13:1.2.0
 %define		qtver		6:3.3.0.040205
 
 Summary:	K Desktop Environment - libraries
@@ -239,79 +239,77 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %package i18n
 Summary:	Internationalization and localization files for kdelibs.
 Summary(pl):	Pliki umiêdzynarodawiaj±ce kdelibs.
-Requires:       %{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Group:		X11/Applications
-Obsoletes:      kde-i18n-Affrikaans
-Obsoletes:      kde-i18n-Afrikaans
-Obsoletes:      kde-i18n-Arabic
-Obsoletes:      kde-i18n-Azerbaijani
-Obsoletes:      kde-i18n-Bulgarian
-Obsoletes:      kde-i18n-Bosnian
-Obsoletes:      kde-i18n-Catalan
-Obsoletes:      kde-i18n-Czech
-Obsoletes:      kde-i18n-Danish
-Obsoletes:      kde-i18n-German
-Obsoletes:      kde-i18n-Greek
-Obsoletes:      kde-i18n-English_UK
-Obsoletes:      kde-i18n-British
-Obsoletes:      kde-i18n-Esperanto
-Obsoletes:      kde-i18n-Spanish
-Obsoletes:      kde-i18n-Estonian
-Obsoletes:      kde-i18n-Finnish
-Obsoletes:      kde-i18n-French
-Obsoletes:      kde-i18n-Hebrew
-Obsoletes:      kde-i18n-Hindi
-Obsoletes:      kde-i18n-Croatian
-Obsoletes:      kde-i18n-Hungarian
-Obsoletes:      kde-i18n-Indonesian
-Obsoletes:      kde-i18n-Icelandic
-Obsoletes:      kde-i18n-Italian
-Obsoletes:      kde-i18n-Japanese
-Obsoletes:      kde-i18n-Korean
-Obsoletes:      kde-i18n-Lithuanian
-Obsoletes:      kde-i18n-Latvian
-Obsoletes:      kde-i18n-Maltese
-Obsoletes:      kde-i18n-Malay
-Obsoletes:      kde-i18n-Mongolian
-Obsoletes:      kde-i18n-Dutch
-Obsoletes:      kde-i18n-Norwegian
-Obsoletes:      kde-i18n-Norwegian_Bokmaal
-Obsoletes:      kde-i18n-Norwegian_Bookmal
-Obsoletes:      kde-i18n-Norwegian_Nynorsk
-Obsoletes:      kde-i18n-Polish
-Obsoletes:      kde-i18n-Portugnese
-Obsoletes:      kde-i18n-Portuguese
-Obsoletes:      kde-i18n-Brazil
-Obsoletes:      kde-i18n-Brazil_Portugnese
-Obsoletes:      kde-i18n-Brazil_Portuguese
-Obsoletes:      kde-i18n-Romanian
-Obsoletes:      kde-i18n-Russian
-Obsoletes:      kde-i18n-Slovak
-Obsoletes:      kde-i18n-Slovenian
-Obsoletes:      kde-i18n-Serbian
-Obsoletes:      kde-i18n-Swedish
-Obsoletes:      kde-i18n-Tamil
-Obsoletes:      kde-i18n-Thai
-Obsoletes:      kde-i18n-Turkish
-Obsoletes:      kde-i18n-Ukrainian
-Obsoletes:      kde-i18n-Uzbek
-Obsoletes:      kde-i18n-Venda
-Obsoletes:      kde-i18n-Vietnamese
-Obsoletes:      kde-i18n-Xhosa
-Obsoletes:      kde-i18n-Simplified_Chinese
-Obsoletes:      kde-i18n-Chinese
-Obsoletes:      kde-i18n-Chinese-Big5
-Obsoletes:      kde-i18n-Zulu
-Obsoletes:      kde-i18n-kdelibs
-Obsoletes:      kde-i18n
-##BuildArch:      noarch
+Obsoletes:	kde-i18n-Affrikaans
+Obsoletes:	kde-i18n-Afrikaans
+Obsoletes:	kde-i18n-Arabic
+Obsoletes:	kde-i18n-Azerbaijani
+Obsoletes:	kde-i18n-Bulgarian
+Obsoletes:	kde-i18n-Bosnian
+Obsoletes:	kde-i18n-Catalan
+Obsoletes:	kde-i18n-Czech
+Obsoletes:	kde-i18n-Danish
+Obsoletes:	kde-i18n-German
+Obsoletes:	kde-i18n-Greek
+Obsoletes:	kde-i18n-English_UK
+Obsoletes:	kde-i18n-British
+Obsoletes:	kde-i18n-Esperanto
+Obsoletes:	kde-i18n-Spanish
+Obsoletes:	kde-i18n-Estonian
+Obsoletes:	kde-i18n-Finnish
+Obsoletes:	kde-i18n-French
+Obsoletes:	kde-i18n-Hebrew
+Obsoletes:	kde-i18n-Hindi
+Obsoletes:	kde-i18n-Croatian
+Obsoletes:	kde-i18n-Hungarian
+Obsoletes:	kde-i18n-Indonesian
+Obsoletes:	kde-i18n-Icelandic
+Obsoletes:	kde-i18n-Italian
+Obsoletes:	kde-i18n-Japanese
+Obsoletes:	kde-i18n-Korean
+Obsoletes:	kde-i18n-Lithuanian
+Obsoletes:	kde-i18n-Latvian
+Obsoletes:	kde-i18n-Maltese
+Obsoletes:	kde-i18n-Malay
+Obsoletes:	kde-i18n-Mongolian
+Obsoletes:	kde-i18n-Dutch
+Obsoletes:	kde-i18n-Norwegian
+Obsoletes:	kde-i18n-Norwegian_Bokmaal
+Obsoletes:	kde-i18n-Norwegian_Bookmal
+Obsoletes:	kde-i18n-Norwegian_Nynorsk
+Obsoletes:	kde-i18n-Polish
+Obsoletes:	kde-i18n-Portugnese
+Obsoletes:	kde-i18n-Portuguese
+Obsoletes:	kde-i18n-Brazil
+Obsoletes:	kde-i18n-Brazil_Portugnese
+Obsoletes:	kde-i18n-Brazil_Portuguese
+Obsoletes:	kde-i18n-Romanian
+Obsoletes:	kde-i18n-Russian
+Obsoletes:	kde-i18n-Slovak
+Obsoletes:	kde-i18n-Slovenian
+Obsoletes:	kde-i18n-Serbian
+Obsoletes:	kde-i18n-Swedish
+Obsoletes:	kde-i18n-Tamil
+Obsoletes:	kde-i18n-Thai
+Obsoletes:	kde-i18n-Turkish
+Obsoletes:	kde-i18n-Ukrainian
+Obsoletes:	kde-i18n-Uzbek
+Obsoletes:	kde-i18n-Venda
+Obsoletes:	kde-i18n-Vietnamese
+Obsoletes:	kde-i18n-Xhosa
+Obsoletes:	kde-i18n-Simplified_Chinese
+Obsoletes:	kde-i18n-Chinese
+Obsoletes:	kde-i18n-Chinese-Big5
+Obsoletes:	kde-i18n-Zulu
+Obsoletes:	kde-i18n-kdelibs
+Obsoletes:	kde-i18n
 
 %description i18n 
 Internationalization and localization files for kdelibs.
 
 %description i18n -l pl
 Pliki umiêdzynarodawiaj±ce kdelibs.
-
 
 %prep 
 %setup -q
