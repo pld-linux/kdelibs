@@ -1,0 +1,34 @@
+Index: grammar.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kjs/grammar.cpp,v
+retrieving revision 1.21
+retrieving revision 1.21.2.1
+diff -u -r1.21 -r1.21.2.1
+--- kdelibs/kjs/grammar.cpp	2001/05/28 10:47:08	1.21
++++ kdelibs/kjs/grammar.cpp	2002/03/01 17:00:21	1.21.2.1
+@@ -1437,7 +1437,7 @@
+ case 38:
+ #line 231 "grammar.y"
+ { yyval.node = new AccessorNode2(yyvsp[-2].node, yyvsp[0].ustr); ;
+-    break;}
++    delete yyvsp[0].ustr; break;}
+ case 39:
+ #line 235 "grammar.y"
+ { yyval.args = new ArgumentsNode(0L); ;
+Index: grammar.y
+===================================================================
+RCS file: /home/kde/kdelibs/kjs/grammar.y,v
+retrieving revision 1.25
+retrieving revision 1.25.2.1
+diff -u -u -p -r1.25 -r1.25.2.1
+--- kdelibs/kjs/grammar.y	2001/05/28 10:47:10	1.25
++++ kdelibs/kjs/grammar.y	2002/03/01 17:00:21	1.25.2.1
+@@ -228,7 +228,7 @@ CallExpr:
+     MemberExpr Arguments           { $$ = new FunctionCallNode($1, $2); }
+   | CallExpr Arguments             { $$ = new FunctionCallNode($1, $2); }
+   | CallExpr '[' Expr ']'          { $$ = new AccessorNode1($1, $3); }
+-  | CallExpr '.' IDENT             { $$ = new AccessorNode2($1, $3); }
++  | CallExpr '.' IDENT             { $$ = new AccessorNode2($1, $3); delete $3; }
+ ;
+ 
+ Arguments:

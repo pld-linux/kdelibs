@@ -1,0 +1,35 @@
+--- kdelibs-2.2.2/kfile/kpropsdlg.cpp--	Tue Feb 12 08:18:48 2002
++++ kdelibs-2.2.2/kfile/kpropsdlg.cpp	Tue Feb 12 08:20:41 2002
+@@ -773,7 +773,7 @@ KFilePropsPlugin::KFilePropsPlugin( KPro
+     nameArea = lined;
+     lined->setFocus();
+     connect( lined, SIGNAL( textChanged( const QString & ) ),
+-             this, SIGNAL( changed() ) );
++             this, SLOT( nameFileChanged(const QString & ) ) );
+   }
+ 
+   grid->addWidget(nameArea, curRow++, 2);
+@@ -914,6 +914,12 @@ KFilePropsPlugin::KFilePropsPlugin( KPro
+ //   return i18n ("&General");
+ // }
+ 
++
++void KFilePropsPlugin::nameFileChanged(const QString &text )
++{
++  properties->enableButtonOK(!text.isEmpty());
++  changed();
++}
+ void KFilePropsPlugin::determineRelativePath( const QString & path )
+ {
+     m_sRelativePath = "";
+--- kdelibs-2.2.2/kfile/kpropsdlg.h--	Tue Feb 12 08:18:55 2002
++++ kdelibs-2.2.2/kfile/kpropsdlg.h	Tue Feb 12 08:21:29 2002
+@@ -395,7 +395,7 @@ protected slots:
+ private slots:
+   // workaround for compiler bug
+ void slotFoundMountPoint( const unsigned long& kBSize, const unsigned long& kBUsed, const unsigned long& kBAvail, const QString& mp );
+-
++ void nameFileChanged(const QString &text );
+ private:
+ 
+   void determineRelativePath( const QString & path );

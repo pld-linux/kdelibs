@@ -1,0 +1,262 @@
+Index: driver.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kdeprint/driver.cpp,v
+retrieving revision 1.2
+diff -u -r1.2 driver.cpp
+--- kdelibs-2.2.2/kdeprint/driver.cpp	2001/03/24 07:27:48	1.2
++++ kdelibs-2.2.2/kdeprint/driver.cpp	2002/01/08 13:27:47
+@@ -23,6 +23,9 @@
+ #include "driveritem.h"
+ 
+ #include <qfile.h>
++#include <qstringlist.h>
++#include <stdlib.h>
++#include <math.h>
+ 
+ /******************
+  * DrBase members *
+@@ -110,6 +113,30 @@
+ 	m_pagesizes.insert(ps->name(),ps);
+ }
+ 
++void DrMain::removeOptionGlobally(const QString& name)
++{
++	DrGroup	*grp(0);
++	DrBase	*opt = findOption(name, &grp);
++
++	if (opt && grp)
++	{
++		grp->removeOption(name);
++		if (grp->isEmpty())
++			removeGroup(grp);
++	}
++}
++
++void DrMain::removeGroupGlobally(DrGroup *grp)
++{
++	DrGroup	*parent(0);
++	if (findGroup(grp, &parent) && parent)
++	{
++		parent->removeGroup(grp);
++		if (parent->isEmpty() && parent != this)
++			removeGroupGlobally(parent);
++	}
++}
++
+ /*******************
+  * DrGroup members *
+  *******************/
+@@ -145,18 +172,34 @@
+ 		dit.current()->createItem(parent);
+ }
+ 
+-DrBase* DrGroup::findOption(const QString& name)
++DrBase* DrGroup::findOption(const QString& name, DrGroup **parentGroup)
+ {
+ 	DrBase	*opt = m_options.find(name);
+ 	if (!opt)
+ 	{
+ 		QListIterator<DrGroup>	it(m_subgroups);
+ 		for (;it.current() && !opt; ++it)
+-			opt = it.current()->findOption(name);
++			opt = it.current()->findOption(name, parentGroup);
+ 	}
++	else if (parentGroup)
++		*parentGroup = this;
+ 	return opt;
+ }
+ 
++DrGroup* DrGroup::findGroup(DrGroup *grp, DrGroup ** parentGroup)
++{
++	DrGroup	*group = (m_subgroups.findRef(grp) == -1 ? 0 : grp);
++	if (!group)
++	{
++		QListIterator<DrGroup>	it(m_subgroups);
++		for (;it.current() && !group; ++it)
++			group = it.current()->findGroup(grp, parentGroup);
++	}
++	else if (parentGroup)
++		*parentGroup = this;
++	return group;
++}
++
+ void DrGroup::clearConflict()
+ {
+ 	QDictIterator<DrBase>	dit(m_options);
+@@ -242,6 +285,28 @@
+ 	m_value = s.toInt();
+ }
+ 
++QString DrIntegerOption::fixedVal()
++{
++	QStringList	vals = QStringList::split("|", get("fixedvals"), false);
++	if (vals.count() == 0)
++		return valueText();
++	int	d(0);
++	QString	val;
++	for (QStringList::Iterator it=vals.begin(); it!=vals.end(); ++it)
++	{
++		int	thisVal = (*it).toInt();
++		if (val.isEmpty() || abs(thisVal - m_value) < d)
++		{
++			d = abs(thisVal - m_value);
++			val = *it;
++		}
++	}
++	if (val.isEmpty())
++		return valueText();
++	else
++		return val;
++}
++
+ /*************************
+  * DrFloatOption members *
+  *************************/
+@@ -268,6 +333,28 @@
+ void DrFloatOption::setValueText(const QString& s)
+ {
+ 	m_value = s.toFloat();
++}
++
++QString DrFloatOption::fixedVal()
++{
++	QStringList	vals = QStringList::split("|", get("fixedvals"), false);
++	if (vals.count() == 0)
++		return valueText();
++	float	d(0);
++	QString	val;
++	for (QStringList::Iterator it=vals.begin(); it!=vals.end(); ++it)
++	{
++		float	thisVal = (*it).toFloat();
++		if (val.isEmpty() || fabs(thisVal - m_value) < d)
++		{
++			d = fabs(thisVal - m_value);
++			val = *it;
++		}
++	}
++	if (val.isEmpty())
++		return valueText();
++	else
++		return val;
+ }
+ 
+ /************************
+Index: driver.h
+===================================================================
+RCS file: /home/kde/kdelibs/kdeprint/driver.h,v
+retrieving revision 1.2
+diff -u -r1.2 driver.h
+--- kdelibs-2.2.2/kdeprint/driver.h	2001/03/24 07:27:48	1.2
++++ kdelibs-2.2.2/kdeprint/driver.h	2002/01/08 13:27:47
+@@ -92,9 +92,13 @@
+ 	void addOption(DrBase *opt)	{ if (!opt->name().isEmpty()) m_options.insert(opt->name(),opt); }
+ 	void addGroup(DrGroup *grp)	{ m_subgroups.append(grp); }
+ 	void clearConflict();
++	void removeOption(const QString& name)	{ m_options.remove(name); }
++	void removeGroup(DrGroup *grp)	{ m_subgroups.removeRef(grp); }
++	bool isEmpty()	{ return (m_options.count()+m_subgroups.count() == 0); }
+ 
+ 	virtual DriverItem* createItem(DriverItem *parent);
+-	DrBase* findOption(const QString& name);
++	DrBase* findOption(const QString& name, DrGroup **parentGroup = 0);
++	DrGroup* findGroup(DrGroup *grp, DrGroup **parentGroup = 0);
+ 	void setOptions(const QMap<QString,QString>& opts);
+ 	void getOptions(QMap<QString,QString>& opts, bool incldef = false);
+ 
+@@ -121,6 +125,8 @@
+ 	int checkConstraints();
+ 	DrPageSize* findPageSize(const QString& name)	{ return m_pagesizes.find(name); }
+ 	void addPageSize(DrPageSize *sz);
++	void removeOptionGlobally(const QString& name);
++	void removeGroupGlobally(DrGroup *grp);
+ 
+ protected:
+ 	QList<DrConstraint>	m_constraints;
+@@ -156,6 +162,7 @@
+ 
+ 	virtual QString valueText();
+ 	virtual void setValueText(const QString& s);
++	QString fixedVal();
+ 
+ protected:
+ 	int	m_value;
+@@ -173,6 +180,7 @@
+ 
+ 	virtual QString valueText();
+ 	virtual void setValueText(const QString& s);
++	QString fixedVal();
+ 
+ protected:
+ 	float	m_value;
+Index: cups/kmcupsmanager.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kdeprint/cups/kmcupsmanager.cpp,v
+retrieving revision 1.10
+diff -u -r1.10 kmcupsmanager.cpp
+--- kdelibs-2.2.2/kdeprint/cups/kmcupsmanager.cpp	2001/07/24 16:52:44	1.10
++++ kdelibs-2.2.2/kdeprint/cups/kmcupsmanager.cpp	2002/01/08 13:27:47
+@@ -511,6 +511,24 @@
+ 							}
+ 							opt->setValueText(it.current()->arg("default"));
+ 							opt->set("default",it.current()->arg("default"));
++							// remove any option (list-type) with the same name (compliant
++							// with the new PPD structure in Foomatic)
++							DrBase	*oldOpt(0);
++							if ((oldOpt=driver->findOption(opt->name())) && oldOpt->type() == DrBase::List)
++							{
++								DrListOption	*oldLOpt = static_cast<DrListOption*>(oldOpt);
++								QString	fixedvals;
++								QListIterator<DrBase>	it(*(oldLOpt->choices()));
++								for (; it.current(); ++it)
++								{
++									fixedvals.append(it.current()->name());
++									if (!it.atLast())
++										fixedvals.append("|");
++								}
++								opt->set("fixedvals", fixedvals);
++							}
++							driver->removeOptionGlobally(opt->name());
++							// finally add the (new) numerical option
+ 							adjgrp->addOption(opt);
+ 						}
+ 					}
+@@ -576,9 +594,36 @@
+ 			{
+ 				int	p = line.find(':',8);
+ 				keyword = line.mid(8,p-8);
+-				DrListOption	*opt = (DrListOption*)driver->findOption((keyword == "PageRegion" ? QString::fromLatin1("PageSize") : keyword));
+-				if (opt && opt->currentChoice())
+-					tout << "*Default" << keyword << ": " << opt->currentChoice()->name() << endl;
++				DrBase	*bopt = driver->findOption((keyword == "PageRegion" ? QString::fromLatin1("PageSize") : keyword));
++				if (bopt)
++					switch (bopt->type())
++					{
++						case DrBase::List:
++						case DrBase::Boolean:
++							{
++								DrListOption	*opt = static_cast<DrListOption*>(bopt);
++								if (opt && opt->currentChoice())
++									tout << "*Default" << keyword << ": " << opt->currentChoice()->name() << endl;
++								else
++									tout << line << endl;
++							}
++							break;
++						case DrBase::Integer:
++							{
++								DrIntegerOption	*opt = static_cast<DrIntegerOption*>(bopt);
++								tout << "*Default" << keyword << ": " << opt->fixedVal() << endl;
++							}
++							break;
++						case DrBase::Float:
++							{
++								DrFloatOption	*opt = static_cast<DrFloatOption*>(bopt);
++								tout << "*Default" << keyword << ": " << opt->fixedVal() << endl;
++							}
++							break;
++						default:
++							tout << line << endl;
++							break;
++					}
+ 				else
+ 					tout << line << endl;
+ 			}

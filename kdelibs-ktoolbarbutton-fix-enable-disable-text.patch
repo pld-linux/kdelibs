@@ -1,0 +1,113 @@
+cvs -f log -N -r1.57 ktoolbarbutton.cpp
+
+RCS file: /home/kde/kdelibs/kdeui/ktoolbarbutton.cpp,v
+Working file: ktoolbarbutton.cpp
+head: 1.57
+branch:
+locks: strict
+access list:
+keyword substitution: kv
+total revisions: 58;	selected revisions: 1
+description:
+----------------------------
+revision 1.57
+date: 2001/11/23 13:19:38;  author: faure;  state: Exp;  lines: +17 -18
+Fixed drawing of disabled text. Was done correctly, but only in the "text only"
+case. Say thanks to duplicated code. Factorized the code, so that drawing the
+text is done by the same code, no matter which icontext setting we're using.
+=============================================================================
+cvs -f diff -bp -u -r1.56 -r1.57 ktoolbarbutton.cpp
+Index: ktoolbarbutton.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kdeui/ktoolbarbutton.cpp,v
+retrieving revision 1.56
+retrieving revision 1.57
+diff -b -p -u -r1.56 -r1.57
+--- kdelibs/kdeui/ktoolbarbutton.cpp	2001/11/16 06:40:46	1.56
++++ kdelibs/kdeui/ktoolbarbutton.cpp	2001/11/23 13:19:38	1.57
+@@ -520,6 +520,8 @@ void KToolBarButton::drawButton( QPainte
+   int dx, dy;
+   QFont tmp_font(KGlobalSettings::toolBarFont());
+   QFontMetrics fm(tmp_font);
++  QRect textRect;
++  int textFlags;
+ 
+   if (d->m_iconText == KToolBar::IconOnly) // icon only
+   {
+@@ -551,7 +553,7 @@ void KToolBarButton::drawButton( QPainte
+ 
+     if (!textLabel().isNull())
+     {
+-      int tf = AlignVCenter|AlignLeft;
++      textFlags = AlignVCenter|AlignLeft;
+       if (pixmap())
+         dx = 4 + pixmap()->width() + 2;
+       else
+@@ -562,20 +564,14 @@ void KToolBarButton::drawButton( QPainte
+         ++dx;
+         ++dy;
+       }
+-
+-      _painter->setFont(KGlobalSettings::toolBarFont());
+-      if(d->m_isRaised)
+-        _painter->setPen(KGlobalSettings::toolBarHighlightColor());
+-      _painter->drawText(dx, dy, width()-dx, height(), tf, textLabel());
++      textRect = QRect(dx, dy, width()-dx, height());
+     }
+   }
+   else if (d->m_iconText == KToolBar::TextOnly)
+   {
+     if (!textLabel().isNull())
+     {
+-      int tf = AlignTop|AlignLeft;
+-      if (!isEnabled())
+-        _painter->setPen(palette().disabled().dark());
++      textFlags = AlignTop|AlignLeft;
+       dx = (width() - fm.width(textLabel())) / 2;
+       dy = (height() - fm.lineSpacing()) / 2;
+       if ( isDown() && style().styleHint(QStyle::SH_GUIStyle) == WindowsStyle )
+@@ -583,11 +579,7 @@ void KToolBarButton::drawButton( QPainte
+         ++dx;
+         ++dy;
+       }
+-
+-      _painter->setFont(KGlobalSettings::toolBarFont());
+-      if(d->m_isRaised)
+-        _painter->setPen(KGlobalSettings::toolBarHighlightColor());
+-      _painter->drawText(dx, dy, fm.width(textLabel()), fm.lineSpacing(), tf, textLabel());
++      textRect = QRect( dx, dy, fm.width(textLabel()), fm.lineSpacing() );
+     }
+   }
+   else if (d->m_iconText == KToolBar::IconTextBottom)
+@@ -606,7 +598,7 @@ void KToolBarButton::drawButton( QPainte
+ 
+     if (!textLabel().isNull())
+     {
+-      int tf = AlignBottom|AlignHCenter;
++      textFlags = AlignBottom|AlignHCenter;
+       dx = (width() - fm.width(textLabel())) / 2;
+       dy = height() - fm.lineSpacing() - 4;
+ 
+@@ -615,12 +607,19 @@ void KToolBarButton::drawButton( QPainte
+         ++dx;
+         ++dy;
+       }
++      textRect = QRect( dx, dy, fm.width(textLabel()), fm.lineSpacing() );
++    }
++  }
+ 
++  // Draw the text at the position given by textRect, and using textFlags
++  if (!textLabel().isNull() && !textRect.isNull())
++  {
+       _painter->setFont(KGlobalSettings::toolBarFont());
+-      if(d->m_isRaised)
++      if (!isEnabled())
++        _painter->setPen(palette().disabled().dark());
++      else if(d->m_isRaised)
+         _painter->setPen(KGlobalSettings::toolBarHighlightColor());
+-      _painter->drawText(dx, dy, fm.width(textLabel()), fm.lineSpacing(), tf, textLabel());
+-    }
++      _painter->drawText(textRect, textFlags, textLabel());
+   }
+ 
+   if (d->m_popup)

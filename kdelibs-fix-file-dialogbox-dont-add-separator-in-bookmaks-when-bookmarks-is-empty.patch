@@ -1,0 +1,23 @@
+Index: kfiledialog.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kfile/Attic/kfiledialog.cpp,v
+retrieving revision 1.248.2.7
+diff -u -p -r1.248.2.7 kfiledialog.cpp
+--- kdelibs/kfile/kfiledialog.cpp	2001/10/26 22:27:30	1.248.2.7
++++ kdelibs/kfile/kfiledialog.cpp	2002/03/03 11:19:09
+@@ -1118,9 +1118,12 @@ void KFileDialog::buildBookmarkPopup()
+ {
+     bookmarksMenu->clear();
+     bookmarksMenu->insertItem(i18n("Add to bookmarks"), (int) 0 );
+-    bookmarksMenu->insertSeparator();
+-    int id = 1;
+-    fillBookmarkMenu( bookmarks->getRoot(), bookmarksMenu, id );
++    if(bookmarks->getRoot()->getChildren().first()!=NULL)
++      {
++	bookmarksMenu->insertSeparator();
++	int id = 1;
++	fillBookmarkMenu( bookmarks->getRoot(), bookmarksMenu, id );
++      }
+ }
+ 
+ void KFileDialog::bookmarkMenuActivated( int choice )
