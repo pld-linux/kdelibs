@@ -3,15 +3,15 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.0
-Release:	4
+Version:	2.0.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0.1/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
@@ -27,9 +27,9 @@ BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
 BuildRequires:	kdesupport-mimelib-devel = %{version}
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 2.2.1
+BuildRequires:	qt-devel >= 2.2.2
 BuildRequires:	unixODBC-devel
-Requires:	qt >= 2.2.1
+Requires:	qt >= 2.2.2
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -106,10 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
-%dir %{_libdir}/Arts
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/[^l]*.so
-%attr(755,root,root) %{_libdir}/Arts/*
+%attr(755,root,root) %{_libdir}/mcop
 %attr(755,root,root) %{_bindir}/artscat
 %attr(755,root,root) %{_bindir}/artsd
 %attr(755,root,root) %{_bindir}/artsdsp
