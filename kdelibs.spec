@@ -149,6 +149,7 @@ formato HTML.
 Summary:	KDE dependent part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
 Group:		X11/Libraries
+Requires:	%{name} = %{version}
 
 %description -n arts-kde
 KDE dependent part of aRts.
