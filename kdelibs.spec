@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030610
+%define		_snap		030613
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -24,8 +24,9 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	8074fd46896659cffcb8f872b5a6ee04
-Patch0:		%{name}-directories.patch
+# Source0-md5:	bc01d8f77039df3e56b6c073903ee9b7
+#Patch0:	%{name}-directories.patch
+Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 #Patch2:         %{name}-kcursor.patch
 Patch3:         %{name}-defaultfonts.patch
@@ -82,6 +83,7 @@ Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
 %define		_htmldir	%{_docdir}/kde/HTML
+%define		_icondir	%{_datadir}/icons
 
 %define		no_install_post_chrpath		1
 
@@ -251,16 +253,13 @@ TODO.
 #%patch5 -p1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-cd kdecore
-> plddirs.h
-echo "#define kde_appsdir \"%{_applnkdir}\"" >> plddirs.h
-echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
-echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
-cd -
+#cd kdecore
+#> plddirs.h
+#echo "#define kde_appsdir \"%{_applnkdir}\"" >> plddirs.h
+#echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
+#echo "#define kde_icondir \"%{_icondir}\"" >> plddirs.h
+#cd -
 
 for plik in `find ./ -name *.desktop` ; do
 	echo $plik
@@ -290,12 +289,15 @@ mv -f config.h{.tmp,}
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
+	kde_htmldir=%{_htmldir}
+	
 install -d \
 	$RPM_BUILD_ROOT%{_datadir}/{apps/khtml/kpartplugins,wallpapers} \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
+	$RPM_BUILD_ROOT%{_icondir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
+	$RPM_BUILD_ROOT%{_icondir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 
@@ -591,7 +593,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/servicetypes
 %{_datadir}/wallpapers
-%{_pixmapsdir}/*
+%{_icondir}/*
 %dir %{_docdir}/kde
 %dir %{_htmldir}
 %lang(en) %dir %{_htmldir}/en
