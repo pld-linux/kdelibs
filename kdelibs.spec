@@ -145,11 +145,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib[^a]*.so.*.*
 %attr(755,root,root) %{_libdir}/[^l]*.so
+%attr(755,root,root) %{_libdir}/libkhtmli*.so
+%attr(755,root,root) %{_libdir}/libksasl.so
 # It _have_ to be here. KDE will not work without *.la files.
 %{_libdir}/[^l]*.la
 %{_libdir}/lib[^a]*.la
-%attr(755,root,root) %dir %{_libdir}/mcop
 %attr(755,root,root) %dir %{_libdir}/kde2
+%attr(755,root,root) %{_libdir}/kde2/*.so
+%{_libdir}/kde2/*.la
+%attr(755,root,root) %dir %{_libdir}/mcop
 %attr(755,root,root) %{_bindir}/[^a]*
 
 %config %{_datadir}/config
@@ -167,7 +171,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/mcopidl
 
-%{_libdir}/lib*.so
+%{_libdir}/libkd*.so
+%{_libdir}/libkf*.so
+%{_libdir}/libkhtml.so
+%{_libdir}/libki*.so
+%{_libdir}/libkj*.so
+%{_libdir}/libkm*.so
+%{_libdir}/libkp*.so
+%{_libdir}/libksp*.so
+%{_libdir}/libkss*.so
+%{_libdir}/libksy*.so
+%{_libdir}/libkt*.so
+%{_libdir}/libD*.so
+%{_libdir}/libmcop.so
+%{_libdir}/libqtmcop.so
+%{_libdir}/libsound*.so
+%{_libdir}/libx11*.so
 %{_includedir}/addressbook.h
 %{_includedir}/[^a]*
 
@@ -181,6 +200,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
 %attr(755,root,root) %{_libdir}/mcop/Arts
+%{_libdir}/mcop/*.*
 %attr(755,root,root) %{_libdir}/liba*.la
 
 %files -n arts-devel
