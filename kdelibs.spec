@@ -382,7 +382,7 @@ done
 
 cd -
 
-%if %{with_i18n}
+%if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
@@ -410,7 +410,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%if %{with_i18n}
+%if %{with i18n}
 %files i18n -f %{name}.lang
 %endif
 
