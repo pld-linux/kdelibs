@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.14
+Release:	0.%{sver}.15
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -165,6 +165,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
