@@ -439,6 +439,8 @@ for i in $files; do
 	grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
 	mv ${i}.lang.1 ${i}.lang
 done
+cd $RPM_BUILD_ROOT
+ln -sf knewstuff.so.1.0.0 knewstuff.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -935,6 +937,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
 %attr(755,root,root) %{_libdir}/libqt-addon.so
 %attr(755,root,root) %{_libdir}/libvcard.so
+%attr(755,root,root) %{_libdir}/libknewstuff.so
 %{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
