@@ -72,6 +72,7 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	xrender-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
+BuildRequires:	unsermake
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk >= 1.6.2-1
 Requires:	arts >= %{_artsver}
@@ -330,7 +331,7 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
