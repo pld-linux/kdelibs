@@ -1,15 +1,15 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.0.1
-Release:	4
+Version:	2.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0.1/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/2.1/distribution/tar/generic/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
@@ -29,7 +29,10 @@ BuildRequires:	qt-devel >= 2.2.2
 BuildRequires:	unixODBC-devel
 BuildRequires:	gettext-devel
 BuildRequires:	zlib-devel
-Requires:	qt >= 2.2.2
+BuildRequires:	openssl-devel
+BuildRequires:	bzip2-devel
+BuildRequires:	postgresql-devel
+Requires:	qt >= 2.2.4
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -119,7 +122,10 @@ CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}"
 ENABLE_DEBUG="%{?debug:--enable-debug}"
 %configure \
 	$ENABLE_DEBUG \
-	--enable-final
+	--enable-final \
+	--disable-mysql \
+	--disable-informix \
+	--enable-pgsql
 %{__make}
 
 %install
@@ -143,6 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/[^l]*.la
 %{_libdir}/lib[^a]*.la
 %attr(755,root,root) %dir %{_libdir}/mcop
+%attr(755,root,root) %dir %{_libdir}/kde2
 %attr(755,root,root) %{_bindir}/[^a]*
 
 %config %{_datadir}/config
@@ -167,11 +174,17 @@ rm -rf $RPM_BUILD_ROOT
 %files -n arts
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/liba*.so.*.*
-%attr(755,root,root) %{_bindir}/a*
+%attr(755,root,root) %{_bindir}/artscat
+%attr(755,root,root) %{_bindir}/artsd
+%attr(755,root,root) %{_bindir}/artsdsp
+%attr(755,root,root) %{_bindir}/artsplay
+%attr(755,root,root) %{_bindir}/artsshell
+%attr(755,root,root) %{_bindir}/artswrapper
 %attr(755,root,root) %{_libdir}/mcop/Arts
 %attr(755,root,root) %{_libdir}/liba*.la
 
 %files -n arts-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/artsc-config
 %{_includedir}/arts
 %{_includedir}/artsc
