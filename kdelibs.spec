@@ -3,11 +3,11 @@
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	apidocs	# do not prepare API documentation
 %bcond_with	verbose	# verbose build
-%bcond_with	cvs	# use cvs build dirs insttead of supplied sources
+%bcond_with	cvs	# use cvs build dirs instead of supplied sources
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040601
+%define		_snap		040603
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -30,13 +30,14 @@ Source0:	 http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
 %else
 Source0:	kdesource.tar.gz
 %endif
-Source2:	%{name}-wmfplugin.tar.bz2
-# Source2-md5:	f89739b063eca075bf4ac85f559eea77
+Source1:	%{name}-wmfplugin.tar.bz2
+# Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
+Patch5:         %{name}-appicon_themable.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -98,6 +99,7 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+Obsoletes:	kimproxy
 # No longer supported/existing
 Obsoletes:	arts-message
 Obsoletes:	kde-sdscreen-KDEGirl
@@ -255,15 +257,16 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 
 %prep
 %if ! %{with cvs}
-%setup -q -n %{name}-%{_snap} -a2
+%setup -q -n %{name}-%{_snap} -a1
 %else
-%setup -q -n %{name} -a2 -D
+%setup -q -n %{name} -a1 -D
 %endif
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1 
+%patch5 -p1 
 
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
@@ -490,8 +493,8 @@ EOF
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
 %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
-%{_libdir}/libknewstuff.la
-%attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
+%{_libdir}/libkimproxy.la
+%attr(755,root,root) %{_libdir}/libkimproxy.so.*.*.*
 %{_libdir}/libkio.la
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
 %{_libdir}/libkjava.la
@@ -504,6 +507,8 @@ EOF
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
 %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
+%{_libdir}/libknewstuff.la
+%attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
 %{_libdir}/libkparts.la
 %attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
 %{_libdir}/libkresources.la
@@ -858,6 +863,7 @@ EOF
 %attr(755,root,root) %{_libdir}/libkdesu.so
 %attr(755,root,root) %{_libdir}/libkdeui.so
 %attr(755,root,root) %{_libdir}/libkhtml.so
+%attr(755,root,root) %{_libdir}/libkimproxy.so
 %attr(755,root,root) %{_libdir}/libkio.so
 %attr(755,root,root) %{_libdir}/libkjava.so
 %attr(755,root,root) %{_libdir}/libkjs.so
