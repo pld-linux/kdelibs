@@ -407,7 +407,7 @@ i="kdelibs"
 ### Dont uncomment, left here in case more lang files are to be process
 ## for i in $files; do
 echo "%defattr(644,root,root,755)" > ${i}_en.lang
-grep en\/ ${i}.lang >> ${i}_en.lang
+grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
 grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
 mv ${i}.lang.1 ${i}.lang
 ## done
