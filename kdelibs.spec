@@ -8,7 +8,7 @@
 #
 
 %define		_state		stable
-%define		_ver		3.1.1a
+%define		_ver		3.1.2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -235,8 +235,7 @@ for plik in `find ./ -name *.desktop` ; do
 	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
-CFLAGS="%{rpmcflags}"
-CXXFLAGS="%{rpmcflags}"
+
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-final \
