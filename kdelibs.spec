@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.2
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -24,8 +24,7 @@ Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-libxml_closecallback.patch
-Patch5:		%{name}-libxml_includes.patch
-Patch6:		%{name}-cookieperms.patch
+Patch5:		%{name}-cookieperms.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -47,8 +46,9 @@ BuildRequires:	zlib-devel
 BuildRequires:	motif-devel
 BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	libxml2-devel
-BuildRequires:	pcre-devel
+BuildRequires:	libxml2-devel >= 2.4.9
+BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	pcre-devel >= 3.5
 #BuildRequires:	glib2-devel >= 1.3.3
 BuildRequires:	cups-devel
 Requires:	qt >= 2.2.4
@@ -256,8 +256,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-#%patch5 -p1
-%patch6 -p1
+%patch5 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -309,7 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/make*
-#%attr(755,root,root) %{_bindir}/mein*
+%attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/[cilkpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libc*.??
@@ -339,6 +338,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkssl.la
+%attr(755,root,root) %{_libdir}/libkded_kssld.la
 %attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
 %attr(755,root,root) %{_libdir}/libksycoca.la
 %attr(755,root,root) %{_libdir}/mega.so
