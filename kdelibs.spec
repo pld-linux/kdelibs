@@ -294,14 +294,9 @@ rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+mv $RPM_BUILD_ROOT%{_prefix}/X11R6/share/locale/* $RPM_BUILD_ROOT%{_datadir}/locale
 
-#find_lang kdelibs --with-kde --all-name > %{name}.lang
-topics="common kdelibs-apidocs kspell"
-
-for i in $topics; do
-	%find_lang $i --with-kde
-	cat $i.lang >> %{name}.lang
-done
+%find_lang %{name} --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -312,7 +307,7 @@ rm -rf $RPM_BUILD_ROOT
 %post   -n arts-kde -p /sbin/ldconfig
 %postun -n arts-kde -p /sbin/ldconfig
 
-%files -f kdelibs.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/[!ad]*
 %attr(755,root,root) %{_bindir}/dcop
