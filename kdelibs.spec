@@ -18,7 +18,7 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	%{_version}
 Release:	%{_release}
-Epoch:		1
+Epoch:		2
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
