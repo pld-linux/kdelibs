@@ -28,7 +28,8 @@ License:	LGPL
 Group:		X11/Libraries
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
-#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	5d4f4b2bfcdd14ecf3f6af6b44dfc5fd
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
@@ -295,11 +296,11 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
-# bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-# > %{name}.lang
-# topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+> %{name}.lang
+topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
 
-# %%find_lang %{name} --with-kde
+%find_lang %{name} --with-kde
 
 for i in $topics; do
 	%find_lang $i --with-kde
