@@ -17,7 +17,7 @@ Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}%{_rcver}
 Release:	1
-Epoch:		8
+Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
