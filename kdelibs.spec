@@ -294,15 +294,14 @@ for i in $topics; do
 	cat $i.lang >> %{name}.lang
 done
 
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post   -n arts-kde -p /sbin/ldconfig
 %postun -n arts-kde -p /sbin/ldconfig
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
@@ -312,11 +311,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/[dk]*.la
 %attr(755,root,root) %{_libdir}/[dk]*.so
 %{_libdir}/lib[!ack]*.la
-%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*
+%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*.*.*
 %{_libdir}/libc*.la
 %attr(755,root,root) %{_libdir}/libc*.so
 %{_libdir}/libk[!c]*.la
-%attr(755,root,root) %{_libdir}/libk[!c]*.so.*
+%attr(755,root,root) %{_libdir}/libk[!c]*.so.*.*.*
 %{_libdir}/libkcertpart.la
 %attr(755,root,root) %{_libdir}/libkcertpart.so
 %dir %{_libdir}/kde3
@@ -354,7 +353,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n arts-kde
 %defattr(644,root,root,755)
 %{_libdir}/libartskde.la
-%attr(755,root,root) %{_libdir}/libartskde.so.*
+%attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 
 %files -n arts-kde-devel
 %defattr(644,root,root,755)
