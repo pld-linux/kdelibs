@@ -1,10 +1,8 @@
-%define		_prefix	 	/usr/X11R6
-
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.0.1
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -29,9 +27,12 @@ BuildRequires:	kdesupport-mimelib-devel = %{version}
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2.2
 BuildRequires:	unixODBC-devel
+BuildRequires:	gettext-devel
 Requires:	qt >= 2.2.2
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define         _prefix         /usr/X11R6
 
 %description
 Libraries for the K Desktop Environment.
@@ -78,9 +79,7 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 %patch2 -p1
 
 %build
-%define		_sharedir	%{_prefix}/share
-%define		_htmldir	%{_sharedir}/doc/kde/HTML
-%define		_pixmapsdir	%{_sharedir}/pixmaps
+%define		_htmldir	%{_docdir}/kde/HTML
 
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
