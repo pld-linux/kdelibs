@@ -14,6 +14,7 @@ Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
+Patch4:		%{name}-veryevilandbad.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -115,8 +116,14 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%ifarch alpha
+%patch4 -p1
+%endif
 
 %build
+automake -a -c --no-force -i
+aclocal
+autoconf
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
