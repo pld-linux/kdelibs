@@ -88,6 +88,7 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+Conflicts:	pixieplus < 0.3-4
 
 %define		_prefix		/usr/X11R6
 %define		_htmldir	%{_docdir}/kde/HTML
