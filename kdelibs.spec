@@ -256,7 +256,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+#%patch5 -p1
 %patch6 -p1
 
 %build
@@ -309,7 +309,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/make*
-%attr(755,root,root) %{_bindir}/mein*
+#%attr(755,root,root) %{_bindir}/mein*
 %attr(755,root,root) %{_bindir}/[cilkpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libc*.??
