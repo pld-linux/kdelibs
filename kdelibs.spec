@@ -14,7 +14,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.4
-Release:	8
+Release:	9
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -278,7 +278,7 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 # create in toplevel %%{_pixmapsdir} links to icons
-for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/filesystems/{desktop,network,socket}.png \
+for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/filesystems/{desktop,folder_home,network,socket}.png \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/{cdaudio_unmount,scanner}.png \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/mimetypes/{cdtrack,html,image,sound}.png
 do
@@ -293,7 +293,7 @@ bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
 # moved
-rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,cdtrack,desktop,html,image,network,scanner,socket,sound}.png
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,cdtrack,desktop,folder_home,html,image,network,scanner,socket,sound}.png
 # resized
 # Note: arts and penguin are moved from kdebase, encrypted should be removed
 #       only from actions
