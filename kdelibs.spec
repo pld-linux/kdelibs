@@ -244,8 +244,8 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes} \
-	%{_datadir}/templates/.source
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
+install -d $RPM_BUILD_ROOT%{_datadir}/templates/.source
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
