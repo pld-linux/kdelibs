@@ -92,6 +92,7 @@ Obsoletes:	kdeedu-kgeo
 Obsoletes:	kdegames-megami
 Obsoletes:	kdenetwork-kmail
 Obsoletes:	kdenetwork-knode
+Obsoletes:	kdenetwork-kxmlrpcd
 Obsoletes:      kdepim-commonlibs
 Obsoletes:	kdepim-kaplan
 # More
