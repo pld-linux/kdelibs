@@ -3,7 +3,7 @@
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
-%bcond_without	i18n	# [not ready] include i18n files in package
+%bcond_without	i18n	# dont include i18n files in package
 #
 %define		_state		stable
 %define		_ver		3.2.0
@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.1
+Release:	0.2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -33,6 +33,8 @@ Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
+Patch3:		%{name}-add_japanese_utf8_detection.patch
+Patch4:		%{name}-kdeprint_qt33fix.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -318,7 +320,7 @@ Obsoletes:      kde-i18n-Chinese-Big5
 Obsoletes:      kde-i18n-Zulu
 Obsoletes:      kde-i18n-kdelibs
 Obsoletes:      kde-i18n
-BuildArch:      noarch
+##BuildArch:      noarch
 
 %description i18n 
 Internationalization and localization files for kdelibs.
@@ -332,6 +334,8 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
@@ -394,10 +398,19 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
+%endif
 
 %find_lang kdelibs --with-kde --all-name
 
-%endif
+i="kdelibs"
+
+### Dont uncomment, left here in case more lang files are to be process
+## for i in $files; do
+echo "%defattr(644,root,root,755)" > ${i}_en.lang
+grep en\/ ${i}.lang >> ${i}_en.lang
+grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
+mv ${i}.lang.1 ${i}.lang
+## done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -406,10 +419,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-p /sbin/ldconfig
 
 %if %{with i18n}
-%files i18n -f %{name}.lang
+%files i18n -f kdelibs.lang
 %endif
 
-%files 
+%files -f kdelibs_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -787,10 +800,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/preparetips.1*
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
-# this should not be %%lang: other language resources refer to it
-%dir %{_kdedocdir}/en
-%{_kdedocdir}/en/common
-%{_kdedocdir}/en/kspell
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
