@@ -4,6 +4,7 @@
 # Conditional build:
 # _with_pixmapsubdirs - leave different depth/resolution icons
 #
+%define		_with_pixmapsubdirs	1
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(ko):	KDE - ∂Û¿Ã∫Í∑Ø∏Æ.
@@ -13,7 +14,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	3.0.4
-Release:	6
+Release:	7
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -278,8 +279,8 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 
 # create in toplevel %%{_pixmapsdir} links to icons
 for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/filesystems/{desktop,network,socket}.png \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/cdaudio_unmount.png
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/mimetypes/html.png
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/{cdaudio_unmount,scanner}.png
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/mimetypes/{cdtrack,html,image,sound}.png
 do
 %if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
 	ln -sf `echo $i | sed "s:^$RPM_BUILD_ROOT%{_pixmapsdir}/::"` $RPM_BUILD_ROOT%{_pixmapsdir}	
@@ -292,7 +293,7 @@ bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
 # moved
-rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,desktop,html,network,socket}.png
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,cdtrack,desktop,html,image,network,scanner,socket,sound}.png
 # resized
 # Note: arts is moved from kdebase, encrypted should be removed only from actions
 rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{editcopy,history,launch,spellcheck}.png
