@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -33,6 +33,7 @@ Patch1:		%{name}-resize-icons.patch
 Patch3:         %{name}-defaultfonts.patch
 #Patch4:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
 #Patch5:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
+Patch6:		%{name}-kdeprint_nofinal.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -252,6 +253,7 @@ TODO.
 %patch3 -p1
 #%patch4 -p1
 #%patch5 -p1
+%patch6 -p1
 
 %build
 
@@ -267,12 +269,13 @@ for plik in `find ./ -name *.desktop` ; do
 	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
-#%%{__make} -f Makefile.cvs
+%{__make} -f Makefile.cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
+	--enable-final \
 %endif
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
