@@ -26,7 +26,7 @@ Group:		X11/Libraries
 Source0:	http://ftp.pld-linux.org/software/kde/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	5a961628fa569f3b53a21574a6656b02
 Source1:	%{name}-wmfplugin.tar.bz2
-# Source1-md5:	f89739b063eca075bf4ac85f559eea77
+# Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Patch100:	%{name}-branch.diff
