@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.2
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -24,7 +24,7 @@ Icon:		kdelibs.xpm
 # thing at the moment (2001-08-15) in known universe.
 #Requires:	glib2 >= 1.3.3
 BuildRequires:	XFree86-devel
-%ifnarch sparc sparc64 ppc
+%ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	audiofile-devel
