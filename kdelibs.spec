@@ -2,7 +2,7 @@
 # 	space.
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc1
+%define         _kdever         kde-3.1-rc2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -11,8 +11,8 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	3.0.9
-Release:	2.2
+Version:	3.0.98
+Release:	1
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -52,7 +52,7 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.0.5
+BuildRequires:	qt-devel >= 3.1
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
 Requires:	applnk 
@@ -152,7 +152,7 @@ Summary(uk):	èÅÄÅÒÉ ÔÁ ÄÏËÕÍÅÎÔÁÃ¦Ñ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	arts-devel >= 1.0.0
-Requires:	qt-devel >= 3.0.3
+Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
@@ -211,6 +211,7 @@ Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
+Requires:	%{name} = %{version}
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
