@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	1.1.1
-Release:	1
+Release:	2
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
@@ -151,9 +151,16 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/lib*.so
+%{_includedir}/kde.pot
 %{_includedir}/*.h
+%{_libdir}/lib*.la
 
 %changelog
+* Tue Jun 22 1999 Wojciech "sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
+  [1.1.1-2]
+- added la files to devel subpackage,
+- added kde.pot to devel subpackage.
+
 * Fri May 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.1-1]
 - based on RH spec,
