@@ -69,6 +69,7 @@ BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.2.1-4
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	xrender-devel
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk >= 1.6.2-1
@@ -181,6 +182,7 @@ Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	qt-devel >= 6:3.2.1-4
+Requires:	xrender-devel
 Obsoletes:	arts-kde-devel
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
