@@ -5,8 +5,8 @@
 ; #    Boston, MA 02111-1307, USA.
 ; 
 ; INCLUDES = $(all_includes)
-;+CFLAGS = -O0 @CFLAGS@
-;+CXXFLAGS = -O0 @CXXFLAGS@
+;+CFLAGS = @CFLAGS@ -O0
+;+CXXFLAGS = @CXXFLAGS@ -O0
 ; 
 ; SUBDIRS = . tests
 ; 
@@ -18,7 +18,7 @@ diff -urN kdelibs-2.1.1.org/kdecore/Makefile.in kdelibs-2.1.1/kdecore/Makefile.i
  kde_config_OBJECTS = kde-config.$(OBJEXT)
  kde_config_DEPENDENCIES =  ./libkdecore.la
 -CXXFLAGS = @CXXFLAGS@
-+CXXFLAGS = -O0 @CXXFLAGS@
++CXXFLAGS = @CXXFLAGS@ -O0
  #>- CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
  #>+ 1
  CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) $(KDE_CXXFLAGS)
@@ -27,7 +27,7 @@ diff -urN kdelibs-2.1.1.org/kdecore/Makefile.in kdelibs-2.1.1/kdecore/Makefile.i
  #>+ 1
  CXXLINK = $(LIBTOOL) --mode=link --tag=CXX $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(KDE_CXXFLAGS) $(LDFLAGS) -o $@
 -CFLAGS = @CFLAGS@
-+CFLAGS = -O0 @CFLAGS@
++CFLAGS = @CFLAGS@ -O0
  COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
  LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
  CCLD = $(CC)
