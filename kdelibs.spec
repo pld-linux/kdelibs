@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	1.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -42,8 +42,8 @@ BuildRequires:	XFree86-devel >= 4.2.99
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
 BuildRequires:	audiofile-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.52
+BuildRequires:	automake >= 1.6
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	esound-devel
@@ -55,7 +55,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:1.5-2
 BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
@@ -243,6 +243,7 @@ for plik in `find ./ -name *.desktop` ; do
 	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
+%{__libtoolize}
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -308,26 +309,72 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/[!ad]*
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcop[!i]*
-%{_libdir}/[dk]*.la
-%attr(755,root,root) %{_libdir}/[dk]*.so
-%{_libdir}/lib[!ack]*.la
-%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*.*.*
-%{_libdir}/libc*.la
-%attr(755,root,root) %{_libdir}/libc*.so
-%{_libdir}/libk[!c]*.la
-%attr(755,root,root) %{_libdir}/libk[!c]*.so.*.*.*
-%{_libdir}/libkcertpart.la
+# shared libraries
+%attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdeprint.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdeprint_management.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdesasl.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdesu.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkjava.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkio.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkscreensaver.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkscript.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkspell.so.*.*.*
+%attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
+%attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
+%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
+# shared, possibly (lt_)dlopened libraries (.la possibly needed here)
+%attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
+%{_libdir}/libkabc.la
+%attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
+%{_libdir}/libkhtml.la
+# actual KDE-style binaries, but ugh, possibly (lt_)dlopened (.la should be here)
+%attr(755,root,root) %{_libdir}/dcopserver.so
+%{_libdir}/dcopserver.la
+%attr(755,root,root) %{_libdir}/kaddprinterwizard.so
+%{_libdir}/kaddprinterwizard.la
+%attr(755,root,root) %{_libdir}/kbuildsycoca.so
+%{_libdir}/kbuildsycoca.la
+%attr(755,root,root) %{_libdir}/kconf_update.so
+%{_libdir}/kconf_update.la
+%attr(755,root,root) %{_libdir}/kcookiejar.so
+%{_libdir}/kcookiejar.la
+%attr(755,root,root) %{_libdir}/kded.so
+%{_libdir}/kded.la
+%attr(755,root,root) %{_libdir}/kio_http_cache_cleaner.so
+%{_libdir}/kio_http_cache_cleaner.la
+%attr(755,root,root) %{_libdir}/kio_uiserver.so
+%{_libdir}/kio_uiserver.la
+%attr(755,root,root) %{_libdir}/klauncher.so
+%{_libdir}/klauncher.la
+%attr(755,root,root) %{_libdir}/knotify.so
+%{_libdir}/knotify.la
+# plugins (possibly lt_dlopened - .la needed here)
+%attr(755,root,root) %{_libdir}/libcupsdconf.so
+%{_libdir}/libcupsdconf.la
 %attr(755,root,root) %{_libdir}/libkcertpart.so
+%{_libdir}/libkcertpart.la
 %dir %{_libdir}/kde3
+%attr(755,root,root) %{_libdir}/kde3/*.so
+%{_libdir}/kde3/*.la
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
-%dir %{_libdir}/kde3/plugins/styles
-%{_libdir}/kde3/*.la
-%attr(755,root,root) %{_libdir}/kde3/*.so
-%{_libdir}/kde3/plugins/designer/*.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
-%{_libdir}/kde3/plugins/styles/*.la
+%{_libdir}/kde3/plugins/designer/*.la
+%dir %{_libdir}/kde3/plugins/styles
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
+%{_libdir}/kde3/plugins/styles/*.la
+
 %{_datadir}/config
 # Contains Components/kabc.desktop only
 %{_applnkdir}/Settings/KDE
@@ -345,20 +392,69 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl*
-%{_libdir}/lib[!ack]*.so
-%{_libdir}/libk[!c]*.so
+# shared libraries - .la here
+%attr(755,root,root) %{_libdir}/libDCOP.so
+%{_libdir}/libDCOP.la
+%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
+%{_libdir}/libkatepartinterfaces.la
+%attr(755,root,root) %{_libdir}/libkdecore.so
+%{_libdir}/libkdecore.la
+%attr(755,root,root) %{_libdir}/libkdefakes.so
+%{_libdir}/libkdefakes.la
+%attr(755,root,root) %{_libdir}/libkdefx.so
+%{_libdir}/libkdefx.la
+%attr(755,root,root) %{_libdir}/libkdeprint.so
+%{_libdir}/libkdeprint.la
+%attr(755,root,root) %{_libdir}/libkdeprint_management.so
+%{_libdir}/libkdeprint_management.la
+%attr(755,root,root) %{_libdir}/libkdesasl.so
+%{_libdir}/libkdesasl.la
+%attr(755,root,root) %{_libdir}/libkdesu.so
+%{_libdir}/libkdesu.la
+%attr(755,root,root) %{_libdir}/libkdeui.so
+%{_libdir}/libkdeui.la
+%attr(755,root,root) %{_libdir}/libkjava.so
+%{_libdir}/libkjava.la
+%attr(755,root,root) %{_libdir}/libkio.so
+%{_libdir}/libkio.la
+%attr(755,root,root) %{_libdir}/libkjs.so
+%{_libdir}/libkjs.la
+%attr(755,root,root) %{_libdir}/libkmediaplayer.so
+%{_libdir}/libkmediaplayer.la
+%attr(755,root,root) %{_libdir}/libkmid.so
+%{_libdir}/libkmid.la
+%attr(755,root,root) %{_libdir}/libkparts.so
+%{_libdir}/libkparts.la
+%attr(755,root,root) %{_libdir}/libkscreensaver.so
+%{_libdir}/libkscreensaver.la
+%attr(755,root,root) %{_libdir}/libkscript.so
+%{_libdir}/libkscript.la
+%attr(755,root,root) %{_libdir}/libkspell.so
+%{_libdir}/libkspell.la
+%attr(755,root,root) %{_libdir}/libktexteditor.so
+%{_libdir}/libktexteditor.la
+%attr(755,root,root) %{_libdir}/libkutils.so
+%{_libdir}/libkutils.la
+%attr(755,root,root) %{_libdir}/libshellscript.so
+%{_libdir}/libshellscript.la
+%attr(755,root,root) %{_libdir}/libvcard.so
+%{_libdir}/libvcard.la
+# shared, possibly (lt_)dlopened libraries - .la in main package
+%attr(755,root,root) %{_libdir}/libkabc.so
+%attr(755,root,root) %{_libdir}/libkhtml.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
 
 %files -n arts-kde
 %defattr(644,root,root,755)
-%{_libdir}/libartskde.la
+# shared library
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 
 %files -n arts-kde-devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libartskde.so
+%{_libdir}/libartskde.la
 %{_includedir}/arts/*
-%{_libdir}/libartskde.so
 
 %files -n arts-message
 %defattr(644,root,root,755)
