@@ -1,11 +1,12 @@
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
+%bcond_without	apidocs	# prepare API documentation
 %bcond_with	i18n	# with i18n stuff - not used in DEVEL branch
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040225
+%define		_snap		040312
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -17,7 +18,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -29,9 +30,9 @@ Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
+Patch3:		kde-common-QTDOCDIR.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
-BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
 BuildRequires:	artsc-devel >= %{artsver}
@@ -49,6 +50,8 @@ BuildRequires:	ed
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jasper-devel >= 1.600
+BuildRequires:	libICE-devel
+BuildRequires:	libXrender-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
@@ -65,8 +68,8 @@ BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.2.1-4
+%{?with_apidocs:BuildRequires:	qt-doc}
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	xrender-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake
@@ -76,7 +79,6 @@ Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	qt >= 6:3.2.1-4
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
 Obsoletes:	%{name}-kabc
@@ -116,6 +118,7 @@ Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.1.91.030918-1
 Conflicts:	pixieplus < 0.3-4
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Libraries for the K Desktop Environment.
@@ -215,10 +218,23 @@ KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
 ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÈÅÄÅÒÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ ÄÌÑ KDE.
 ôÁËÏÖ ÄÏ ÎØÏÇÏ ×ÈÏÄÉÔØ ÄÏËÕÍÅÎÔÁÃ¦Ñ Õ ÆÏÒÍÁÔ¦ HTML.
 
+%package apidocs
+Summary:	API documentation
+Summary(pl):	Dokumentacja API
+Group:		Development/Docs
+#Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}
+
+%description apidocs
+API documentation.
+
+%description apidocs -l pl
+Dokumentacja API.
+
 %package artsmessage
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów demona aRts
-Group:		Development/Tools
+Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	arts-message
 
@@ -328,10 +344,14 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-
+%patch3 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export kde_htmldir=%{_kdedocdir}
+
+#export kde_libs_htmldir=%{_kdedocdir}
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
@@ -350,14 +370,16 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %{__make}
 
-#%%{__make} apidox
+%if %{with apidocs}
+%{__make} apidox
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	kde_libs_htmldir=%{_kdedocdir}
 
 install -d \
 	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
@@ -372,12 +394,12 @@ install -d \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 # Debian manpages
-%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-	debian/ksendbugmail.sgml
-
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
-cd debian
+cd debian/man
+
+%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
+    ksendbugmail.sgml
 
 for f in *.sgml ; do
 	base="$(basename $f .sgml)"
@@ -388,12 +410,18 @@ done
 
 cd -
 
+# Workaround for doc caches (unsermake bug?)
+cd doc
+for i in `find . -name index.cache.bz2`; do
+	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
+done
+cd -	 
+
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
-
 %endif
 
 %find_lang %{name} --with-kde --all-name
@@ -613,10 +641,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
 %{_libdir}/kde3/kimg_jp2.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_jp2.so
-#%{_libdir}/kde3/kimg_krl.la
-#%attr(755,root,root) %{_libdir}/kde3/kimg_krl.so
 %{_libdir}/kde3/kimg_pcx.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_pcx.so
+%{_libdir}/kde3/kimg_rgb.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_rgb.so
 %{_libdir}/kde3/kimg_tga.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_tga.so
 %{_libdir}/kde3/kimg_tiff.la
@@ -645,6 +673,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/klauncher.so
 %{_libdir}/kde3/knotify.la
 %attr(755,root,root) %{_libdir}/kde3/knotify.so
+%{_libdir}/kde3/ktexteditor_autobookmarker.la
+%attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
+%{_libdir}/kde3/ktexteditor_docwordcompletion.la
+%attr(755,root,root) %{_libdir}/kde3/ktexteditor_docwordcompletion.so
 %{_libdir}/kde3/ktexteditor_insertfile.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_insertfile.so
 %{_libdir}/kde3/ktexteditor_isearch.la
@@ -700,6 +732,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksgmltools2
 %{_datadir}/apps/kssl
 %{_datadir}/apps/kstyle
+%{_datadir}/apps/ktexteditor_docwordcompletion
 %{_datadir}/apps/ktexteditor_insertfile
 %{_datadir}/apps/ktexteditor_isearch
 %{_datadir}/apps/ktexteditor_kdatatool
@@ -723,6 +756,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmailservice.protocol
 %{_datadir}/services/kmultipart.desktop
 %{_datadir}/services/knotify.desktop
+%{_datadir}/services/ktexteditor_autobookmarker.desktop
+%{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
 %{_datadir}/services/ktexteditor_kdatatool.desktop
@@ -738,6 +773,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/pgm.kimgio
 %{_datadir}/services/png.kimgio
 %{_datadir}/services/ppm.kimgio
+%{_datadir}/services/rgb.kimgio
 %{_datadir}/services/tga.kimgio
 %{_datadir}/services/tiff.kimgio
 %{_datadir}/services/xbm.kimgio
@@ -845,7 +881,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %{_kdedocdir}/en/%{name}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
@@ -890,6 +925,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/dcopidl.1*
 %{_mandir}/man1/dcopidl2cpp.1*
 #%%lang(en) %{_docdir}/kde/HTML/en/kde-%{_snap}-apidocs
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%lang(en) %{_kdedocdir}/en/%{name}-apidocs
+%endif
 
 %files artsmessage
 %defattr(644,root,root,755)
