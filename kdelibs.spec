@@ -8,7 +8,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	2.2.2
-Release:	6
+Release:	7
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -66,7 +66,6 @@ BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	zlib-devel
 Requires:	arts = %{version}
 Requires:	qt >= 2.2.4
-%requires_eq	openssl
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
