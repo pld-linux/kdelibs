@@ -5258,19 +5258,6 @@ diff -urN -x CVS kdelibs.orig/kio/kssl/kssl.cc kdelibs/kio/kssl/kssl.cc
  			static_cast<SSL_SESSION*>(d->session->_session))) {
  			kdDebug(7029) << "Session ID is being reused." << endl;
  		} else {
-diff -urN -x CVS kdelibs.orig/kio/mailto.protocol kdelibs/kio/mailto.protocol
---- kdelibs.orig/kio/mailto.protocol	Thu Dec 18 13:24:50 2003
-+++ kdelibs/kio/mailto.protocol	Thu Jan  1 01:00:00 1970
-@@ -1,9 +0,0 @@
--[Protocol]
--protocol=mailto
--input=none
--output=none
--reading=false
--Icon=kmail
--Class=:internet
--Description=Support for mailto URIs
--URIMode=mailto
 diff -urN -x CVS kdelibs.orig/kio/misc/kpac/eventsrc kdelibs/kio/misc/kpac/eventsrc
 --- kdelibs.orig/kio/misc/kpac/eventsrc	Fri Jan 16 08:02:39 2004
 +++ kdelibs/kio/misc/kpac/eventsrc	Fri Jan 30 19:05:17 2004
