@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.8
+Release:	0.90
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -27,7 +27,9 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 # Source0-md5:	82c265de78d53c7060a09c5cb1a78942
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
-Source2:	x-wmv.desktop
+Source2:	%{name}-extra_icons.tar.bz2
+# Source2-md5:	2cdd3d3302752d42e71cfe0f9c2cda44
+Source3:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:		%{name}-kcursor.patch
@@ -280,19 +282,36 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE,%{_datadir}/apps/khtml/kpartplugins} \
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE/System,%{_datadir}/apps/khtml/kpartplugins} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
+install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
+echo -e "Accessibility\nComponents\nDesktop\nInformation\nLookNFeel\n"\
+"Network\nPeripherals\nPersonalization\nPowerControl\nSecurity\nSound\n"\
+"System\nWebBrowsing" > $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE/.order
+
+cat > $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE/.directory << EOF
+[Desktop Entry]
+Name=KDE
+Icon=kcontrol
+X-KDE-BaseGroup=settings
+EOF
+
 # this is provided by openoffice:
 rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
+
+bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
+for i in {actions/misc,devices/{cdaudio_unmount,mouse,scanner}}.png \
+	 filesystems/{desktop,folder_home,network,socket}.png; do
+	ln -s crystalsvg/48x48/$i $RPM_BUILD_ROOT%{_pixmapsdir}/`basename $i`
+done
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
