@@ -1,5 +1,9 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
+
+%define         _state          unstable                                        
+%define         _kdever         kde-3.1-beta1                                   
+
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
@@ -13,7 +17,7 @@ Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
@@ -259,6 +263,13 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Sett
 
 #%find_lang kdelibs --with-kde --all-name
 
+> %{name}.lang                                                                  
+topics="common kdelibs-apidocs kspell"  
+for i in $topicss; do                                                          
+        %find_lang $i --with-kde                                                
+	        cat $i.lang >> %{name}.lang                                             
+done
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -268,8 +279,7 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Sett
 %clean
 #rm -rf $RPM_BUILD_ROOT
 
-#%files -f kdelibs.lang
-%files
+%files -f kdelibs.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcop[cfors]*
@@ -309,7 +319,6 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Sett
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*
 %attr(755,root,root) %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/kde3
-
 %config %{_datadir}/config
 %dir %{_applnkdir}/Settings
 %dir %{_applnkdir}/Settings/KDE
@@ -323,8 +332,6 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Sett
 %{_datadir}/servicetypes
 %dir /usr/share/doc/kde
 %dir %{_htmldir}
-%dir %{_htmldir}/en
-%{_htmldir}/en/*
 
 %files devel
 %defattr(644,root,root,755)
@@ -332,7 +339,7 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Sett
 %{_libdir}/libD*.so
 %{_libdir}/libkabc.so
 %{_libdir}/libkatepartinterfaces.so
-%{_libdir}/libk[dfhijmpt]*.so
+%{_libdir}/libk[dfhijmptu]*.so
 %{_libdir}/libks[cpsy]*.so
 %{_libdir}/libshellscript.so
 %{_libdir}/libvcard.so
