@@ -2,13 +2,17 @@
 # 	space.
 #
 # Conditional build:
-# _with_nas	- with NAS support
-# _without_alsa - disable alsa
-# _without_ldap - disable openldap
-#
+%bcond_with	nas	- with NAS support
+%bcond_without	alsa	- disable alsa
+%bcond_without	ldap	- disable openldap
+%bcond_without	i18n	- build with 1i8n support (for bootstrap)
+
+%ifarch sparc sparc64
+%undefine	with_alsa
+%endif
 
 %define		_state		stable
-%define		_ver		3.1.4
+%define		_ver		3.1.5
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -19,14 +23,16 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	82c265de78d53c7060a09c5cb1a78942
-Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
+# Source0-md5:	6e33c0f7c124e77d807da0ddb537b369
+%if %{with i18n}
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	a6149754c37009b3a0c5980e11b9d864
+%endif
 Source2:	%{name}-extra_icons.tar.bz2
 # Source2-md5:	13e68a0ac0e9724c9b4a74e6bc729087
 Source3:	x-wmv.desktop
@@ -39,9 +45,7 @@ Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
-%ifnarch sparc sparc64
-%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
-%endif
+%{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
 BuildRequires:	audiofile-devel
@@ -67,8 +71,8 @@ BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
-%{?_with_nas:BuildRequires:	nas-devel}
-%{!?_without_ldap:BuildRequires:	openldap-devel}
+%{?with_nas:BuildRequires:	nas-devel}
+%{?with_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
@@ -204,9 +208,7 @@ Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±cej KDE
 Group:		X11/Libraries
 Requires:	arts-kde = %{epoch}:%{version}
 Requires:	%{name}-devel = %{epoch}:%{version}
-%ifnarch sparc sparc64
-%{!?_without_alsa:Requires:	alsa-lib-devel}
-%endif
+%{?with_alsa:Requires:	alsa-lib-devel}
 Requires:	arts-devel >= 1.1-1
 Requires:	audiofile-devel
 Requires:	fam-devel
@@ -289,11 +291,11 @@ done
 %endif
 	--enable-final \
 	--enable-mitshm \
-	%{?_without_ldap:--without-ldap} \
-	%{!?_without_ldap:--with-ldap} \
-	--with%{?_without_alsa:out}-alsa
+	%{!?with_ldap:--without-ldap} \
+	%{?with_ldap:--with-ldap} \
+	--with%{!?with_alsa:out}-alsa
 
-%if %{!?_with_nas:1}0
+%if ! %{with nas}
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
@@ -342,6 +344,7 @@ for i in `find $RPM_BUILD_ROOT%{_applnkdir} -type f`; do
 	fi
 done
 
+%if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
@@ -362,6 +365,9 @@ topics="common cupsdconf desktop_kde-i18n katepart kdelibs-apidocs kmcop \
 	knotify kspell ktexteditor_insertfile ktexteditor_isearch \
 	ktexteditor_kdatatool libkscreensaver ppdtranslations timezones"
 %find_lang	kdelibs			--with-kde
+%else
+topics="common kdelibs-apidocs kspell"
+%endif
 for i in $topics; do
 	%find_lang $i --with-kde
 	cat $i.lang >> %{name}.lang
@@ -376,7 +382,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-n arts-kde -p /sbin/ldconfig
 %postun	-n arts-kde -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files -f kdelibs.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/[!adk]*
 %attr(755,root,root) %{_bindir}/dcop
