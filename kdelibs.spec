@@ -47,6 +47,7 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
+BuildRequires:	ed
 BuildRequires:	esound-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
@@ -68,9 +69,7 @@ BuildRequires:	motif-devel
 %{!?_without_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.6k
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	perl-base
 BuildRequires:	qt-devel >= 3.1-3
-BuildRequires:	sed
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs
 Requires:	applnk
@@ -248,9 +247,9 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-for plik in `find ./ -name *.desktop` ; do
+for plik in `find ./ -name *.desktop | grep -l '\[nb\]'` ; do
 	echo $plik
-	perl -pi -e "s/\[nb\]/\[no\]/g" $plik
+	echo -e ',s/\[nb\]/[no]/\n,w' | ed $plik
 done
 
 %{__libtoolize}
@@ -311,11 +310,11 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
-%post   -n arts-kde -p /sbin/ldconfig
-%postun -n arts-kde -p /sbin/ldconfig
+%post	-n arts-kde -p /sbin/ldconfig
+%postun	-n arts-kde -p /sbin/ldconfig
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
