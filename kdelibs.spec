@@ -7,7 +7,7 @@
 %define		_with_pixmapsubdirs	1
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
-Summary(ko):	KDE - ∂Û¿Ã∫Í∑Ø∏Æ.
+Summary(ko):	KDE - ∂Û¿Ã∫Í∑Ø∏Æ
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
