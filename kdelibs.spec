@@ -27,7 +27,7 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-Patch3:		%{name}-kio_http_55571_bugfix.patch 
+Patch3:		%{name}-kio_http_55571_bugfix.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
@@ -58,6 +58,7 @@ BuildRequires:	openssl-devel >= 0.9.6i
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
+BuildRequires:	perl
 Requires:	XFree86
 Requires:	applnk
 Requires:	arts >= 1.1-1
@@ -246,12 +247,9 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-for plik in `find ./ -name *.desktop` ; do
-	if [ -d $plik ]; then
+for plik in `find ./ -name \*.desktop` ; do
 		echo $plik
-		sed -e 's/\[nb\]/\[no\]/g' $plik >> $plik.1
-		mv -f $plik.1 $plik
-	fi
+		perl -pi -e "s/\[nb\]/\[no\]/g" $plik
 done
 
 CFLAGS="%{rpmcflags}"
