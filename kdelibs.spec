@@ -348,8 +348,8 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 	debian/ksendbugmail.sgml
 
 %build
-cp /usr/share/automake/config.sub admin
-%{__make} -f admin/Makefile.common cvs
+#cp /usr/share/automake/config.sub admin
+#%{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
@@ -420,7 +420,7 @@ mv ${i}.lang.1 ${i}.lang
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
@@ -494,11 +494,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkabc_file.la
 %attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
 %if %{with ldap}
-#%{_libdir}/libkabc_ldap.la
-#%attr(755,root,root) %{_libdir}/libkabc_ldap.so.*.*.*
+%{_libdir}/libkabc_ldap.la
+%attr(755,root,root) %{_libdir}/libkabc_ldap.so.*.*.*
+%endif
 %{_libdir}/libkabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
-%endif
 %{_libdir}/libkabc_net.la
 %attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
 %{_libdir}/libkatepartinterfaces.la
@@ -832,11 +832,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kabc_file.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_file.so
 %if %{with ldap}
-#%{_libdir}/kde3/kabc_ldap.la
-#%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
+%{_libdir}/kde3/kabc_ldap.la
+%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
+%endif
 %{_libdir}/kde3/kabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
-%endif
 %{_libdir}/kde3/kabc_net.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_net.so
 %{_libdir}/kde3/kabcformat_binary.la
@@ -861,9 +861,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_dir.so
 %attr(755,root,root) %{_libdir}/libkabc_file.so
 %if %{with ldap}
-#%attr(755,root,root) %{_libdir}/libkabc_ldap.so
-%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
+%attr(755,root,root) %{_libdir}/libkabc_ldap.so
 %endif
+%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
 %attr(755,root,root) %{_libdir}/libkabc_net.so
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
 %attr(755,root,root) %{_libdir}/libkdecore.so
@@ -903,25 +903,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/artsmessage
 %{_mandir}/man1/artsmessage.1*
-
-#%files kabc
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kab2kabc
-#%{_libdir}/kde3/kabc_dir.la
-#%attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
-#%{_libdir}/kde3/kabc_file.la
-#%attr(755,root,root) %{_libdir}/kde3/kabc_file.so
-#%{_libdir}/kde3/kabc_ldap.la
-#%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
-#%{_libdir}/kde3/kabc_ldapkio.la
-#%attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
-#%{_libdir}/kde3/kabc_net.la
-#%attr(755,root,root) %{_libdir}/kde3/kabc_net.so
-#%{_libdir}/kde3/kabcformat_binary.la
-#%attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-#%{_libdir}/kde3/kcm_kresources.la
-#%attr(755,root,root) %{_libdir}/kde3/kcm_kresources.so
-#%{_datadir}/apps/kabc
-#%{_datadir}/autostart/kab2kabc.desktop
-#%{_datadir}/services/kresources/kabc
-#%{_desktopdir}/kde/kresources.desktop
