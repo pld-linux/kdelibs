@@ -324,17 +324,17 @@ done
 
 cd -
 
-%find_lang kdelibs --with-kde --all-name
+##%find_lang kdelibs --with-kde --all-name
 
 ### Dont uncomment, left here in case more lang files are to be process
 
 #files=%{name}
-i=%{name}
+##i=%{name}
 
 # for i in $files; do
 
-grep -v apidocs ${i}.lang|grep -v common > ${i}.lang.1
-mv ${i}.lang.1 ${i}.lang
+##grep -v apidocs ${i}.lang|grep -v common > ${i}.lang.1
+##mv ${i}.lang.1 ${i}.lang
 # done
 
 
@@ -344,7 +344,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files  
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -729,10 +729,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/make_driver_db_lpr.1*
 %{_mandir}/man1/meinproc.1*
 %{_mandir}/man1/preparetips.1*
-%dir %{_docdir}/kde
-%dir %{_kdedocdir}
-%dir %{_kdedocdir}/en
-%{_kdedocdir}/en/common
+%{_docdir}/kde
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
