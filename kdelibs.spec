@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.1.2
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -182,6 +182,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libks[psy]*.so
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
+%{_libdir}/libkab.so
 %{_includedir}/addressbook.h
 %{_includedir}/[^a]*
 
