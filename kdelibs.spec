@@ -136,6 +136,7 @@ ENABLE_DEBUG="%{?debug:--enable-debug}"
 %install
 rm -rf $RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde --all-name
