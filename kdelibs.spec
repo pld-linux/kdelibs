@@ -31,7 +31,7 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:		%{name}-kcursor.patch
-Patch3:		%{name}-vfolders.patch
+#Patch3:		%{name}-vfolders.patch
 Patch4:		%{name}-fonts.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
@@ -232,7 +232,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+#%%patch3 -p1
 %patch4 -p1
 
 %build
