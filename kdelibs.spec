@@ -24,14 +24,11 @@ Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-%if %{with cvs}
-Source0:	kdesource.tar.gz
-# Source0-md5:	5d1dcfffd8ee0f4b717ac75d6d8b0525
-%else
+%if ! %{with cvs}
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-#Source0:       http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-#Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	a1cc949c82151aa784526227c112413d
+# Source0-md5:	53b213398dc488af5de57b74c6b3bbf5
+%else
+Source0:	kdesource.tar.gz
 %endif
 Source2:	%{name}-wmfplugin.tar.bz2
 # Source2-md5:	f89739b063eca075bf4ac85f559eea77
