@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040206
+%define		_snap		040209
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -401,10 +401,10 @@ done
 files=%{name}
 
 for i in $files; do
-echo "%defattr(644,root,root,755)" > ${i}_en.lang
-grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
-grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
-mv ${i}.lang.1 ${i}.lang
+	echo "%defattr(644,root,root,755)" > ${i}_en.lang
+	grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
+	grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
+	mv ${i}.lang.1 ${i}.lang
 done
 
 %clean
