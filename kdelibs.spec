@@ -50,6 +50,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
 Obsoletes:	kdelibs2-sound
 Obsoletes:	kdelibs-sound
+Obsoletes:	kdesupport
+Obsoletes:	kdesupport-devel
+Obsoletes:	kdesupport-static
 
 %define         _prefix         /usr/X11R6
 %define		_htmldir	%{_datadir}/doc/kde/HTML
