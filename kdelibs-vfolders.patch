@@ -1701,7 +1701,7 @@ diff -urN vf.orig/vfolder_menu.cpp vf/vfolder_menu.cpp
 +   if (result.isEmpty() && !m_docInfo.baseDir.startsWith("/"))
 +   {
 +    //  result = locate("apps", m_docInfo.baseDir+"default_"+fileName);
-+	result = "/etc/X11/desktop/menus/" + fileName;
++	result = "/etc/xdg/menus/" + fileName;
 +   }
 +   return result;
 +}
