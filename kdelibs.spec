@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.2
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -34,23 +34,24 @@ BuildRequires:	XFree86-devel
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	audiofile-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	bzip2-devel
+BuildRequires:	cups-devel
+BuildRequires:	gettext-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	openssl-devel >= 0.9.6a
-BuildRequires:	qt-devel >= 2.3.0
-BuildRequires:	gettext-devel
-BuildRequires:	zlib-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
-BuildRequires:	openssl-devel
-BuildRequires:	bzip2-devel
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
-#BuildRequires:	glib2-devel >= 1.3.3
-BuildRequires:	cups-devel
+BuildRequires:	qt-devel >= 2.3.0
+BuildRequires:	zlib-devel
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 %requires_eq	openssl
@@ -262,13 +263,12 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-# Somebody please do this The Right Way (tm)...
-cp -p /usr/bin/libtool .
+%{__make} -f Makefile.cvs
 
 CFLAGS="%{rpmcflags}"
-CXXFLAGS="%{rpmcflags}" 
-%configure2_13 \
-	%{?debug:--enable-debug} \
+CXXFLAGS="%{rpmcflags}"
+%configure \
+	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-final \
 	--disable-mysql \
 	--disable-informix \
@@ -285,7 +285,6 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
