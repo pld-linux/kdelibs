@@ -11,13 +11,6 @@ Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/Библиотеки
-Group(uk):	X11/Б╕бл╕отеки
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
@@ -106,13 +99,6 @@ Summary(es):	Header files and documentation for compiling KDE applications
 Summary(pl):	kdelibs - pliki nagЁСwkowe i dokumentacja do kdelibs
 Summary(pt_BR):	Arquivos de inclusЦo e documentaГЦo para compilar aplicativos KDE
 Group:		X11/Development/Libraries
-Group(de):	X11/Entwicklung/Libraries
-Group(es):	X11/Desarrollo/Bibliotecas
-Group(fr):	X11/Development/Librairies
-Group(pl):	X11/Programowanie/Biblioteki
-Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
-Group(ru):	X11/Разработка/Библиотеки
-Group(uk):	X11/Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	arts-devel = %{version}
 Requires:	qt-devel >= 2.3.0
@@ -144,13 +130,6 @@ Summary(es):	Sound server used by KDE
 Summary(pl):	Serwer d╪wiЙku
 Summary(pt_BR):	Servidor de sons usado pelo KDE
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 
 %description -n arts
 aRts sound server.
@@ -175,13 +154,6 @@ outros.
 Summary:	X11 dependent part of aRts
 Summary(pl):	CzЙ╤Ф aRts wymagaj╠ca X11
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/Библиотеки
-Group(uk):	X11/Б╕бл╕отеки
 
 %description -n arts-X11
 X11 dependent part of aRts.
@@ -193,13 +165,6 @@ CzЙ╤Ф aRts wymagaj╠ca X11.
 Summary:	QT dependend part of aRts
 Summary(pl):	CzЙ╤Ф aRts wymagaj╠ca QT
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/Библиотеки
-Group(uk):	X11/Б╕бл╕отеки
 
 %description -n arts-qt
 QT dependend part of aRts.
@@ -213,13 +178,6 @@ Summary(es):	Header files for compiling aRtsd applications
 Summary(pl):	Serwer d╪wiЙku - pliki nagЁСwkowe
 Summary(pt_BR):	Arquivos para desenvolvimento com o o aRts
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 
 %description -n arts-devel
 Header files required to compile programs using arts.
@@ -239,9 +197,6 @@ Arquivos para desenvolvimento com o o aRts.
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy╤wietlania komunikatСw daemona aRts
 Group:		Development/Tools
-Group(de):	Entwicklung/Werkzeuge
-Group(fr):	Development/Outils
-Group(pl):	Programowanie/NarzЙdzia
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
