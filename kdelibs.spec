@@ -5,7 +5,6 @@
 %define         _state          stable
 %define         _ver		3.1
 
-
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
