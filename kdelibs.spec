@@ -1,15 +1,16 @@
+%define	sver	alpha2
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.1.2
-Release:	3
+Version:	2.2
+Release:	0.%{sver}
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{version}%{sver}/src/%{name}-%{version}%{sver}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
@@ -110,7 +111,7 @@ Header files required to compile programs using arts.
 Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 
 %prep
-%setup  -q
+%setup  -q -n %{name}-%{version}%{sver}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
