@@ -361,4 +361,4 @@ done
 
 %files -n arts-message
 %defattr(644,root,root,755)
-%{_bindir}/artsmessage
+%attr(755,root,root) %{_bindir}/artsmessage
