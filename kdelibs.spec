@@ -339,11 +339,11 @@ cp /usr/share/automake/config.sub admin
 %endif
 	--enable-final \
 	--enable-mitshm \
+	--with-ldap=no \
 	--with%{!?with_alsa:out}-alsa
 
 %{__make}
-
-%{__make} apidox
+#%{__make} apidox
 
 %install
 rm -rf $RPM_BUILD_ROOT
