@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040524
+%define		_snap		040529
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -25,8 +25,8 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 %if ! %{with cvs}
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+#Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
 ##%% Source0-md5:	53b213398dc488af5de57b74c6b3bbf5
 %else
 Source0:	kdesource.tar.gz
@@ -37,6 +37,7 @@ Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-QTDOCDIR.patch
+Patch4:		%{name}-fileshareset.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -265,6 +266,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1 
 
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
@@ -377,6 +379,7 @@ EOF
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/ghns
+%attr(755,root,root) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
@@ -557,6 +560,8 @@ EOF
 %attr(755,root,root) %{_libdir}/kde3/kgzipfilter.so
 %{_libdir}/kde3/khtmlimagepart.la
 %attr(755,root,root) %{_libdir}/kde3/khtmlimagepart.so
+%{_libdir}/kde3/kimg_dds.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_dds.so
 %{_libdir}/kde3/kimg_eps.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
 %{_libdir}/kde3/kimg_exr.la
@@ -695,6 +700,7 @@ EOF
 %{_datadir}/services/ktexteditor_isearch.desktop
 %{_datadir}/services/ktexteditor_kdatatool.desktop
 %{_datadir}/services/bmp.kimgio
+%{_datadir}/services/dds.kimgio
 %{_datadir}/services/eps.kimgio
 %{_datadir}/services/exr.kimgio
 %{_datadir}/services/gif.kimgio
