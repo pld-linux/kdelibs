@@ -1,4 +1,6 @@
-%define	sver	alpha2
+# NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
+# 	space.
+%define	sver	beta1
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
@@ -15,6 +17,7 @@ Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
+Patch4:		%{name}-use_system_libltdl.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -25,15 +28,23 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	kdesupport-mimelib-devel => 2.1
+#BuildRequires:	kdesupport-mimelib-devel => 2.1
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	qt-devel >= 2.3.0
-BuildRequires:	unixODBC-devel
 BuildRequires:	gettext-devel
 BuildRequires:	zlib-devel
+# For Netscape plugin support in Konqueror.
+BuildRequires:	motif-devel
 BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	postgresql-devel
+#BuildRequires:	unixODBC-devel
+#BuildRequires:	postgresql-devel
+# ??? BuildRequires:	OpenGL-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	pcre-devel
+# Needs libltdlc.la which is not present in our libltdl
+# BuildRequires:	libltdl-devel
+Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -116,20 +127,42 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+#%patch4 -p1
+
+# Just to expose errors.
+#rm -rf libltdl
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
+#autoupdate
+#libtoolize --force --copy
+#aclocal
+#autoheader
+#autoconf
+#automake -a -c
+
+#cd libltdl
+#libtoolize --force --copy
+#aclocal
+#autoheader
+#autoconf
+#automake -a -c
+#cd ..
+
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}" 
 ENABLE_DEBUG="%{?debug:--enable-debug}"
-%configure \
+
+%configure2_13 \
 	$ENABLE_DEBUG \
 	--enable-final \
 	--disable-mysql \
 	--disable-informix \
-	--enable-pgsql
+	--with-alsa \
+	--enable-mitshm \
+	#--enable-pgsql
 %{__make}
 
 %install
@@ -137,6 +170,8 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+
+gzip arts/doc/{README,NEWS,TODO}
 
 %find_lang %{name} --with-kde --all-name
 
@@ -164,7 +199,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*
 %attr(755,root,root) %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkhtmli*.??
-%attr(755,root,root) %{_libdir}/libksasl.??
+# Not found.
+# %attr(755,root,root) %{_libdir}/libksasl.??
 %attr(755,root,root) %{_libdir}/kde2
 %attr(755,root,root) %dir %{_libdir}/mcop
 
@@ -184,8 +220,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
 %{_libdir}/libkab.so
+# All subdirs not starting with 'a' and all *.h files.
+%{_includedir}/[!a]*
 %{_includedir}/addressbook.h
-%{_includedir}/[^a]*
 
 %files -n arts
 %defattr(644,root,root,755)
@@ -200,11 +237,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib[amqsx]*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
-%{_libdir}/mcop
+%{_libdir}/mcop/*
 
 %files -n arts-devel
 %defattr(644,root,root,755)
-%doc arts/doc/*
+%doc arts/doc/*.gz
 %attr(755,root,root) %{_bindir}/artsc-config
 %attr(755,root,root) %{_bindir}/mcopidl
 %{_libdir}/lib[amqsx]*.so
