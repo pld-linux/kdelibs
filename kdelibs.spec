@@ -608,8 +608,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
 %{_libdir}/kde3/libshellscript.la
 %attr(755,root,root) %{_libdir}/kde3/libshellscript.so
-##%{_libdir}/kde3/wmfthumbnail.la
-##%attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
+%{_libdir}/kde3/wmfthumbnail.la
+%attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
 %{_libdir}/kde3/plugins/designer/kdewidgets.la
@@ -714,7 +714,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/telnet.protocol
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
-##%{_datadir}/services/wmfthumbnail.desktop
+%{_datadir}/services/wmfthumbnail.desktop
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
 # contains also 3rdparty hicolor & crystalsvg/apps trees
