@@ -254,6 +254,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 Summary:	Internationalization and localization files for kdelibs.
 Summary(pl):	Pliki umiêdzynarodawiaj±ce kdelibs.
 Requires:       %{name} = %{epoch}:%{version}-%{release}
+Group:		X11/Applications
 Obsoletes:      kde-i18n-Affrikaans
 Obsoletes:      kde-i18n-Afrikaans
 Obsoletes:      kde-i18n-Arabic
@@ -393,8 +394,8 @@ for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
 
-# XXX: separate kabc
-%find_lang %{name} --with-kde --all-name
+%find_lang kdelibs --with-kde --all-name
+
 %endif
 
 %clean
