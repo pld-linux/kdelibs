@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040211
+%define		_snap		040217
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -24,7 +24,7 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
 ##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
@@ -326,16 +326,11 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 
 
 %prep 
-%setup -q -n %{name}-%{_snap}
+%setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
-# unwanted manpages (no binaries)
-rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
-# typo
-%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-	debian/ksendbugmail.sgml
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -347,6 +342,7 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--disable-rpath \
+	--enable-final \
 	--enable-mitshm \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
@@ -378,8 +374,13 @@ install -d \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 # Debian manpages
+%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
+	debian/ksendbugmail.sgml
+
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
+
 cd debian
+
 for f in *.sgml ; do
 	base="$(basename $f .sgml)"
 	upper="$(echo ${base} | tr a-z A-Z)"
@@ -656,6 +657,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkatepart.so
 %{_libdir}/kde3/libkcertpart.la
 %attr(755,root,root) %{_libdir}/kde3/libkcertpart.so
+%{_libdir}/kde3/libkdeprint_management_module.la
+%attr(755,root,root) %{_libdir}/kde3/libkdeprint_management_module.so
 %{_libdir}/kde3/libkhtmlpart.la
 %attr(755,root,root) %{_libdir}/kde3/libkhtmlpart.so
 %{_libdir}/kde3/libkmultipart.la
@@ -682,7 +685,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/katepart
 %{_datadir}/apps/kcertpart
 %{_datadir}/apps/kcm_componentchooser
-%{_datadir}/apps/kconf_update
+%dir %{_datadir}/apps/kconf_update
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
+%{_datadir}/apps/kconf_update/*.upd
 %{_datadir}/apps/kdeprint
 %{_datadir}/apps/kdeui
 %{_datadir}/apps/kdewidgets
@@ -838,7 +844,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
+%lang(en) %{_kdedocdir}/en/%{name}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
