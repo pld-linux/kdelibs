@@ -8,7 +8,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.93
-%define		_snap		031103
+%define		_snap		031105
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -25,11 +25,10 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	9ee341775bdec9a1e5603a032c926813
+# Source0-md5:	9258772eb787859e9de3097ee68d0c44
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
-Patch3:		%{name}-kjs_grammar.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -58,6 +57,7 @@ BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.2.1-4
+BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	arts >= 12:1.2.0.%{_snap}
@@ -222,15 +222,12 @@ TODO.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 
 for f in `find . -name *.desktop` ; do
 	sed -i 's/\[nb\]/\[no\]/g' $f
 done
-
-#echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -243,8 +240,6 @@ done
 	--enable-final \
 	--enable-mitshm \
 	--with%{?without_alsa:out}-alsa
-
-%{__make} -C kjs parser
 
 %{__make}
 
@@ -263,6 +258,7 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/apps/krichtexteditpart \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
 	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
+	$RPM_BUILD_ROOT%{_datadir}/config/magic \
 	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_datadir}/wallpapers \
@@ -608,16 +604,17 @@ rm -rf $RPM_BUILD_ROOT
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/*
 %dir %{_docdir}/kde
-%dir %{_docdir}/kde/HTML
-%lang(en) %dir %{_docdir}/kde/HTML/en
-%lang(en) %{_docdir}/kde/HTML/en/common
-%lang(en) %{_docdir}/kde/HTML/en/kspell
+%dir %{_kdedocdir}
+%lang(en) %dir %{_kdedocdir}/en
+%lang(en) %{_kdedocdir}/en/common
+%lang(en) %{_kdedocdir}/en/kspell
 
 # 3rdparty directories
 %dir %{_bindir}/kconf_update_bin
 %dir %{_datadir}/apps/krichtexteditpart
 %dir %{_datadir}/apps/profiles
 %dir %{_datadir}/apps/remotes
+%dir %{_datadir}/config/magic
 %dir %{_datadir}/config.kcfg
 %dir %{_datadir}/services/kconfiguredialog
 %dir %{_datadir}/wallpapers
