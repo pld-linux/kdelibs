@@ -3,12 +3,12 @@
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
-%bcond_without	i18n	# dont build i18n subpackage
+%bcond_with	i18n	# dont build i18n subpackage
 #
-%define		_state		stable
-%define		_ver		3.2.0
-#%%define		_snap		040110
-%define         artsver         13:1.1.95
+%define		_state		snapshots
+%define		_ver		3.2.90
+%define		_snap		040130
+%define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,13 +18,13 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	%{_ver}
-Release:	0.2
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	24be0d558725f4d3441fb9d580129720	
 %if %{with i18n}
 Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
@@ -34,7 +34,6 @@ Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		%{name}-add_japanese_utf8_detection.patch
-Patch4:		%{name}-kdeprint_qt33fix.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -320,7 +319,6 @@ Obsoletes:      kde-i18n-Chinese-Big5
 Obsoletes:      kde-i18n-Zulu
 Obsoletes:      kde-i18n-kdelibs
 Obsoletes:      kde-i18n
-##BuildArch:      noarch
 
 %description i18n 
 Internationalization and localization files for kdelibs.
@@ -330,12 +328,11 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 
 
 %prep 
-%setup -q
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
@@ -392,25 +389,30 @@ for f in *.sgml ; do
 	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
 done
 
+cd -
 
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
+
 %endif
 
-%find_lang kdelibs --with-kde --all-name
+%find_lang %{name} --with-kde --all-name
 
-i=kdelibs
 
 ### Dont uncomment, left here in case more lang files are to be process
-## for i in $files; do
+
+#files=%{name}
+i=%{name}
+
+# for i in $files; do
 echo "%defattr(644,root,root,755)" > ${i}_en.lang
-grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
+grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
+grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
 mv ${i}.lang.1 ${i}.lang
-## done
+# done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -419,10 +421,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-p /sbin/ldconfig
 
 %if %{with i18n}
-%files i18n -f kdelibs.lang
+%files i18n -f %{name}.lang
 %endif
 
-%files -f kdelibs_en.lang
+%files -f %{name}_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -478,8 +480,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
-%{_libdir}/libcupsdconf.la
-%attr(755,root,root) %{_libdir}/libcupsdconf.so
 %{_libdir}/libkabc.la
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
 %{_libdir}/libkabc_dir.la
@@ -500,6 +500,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
 %{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
+%{_libdir}/libkdeinit_cupsdconf.la
+%attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %{_libdir}/libkdeinit_dcopserver.la
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
 %{_libdir}/libkdeinit_kaddprinterwizard.la
@@ -556,8 +558,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
 %{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
-%{_libdir}/libshellscript.la
-%attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
 %{_libdir}/libkwalletbackend.la
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
@@ -565,6 +565,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libvcard.la
 %attr(0755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
+%{_libdir}/kde3/cupsdconf.la
+%attr(755,root,root) %{_libdir}/kde3/cupsdconf.so
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
 %{_libdir}/kde3/kaddprinterwizard.la
@@ -661,6 +663,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkhtmlpart.so
 %{_libdir}/kde3/libkmultipart.la
 %attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
+%{_libdir}/kde3/libshellscript.la
+%attr(755,root,root) %{_libdir}/kde3/libshellscript.so
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
 %{_libdir}/kde3/plugins/designer/kdewidgets.la
@@ -800,6 +804,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/preparetips.1*
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
+%dir %{_kdedocdir}/en
+%{_kdedocdir}/en/common
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
@@ -835,7 +841,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %{_kdedocdir}/en/%{name}-apidocs
+%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
@@ -870,7 +876,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkspell.so
 %attr(755,root,root) %{_libdir}/libktexteditor.so
 %attr(755,root,root) %{_libdir}/libkutils.so
-%attr(755,root,root) %{_libdir}/libshellscript.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
 %attr(755,root,root) %{_libdir}/libvcard.so
