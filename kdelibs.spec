@@ -6,8 +6,8 @@
 #
 
 %define		_state		snapshots
-%define		_ver		3.1.90
-%define		_snap		030901
+%define		_ver		3.1.91
+%define		_snap		030918
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -24,18 +24,11 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	35d7321cb7b23f1186c77fc5aacc2b84
-#Source0:        http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
-#Patch0:	%{name}-directories.patch
+# Source0-md5:	de98ac610b6fa5f0cf7e2718119b0cfd
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
-#Patch2:         %{name}-kcursor.patch
-Patch3:         %{name}-defaultfonts.patch
-#Patch4:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
-#Patch5:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
-#Patch6:	%{name}-fix-kmediaplayer_includes.patch
+Patch2:         %{name}-defaultfonts.patch
 Icon:		kdelibs.xpm
-# Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
@@ -82,8 +75,6 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
-
-%define		_htmldir	%{_docdir}/kde/HTML
 
 %define		no_install_post_chrpath		1
 
@@ -153,6 +144,7 @@ Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
 Obsoletes:	kdebase-devel <= 3.1.1-0.5.1
+Obsoletes:	kdelibs-static
 
 %description devel
 This package contains header files and development documentation for
@@ -179,43 +171,6 @@ KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
 %description devel -l uk
 ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÈÅÄÅÒÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ ÄÌÑ KDE.
 ôÁËÏÖ ÄÏ ÎØÏÇÏ ×ÈÏÄÉÔØ ÄÏËÕÍÅÎÔÁÃ¦Ñ Õ ÆÏÒÍÁÔ¦ HTML.
-
-
-%package static
-Summary:        KDE static libraries
-Summary(pl):    Statyczne biblioteki KDE
-Group:          X11/Libraries
-Requires:       %{name} >= %{epoch}:%{version}-%{release}
-
-%description static
-KDE static libraries.
-
-%description static -l pl
-Statyczne biblioteki KDE.
-
-#%package -n arts-kde
-#Summary:	KDE dependent part of aRts
-#Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
-#Group:		X11/Libraries
-#Requires:	%{name} >= %{epoch}:%{version}-%{release}
-
-#%description -n arts-kde
-#KDE dependent part of aRts.
-
-#%description -n arts-kde -l pl
-#Czê¶æ aRts wymagaj±ca KDE.
-
-#%package -n arts-kde-devel
-#Summary:	Headers for KDE dependent part of aRts
-#Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±ca KDE
-#Group:		X11/Libraries
-#Requires:	arts-kde = %{epoch}:%{version}-%{release}
-
-#%description -n arts-kde-devel
-#Headers for KDE dependent part of aRts.
-
-#%description -n arts-kde-devel -l pl
-#Nag³ówki dla czê¶ci aRts wymagaj±ca KDE.
 
 %package artsmessage
 Summary:	Program which can be used to display aRts daemon messages
@@ -248,27 +203,16 @@ TODO.
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-%patch3 -p1
-#%patch4 -p1
-#%patch5 -p1
-#%patch6 -p1
+%patch2 -p1
 
 %build
-
-#cd kdecore
-#> plddirs.h
-#echo "#define kde_appsdir \"%{_applnkdir}\"" >> plddirs.h
-#echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
-#echo "#define kde_icondir \"%{_icondir}\"" >> plddirs.h
-#cd -
 
 for plik in `find ./ -name *.desktop` ; do
 	echo $plik
 	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
-%{__make} -f Makefile.cvs
+%{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
@@ -294,11 +238,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_appsdir=%{_applnkdir} \
-	kde_htmldir=%{_htmldir}
+	kde_htmldir=%{_docdir}/kde/HTML
 	
 install -d \
-	$RPM_BUILD_ROOT%{_datadir}/{apps/khtml/kpartplugins,wallpapers} \
+	$RPM_BUILD_ROOT%{_bindir}/kconf_update_bin \
+	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
+	$RPM_BUILD_ROOT%{_datadir}/apps/krichtexteditpart \
+	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
+	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
+	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
+	$RPM_BUILD_ROOT%{_datadir}/wallpapers \
 	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
@@ -311,6 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%dir %{_bindir}/kconf_update_bin
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
@@ -325,7 +275,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/imagetops
-#%attr(755,root,root) %{_bindir}/kaddprinterwizard
+%attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
@@ -357,10 +307,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/xml2man
-%{_libdir}/kaddprinterwizard.la
-%attr(755,root,root) %{_libdir}/kaddprinterwizard.so
-%{_libdir}/knotify.la
-%attr(755,root,root) %{_libdir}/knotify.so
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
@@ -389,6 +335,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
 %{_libdir}/libkdeinit_dcopserver.la
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
+%{_libdir}/libkdeinit_kaddprinterwizard.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
 %{_libdir}/libkdeinit_kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
 %{_libdir}/libkdeinit_kconf_update.la
@@ -447,13 +395,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
-%{_libdir}/libvcard.la
-%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
-%{_libdir}/libvcards.la
-%attr(755,root,root) %{_libdir}/libvcards.so.*.*.*
+#%{_libdir}/libvcard.la
+#%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
+#%{_libdir}/libvcards.la
+#%attr(755,root,root) %{_libdir}/libvcards.so.*.*.*
 %dir %{_libdir}/kde3
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
+%{_libdir}/kde3/kaddprinterwizard.la
+%attr(755,root,root) %{_libdir}/kde3/kaddprinterwizard.so
 %{_libdir}/kde3/kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
 %{_libdir}/kde3/kbzip2filter.la
@@ -530,6 +480,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kjavaappletviewer.so
 %{_libdir}/kde3/klauncher.la
 %attr(755,root,root) %{_libdir}/kde3/klauncher.so
+%{_libdir}/kde3/knotify.la
+%attr(755,root,root) %{_libdir}/kde3/knotify.so
 %{_libdir}/kde3/ktexteditor_insertfile.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_insertfile.so
 %{_libdir}/kde3/ktexteditor_isearch.la
@@ -558,6 +510,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/plugins/styles/light.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
 %dir %{_datadir}/apps
+%dir %{_datadir}/apps/krichtexteditpart
+%dir %{_datadir}/apps/profiles
+%dir %{_datadir}/apps/remotes
 %{_datadir}/apps/LICENSES
 %{_datadir}/apps/dcopidlng
 %{_datadir}/apps/katepart
@@ -583,6 +538,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
+%dir %{_datadir}/services/kconfiguredialog
 %dir %{_datadir}/services/kresources
 %{_datadir}/services/kded
 %{_datadir}/services/http_cache_cleaner.desktop
@@ -636,10 +592,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_desktopdir}/kde
 %{_iconsdir}/*
 %dir %{_docdir}/kde
-%dir %{_htmldir}
-%lang(en) %dir %{_htmldir}/en
-%lang(en) %{_htmldir}/en/common
-%lang(en) %{_htmldir}/en/kspell
+%dir %{_docdir}/kde/HTML
+%lang(en) %dir %{_docdir}/kde/HTML/en
+%lang(en) %{_docdir}/kde/HTML/en/common
+%lang(en) %{_docdir}/kde/HTML/en/kspell
 
 %files devel
 %attr(755,root,root) %{_bindir}/dcopidl
@@ -647,6 +603,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kde-config
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
+%{_libdir}/libkdefakes_nonpic.a
 %{_libdir}/libDCOP.so
 %{_libdir}/libartskde.so
 %{_libdir}/libkabc.so
@@ -681,22 +638,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libshellscript.so
 %{_libdir}/libkwalletbackend.so
 %{_libdir}/libkwalletclient.so
-%{_libdir}/libvcard.so
-%{_libdir}/libvcards.so
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libkdefakes_nonpic.a
-
-#%files -n arts-kde
-#%defattr(644,root,root,755)
-#%{_libdir}/libartskde.la
-#%attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
-
-#%files -n arts-kde-devel
-#%defattr(644,root,root,755)
-#%{_includedir}/arts/*
-#%{_libdir}/libartskde.so
+#%{_libdir}/libvcard.so
+#%{_libdir}/libvcards.so
 
 %files artsmessage
 %defattr(644,root,root,755)
