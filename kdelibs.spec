@@ -58,14 +58,16 @@ BuildRequires:	openssl-devel = 0.9.6i
 BuildRequires:	openssl-devel >= 0.9.7
 %endif
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.1
+BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	libvorbis-devel
 BuildRequires:	mad-devel
+BuildRequires:	XFree86-devel >= 4.2.99
 Requires:	applnk
 Requires:	arts >= 1.1-1
-Requires:	qt >= 3.1
+Requires:	qt >= 3.1-3
+Requires:	XFree86 >= 4.2.99
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
@@ -289,14 +291,14 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-#%find_lang kdelibs --with-kde --all-name
-
-> %{name}.lang
+#find_lang kdelibs --with-kde --all-name > %{name}.lang
 topics="common kdelibs-%{version}-apidocs kspell"
+
 for i in $topics; do
 	%find_lang $i --with-kde
 	cat $i.lang >> %{name}.lang
 done
+
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
