@@ -1,7 +1,7 @@
 diff -urN kdelibs-2.2.1.orig/kdecore/kstddirs.cpp kdelibs-2.2.1/kdecore/kstddirs.cpp
 --- kdelibs-2.2.1.orig/kdecore/kstddirs.cpp	Wed Jan 24 23:29:38 2001
 +++ kdelibs-2.2.1/kdecore/kstddirs.cpp	Thu Nov  1 19:50:21 2001
-@@ -692,9 +692,9 @@
+@@ -654,9 +654,9 @@
      if (!strcmp(type, "data"))
  	return "share/apps/";
      if (!strcmp(type, "html"))
