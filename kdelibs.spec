@@ -12,7 +12,7 @@ Group(pl):	X11/KDE/Biblioteki
 Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
-Icon:		%{name}.xpm
+Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
