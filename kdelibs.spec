@@ -7,19 +7,19 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.0.3
-Release:	3
+Version:	3.0.8
+Release:	1
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
-Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
 Patch2:		%{name}-am.patch
 Patch3:		%{name}-resize-icons.patch
-Patch4:		ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
+#Patch4:		ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -216,11 +216,11 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p0
+##%patch2 -p0
 %patch3 -p1
-cd khtml
-%patch4 -p0
-cd ..
+#cd khtml
+#%patch4 -p0
+#cd ..
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -249,13 +249,15 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-%find_lang kdelibs --with-kde --all-name
+#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+
+#%find_lang kdelibs --with-kde --all-name
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -264,9 +266,10 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 %postun -n arts-kde -p /sbin/ldconfig
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
-%files -f kdelibs.lang
+#%files -f kdelibs.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcop[cfors]*
@@ -284,7 +287,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libks[cp]*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.la
-%attr(755,root,root) %{_libdir}/libkatepart.so
+#%attr(755,root,root) %{_libdir}/libkatepart.so
 %attr(755,root,root) %{_libdir}/libkdecore.so.*.*
 %attr(755,root,root) %{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
@@ -299,6 +302,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesu*.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeui.la
+%attr(755,root,root) %{_libdir}/libkutils.so.*.*
+%attr(755,root,root) %{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libshellscript.la
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*
@@ -306,21 +311,20 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3
 
 %config %{_datadir}/config
-%dir %{_pixmapsdir}/hicolor
-%dir %{_pixmapsdir}/locolor
-%dir %{_pixmapsdir}/*/[1-9]*
-%dir %{_pixmapsdir}/*/[1-9]*/*
-%{_pixmapsdir}/*/[1-9]*/*/*
-# I'm not sure what this file is for.
-%{_pixmapsdir}/hicolor/index.desktop
+%dir %{_applnkdir}/Settings
+%dir %{_applnkdir}/Settings/KDE
+%{_applnkdir}/Settings/KDE/*
+%{_pixmapsdir}/*
 %{_datadir}/apps
 %{_datadir}/autostart
+%{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
 %dir /usr/share/doc/kde
 %dir %{_htmldir}
 %dir %{_htmldir}/en
+%{_htmldir}/en/*
 
 %files devel
 %defattr(644,root,root,755)
