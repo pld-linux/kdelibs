@@ -2,7 +2,7 @@ Summary:     K Desktop Environment - Libraries
 Summary(pl): K Desktop Environment - biblioteki
 Name:        kdelibs
 Version:     1.0
-Release:     6
+Release:     7
 Source:      ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
 Source1:     kdelnk2wmconfig
 Source2:     kderc.PLD
@@ -150,6 +150,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/X11R6/include/*.h
 
 %changelog
+* Mon Dec  9 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0-7]
+- recompiled against libstdc++.so.2.9.
+
 * Sun Sep 27 1998 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
   [1.0-6]
 - prefix changed to $KDEDIR,
