@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030317
+%define		_snap		030328
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -18,11 +18,12 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.%{_snap}.0.4
+Release:	0.%{_snap}.0.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+Source0:        http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
 Source2:	x-wmv.desktop
 Source3:	%{name}-default_applications.menu
 Patch0:		%{name}-directories.patch
@@ -31,6 +32,7 @@ Patch2:         %{name}-kcursor.patch
 Patch3:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
 Patch4:		%{name}-kbookmarkfix.patch
 Patch5:		%{name}-vmenu_location.patch
+Patch6:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -233,6 +235,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch3 -p1
 %patch4 -R -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
