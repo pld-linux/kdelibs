@@ -1,0 +1,16 @@
+diff -ur kdelibs-2.2beta1.orig/kssl/kopenssl.cc kdelibs-2.2beta1/kssl/kopenssl.cc
+--- kdelibs-2.2beta1.orig/kssl/kopenssl.cc	Wed Jun  6 20:09:17 2001
++++ kdelibs-2.2beta1/kssl/kopenssl.cc	Thu Jul 26 16:30:58 2001
+@@ -132,10 +132,10 @@
+             << "";
+ 
+ // FIXME: #define here for the various OS types to optimize
+-   libnamess << "libssl.so"
++   libnamess << "libssl.so.0"
+              << "libssl.sl";
+ 
+-   libnamesc << "libcrypto.so"
++   libnamesc << "libcrypto.so.0"
+              << "libcrypto.sl";
+ 
+    for (QStringList::Iterator it = libpaths.begin();
