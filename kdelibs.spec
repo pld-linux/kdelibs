@@ -1,16 +1,23 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
 Summary:	K Desktop Environment - Libraries
+Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
+Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.1
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
-Group:		X11/KDE/Libraries
-Group(de):	X11/KDE/Libraries
-Group(pl):	X11/KDE/Biblioteki
+Group:		X11/Libraries
+Group(de):	X11/Libraries
+Group(es):	X11/Bibliotecas
+Group(fr):	X11/Librairies
+Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
@@ -22,7 +29,7 @@ Icon:		kdelibs.xpm
 # thing at the moment (2001-08-15) in known universe.
 #Requires:	glib2 >= 1.3.3
 BuildRequires:	XFree86-devel
-%ifnarch sparc sparc64
+%ifnarch sparc sparc64 ppc
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	audiofile-devel
@@ -71,6 +78,9 @@ Included with this package are:
 - khtmlw - KDE HTML widget,
 - mediatool - KDE mediatool library.
 
+%description -l es
+Bibliotecas para KDE.
+
 %description -l pl
 Biblioteki do K Desktop Environment.
 
@@ -82,12 +92,23 @@ Pakiet ten zawiera:
 - khtmlw: Biblioteka KDE z HTML widget,
 - mediatool: Biblioteka KDE mediatool.
 
+%description -l pt_BR
+Bibliotecas de fundação do KDE requeridas por todo e qualquer
+aplicativo KDE.
+
 %package devel
 Summary:	kdelibs - header files and development documentation
+Summary(es):	Header files and documentation for compiling KDE applications
 Summary(pl):	kdelibs - pliki nagówkowe i dokumentacja do kdelibs
-Group:		X11/KDE/Development/Libraries
-Group(de):	X11/KDE/Entwicklung/Libraries
-Group(pl):	X11/KDE/Programowanie/Biblioteki
+Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KDE
+Group:		X11/Development/Libraries
+Group(de):	X11/Entwicklung/Libraries
+Group(es):	X11/Desarrollo/Bibliotecas
+Group(fr):	X11/Development/Librairies
+Group(pl):	X11/Programowanie/Biblioteki
+Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
+Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 Requires:	arts-devel = %{version}
 Requires:	qt-devel >= 2.3.0
@@ -99,15 +120,33 @@ Obsoletes:	kdelibs2-sound-devel
 This package contains header files and development documentation for
 kdelibs.
 
+%description -l es devel
+This package includes the header files you will need to compile
+applications for KDE. Also included is the KDE API documentation in
+HTML format for easy browsing.
+
 %description -l pl devel
 Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy
 pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 
+%description -l pt_BR devel
+Este pacote contém os arquivos de inclusão que são necessários para
+compilar aplicativos KDE. Contém também a API do KDE documentada no
+formato HTML.
+
 %package -n arts
 Summary:	aRts sound server
+Summary(es):	Sound server used by KDE
 Summary(pl):	serwer d¼wiêku
+Summary(pt_BR):	Servidor de sons usado pelo KDE
 Group:		Libraries
+Group(de):	Libraries
+Group(es):	Bibliotecas
+Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 
 %description -n arts
 aRts sound server.
@@ -115,11 +154,30 @@ aRts sound server.
 %description -l pl -n arts
 Serwer d¼wiêku aRts.
 
+%description -l es -n arts
+Sound server and analog analyzer/synthetizer used by KDE.
+
+%description -l pt_BR -n arts
+O aRts é um sintetizador analógico em tempo real que é completamente
+modular. Você pode criar sons e músicas (síntese em tempo real de
+midi) usando pequenos módulos como oscilador para criar waveforms,
+vários filtros, mixers, faders, etc. Você pode configurar tudo através
+de uma interface no KDE. O Servidor aRts é controlado via CORBA. Este
+design foi escolhido para permitir que outras aplicações usem o aRts
+como um sintetizador (ou fornecedor de filtros). Usado pelo KDE, entre
+outros.
+
 %package -n arts-X11
 Summary:	X11 dependent part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca X11
 Group:		X11/Libraries
+Group(de):	X11/Libraries
+Group(es):	X11/Bibliotecas
+Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 
 %description -n arts-X11
 X11 dependent part of aRts
@@ -131,7 +189,13 @@ Czê¶æ aRts wymagaj±ca X11
 Summary:	QT dependend part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca QT
 Group:		X11/Libraries
+Group(de):	X11/Libraries
+Group(es):	X11/Bibliotecas
+Group(fr):	X11/Librairies
 Group(pl):	X11/Biblioteki
+Group(pt_BR):	X11/Bibliotecas
+Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
+Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 
 %description -n arts-qt
 QT dependend part of aRts
@@ -141,15 +205,31 @@ Czê¶æ aRts wymagaj±ca QT
 
 %package -n arts-devel
 Summary:	sound server - header files
+Summary(es):	Header files for compiling aRtsd applications
 Summary(pl):	serwer d¼wiêku - pliki nag³ówkowe
+Summary(pt_BR):	Arquivos para desenvolvimento com o o aRts
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 
 %description -n arts-devel
 Header files required to compile programs using arts.
 
+%description -l es -n arts-devel
+This package includes the header files you will need to compile
+applications for aRtsd.
+
 %description -l pl -n arts-devel
-Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
+Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z
+arts.
+
+%description -l pt_BR -n arts-devel
+Arquivos para desenvolvimento com o o aRts
 
 %package -n arts-message
 Summary:	program which can be used to display aRts daemon messages
@@ -160,8 +240,8 @@ Group(fr):	Development/Outils
 Group(pl):	Programowanie/Narzêdzia
 
 %description -n arts-message
-This program can be given as -m option argument to aRts daemon. It will
-be called to display messages generated by daemon.
+This program can be given as -m option argument to aRts daemon. It
+will be called to display messages generated by daemon.
 
 %description -l pl -n arts-message
 Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
