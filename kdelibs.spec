@@ -1,6 +1,6 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
-%define		_ver		3.0
+%define		_ver		3.0.1
 #define		_sub_ver
 %define		_rel		7
 
@@ -18,7 +18,7 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	%{_version}
 Release:	%{_release}
-Epoch:		6
+Epoch:		1
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
