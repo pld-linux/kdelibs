@@ -28,7 +28,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
 Source2:	%{name}-extra_icons.tar.bz2
-# Source2-md5:	2cdd3d3302752d42e71cfe0f9c2cda44
+# Source2-md5:	cf1212007a2d48dcbb17f1cb9b9c5de6
 Source3:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
