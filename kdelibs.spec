@@ -6,7 +6,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040403
+%define		_snap		040407
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -25,14 +25,17 @@ Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
 #Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
 Source0:       http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
+# Source0-md5:	9d3e19dd2a1403188eec2b988253c672
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
+Source2:	%{name}-wmfplugin.tar.bz2 
+# Source2-md5:  f89739b063eca075bf4ac85f559eea77
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-QTDOCDIR.patch
 Patch4:		%{name}-exr.patch
+Patch5:		%{name}-wmf.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -66,6 +69,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	libwmf-devel >= 2:0.2.0
 BuildRequires:	openldap-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7c
@@ -342,12 +346,13 @@ Internationalization and localization files for kdelibs.
 Pliki umiêdzynarodawiaj±ce kdelibs.
 
 %prep 
-%setup -q -n %{name}-%{_snap}
+%setup -q -n %{name} -a2
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
@@ -364,7 +369,7 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	--disable-rpath \
+	%{!?debug:--disable-rpath} \
 	--enable-final \
 	--enable-mitshm \
 %ifarch %{ix86}
@@ -702,6 +707,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
 %{_libdir}/kde3/libshellscript.la
 %attr(755,root,root) %{_libdir}/kde3/libshellscript.so
+%{_libdir}/kde3/wmfthumbnail.la
+%attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
 %{_libdir}/kde3/plugins/designer/kdewidgets.la
@@ -804,6 +811,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/telnet.protocol
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
+%{_datadir}/services/wmfthumbnail.desktop
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
 # contains also 3rdparty hicolor & crystalsvg/apps trees
