@@ -7,7 +7,7 @@
 #
 %define		_state		unstable
 %define		_ver		3.1.95
-%define		_snap		040110
+#%%define		_snap		040110
 %define         artsver         13:1.1.95
 
 Summary:	K Desktop Environment - libraries
@@ -18,13 +18,13 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.1.95
+Version:	%{_ver}
 Release:	0.1
-Epoch:		10
+Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
+#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 # Source0-md5:	472b9e0862ae408caff2e20d417ef2df	
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
@@ -248,7 +248,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw demona.
 #pakiet umoøliwia okre∂lenie miejsca przechowywania ksi±øki adresowej
 #oraz jej konwersjÍ.
 
-%prep
+%prep 
 %setup -q
 %patch0 -p1
 %patch1 -p1
