@@ -24,7 +24,7 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	42d33b73b2753bb71d96993945309163
-Source0:        http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
