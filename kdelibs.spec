@@ -73,6 +73,26 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+# No longer supported/existing
+Obsoletes:      arts-message
+Obsoletes:	kde-sdscreen-default
+Obsoletes:	kde-splash-default
+Obsoletes:	kdeadmin-kwuftpd
+Obsoletes:	kdeadmin-kxconfig
+Obsoletes:	kdebase-kwmtheme
+Obsoletes:	kdeedu-kgeo
+Obsoletes:	kdegames-megami
+Obsoletes:	kdenetwork-kmail
+Obsoletes:	kdenetwork-knode
+Obsoletes:      kdepim-commonlibs < 3:3.1.91.030918-1
+Obsoletes:      kdepim-kaddressbook < 3:3.1.91.030918-1
+Obsoletes:      kdepim-kmail < 3:3.1.91.030918-1
+Obsoletes:      kdepim-kontact < 3:3.1.91.030918-1
+Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
+Obsoletes:	kdepim-kaplan
+Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
+Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
+Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
 
 %define		no_install_post_chrpath		1
 
