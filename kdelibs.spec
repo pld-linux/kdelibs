@@ -1,18 +1,18 @@
-Summary:     K Desktop Environment - Libraries
-Summary(pl): K Desktop Environment - biblioteki
-Name:        kdelibs
-Version:     1.1
-Release:     2
-URL:	     http://www.kde.org/
-Source:      ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
-Source1:     kdelnk2wmconfig
-Source2:     kderc.PLD
-Group:       X11/KDE/Libraries
-Group(pl):   X11/KDE/Biblioteki
-Copyright:   LGPL
-Requires:    qt >= 1.43
-Vendor:      The KDE Team
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	K Desktop Environment - Libraries
+Summary(pl):	K Desktop Environment - biblioteki
+Name:		kdelibs
+Version:	1.1
+Release:	2
+Vendor:		The KDE Team
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
+Source1:	kdelnk2wmconfig
+Source2:	kderc.PLD
+Group:		X11/KDE/Libraries
+Group(pl):	X11/KDE/Biblioteki
+Copyright:	LGPL
+Requires:	qt >= 1.43
+URL:		http://www.kde.org/
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Libraries for the K Desktop Environment.
@@ -39,11 +39,11 @@ khtmlw:    Biblioteka KDE z HTML widget
 mediatool: Biblioteka KDE mediatool
 
 %package devel
-Summary:     kdelibs - header files and development documentation
-Summary(pl): kdelibs - pliki nagówkowe i dokumentacja do kdelibs
-Group:       X11/KDE/Libraries
-Group(pl):   X11/KDE/Biblioteki
-Requires:    %{name} = %{version}
+Summary:	kdelibs - header files and development documentation
+Summary(pl):	kdelibs - pliki nagówkowe i dokumentacja do kdelibs
+Group:		X11/KDE/Libraries
+Group(pl):	X11/KDE/Biblioteki
+Requires:	%{name} = %{version}
 
 %description devel
 This package contains header files and development documentation for
@@ -75,41 +75,39 @@ export kde_mimedir='$(prefix)/../../etc/X11/kde/mimelnk'
 export kde_appsdir='$(prefix)/../../etc/X11/kde/applnk'
 
 CXXFLAGS="$RPM_OPT_FLAGS -Wall" CFLAGS="$RPM_OPT_FLAGS -Wall" \
-./configure --prefix=$KDEDIR \
+./configure \
+	--prefix=$KDEDIR \
 	--disable-path-check
-make KDEDIR=$KDEDIR
+make
 
 (cd mediatool/Documentation; make)
 dvips -f < mediatool/Documentation/Doc.dvi | gzip -9nf > mediatool.ps.gz
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
+# create directories for KDE apps (they should belong to some package)
+install -d $RPM_BUILD_ROOT/etc/X11/kde/{applnk,mimelnk} \
+	$RPM_BUILD_ROOT/usr/X11R6/{bin,share/kde/{wallpapers,icons/mini,sounds}} \
+	$RPM_BUILD_ROOT/usr/X11R6/lib/kde/{cgi-bin,parts}
+
 export KDEDIR=/usr/X11R6
 make prefix="$RPM_BUILD_ROOT$KDEDIR" install
 
-install -d $RPM_BUILD_ROOT/usr/X11R6/bin
-install "$RPM_SOURCE_DIR/kdelnk2wmconfig" $RPM_BUILD_ROOT/usr/X11R6/bin
-install -m 644 "$RPM_SOURCE_DIR/kderc.PLD" $RPM_BUILD_ROOT/etc/X11/kde/kderc
-
-# create directories for KDE apps (they should belong to some package)
-install -d $RPM_BUILD_ROOT/etc/X11/kde/{applnk,mimelnk}
-install -d $RPM_BUILD_ROOT/usr/X11R6/share/kde/{wallpapers,icons/mini,sounds}
-install -d $RPM_BUILD_ROOT/usr/X11R6/lib/kde/{cgi-bin,parts}
+install %{SOURCE1} $RPM_BUILD_ROOT/usr/X11R6/bin
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/X11/kde/kderc
 
 strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
-
-# Without this RPM (ldd in fact) complains
-chmod a+x $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
-%defattr(644, root, root, 755)
-%attr(755, root, root) /usr/X11R6/lib/lib*.so.*.*
+%defattr(644,root,root,755)
+%attr(755,root,root) /usr/X11R6/lib/lib*.so.*.*
 %config /etc/X11/kde
 %docdir /usr/X11R6/share/kde/doc
 /usr/X11R6/share/kde/doc/*
@@ -121,62 +119,63 @@ rm -rf $RPM_BUILD_ROOT
 /usr/X11R6/lib/kde/cgi-bin
 /usr/X11R6/lib/kde/parts
 
-%lang(br) /usr/X11R6/share/locale/br/LC_MESSAGES/kde.mo
-%lang(br) /usr/X11R6/share/locale/br/charset
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kde.mo
-%lang(ca) /usr/X11R6/share/locale/ca/charset
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kde.mo
-%lang(cs) /usr/X11R6/share/locale/cs/charset
-%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/kde.mo
-%lang(da) /usr/X11R6/share/locale/da/charset
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kde.mo
-%lang(de) /usr/X11R6/share/locale/de/charset
-%lang(el) /usr/X11R6/share/locale/el/LC_MESSAGES/kde.mo
-%lang(en) /usr/X11R6/share/locale/en*/LC_MESSAGES/kde.mo
-%lang(eo) /usr/X11R6/share/locale/eo/LC_MESSAGES/kde.mo
-%lang(eo) /usr/X11R6/share/locale/eo/charset
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/kde.mo
-%lang(es) /usr/X11R6/share/locale/es/charset
-%lang(et) /usr/X11R6/share/locale/et/LC_MESSAGES/kde.mo
-%lang(et) /usr/X11R6/share/locale/et/charset
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kde.mo
-%lang(fi) /usr/X11R6/share/locale/fi/charset
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/kde.mo
-%lang(fr) /usr/X11R6/share/locale/fr/charset
-%lang(he) /usr/X11R6/share/locale/he/LC_MESSAGES/kde.mo
-%lang(he) /usr/X11R6/share/locale/he/charset
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kde.mo
-%lang(hr) /usr/X11R6/share/locale/hr/charset
-%lang(hu) /usr/X11R6/share/locale/hu/LC_MESSAGES/kde.mo
-%lang(hu) /usr/X11R6/share/locale/hu/charset
-%lang(is) /usr/X11R6/share/locale/is/LC_MESSAGES/kde.mo
-%lang(is) /usr/X11R6/share/locale/is/charset
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/kde.mo
-%lang(it) /usr/X11R6/share/locale/it/charset
-%lang(ko) /usr/X11R6/share/locale/ko/LC_MESSAGES/kde.mo
-%lang(mk) /usr/X11R6/share/locale/mk/LC_MESSAGES/kde.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kde.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kde.mo
-%lang(no) /usr/X11R6/share/locale/no/charset
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kde.mo
-%lang(pl) /usr/X11R6/share/locale/pl/charset
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kde.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/charset
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/kde.mo
-%lang(ro) /usr/X11R6/share/locale/ro/charset
-%lang(ru) /usr/X11R6/share/locale/ru/LC_MESSAGES/kde.mo
-%lang(ru) /usr/X11R6/share/locale/ru/charset
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kde.mo
-%lang(sk) /usr/X11R6/share/locale/sk/charset
-%lang(sl) /usr/X11R6/share/locale/sl/LC_MESSAGES/kde.mo
-%lang(sl) /usr/X11R6/share/locale/sl/charset
-%lang(sv) /usr/X11R6/share/locale/sv/LC_MESSAGES/kde.mo
-%lang(sv) /usr/X11R6/share/locale/sv/charset
-%lang(tr) /usr/X11R6/share/locale/tr/LC_MESSAGES/kde.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kde.mo
+%lang(br)           /usr/X11R6/share/locale/br/LC_MESSAGES/kde.mo
+%lang(br)           /usr/X11R6/share/locale/br/charset
+%lang(ca)           /usr/X11R6/share/locale/ca/LC_MESSAGES/kde.mo
+%lang(ca)           /usr/X11R6/share/locale/ca/charset
+%lang(cs)           /usr/X11R6/share/locale/cs/LC_MESSAGES/kde.mo
+%lang(cs)           /usr/X11R6/share/locale/cs/charset
+%lang(da)           /usr/X11R6/share/locale/da/LC_MESSAGES/kde.mo
+%lang(da)           /usr/X11R6/share/locale/da/charset
+%lang(de)           /usr/X11R6/share/locale/de/LC_MESSAGES/kde.mo
+%lang(de)           /usr/X11R6/share/locale/de/charset
+%lang(el)           /usr/X11R6/share/locale/el/LC_MESSAGES/kde.mo
+%lang(en_UK)        /usr/X11R6/share/locale/en_UK/LC_MESSAGES/kde.mo
+%lang(eo)           /usr/X11R6/share/locale/eo/LC_MESSAGES/kde.mo
+%lang(eo)           /usr/X11R6/share/locale/eo/charset
+%lang(es)           /usr/X11R6/share/locale/es/LC_MESSAGES/kde.mo
+%lang(es)           /usr/X11R6/share/locale/es/charset
+%lang(et)           /usr/X11R6/share/locale/et/LC_MESSAGES/kde.mo
+%lang(et)           /usr/X11R6/share/locale/et/charset
+%lang(fi)           /usr/X11R6/share/locale/fi/LC_MESSAGES/kde.mo
+%lang(fi)           /usr/X11R6/share/locale/fi/charset
+%lang(fr)           /usr/X11R6/share/locale/fr/LC_MESSAGES/kde.mo
+%lang(fr)           /usr/X11R6/share/locale/fr/charset
+%lang(he)           /usr/X11R6/share/locale/he/LC_MESSAGES/kde.mo
+%lang(he)           /usr/X11R6/share/locale/he/charset
+%lang(hr)           /usr/X11R6/share/locale/hr/LC_MESSAGES/kde.mo
+%lang(hr)           /usr/X11R6/share/locale/hr/charset
+%lang(hu)           /usr/X11R6/share/locale/hu/LC_MESSAGES/kde.mo
+%lang(hu)           /usr/X11R6/share/locale/hu/charset
+%lang(is)           /usr/X11R6/share/locale/is/LC_MESSAGES/kde.mo
+%lang(is)           /usr/X11R6/share/locale/is/charset
+%lang(it)           /usr/X11R6/share/locale/it/LC_MESSAGES/kde.mo
+%lang(it)           /usr/X11R6/share/locale/it/charset
+%lang(ko)           /usr/X11R6/share/locale/ko/LC_MESSAGES/kde.mo
+%lang(mk)           /usr/X11R6/share/locale/mk/LC_MESSAGES/kde.mo
+%lang(nl)           /usr/X11R6/share/locale/nl/LC_MESSAGES/kde.mo
+%lang(no)           /usr/X11R6/share/locale/no/LC_MESSAGES/kde.mo
+%lang(no)           /usr/X11R6/share/locale/no/charset
+%lang(pl)           /usr/X11R6/share/locale/pl/LC_MESSAGES/kde.mo
+%lang(pl)           /usr/X11R6/share/locale/pl/charset
+%lang(pt_BR)        /usr/X11R6/share/locale/pt_BR/LC_MESSAGES/kde.mo
+%lang(pt_BR)        /usr/X11R6/share/locale/pt_BR/charset
+%lang(ro)           /usr/X11R6/share/locale/ro/LC_MESSAGES/kde.mo
+%lang(ro)           /usr/X11R6/share/locale/ro/charset
+%lang(ru)           /usr/X11R6/share/locale/ru/LC_MESSAGES/kde.mo
+%lang(ru)           /usr/X11R6/share/locale/ru/charset
+%lang(sk)           /usr/X11R6/share/locale/sk/LC_MESSAGES/kde.mo
+%lang(sk)           /usr/X11R6/share/locale/sk/charset
+%lang(sl)           /usr/X11R6/share/locale/sl/LC_MESSAGES/kde.mo
+%lang(sl)           /usr/X11R6/share/locale/sl/charset
+%lang(sv)           /usr/X11R6/share/locale/sv/LC_MESSAGES/kde.mo
+%lang(sv)           /usr/X11R6/share/locale/sv/charset
+%lang(tr)           /usr/X11R6/share/locale/tr/LC_MESSAGES/kde.mo
+%lang(zh_CN.GB2312) /usr/X11R6/share/locale/zh_CN.GB2312/LC_MESSAGES/kde.mo
+%lang(zh_TW.Big5)   /usr/X11R6/share/locale/zh_TW.Big5/LC_MESSAGES/kde.mo
 
 %files devel
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %doc mediatool/Documentation
 %attr(755,root,root) /usr/X11R6/bin/*
 /usr/X11R6/lib/lib*.so
