@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.0.1
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -155,7 +155,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%docdir %{_docdir}/%{_name}-%{_version}-devel/Arts
 %doc arts/doc/*
 %attr(755,root,root) %{_bindir}/artsc-config
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
@@ -166,10 +165,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/[^a]*
 
 %files -n arts
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/liba*.so.*.*
 %attr(755,root,root) %{_bindir}/a*
 %attr(755,root,root) %{_libdir}/mcop/Arts
-%{_libdir}/liba*.la
+%attr(755,root,root) %{_libdir}/liba*.la
 
 %files -n arts-devel
+%defattr(644,root,root,755)
 %{_includedir}/arts
+%{_includedir}/artsc
