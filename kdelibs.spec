@@ -195,7 +195,7 @@ Czê¶æ aRts wymagaj±ca KDE.
 Summary:	Headers for KDE dependent part of aRts
 Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Requires:	arts-kde = %{version}
+Requires:	arts-kde = %{epoch}:%{version}
 
 %description -n arts-kde-devel
 Headers for KDE dependent part of aRts.
