@@ -7,7 +7,7 @@
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	i18n	# don't build i18n subpackage
-%bcond_without	xlibs
+%bcond_with	xlibs
 #
 %define		_state		stable
 %define		_ver		3.2.1
@@ -33,7 +33,7 @@ Group:		X11/Libraries
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	50ae60072c1fc4ae4e41694bc2325dcb
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with_i18n}
+%if %{with i18n}
 Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	1b484133af8a53b761c7bc9fcb6c1814
 %endif
@@ -45,7 +45,7 @@ Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
-%if %{with_xlibs}
+%if %{with xlibs}
 BuildRequires:	libXrender-devel
 BuildRequires:	libXt-devel
 %else
