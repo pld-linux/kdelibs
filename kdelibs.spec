@@ -72,7 +72,7 @@ BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	sed
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.1
-Requires:	applnk >= 1.6.2-1
+Requires:	applnk >= 1.5.17
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
