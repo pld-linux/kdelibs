@@ -7,7 +7,7 @@
 #
 
 %define		_state		stable
-%define		_ver		3.1
+%define		_ver		3.1.1
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	10
+Release:	0.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -241,7 +241,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch3 -p1
 
 %build
-%{__make} -f Makefile.cvs
+%%{__make} -f admin/Makefile.common cvs
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
@@ -294,7 +294,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 #find_lang kdelibs --with-kde --all-name > %{name}.lang
-topics="common kdelibs-%{version}-apidocs kspell"
+topics="common kdelibs-apidocs kspell"
 
 for i in $topics; do
 	%find_lang $i --with-kde
