@@ -6,7 +6,7 @@ diff -Nur kdelibs-2.0.org/kdecore/kstddirs.cpp kdelibs-2.0/kdecore/kstddirs.cpp
  	return "share/apps/";
      if (!strcmp(type, "html"))
 -	return "share/doc/HTML/";
-+	return "../share/doc/kde/HTML/";
++	return "share/doc/kde/HTML/";
      if (!strcmp(type, "icon"))
 -	return "share/icons/";
 +	return "share/pixmaps/";
