@@ -2,8 +2,8 @@
 # 	space.
 # _without_alsa - disable alsa
 
-%define         _state          stable
-%define         _ver		3.1
+%define		_state		stable
+%define		_ver		3.1
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,7 +17,6 @@ Version:	%{_ver}
 Release:	7
 Epoch:		8
 License:	LGPL
-Vendor:		The KDE Team
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
@@ -28,7 +27,7 @@ Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
-%{!?_without_alsa:BuildRequires:        alsa-lib-devel}
+%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
@@ -54,7 +53,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	libvorbis-devel
 BuildRequires:	mad-devel
-Requires:	applnk 
+Requires:	applnk
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1
 URL:		http://www.kde.org/
@@ -225,7 +224,6 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 
-
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -249,7 +247,7 @@ CXXFLAGS="%{rpmcflags}"
 	--disable-mysql \
 	--disable-informix \
 	--enable-mitshm \
-        --with%{?_without_alsa:out}-alsa		
+	--with%{?_without_alsa:out}-alsa
 
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
@@ -268,7 +266,7 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
 install -d \
-    $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 
@@ -280,11 +278,11 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 #%find_lang kdelibs --with-kde --all-name
 
-> %{name}.lang                                                                  
-topics="common kdelibs-apidocs kspell"  
-for i in $topics; do                                                          
-    %find_lang $i --with-kde                                                
-    cat $i.lang >> %{name}.lang                                             
+> %{name}.lang
+topics="common kdelibs-apidocs kspell"
+for i in $topics; do
+	%find_lang $i --with-kde
+	cat $i.lang >> %{name}.lang
 done
 
 %post   -p /sbin/ldconfig
