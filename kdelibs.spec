@@ -22,7 +22,7 @@ Version:	%{_ver}.%{_snap}
 # Please dont downgrade this release, it was a msitake of mine but it went to builders
 # so its too late.
 Release:	22
-Epoch:		10
+Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
