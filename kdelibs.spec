@@ -2,21 +2,36 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	1.1.2
-Release:	2.1
+Release:	10
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
 Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
 Source1:	kderc.PLD
+Patch:		kdelibs-DESTDIR.patch
 BuildRequires:	qt-devel >= 1.44
 BuildRequires:	XFree86-devel
-BuildRequires:	mico-devel
 Requires:	qt >= 1.44
 URL:		http://www.kde.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define _prefix /usr/X11R6
+%define		_prefix 		/usr/X11R6
+%define		_sysconfdir		/etc/X11/kde
+%define		_kde_htmldir		%{_datadir}/doc/HTML
+%define		_kde_icondir		%{_datadir}/icons
+%define		_kde_minidir		%{_datadir}/icons/mini
+%define		_kde_appsdir		%{_datadir}/applnk
+%define		_kde_sounddir		%{_datadir}/sounds
+%define		_kde_datadir		%{_datadir}/apps
+%define		_kde_locale		%{_datadir}/locale
+%define		_kde_cgidir		%{_libdir}/kde/cgi-bin
+%define		_kde_confdir		%{_sysconfdir}
+%define		_kde_mimedir		%{_datadir}/mimelnk
+%define		_kde_toolbardir		%{_datadir}/kde/toolbar
+%define		_kde_wallpaperdir	%{_datadir}/wallpapers
+%define		_kde_bindir		%{_bindir}
+%define		_kde_partsdir		%{_libdir}/parts
 
 %description
 Libraries for the K Desktop Environment.
@@ -45,8 +60,8 @@ mediatool: Biblioteka KDE mediatool
 %package devel
 Summary:	kdelibs - header files and development documentation
 Summary(pl):	kdelibs - pliki nagówkowe i dokumentacja do kdelibs
-Group:		X11/KDE/Libraries
-Group(pl):	X11/KDE/Biblioteki
+Group:		X11/KDE/Development/Libraries
+Group(pl):	X11/KDE/Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
@@ -59,29 +74,35 @@ w³asnych programów wykorzystuj±cych kdelibs.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
-# Setup KDE directories to be compatible with FSSTD
-# Other KDE apps will use them automatically
 export KDEDIR=%{_prefix}
-export kde_locale='\$(prefix)/share/locale'
-export kde_htmldir='\$(prefix)/share/kde/doc/HTML'
-export kde_datadir='\$(prefix)/share/kde/apps'
-export kde_icondir='\$(prefix)/share/kde/icons'
-export kde_toolbardir='\$(prefix)/share/kde/toolbar'
-export kde_wallpaperdir='\$(prefix)/share/kde/wallpapers'
-export kde_sounddir='\$(prefix)/share/kde/sounds'
-export kde_cgidir='\$(prefix)/lib/kde/cgi-bin'
-export kde_partsdir='\$(prefix)/lib/kde/parts'
-# these must be relative to $(prefix) for BuildRoot to work :-(
-export kde_confdir='\$(prefix)/../../etc/X11/kde'
-export kde_mimedir='\$(prefix)/../../etc/X11/kde/mimelnk'
-export kde_appsdir='\$(prefix)/../../etc/X11/kde/applnk'
 
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti" \
-CFLAGS="$RPM_OPT_FLAGS -Wall" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=$KDEDIR \
+kde_htmldir=%{_kde_htmldir}
+kde_icondir=%{_kde_icondir}
+kde_minidir=%{_kde_minidir}
+kde_appsdir=%{_kde_appsdir}
+kde_sounddir=%{_kde_sounddir}
+kde_datadir=%{_kde_datadir}
+kde_locale=%{_kde_locale}
+kde_cgidir=%{_kde_cgidir}
+kde_confdir=%{_kde_confdir}
+kde_mimedir=%{_kde_mimedir}
+kde_toolbardir=%{_kde_toolbardir}
+kde_wallpaperdir=%{_kde_wallpaperdir}
+kde_bindir=%{_kde_bindir}
+kde_partsdir=%{_kde_partsdir}
+export  kde_htmldir kde_icondir kde_minidir kde_appsdir kde_sounddir \
+	kde_datadir kde_locale kde_cgidir kde_confdir kde_mimedir \
+	kde_toolbardir kde_wallpaperdir kde_bindir kde_partsdir
+
+automake
+perl admin/automoc -padmin
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti"
+LDFLAGS="-s"
+export CXXFLAGS LDFLAGS
+%configure \
 	--with-install-root=$RPM_BUILD_ROOT \
 	--with-qt-dir=%{_prefix} \
 	--disable-path-check
@@ -93,15 +114,9 @@ dvips -f < mediatool/Documentation/Doc.dvi | gzip -9nf > mediatool.ps.gz
 %install
 rm -rf $RPM_BUILD_ROOT
 
-# create directories for KDE apps (they should belong to some package)
-install -d $RPM_BUILD_ROOT/etc/X11/kde/{applnk,mimelnk} \
-	$RPM_BUILD_ROOT{%{_bindir},%{_datadir}/kde/{wallpapers,icons/mini,sounds}} \
-	$RPM_BUILD_ROOT%{_libdir}/kde/{cgi-bin,parts}
+make install DESTDIR="$RPM_BUILD_ROOT"
 
-export KDEDIR=/usr/X11R6
-make prefix="$RPM_BUILD_ROOT$KDEDIR" install
-
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/kde/kderc
+#install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/kde/kderc
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
@@ -117,43 +132,36 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %config /etc/X11/kde
-%docdir %{_datadir}/kde/doc
-%{_datadir}/kde/doc/*
-%{_datadir}/kde/toolbar
-%{_datadir}/kde/apps
-%{_datadir}/kde/wallpapers
-%{_datadir}/kde/icons
-%{_datadir}/kde/sounds
-%{_libdir}/kde/cgi-bin
-%{_libdir}/kde/parts
+%{_kde_toolbardir}
+%{_kde_wallpaperdir}
+%{_kde_datadir}
 
-%lang(br) %{_datadir}/locale/br/charset
-%lang(ca) %{_datadir}/locale/ca/charset
-%lang(cs) %{_datadir}/locale/cs/charset
-%lang(da) %{_datadir}/locale/da/charset
-%lang(de) %{_datadir}/locale/de/charset
-%lang(eo) %{_datadir}/locale/eo/charset
-%lang(es) %{_datadir}/locale/es/charset
-%lang(et) %{_datadir}/locale/et/charset
-%lang(fi) %{_datadir}/locale/fi/charset
-%lang(fr) %{_datadir}/locale/fr/charset
-%lang(he) %{_datadir}/locale/he/charset
-%lang(hr) %{_datadir}/locale/hr/charset
-%lang(hu) %{_datadir}/locale/hu/charset
-%lang(is) %{_datadir}/locale/is/charset
-%lang(it) %{_datadir}/locale/it/charset
-%lang(no) %{_datadir}/locale/no/charset
-%lang(pl) %{_datadir}/locale/pl/charset
-%lang(pt) %{_datadir}/locale/pt*/charset
-%lang(ro) %{_datadir}/locale/ro/charset
-%lang(ru) %{_datadir}/locale/ru/charset
-%lang(sk) %{_datadir}/locale/sk/charset
-%lang(sl) %{_datadir}/locale/sl/charset
-%lang(sv) %{_datadir}/locale/sv/charset
+%lang(br) %{_kde_locale}/br/charset
+%lang(ca) %{_kde_locale}/ca/charset
+%lang(cs) %{_kde_locale}/cs/charset
+%lang(da) %{_kde_locale}/da/charset
+%lang(de) %{_kde_locale}/de/charset
+%lang(eo) %{_kde_locale}/eo/charset
+%lang(es) %{_kde_locale}/es/charset
+%lang(et) %{_kde_locale}/et/charset
+%lang(fi) %{_kde_locale}/fi/charset
+%lang(fr) %{_kde_locale}/fr/charset
+%lang(he) %{_kde_locale}/he/charset
+%lang(hr) %{_kde_locale}/hr/charset
+%lang(hu) %{_kde_locale}/hu/charset
+%lang(is) %{_kde_locale}/is/charset
+%lang(it) %{_kde_locale}/it/charset
+%lang(no) %{_kde_locale}/no/charset
+%lang(pl) %{_kde_locale}/pl/charset
+%lang(pt) %{_kde_locale}/pt*/charset
+%lang(ro) %{_kde_locale}/ro/charset
+%lang(ru) %{_kde_locale}/ru/charset
+%lang(sk) %{_kde_locale}/sk/charset
+%lang(sl) %{_kde_locale}/sl/charset
+%lang(sv) %{_kde_locale}/sv/charset
 
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/lib*.so
-%{_includedir}/kde.pot
 %{_includedir}/*.h
 %{_libdir}/lib*.la
