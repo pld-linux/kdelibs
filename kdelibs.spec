@@ -402,7 +402,7 @@ done
 
 %find_lang kdelibs --with-kde --all-name
 
-i="kdelibs"
+i=kdelibs
 
 ### Dont uncomment, left here in case more lang files are to be process
 ## for i in $files; do
