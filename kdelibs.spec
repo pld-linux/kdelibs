@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.1
-Release:	4
+Release:	5
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -27,14 +27,14 @@ BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
 BuildRequires:	kdesupport-mimelib-devel = %{version}
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 2.2.2
+BuildRequires:	qt-devel >= 2.2.4
 BuildRequires:	unixODBC-devel
 BuildRequires:	gettext-devel
 BuildRequires:	zlib-devel
 BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	postgresql-devel
-Requires:	qt >= 2.2.4
+Requires:	arts = %{version}
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
@@ -73,6 +73,7 @@ Group:		X11/KDE/Development/Libraries
 Group(de):	X11/KDE/Entwicklung/Libraries
 Group(pl):	X11/KDE/Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Requires:	arts-devel = %{version}
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
@@ -90,7 +91,6 @@ Summary:	aRts sound server
 Summary(pl):	serwer d¼wiêku
 Group:		Libraries
 Group(pl):	Biblioteki
-Requires:	%{name} = %{version}
 
 %description -n arts
 aRts sound server.
@@ -103,7 +103,6 @@ Summary:	sound server - header files
 Summary(pl):	serwer d¼wiêku - pliki nag³ówkowe
 Group:		Developement/Libraries
 Group(pl):	Programowanie/Biblioteki
-Requires:	%{name} = %{version}
 
 %description -n arts-devel
 Header files required to compile programs using arts.
@@ -149,14 +148,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/[^a]*
-
-%attr(755,root,root) %{_libdir}/lib[^a]*.so.*.*
-%attr(755,root,root) %{_libdir}/[^l]*.so
-%attr(755,root,root) %{_libdir}/libkhtmli*.so
-%attr(755,root,root) %{_libdir}/libksasl.so
-%{_libdir}/[^l]*.la
-%{_libdir}/lib[^a]*.la
+%attr(755,root,root) %{_bindir}/dcop
+%attr(755,root,root) %{_bindir}/dcopserver
+%attr(755,root,root) %{_bindir}/[lks]*
+%attr(755,root,root) %{_libdir}/[bdhk]*.??
+%attr(755,root,root) %{_libdir}/libD*.so.*.*
+%attr(755,root,root) %{_libdir}/libD*.la
+%attr(755,root,root) %{_libdir}/libk[adfhijpst]*.so.*.*
+%attr(755,root,root) %{_libdir}/libk[adfijpt]*.la
+%attr(755,root,root) %{_libdir}/libkhtml.la
+%attr(755,root,root) %{_libdir}/libkspell.la
+%attr(755,root,root) %{_libdir}/libkssl.la
+%attr(755,root,root) %{_libdir}/libksycoca.la
+%attr(755,root,root) %{_libdir}/libkmid.so.*.*
+%attr(755,root,root) %{_libdir}/libkmid.la
+%attr(755,root,root) %{_libdir}/libkhtmli*.??
+%attr(755,root,root) %{_libdir}/libksasl.??
 %attr(755,root,root) %{_libdir}/kde2
 %attr(755,root,root) %dir %{_libdir}/mcop
 
@@ -170,27 +177,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc arts/doc/*
-%attr(755,root,root) %{_bindir}/artsc-config
-%attr(755,root,root) %{_bindir}/dcopidl2cpp
-%attr(755,root,root) %{_bindir}/mcopidl
-
-%{_libdir}/libkd*.so
-%{_libdir}/libkf*.so
-%{_libdir}/libkhtml.so
-%{_libdir}/libki*.so
-%{_libdir}/libkj*.so
-%{_libdir}/libkm*.so
-%{_libdir}/libkp*.so
-%{_libdir}/libksp*.so
-%{_libdir}/libkss*.so
-%{_libdir}/libksy*.so
-%{_libdir}/libkt*.so
+%attr(755,root,root) %{_bindir}/dcopidl*
 %{_libdir}/libD*.so
-%{_libdir}/libmcop.so
-%{_libdir}/libqtmcop.so
-%{_libdir}/libsound*.so
-%{_libdir}/libx11*.so
+%{_libdir}/libk[dfijpt]*.so
+%{_libdir}/libks[psy]*.so
+%{_libdir}/libkhtml.so
+%{_libdir}/libkmid.so
 %{_includedir}/addressbook.h
 %{_includedir}/[^a]*
 
@@ -202,14 +194,18 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artsplay
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
-
-%attr(755,root,root) %{_libdir}/liba*.so.*.*
-%attr(755,root,root) %{_libdir}/liba*.la
-%attr(755,root,root) %{_libdir}/mcop/Arts
-%{_libdir}/mcop/*.*
+%attr(755,root,root) %{_libdir}/lib[amqsx]*.so.*.*
+%attr(755,root,root) %{_libdir}/lib[amqsx]*.la
+%attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
+%attr(755,root,root) %{_libdir}/libkmedia*.la
+%{_libdir}/mcop
 
 %files -n arts-devel
 %defattr(644,root,root,755)
+%doc arts/doc/*
 %attr(755,root,root) %{_bindir}/artsc-config
+%attr(755,root,root) %{_bindir}/mcopidl
+%{_libdir}/lib[amqsx]*.so
+%{_libdir}/libkmedia*.so
 %{_includedir}/arts
 %{_includedir}/artsc
