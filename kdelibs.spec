@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.2
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -295,6 +295,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkssl.la
 %attr(755,root,root) %{_libdir}/libkded_kssld.la
+%attr(755,root,root) %{_libdir}/libkded_kssld.so
 %attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
 %attr(755,root,root) %{_libdir}/libksycoca.la
 %attr(755,root,root) %{_libdir}/mega.so
@@ -323,7 +324,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl*
 %{_libdir}/libD*.so
-%{_libdir}/libk[dfijpt]*.so
+%{_libdir}/libk[fijpt]*.so
+%{_libdir}/libkde[!d]*.so
 %{_libdir}/libks[cpsy]*.so
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
