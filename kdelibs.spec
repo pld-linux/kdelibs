@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	5
+Release:	6
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -127,7 +127,10 @@ Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.2.90
 Conflicts:	kdepim-devel < 3:3.2.90
+Conflicts:	kmplayer < 1:0.83-0.040705.2
+Conflicts:	kplayer < 0.5.1-5
 Conflicts:	pixieplus < 0.3-4
+Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
