@@ -1,28 +1,21 @@
-%define		REV	20000418
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.0
-Release:	2.pre_%{REV}
+Version:	1.93
+Release:	1
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
 Vendor:		The KDE Team
-Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/%{name}-%{REV}.tar.bz2
-#Source1:	kderc.PLD
-#Patch0:		kdelibs-DESTDIR.patch
-#Patch1:		kdelibs-iconpaths.patch
-#Patch2:		kdelibs-x-kdelnk.patch
-#Icon:		kdelibs.xpm
-BuildRequires:	qt-devel >= 2.0
+Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-install-catalog.patch
+BuildRequires:	qt-devel >= 2.2.0_beta2
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
-BuildRequires:	kde-qt-addon-devel
 BuildRequires:	kdesupport-mimelib-devel = %{version}
-BuildRequires:	kdesupport-odbc-devel = %{version}
+BuildRequires:	unixODBC-devel
 BuildRequires:	kdesupport-uulib-devel = %{version}
-BuildRequires:	kdesupport-qwspritefield-devel = %{version}
-Requires:	qt >= 2.0
+Requires:	qt >= 2.2.0_beta2
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -83,11 +76,8 @@ Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy pisaniu
 w³asnych programów wykorzystuj±cych kdelibs.
 
 %prep
-%setup  -q -n %name
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
-
+%setup  -q
+%patch0 -p1
 %build
 export KDEDIR=%{_prefix}
 
@@ -112,28 +102,19 @@ aclocal
 #autoheader
 #automake
 autoconf
-#perl admin/automoc -padmin
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -DNO_DEBUG"
-LDFLAGS="-s"
-export CXXFLAGS LDFLAGS
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -DNO_DEBUG"; export CXXFLAGS
+LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-qt-dir=%{_prefix} \
 	--disable-path-check
 %{__make}
-
-#(cd mediatool/Documentation; make)
-#dvips -f < mediatool/Documentation/Doc.dvi | gzip -9nf > mediatool.ps.gz
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR="$RPM_BUILD_ROOT"
 
-#install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/kde/kderc
-
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-
-%find_lang kde
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -141,53 +122,29 @@ strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f kde.lang
+%files
 %defattr(644,root,root,755)
+%dir %{_libdir}/Arts
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(644,root,root) %{_libdir}/X11GlobalComm.mcopclass
-%config /etc/X11/kde
+%attr(755,root,root) %{_libdir}/Arts/*
 %attr(755,root,root) %{_bindir}/*
-%{_kde_toolbardir}
+%config /etc/X11/kde
 %{_kde_datadir}
-#%{_datadir}/kdelibs/*
+%{_datadir}/doc/*
 %{_datadir}/mimelnk/*
 %{_datadir}/pixmaps/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 
-#%lang(br) %{_kde_locale}/br/charset
-#%lang(ca) %{_kde_locale}/ca/charset
-#%lang(cs) %{_kde_locale}/cs/charset
-#%lang(da) %{_kde_locale}/da/charset
-#%lang(de) %{_kde_locale}/de/charset
-#%lang(eo) %{_kde_locale}/eo/charset
-#%lang(es) %{_kde_locale}/es/charset
-#%lang(et) %{_kde_locale}/et/charset
-#%lang(fi) %{_kde_locale}/fi/charset
-#%lang(fr) %{_kde_locale}/fr/charset
-#%lang(he) %{_kde_locale}/he/charset
-#%lang(hr) %{_kde_locale}/hr/charset
-#%lang(hu) %{_kde_locale}/hu/charset
-#%lang(is) %{_kde_locale}/is/charset
-#%lang(it) %{_kde_locale}/it/charset
-#%lang(no) %{_kde_locale}/no/charset
-#%lang(pl) %{_kde_locale}/pl/charset
-#%lang(pt) %{_kde_locale}/pt*/charset
-#%lang(ro) %{_kde_locale}/ro/charset
-#%lang(ru) %{_kde_locale}/ru/charset
-#%lang(sk) %{_kde_locale}/sk/charset
-#%lang(sl) %{_kde_locale}/sl/charset
-#%lang(sv) %{_kde_locale}/sv/charset
-
 %files devel
 %defattr(644,root,root,755)
 %{_libdir}/*.so
 %{_libdir}/*.la
-#%attr(755,root,root) %{_prefix}/libexec/*
 %{_includedir}/*.h
 %{_includedir}/kde.pot
 %{_includedir}/arts/*.h
 %{_includedir}/arts/*.idl
+%{_includedir}/artsc/*.h
 %{_includedir}/dom/*.h
 %{_includedir}/kio/*.h
 %{_includedir}/kparts/*.h
