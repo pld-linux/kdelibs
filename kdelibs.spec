@@ -32,7 +32,7 @@ Icon:		kdelibs.xpm
 # thing at the moment (2001-08-15) in known universe.
 #Requires:	glib2 >= 1.3.3
 BuildRequires:	XFree86-devel
-%ifnarch sparc sparc64 ppc
+%ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	arts-devel >= 1.0.0
