@@ -77,7 +77,7 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_apidocs:BuildRequires:	qt-doc}
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildConflicts:	kdepim-korganizer-libs
