@@ -4,22 +4,24 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{version}%/src/%{name}-%{version}%.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-no_nas.patch
-Patch5:		%{name}-ssl_linking.patch
-Patch6:		%{name}-libxml_closecallback.patch
+Patch5:		%{name}-libxml_closecallback.patch
 Icon:		kdelibs.xpm
+# If you want gmcop you will need *working* pkgconfig --- there is no such
+# thing at the moment (2001-08-15) in known universe.
+#Requires:	glib2 >= 1.3.3
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
@@ -39,6 +41,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pcre-devel
+#BuildRequires:	glib2-devel >= 1.3.3
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 %requires_eq	openssl
@@ -158,7 +161,6 @@ Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %prep
-#%setup  -q -n %{name}-%{version}%{sver}
 %setup  -q
 %patch0 -p1
 %patch1 -p1
@@ -166,11 +168,13 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
+
+# Somebody please do this The Right Way (tm)...
+cp -p /usr/bin/libtool .
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}" 
