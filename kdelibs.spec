@@ -12,6 +12,7 @@ Source1:	kderc.PLD
 Patch0:		kdelibs-DESTDIR.patch
 Patch1:		kdelibs-iconpaths.patch
 Patch2:		kdelibs-x-kdelnk.patch
+Icon:		kdelibs.xpm
 BuildRequires:	qt-devel >= 1.44
 BuildRequires:	XFree86-devel
 Requires:	qt >= 1.44
