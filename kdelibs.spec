@@ -137,7 +137,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %config /etc/X11/kde
 %{_kde_toolbardir}
-%{_kde_wallpaperdir}
 %{_kde_datadir}
 
 %lang(br) %{_kde_locale}/br/charset
