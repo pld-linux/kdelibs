@@ -43,6 +43,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
+BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
@@ -51,7 +52,6 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	mad-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7c
