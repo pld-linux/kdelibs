@@ -35,7 +35,6 @@ Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-QTDOCDIR.patch
 Patch4:		%{name}-exr.patch
-Patch5:		%{name}-wmf.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -352,7 +351,7 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+
 
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
