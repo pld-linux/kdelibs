@@ -1,8 +1,0 @@
---- Makefile.am.orig	2004-04-07 15:06:48.083215784 +0200
-+++ Makefile.am	2004-04-07 15:10:48.202712072 +0200
-@@ -224,4 +224,4 @@
- if kdewidgets_SUBDIR_included
- kdewidgets_SUBDIR=kdewidgets
- endif
--SUBDIRS= $(dcop_SUBDIR) $(libltdl_SUBDIR) $(libqt_addon_SUBDIR) $(kdefx_SUBDIR) $(kdecore_SUBDIR) $(kdeui_SUBDIR) $(kdesu_SUBDIR) $(kjs_SUBDIR) $(kwallet_SUBDIR) $(kio_SUBDIR) $(arts_SUBDIR) $(kab_SUBDIR) $(kconf_update_SUBDIR) $(kded_SUBDIR) $(kdoctools_SUBDIR) $(kimgio_SUBDIR) $(kioslave_SUBDIR) $(knewstuff_SUBDIR) $(kparts_SUBDIR) $(kresources_SUBDIR) $(ksmartcard_SUBDIR) $(kstyles_SUBDIR) $(kutils_SUBDIR) $(libkmid_SUBDIR) $(libkscreensaver_SUBDIR) $(licenses_SUBDIR) $(mimetypes_SUBDIR) $(pics_SUBDIR) $(doc_SUBDIR) $(kcert_SUBDIR) $(interfaces_SUBDIR) $(kinit_SUBDIR) $(kdeprint_SUBDIR) $(kabc_SUBDIR) $(kmdi_SUBDIR) $(khtml_SUBDIR) $(kate_SUBDIR) $(kdewidgets_SUBDIR)
-+SUBDIRS= $(dcop_SUBDIR) $(libltdl_SUBDIR) $(libqt_addon_SUBDIR) $(kdefx_SUBDIR) $(kdecore_SUBDIR) $(kdeui_SUBDIR) $(kdesu_SUBDIR) $(kjs_SUBDIR) $(kwallet_SUBDIR) $(kio_SUBDIR) $(arts_SUBDIR) $(kab_SUBDIR) $(kconf_update_SUBDIR) $(kded_SUBDIR) $(kdoctools_SUBDIR) $(kimgio_SUBDIR) $(kioslave_SUBDIR) $(knewstuff_SUBDIR) $(kparts_SUBDIR) $(kresources_SUBDIR) $(ksmartcard_SUBDIR) $(kstyles_SUBDIR) $(kutils_SUBDIR) $(libkmid_SUBDIR) $(libkscreensaver_SUBDIR) $(licenses_SUBDIR) $(mimetypes_SUBDIR) $(pics_SUBDIR) $(doc_SUBDIR) $(kcert_SUBDIR) $(interfaces_SUBDIR) $(kinit_SUBDIR) $(kdeprint_SUBDIR) $(kabc_SUBDIR) $(kmdi_SUBDIR) $(khtml_SUBDIR) $(kate_SUBDIR) $(kdewidgets_SUBDIR) $(wmfplugin_SUBDIR)
