@@ -2,10 +2,8 @@
 # 	space.
 # _without_alsa - disable alsa
 
-%define         _state          unstable
+%define         _state          stable
 %define         _ver		3.1
-%define         _rcver		rc7
-%define         _kdever		kde-%{_ver}-%{_rcver}
 
 
 Summary:	K Desktop Environment - libraries
@@ -16,12 +14,12 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	5
+Release:	6
 Epoch:		8
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
