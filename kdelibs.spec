@@ -36,6 +36,7 @@ Patch2:		%{name}-use_system_sgml.patch
 Patch3:		%{name}-add_japanese_utf8_detection.patch
 Patch4:		%{name}-kdeprint_qt33fix.patch
 Patch5:		%{name}-kssl_session_reuse.patch
+Patch6:         %{name}-dcop_qt33fix.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -338,6 +339,7 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
