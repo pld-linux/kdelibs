@@ -66,7 +66,7 @@ BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 %{!?_without_ldap:BuildRequires:	openldap-devel}
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	sed >= 4.0
