@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	6
+Release:	7
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -27,6 +27,7 @@ Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.ta
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Source2:	pnm.protocol
+Source3:	x-icq.mimelink
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
@@ -307,6 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 	kde_libs_htmldir=%{_kdedocdir}
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
+install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
 #{__make} install \
 #	DESTDIR=$RPM_BUILD_ROOT
