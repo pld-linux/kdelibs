@@ -33,6 +33,7 @@ Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-am18.patch
+Patch4:         kde-common-libltdl-am18.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -251,6 +252,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
+%patch4 -p0
 
 %build
 cp /usr/share/automake/config.sub admin
