@@ -9,7 +9,7 @@
 +    d->mpDirs->addResourceType("appicon", KStandardDirs::kde_default("icon") +
 +		KIconTheme::current() + appname + "/pics/");
 +    d->mpDirs->addResourceType("appicon", KStandardDirs::kde_default("icon") +
-+		KIconTheme::current() + appname + "/toolbar/")
++		KIconTheme::current() + appname + "/toolbar/");
      // Insert application specific themes at the top.
      d->mpDirs->addResourceType("appicon", KStandardDirs::kde_default("data") +
  		appname + "/pics/");
