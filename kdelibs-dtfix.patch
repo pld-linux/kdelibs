@@ -1,0 +1,58 @@
+--- kdelibs-3.0.4/kio/kio/kservicefactory.cpp.dtfix	2002-03-03 23:17:37.000000000 -0500
++++ kdelibs-3.0.4/kio/kio/kservicefactory.cpp	2002-10-12 01:33:42.000000000 -0400
+@@ -105,6 +105,34 @@
+ 
+ KService * KServiceFactory::findServiceByDesktopName(const QString &_name)
+ {
++   KService *newService = _findServiceByDesktopName(_name);
++   if (newService) return newService;
++
++   newService = _findServiceByDesktopName("kde-" + _name);
++   if (newService) return newService;
++
++   delete newService;
++   newService = 0;
++   return newService;
++}
++
++KService * KServiceFactory::findServiceByDesktopPath(const QString &_name)
++{
++   KService *newService = _findServiceByDesktopPath(_name);
++   if (newService) return newService;
++
++   int pos = _name.findRev('/') + 1;
++   QString newName = _name;
++   newService = _findServiceByDesktopPath(newName.insert(pos, "kde-"));
++   if (newService) return newService;
++
++   delete newService;
++   newService = 0;
++   return newService;
++}
++
++KService * KServiceFactory::_findServiceByDesktopName(const QString &_name)
++{
+    if (!m_nameDict) return 0; // Error!
+ 
+    // Warning : this assumes we're NOT building a database
+@@ -126,7 +154,7 @@
+    return newService;
+ }
+ 
+-KService * KServiceFactory::findServiceByDesktopPath(const QString &_name)
++KService * KServiceFactory::_findServiceByDesktopPath(const QString &_name)
+ {
+    if (!m_relNameDict) return 0; // Error!
+ 
+--- kdelibs-3.0.4/kio/kio/kservicefactory.h.dtfix	2002-03-03 23:17:37.000000000 -0500
++++ kdelibs-3.0.4/kio/kio/kservicefactory.h	2002-10-12 01:10:25.000000000 -0400
+@@ -97,6 +97,9 @@
+ 
+ private:
+   static KServiceFactory *_self;
++  KService * _findServiceByDesktopName( const QString &_name );
++  KService * _findServiceByDesktopPath( const QString &_name );
++
+ protected:
+   virtual void virtual_hook( int id, void* data );
+ private:
