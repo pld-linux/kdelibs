@@ -1,46 +1,46 @@
---- kdelibs-030512/kdecore/kglobalsettings.cpp~	2003-02-21 00:31:27.000000000 +0100
-+++ kdelibs-030512/kdecore/kglobalsettings.cpp	2003-05-12 20:07:56.000000000 +0200
-@@ -281,8 +281,8 @@
-     if (_generalFont)
+--- kdelibs-030718/kdecore/kglobalsettings.cpp~	2003-07-18 00:31:01.000000000 +0200
++++ kdelibs-030718/kdecore/kglobalsettings.cpp	2003-07-18 01:25:04.000000000 +0200
+@@ -282,8 +282,8 @@
          return *_generalFont;
  
+     // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _generalFont = new QFont("helvetica", 12);
--    _generalFont->setPixelSize(12);
+-    _generalFont->setPointSize(12);
 +    _generalFont = new QFont("helvetica", 11);
-+    _generalFont->setPixelSize(11);
++    _generalFont->setPointSize(11);
      _generalFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
-@@ -297,8 +297,8 @@
-     if (_fixedFont)
+@@ -299,8 +299,8 @@
          return *_fixedFont;
  
+     // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _fixedFont = new QFont("courier", 12);
--    _fixedFont->setPixelSize(12);
+-    _fixedFont->setPointSize(12);
 +    _fixedFont = new QFont("courier", 11);
-+    _fixedFont->setPixelSize(11);
++    _fixedFont->setPointSize(11);
      _fixedFont->setStyleHint(QFont::TypeWriter);
  
      KConfig *c = KGlobal::config();
-@@ -313,8 +313,8 @@
-     if(_toolBarFont)
+@@ -316,8 +316,8 @@
          return *_toolBarFont;
  
+     // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _toolBarFont = new QFont("helvetica", 10);
--    _toolBarFont->setPixelSize(10);
+-    _toolBarFont->setPointSize(10);
 +    _toolBarFont = new QFont("helvetica", 11);
-+    _toolBarFont->setPixelSize(11);
++    _toolBarFont->setPointSize(11);
      _toolBarFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
-@@ -329,8 +329,8 @@
-     if(_menuFont)
+@@ -333,8 +333,8 @@
          return *_menuFont;
  
+     // Sync default with kdebase/kcontrol/fonts/fonts.cpp
 -    _menuFont = new QFont("helvetica", 12);
--    _menuFont->setPixelSize(12);
+-    _menuFont->setPointSize(12);
 +    _menuFont = new QFont("helvetica", 11);
-+    _menuFont->setPixelSize(11);
++    _menuFont->setPointSize(11);
      _menuFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
