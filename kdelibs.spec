@@ -1,22 +1,23 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	1.1.2
-Release:	14
+Version:	2.0pre
+Release:	1
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
 Vendor:		The KDE Team
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
-Source1:	kderc.PLD
-Patch0:		kdelibs-DESTDIR.patch
-Patch1:		kdelibs-iconpaths.patch
-Patch2:		kdelibs-x-kdelnk.patch
-Icon:		kdelibs.xpm
-BuildRequires:	qt-devel >= 1.44
+Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/kdelibs-20000302.tar.bz2
+#Source1:	kderc.PLD
+#Patch0:		kdelibs-DESTDIR.patch
+#Patch1:		kdelibs-iconpaths.patch
+#Patch2:		kdelibs-x-kdelnk.patch
+#Icon:		kdelibs.xpm
+BuildRequires:	qt-devel >= 2.0
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
-Requires:	qt >= 1.44
+Requires:	qt >= 2.0
+Requires:	kdesupport = %{version}
 URL:		http://www.kde.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -77,10 +78,10 @@ Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy pisaniu
 w³asnych programów wykorzystuj±cych kdelibs.
 
 %prep
-%setup  -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%setup  -q -n %name
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
 
 %build
 export KDEDIR=%{_prefix}
@@ -102,9 +103,11 @@ kde_partsdir=%{_kde_partsdir}
 export  kde_htmldir kde_icondir kde_minidir kde_appsdir kde_sounddir \
 	kde_datadir kde_locale kde_cgidir kde_confdir kde_mimedir \
 	kde_toolbardir kde_wallpaperdir kde_bindir kde_partsdir
-
-automake
-perl admin/automoc -padmin
+aclocal
+#autoheader
+#automake
+autoconf
+#perl admin/automoc -padmin
 CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -Wall -DNO_DEBUG"
 LDFLAGS="-s"
 export CXXFLAGS LDFLAGS
@@ -140,29 +143,29 @@ rm -rf $RPM_BUILD_ROOT
 %{_kde_toolbardir}
 %{_kde_datadir}
 
-%lang(br) %{_kde_locale}/br/charset
-%lang(ca) %{_kde_locale}/ca/charset
-%lang(cs) %{_kde_locale}/cs/charset
-%lang(da) %{_kde_locale}/da/charset
-%lang(de) %{_kde_locale}/de/charset
-%lang(eo) %{_kde_locale}/eo/charset
-%lang(es) %{_kde_locale}/es/charset
-%lang(et) %{_kde_locale}/et/charset
-%lang(fi) %{_kde_locale}/fi/charset
-%lang(fr) %{_kde_locale}/fr/charset
-%lang(he) %{_kde_locale}/he/charset
-%lang(hr) %{_kde_locale}/hr/charset
-%lang(hu) %{_kde_locale}/hu/charset
-%lang(is) %{_kde_locale}/is/charset
-%lang(it) %{_kde_locale}/it/charset
-%lang(no) %{_kde_locale}/no/charset
-%lang(pl) %{_kde_locale}/pl/charset
-%lang(pt) %{_kde_locale}/pt*/charset
-%lang(ro) %{_kde_locale}/ro/charset
-%lang(ru) %{_kde_locale}/ru/charset
-%lang(sk) %{_kde_locale}/sk/charset
-%lang(sl) %{_kde_locale}/sl/charset
-%lang(sv) %{_kde_locale}/sv/charset
+#%lang(br) %{_kde_locale}/br/charset
+#%lang(ca) %{_kde_locale}/ca/charset
+#%lang(cs) %{_kde_locale}/cs/charset
+#%lang(da) %{_kde_locale}/da/charset
+#%lang(de) %{_kde_locale}/de/charset
+#%lang(eo) %{_kde_locale}/eo/charset
+#%lang(es) %{_kde_locale}/es/charset
+#%lang(et) %{_kde_locale}/et/charset
+#%lang(fi) %{_kde_locale}/fi/charset
+#%lang(fr) %{_kde_locale}/fr/charset
+#%lang(he) %{_kde_locale}/he/charset
+#%lang(hr) %{_kde_locale}/hr/charset
+#%lang(hu) %{_kde_locale}/hu/charset
+#%lang(is) %{_kde_locale}/is/charset
+#%lang(it) %{_kde_locale}/it/charset
+#%lang(no) %{_kde_locale}/no/charset
+#%lang(pl) %{_kde_locale}/pl/charset
+#%lang(pt) %{_kde_locale}/pt*/charset
+#%lang(ro) %{_kde_locale}/ro/charset
+#%lang(ru) %{_kde_locale}/ru/charset
+#%lang(sk) %{_kde_locale}/sk/charset
+#%lang(sl) %{_kde_locale}/sl/charset
+#%lang(sv) %{_kde_locale}/sv/charset
 
 %files devel
 %defattr(644,root,root,755)
