@@ -1,0 +1,15 @@
+diff -ur kdelibs-2.2beta1.orig/kdoctools/xslt.cpp kdelibs-2.2beta1/kdoctools/xslt.cpp
+--- kdelibs-2.2beta1.orig/kdoctools/xslt.cpp	Tue Jun 26 21:59:13 2001
++++ kdelibs-2.2beta1/kdoctools/xslt.cpp	Fri Aug 10 17:40:44 2001
+@@ -75,9 +75,10 @@
+     return len;
+ }
+ 
+-void closeQString(void * context) {
++int closeQString(void * context) {
+     QString *t = (QString*)context;
+     *t += QString::fromLatin1("\n");
++    return 0;
+ }
+ 
+ QString transform( const QString &pat, const QString& tss)
