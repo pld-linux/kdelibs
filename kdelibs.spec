@@ -6,7 +6,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040515
+%define		_snap		040519
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
