@@ -299,7 +299,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 > %{name}.lang
-topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kabc_dir kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
+topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
 
 %find_lang %{name} --with-kde
 
