@@ -3,7 +3,7 @@
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
-%bcond_without	i18n	# dont include i18n files in package
+%bcond_without	i18n	# dont build i18n subpackage
 #
 %define		_state		stable
 %define		_ver		3.2.0
