@@ -313,7 +313,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
-%{_applnkdir}/*
+%{_applnkdir}/default_applications.menu
+# contains Components/kabc.desktop only
+%{_applnkdir}/Settings/KDE
 %{_pixmapsdir}/*
 %{_docdir}/kde
 
