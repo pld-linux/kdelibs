@@ -1,15 +1,18 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 #	space.
 #
+# TODO:
+# i18n - currently no files ... 
+
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	i18n	# don't build i18n subpackage
-%bcond_with	xlibs
+%bcond_without	xlibs
 #
 %define		_state		stable
-%define		_ver		3.2.0
+%define		_ver		3.2.1
 #%%define		_snap		040110
-%define		artsver		13:1.2.0
+%define		artsver		13:1.2.1
 %define		qtver		6:3.3.0.040205
 
 Summary:	K Desktop Environment - libraries
@@ -21,13 +24,15 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	7
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
+# Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
+# http://download.kde.org/stable/3.2.1/src/kdelibs-3.2.1.tar.bz2
+Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+# Source0-md5:	50ae60072c1fc4ae4e41694bc2325dcb
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	24be0d558725f4d3441fb9d580129720
 %if %{with i18n}
 Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	1b484133af8a53b761c7bc9fcb6c1814
@@ -312,18 +317,18 @@ Pliki umiÍdzynarodawiaj±ce kdelibs.
 
 %prep 
 %setup -q
-%patch0 -p1
+#%%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
+#%%patch4 -p1
 %patch5 -p0
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 # typo
 %{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-	debian/ksendbugmail.sgml
+	debian/man/ksendbugmail.sgml
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -367,7 +372,7 @@ install -d \
 
 # Debian manpages
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
-cd debian
+cd debian/man
 for f in *.sgml ; do
 	base="$(basename $f .sgml)"
 	upper="$(echo ${base} | tr a-z A-Z)"
@@ -556,6 +561,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
 %{_libdir}/kde3/kaddprinterwizard.la
 %attr(755,root,root) %{_libdir}/kde3/kaddprinterwizard.so
+%{_libdir}/kde3/libkdeprint_management_module.la
+%attr(755,root,root) %{_libdir}/kde3/libkdeprint_management_module.so
 %{_libdir}/kde3/kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
 %{_libdir}/kde3/kbzip2filter.la
@@ -736,6 +743,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/rlogin.protocol
 %{_datadir}/services/rtsp.protocol
 %{_datadir}/services/shellscript.desktop
+%{_datadir}/services/ssh.protocol
 %{_datadir}/services/telnet.protocol
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
