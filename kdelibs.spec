@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030518
+%define		_snap		030527
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -24,7 +24,7 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	3ca3d631ce327df0d7486ba33e62109a
+# Source0-md5:	defc31753e2b0c9bed88eddeb5e537b8
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
@@ -269,7 +269,6 @@ done
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	--enable-final \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
@@ -411,6 +410,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkjava.so.*.*.*
 %{_libdir}/libkjs.la
 %attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
+%{_libdir}/libkmdi.la
+%attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
 %{_libdir}/libkmediaplayer.la
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
 %{_libdir}/libkmid.la
@@ -631,6 +632,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkio.so
 %{_libdir}/libkjava.so
 %{_libdir}/libkjs.so
+%{_libdir}/libkmdi.so
 %{_libdir}/libkmediaplayer.so
 %{_libdir}/libkmid.so
 %{_libdir}/libkparts.so
@@ -676,10 +678,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0755,root,root) %{_libdir}/kde3/kabcformat_binary.so
 %{_libdir}/kde3/kabcformat_vcard2.la
 %attr(0755,root,root) %{_libdir}/kde3/kabcformat_vcard2.so
-%{_libdir}/kde3/kcm_kabc.la
-%attr(0755,root,root) %{_libdir}/kde3/kcm_kabc.so
+%{_libdir}/kde3/kcm_kresources.la
+%attr(0755,root,root) %{_libdir}/kde3/kcm_kresources.so
 %{_datadir}/apps/kabc
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
-%{_applnkdir}/KDE-Settings/Components/kabc.desktop
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kabc
+%{_applnkdir}/KDE-Settings/Components/kresources.desktop
+#%lang(en) %{_htmldir}/en/kdelibs-apidocs/kabc
