@@ -112,6 +112,8 @@ Obsoletes:	kdenetwork-knode
 Obsoletes:	kdenetwork-kxmlrpcd
 Obsoletes:	kdepim-commonlibs
 Obsoletes:	kdepim-kaplan
+Obsoletes:	kdesdk
+Obsoletes:	kdesdk-devel
 # More
 Obsoletes:	kdepim-kaddressbook < 3:3.1.91.030918-1
 Obsoletes:	kdepim-kmail < 3:3.1.91.030918-1
