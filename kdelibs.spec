@@ -39,13 +39,14 @@ BuildRequires:	XFree86-devel >= 4.2.99
 %endif
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
-BuildRequires: 	sed >= 4.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
+BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
+BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
@@ -63,6 +64,7 @@ BuildRequires:	motif-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
+BuildRequires: 	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
 Requires:	applnk >= 1.6.2-1
