@@ -78,7 +78,7 @@ export kde_appsdir='\$(prefix)/../../etc/X11/kde/applnk'
 
 CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -fno-exceptions" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" LDFLAGS="-s" \
-./configure %{_target} \
+./configure %{_target_platform} \
 	--prefix=$KDEDIR \
 	--with-install-root=$RPM_BUILD_ROOT \
 	--disable-path-check
