@@ -252,7 +252,7 @@ done
 	%{!?_without_ldap:--with-ldap} \
 	--with%{?_without_alsa:out}-alsa
 
-%if %{?_with_nas:0}1
+%if %{!?_with_nas:1}0
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
