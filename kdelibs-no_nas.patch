@@ -1,7 +1,7 @@
-diff -urN kdelibs-2.2beta1.orig/configure kdelibs-2.2beta1/configure
---- kdelibs-2.2beta1.orig/configure	Tue Jun 26 22:40:31 2001
-+++ kdelibs-2.2beta1/configure	Wed Jul 18 19:03:25 2001
-@@ -10236,47 +10236,8 @@
+diff -ur kdelibs-2.2.orig/configure kdelibs-2.2/configure
+--- kdelibs-2.2.orig/configure	Mon Aug  6 03:27:30 2001
++++ kdelibs-2.2/configure	Wed Aug 15 15:17:31 2001
+@@ -10115,47 +10115,8 @@
  ac_lib_var=`echo audio'_'AuOpenServer | sed 'y%./+-%__p_%'`
  if eval "test \"`echo '$''{'ac_cv_lib_$ac_lib_var'+set}'`\" = set"; then
    echo $ac_n "(cached) $ac_c" 1>&6
@@ -9,7 +9,7 @@ diff -urN kdelibs-2.2beta1.orig/configure kdelibs-2.2beta1/configure
 -  ac_save_LIBS="$LIBS"
 -LIBS="-laudio -lXt $LIBS"
 -cat > conftest.$ac_ext <<EOF
--#line 10244 "configure"
+-#line 10123 "configure"
 -#include "confdefs.h"
 -/* Override any gcc2 internal prototype to avoid an error.  */
 -/* We use char because int might match the return type of a gcc2
@@ -20,7 +20,7 @@ diff -urN kdelibs-2.2beta1.orig/configure kdelibs-2.2beta1/configure
 -AuOpenServer()
 -; return 0; }
 -EOF
--if { (eval echo configure:10255: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+-if { (eval echo configure:10134: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
 -  rm -rf conftest*
 -  eval "ac_cv_lib_$ac_lib_var=yes"
 -else
@@ -32,7 +32,7 @@ diff -urN kdelibs-2.2beta1.orig/configure kdelibs-2.2beta1/configure
 -rm -f conftest*
 -LIBS="$ac_save_LIBS"
 -
- fi
+-fi
 -if eval "test \"`echo '$ac_cv_lib_'$ac_lib_var`\" = yes"; then
 -  echo "$ac_t""yes" 1>&6
 -  
@@ -45,7 +45,7 @@ diff -urN kdelibs-2.2beta1.orig/configure kdelibs-2.2beta1/configure
 -    
 -else
    echo "$ac_t""no" 1>&6
--fi
+ fi
  
    
  else
