@@ -13,7 +13,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	6
+Release:	7
 Epoch:		8
 License:	LGPL
 Vendor:		The KDE Team
@@ -184,7 +184,7 @@ KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
 Summary:	KDE dependent part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} >= %{version}
 
 %description -n arts-kde
 KDE dependent part of aRts.
@@ -208,7 +208,7 @@ Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
-Requires:	%{name} = %{version}
+Requires:	%{name} >= %{version}
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
@@ -299,14 +299,27 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/[!ad]*
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcop[!i]*
-%attr(755,root,root) %{_libdir}/[dk]*.??
-%attr(755,root,root) %{_libdir}/lib[!ack]*.la
+%{_libdir}/[dk]*.la
+%attr(755,root,root) %{_libdir}/[dk]*.so
+%{_libdir}/lib[!ack]*.la
 %attr(755,root,root) %{_libdir}/lib[!ack]*.so.*
-%attr(755,root,root) %{_libdir}/libc*.??
-%attr(755,root,root) %{_libdir}/libk[!c]*.la
+%{_libdir}/libc*.la
+%attr(755,root,root) %{_libdir}/libc*.so
+%{_libdir}/libk[!c]*.la
 %attr(755,root,root) %{_libdir}/libk[!c]*.so.*
-%attr(755,root,root) %{_libdir}/libkcertpart.??
-%attr(755,root,root) %{_libdir}/kde3
+%{_libdir}/libkcertpart.la
+%attr(755,root,root) %{_libdir}/libkcertpart.so
+%dir %{_libdir}/kde3
+%dir %{_libdir}/kde3/plugins
+%dir %{_libdir}/kde3/plugins/designer
+%dir %{_libdir}/kde3/plugins/styles
+%{_libdir}/kde3/*.la
+%attr(755,root,root) %{_libdir}/kde3/*.so
+%{_libdir}/kde3/plugins/designer/*.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
+%{_libdir}/kde3/plugins/styles/*.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
+
 %config %{_datadir}/config
 # Contains Components/kabc.desktop only
 %{_applnkdir}/Settings/KDE
@@ -331,7 +344,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n arts-kde
 %defattr(644,root,root,755)
 %{_libdir}/libartskde.la
-%{_libdir}/libartskde.so.*
+%attr(755,root,root) %{_libdir}/libartskde.so.*
 
 %files -n arts-kde-devel
 %defattr(644,root,root,755)
