@@ -24,11 +24,11 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	95a919c7896507f4d6f1622867d09d6a
 Patch0:		%{name}-kstandarddirs.patch
-Patch1:         %{name}-defaultfonts.patch
-Patch2:         %{name}-use_system_sgml.patch
+Patch1:		%{name}-defaultfonts.patch
+Patch2:		%{name}-use_system_sgml.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -43,6 +43,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	ed
 BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
@@ -81,7 +82,7 @@ Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 # No longer supported/existing
-Obsoletes:      arts-message
+Obsoletes:	arts-message
 Obsoletes:	kde-sdscreen-default
 Obsoletes:	kde-splash-default
 Obsoletes:	kdeadmin-kwuftpd
@@ -92,16 +93,16 @@ Obsoletes:	kdegames-megami
 Obsoletes:	kdenetwork-kmail
 Obsoletes:	kdenetwork-knode
 Obsoletes:	kdenetwork-kxmlrpcd
-Obsoletes:      kdepim-commonlibs
+Obsoletes:	kdepim-commonlibs
 Obsoletes:	kdepim-kaplan
 # More
-Obsoletes:      kdepim-kaddressbook < 3:3.1.91.030918-1
-Obsoletes:      kdepim-kmail < 3:3.1.91.030918-1
-Obsoletes:      kdepim-kontact < 3:3.1.91.030918-1
-Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
-Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
-Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
-Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
+Obsoletes:	kdepim-kaddressbook < 3:3.1.91.030918-1
+Obsoletes:	kdepim-kmail < 3:3.1.91.030918-1
+Obsoletes:	kdepim-kontact < 3:3.1.91.030918-1
+Obsoletes:	kdepim-korganizer < 3:3.1.91.030918-1
+Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
+Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
+Obsoletes:	kdepim-libkdepim < 3:3.1.91.030918-1
 
 %description
 Libraries for the K Desktop Environment.
@@ -213,16 +214,20 @@ Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %package kabc
-Summary:	TODO
-Summary(pl):	TODO
+Summary:	Adressbook converter
+Summary(pl):	Konwerter ksi±¿ki adresowej
 Group:		X11/Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description kabc
-TODO.
+Adressbook can be shared between various applications. This package
+can be used to determine the adressbook location and it can convert
+between diferent adressbook formats.
 
 %description kabc
-TODO.
+Ksi±¿ka adresowa mo¿e byæ wspó³dzielona przez ró¿ne aplikacje. Ten
+pakiet umo¿liwia okre¶lenie miejsca przechowywania ksi±¿ki adresowej
+oraz jej konwersjê.
 
 %prep
 %setup -q -n %{name}-%{_snap}
@@ -231,9 +236,8 @@ TODO.
 %patch2 -p1
 
 %build
-
-for f in `find . -name *.desktop` ; do
-	sed -i 's/\[nb\]/\[no\]/g' $f
+for f in `find . -name \*.desktop | xargs grep -l '\[nb\]'` ; do
+	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $f 2>/dev/null
 done
 
 %{__make} -f admin/Makefile.common cvs
@@ -258,7 +262,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_docdir}/kde/HTML
-	
+
 install -d \
 	$RPM_BUILD_ROOT%{_bindir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
