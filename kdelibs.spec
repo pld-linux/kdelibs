@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.2
+Release:	1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -328,7 +328,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/plugins/styles/*.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
 
-%config %{_datadir}/config
+%{_datadir}/config
 # Contains Components/kabc.desktop only
 %{_applnkdir}/Settings/KDE
 %{_pixmapsdir}/*
