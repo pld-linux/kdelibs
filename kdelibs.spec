@@ -9,13 +9,13 @@ Copyright:	LGPL
 Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/unstable/distribution/2.0Beta4/tar/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-install-catalog.patch
-BuildRequires:	qt-devel >= 2.2.0_beta2
+BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	kdesupport-mimelib-devel = %{version}
 BuildRequires:	unixODBC-devel
 BuildRequires:	kdesupport-uulib-devel = %{version}
-Requires:	qt >= 2.2.0_beta2
+Requires:	qt >= 2.2.0
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
