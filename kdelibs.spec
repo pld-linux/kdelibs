@@ -41,11 +41,12 @@ Patch1:		%{name}-resize-icons.patch
 Patch2:		%{name}-kcursor.patch
 #Patch3:		%{name}-vfolders.patch
 Patch4:		%{name}-fonts.patch
-Patch5:		post-3.1.5-%{name}-kapplication.patch
-Patch6:		post-3.1.5-%{name}-ktelnetservice.patch
-Patch7:		post-3.1.5-%{name}-kstandarddirs.patch
-Patch8:		post-3.1.5-%{name}-htmlframes.patch
-Patch9:         post-3.1.5-%{name}-kcookiejar.patch
+Patch5:		post-3.1.5-%{name}-dcop.patch
+Patch6:		post-3.1.5-%{name}-kapplication.patch
+Patch7:		post-3.1.5-%{name}-htmlframes.patch
+Patch8:		post-3.1.5-%{name}-kcookiejar.patch
+Patch9:		post-3.1.5-%{name}-kstandarddirs.patch
+Patch10:	post-3.1.5-%{name}-ktelnetservice.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
@@ -267,11 +268,12 @@ oraz jej konwersjê.
 %patch2 -p1
 #%%patch3 -p1
 %patch4 -p1
-%patch5 -p1
+%patch5 -p0
 %patch6 -p0
 %patch7 -p1
 %patch8 -p0
 %patch9 -p0
+%patch10 -p0
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
