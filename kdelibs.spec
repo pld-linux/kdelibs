@@ -1,12 +1,12 @@
-# NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
-# 	space.
+# NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap space.
 #
 # Conditional build:
 # _without_alsa - disable alsa
+# _with_nas	- with NAS support
 #
 
 %define		_state		snapshots
-%define		_snap		030403
+%define		_snap		030406
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -29,10 +29,9 @@ Source3:	%{name}-default_applications.menu
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-Patch3:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
-
-Patch5:		%{name}-vmenu_location.patch
-Patch6:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
+Patch3:		%{name}-vmenu_location.patch
+Patch4:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
+Patch5:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -47,6 +46,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	gettext-devel
+BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
@@ -57,15 +57,15 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
-BuildRequires:	jasper-devel >= 1.600
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
+#
+%{?_with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
-Requires:	applnk >= 1.5.16
 Requires:	arts >= 1.2
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
@@ -233,8 +233,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -261,11 +261,13 @@ CXXFLAGS="%{rpmcflags}"
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
+%if %{?_with_nas:0}1
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
 	> config.h.tmp
 mv -f config.h{.tmp,}
+%endif
 
 cd khtml/css 
 %{__make} parser
@@ -284,6 +286,9 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 install -d \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
+
+install -d \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 %clean
 rm -rf $RPM_BUILD_ROOT
