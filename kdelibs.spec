@@ -2,17 +2,26 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.0
-Release:	1
+Release:	2
+Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
-BuildRequires:	qt-devel >= 2.2.1
+Patch0:		%{name}-final.patch
+Patch1:		%{name}-nodebug.patch
 BuildRequires:	XFree86-devel
+BuildRequires:	alsa-lib-devel
+BuildRequires:	audiofile-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
+BuildRequires:	libtiff-devel
 BuildRequires:	kdesupport-mimelib-devel = %{version}
+BuildRequires:	openssl-devel
+BuildRequires:	qt-devel >= 2.2.1
 BuildRequires:	unixODBC-devel
 Requires:	qt >= 2.2.1
 URL:		http://www.kde.org/
@@ -61,6 +70,9 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 
 %prep
 %setup  -q
+%patch0 -p1
+%patch1 -p1
+
 %build
 %configure \
 	--enable-final
@@ -69,7 +81,7 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR="$RPM_BUILD_ROOT"
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf arts/doc/{LICENSE,MCOP,TODO}
 
@@ -128,13 +140,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.so
 %{_libdir}/*.la
 %{_includedir}/*.h
-%{_includedir}/kde.pot
-%{_includedir}/arts/*.h
-%{_includedir}/arts/*.idl
-%{_includedir}/artsc/*.h
-%{_includedir}/dom/*.h
-%{_includedir}/kio/*.h
-%{_includedir}/kparts/*.h
-%{_includedir}/kdesu/*.h
-%{_includedir}/kjs/*.h
-%{_includedir}/libkmid/*.h
+%{_includedir}/arts
+%{_includedir}/artsc
+%{_includedir}/dom
+%{_includedir}/kio
+%{_includedir}/kparts
+%{_includedir}/kdesu
+%{_includedir}/kjs
+%{_includedir}/libkmid
