@@ -101,6 +101,8 @@ Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KD
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	arts-devel = %{version}
+Requires:	libjpeg-devel
+Requires:	libpng-devel
 Requires:	qt-devel >= 2.3.0
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
