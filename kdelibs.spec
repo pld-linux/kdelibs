@@ -71,6 +71,7 @@ BuildRequires:	qt-devel >= 6:3.2.1-4
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	xrender-devel
 BuildRequires:	zlib-devel
+BuildRequires:	libidn-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk >= 1.6.2-1
 Requires:	arts >= %{_artsver}
