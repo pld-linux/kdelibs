@@ -332,6 +332,9 @@ for f in *.sgml ; do
 done
 cd -
 
+# For fileshare
+touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
+
 # Problem with 'common' symlink
 cd $RPM_BUILD_ROOT%{_kdedocdir}/en/kspell
 ln -sf %{_kdedocdir}/en/common common
@@ -361,6 +364,24 @@ cat << EOF
 
 EOF
 
+cat << _EOF_
+
+ *********************************************************
+ *                                                       *
+ * NOTE:                                                 *
+ * If You want the directories sharing from the context  *
+ * menu functionality, do as following:                  *
+ * 1) Install sperl package,                             *
+ * 2) Set SUID for fileshareset script.                  *
+ *                                                       *
+ * WARNING:                                              *
+ * 1) That allows users to write to /etc/samba/smb.conf, *
+ * 2) After all - using sperl is not safe.               * 
+ *                                                       *
+ *********************************************************
+
+_EOF_
+
 %postun	-p /sbin/ldconfig
 
 %files
@@ -379,7 +400,9 @@ EOF
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/ghns
-%attr(755,root,root) %{_bindir}/fileshareset
+%ghost /etc/security/fileshare.conf
+%attr(0755,root,root) %{_bindir}/filesharelist
+%attr(0755,root,root) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
