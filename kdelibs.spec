@@ -24,7 +24,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.1
+Release:	0.2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -33,7 +33,7 @@ Group:		X11/Libraries
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	50ae60072c1fc4ae4e41694bc2325dcb
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with i18n}
+%if %{with_i18n}
 Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	1b484133af8a53b761c7bc9fcb6c1814
 %endif
@@ -45,7 +45,7 @@ Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
-%if %{with xlibs}
+%if %{with_xlibs}
 BuildRequires:	libXrender-devel
 BuildRequires:	libXt-devel
 %else
@@ -382,7 +382,7 @@ done
 
 cd -
 
-%if %{with i18n}
+%if %{with_i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
 	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
@@ -410,7 +410,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%if %{with i18n}
+%if %{with_i18n}
 %files i18n -f %{name}.lang
 %endif
 
