@@ -7,7 +7,7 @@
 %define		_state		unstable
 %define		_ver		3.3.92
 %define		artsver		13:1.3.92
-%define		_snap		%{nil}
+%define		_snap		050210
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,15 +17,15 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-#Version:	%{_ver}.%{_snap}
-Version:	%{_ver}
+Version:	%{_ver}.%{_snap}
+#Version:	%{_ver}
 Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	876196a4f16a5cbc2da5f4f8557d138a
-#Source0:        http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+#%% Source0-md5:	876196a4f16a5cbc2da5f4f8557d138a
+Source0:        http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -290,8 +290,8 @@ nieobs≥uguj±cej pts-Ûw typu Unix98 i obawiasz siÍ inwigilacji ze strony
 innych uøytkownikÛw lokalnych.
 
 %prep
-#%setup -q -n %{name}-%{_snap} -a1
-%setup -q -a1
+%setup -q -n %{name}-%{_snap} -a1
+#%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
