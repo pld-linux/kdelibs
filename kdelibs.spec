@@ -40,6 +40,7 @@ Patch5:		%{name}-idn.patch
 Patch6:		kde-common-QTDOCDIR.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
+BuildRequires:  unsermake >= 040511
 %if %{with xlibs}
 BuildRequires:	libXrender-devel
 BuildRequires:	libXt-devel
@@ -273,6 +274,7 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 %build
 cp /usr/share/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
+export UNSERMAKE=/usr/share/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
