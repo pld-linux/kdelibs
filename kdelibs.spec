@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.1.94
-%define		_snap		040104
+%define		_snap		040110
 %define		artsver		12:1.2.0.%{_snap}
 
 Summary:	K Desktop Environment - libraries
@@ -25,15 +25,13 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	9e292ceb442eef1170ac8d8d9e27e7f8
+# Source0-md5:	dbf9a425bffc79bfa606bcf0c61bba55
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 %endif
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
-Patch3:		kde-common-am18.patch
-Patch4:		kde-common-libltdl-am18.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -253,8 +251,6 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
-%patch4 -p0
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -262,8 +258,6 @@ for plik in `find . -name \*.desktop -o -name \*rc -o -name \*.print -o \
 	     -name all_languages -o -name \*.kimgio | xargs grep -l '\[nb\]'` ; do
 	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $plik 2>/dev/null
 done
-
-echo "KDE_OPTIONS=nofinal" >> kabc/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -671,6 +665,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # merged kabc files
 %attr(0755,root,root) %{_bindir}/kab2kabc
+%attr(0755,root,root) %{_libdir}/libvcard.so.*
 %{_libdir}/kde3/kabc_dir.la
 %attr(0755,root,root) %{_libdir}/kde3/kabc_dir.so
 %{_libdir}/kde3/kabc_file.la
