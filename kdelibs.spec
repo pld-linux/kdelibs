@@ -13,8 +13,8 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.0.4
-Release:	9
+Version:	3.0.5a
+Release:	0.1
 Epoch:		7
 License:	LGPL
 Group:		X11/Libraries
@@ -22,19 +22,14 @@ Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Source2:	%{name}-extra_icons.tar.bz2
 Patch0:		%{name}-directories.patch
-Patch1:		%{name}-libxml_closecallback.patch
-Patch2:		%{name}-am.patch
-Patch3:		%{name}-resize-icons.patch
-Patch4:		%{name}-ksyscoca.patch
-Patch5:		%{name}-dtfix.patch
-Patch6:		%{name}-lang.patch
-Patch7:		%{name}-alignment.patch
-Patch8:		%{name}-katetextbuffermultibyte.patch
-Patch9:		%{name}-dock.patch
-#The following two are security patches from 3.0.5
-Patch10:	%{name}-khtml.patch
-Patch11:	%{name}-kio.patch
-#End security patches
+Patch1:		%{name}-am.patch
+Patch2:		%{name}-resize-icons.patch
+Patch3:		%{name}-ksyscoca.patch
+Patch4:		%{name}-dtfix.patch
+Patch5:		%{name}-lang.patch
+Patch6:		%{name}-alignment.patch
+Patch7:		%{name}-katetextbuffermultibyte.patch
+Patch8:		%{name}-dock.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -233,17 +228,15 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-#%patch2 -p0
+#%patch1 -p0	-- shouldn't it be removed? ac/am regeneration isn't made
+%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
+
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
