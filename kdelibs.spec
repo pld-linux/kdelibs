@@ -7,10 +7,10 @@
 %bcond_with	xlibs	# enable xlibs requirements
 
 %define		_state		stable
-%define		_ver		3.2.2
+%define		_ver		3.2.3
 #%%define		_snap		040110
-%define		artsver		13:1.2.2
-%define		qtver		6:3.3.2
+%define		artsver		13:1.2.3
+%define		qtver		6:3.3.2-5
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -27,20 +27,18 @@ License:	LGPL
 Group:		X11/Libraries
 # Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
 # http://download.kde.org/stable/3.2.1/src/kdelibs-3.2.1.tar.bz2
-Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	76c656fb4ec7f1ca073f52fad2b8898b
+Source0:        http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+# Source0-md5:	d9d1c4bd2016a96f156b491ca908dc16
+#Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 Source1:	%{name}-wmfplugin.tar.bz2 
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
-Patch0:		%{name}-3.2branch.diff
-Patch1:		%{name}-kstandarddirs.patch
-Patch2:		%{name}-defaultfonts.patch
-Patch3:		%{name}-use_system_sgml.patch
-##Patch4:		%{name}-add_japanese_utf8_detection.patch
-Patch5:		%{name}-idn.patch
-Patch6:		kde-common-QTDOCDIR.patch
-Patch7:		%{name}-ktelnetservice.patch
-Patch8:		%{name}-kapplication.patch
-Patch9:		%{name}-kdefx-no-altivec.patch
+Patch0:		%{name}-kstandarddirs.patch
+Patch1:		%{name}-defaultfonts.patch
+Patch2:		%{name}-use_system_sgml.patch
+##Patch3:		%{name}-add_japanese_utf8_detection.patch
+Patch4:		%{name}-idn.patch
+Patch5:		kde-common-QTDOCDIR.patch
+Patch6:		%{name}-kdefx-no-altivec.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	unsermake >= 040511
@@ -263,13 +261,10 @@ Dokumentacja API.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-###%patch4 -p1
-%patch5 -p0
-%patch6 -p1
-%patch7 -p0
-%patch8 -p1
-%patch9 -p0
+##%patch3 -p1
+%patch4 -p0
+%patch5 -p1
+%patch6 -p0
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
