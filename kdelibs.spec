@@ -1,12 +1,13 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
+%define		_sub_ver	beta2
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Name:		kdelibs
-Version:	2.2.2
-Release:	3
+Version:	3.0
+Release:	0.%{_sub_ver}.1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -18,7 +19,9 @@ Group(pl):	X11/Biblioteki
 Group(pt_BR):	X11/Bibliotecas
 Group(ru):	X11/‚…¬Ã…œ‘≈À…
 Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
+%{!?_sub_ver:	%define	_ftpdir	stable}
+%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}-%{_sub_ver}}
+Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/src/%{name}-%{version}%{_sub_ver}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
@@ -252,14 +255,17 @@ Ten program moøe byÊ przekazany daemonowi aRts jako parametr opcji -m.
 BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 
 %prep
-%setup -q
+%setup -q -n "%{name}-%{version}%{_sub_ver}"
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+# Not applicable.
+#%patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p1
+# Merged with sources.
+#%patch5 -p1
+# No idea yet how to do this.
+#%patch6 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -307,7 +313,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcop
-%attr(755,root,root) %{_bindir}/dcopserver
+%attr(755,root,root) %{_bindir}/dcop[cfors]*
 %attr(755,root,root) %{_bindir}/make*
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/[cilkpsx]*
@@ -316,6 +322,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libartskde.so
 %attr(755,root,root) %{_libdir}/libk[afhjpt]*.so.*.*
 %attr(755,root,root) %{_libdir}/libk[afjpt]*.la
+%attr(755,root,root) %{_libdir}/libkcertpart.??
 %attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeprint*.la
 %attr(755,root,root) %{_libdir}/libkhtml.la
@@ -327,26 +334,37 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libks[!ys]*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.la
+%attr(755,root,root) %{_libdir}/libkatepart.so
+#%attr(755,root,root) %{_libdir}/libcepart.??
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
 %attr(755,root,root) %{_libdir}/libkdefakes.la
+%attr(755,root,root) %{_libdir}/libkdefx.la
+%attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkdecore.so.*.*
 %attr(755,root,root) %{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeui.la
+%attr(755,root,root) %{_libdir}/libkdesasl.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdesasl.la
 %attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
 %attr(755,root,root) %{_libdir}/libkdesu*.la
 %attr(755,root,root) %{_libdir}/libkio.la
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkssl.la
+#%attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
+#%attr(755,root,root) %{_libdir}/libkssl.la
 %attr(755,root,root) %{_libdir}/libkded_kssld.la
-%attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
-%attr(755,root,root) %{_libdir}/libksycoca.la
-%attr(755,root,root) %{_libdir}/mega.so
-%attr(755,root,root) %{_libdir}/mega.la
-%attr(755,root,root) %{_libdir}/webstyle.so
-%attr(755,root,root) %{_libdir}/webstyle.la
-%attr(755,root,root) %{_libdir}/kde2
+%attr(755,root,root) %{_libdir}/libkscript.la
+#%attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
+#%attr(755,root,root) %{_libdir}/libksycoca.la
+%attr(755,root,root) %{_libdir}/libkwallet*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkwallet*.la
+%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
+%attr(755,root,root) %{_libdir}/libvcard.la
+#%attr(755,root,root) %{_libdir}/mega.so
+#%attr(755,root,root) %{_libdir}/mega.la
+#%attr(755,root,root) %{_libdir}/webstyle.so
+#%attr(755,root,root) %{_libdir}/webstyle.la
+%attr(755,root,root) %{_libdir}/kde3
 
 %config %{_datadir}/config
 %dir %{_pixmapsdir}/hicolor
@@ -357,6 +375,7 @@ rm -rf $RPM_BUILD_ROOT
 # I'm not sure what this file is for.
 %{_pixmapsdir}/hicolor/index.desktop
 %{_datadir}/apps
+%{_datadir}/autostart
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
@@ -368,11 +387,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl*
 %{_libdir}/libD*.so
+%{_libdir}/libkabc.so
+%{_libdir}/libkatepartinterfaces.so
 %{_libdir}/libk[dfijpt]*.so
 %{_libdir}/libks[cpsy]*.so
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
 %{_libdir}/libkab.so
+%{_libdir}/libkwallet*.so
+%{_libdir}/libvcard.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
 %{_includedir}/addressbook.h
@@ -383,6 +406,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artsd
 %attr(755,root,root) %{_bindir}/artsdsp
 %attr(755,root,root) %{_bindir}/artsplay
+%attr(755,root,root) %{_bindir}/artsrec
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
 %attr(755,root,root) %{_libdir}/lib[ams]*.so.*.*
