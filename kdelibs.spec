@@ -27,7 +27,7 @@ Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.ta
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Source2:	pnm.protocol
-Source3:	x-icq.mimelink
+Source3:	x-icq.mimelnk
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
