@@ -454,6 +454,7 @@ rm -rf $RPM_BUILD_ROOT
 # this should not be %%lang: other language resources refer to it
 %dir %{_htmldir}/en
 
+%if %{with ldap}
 %files kabc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kab2kabc
@@ -468,6 +469,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kabc
 %{_datadir}/autostart/kab2kabc.desktop
 %{_applnkdir}/Settings/KDE/Components/kabc.desktop
+%endif
 
 %files devel
 %defattr(644,root,root,755)
