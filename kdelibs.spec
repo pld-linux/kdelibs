@@ -8,7 +8,7 @@
 
 %define		_state		stable
 %define		_ver		3.2.3
-#%%define		_snap		040110
+#define		_snap		040110
 %define		artsver		13:1.2.3
 %define		qtver		6:3.3.2-5
 
