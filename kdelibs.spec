@@ -4,6 +4,8 @@ Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
+Summary(ru):	K Desktop Environment - Библиотеки
+Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	2.2.2
 Release:	6
@@ -19,6 +21,23 @@ Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-libxml_closecallback.patch
 Patch5:		%{name}-cookieperms.patch
 Patch6:		%{name}-qt_docdir.patch
+Patch7:		%{name}-selectedicons.patch
+Patch8:		%{name}-ktoolbarbutton-fix-enable-disable-text.patch
+Patch9:		%{name}-kstddirs-symlinks.patch
+Patch10:	%{name}-kssl-wrongwarnings.patch
+Patch11:	%{name}-kicondialog.cpp.patch
+Patch12:	%{name}-kdeprint-PPD-O-Matic.patch
+Patch13:	%{name}-kfileshare.v9.patch
+Patch14:	%{name}-fix-cups-config-dialogbox-use-kintvalidator.patch
+Patch15:	%{name}-fix-cupsdconf.patch
+Patch16:	%{name}-fix-file-dialogbox-dont-add-separator-in-bookmaks-when-bookmarks-is-empty.patch
+Patch17:	%{name}-fix-filter-dlg.patch
+Patch18:	%{name}-fix-kdeprint-preview-button.patch
+Patch19:	%{name}-fix-kintvalidator.patch
+Patch20:	%{name}-fix-kjs-mem-leak.patch
+Patch21:	%{name}-fix-special-printer.patch
+Patch22:	%{name}-fix-popupmenu-image.patch
+Patch23:	%{name}-disable-ok-button-in-properties-dialogbox-when-filename-is-empty.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -67,13 +86,18 @@ Obsoletes:	kdesupport-mimelib-static
 %description
 Libraries for the K Desktop Environment.
 
-Included with this package are:
-- jscript - KDE javascript library,
-- kdecore - KDE core library,
-- kdeui - KDE user interface library,
-- kfmlib - KDE file manager library,
-- khtmlw - KDE HTML widget,
-- mediatool - KDE mediatool library.
+KDE Libraries included:
+- kdecore (KDE core library),
+- kdeui (user interface),
+- khtml (HTML widget),
+- kfile (file access),
+- kspell (spelling checker),
+- kssl (secure web browsing),
+- kab (addressbook),
+- kimgio (image manipulation),
+- arts (sound, mixing and animation),
+- kstyles, kparts, kjs (JavaScript),
+- kio, kdesu and ksgmltools.
 
 %description -l es
 Bibliotecas para KDE.
@@ -84,7 +108,7 @@ Biblioteki do K Desktop Environment.
 Pakiet ten zawiera:
 - jscript - biblioteka KDE do javascript,
 - kdecore - biblioteka podstawowa,
-- KDE kdeui - biblioteka KDE do interfejsu u©ytkownika,
+- kdeui - biblioteka KDE do interfejsu u©ytkownika,
 - kfmlib - biblioteka KDE file manager library,
 - khtmlw - biblioteka KDE z HTML widget,
 - mediatool - biblioteka KDE mediatool.
@@ -93,11 +117,41 @@ Pakiet ten zawiera:
 Bibliotecas de fundaГЦo do KDE requeridas por todo e qualquer
 aplicativo KDE.
 
+%description -l ru
+Библиотеки для K Desktop Environment.
+
+Включены библиотеки KDE:
+- jscript (javascript),
+- kab (адресная книга),
+- kdecore (ядро KDE),
+- kdeui (интерфейс пользователя),
+- kfile (доступ к файлам),
+- kfm (файловый менеджер),
+- khtmlw (работа с HTML),
+- kimgio (обработка изображений).
+- kspell (проверка орфографии),
+
+%description -l uk
+Б╕бл╕отеки для K Desktop Environment.
+
+Включен╕ так╕ б╕бл╕отеки KDE:
+- jscript (javascript),
+- kab (адресна книга),
+- kdecore (ядро KDE),
+- kdeui (╕нтерфейс користувача),
+- kfile (доступ до файл╕в),
+- kfm (файловий менеджер),
+- khtmlw (робота з HTML),
+- kimgio (обробка зображень).
+- kspell (перев╕рка орфограф╕╖),
+
 %package devel
 Summary:	kdelibs - header files and development documentation
 Summary(es):	Header files and documentation for compiling KDE applications
 Summary(pl):	kdelibs - pliki nagЁСwkowe i dokumentacja do kdelibs
 Summary(pt_BR):	Arquivos de inclusЦo e documentaГЦo para compilar aplicativos KDE
+Summary(ru):	Хедеры и документация для компилляции программ KDE
+Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	arts-devel = %{version}
@@ -125,6 +179,14 @@ pisaniu wЁasnych programСw wykorzystuj╠cych kdelibs.
 Este pacote contИm os arquivos de inclusЦo que sЦo necessАrios para
 compilar aplicativos KDE. ContИm tambИm a API do KDE documentada no
 formato HTML.
+
+%description devel -l ru
+Этот пакет содержит хедеры, необходимые для компиляции программ для
+KDE. Также включена документация в формате HTML.
+
+%description devel -l uk
+Цей пакет м╕стить хедери, необх╕дн╕ для комп╕ляц╕╖ програм для KDE.
+Також до нього входить документац╕я у формат╕ HTML.
 
 %package -n arts
 Summary:	aRts sound server
@@ -217,6 +279,23 @@ BЙdzie on wywoЁywany w celu wy╤wietlenia komunikatСw daemona.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
+%patch18 -p1
+%patch19 -p1
+%patch20 -p1
+%patch21 -p1
+%patch22 -p1
+%patch23 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
