@@ -88,6 +88,7 @@ Obsoletes:      kde-i18n-Zulu
 
 %define		_htmldir	/usr/share/doc/kde/HTML
 %define		_applnkdir	/usr/share/applnk
+%define		_pixmapsdir	/usr/share/pixmaps
 
 %define		no_install_post_chrpath		1
 
