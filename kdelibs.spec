@@ -97,7 +97,7 @@ Obsoletes:	kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
 Obsoletes:	kde-i18n-Zulu
 
 %define         _prefix         /usr/X11R6
-%define		_htmldir	/usr/share/doc/kde/HTML
+%define		_htmldir	%{_docdir}/kde/HTML
 
 %define		no_install_post_chrpath		1
 
@@ -355,8 +355,9 @@ rm -rf $RPM_BUILD_ROOT
 %exclude %{_datadir}/mimelnk/image/x-pcx.desktop 
 %{_datadir}/services
 %{_datadir}/servicetypes
-%dir /usr/share/doc/kde
+%dir %{_docdir}/kde
 %dir %{_htmldir}
+%lang(en) %dir %{_htmldir}/en
 
 %files devel
 %defattr(644,root,root,755)
