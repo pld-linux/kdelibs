@@ -154,14 +154,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/kde.pot
 %{_includedir}/*.h
 %{_libdir}/lib*.la
-
-%changelog
-* Tue Jun 22 1999 Wojciech "Sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
-  [1.1.1-2]
-- added la files to devel subpackage,
-- added kde.pot to devel subpackage.
-
-* Fri May 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.1.1-1]
-- based on RH spec,
-- spec rewrited by PLD team.
