@@ -608,6 +608,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %dir %{_kdedocdir}/en
 %lang(en) %{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
+%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 
 # 3rdparty directories
 %dir %{_bindir}/kconf_update_bin
