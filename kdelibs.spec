@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040130
+%define		_snap		040203
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -340,6 +340,9 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
