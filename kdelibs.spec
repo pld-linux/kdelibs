@@ -4,7 +4,7 @@
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	i18n	# don't build i18n subpackage
-%bcond_without	ldap	# build without openldap support
+%bcond_without	ldap	# build without LDAP support
 #
 %define		_state		stable
 %define		_ver		3.2.0
@@ -69,7 +69,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
-%{?with_ldap:	BuildRequires:	openldap-devel}
+%{?with_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
