@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	0.2
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -36,7 +36,7 @@ Patch4:		%{name}-fonts.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
-BuildRequires:	XFree86-devel >= 4.2.99
+#BuildRequires:	XFree86-devel >= 4.2.99
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
@@ -53,7 +53,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
@@ -62,14 +61,16 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 %{!?_without_ldap:BuildRequires:	openldap-devel}
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.6j
 BuildRequires:	pcre-devel >= 3.5
+BuildRequires:	perl-base
 BuildRequires:	qt-devel >= 3.1-3
-BuildRequires:	sed >= 4.0
+BuildRequires:	sed
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
 Requires:	applnk >= 1.6.2-1
@@ -87,6 +88,7 @@ Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
+%define		_prefix		/usr/X11R6
 %define		_htmldir	%{_docdir}/kde/HTML
 %define		no_install_post_chrpath		1
 
@@ -248,7 +250,7 @@ cd -
 
 for plik in `find ./ -name *.desktop` ; do
 	echo $plik
-	sed -i -e "s/\[nb\]/\[no\]/g" $plik
+	perl -pi -e "s/\[nb\]/\[no\]/g" $plik
 done
 
 %{__libtoolize}
@@ -295,13 +297,16 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-#find_lang kdelibs --with-kde --all-name > %{name}.lang
-topics="common kdelibs-apidocs kspell"
+find_lang kdelibs --with-kde --all-name > %{name}.lang
+#topics="common desktop_kde-i18n desktop_kdelibs kabc_dir kabc_ldap kabc_net kabc_sql kabcformat_binary \
+#katepart kdelibs-apidocs kmcop kspell knotify ktexteditor_insertfile ktexteditor_isearch \
+#ktexteditor_kdatatool libkscreensaver ppdtranslations timezones"
 
-for i in $topics; do
-	%find_lang $i --with-kde
-	cat $i.lang >> %{name}.lang
-done
+#%find_lang kdelibs	--with-kde
+#for i in $topics; do
+#	%find_lang $i --with-kde
+#	cat $i.lang >> %{name}.lang
+#done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
