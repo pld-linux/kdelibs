@@ -77,6 +77,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_apidocs:BuildRequires:	qt-doc}
 BuildRequires:	rpmbuild(macros) >= 1.129
+Requires:	setup >= 2.4.6-7
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake >= 040511
@@ -371,6 +372,7 @@ cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
+%{__sed} -i -e  "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -396,10 +398,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/ghns
 %ghost /etc/security/fileshare.conf
-# Required for network listings to be available in konq, maybe later there will be
-# a samba group that has write access only there.
-%attr(4755,root,root) %{_bindir}/filesharelist
-%attr(4755,root,root) %{_bindir}/fileshareset
+%attr(2755,root,fileshare) %{_bindir}/filesharelist
+%attr(2755,root,fileshare) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
