@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030328
+%define		_snap		030329
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -30,7 +30,7 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
-Patch4:		%{name}-kbookmarkfix.patch
+
 Patch5:		%{name}-vmenu_location.patch
 Patch6:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
 Icon:		kdelibs.xpm
@@ -233,7 +233,6 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -R -p1
 %patch5 -p1
 %patch6 -p1
 
