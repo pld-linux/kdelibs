@@ -12,7 +12,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	3.0.98
-Release:	1
+Release:	2
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -22,8 +22,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
-Patch2:		%{name}-am.patch
-#Patch3:		%{name}-resize-icons.patch
+#Patch2:		%{name}-am.patch
+Patch3:		%{name}-resize-icons.patch
 #Patch4:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
@@ -225,8 +225,8 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-##%patch2 -p0
-#%patch3 -p1
+#%patch2 -p0
+%patch3 -p1
 #cd khtml
 #%patch4 -p0
 #cd ..
@@ -234,7 +234,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-#%{__make} -f Makefile.cvs
+
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
 %configure \
@@ -297,35 +297,35 @@ done
 %attr(755,root,root) %{_bindir}/[ciklpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libc*.??
-%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.so.*.*
+%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.so.*
 %attr(755,root,root) %{_libdir}/libk[afhijmpt]*.la
 %attr(755,root,root) %{_libdir}/libkcertpart.??
 %attr(755,root,root) %{_libdir}/libkscreensaver.la
 %attr(755,root,root) %{_libdir}/libkscript.la
 %attr(755,root,root) %{_libdir}/libkspell.la
-%attr(755,root,root) %{_libdir}/libks[cp]*.so.*.*
-%attr(755,root,root) %{_libdir}/libD*.so.*.*
+%attr(755,root,root) %{_libdir}/libks[cp]*.so.*
+%attr(755,root,root) %{_libdir}/libD*.so.*
 %attr(755,root,root) %{_libdir}/libD*.la
 #%attr(755,root,root) %{_libdir}/libkatepart.so
-%attr(755,root,root) %{_libdir}/libkdecore.so.*.*
+%attr(755,root,root) %{_libdir}/libkdecore.so.*
 %attr(755,root,root) %{_libdir}/libkdecore.la
-%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
+%attr(755,root,root) %{_libdir}/libkdefakes.so.*
 %attr(755,root,root) %{_libdir}/libkdefakes.la
 %attr(755,root,root) %{_libdir}/libkdefx.la
-%attr(755,root,root) %{_libdir}/libkdefx.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
+%attr(755,root,root) %{_libdir}/libkdefx.so.*
+%attr(755,root,root) %{_libdir}/libkdeprint*.so.*
 %attr(755,root,root) %{_libdir}/libkdeprint*.la
-%attr(755,root,root) %{_libdir}/libkdesasl.so.*.*
+%attr(755,root,root) %{_libdir}/libkdesasl.so.*
 %attr(755,root,root) %{_libdir}/libkdesasl.la
-%attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
+%attr(755,root,root) %{_libdir}/libkdesu*.so.*
 %attr(755,root,root) %{_libdir}/libkdesu*.la
-%attr(755,root,root) %{_libdir}/libkdeui.so.*.*
+%attr(755,root,root) %{_libdir}/libkdeui.so.*
 %attr(755,root,root) %{_libdir}/libkdeui.la
-%attr(755,root,root) %{_libdir}/libkutils.so.*.*
+%attr(755,root,root) %{_libdir}/libkutils.so.*
 %attr(755,root,root) %{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libshellscript.la
-%attr(755,root,root) %{_libdir}/libshellscript.so.*.*
-%attr(755,root,root) %{_libdir}/libvcard.so.*.*
+%attr(755,root,root) %{_libdir}/libshellscript.so.*
+%attr(755,root,root) %{_libdir}/libvcard.so.*
 %attr(755,root,root) %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/kde3
 %config %{_datadir}/config
