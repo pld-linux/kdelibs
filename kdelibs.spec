@@ -6,7 +6,7 @@
 %bcond_with	cvs	# use cvs build dirs insttead of supplied sources
 
 %define		_state		snapshots
-%define		_ver		3.2.91
+%define		_ver		3.2.90
 %define		_snap		040523
 %define         artsver         13:1.2.0
 %define		_packager	adgor
@@ -344,7 +344,22 @@ cd -
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+cat << EOF
+
+ *************************************************************
+ *                                                           *
+ * NOTE:                                                     *
+ * kgrantpty should be installed with a set SETUID root bit. *
+ * This is needed for konsole, etc. to ensure                *
+ * that they can't be eavesdroped.                           *
+ *                                                           *
+ *************************************************************
+
+EOF
+
 %postun	-p /sbin/ldconfig
 
 %files
