@@ -5,8 +5,9 @@
 %bcond_with	verbose	# verbose build
 
 %define		_state		unstable
-%define		_ver		3.3.91
-%define		artsver		13:1.3.91
+%define		_ver		3.3.92
+%define		artsver		13:1.3.92
+%define		_snap		%{nil}
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -16,13 +17,15 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
+#Version:	%{_ver}.%{_snap}
 Version:	%{_ver}
 Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	4bccce0b432bea5ea8c8c876d6b7913d
+# Source0-md5:	876196a4f16a5cbc2da5f4f8557d138a
+#Source0:        http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -287,6 +290,7 @@ nieobs≥uguj±cej pts-Ûw typu Unix98 i obawiasz siÍ inwigilacji ze strony
 innych uøytkownikÛw lokalnych.
 
 %prep
+#%setup -q -n %{name}-%{_snap} -a1
 %setup -q -a1
 %patch0 -p1
 %patch1 -p1
@@ -376,6 +380,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%ghost /etc/security/fileshare.conf
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
@@ -389,8 +394,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
-%attr(755,root,root) %{_bindir}/ghns
-%ghost /etc/security/fileshare.conf
+#%attr(755,root,root) %{_bindir}/ghns
 %attr(2755,root,fileshare) %{_bindir}/filesharelist
 %attr(2755,root,fileshare) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
@@ -664,6 +668,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/kde3/plugins/styles
 %{_libdir}/kde3/plugins/styles/highcolor.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcolor.so
+%{_libdir}/kde3/plugins/styles/highcontrast.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcontrast.so
 %{_libdir}/kde3/plugins/styles/keramik.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/keramik.so
 %{_libdir}/kde3/plugins/styles/kthemestyle.la
@@ -704,6 +710,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/proxyscout
 %dir %{_datadir}/autostart
 %{_datadir}/config
+%dir %{_datadir}/emoticons
+%{_datadir}/emoticons/Default
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
@@ -770,6 +778,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/services/wmfthumbnail.desktop
+%{_datadir}/services/mmst.protocol
+%{_datadir}/services/mmsu.protocol
+%{_datadir}/services/rtspt.protocol
+%{_datadir}/services/rtspu.protocol
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
 # contains also 3rdparty hicolor & crystalsvg/apps trees
