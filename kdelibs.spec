@@ -19,8 +19,10 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
+# Please dont downgrade this release, it was a msitake of mine but it went to builders
+# so its too late.
 Release:	22
-Epoch:		9
+Epoch:		10
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
