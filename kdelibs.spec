@@ -53,7 +53,7 @@ w³asnych programów wykorzystuj±cych kdelibs.
 %build
 export KDEDIR=/usr/X11R6
 CXXFLAGS="$RPM_OPT_FLAGS -Wall" CFLAGS="$RPM_OPT_FLAGS -Wall" \
-./configure --prefix=/usr \
+./configure --prefix=$KDEDIR \
 	--disable-path-check \
 	--with-qt-includes=/usr/X11R6/include/qt
 make KDEDIR=$KDEDIR
