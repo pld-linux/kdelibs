@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.13
+Release:	0.%{sver}.14
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -19,6 +19,7 @@ Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-no_nas.patch
 Patch5:		%{name}-ssl_linking.patch
+Patch6:		%{name}-libxml_closecallback.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
