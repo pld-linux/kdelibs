@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040506
+%define		_snap		040508
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -25,9 +25,9 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-#Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	a1cc949c82151aa784526227c112413d
+Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	%{name}-%{_snap}.tar.bz2
+##%% Source0-md5:	a1cc949c82151aa784526227c112413d
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
 Source2:	%{name}-wmfplugin.tar.bz2 
@@ -36,7 +36,6 @@ Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-QTDOCDIR.patch
-Patch4:		%{name}-exr.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -333,7 +332,6 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
