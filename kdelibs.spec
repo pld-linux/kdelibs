@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0
 #define		_sub_ver
-%define		_rel		1
+%define		_rel		2
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -131,7 +131,7 @@ Group(ru):	X11/Разработка/Библиотеки
 Group(uk):	X11/Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 Requires:	arts-devel >= 0.9.9
-Requires:	qt-devel >= 2.3.0
+Requires:	qt-devel >= 3.0.3
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
