@@ -6,8 +6,8 @@
 %bcond_with	cvs	# use cvs build dirs instead of supplied sources
 
 %define		_state		snapshots
-%define		_ver		3.2.91
-%define		_snap		040629
+%define		_ver		3.2.92
+%define		_snap		040724
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
