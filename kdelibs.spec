@@ -375,26 +375,7 @@ touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-
-cat << EOF
-
- *************************************************************
- *                                                           *
- * NOTE:                                                     *
- * If You want the directories sharing from the context menu *
- * functionality, do as following:                           *
- * 1) Install sperl package,                                 *
- * 2) Set SUID root bit for fileshareset script.             *
- *                                                           *
- * WARNING:                                                  *
- * 1) That allows users to write to /etc/samba/smb.conf,     *
- * 2) After all - using sperl is not safe.                   *
- *                                                           *
- *************************************************************
-
-EOF
+%post -p /sbin/ldconfig
 
 %postun	-p /sbin/ldconfig
 
@@ -415,8 +396,10 @@ EOF
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/ghns
 %ghost /etc/security/fileshare.conf
-%attr(0755,root,root) %{_bindir}/filesharelist
-%attr(0755,root,root) %{_bindir}/fileshareset
+# Required for network listings to be available in konq, maybe later there will be
+# a samba group that has write access only there.
+%attr(4755,root,root) %{_bindir}/filesharelist
+%attr(4755,root,root) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
