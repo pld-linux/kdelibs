@@ -1,8 +1,8 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
 
-%define         _state          unstable                                        
-%define         _kdever         kde-3.1-beta1                                   
+%define         _state          unstable
+%define         _kdever         kde-3.1-beta2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -280,7 +280,7 @@ done
 %postun -n arts-kde -p /sbin/ldconfig
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
