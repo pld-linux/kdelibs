@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	1.1.2
-Release:	13
+Release:	14
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
@@ -23,8 +23,8 @@ BuildRoot:	/tmp/%{name}-%{version}-root
 %define		_prefix 		/usr/X11R6
 %define		_sysconfdir		/etc/X11/kde
 %define		_kde_htmldir		%{_datadir}/doc/HTML
-%define		_kde_icondir		%{_datadir}/icons
-%define		_kde_minidir		%{_datadir}/icons/mini
+%define		_kde_icondir		%{_datadir}/pixmaps
+%define		_kde_minidir		%{_kde_icondir}/mini
 %define		_kde_appsdir		%{_datadir}/applnk
 %define		_kde_sounddir		%{_datadir}/sounds
 %define		_kde_datadir		%{_datadir}/apps
