@@ -1,8 +1,8 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	1.1.1
-Release:	3
+Version:	1.1.2
+Release:	2.1
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
@@ -10,6 +10,8 @@ Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
 Source1:	kderc.PLD
 BuildRequires:	qt-devel >= 1.44
+BuildRequires:	XFree86-devel
+BuildRequires:	mico-devel
 Requires:	qt >= 1.44
 URL:		http://www.kde.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -56,7 +58,7 @@ Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy pisaniu
 w³asnych programów wykorzystuj±cych kdelibs.
 
 %prep
-%setup -q 
+%setup -q
 
 %build
 # Setup KDE directories to be compatible with FSSTD
@@ -76,11 +78,12 @@ export kde_confdir='\$(prefix)/../../etc/X11/kde'
 export kde_mimedir='\$(prefix)/../../etc/X11/kde/mimelnk'
 export kde_appsdir='\$(prefix)/../../etc/X11/kde/applnk'
 
-CXXFLAGS="$RPM_OPT_FLAGS -Wall" \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" LDFLAGS="-s" \
 ./configure %{_target_platform} \
 	--prefix=$KDEDIR \
 	--with-install-root=$RPM_BUILD_ROOT \
+	--with-qt-dir=%{_prefix} \
 	--disable-path-check
 make
 
