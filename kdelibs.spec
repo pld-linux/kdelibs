@@ -1,8 +1,10 @@
+%define		_prefix	 	/usr/X11R6
+
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.0
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -12,6 +14,7 @@ Group(pl):	X11/KDE/Biblioteki
 Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
+Patch2:		%{name}-directories.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -29,8 +32,6 @@ BuildRequires:	unixODBC-devel
 Requires:	qt >= 2.2.1
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix	 		/usr/X11R6
 
 %description
 Libraries for the K Desktop Environment.
@@ -74,8 +75,16 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 %setup  -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
+%define		_sharedir	%{_prefix}/share
+%define		_htmldir	%{_sharedir}/doc/kde/HTML
+%define		_pixmapsdir	%{_sharedir}/pixmaps
+
+kde_htmldir="%{_htmldir}"; export kde_htmldir
+kde_icondir="%{_pixmapsdir}"; export kde_icondir
+
 %configure \
 	--enable-final
 %{__make}
@@ -85,7 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf arts/doc/{LICENSE,MCOP,TODO}
+%find_lang common --with-kde
+%find_lang kspell --with-kde
+cat common.lang kspell.lang > kdelibs.lang
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -93,7 +104,7 @@ gzip -9nf arts/doc/{LICENSE,MCOP,TODO}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f kdelibs.lang
 %defattr(644,root,root,755)
 %dir %{_libdir}/Arts
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
@@ -124,10 +135,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/settheme
 
 %config %{_datadir}/config
+%{_htmldir}/default
+%{_pixmapsdir}
 %{_datadir}/apps
-%{_datadir}/doc
 %{_datadir}/mimelnk
-%{_datadir}/icons
 %{_datadir}/services
 %{_datadir}/servicetypes
 
