@@ -20,7 +20,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -32,7 +32,7 @@ Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
-Patch4:		%{name}-add_japanese_utf8_detection.patch
+##Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
@@ -233,11 +233,11 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 
 %prep 
 %setup -q
-#%%patch0 -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-#%%patch4 -p1
+###%patch4 -p1
 %patch5 -p0
 
 # unwanted manpages (no binaries)
@@ -261,11 +261,10 @@ export kde_htmldir=%{_kdedocdir}
 	--enable-final \
 	--enable-mitshm \
 	--with-ldap=no \
-	--enable-pch \
 	--with%{!?with_alsa:out}-alsa
 
 %{__make}
-##%{__make} apidox
+%{__make} apidox
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -306,9 +305,8 @@ cd -
 i=%{name}
 
 # for i in $files; do
-echo "%defattr(644,root,root,755)" > ${i}_en.lang
-grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
-grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
+
+grep -v apidocs ${i}.lang > ${i}.lang.1
 mv ${i}.lang.1 ${i}.lang
 # done
 
@@ -319,7 +317,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f %{name}_en.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -702,7 +700,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
 %dir %{_kdedocdir}/en
-%{_kdedocdir}/en/common
+##%{_kdedocdir}/en/common
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
