@@ -22,13 +22,6 @@ Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
-Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
@@ -109,17 +102,9 @@ aplicativo KDE.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
-Summary(es):	Header files and documentation for compiling KDE applications
 Summary(pl):	kdelibs - pliki nag³ówkowe i dokumentacja do kdelibs
 Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KDE
 Group:		X11/Development/Libraries
-Group(de):	X11/Entwicklung/Libraries
-Group(es):	X11/Desarrollo/Bibliotecas
-Group(fr):	X11/Development/Librairies
-Group(pl):	X11/Programowanie/Biblioteki
-Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
-Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 Requires:	arts-devel >= 1.0.0
 Requires:	qt-devel >= 3.0.3
@@ -130,11 +115,6 @@ Obsoletes:	kdelibs2-sound-devel
 %description devel
 This package contains header files and development documentation for
 kdelibs.
-
-%description devel -l es
-This package includes the header files you will need to compile
-applications for KDE. Also included is the KDE API documentation in
-HTML format for easy browsing.
 
 %description devel -l pl
 Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy
@@ -173,9 +153,6 @@ Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
-Group(de):	Entwicklung/Werkzeuge
-Group(fr):	Development/Outils
-Group(pl):	Programowanie/Narzêdzia
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
@@ -243,41 +220,36 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcop[cfors]*
 %attr(755,root,root) %{_bindir}/make*
 %attr(755,root,root) %{_bindir}/meinproc
-%attr(755,root,root) %{_bindir}/[cilkpsx]*
+%attr(755,root,root) %{_bindir}/[ciklpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libc*.??
-%attr(755,root,root) %{_libdir}/libk[afhjpt]*.so.*.*
-%attr(755,root,root) %{_libdir}/libk[afjpt]*.la
+%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.so.*.*
+%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.la
 %attr(755,root,root) %{_libdir}/libkcertpart.??
-%attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeprint*.la
-%attr(755,root,root) %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkscreensaver.la
+%attr(755,root,root) %{_libdir}/libkscript.la
 %attr(755,root,root) %{_libdir}/libkspell.la
-%attr(755,root,root) %{_libdir}/libkmid.so.*.*
-%attr(755,root,root) %{_libdir}/libkmid.la
-%attr(755,root,root) %{_libdir}/libks[!ys]*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libks[cp]*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.la
 %attr(755,root,root) %{_libdir}/libkatepart.so
+%attr(755,root,root) %{_libdir}/libkdecore.so.*.*
+%attr(755,root,root) %{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
 %attr(755,root,root) %{_libdir}/libkdefakes.la
 %attr(755,root,root) %{_libdir}/libkdefx.la
-%attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkdecore.so.*.*
-%attr(755,root,root) %{_libdir}/libkdecore.la
-%attr(755,root,root) %{_libdir}/libkdeui.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeui.la
-%attr(755,root,root) %{_libdir}/libkdesasl.so.*.*.*
+%attr(755,root,root) %{_libdir}/libkdefx.so.*.*
+%attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
+%attr(755,root,root) %{_libdir}/libkdeprint*.la
+%attr(755,root,root) %{_libdir}/libkdesasl.so.*.*
 %attr(755,root,root) %{_libdir}/libkdesasl.la
 %attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
 %attr(755,root,root) %{_libdir}/libkdesu*.la
-%attr(755,root,root) %{_libdir}/libkio.la
-%attr(755,root,root) %{_libdir}/libkio.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkscript.la
+%attr(755,root,root) %{_libdir}/libkdeui.so.*.*
+%attr(755,root,root) %{_libdir}/libkdeui.la
 %attr(755,root,root) %{_libdir}/libshellscript.la
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*
-%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
+%attr(755,root,root) %{_libdir}/libvcard.so.*.*
 %attr(755,root,root) %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/kde3
 
@@ -296,7 +268,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/servicetypes
 %dir /usr/share/doc/kde
 %dir %{_htmldir}
-%lang(en) %dir %{_htmldir}/en
+%dir %{_htmldir}/en
 
 %files devel
 %defattr(644,root,root,755)
@@ -304,10 +276,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libD*.so
 %{_libdir}/libkabc.so
 %{_libdir}/libkatepartinterfaces.so
-%{_libdir}/libk[dfijpt]*.so
+%{_libdir}/libk[dfhijmpt]*.so
 %{_libdir}/libks[cpsy]*.so
-%{_libdir}/libkhtml.so
-%{_libdir}/libkmid.so
 %{_libdir}/libshellscript.so
 %{_libdir}/libvcard.so
 # All subdirs and headers not starting with 'a'.
