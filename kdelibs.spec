@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040529
+%define		_snap		040530
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -26,8 +26,7 @@ License:	LGPL
 Group:		X11/Libraries
 %if ! %{with cvs}
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-#Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	53b213398dc488af5de57b74c6b3bbf5
+# Source0-md5:	8ca068050b13eeb530b3e13a5c6952ca
 %else
 Source0:	kdesource.tar.gz
 %endif
