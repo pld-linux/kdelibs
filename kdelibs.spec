@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030527
+%define		_snap		030602
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -23,8 +23,8 @@ Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	42d33b73b2753bb71d96993945309163
 Source0:        http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	defc31753e2b0c9bed88eddeb5e537b8
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
@@ -282,10 +282,6 @@ sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	> config.h.tmp
 mv -f config.h{.tmp,}
 %endif
-
-cd khtml/css
-%{__make} parser
-cd ../../
 
 %{__make}
 
