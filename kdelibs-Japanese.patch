@@ -1,0 +1,41 @@
+--- kdelibs/kdecore/kcharsets.cpp.jp	Mon Feb  5 15:39:01 2001
++++ kdelibs/kdecore/kcharsets.cpp	Mon Feb  5 15:41:10 2001
+@@ -37,9 +37,9 @@
+ template class QList<QFont::CharSet>;
+ 
+ #if QT_VERSION >= 224
+-#define CHARSETS_COUNT 32
++#define CHARSETS_COUNT 34
+ #else
+-#define CHARSETS_COUNT 30
++#define CHARSETS_COUNT 32
+ #endif
+ 
+ static const char * const charsetsStr[CHARSETS_COUNT] = {
+@@ -66,6 +66,8 @@
+     "pt154",
+ #endif
+     "eucjp",
++    "iso-2022-jp",
++    "shift_jis",
+     "euckr",
+     "set-th-th",
+     "set-gbk",
+@@ -105,6 +107,8 @@
+     "paratype-cp154",
+ #endif
+     "jisx0208.1983-0",
++    "jisx0208.1983-0",
++    "jisx0208.1983-0",
+     "ksc5601.1987-0",
+     "tis620.2533-1",
+     "gb2312.1980-0",
+@@ -142,6 +146,8 @@
+     QFont::CP1251,
+     QFont::PT154,
+ #endif
++    QFont::Set_Ja,
++    QFont::Set_Ja,
+     QFont::Set_Ja,
+     QFont::Set_Ko,
+     QFont::Set_Th_TH,

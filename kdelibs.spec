@@ -1,74 +1,82 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
+#
+# TODO: 
+# - Where is Icon ?
+# - Make languages sectiona acording to current policy (blues ?)
+#
+# Conditional build:
+# _with_nas	- with NAS support
+# _without_alsa - disable alsa
+#
+
+%define		_state		stable
+%define		_ver		3.1.1a
+
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
+Summary(ko):	KDE - ¶óÀÌºê·¯¸®
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	2.2.2
-Release:	9
-Epoch:		6
+Version:	%{_ver}
+Release:	4
+Epoch:		8
 License:	LGPL
-Vendor:		The KDE Team
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-final.patch
-Patch1:		%{name}-nodebug.patch
-Patch2:		%{name}-directories.patch
-Patch3:		%{name}-klauncher-escape.patch
-Patch4:		%{name}-libxml_closecallback.patch
-Patch5:		%{name}-cookieperms.patch
-Patch6:		%{name}-qt_docdir.patch
-Patch7:		%{name}-selectedicons.patch
-Patch8:		%{name}-ktoolbarbutton-fix-enable-disable-text.patch
-Patch9:		%{name}-kstddirs-symlinks.patch
-Patch10:	%{name}-kssl-wrongwarnings.patch
-Patch11:	%{name}-kicondialog.cpp.patch
-Patch12:	%{name}-kdeprint-PPD-O-Matic.patch
-Patch13:	%{name}-fix-cups-config-dialogbox-use-kintvalidator.patch
-Patch14:	%{name}-fix-cupsdconf.patch
-Patch15:	%{name}-fix-file-dialogbox-dont-add-separator-in-bookmaks-when-bookmarks-is-empty.patch
-Patch16:	%{name}-fix-filter-dlg.patch
-Patch17:	%{name}-fix-kdeprint-preview-button.patch
-Patch18:	%{name}-fix-kintvalidator.patch
-Patch19:	%{name}-fix-kjs-mem-leak.patch
-Patch20:	%{name}-fix-special-printer.patch
-Patch21:	%{name}-fix-popupmenu-image.patch
-Patch22:	%{name}-disable-ok-button-in-properties-dialogbox-when-filename-is-empty.patch
-Patch23:	%{name}-artswrapper-priority_fix.patch
-Icon:		kdelibs.xpm
-# If you want gmcop you will need *working* pkgconfig --- there is no such
-# thing at the moment (2001-08-15) in known universe.
-#Requires:	glib2 >= 1.3.3
+Source0:	ftp://ftp.kde.org/pub/kde//%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	5d4f4b2bfcdd14ecf3f6af6b44dfc5fd
+Source2:	x-wmv.desktop
+Patch0:		%{name}-directories.patch
+Patch1:		%{name}-resize-icons.patch
+Patch2:         %{name}-kcursor.patch
+Patch3:		post-3.1.2-kdelibs-http.patch
+Patch4:		post-3.1.2-kdelibs-khtml.patch
+# Icon:		kdelibs.xpm
+URL:		http://www.kde.org/
+# Where is gmcop?!!!
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
-BuildRequires:	alsa-lib-devel
+%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
+BuildRequires:	arts-devel >= 1.1-1
+BuildRequires:	arts-qt >= 1.1-1
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	gettext-devel
+%{?!_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
+BuildRequires:	libtool
+BuildRequires:	libvorbis-devel
+BuildRequires:	libxml2-devel >= 2.4.9
+BuildRequires:	libxml2-progs
+BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
-BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.9
-BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	openssl-devel >= 0.9.6a
+%{?_with_nas:BuildRequires:	nas-devel}
+BuildRequires:	openssl-devel >= 0.9.6i
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 2.3.0
+BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
-Requires:	arts = %{version}
-Requires:	qt >= 2.2.4
-URL:		http://www.kde.org/
+BuildRequires:	perl
+Requires:	XFree86
+Requires:	applnk
+Requires:	arts >= 1.1-1
+Requires:	openssl >= 0.9.6i
+Requires:	qt >= 3.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	kde-theme-keramik
 Obsoletes:	kdelibs2
 Obsoletes:	kdelibs2-sound
 Obsoletes:	kdelibs-sound
@@ -78,25 +86,40 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+Obsoletes:	kde-i18n-Affrikaans kde-i18n-Arabic kde-i18n-Azerbaijani
+Obsoletes:	kde-i18n-Bulgarian kde-i18n-Bosnian kde-i18n-Catalan
+Obsoletes:	kde-i18n-Czech kde-i18n-Danish kde-i18n-German kde-i18n-Greek
+Obsoletes:	kde-i18n-English_UK kde-i18n-Esperanto kde-i18n-Spanish
+Obsoletes:	kde-i18n-Estonian kde-i18n-Finnish kde-i18n-French
+Obsoletes:	kde-i18n-Hebrew kde-i18n-Croatian kde-i18n-Hungarian
+Obsoletes:	kde-i18n-Indonesian kde-i18n-Icelandic kde-i18n-Italian
+Obsoletes:	kde-i18n-Japanese kde-i18n-Korean kde-i18n-Lithuanian
+Obsoletes:	kde-i18n-Latvian kde-i18n-Maltese kde-i18n-Dutch
+Obsoletes:	kde-i18n-Norwegian kde-i18n-Norwegian_Bokmaal
+Obsoletes:	kde-i18n-Norwegian_Nynorsk kde-i18n-Polish kde-i18n-Portugnese
+Obsoletes:	kde-i18n-Brazil_Portugnese kde-i18n-Portuguese
+Obsoletes:	kde-i18n-Brazil_Portuguese kde-i18n-Romanian kde-i18n-Russian
+Obsoletes:	kde-i18n-Slovak kde-i18n-Slovenian kde-i18n-Serbian
+Obsoletes:	kde-i18n-Swedish kde-i18n-Tamil kde-i18n-Thai kde-i18n-Turkish
+Obsoletes:	kde-i18n-Ukrainian kde-i18n-Venda kde-i18n-Vietnamese
+Obsoletes:	kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
+Obsoletes:	kde-i18n-Zulu
 
-%define		_prefix		/usr/X11R6
-%define		_htmldir	/usr/share/doc/kde/HTML
+%define         _prefix         /usr/X11R6
+%define		_htmldir	%{_docdir}/kde/HTML
+
+%define		no_install_post_chrpath		1
 
 %description
 Libraries for the K Desktop Environment.
 
-KDE Libraries included:
-- kdecore (KDE core library),
-- kdeui (user interface),
-- khtml (HTML widget),
-- kfile (file access),
-- kspell (spelling checker),
-- kssl (secure web browsing),
-- kab (addressbook),
-- kimgio (image manipulation),
-- arts (sound, mixing and animation),
-- kstyles, kparts, kjs (JavaScript),
-- kio, kdesu and ksgmltools.
+Included with this package are:
+- jscript - KDE javascript library,
+- kdecore - KDE core library,
+- kdeui - KDE user interface library,
+- kfmlib - KDE file manager library,
+- khtmlw - KDE HTML widget,
+- mediatool - KDE mediatool library.
 
 %description -l es
 Bibliotecas para KDE.
@@ -121,11 +144,8 @@ aplicativo KDE.
 
 ÷ËÌÀÞÅÎÙ ÂÉÂÌÉÏÔÅËÉ KDE:
 - jscript (javascript),
-- kab (ÁÄÒÅÓÎÁÑ ËÎÉÇÁ),
 - kdecore (ÑÄÒÏ KDE),
 - kdeui (ÉÎÔÅÒÆÅÊÓ ÐÏÌØÚÏ×ÁÔÅÌÑ),
-- kfile (ÄÏÓÔÕÐ Ë ÆÁÊÌÁÍ),
-- kfm (ÆÁÊÌÏ×ÙÊ ÍÅÎÅÄÖÅÒ),
 - khtmlw (ÒÁÂÏÔÁ Ó HTML),
 - kimgio (ÏÂÒÁÂÏÔËÁ ÉÚÏÂÒÁÖÅÎÉÊ).
 - kspell (ÐÒÏ×ÅÒËÁ ÏÒÆÏÇÒÁÆÉÉ),
@@ -135,28 +155,22 @@ aplicativo KDE.
 
 ÷ËÌÀÞÅÎ¦ ÔÁË¦ Â¦ÂÌ¦ÏÔÅËÉ KDE:
 - jscript (javascript),
-- kab (ÁÄÒÅÓÎÁ ËÎÉÇÁ),
 - kdecore (ÑÄÒÏ KDE),
 - kdeui (¦ÎÔÅÒÆÅÊÓ ËÏÒÉÓÔÕ×ÁÞÁ),
-- kfile (ÄÏÓÔÕÐ ÄÏ ÆÁÊÌ¦×),
-- kfm (ÆÁÊÌÏ×ÉÊ ÍÅÎÅÄÖÅÒ),
 - khtmlw (ÒÏÂÏÔÁ Ú HTML),
 - kimgio (ÏÂÒÏÂËÁ ÚÏÂÒÁÖÅÎØ).
 - kspell (ÐÅÒÅ×¦ÒËÁ ÏÒÆÏÇÒÁÆ¦§),
 
 %package devel
 Summary:	kdelibs - header files and development documentation
-Summary(es):	Header files and documentation for compiling KDE applications
 Summary(pl):	kdelibs - pliki nag³ówkowe i dokumentacja do kdelibs
 Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KDE
 Summary(ru):	èÅÄÅÒÙ É ÄÏËÕÍÅÎÔÁÃÉÑ ÄÌÑ ËÏÍÐÉÌÌÑÃÉÉ ÐÒÏÇÒÁÍÍ KDE
 Summary(uk):	èÅÄÅÒÉ ÔÁ ÄÏËÕÍÅÎÔÁÃ¦Ñ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	arts-devel = %{version}
-Requires:	libjpeg-devel
-Requires:	libpng-devel
-Requires:	qt-devel >= 2.3.0
+Requires:	arts-devel >= 1.1-1
+Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
@@ -187,79 +201,35 @@ KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
 ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÈÅÄÅÒÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ ÄÌÑ KDE.
 ôÁËÏÖ ÄÏ ÎØÏÇÏ ×ÈÏÄÉÔØ ÄÏËÕÍÅÎÔÁÃ¦Ñ Õ ÆÏÒÍÁÔ¦ HTML.
 
-%package -n arts
-Summary:	aRts sound server
-Summary(es):	Sound server used by KDE
-Summary(pl):	Serwer d¼wiêku
-Summary(pt_BR):	Servidor de sons usado pelo KDE
-Group:		Libraries
-
-%description -n arts
-aRts sound server.
-
-%description -n arts -l es
-Sound server and analog analyzer/synthetizer used by KDE.
-
-%description -n arts -l pl
-Serwer d¼wiêku aRts.
-
-%description -n arts -l pt_BR
-O aRts é um sintetizador analógico em tempo real que é completamente
-modular. Você pode criar sons e músicas (síntese em tempo real de
-midi) usando pequenos módulos como oscilador para criar waveforms,
-vários filtros, mixers, faders, etc. Você pode configurar tudo através
-de uma interface no KDE. O Servidor aRts é controlado via CORBA. Este
-design foi escolhido para permitir que outras aplicações usem o aRts
-como um sintetizador (ou fornecedor de filtros). Usado pelo KDE, entre
-outros.
-
-%package -n arts-X11
-Summary:	X11 dependent part of aRts
-Summary(pl):	Czê¶æ aRts wymagaj±ca X11
+%package -n arts-kde
+Summary:	KDE dependent part of aRts
+Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
 Group:		X11/Libraries
+Requires:	%{name} >= %{version}
 
-%description -n arts-X11
-X11 dependent part of aRts.
+%description -n arts-kde
+KDE dependent part of aRts.
 
-%description -n arts-X11 -l pl
-Czê¶æ aRts wymagaj±ca X11.
+%description -n arts-kde -l pl
+Czê¶æ aRts wymagaj±ca KDE.
 
-%package -n arts-qt
-Summary:	QT dependend part of aRts
-Summary(pl):	Czê¶æ aRts wymagaj±ca QT
+%package -n arts-kde-devel
+Summary:	Headers for KDE dependent part of aRts
+Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±ca KDE
 Group:		X11/Libraries
+Requires:	arts-kde = %{version}
 
-%description -n arts-qt
-QT dependend part of aRts.
+%description -n arts-kde-devel
+Headers for KDE dependent part of aRts.
 
-%description -n arts-qt -l pl
-Czê¶æ aRts wymagaj±ca QT.
-
-%package -n arts-devel
-Summary:	Sound server - header files
-Summary(es):	Header files for compiling aRtsd applications
-Summary(pl):	Serwer d¼wiêku - pliki nag³ówkowe
-Summary(pt_BR):	Arquivos para desenvolvimento com o o aRts
-Group:		Development/Libraries
-
-%description -n arts-devel
-Header files required to compile programs using arts.
-
-%description -n arts-devel -l es
-This package includes the header files you will need to compile
-applications for aRtsd.
-
-%description -n arts-devel -l pl
-Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z
-arts.
-
-%description -n arts-devel -l pt_BR
-Arquivos para desenvolvimento com o o aRts.
+%description -n arts-kde-devel -l pl
+Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
 
 %package -n arts-message
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
+Requires:	%{name} >= %{version}
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
@@ -274,182 +244,142 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
-%patch17 -p1
-%patch18 -p1
-%patch19 -p1
-%patch20 -p1
-%patch21 -p1
-%patch22 -p1
-%patch23 -p1
+cd kioslave/http
+%patch3 -p0
+cd ../../khtml
+%patch4 -p0
 
 %build
+kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%{__make} -f Makefile.cvs
+cd kdecore
+> plddirs.h
+echo "#define kde_appsdir \"%{_applnkdir}\"" >> plddirs.h
+echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
+echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
+cd -
+
+for plik in `find ./ -name \*.desktop` ; do
+		echo $plik
+		perl -pi -e "s/\[nb\]/\[no\]/g" $plik
+done
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	--enable-final \
-	--disable-mysql \
 	--disable-informix \
-	--with-alsa \
-	--enable-mitshm
+	--disable-mysql \
+%ifarch %{ix86}
+	--enable-fast-malloc=full \
+%endif
+	--enable-final \
+	--enable-mitshm \
+	--with%{?_without_alsa:out}-alsa
 
+%if %{?_with_nas:0}1
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
 	> config.h.tmp
 mv -f config.h{.tmp,}
+%endif
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
-install -d $RPM_BUILD_ROOT%{_datadir}/templates/.source
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE,%{_datadir}/apps/khtml/kpartplugins} \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-gzip arts/doc/{README,NEWS,TODO}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
+mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
+rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
-%find_lang %{name} --with-kde --all-name
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+> %{name}.lang
+topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
 
-%post -p /sbin/ldconfig
+%find_lang %{name} --with-kde
+
+for i in $topics; do
+	%find_lang $i --with-kde
+	cat $i.lang >> %{name}.lang
+done
+
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post -n arts -p /sbin/ldconfig
-%postun -n arts -p /sbin/ldconfig
+%post   -n arts-kde -p /sbin/ldconfig
+%postun -n arts-kde -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/[!ad]*
 %attr(755,root,root) %{_bindir}/dcop
-%attr(755,root,root) %{_bindir}/dcopserver
-%attr(755,root,root) %{_bindir}/make*
-%attr(755,root,root) %{_bindir}/meinproc
-%attr(755,root,root) %{_bindir}/[cilkpsx]*
-%attr(755,root,root) %{_libdir}/[bdhk]*.??
-%attr(755,root,root) %{_libdir}/libc*.??
-%attr(755,root,root) %{_libdir}/libartskde.so
-%attr(755,root,root) %{_libdir}/libk[afhjpt]*.so.*.*
-%attr(755,root,root) %{_libdir}/libk[afjpt]*.la
-%attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeprint*.la
-%attr(755,root,root) %{_libdir}/libkhtml.la
-%attr(755,root,root) %{_libdir}/libkscreensaver.la
-%attr(755,root,root) %{_libdir}/libkspell.la
-%attr(755,root,root) %{_libdir}/libkmid.so.*.*
-%attr(755,root,root) %{_libdir}/libkmid.la
-%attr(755,root,root) %{_libdir}/libkhtmli*.??
-%attr(755,root,root) %{_libdir}/libks[!ys]*.so.*.*.*
-%attr(755,root,root) %{_libdir}/libD*.so.*.*
-%attr(755,root,root) %{_libdir}/libD*.la
-%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
-%attr(755,root,root) %{_libdir}/libkdefakes.la
-%attr(755,root,root) %{_libdir}/libkdecore.so.*.*
-%attr(755,root,root) %{_libdir}/libkdecore.la
-%attr(755,root,root) %{_libdir}/libkdeui.so.*.*
-%attr(755,root,root) %{_libdir}/libkdeui.la
-%attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
-%attr(755,root,root) %{_libdir}/libkdesu*.la
-%attr(755,root,root) %{_libdir}/libkio.la
-%attr(755,root,root) %{_libdir}/libkio.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkssl.la
-%attr(755,root,root) %{_libdir}/libkded_kssld.la
-%attr(755,root,root) %{_libdir}/libkded_kssld.so
-%attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
-%attr(755,root,root) %{_libdir}/libksycoca.la
-%attr(755,root,root) %{_libdir}/mega.so
-%attr(755,root,root) %{_libdir}/mega.la
-%attr(755,root,root) %{_libdir}/webstyle.so
-%attr(755,root,root) %{_libdir}/webstyle.la
-%attr(755,root,root) %{_libdir}/kde2
+%attr(755,root,root) %{_bindir}/dcop[!i]*
+%{_libdir}/[dk]*.la
+%attr(755,root,root) %{_libdir}/[dk]*.so
+%{_libdir}/lib[!ack]*.la
+%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*
+%{_libdir}/libc*.la
+%attr(755,root,root) %{_libdir}/libc*.so
+%{_libdir}/libk[!c]*.la
+%attr(755,root,root) %{_libdir}/libk[!c]*.so.*
+%{_libdir}/libkcertpart.la
+%attr(755,root,root) %{_libdir}/libkcertpart.so
+%dir %{_libdir}/kde3
+%dir %{_libdir}/kde3/plugins
+%dir %{_libdir}/kde3/plugins/designer
+%dir %{_libdir}/kde3/plugins/styles
+%{_libdir}/kde3/*.la
+%attr(755,root,root) %{_libdir}/kde3/*.so
+%{_libdir}/kde3/plugins/designer/*.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
+%{_libdir}/kde3/plugins/styles/*.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
 
-%config %{_datadir}/config
-%dir %{_pixmapsdir}/hicolor
-%dir %{_pixmapsdir}/locolor
-%dir %{_pixmapsdir}/*/[1-9]*
-%dir %{_pixmapsdir}/*/[1-9]*/*
-%{_pixmapsdir}/*/[1-9]*/*/*
-# I'm not sure what this file is for.
-%{_pixmapsdir}/hicolor/index.desktop
+%{_datadir}/config
+# Contains Components/kabc.desktop only
+%{_applnkdir}/Settings/KDE
+%{_pixmapsdir}/*
 %{_datadir}/apps
+%{_datadir}/autostart
+%{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
+%exclude %{_datadir}/mimelnk/image/x-pcx.desktop 
 %{_datadir}/services
 %{_datadir}/servicetypes
-%{_datadir}/templates
-%dir /usr/share/doc/kde
+%dir %{_docdir}/kde
 %dir %{_htmldir}
-%dir %{_htmldir}/en
+%lang(en) %dir %{_htmldir}/en
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl*
-%{_libdir}/libD*.so
-%{_libdir}/libk[fijpt]*.so
-%{_libdir}/libkde[!d]*.so
-%{_libdir}/libks[cpsy]*.so
-%{_libdir}/libkhtml.so
-%{_libdir}/libkmid.so
-%{_libdir}/libkab.so
+%{_libdir}/lib[!ack]*.so
+%{_libdir}/libk[!c]*.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
-%{_includedir}/addressbook.h
 
-%files -n arts
+%files -n arts-kde
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/artscat
-%attr(755,root,root) %{_bindir}/artsd
-%attr(755,root,root) %{_bindir}/artsdsp
-%attr(755,root,root) %{_bindir}/artsplay
-%attr(755,root,root) %{_bindir}/artsshell
-%attr(755,root,root) %{_bindir}/artswrapper
-%attr(755,root,root) %{_libdir}/lib[ams]*.so.*.*
-%attr(755,root,root) %{_libdir}/lib[ams]*.la
-%attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
-%attr(755,root,root) %{_libdir}/libkmedia*.la
-%{_libdir}/mcop
+%{_libdir}/libartskde.la
+%attr(755,root,root) %{_libdir}/libartskde.so.*
 
-%files -n arts-X11
+%files -n arts-kde-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libx11globalcomm.so.*.*.*
-%attr(755,root,root) %{_libdir}/libx11globalcomm.la
-
-%files -n arts-qt
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libqtmcop.so.*.*.*
-%attr(755,root,root) %{_libdir}/libqtmcop.la
-
-%files -n arts-devel
-%defattr(644,root,root,755)
-%doc arts/doc/*.gz
-%attr(755,root,root) %{_bindir}/artsc-config
-%attr(755,root,root) %{_bindir}/mcopidl
-%{_libdir}/lib[mqsx]*.so
-%{_libdir}/libarts[!k]*.so
-%{_libdir}/libkmedia*.so
-%{_includedir}/arts
-%{_includedir}/artsc
+%{_includedir}/arts/*
+%{_libdir}/libartskde.so
 
 %files -n arts-message
 %defattr(644,root,root,755)

@@ -1,0 +1,11 @@
+diff -urN kdelibs-2.2.1.orig/kdoctools/libxslt/templates.c kdelibs-2.2.1/kdoctools/libxslt/templates.c
+--- kdelibs-2.2.1.orig/kdoctools/libxslt/templates.c	Sun Jul 29 06:55:35 2001
++++ kdelibs-2.2.1/kdoctools/libxslt/templates.c	Thu Nov  1 15:46:45 2001
+@@ -15,7 +15,6 @@
+ 
+ #include <libxml/xmlmemory.h>
+ #include <libxml/tree.h>
+-#include <libxml/xmlerror.h>
+ #include <libxml/xpathInternals.h>
+ #include <libxml/parserInternals.h>
+ #include "xslt.h"

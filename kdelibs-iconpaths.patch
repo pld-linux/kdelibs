@@ -1,0 +1,31 @@
+--- kdelibs-1.1.2/kdecore/kiconloader.cpp.iconpaths	Thu Jun  3 19:01:50 1999
++++ kdelibs-1.1.2/kdecore/kiconloader.cpp	Thu Sep 16 22:04:13 1999
+@@ -112,6 +112,10 @@
+ 
+   addPath( KApplication::kde_toolbardir() );
+   addPath( KApplication::kde_icondir() );
++
++  // add GNOME PNGs (PGB)
++  addPath( "/usr/X11R6/share/pixmaps" );
++
+   if (setting == "Large")
+     addPath( KApplication::kde_icondir() + "/large" );
+ 
+@@ -120,6 +124,9 @@
+   if (setting == "Large")
+     addPath( KApplication::localkdedir() + "/share/icons/large" );
+ 
++  // add lowcolor icon path (PGB)
++  addPath( KApplication::kde_icondir() + "/locolor" );
++
+   addPath( KApplication::kde_datadir() + "/" + kapp->appName() + "/toolbar" );
+   addPath( KApplication::localkdedir() + "/share/apps/" + kapp->appName() + "/toolbar" ); 
+   addPath( KApplication::kde_datadir() + "/" + kapp->appName() + "/pics" );
+@@ -128,6 +135,7 @@
+   addPath( KApplication::localkdedir() + "/share/apps/" + kapp->appName() + "/pics" ); 
+   if (setting == "Large")
+     addPath( KApplication::localkdedir() + "/share/apps/" + kapp->appName() + "/pics/large" ); 
++
+ }
+ 
+ KIconLoader::KIconLoader( KConfig *conf, 

@@ -1,0 +1,160 @@
+Index: khtml_part.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/khtml/khtml_part.cpp,v
+retrieving revision 1.684.2.9
+diff -u -5 -d -p -r1.684.2.9 khtml_part.cpp
+--- khtml_part.cpp	2002/06/21 13:52:09	1.684.2.9
++++ khtml_part.cpp	2002/09/06 21:41:20
+@@ -1577,11 +1577,11 @@ void KHTMLPart::checkEmitLoadEvent()
+       {
+         KHTMLPart* htmlFrame = static_cast<KHTMLPart *>(p);
+         if (htmlFrame->d->m_doc && htmlFrame->d->m_doc->isHTMLDocument() )
+         {
+           kdDebug() << "KHTMLPart::checkCompleted setting frame domain to " << domain.string() << endl;
+-          static_cast<HTMLDocumentImpl*>(htmlFrame->d->m_doc)->setDomain( domain, true );
++          static_cast<HTMLDocumentImpl*>(htmlFrame->d->m_doc)->setDomain( domain );
+         }
+       }
+     }
+   }
+ 
+Index: ecma/kjs_window.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/khtml/ecma/kjs_window.cpp,v
+retrieving revision 1.254.2.7
+diff -u -5 -d -p -r1.254.2.7 kjs_window.cpp
+--- ecma/kjs_window.cpp	2002/08/09 13:40:39	1.254.2.7
++++ ecma/kjs_window.cpp	2002/09/06 21:41:21
+@@ -895,11 +895,11 @@ bool Window::isSafeScript(ExecState *exe
+     kdDebug(6070) << "Window::isSafeScript: active part has no document!" << endl;
+     return false;
+   }
+   DOM::DOMString actDomain = actDocument.domain();
+   DOM::DOMString thisDomain = thisDocument.domain();
+-  //kdDebug(6070) << "current domain:" << actDomain.string() << ", frame domain:" << thisDomain.string() << endl;
++
+   if ( actDomain == thisDomain )
+     return true;
+ 
+   kdWarning(6070) << "Javascript: access denied for current frame '" << actDomain.string() << "' to frame '" << thisDomain.string() << "'" << endl;
+   return false;
+@@ -1164,11 +1164,11 @@ Value WindowFunc::tryCall(ExecState *exe
+           khtmlpart->begin();
+           khtmlpart->write("<HTML><BODY>");
+           khtmlpart->end();
+           if ( part->docImpl() ) {
+             kdDebug(6070) << "Setting domain to " << part->docImpl()->domain().string() << endl;
+-            khtmlpart->docImpl()->setDomain( part->docImpl()->domain(), true );
++            khtmlpart->docImpl()->setDomain( part->docImpl()->domain());
+             khtmlpart->docImpl()->setBaseURL( part->docImpl()->baseURL() );
+           }
+         }
+         uargs.serviceType = QString::null;
+         if (uargs.frameName == "_blank")
+Index: html/html_documentimpl.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/khtml/html/html_documentimpl.cpp,v
+retrieving revision 1.139.2.1
+diff -u -5 -d -p -r1.139.2.1 html_documentimpl.cpp
+--- html/html_documentimpl.cpp	2002/06/17 18:33:37	1.139.2.1
++++ html/html_documentimpl.cpp	2002/09/06 21:41:23
+@@ -93,31 +93,31 @@ DOMString HTMLDocumentImpl::domain() con
+     if ( m_domain.isEmpty() ) // not set yet (we set it on demand to save time and space)
+         m_domain = KURL(URL()).host(); // Initially set to the host
+     return m_domain;
+ }
+ 
+-void HTMLDocumentImpl::setDomain(const DOMString &newDomain, bool force /*=false*/)
++void HTMLDocumentImpl::setDomain(const DOMString &newDomain)
+ {
+-    if ( force ) {
+-        m_domain = newDomain;
+-        return;
+-    }
+     if ( m_domain.isEmpty() ) // not set yet (we set it on demand to save time and space)
+-        m_domain = KURL(URL()).host(); // Initially set to the host
++        m_domain = KURL(URL()).host().lower(); // Initially set to the host
++
++    if ( m_domain.isEmpty() /*&& view() && view()->part()->openedByJS()*/ )
++        m_domain = newDomain.lower();
+ 
+     // Both NS and IE specify that changing the domain is only allowed when
+     // the new domain is a suffix of the old domain.
+     int oldLength = m_domain.length();
+     int newLength = newDomain.length();
+     if ( newLength < oldLength ) // e.g. newDomain=kde.org (7) and m_domain=www.kde.org (11)
+     {
+         DOMString test = m_domain.copy();
++        DOMString reference = newDomain.lower();
+         if ( test[oldLength - newLength - 1] == '.' ) // Check that it's a subdomain, not e.g. "de.org"
+         {
+             test.remove( 0, oldLength - newLength ); // now test is "kde.org" from m_domain
+-            if ( test == newDomain )                 // and we check that it's the same thing as newDomain
+-                m_domain = newDomain;
++            if ( test == reference )                 // and we check that it's the same thing as newDomain
++                m_domain = reference;
+         }
+     }
+ }
+ 
+ DOMString HTMLDocumentImpl::lastModified() const
+@@ -129,20 +129,20 @@ DOMString HTMLDocumentImpl::lastModified
+ 
+ DOMString HTMLDocumentImpl::cookie() const
+ {
+     long windowId = 0;
+     KHTMLView *v = view ();
+-    
++
+     if ( v && v->topLevelWidget() )
+       windowId = v->topLevelWidget()->winId();
+ 
+     QCString replyType;
+     QByteArray params, reply;
+     QDataStream stream(params, IO_WriteOnly);
+     stream << URL() << windowId;
+     if (!kapp->dcopClient()->call("kcookiejar", "kcookiejar",
+-                                  "findDOMCookies(QString, int)", params, 
++                                  "findDOMCookies(QString, int)", params,
+                                   replyType, reply)) {
+          // Maybe it wasn't running (e.g. we're opening local html files)
+          KApplication::startServiceByDesktopName( "kcookiejar");
+          if (!kapp->dcopClient()->call("kcookiejar", "kcookiejar",
+                                        "findDOMCookies(QString)", params, replyType, reply)) {
+@@ -165,14 +165,14 @@ DOMString HTMLDocumentImpl::cookie() con
+ 
+ void HTMLDocumentImpl::setCookie( const DOMString & value )
+ {
+     long windowId = 0;
+     KHTMLView *v = view ();
+-    
++
+     if ( v && v->topLevelWidget() )
+       windowId = v->topLevelWidget()->winId();
+-     
++
+     QByteArray params;
+     QDataStream stream(params, IO_WriteOnly);
+     QString fake_header("Set-Cookie: ");
+     fake_header.append(value.string());
+     fake_header.append("\n");
+Index: html/html_documentimpl.h
+===================================================================
+RCS file: /home/kde/kdelibs/khtml/html/html_documentimpl.h,v
+retrieving revision 1.64
+diff -u -5 -d -p -r1.64 html_documentimpl.h
+--- html/html_documentimpl.h	2002/02/04 03:40:48	1.64
++++ html/html_documentimpl.h	2002/09/06 21:41:23
+@@ -53,11 +53,11 @@ public:
+ 
+     virtual bool isHTMLDocument() const { return true; }
+ 
+     DOMString referrer() const;
+     DOMString domain() const;
+-    void setDomain( const DOMString &newDomain, bool force = false ); // not part of the DOM
++    void setDomain( const DOMString &newDomain ); // not part of the DOM
+     DOMString lastModified() const;
+     DOMString cookie() const;
+     void setCookie( const DOMString &);
+ 
+     HTMLElementImpl *body();

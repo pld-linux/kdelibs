@@ -1,0 +1,49 @@
+diff -Nru kdelibs-1.1.2/doc/Makefile.am kdelibs-1.1.2.new/doc/Makefile.am
+--- kdelibs-1.1.2/doc/Makefile.am	Sat Nov 13 18:31:05 1999
++++ kdelibs-1.1.2.new/doc/Makefile.am	Sat Nov 13 18:29:42 1999
+@@ -8,7 +8,7 @@
+ EXTRA_DIST = kdebug.html
+ 
+ install-data-local:
+-	$(mkinstalldirs) $(kde_htmldir)
+-	-rm -f $(kde_htmldir)/default
+-	$(LN_S) en $(kde_htmldir)/default
++	$(mkinstalldirs) $(DESTDIR)$(kde_htmldir)
++	-rm -f $(DESTDIR)$(kde_htmldir)/default
++	$(LN_S) en $(DESTDIR)$(kde_htmldir)/default
+ 
+diff -Nru kdelibs-1.1.2/kdecore/Makefile.am kdelibs-1.1.2.new/kdecore/Makefile.am
+--- kdelibs-1.1.2/kdecore/Makefile.am	Sat Nov 13 18:31:05 1999
++++ kdelibs-1.1.2.new/kdecore/Makefile.am	Sat Nov 13 18:29:42 1999
+@@ -68,8 +68,8 @@
+ 	rm -f ackey ckey
+ 
+ install-data-local: charsets.config 
+-	$(mkinstalldirs) $(kde_confdir)
+-	$(INSTALL_DATA) $(srcdir)/charsets.config $(kde_confdir)/charsets   
++	$(mkinstalldirs) $(DESTDIR)$(kde_confdir)
++	$(INSTALL_DATA) $(srcdir)/charsets.config $(DESTDIR)$(kde_confdir)/charsets   
+ 
+ uninstall-local:
+ 	-rm -f $(kde_confdir)/charsets
+diff -Nru kdelibs-1.1.2/po/Makefile.am kdelibs-1.1.2.new/po/Makefile.am
+--- kdelibs-1.1.2/po/Makefile.am	Sat Nov 13 18:31:05 1999
++++ kdelibs-1.1.2.new/po/Makefile.am	Sat Nov 13 18:31:51 1999
+@@ -40,7 +40,7 @@
+ 	destdir=$(localedir); \
+ 	lang=`echo $$cat | sed 's/\.gmo//'`; \
+ 	name=kde.mo \
+-	dir=$$destdir/$$lang/LC_MESSAGES; \
++	dir=$(DESTDIR)$$destdir/$$lang/LC_MESSAGES; \
+ 	$(mkinstalldirs) $$dir; \
+ 	$(INSTALL_DATA) $$cat $$dir/$$name; \
+ 	  echo "installing $$cat as $$dir/$$name"; \
+@@ -50,7 +50,7 @@
+ 	destdir=$(localedir); \
+ 	lang=`echo $$chset | sed 's/\.charset//'`; \
+ 	name=charset ; \
+-	dir=$$destdir/$$lang; \
++	dir=$(DESTDIR)$$destdir/$$lang; \
+ 	$(mkinstalldirs) $$dir; \
+ 	$(INSTALL_DATA) $(srcdir)/$$chset $$dir/$$name; \
+ 	  echo "installing $$chset as $$dir/$$name"; \

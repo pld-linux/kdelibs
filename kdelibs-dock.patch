@@ -1,0 +1,104 @@
+--- kdelibs-3.0.2/kdecore/kwin.cpp.dock	2002-03-01 15:52:04.000000000 +0100
++++ kdelibs-3.0.2/kdecore/kwin.cpp	2002-08-05 16:03:18.000000000 +0200
+@@ -53,6 +53,7 @@
+ static bool atoms_created = FALSE;
+ extern Atom qt_wm_protocols;
+ extern Atom qt_wm_state;
++extern Time qt_x_time;
+ 
+ // Fix for --enable-final. This gets undefined at the end of this file.
+ #ifndef None
+@@ -180,11 +181,91 @@
+ 
+ void KWin::setSystemTrayWindowFor( WId trayWin, WId forWin )
+ {
+-    NETWinInfo info( qt_xdisplay(), trayWin, qt_xrootwin(), 0 );
+-    if ( !forWin )
++  bool is_kde = true;
++    Display *xdisplay = qt_xdisplay();
++
++    NETRootInfo rootinfo( xdisplay, NET::SupportingWMCheck );
++    const char *wmname = rootinfo.wmName();
++    if ((!wmname) || strncmp("KWin", wmname, 4)) {
++      is_kde = false;
++    }
++
++    if ( !forWin ) {
+ 	forWin = qt_xrootwin();
++    }
++
++    NETWinInfo info( xdisplay, trayWin, qt_xrootwin(), 0 );
+     info.setKDESystemTrayWinFor( forWin );
++
++    if (! is_kde) {
++      static Atom net_system_tray_selection;
++      static Atom net_system_tray_opcode;
++      static bool atoms_created = false;
++
++      if (!atoms_created){
++	const int max = 20;
++	Atom* atoms[max];
++	const char* names[max];
++	Atom atoms_return[max];
++	int n = 0;
++
++	QCString screenstr;
++	screenstr.setNum(qt_xscreen());
++	QCString trayatom = "_NET_SYSTEM_TRAY_S" + screenstr;
++
++	atoms[n] = &net_system_tray_selection;
++	names[n++] = trayatom;
++
++	atoms[n] = &net_system_tray_opcode;
++	names[n++] = "_NET_SYSTEM_TRAY_OPCODE";
++
++	// we need a const_cast for the shitty X API
++	XInternAtoms( xdisplay, const_cast<char**>(names), n, 
++		      FALSE, atoms_return );
++
++	for (int i = 0; i < n; i++ )
++	    *atoms[i] = atoms_return[i];
++
++	atoms_created = True;
++      }
++
++      XGrabServer (xdisplay);
++      Window manager_window = XGetSelectionOwner (xdisplay,
++						  net_system_tray_selection);
++      
++      if ( manager_window != None ) {
++	XSelectInput (xdisplay,
++		      manager_window, StructureNotifyMask);
++      }
++      
++
++      XUngrabServer (xdisplay);
++      XFlush (xdisplay);	
++
++      if ( manager_window != None ) {
++
++#define SYSTEM_TRAY_REQUEST_DOCK    0
++#define SYSTEM_TRAY_BEGIN_MESSAGE   1
++#define SYSTEM_TRAY_CANCEL_MESSAGE  2
++         
++	XClientMessageEvent ev;
++	memset(&ev, 0, sizeof(ev));
++	ev.type = ClientMessage;
++	ev.window = trayWin;
++	ev.message_type = net_system_tray_opcode;
++	ev.format = 32;
++	ev.data.l[0] = qt_x_time;
++	ev.data.l[1] = SYSTEM_TRAY_REQUEST_DOCK;
++	ev.data.l[2] = trayWin;
++	
++	XSendEvent (xdisplay,
++		    manager_window, false, NoEventMask, (XEvent *)&ev);
++
++	XSync (xdisplay, False);
++      }
++    }
+ }
++
+ void KWin::setActiveWindow( WId win)
+ {
+     NETRootInfo info( qt_xdisplay(), 0 );

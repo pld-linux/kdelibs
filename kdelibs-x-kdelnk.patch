@@ -1,0 +1,8 @@
+--- kdelibs-1.1.2/mimetypes/application/x-kdelnk.kdelnk.redhat	Mon Sep 13 20:13:16 1999
++++ kdelibs-1.1.2/mimetypes/application/x-kdelnk.kdelnk	Mon Sep 13 20:13:55 1999
+@@ -24,4 +24,4 @@
+ Icon=kmailion.xpm
+ Type=MimeType
+ MimeType=application/x-kdelnk
+-Patterns=;
++Patterns=*.kdelnk;*.desktop;

@@ -1,0 +1,45 @@
+--- kdelibs-3.0.3/kdecore/klocale.cpp.lang	2002-08-26 12:07:55.000000000 +0200
++++ kdelibs-3.0.3/kdecore/klocale.cpp	2002-08-26 14:59:27.000000000 +0200
+@@ -120,15 +120,8 @@
+   if ( m_country.isEmpty() )
+     m_country = defaultCountry();
+ 
+-  // Reset the list and add the new languages
+-  QStringList languageList;
+-  if ( useEnv )
+-    languageList += QStringList::split
+-      (':', QFile::decodeName( ::getenv("KDE_LANG") ));
+-
+-  languageList += config->readListEntry("Language", ':');
+-
+   // same order as setlocale use
++  QStringList languageList;
+   if ( useEnv )
+     {
+       // HPB: Only run splitLocale on the environment variables..
+@@ -146,16 +139,23 @@
+ 	  splitLocale(*it, ln, ct, chrset);
+ 
+ 	  if (!ct.isEmpty()) {
+-	    langs.insert(it, ln + '_' + ct);
+ 	    if (!chrset.isEmpty())
+ 	      langs.insert(it, ln + '_' + ct + '.' + chrset);
++	    langs.insert(it, ln + '_' + ct);
+ 	  }
+-
++          langs.insert(it, ln);
+ 	}
+ 
+       languageList += langs;
+     }
+ 
++  // Reset the list and add the new languages
++  if ( useEnv )
++    languageList += QStringList::split
++      (':', QFile::decodeName( ::getenv("KDE_LANG") ));
++
++  languageList += config->readListEntry("Language", ':');
++
+   // now we have a language list -- let's use the first OK language
+   setLanguage( languageList );
+ }
