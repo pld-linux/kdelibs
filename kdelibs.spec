@@ -24,7 +24,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -307,6 +307,17 @@ Obsoletes:	kde-i18n-Chinese-Big5
 Obsoletes:	kde-i18n-Zulu
 Obsoletes:	kde-i18n-kdelibs
 Obsoletes:	kde-i18n
+Obsoletes:	kdeaccessibility-i18n
+Obsoletes:	kdeaddons-i18n
+Obsoletes:	kdeadmin-i18n
+Obsoletes:	kdeartwork-i18n
+Obsoletes:	kdeedu-i18n
+Obsoletes:	kdegraphics-i18n
+Obsoletes:	kdemultimedia-i18n
+Obsoletes:	kdenetwork-i18n
+Obsoletes:	kdesdk-i18n
+Obsoletes:	kdetoys-i18n
+Obsoletes:	kdeutils-i18n
 
 %description i18n 
 Internationalization and localization files for kdelibs.
