@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.4
+Release:	0.%{sver}.5
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -38,6 +38,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pcre-devel
+BuildRequires:	nas-devel
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 URL:		http://www.kde.org/
@@ -184,7 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mein*
 %attr(755,root,root) %{_bindir}/[cilkpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
-%attr(755,root,root) %{_libdir}/libk[afhijpst]*.so.*.*
+%attr(755,root,root) %{_libdir}/libk[afhijpt]*.so.*.*
 %attr(755,root,root) %{_libdir}/libk[afijpt]*.la
 %attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeprint*.la
@@ -194,10 +195,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkscreensaver.la
 %attr(755,root,root) %{_libdir}/libkspell.la
 %attr(755,root,root) %{_libdir}/libkssl.la
-%attr(755,root,root) %{_libdir}/libksycoca.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*
 %attr(755,root,root) %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkhtmli*.??
+%attr(755,root,root) %{_libdir}/libks[!y]*.so.*.*.*
 %attr(755,root,root) %{_libdir}/mega.so
 %attr(755,root,root) %{_libdir}/mega.la
 %attr(755,root,root) %{_libdir}/webstyle.so
@@ -207,7 +208,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %config %{_datadir}/config
 %dir %{_pixmapsdir}/hicolor
-%dir %{_pixmapsdir}/loicolor
+%dir %{_pixmapsdir}/locolor
 %dir %{_pixmapsdir}/*/[1-9]*
 %dir %{_pixmapsdir}/*/[1-9]*/*
 %{_pixmapsdir}/*/[1-9]*/*/*
@@ -227,6 +228,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*
 %attr(755,root,root) %{_libdir}/libkdeui.la
+%attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
+%attr(755,root,root) %{_libdir}/libksycoca.la
 
 %files devel
 %defattr(644,root,root,755)
