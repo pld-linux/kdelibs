@@ -1,12 +1,12 @@
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
-%bcond_without	apidocs	# prepare API documentation
+%bcond_without	apidocs	# do not prepare API documentation
 %bcond_with	i18n	# with i18n stuff - not used in DEVEL branch
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040312
+%define		_snap		040323
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -31,8 +31,10 @@ Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-QTDOCDIR.patch
+Patch4:		%{name}-exr.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
+BuildRequires:	OpenEXR-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
 BuildRequires:	artsc-devel >= %{artsver}
@@ -73,7 +75,6 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake
-Requires:	XFree86 >= 4.2.99
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
@@ -345,6 +346,7 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -354,6 +356,8 @@ export kde_htmldir=%{_kdedocdir}
 #export kde_libs_htmldir=%{_kdedocdir}
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
+
+echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -370,15 +374,14 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %{__make}
 
-%if %{with apidocs}
-%{__make} apidox
-%endif
+%{?with_apidocs:%{__make} apidox}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir}
 	kde_libs_htmldir=%{_kdedocdir}
 
 install -d \
@@ -637,6 +640,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/khtmlimagepart.so
 %{_libdir}/kde3/kimg_eps.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
+%{_libdir}/kde3/kimg_exr.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
 %{_libdir}/kde3/kimg_ico.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
 %{_libdir}/kde3/kimg_jp2.la
@@ -763,6 +768,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/ktexteditor_kdatatool.desktop
 %{_datadir}/services/bmp.kimgio
 %{_datadir}/services/eps.kimgio
+%{_datadir}/services/exr.kimgio
 %{_datadir}/services/gif.kimgio
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
