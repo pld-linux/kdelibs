@@ -6,7 +6,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040508
+%define		_snap		040513
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -75,7 +75,7 @@ BuildRequires:	qt-devel >= 6:3.2.1-4
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
-BuildRequires:	unsermake
+BuildRequires:	unsermake >= 040511
 BuildConflicts:	kdepim-korganizer-libs
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
@@ -255,12 +255,14 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch2 -p1
 %patch3 -p1
 
+echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %build
 cp /usr/share/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
@@ -290,13 +292,6 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 	kde_libs_htmldir=%{_kdedocdir}
 
-# Workaround for doc caches (unsermake bug?)
-cd doc
-for i in `find . -name index.cache.bz2`; do
-	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
-done
-cd -	 
-
 install -d \
 	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
@@ -325,13 +320,8 @@ cd -
 
 %find_lang %{name} --with-kde --all-name
 
-files=%{name}
-for i in $files; do
-	echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
-	grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-done
+# Omit apidocs entries
+sed -i 's/.*apidocs.*//' *.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -339,7 +329,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f %{name}_en.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -507,6 +497,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kded_kcookiejar.so
 %{_libdir}/kde3/kded_kdeprintd.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kdeprintd.so
+%{_libdir}/kde3/kded_kdetrayproxy.la
+%attr(755,root,root) %{_libdir}/kde3/kded_kdetrayproxy.so
 %{_libdir}/kde3/kded_kpasswdserver.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kpasswdserver.so
 %{_libdir}/kde3/kded_kssld.la
