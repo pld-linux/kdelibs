@@ -101,6 +101,7 @@ Obsoletes:	kde-splash-keramik
 Obsoletes:	kdeadmin-kwuftpd
 Obsoletes:	kdeadmin-kxconfig
 Obsoletes:	kdebase-kwmtheme
+Obsoletes:	kdebase-mailnews
 Obsoletes:	kdeedu-kgeo
 Obsoletes:	kdegames-megami
 Obsoletes:	kdenetwork-kmail
