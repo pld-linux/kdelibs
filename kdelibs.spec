@@ -4,6 +4,7 @@
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	i18n	# don't build i18n subpackage
+%bcond_without	ldap	# build without openldap support
 #
 %define		_state		stable
 %define		_ver		3.2.0
@@ -68,7 +69,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	openldap-devel
+%{?with_ldap:	BuildRequires:	openldap-devel}
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
@@ -492,10 +493,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
 %{_libdir}/libkabc_file.la
 %attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
+%if %{with ldap}
 #%{_libdir}/libkabc_ldap.la
 #%attr(755,root,root) %{_libdir}/libkabc_ldap.so.*.*.*
 %{_libdir}/libkabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
+%endif
 %{_libdir}/libkabc_net.la
 %attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
 %{_libdir}/libkatepartinterfaces.la
@@ -828,10 +831,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
 %{_libdir}/kde3/kabc_file.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_file.so
+%if %{with ldap}
 #%{_libdir}/kde3/kabc_ldap.la
 #%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
 %{_libdir}/kde3/kabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
+%endif
 %{_libdir}/kde3/kabc_net.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_net.so
 %{_libdir}/kde3/kabcformat_binary.la
@@ -855,8 +860,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc.so
 %attr(755,root,root) %{_libdir}/libkabc_dir.so
 %attr(755,root,root) %{_libdir}/libkabc_file.so
+%if %{with ldap}
 #%attr(755,root,root) %{_libdir}/libkabc_ldap.so
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
+%endif
 %attr(755,root,root) %{_libdir}/libkabc_net.so
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
 %attr(755,root,root) %{_libdir}/libkdecore.so
