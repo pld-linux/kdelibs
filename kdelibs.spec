@@ -302,6 +302,10 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
+for i in /usr/X11R6/share/locale/*/LC_MESSAGES/*.mo ; do
+	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
+done
+
 #find_lang kdelibs --with-kde --all-name > %{name}.lang
 topics="common kdelibs-apidocs kspell"
 
@@ -309,7 +313,6 @@ for i in $topics; do
 	%find_lang $i --with-kde
 	cat $i.lang >> %{name}.lang
 done
-
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
