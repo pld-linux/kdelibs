@@ -77,7 +77,7 @@ Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
-%define		_htmldir	/usr/share/doc/kde/HTML
+%define		_htmldir	%{_docdir}/kde/HTML
 
 %define		no_install_post_chrpath		1
 
@@ -320,7 +320,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
 %{_libdir}/kde3/plugins/styles/*.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
-
 %{_datadir}/config
 # Contains Components/kabc.desktop only
 %{_applnkdir}/Settings/KDE
@@ -331,8 +330,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
-%dir /usr/share/doc/kde
+%dir %{_docdir}/kde
 %dir %{_htmldir}
+%lang(en) %dir %{_htmldir}/en
 
 %files devel
 %defattr(644,root,root,755)
