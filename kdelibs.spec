@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.5
+Release:	1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -67,6 +67,7 @@ Requires:	openssl >= 0.9.6i
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	kde-theme-keramik
 Obsoletes:	kdelibs2
 Obsoletes:	kdelibs2-sound
 Obsoletes:	kdelibs-sound
