@@ -26,18 +26,15 @@ Release:	3
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-#http://download.kde.org/stable/3.1.2/src/kdelibs-3.1.2.tar.bz2
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
-
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
-
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 # Icon:		kdelibs.xpm
+URL:		http://www.kde.org/
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -75,7 +72,6 @@ Requires:	applnk
 Requires:	arts >= 1.1-1
 Requires:	openssl >= 0.9.6i
 Requires:	qt >= 3.1-3
-URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kde-theme-keramik
 Obsoletes:	kdelibs2
@@ -288,24 +284,16 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
-
-install -d \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
-
-install -d \
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE,%{_datadir}/apps/khtml/kpartplugins} \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
-
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
-
-install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
-
 
 # bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 # > %{name}.lang
@@ -317,7 +305,6 @@ for i in $topics; do
 	%find_lang $i --with-kde
 	cat $i.lang >> %{name}.lang
 done
-
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
