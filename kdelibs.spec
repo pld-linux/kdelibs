@@ -40,7 +40,7 @@ Patch5:		%{name}-idn.patch
 Patch6:		kde-common-QTDOCDIR.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
-BuildRequires:  unsermake >= 040511
+BuildRequires:	unsermake >= 040511
 %if %{with xlibs}
 BuildRequires:	libXrender-devel
 BuildRequires:	libXt-devel
@@ -346,7 +346,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files  
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
