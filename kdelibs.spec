@@ -608,7 +608,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %dir %{_kdedocdir}/en
 %lang(en) %{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
-%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 
 # 3rdparty directories
 %dir %{_bindir}/kconf_update_bin
@@ -622,6 +621,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%lang(en) %{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
