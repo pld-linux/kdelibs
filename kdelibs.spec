@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.90
-%define		_snap		030623
+%define		_snap		030630
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -24,8 +24,8 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	b7633cf92a4254990da27fb10d6a148d
 #Source0:        http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	50ceeaead19d51446249fcf2aa4c0b7e
 #Patch0:	%{name}-directories.patch
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
@@ -33,7 +33,7 @@ Patch1:		%{name}-resize-icons.patch
 Patch3:         %{name}-defaultfonts.patch
 #Patch4:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
 #Patch5:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
-Patch6:		%{name}-kdeprint_nofinal.patch
+#Patch6:	%{name}-fix-kmediaplayer_includes.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -61,9 +61,7 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
 BuildRequires:	openldap-devel
-# For Netscape plugin support in Konqueror.
 BuildRequires:	openmotif-devel
-#
 %{?_with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
@@ -253,7 +251,7 @@ TODO.
 %patch3 -p1
 #%patch4 -p1
 #%patch5 -p1
-%patch6 -p1
+#%patch6 -p1
 
 %build
 
@@ -275,7 +273,6 @@ done
 	--%{?debug:en}%{!?debug:dis}able-debug \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
-	--enable-final \
 %endif
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
@@ -316,6 +313,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/brockenboring
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
@@ -329,12 +327,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/imagetops
-%attr(755,root,root) %{_bindir}/kaddprinterwizard
-%attr(755,root,root) %{_bindir}/kbuildsycoca
-%attr(755,root,root) %{_bindir}/kconf_update
-%attr(755,root,root) %{_bindir}/kcookiejar
+#%attr(755,root,root) %{_bindir}/kaddprinterwizard
+#%attr(755,root,root) %{_bindir}/kbuildsycoca
+#%attr(755,root,root) %{_bindir}/kconf_update
+#%attr(755,root,root) %{_bindir}/kcookiejar
 %attr(755,root,root) %{_bindir}/kdb2html
-%attr(755,root,root) %{_bindir}/kded
+#%attr(755,root,root) %{_bindir}/kded
 %attr(755,root,root) %{_bindir}/kdeinit
 %attr(755,root,root) %{_bindir}/kdeinit_shutdown
 %attr(755,root,root) %{_bindir}/kdeinit_wrapper
@@ -344,12 +342,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kgrantpty
 %attr(755,root,root) %{_bindir}/kimage_concat
 %attr(755,root,root) %{_bindir}/kinstalltheme
-%attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
-%attr(755,root,root) %{_bindir}/kio_uiserver
+#%attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
+#%attr(755,root,root) %{_bindir}/kio_uiserver
 %attr(755,root,root) %{_bindir}/kioslave
 %attr(755,root,root) %{_bindir}/klauncher
 %attr(755,root,root) %{_bindir}/kmailservice
-%attr(755,root,root) %{_bindir}/knotify
+#%attr(755,root,root) %{_bindir}/knotify
 %attr(755,root,root) %{_bindir}/kpac_dhcp_helper
 %attr(755,root,root) %{_bindir}/ksendbugmail
 %attr(755,root,root) %{_bindir}/kshell
@@ -362,24 +360,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/xml2man
-%{_libdir}/dcopserver.la
-%attr(755,root,root) %{_libdir}/dcopserver.so
 %{_libdir}/kaddprinterwizard.la
 %attr(755,root,root) %{_libdir}/kaddprinterwizard.so
-%{_libdir}/kbuildsycoca.la
-%attr(755,root,root) %{_libdir}/kbuildsycoca.so
-%{_libdir}/kconf_update.la
-%attr(755,root,root) %{_libdir}/kconf_update.so
-%{_libdir}/kcookiejar.la
-%attr(755,root,root) %{_libdir}/kcookiejar.so
-%{_libdir}/kded.la
-%attr(755,root,root) %{_libdir}/kded.so
-%{_libdir}/kio_http_cache_cleaner.la
-%attr(755,root,root) %{_libdir}/kio_http_cache_cleaner.so
-%{_libdir}/kio_uiserver.la
-%attr(755,root,root) %{_libdir}/kio_uiserver.so
-%{_libdir}/klauncher.la
-%attr(755,root,root) %{_libdir}/klauncher.so
 %{_libdir}/knotify.la
 %attr(755,root,root) %{_libdir}/knotify.so
 %{_libdir}/libDCOP.la
@@ -396,6 +378,22 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
 %{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
+%{_libdir}/libkdeinit_dcopserver.la
+%attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so.*.*.*
+%{_libdir}/libkdeinit_kbuildsycoca.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so.*.*.*
+%{_libdir}/libkdeinit_kconf_update.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so.*.*.*
+%{_libdir}/libkdeinit_kcookiejar.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kcookiejar.so.*.*.*
+%{_libdir}/libkdeinit_kded.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kded.so.*.*.*
+%{_libdir}/libkdeinit_kio_http_cache_cleaner.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kio_http_cache_cleaner.so.*.*.*
+%{_libdir}/libkdeinit_kio_uiserver.la
+%attr(755,root,root) %{_libdir}/libkdeinit_kio_uiserver.so.*.*.*
+%{_libdir}/libkdeinit_klauncher.la
+%attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so.*.*.*
 %{_libdir}/libkdeprint.la
 %attr(755,root,root) %{_libdir}/libkdeprint.so.*.*.*
 %{_libdir}/libkdeprint_management.la
@@ -438,9 +436,21 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
+%{_libdir}/libvcards.la
+%attr(755,root,root) %{_libdir}/libvcards.so.*.*.*
 %dir %{_libdir}/kde3
+%{_libdir}/kde3/dcopserver.la
+%attr(755,root,root) %{_libdir}/kde3/dcopserver.so
+%{_libdir}/kde3/kbuildsycoca.la
+%attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
 %{_libdir}/kde3/kbzip2filter.la
 %attr(755,root,root) %{_libdir}/kde3/kbzip2filter.so
+%{_libdir}/kde3/kconf_update.la
+%attr(755,root,root) %{_libdir}/kde3/kconf_update.so
+%{_libdir}/kde3/kcookiejar.la
+%attr(755,root,root) %{_libdir}/kde3/kcookiejar.so
+%{_libdir}/kde3/kded.la
+%attr(755,root,root) %{_libdir}/kde3/kded.so
 %{_libdir}/kde3/kded_kcookiejar.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kcookiejar.so
 %{_libdir}/kde3/kded_kdeprintd.la
@@ -463,6 +473,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kdeprint_rlpr.so
 %{_libdir}/kde3/kdeprint_tool_escputil.la
 %attr(755,root,root) %{_libdir}/kde3/kdeprint_tool_escputil.so
+%{_libdir}/kde3/kfileaudiopreview.la
+%attr(755,root,root) %{_libdir}/kde3/kfileaudiopreview.so
 %{_libdir}/kde3/kgzipfilter.la
 %attr(755,root,root) %{_libdir}/kde3/kgzipfilter.so
 %{_libdir}/kde3/khtmlimagepart.la
@@ -493,10 +505,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kio_help.so
 %{_libdir}/kde3/kio_http.la
 %attr(755,root,root) %{_libdir}/kde3/kio_http.so
+%{_libdir}/kde3/kio_http_cache_cleaner.la
+%attr(755,root,root) %{_libdir}/kde3/kio_http_cache_cleaner.so
 %{_libdir}/kde3/kio_metainfo.la
 %attr(755,root,root) %{_libdir}/kde3/kio_metainfo.so
+%{_libdir}/kde3/kio_uiserver.la
+%attr(755,root,root) %{_libdir}/kde3/kio_uiserver.so
 %{_libdir}/kde3/kjavaappletviewer.la
 %attr(755,root,root) %{_libdir}/kde3/kjavaappletviewer.so
+%{_libdir}/kde3/klauncher.la
+%attr(755,root,root) %{_libdir}/kde3/klauncher.so
 %{_libdir}/kde3/ktexteditor_insertfile.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_insertfile.so
 %{_libdir}/kde3/ktexteditor_isearch.la
@@ -615,6 +633,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkdecore.so
 %{_libdir}/libkdefakes.so
 %{_libdir}/libkdefx.so
+%{_libdir}/libkdeinit_dcopserver.so
+%{_libdir}/libkdeinit_kbuildsycoca.so
+%{_libdir}/libkdeinit_kconf_update.so
+%{_libdir}/libkdeinit_kcookiejar.so
+%{_libdir}/libkdeinit_kded.so
+%{_libdir}/libkdeinit_kio_http_cache_cleaner.so
+%{_libdir}/libkdeinit_kio_uiserver.so
+%{_libdir}/libkdeinit_klauncher.so
 %{_libdir}/libkdeprint.so
 %{_libdir}/libkdeprint_management.so
 %{_libdir}/libkdesasl.so
@@ -668,8 +694,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0755,root,root) %{_libdir}/kde3/kabc_net.so
 %{_libdir}/kde3/kabcformat_binary.la
 %attr(0755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-%{_libdir}/kde3/kabcformat_vcard2.la
-%attr(0755,root,root) %{_libdir}/kde3/kabcformat_vcard2.so
+#%{_libdir}/kde3/kabcformat_vcard2.la
+#%attr(0755,root,root) %{_libdir}/kde3/kabcformat_vcard2.so
 %{_libdir}/kde3/kcm_kresources.la
 %attr(0755,root,root) %{_libdir}/kde3/kcm_kresources.so
 %{_datadir}/apps/kabc
