@@ -1,0 +1,46 @@
+#/bin/sh
+#
+# I could done it in perl - it would be much simpler then
+# But I wanted to be compatible with most systems
+#
+# usage:
+# kdelnk2wmconfig <package_name> <kdelnk_file> <wmconfig_file> <group> <language>
+#
+
+pkg="$1"
+kdelnk="$2"
+wmconfig="$3"
+grp="$4"
+lng="$5"
+
+if [ -in "$lng" ] ; then
+  lng="\\[$lng\\]";
+fi  
+
+NAME=`egrep "^Name$lng=" "$kdelnk" | sed -e "s/^Name$lng=//"`
+if [ -z "$NAME" ] ; then 
+  NAME=`egrep "^Name=" "$kdelnk" | sed -e "s/^Name=//"`
+fi  
+if [ -z "$NAME" ] ; then 
+  NAME=`echo \`basename $kdelnk\` | sed -e "s/.kdelnk\$//"`
+fi  
+NAMEQUOTED=`echo $NAME | sed -e "s#/#\\\\\\/#"`
+
+ICON=`egrep "^Icon=" $kdelnk | sed -e "s/^Icon=//"`
+MINIICON=`egrep "^MiniIcon=" $kdelnk | sed -e "s/^MiniIcon=//"`
+if [ "x$MINIICON" = "x" ] ; then 
+  MINIICON="$ICON";
+fi
+EXEC=`egrep "^Exec=" $kdelnk | sed -e "s/^Exec=//"`
+GROUP=`echo $grp | sed -e "s/\\\/\\\.\$//"`
+
+EXEC=`echo "$EXEC" | sed -e "s/\"/'/g"`
+EXEC=`echo "$EXEC" | sed -e "s/\\%c/$NAMEQUOTED/"`
+EXEC=`echo "$EXEC" | sed -e "s/\\%i/-icon $ICON/"`
+EXEC=`echo "$EXEC" | sed -e "s/\\%m/-miniicon $MINIICON/"`
+
+echo "$pkg name \"$NAME\"" > $wmconfig
+echo "$pkg icon \"$ICON\"" >> $wmconfig
+echo "$pkg mini-icon \"$MINIICON\"" >> $wmconfig
+echo "$pkg exec \"$EXEC\"" >> $wmconfig
+echo "$pkg group \"$GROUP\"" >> $wmconfig
