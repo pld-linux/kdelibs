@@ -1,7 +1,7 @@
 diff -urN kdelibs-2.2.1.orig/kdecore/kstddirs.cpp kdelibs-2.2.1/kdecore/kstddirs.cpp
---- kdelibs-2.2.1.orig/kdecore/kstandarddirs.cpp	Wed Jan 24 23:29:38 2001
-+++ kdelibs-2.2.1/kdecore/kstandarddirs.cpp	Thu Nov  1 19:50:21 2001
-@@ -724,9 +724,9 @@
+--- kdelibs-2.2.1.orig/kdecore/kstddirs.cpp	Wed Jan 24 23:29:38 2001
++++ kdelibs-2.2.1/kdecore/kstddirs.cpp	Thu Nov  1 19:50:21 2001
+@@ -692,9 +692,9 @@
      if (!strcmp(type, "data"))
  	return "share/apps/";
      if (!strcmp(type, "html"))
@@ -13,10 +13,10 @@ diff -urN kdelibs-2.2.1.orig/kdecore/kstddirs.cpp kdelibs-2.2.1/kdecore/kstddirs
      if (!strcmp(type, "config"))
  	return "share/config/";
      if (!strcmp(type, "pixmap"))
-@@ -964,6 +964,7 @@
-     addResourceDir("cache", dir);
-
-     addResourceDir("home", QDir::homeDirPath());
+@@ -833,6 +833,7 @@
+     QString dir = QString("%1tmp-%2/").arg(localKdeDir).arg(hostname);
+     addResourceDir("tmp", dir);
+ 
 +    addResourceDir("html", "/usr/share/doc/kde/HTML");
  }
  
