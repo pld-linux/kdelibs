@@ -102,7 +102,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/X11/kde/kderc
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-%find_lang kde
+%find_lang kde %{_builddir}/kde.lang
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -156,6 +156,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*.h
 
 %changelog
+* Mon May 24 1999 Wojciech "Sas" Cieciwa <cieciwa@alpha.zarz.agh.edu.pl>
+  [1.1.1-2]
+- fixes locations,
+- fixes problem with language extension.
+  
 * Tue May 18 1999 Wojciech "Sas" Cieciwa <cieciwa@alpha.zarz.agh.edu.pl>
   [1.1.1-1]
 - fixes file in devel package,
