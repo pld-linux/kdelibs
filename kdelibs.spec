@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0
 #define		_sub_ver
-%define		_rel		2
+%define		_rel		3
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -70,7 +70,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
 Requires:	arts >= 0.9.9
-Requires:	qt >= 2.2.4
+Requires:	qt >= 3.0.3
 %requires_eq	openssl
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
