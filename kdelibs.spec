@@ -27,6 +27,7 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
+Patch4:		%{name}-kbookmarkfix.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -51,6 +52,7 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
+BuildRequires:	jasper-devel >= 1.600
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
 BuildRequires:	openssl-devel >= 0.9.7
@@ -59,7 +61,7 @@ BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	applnk
-Requires:	arts >= 1.1-1
+Requires:	arts >= 1.2
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -230,7 +232,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-
+%patch4 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
