@@ -39,7 +39,7 @@ Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
-BuildRequires:	OpenEXR-devel
+BuildRequires:	OpenEXR-devel >= 1.2.2
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
 BuildRequires:	artsc-devel >= %{artsver}
@@ -81,7 +81,9 @@ BuildRequires:	qt-devel >= 6:3.3.3-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
-BuildRequires:	mDNSResponder
+BuildRequires:	pkgconfig
+BuildRequires:	heimdal-devel
+BuildRequires:	mDNSResponder-devel
 %if %{with brokenRpm}
 BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
