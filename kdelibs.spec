@@ -170,10 +170,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}" 
-ENABLE_DEBUG="%{?debug:--enable-debug}"
-
 %configure2_13 \
-	$ENABLE_DEBUG \
+	%{?debug:--enable-debug} \
 	--enable-final \
 	--disable-mysql \
 	--disable-informix \
