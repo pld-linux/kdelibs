@@ -6,7 +6,7 @@
 
 %define		_state		unstable
 %define		_ver		3.3.92
-%define		_snap		050211
+%define		_snap		050217
 
 %define		artsver		13:1.3.92.050210
 
@@ -638,8 +638,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
 %{_libdir}/kde3/kstyle_plastik_config.la
 %attr(755,root,root) %{_libdir}/kde3/kstyle_plastik_config.so
-%{_libdir}/kde3/ktexteditor_autobookmarker.la
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
+#%{_libdir}/kde3/ktexteditor_autobookmarker.la
+#%attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
 %{_libdir}/kde3/ktexteditor_docwordcompletion.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_docwordcompletion.so
 %{_libdir}/kde3/ktexteditor_insertfile.la
@@ -733,7 +733,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/knotify.desktop
 %{_datadir}/services/kspell_aspell.desktop
 %{_datadir}/services/kspell_ispell.desktop
-%{_datadir}/services/ktexteditor_autobookmarker.desktop
+#%{_datadir}/services/ktexteditor_autobookmarker.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
