@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.90
-%define		_snap		030622
+%define		_snap		030623
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,14 +18,14 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-#Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-Source0:        http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:  7647f3367d85d4e9cc2d0292202f2249 	
+Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+#Source0:        http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	50ceeaead19d51446249fcf2aa4c0b7e
 #Patch0:	%{name}-directories.patch
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
