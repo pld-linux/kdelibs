@@ -1,16 +1,17 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	1.1
-Release:	7
+Version:	1.1.1
+Release:	1
 Vendor:		The KDE Team
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
 Source1:	kdelnk2wmconfig
 Source2:	kderc.PLD
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
-Requires:	qt >= 1.43
+BuildPrereq:	qt-devel >= 1.44
+Requires:	qt >= 1.44
 URL:		http://www.kde.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -60,23 +61,25 @@ w³asnych programów wykorzystuj±cych kdelibs.
 # Setup KDE directories to be compatible with FSSTD
 # Other KDE apps will use them automatically
 export KDEDIR=/usr/X11R6
-export kde_locale='$(prefix)/share/locale'
-export kde_htmldir='$(prefix)/share/kde/doc/HTML'
-export kde_datadir='$(prefix)/share/kde/apps'
-export kde_icondir='$(prefix)/share/kde/icons'
-export kde_toolbardir='$(prefix)/share/kde/toolbar'
-export kde_wallpaperdir='$(prefix)/share/kde/wallpapers'
-export kde_sounddir='$(prefix)/share/kde/sounds'
-export kde_cgidir='$(prefix)/lib/kde/cgi-bin'
-export kde_partsdir='$(prefix)/lib/kde/parts'
+export kde_locale='\$(prefix)/share/locale'
+export kde_htmldir='\$(prefix)/share/kde/doc/HTML'
+export kde_datadir='\$(prefix)/share/kde/apps'
+export kde_icondir='\$(prefix)/share/kde/icons'
+export kde_toolbardir='\$(prefix)/share/kde/toolbar'
+export kde_wallpaperdir='\$(prefix)/share/kde/wallpapers'
+export kde_sounddir='\$(prefix)/share/kde/sounds'
+export kde_cgidir='\$(prefix)/lib/kde/cgi-bin'
+export kde_partsdir='\$(prefix)/lib/kde/parts'
 # these must be relative to $(prefix) for BuildRoot to work :-(
-export kde_confdir='$(prefix)/../../etc/X11/kde'
-export kde_mimedir='$(prefix)/../../etc/X11/kde/mimelnk'
-export kde_appsdir='$(prefix)/../../etc/X11/kde/applnk'
+export kde_confdir='\$(prefix)/../../etc/X11/kde'
+export kde_mimedir='\$(prefix)/../../etc/X11/kde/mimelnk'
+export kde_appsdir='\$(prefix)/../../etc/X11/kde/applnk'
 
-CXXFLAGS="$RPM_OPT_FLAGS -Wall" CFLAGS="$RPM_OPT_FLAGS -Wall" \
-./configure \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -fno-exceptions" \
+CFLAGS="$RPM_OPT_FLAGS -Wall" \
+./configure %{_target} \
 	--prefix=$KDEDIR \
+	--with-install-root=$RPM_BUILD_ROOT \
 	--disable-path-check
 make
 
