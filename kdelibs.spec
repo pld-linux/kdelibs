@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.92
-%define		_snap		031006
+%define		_snap		031014
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -24,7 +24,7 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	2312b887fc55bea38b31f0b475e4252f
+# Source0-md5:	0b18a6ac9b02bd2eff60c5f038430e9c
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
@@ -219,9 +219,8 @@ TODO.
 
 %build
 
-for plik in `find ./ -name *.desktop` ; do
-	echo $plik
-	sed -i -e "s/\[nb\]/\[no\]/g" $plik
+for f in `find . -name *.desktop` ; do
+	sed -i 's/\[nb\]/\[no\]/g' $f
 done
 
 %{__make} -f admin/Makefile.common cvs
@@ -243,6 +242,8 @@ mv -f config.h{.tmp,}
 %endif
 
 %{__make}
+
+%{__make} apidox
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -408,10 +409,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
-#%{_libdir}/libvcard.la
-#%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
-#%{_libdir}/libvcards.la
-#%attr(755,root,root) %{_libdir}/libvcards.so.*.*.*
 %dir %{_libdir}/kde3
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
@@ -654,8 +651,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libshellscript.so
 %{_libdir}/libkwalletbackend.so
 %{_libdir}/libkwalletclient.so
-#%{_libdir}/libvcard.so
-#%{_libdir}/libvcards.so
+#%%lang(en) %{_docdir}/kde/HTML/en/kde-%{_snap}-apidocs
 
 %files artsmessage
 %defattr(644,root,root,755)
