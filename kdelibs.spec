@@ -392,6 +392,7 @@ for f in *.sgml ; do
 	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
 done
 
+cd -
 
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
@@ -402,15 +403,17 @@ done
 
 %find_lang kdelibs --with-kde --all-name
 
-i=kdelibs
-
 ### Dont uncomment, left here in case more lang files are to be process
-## for i in $files; do
+
+#files=%{name}
+i=%{name}
+
+# for i in $files; do
 echo "%defattr(644,root,root,755)" > ${i}_en.lang
-grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
+grep en\/ ${i}.lang | grep -Ev '\-apidocs|en\/common' >> ${i}_en.lang
+grep -Ev '\-apidocs|en\/' ${i}.lang > ${i}.lang.1
 mv ${i}.lang.1 ${i}.lang
-## done
+# done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -419,10 +422,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-p /sbin/ldconfig
 
 %if %{with i18n}
-%files i18n -f kdelibs.lang
+%files i18n -f %{name}.lang
 %endif
 
-%files -f kdelibs_en.lang
+%files -f %{name}_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -800,6 +803,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/preparetips.1*
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
+%dir %{_kdedocdir}/en
+%{_kdedocdir}/en/common
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
