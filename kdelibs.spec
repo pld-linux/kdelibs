@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.%{_snap}.0.3
+Release:	0.%{_snap}.0.4
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -30,6 +30,7 @@ Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
 Patch4:		%{name}-kbookmarkfix.patch
+Patch5:		%{name}-vmenu_location.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -231,6 +232,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -R -p1
+%patch5 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -274,12 +276,6 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
 install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
-
-mv $RPM_BUILD_ROOT%{_applnkdir}/default_applications.menu{,.orig}
-install %{SOURCE3} $RPM_BUILD_ROOT%{_applnkdir}/default_applications.menu
-
 install -d \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
 
@@ -316,11 +312,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
-# should be kdebase part imo
-%{_applnkdir}/default_applications.menu
-# contains Components/kabc.desktop only
-%dir %{_applnkdir}/Settings/KDE
-%{_applnkdir}/Settings/KDE/Components
 %{_pixmapsdir}/*
 %{_docdir}/kde
 
