@@ -8,7 +8,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	2.2.2
-Release:	7
+Release:	8
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -37,6 +37,7 @@ Patch19:	%{name}-fix-kjs-mem-leak.patch
 Patch20:	%{name}-fix-special-printer.patch
 Patch21:	%{name}-fix-popupmenu-image.patch
 Patch22:	%{name}-disable-ok-button-in-properties-dialogbox-when-filename-is-empty.patch
+Patch23:	%{name}-artswrapper-priority_fix.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -293,6 +294,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
+%patch23 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
