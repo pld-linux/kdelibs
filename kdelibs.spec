@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040210
+%define		_snap		040211
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -347,12 +347,12 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--disable-rpath \
-	--with-qt-libraries=%{_libdir} \
+	--enable-mitshm \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
-	--enable-mitshm \
-	--with%{!?with_alsa:out}-alsa
+	--with%{!?with_alsa:out}-alsa \
+	--with-qt-libraries=%{_libdir} \
 
 %{__make}
 
@@ -557,6 +557,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
+%{_libdir}/libqt-addon.la
+%attr(755,root,root) %{_libdir}/libqt-addon.so.*.*.*
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
@@ -873,6 +875,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkutils.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
+%attr(755,root,root) %{_libdir}/libqt-addon.so
 %attr(755,root,root) %{_libdir}/libvcard.so
 %{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
