@@ -2,7 +2,7 @@
 # 	space.
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc2
+%define         _kdever         kde-3.1-rc3
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -11,8 +11,8 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.0.98
-Release:	2
+Version:	3.0.99
+Release:	1
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -290,43 +290,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/[!ad]*
 %attr(755,root,root) %{_bindir}/dcop
-%attr(755,root,root) %{_bindir}/dcop[cfors]*
-%attr(755,root,root) %{_bindir}/make*
-%attr(755,root,root) %{_bindir}/meinproc
-%attr(755,root,root) %{_bindir}/[ciklpsx]*
-%attr(755,root,root) %{_libdir}/[bdhk]*.??
+%attr(755,root,root) %{_bindir}/dcop[!i]*
+%attr(755,root,root) %{_libdir}/[dk]*.??
+%attr(755,root,root) %{_libdir}/lib[!ack]*.la
+%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*
 %attr(755,root,root) %{_libdir}/libc*.??
-%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.so.*
-%attr(755,root,root) %{_libdir}/libk[afhijmpt]*.la
+%attr(755,root,root) %{_libdir}/libk[!c]*.la
+%attr(755,root,root) %{_libdir}/libk[!c]*.so.*
 %attr(755,root,root) %{_libdir}/libkcertpart.??
-%attr(755,root,root) %{_libdir}/libkscreensaver.la
-%attr(755,root,root) %{_libdir}/libkscript.la
-%attr(755,root,root) %{_libdir}/libkspell.la
-%attr(755,root,root) %{_libdir}/libks[cp]*.so.*
-%attr(755,root,root) %{_libdir}/libD*.so.*
-%attr(755,root,root) %{_libdir}/libD*.la
-#%attr(755,root,root) %{_libdir}/libkatepart.so
-%attr(755,root,root) %{_libdir}/libkdecore.so.*
-%attr(755,root,root) %{_libdir}/libkdecore.la
-%attr(755,root,root) %{_libdir}/libkdefakes.so.*
-%attr(755,root,root) %{_libdir}/libkdefakes.la
-%attr(755,root,root) %{_libdir}/libkdefx.la
-%attr(755,root,root) %{_libdir}/libkdefx.so.*
-%attr(755,root,root) %{_libdir}/libkdeprint*.so.*
-%attr(755,root,root) %{_libdir}/libkdeprint*.la
-%attr(755,root,root) %{_libdir}/libkdesasl.so.*
-%attr(755,root,root) %{_libdir}/libkdesasl.la
-%attr(755,root,root) %{_libdir}/libkdesu*.so.*
-%attr(755,root,root) %{_libdir}/libkdesu*.la
-%attr(755,root,root) %{_libdir}/libkdeui.so.*
-%attr(755,root,root) %{_libdir}/libkdeui.la
-%attr(755,root,root) %{_libdir}/libkutils.so.*
-%attr(755,root,root) %{_libdir}/libkutils.la
-%attr(755,root,root) %{_libdir}/libshellscript.la
-%attr(755,root,root) %{_libdir}/libshellscript.so.*
-%attr(755,root,root) %{_libdir}/libvcard.so.*
-%attr(755,root,root) %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/kde3
 %config %{_datadir}/config
 # Contains Components/kabc.desktop only
@@ -344,20 +317,15 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl*
-%{_libdir}/libD*.so
-%{_libdir}/libkabc.so
-%{_libdir}/libkatepartinterfaces.so
-%{_libdir}/libk[dfhijmptu]*.so
-%{_libdir}/libks[cpsy]*.so
-%{_libdir}/libshellscript.so
-%{_libdir}/libvcard.so
+%{_libdir}/lib[!ack]*.so
+%{_libdir}/libk[!c]*.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
 
 %files -n arts-kde
 %defattr(644,root,root,755)
 %{_libdir}/libartskde.la
-%{_libdir}/libartskde.so.*.*
+%{_libdir}/libartskde.so.*
 
 %files -n arts-kde-devel
 %defattr(644,root,root,755)
