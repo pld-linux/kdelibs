@@ -169,7 +169,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/liba*.so.*.*
 %attr(755,root,root) %{_bindir}/a*
 %attr(755,root,root) %{_libdir}/mcop/Arts
-%{_libdir}/lib[^a]*.la
+%{_libdir}/liba*.la
 
 %files -n arts-devel
 %{_includedir}/arts
