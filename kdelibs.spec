@@ -18,14 +18,13 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
 #Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
 Source0:       http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
-
 ##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
@@ -77,6 +76,7 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake
+BuildConflicts:	kdepim-korganizer-libs
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
