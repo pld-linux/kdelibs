@@ -35,6 +35,7 @@ BuildRequires:	XFree86-devel >= 4.2.99
 %endif
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
+BuildRequires: 	sed >= 4.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -242,6 +243,13 @@ echo "#define kde_appsdir \"%{_applnkdir}\"" >> plddirs.h
 echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
+
+for plik in `find ./ -name *.desktop` ; do
+	if [ -d $plik ]; then
+	echo $plik
+	sed -ie 's/\[nb\]/\[no\]/g' $plik
+	fi
+done
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
