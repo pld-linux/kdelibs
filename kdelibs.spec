@@ -114,8 +114,8 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}"
-CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" 
+CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}"
+CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}" 
 ENABLE_DEBUG="%{?debug:--enable-debug}"
 %configure \
 	$ENABLE_DEBUG \
