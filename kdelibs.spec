@@ -87,8 +87,6 @@ Obsoletes:      kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
 Obsoletes:      kde-i18n-Zulu
 
 %define		_htmldir	/usr/share/doc/kde/HTML
-%define		_applnkdir	/usr/share/applnk
-%define		_pixmapsdir	/usr/share/pixmaps
 
 %define		no_install_post_chrpath		1
 
@@ -229,6 +227,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
+kde_appsdir="%{_applnkdir}"; export kde_applnkdir
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
