@@ -1,0 +1,233 @@
+Index: configure.in.in
+===================================================================
+RCS file: /home/kde/kdelibs/configure.in.in,v
+retrieving revision 1.122
+diff -u -p -r1.122 configure.in.in
+--- configure.in.in~	28 Jan 2004 06:51:27 -0000	1.122
++++ configure.in.in	4 Feb 2004 11:06:12 -0000
+@@ -336,5 +336,12 @@ if test "$kde_have_utempter" = "yes"; th
+   AC_DEFINE_UNQUOTED(HAVE_UTEMPTER, 1, [Define if you have the utempter helper for utmp managment])
+ fi
+ 
++kde_have_libidn=yes
++AC_CHECK_LIB(idn, idna_utf8_to_ace, [LIBIDN=-lidn], kde_have_libidn=no)
++AC_SUBST(LIBIDN)
++if test "$kde_have_libidn" = "yes"; then
++  AC_DEFINE_UNQUOTED(HAVE_LIBIDN, 1, [Define if you have libidn for international domain name support])
++fi
++
+ KDE_INIT_DOXYGEN([The KDE API Reference], [Version $VERSION])
+ KDE_CHECK_BINUTILS
+Index: kdecore/kidna.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kdecore/kidna.cpp,v
+retrieving revision 1.9
+diff -u -p -r1.9 kidna.cpp
+--- kdecore/kidna.cpp~	3 Jun 2003 08:17:09 -0000	1.9
++++ kdecore/kidna.cpp	4 Feb 2004 11:06:12 -0000
+@@ -21,49 +21,20 @@
+ 
+ #include "kidna.h"
+ 
++#include "config.h"
++
+ #include <kdebug.h>
+ 
+-#include "ltdl.h"
+ #include <stdlib.h>
+ 
+ #define IDNA_SUCCESS 0
+ 
+-static lt_dlhandle KIDNA_lib; // = 0
+-static bool KIDNA_lib_load_failed; // = false
+-
+-typedef int (*KIDNA_utf8_to_ace_t)(const char *, char **);
+-typedef int (*KIDNA_utf8ace_to_utf8_t)(const char *, char **);
+-
+-static KIDNA_utf8_to_ace_t KIDNA_utf8_to_ace; // = 0
+-static KIDNA_utf8ace_to_utf8_t KIDNA_utf8ace_to_utf8; // = 0
+-
+-static void KIDNA_load_lib()
+-{
+-   KIDNA_lib_load_failed = true; // Unless proven otherwise
+-   KIDNA_lib = lt_dlopen("/usr/local/lib/libidn.la");
+-   if (!KIDNA_lib) 
+-   {
+-      KIDNA_lib = lt_dlopen("/usr/lib/libidn.la");
+-   }
+-   
+-   if (!KIDNA_lib) 
+-      return; // Error
+-
+-   KIDNA_utf8_to_ace = (KIDNA_utf8_to_ace_t) lt_dlsym(KIDNA_lib, "idna_utf8_to_ace");
+-   if (!KIDNA_utf8_to_ace)
+-   {
+-      kdWarning() << "Symbol idna_utf8_to_ace not found." << endl;   
+-      return; // Error
+-   }
+-         
+-   KIDNA_utf8ace_to_utf8 = (KIDNA_utf8ace_to_utf8_t) lt_dlsym(KIDNA_lib, "idna_utf8ace_to_utf8");
+-   if (!KIDNA_utf8ace_to_utf8)
+-   {
+-      kdWarning() << "Symbol idna_utf8ace_to_utf8 not found." << endl;   
+-      return; // Error
+-   }
+-   KIDNA_lib_load_failed = false; // Succes
++#ifdef HAVE_LIBIDN
++extern "C" {
++extern int idna_utf8_to_ace(const char *, char **);
++extern int idna_utf8ace_to_utf8(const char *, char **);
+ }
++#endif
+ 
+ QCString KIDNA::toAsciiCString(const QString &idna)
+ {
+@@ -81,34 +52,24 @@ QCString KIDNA::toAsciiCString(const QSt
+    if (!needConversion)
+       return idna.lower().latin1();
+ 
+-   if (!KIDNA_lib && !KIDNA_lib_load_failed)
+-   {
+-      KIDNA_load_lib();
++#ifdef HAVE_LIBIDN
++   // Also handle names that start with "." even though libidn
++   // doesn't like those
++   bool bStartsWithDot = (idna[0] == '.');
++   char *pOutput;
++   if (idna_utf8_to_ace(idna.utf8().data()+(bStartsWithDot ? 1: 0), &pOutput) == IDNA_SUCCESS)
++   {
++      QCString result = pOutput;
++      free(pOutput);
++      if (bStartsWithDot)
++         return "."+result;
++      return result;
+    }
+-
+-   if (KIDNA_lib_load_failed)
++   else
++#endif
+    {
+       return 0; // Can't convert
+    }
+-   else 
+-   {
+-      // Also handle names that start with "." even though libidn
+-      // doesn't like those
+-      bool bStartsWithDot = (idna[0] == '.');
+-      char *pOutput;
+-      if ((*KIDNA_utf8_to_ace)(idna.utf8().data()+(bStartsWithDot ? 1: 0), &pOutput) == IDNA_SUCCESS)
+-      {
+-         QCString result = pOutput;
+-         free(pOutput);
+-         if (bStartsWithDot)
+-            return "."+result;
+-         return result;
+-      }
+-      else
+-      {
+-         return 0; // Can't convert
+-      }
+-   }
+ }
+ 
+ QString KIDNA::toAscii(const QString &idna)
+@@ -127,59 +88,39 @@ QString KIDNA::toAscii(const QString &id
+    if (!needConversion)
+       return idna.lower();
+ 
+-   if (!KIDNA_lib && !KIDNA_lib_load_failed)
+-   {
+-      KIDNA_load_lib();
++#ifdef HAVE_LIBIDN
++   // Also handle names that start with "." even though libidn
++   // doesn't like those
++   bool bStartsWithDot = (idna[0] == '.');
++   char *pOutput;
++   if (idna_utf8_to_ace(idna.utf8().data()+(bStartsWithDot ? 1: 0), &pOutput) == IDNA_SUCCESS)
++   {
++      QString result(pOutput);
++      free(pOutput);
++      if (bStartsWithDot)
++         return "."+result;
++      return result;
+    }
+-
+-   if (KIDNA_lib_load_failed)
++   else
++#endif
+    {
+       return QString::null; // Can't convert
+    }
+-   else 
+-   {
+-      // Also handle names that start with "." even though libidn
+-      // doesn't like those
+-      bool bStartsWithDot = (idna[0] == '.');
+-      char *pOutput;
+-      if ((*KIDNA_utf8_to_ace)(idna.utf8().data()+(bStartsWithDot ? 1: 0), &pOutput) == IDNA_SUCCESS)
+-      {
+-         QString result(pOutput);
+-         free(pOutput);
+-         if (bStartsWithDot)
+-            return "."+result;
+-         return result;
+-      }
+-      else
+-      {
+-         return QString::null; // Can't convert
+-      }
+-   }
+ }
+ 
+ QString KIDNA::toUnicode(const QString &idna)
+ {
+-   if (!KIDNA_lib && !KIDNA_lib_load_failed)
+-   {
+-      KIDNA_load_lib();
+-   }
+-
+-   if (KIDNA_lib_load_failed)
+-   {
+-      return idna.lower(); // Return as is
++#ifdef HAVE_LIBIDN
++   char *pOutput;
++   if (idna_utf8ace_to_utf8(idna.utf8(), &pOutput) == IDNA_SUCCESS)
++   {
++      QString result = QString::fromUtf8(pOutput);
++      free(pOutput);
++      return result;
+    }
+-   else 
++   else
++#endif
+    {
+-      char *pOutput;
+-      if ((*KIDNA_utf8ace_to_utf8)(idna.utf8(), &pOutput) == IDNA_SUCCESS)
+-      {
+-         QString result = QString::fromUtf8(pOutput);
+-         free(pOutput);
+-         return result;
+-      }
+-      else
+-      {
+-         return idna.lower(); // Return as is.
+-      }
++      return idna.lower(); // Return as is.
+    }
+ }
+Index: kdecore/Makefile.am
+===================================================================
+RCS file: /home/kde/kdelibs/kdecore/Makefile.am,v
+retrieving revision 1.344
+diff -u -p -r1.344 Makefile.am
+--- kdecore/Makefile.am	21 Nov 2003 12:06:53 -0000	1.344
++++ kdecore/Makefile.am	4 Feb 2004 11:06:12 -0000
+@@ -110,7 +110,7 @@ libkdecore_la_SOURCES = libintl.cpp kapp
+ 	kuser.cpp kconfigskeleton.cpp kconfigdialogmanager.cpp
+ 
+ libkdecore_la_LDFLAGS = $(QT_LDFLAGS) $(KDE_RPATH) $(KDE_MT_LDFLAGS) $(X_LDFLAGS) $(USER_LDFLAGS) -version-info 6:0:2 -no-undefined
+-libkdecore_la_LIBADD = malloc/libklmalloc.la $(SVGICON_LIB) ../dcop/libDCOP.la ../libltdl/libltdlc.la $(LIB_XEXT) $(LIBRESOLV) $(LIBUTIL) $(LIBART_LIBS) ../kdefx/libkdefx.la
++libkdecore_la_LIBADD = malloc/libklmalloc.la $(SVGICON_LIB) ../dcop/libDCOP.la ../libltdl/libltdlc.la $(LIB_XEXT) $(LIBRESOLV) $(LIBUTIL) $(LIBIDN) $(LIBART_LIBS) ../kdefx/libkdefx.la
+ libkdecore_la_NMCHECK = $(srcdir)/libkdecore.nmcheck
+ libkdecore_la_NMCHECKWEAK = $(srcdir)/libkdecore_weak.nmcheck $(srcdir)/libqt-mt_weak.nmcheck \
+ 	$(top_srcdir)/dcop/libDCOP_weak.nmcheck $(top_srcdir)/kdecore/standard_weak.nmcheck
