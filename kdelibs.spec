@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.92
-%define		_snap		030930
+%define		_snap		031006
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -24,7 +24,7 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	99c20d35e62e99972f4b03be6b4408f9
+# Source0-md5:	2312b887fc55bea38b31f0b475e4252f
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
@@ -231,7 +231,6 @@ done
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
-	--enable-final \
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
@@ -258,6 +257,7 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/apps/krichtexteditpart \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
 	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
+	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_datadir}/wallpapers \
 	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
@@ -548,6 +548,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/proxyscout
 %dir %{_datadir}/autostart
 %{_datadir}/config
+%dir %{_datadir}/config.kcfg
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
@@ -614,6 +615,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
+%attr(755,root,root) %{_bindir}/kconfig_compiler
 %attr(755,root,root) %{_bindir}/kde-config
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
