@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.0.1
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -28,6 +28,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2.2
 BuildRequires:	unixODBC-devel
 BuildRequires:	gettext-devel
+BuildRequires:	zlib-devel
 Requires:	qt >= 2.2.2
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -72,6 +73,32 @@ kdelibs.
 Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy
 pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 
+%package -n arts
+Summary:	aRts sound server
+Summary(pl):	serwer d¼wiêku
+Group:		Libraries
+Group(pl):	Biblioteki
+Requires:	%{name} = %{version}
+
+%description -n arts
+aRts sound server.
+
+%description -l pl -n arts
+Serwer d¼wiêku aRts.
+
+%package -n arts-devel
+Summary:	sound server - header files
+Summary(pl):	serwer d¼wiêku - pliki nag³ówkowe
+Group:		Developement/Libraries
+Group(pl):	Programowanie/Biblioteki
+Requires:	%{name} = %{version}
+
+%description -n arts-devel
+Header files required to compile programs using arts.
+
+%description -l pl -n arts-devel
+Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
+
 %prep
 %setup  -q
 %patch0 -p1
@@ -79,12 +106,19 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 %patch2 -p1
 
 %build
-%define		_htmldir	%{_docdir}/kde/HTML
+
+# Forcing _whole_ KDE (check kcore/kstdir) to use /usr/share would be too
+# complicated.
+%define		_htmldir	%{_datadir}/doc/kde/HTML
 
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
+CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}"
+CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}" 
+ENABLE_DEBUG="%{?debug:--enable-debug}"
 %configure \
+	$ENABLE_DEBUG \
 	--enable-final
 %{__make}
 
@@ -93,9 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-%find_lang common --with-kde
-%find_lang kspell --with-kde
-cat common.lang kspell.lang > kdelibs.lang
+%find_lang %{name} --with-kde --all-name
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -105,32 +137,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib[^a]*.so.*.*
 %attr(755,root,root) %{_libdir}/[^l]*.so
-%attr(755,root,root) %{_libdir}/mcop
-%attr(755,root,root) %{_bindir}/artscat
-%attr(755,root,root) %{_bindir}/artsd
-%attr(755,root,root) %{_bindir}/artsdsp
-%attr(755,root,root) %{_bindir}/artsplay
-%attr(755,root,root) %{_bindir}/artswrapper
-%attr(755,root,root) %{_bindir}/dcop
-%attr(755,root,root) %{_bindir}/dcopidl
-%attr(755,root,root) %{_bindir}/dcopserver
-%attr(755,root,root) %{_bindir}/kbuildsycoca
-%attr(755,root,root) %{_bindir}/kcookiejar
-%attr(755,root,root) %{_bindir}/kdb2html
-%attr(755,root,root) %{_bindir}/kded
-%attr(755,root,root) %{_bindir}/kdeinit
-%attr(755,root,root) %{_bindir}/kdeinit_wrapper
-%attr(755,root,root) %{_bindir}/kdesu_stub
-%attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
-%attr(755,root,root) %{_bindir}/kio_uiserver
-%attr(755,root,root) %{_bindir}/klauncher
-%attr(755,root,root) %{_bindir}/kmailservice
-%attr(755,root,root) %{_bindir}/knotify
-%attr(755,root,root) %{_bindir}/ksendbugmail
-%attr(755,root,root) %{_bindir}/lnusertemp
-%attr(755,root,root) %{_bindir}/settheme
+# It _have_ to be here. KDE will not work without *.la files.
+%{_libdir}/[^l]*.la
+%{_libdir}/lib[^a]*.la
+%attr(755,root,root) %dir %{_libdir}/mcop
+%attr(755,root,root) %{_bindir}/[^a]*
 
 %config %{_datadir}/config
 %{_htmldir}/default
@@ -149,13 +162,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/mcopidl
 
 %{_libdir}/lib*.so
-%{_libdir}/*.la
-%{_includedir}/*.h
+%{_includedir}/addressbook.h
+%{_includedir}/[^a]*
+
+%files -n arts
+%attr(755,root,root) %{_libdir}/liba*.so.*.*
+%attr(755,root,root) %{_bindir}/a*
+%attr(755,root,root) %{_libdir}/mcop/Arts
+%{_libdir}/lib[^a]*.la
+
+%files -n arts-devel
 %{_includedir}/arts
-%{_includedir}/artsc
-%{_includedir}/dom
-%{_includedir}/kio
-%{_includedir}/kparts
-%{_includedir}/kdesu
-%{_includedir}/kjs
-%{_includedir}/libkmid
