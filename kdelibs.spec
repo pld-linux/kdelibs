@@ -259,6 +259,33 @@ Ten program jest uruchamiany, gdy do demona aRts zostanie przekazana
 opcja z parametrem -m. Bêdzie on u¿ywany do wy¶wietlenia komunikatów
 demona.
 
+%package kgrantpty
+Summary:	Helper program to fix terminal permissions
+Summary(pl):	Program pomocniczy do ustawiania uprawnieñ terminala
+Group:		Applications/Terminal
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description kgrantpty
+This suid root program fixes the permissions of pseudo-terminal device
+files so that they cannot be eavesdropped by other local users. Systems
+that support /dev/pts (typical PLD installations do) don't require an
+extra program to do it, in that case this package is useless.
+
+Install this package if you're running a custom system that lacks
+Unix98 pts support and privacy from other local users is a concern for
+you.
+
+%description kgrantpty -l pl
+Ten program, dzia³aj±cy z uprawnieniami roota, poprawia uprawnienia
+plików pseudo-terminali, ¿eby unikn±æ ich pods³uchiwania przez innych
+lokalnych u¿ytkowników. Systemy obs³uguj±ce /dev/pts (typowe instalacje
+PLD go obs³uguj±) nie wymagaj± do tego dodatkowego programu, w tym
+przypadku ten pakiet jest bezu¿yteczny.
+
+Zainstaluj ten pakiet je¿eli korzystasz z nietypowej konfiguracji
+nieobs³uguj±cej pts-ów typu Unix98 i obawiasz siê inwigilacji ze strony
+innych u¿ytkowników lokalnych.
+
 %prep
 %setup -q -a1
 %patch100 -p1
@@ -364,12 +391,6 @@ cat << EOF
  *************************************************************
  *                                                           *
  * NOTE:                                                     *
- * kgrantpty should be installed with a set SUID root bit.   *
- * This is needed for konsole, etc. to ensure                *
- * that they can't be eavesdroped.                           *
- *                                                           *
- *                                                           *
- * NOTE:                                                     *
  * If You want the directories sharing from the context menu *
  * functionality, do as following:                           *
  * 1) Install sperl package,                                 *
@@ -419,7 +440,6 @@ EOF
 %attr(755,root,root) %{_bindir}/kdesu_stub
 %attr(755,root,root) %{_bindir}/kdontchangethehostname
 %attr(755,root,root) %{_bindir}/kfile
-%attr(755,root,root) %{_bindir}/kgrantpty
 %attr(755,root,root) %{_bindir}/khotnewstuff
 %attr(755,root,root) %{_bindir}/kimage_concat
 %attr(755,root,root) %{_bindir}/kinstalltheme
@@ -904,3 +924,7 @@ EOF
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/artsmessage
 %{_mandir}/man1/artsmessage.1*
+
+%files kgrantpty
+%defattr(644,root,root,755)
+%attr(4755,root,root) %{_bindir}/kgrantpty
