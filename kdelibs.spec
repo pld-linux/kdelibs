@@ -20,7 +20,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	6
+Release:	7
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -321,6 +321,9 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export kde_htmldir=%{_kdedocdir}
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -344,7 +347,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	kde_libs_htmldir=%{_kdedocdir}
 
 install -d \
 	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
