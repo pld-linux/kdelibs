@@ -14,7 +14,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	7
+Release:	8
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -23,6 +23,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
+Patch2:         %{name}-kcursor.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
@@ -223,6 +224,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
