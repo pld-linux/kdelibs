@@ -25,7 +25,7 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
 Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	24be0d558725f4d3441fb9d580129720	
+##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
 %if %{with i18n}
 Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
