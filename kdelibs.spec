@@ -31,6 +31,7 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		%{name}-vfolders.patch
+Patch4:		%{name}-fonts.patch
 #Patch4:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-http.patch
 #Patch5:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-khtml.patch
 Icon:		kdelibs.xpm
@@ -225,6 +226,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 cd kioslave/http 
 #%patch4 -p0
 cd ../../khtml
