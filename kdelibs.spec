@@ -58,8 +58,6 @@ BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	jasper-devel >= 1.600
-BuildRequires:	libICE-devel
-BuildRequires:	libXrender-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
@@ -192,7 +190,6 @@ Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	qt-devel >= 6:3.2.1-4
-Requires:	xrender-devel
 Obsoletes:	arts-kde-devel
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
