@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030502
+%define		_snap		030504
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -255,6 +255,7 @@ done
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
+	--enable-final \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
