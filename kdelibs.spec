@@ -26,6 +26,10 @@ Patch6:		%{name}-lang.patch
 Patch7:		%{name}-alignment.patch
 Patch8:  	%{name}-katetextbuffermultibyte.patch
 Patch9:		%{name}-dock.patch
+#The following two are security patches from 3.0.5
+Patch10:	%{name}-khtml.patch
+Patch11:	%{name}-kio.patch
+#End security patches
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -232,7 +236,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-
+%patch10 -p1
+%patch11 -p1
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
