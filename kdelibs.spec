@@ -53,6 +53,9 @@ Obsoletes:	kdelibs-sound
 Obsoletes:	kdesupport
 Obsoletes:	kdesupport-devel
 Obsoletes:	kdesupport-static
+Obsoletes:	kdesupport-mimelib
+Obsoletes:	kdesupport-mimelib-devel
+Obsoletes:      kdesupport-mimelib-static
 
 %define         _prefix         /usr/X11R6
 %define		_htmldir	%{_datadir}/doc/kde/HTML
