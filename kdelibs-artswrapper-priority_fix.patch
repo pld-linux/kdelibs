@@ -1,0 +1,11 @@
+--- kdelibs-2.2.2/arts/soundserver/artswrapper.c--	Mon Mar 26 18:01:30 2001
++++ kdelibs-2.2.2/arts/soundserver/artswrapper.c	Sun May 19 04:27:51 2002
+@@ -52,7 +52,7 @@
+ 	int prio;
+ 
+ 	prio = getpriority(PRIO_PROCESS,getpid());
+-	if(prio < -10)
++	if(prio > -10)
+ 	{
+ 		setpriority(PRIO_PROCESS,getpid(),-17);
+ 		prio = getpriority(PRIO_PROCESS,getpid());
