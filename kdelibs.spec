@@ -1,12 +1,11 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
-# 	space.
+#	space.
 #
 # Conditional build:
-# _with_nas	- with NAS support
-# _without_alsa - disable alsa
-# _without_ldap - disable openldap
-#
-%bcond_without	i18n
+%bcond_with	nas	# build with NAS support
+%bcond_without	alsa	# build without ALSA support
+%bcond_without	ldap	# build without LDAP support (through openldap)
+%bcond_without	i18n	# don't include i18n files in package
 
 %define		_state		stable
 %define		_ver		3.1.4
@@ -37,9 +36,8 @@ Patch1:		%{name}-resize-icons.patch
 Patch2:		%{name}-vfolders.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
-# Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
-%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
+%{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-devel >= %{artsver}
 BuildRequires:	arts-qt >= %{artsver}
 BuildRequires:	audiofile-devel
@@ -65,8 +63,8 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
-%{?_with_nas:BuildRequires:	nas-devel}
-%{!?_without_ldap:BuildRequires:	openldap-devel}
+%{?with_nas:BuildRequires:	nas-devel}
+%{?with_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.2.1-4
@@ -201,7 +199,7 @@ Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±cej KDE
 Group:		X11/Libraries
 Requires:	arts-kde = %{epoch}:%{version}
 Requires:	%{name}-devel = %{epoch}:%{version}
-%{!?_without_alsa:Requires:	alsa-lib-devel}
+%{?with_alsa:Requires:	alsa-lib-devel}
 Requires:	arts-devel >= %{artsver}
 Requires:	audiofile-devel
 Requires:	fam-devel
@@ -219,7 +217,7 @@ Nag³ówki dla czê¶ci aRts wymagaj±cej KDE.
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów demona aRts
 Group:		Development/Tools
-Requires:	%{name} >= %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
@@ -282,11 +280,11 @@ done
 %endif
 	--enable-final \
 	--enable-mitshm \
-	%{?_without_ldap:--without-ldap} \
-	%{!?_without_ldap:--with-ldap} \
-	--with%{?_without_alsa:out}-alsa
+	%{!?with_ldap:--without-ldap} \
+	%{?with_ldap:--with-ldap} \
+	--with%{!?with_alsa:out}-alsa
 
-%if %{!?_with_nas:1}0
+%if %{without nas}
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
