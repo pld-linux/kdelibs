@@ -46508,3 +46508,14 @@ diff -urN -x CVS kdelibs.orig/pics/hicolor/index.theme kdelibs/pics/hicolor/inde
  Comment[mn]=64000-Өнгөтэй-Загвар
  Comment[mt]=Tema ta' ikoni b'ħafna kuluri
  Comment[nb]=Ikontema med mange farger
+--- kdelibs/khtml/rendering/render_block.cpp	24 Nov 2004 14:01:00 -0000	1.38.2.5
++++ kdelibs/khtml/rendering/render_block.cpp	30 Nov 2004 15:05:46 -0000	1.38.2.6
+@@ -1038,7 +1038,7 @@ void RenderBlock::layoutBlockChildren( b
+                     int cw = lineWidth( child->yPos() );
+                     static_cast<RenderBox*>(child)->calcHorizontalMargins
+                         ( child->style()->marginLeft(), child->style()->marginRight(), cw);
+-                    
++                    chPos = leftOff + child->marginLeft();                    
+                 }
+             }
+         } else {
