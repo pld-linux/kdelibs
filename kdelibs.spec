@@ -69,7 +69,7 @@ BuildRequires:	mad-devel
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 %{!?_without_ldap:BuildRequires:	openldap-devel}
-BuildRequires:	openssl-devel >= 0.9.6k
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
