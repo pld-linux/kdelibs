@@ -3,7 +3,10 @@
 # _without_alsa - disable alsa
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc5
+%define         _ver		3.1
+%define         _rcver		rc6
+%define         _kdever		kde-%{_ver}-%{_rcver}
+
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -12,9 +15,9 @@ Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
 Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
-Version:	3.1
-Release:	4
-Epoch:		7
+Version:	%{_ver}%{_rcver}
+Release:	1
+Epoch:		8
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
