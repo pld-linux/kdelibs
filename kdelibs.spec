@@ -8,7 +8,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	2.2.2
-Release:	8
+Release:	9
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -400,7 +400,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/templates
 %dir /usr/share/doc/kde
 %dir %{_htmldir}
-%lang(en) %dir %{_htmldir}/en
+%dir %{_htmldir}/en
 
 %files devel
 %defattr(644,root,root,755)
