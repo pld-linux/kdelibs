@@ -1,8 +1,10 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
+# _without_alsa - disable alsa
+
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc4
+%define         _kdever         kde-3.1-rc5
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -13,7 +15,7 @@ Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.1
 Release:	1
-Epoch:		7
+Epoch:		8
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
@@ -26,15 +28,13 @@ Patch1:		%{name}-libxml_closecallback.patch
 Patch3:		%{name}-resize-icons.patch
 #Patch4:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
 Icon:		kdelibs.xpm
-# If you want gmcop you will need *working* pkgconfig --- there is no such
-# thing at the moment (2001-08-15) in known universe.
-#Requires:	glib2 >= 1.3.3
+# Where is gmcop?!!!
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
-BuildRequires:	alsa-lib-devel
+%{!?_without_alsa:BuildRequires:        alsa-lib-devel}
 %endif
-BuildRequires:	arts-devel >= 1.0.0
-BuildRequires:	arts-qt >= 1.0.0
+BuildRequires:	arts-devel >= 1.1-1
+BuildRequires:	arts-qt >= 1.1-1
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,7 +56,7 @@ BuildRequires:	qt-devel >= 3.1
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
 Requires:	applnk 
-Requires:	arts >= 1.0.0
+Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -151,7 +151,7 @@ Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	arts-devel >= 1.0.0
+Requires:	arts-devel >= 1.1-1
 Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
@@ -245,8 +245,8 @@ CXXFLAGS="%{rpmcflags}"
 %endif
 	--disable-mysql \
 	--disable-informix \
-	--with-alsa \
-	--enable-mitshm
+	--enable-mitshm \
+        --with%{?_without_alsa:out}-alsa		
 
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
