@@ -29,6 +29,8 @@ Group:		X11/Libraries
 # http://download.kde.org/stable/3.2.1/src/kdelibs-3.2.1.tar.bz2
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	76c656fb4ec7f1ca073f52fad2b8898b
+Source1:	%{name}-wmfplugin.tar.bz2 
+# Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
@@ -73,6 +75,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	libwmf-devel >= 2:0.2.0
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
@@ -252,7 +255,7 @@ API documentation.
 Dokumentacja API.
 
 %prep 
-%setup -q
+%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -596,6 +599,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/plugins/styles/light.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
 
+%{_libdir}/kde3/wmfthumbnail.la
+%attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
+
+
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
 %{_datadir}/apps/dcopidlng
@@ -674,6 +681,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/telnet.protocol
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
+%{_datadir}/services/wmfthumbnail.desktop
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
 # contains also 3rdparty crystalsvg/apps trees
