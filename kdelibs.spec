@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	1.1.2
-Release:	11
+Release:	12
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
@@ -104,11 +104,10 @@ export  kde_htmldir kde_icondir kde_minidir kde_appsdir kde_sounddir \
 
 automake
 perl admin/automoc -padmin
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -DNO_DEBUG"
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -DNO_DEBUG"
 LDFLAGS="-s"
 export CXXFLAGS LDFLAGS
 %configure \
-	--with-install-root=$RPM_BUILD_ROOT \
 	--with-qt-dir=%{_prefix} \
 	--disable-path-check
 make
