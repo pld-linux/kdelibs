@@ -23,7 +23,7 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	246d76ecd0b2f51e41708f8ff4316b50
+# Source0-md5:	e5961a78b44a3005a7af6ada249e5888
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
