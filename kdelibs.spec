@@ -4,8 +4,9 @@
 %bcond_without	apidocs	# do not prepare API documentation
 %bcond_with	verbose	# verbose build
 
-%define		_state		stable
-%define		_ver		3.3.0
+%define		_state		snapshot
+%define		_snap		040908
+%define		_ver		3.3.89
 %define         artsver         13:1.3.0
 
 Summary:	K Desktop Environment - libraries
@@ -16,14 +17,15 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	%{_ver}
-Release:	5
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	707fef075e3e4b40295849ce0210fc29
 #Source0:	http://download.kde.org/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2
-Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	1c208724987433fc1929d22928c1a358
+#Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.tar.bz2
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Source2:	pnm.protocol
@@ -256,8 +258,8 @@ opcja z parametrem -m. Bêdzie on u¿ywany do wy¶wietlenia komunikatów
 demona.
 
 %prep
-%setup -q -a1
-%patch100 -p1
+%setup -q -a1 -n %{name}
+#patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -269,7 +271,6 @@ echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %build
-
 cp %{_datadir}/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
@@ -338,10 +339,10 @@ cd -
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 
-# Problem with 'common' symlink
-cd $RPM_BUILD_ROOT%{_kdedocdir}/en/kspell
-ln -sf %{_kdedocdir}/en/common common
-cd -
+# Problem with 'common' symlink | WHAT PROBLEM?
+#cd $RPM_BUILD_ROOT%{_kdedocdir}/en/kspell
+#ln -sf %{_kdedocdir}/en/common common
+#cd -
 %if %{with apidocs}
 cd $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-apidocs
 ln -sf %{_kdedocdir}/en/common common
@@ -502,6 +503,8 @@ EOF
 %attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
 %{_libdir}/libkmdi.la
 %attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
+%{_libdir}/libkmdi2.la
+%attr(755,root,root) %{_libdir}/libkmdi2.so.*.*.*
 %{_libdir}/libkmediaplayer.la
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
 %{_libdir}/libkmid.la
@@ -601,6 +604,8 @@ EOF
 %attr(755,root,root) %{_libdir}/kde3/kimg_tiff.so
 %{_libdir}/kde3/kimg_xview.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_xview.so
+%{_libdir}/kde3/kimg_xcf.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_xcf.so
 %{_libdir}/kde3/kio_file.la
 %attr(755,root,root) %{_libdir}/kde3/kio_file.so
 %{_libdir}/kde3/kio_ftp.la
@@ -740,6 +745,7 @@ EOF
 %{_datadir}/services/xbm.kimgio
 %{_datadir}/services/xpm.kimgio
 %{_datadir}/services/xv.kimgio
+%{_datadir}/services/xcf.kimgio
 %{_datadir}/services/data.protocol
 %{_datadir}/services/file.protocol
 %{_datadir}/services/ftp.protocol
@@ -868,6 +874,7 @@ EOF
 %attr(755,root,root) %{_libdir}/libkjava.so
 %attr(755,root,root) %{_libdir}/libkjs.so
 %attr(755,root,root) %{_libdir}/libkmdi.so
+%attr(755,root,root) %{_libdir}/libkmdi2.so
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so
 %attr(755,root,root) %{_libdir}/libkmid.so
 %attr(755,root,root) %{_libdir}/libknewstuff.so
