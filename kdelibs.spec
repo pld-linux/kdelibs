@@ -9,7 +9,7 @@ Copyright:	LGPL
 Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
 Source1:	kderc.PLD
-BuildPrereq:	qt-devel >= 1.44
+BuildRequires:	qt-devel >= 1.44
 Requires:	qt >= 1.44
 URL:		http://www.kde.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
