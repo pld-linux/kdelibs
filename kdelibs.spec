@@ -41,7 +41,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	arts-devel >= 1.0.0
-#BuildRequires:	arts-qt >= 1.0.0
+BuildRequires:	arts-qt >= 1.0.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
