@@ -16,8 +16,11 @@ Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/kdelibs-20000302.tar.bz2
 BuildRequires:	qt-devel >= 2.0
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
+BuildRequires:	kdesupport-mimelib-devel = %{version}
+BuildRequires:	kdesupport-odbc-devel = %{version}
+BuildRequires:	kdesupport-uulib-devel = %{version}
+BuildRequires:	kdesupport-qwspritefield-devel = %{version}
 Requires:	qt >= 2.0
-Requires:	kdesupport = %{version}
 URL:		http://www.kde.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
