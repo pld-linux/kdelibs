@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2.1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -265,7 +265,7 @@ demona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1 
-#%patch5 -p1 
+%patch5 -p1 
 
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
