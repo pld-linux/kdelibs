@@ -296,7 +296,7 @@ rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-mv $RPM_BUILD_ROOT%{_prefix}/X11R6/share/locale/* $RPM_BUILD_ROOT%{_datadir}/locale
+mv $RPM_BUILD_ROOT%{_prefix}/share/locale/* $RPM_BUILD_ROOT%{_datadir}/locale
 %endif
 
 %find_lang %{name} --all-name --with-kde
