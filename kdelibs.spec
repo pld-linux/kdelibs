@@ -318,6 +318,7 @@ Obsoletes:      kde-i18n-Chinese-Big5
 Obsoletes:      kde-i18n-Zulu
 Obsoletes:      kde-i18n-kdelibs
 Obsoletes:      kde-i18n
+BuildArch:      noarch
 
 %description i18n 
 Internationalization and localization files for kdelibs.
