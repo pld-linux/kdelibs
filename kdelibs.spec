@@ -439,8 +439,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/kde3
 %attr(755,root,root) %{_libdir}/kde3/[!k]*.so
 %{_libdir}/kde3/[!k]*.la
-%attr(755,root,root) %{_libdir}/kde3/k[!ac]*.so
-%{_libdir}/kde3/k[!ac]*.la
+%attr(755,root,root) %{_libdir}/kde3/k[!c]*.so
+%{_libdir}/kde3/k[!c]*.la
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
 %attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
@@ -472,12 +472,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kabc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kab2kabc
-%attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
-%{_libdir}/kde3/kabc_dir.la
-%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
-%{_libdir}/kde3/kabc_ldap.la
-%attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-%{_libdir}/kde3/kabcformat_binary.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kabc.so
 %{_libdir}/kde3/kcm_kabc.la
 %{_datadir}/apps/kabc
