@@ -483,8 +483,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
-%{_libdir}/libcupsdconf.la
-%attr(755,root,root) %{_libdir}/libcupsdconf.so
+%{_libdir}/kde3/cupsdconf.la
+%attr(755,root,root) %{_libdir}/kde3/cupsdconf.so
 %{_libdir}/libkabc.la
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
 %{_libdir}/libkabc_dir.la
@@ -511,6 +511,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
 %{_libdir}/libkdeinit_kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
+%{_libdir}/libkdeinit_cupsdconf.la
+%attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %{_libdir}/libkdeinit_kconf_update.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
 %{_libdir}/libkdeinit_kcookiejar.la
@@ -561,8 +563,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
 %{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
-%{_libdir}/libshellscript.la
-%attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
+%{_libdir}/kde3/libshellscript.la
+%attr(755,root,root) %{_libdir}/kde3/libshellscript.so
 %{_libdir}/libkwalletbackend.la
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
@@ -878,7 +880,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkspell.so
 %attr(755,root,root) %{_libdir}/libktexteditor.so
 %attr(755,root,root) %{_libdir}/libkutils.so
-%attr(755,root,root) %{_libdir}/libshellscript.so
+##%attr(755,root,root) %{_libdir}/libshellscript.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
 %attr(755,root,root) %{_libdir}/libvcard.so
