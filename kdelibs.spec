@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030406
+%define		_snap		030409
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -248,8 +248,11 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-CFLAGS="%{rpmcflags}"
-CXXFLAGS="%{rpmcflags}"
+for plik in `find ./ -name *.desktop` ; do
+	echo $plik
+	sed -i -e "s/\[nb\]/\[no\]/g" $plik
+done
+
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-final \
