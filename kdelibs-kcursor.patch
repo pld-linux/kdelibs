@@ -1,0 +1,67 @@
+--- kdelibs-3.1.orig/kdeui/kcursor.cpp	Fri Jan  3 05:57:26 2003
++++ kdelibs-3.1/kdeui/kcursor.cpp	Wed Feb 19 15:53:59 2003
+@@ -43,42 +43,7 @@
+ 
+ QCursor KCursor::handCursor()
+ {
+-        static QCursor *hand_cursor = 0;
+-
+-        if (hand_cursor == 0)
+-        {
+-                KConfig *config = KGlobal::config();
+-                KConfigGroupSaver saver( config, "General" );
+-
+-                if ( config->readEntry("handCursorStyle", "Windows") == "Windows" )
+-                {
+-                        static const unsigned char HAND_BITS[] = {
+-                                0x80, 0x01, 0x00, 0x40, 0x02, 0x00, 0x40, 0x02, 0x00, 0x40, 0x02,
+-                                0x00, 0x40, 0x02, 0x00, 0x40, 0x02, 0x00, 0x40, 0x1e, 0x00, 0x40,
+-                                0xf2, 0x00, 0x40, 0x92, 0x01, 0x70, 0x92, 0x02, 0x50, 0x92, 0x04,
+-                                0x48, 0x80, 0x04, 0x48, 0x00, 0x04, 0x48, 0x00, 0x04, 0x08, 0x00,
+-                                0x04, 0x08, 0x00, 0x04, 0x10, 0x00, 0x04, 0x10, 0x00, 0x04, 0x20,
+-                                0x00, 0x02, 0x40, 0x00, 0x02, 0x40, 0x00, 0x01, 0xc0, 0xff, 0x01};
+-                        static const unsigned char HAND_MASK_BITS[] = {
+-                                0x80, 0x01, 0x00, 0xc0, 0x03, 0x00, 0xc0, 0x03, 0x00, 0xc0, 0x03,
+-                                0x00, 0xc0, 0x03, 0x00, 0xc0, 0x03, 0x00, 0xc0, 0x1f, 0x00, 0xc0,
+-                                0xff, 0x00, 0xc0, 0xff, 0x01, 0xf0, 0xff, 0x03, 0xf0, 0xff, 0x07,
+-                                0xf8, 0xff, 0x07, 0xf8, 0xff, 0x07, 0xf8, 0xff, 0x07, 0xf8, 0xff,
+-                                0x07, 0xf8, 0xff, 0x07, 0xf0, 0xff, 0x07, 0xf0, 0xff, 0x07, 0xe0,
+-                                0xff, 0x03, 0xc0, 0xff, 0x03, 0xc0, 0xff, 0x01, 0xc0, 0xff, 0x01};
+-                        QBitmap hand_bitmap(22, 22, HAND_BITS, true);
+-                        QBitmap hand_mask(22, 22, HAND_MASK_BITS, true);
+-                        hand_cursor = new QCursor(hand_bitmap, hand_mask, 7, 0);
+-                        // Hack to force QCursor to call XCreatePixmapCursor() immediately
+-                        // so the bitmaps don't get pushed out of the Xcursor LRU cache.
+-                        hand_cursor->handle();
+-                }
+-                else
+-                        hand_cursor = new QCursor(PointingHandCursor);
+-        }
+-
+-        Q_CHECK_PTR(hand_cursor);
+-        return *hand_cursor;
++    return Qt::pointingHandCursor;
+ }
+ 
+ /* XPM */
+@@ -123,19 +88,7 @@
+ 
+ QCursor KCursor::workingCursor()
+ {
+-        static QCursor *working_cursor = 0;
+-
+-        if (working_cursor == 0)
+-        {
+-            QPixmap pm( const_cast< const char** >( working_cursor_xpm ));
+-            working_cursor = new QCursor( pm, 1, 1 );
+-            // Hack to force QCursor to call XCreatePixmapCursor() immediately
+-            // so the bitmaps don't get pushed out of the Xcursor LRU cache.
+-            working_cursor->handle();
+-        }
+-
+-        Q_CHECK_PTR(working_cursor);
+-        return *working_cursor;
++    return Qt::workingCursor;
+ }
+ 
+ /**
