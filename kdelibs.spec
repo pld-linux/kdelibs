@@ -209,6 +209,7 @@ Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
 Obsoletes:	kdelibs-static
+Obsoletes:	kttsd-devel
 Conflicts:	kdebase-devel <= 9:3.1.90
 
 %description devel
@@ -235,6 +236,7 @@ Summary:	API documentation
 Summary(pl):	Dokumentacja API
 Group:		Documentation
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Obsoletes:	kttsd-apidocs
 
 %description apidocs
 Annotated reference of KDE libraries programming interface including:
