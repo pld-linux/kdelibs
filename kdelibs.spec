@@ -3,11 +3,10 @@
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	apidocs	# do not prepare API documentation
 %bcond_with	verbose	# verbose build
-#bcond_with	cvs	# use cvs build dirs instead of supplied sources
 
 %define		_state		unstable
 %define		_ver		3.3.0
-#define		_snap		040724
+%define		_snap		rc2
 %define         artsver         13:1.3.0
 
 Summary:	K Desktop Environment - libraries
@@ -19,18 +18,13 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.rc2.1
+Release:	0.%{_snap}.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}-rc2.tar.bz2
-Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-rc2.tar.bz2
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
 # Source0-md5:	49de25094d36cdaae26af29bdf9055c3
-#if ! %{with cvs}
-#Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
-#else
-#Source0:	kdesource.tar.gz
-#endif
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
 Patch0:		kde-common-PLD.patch
@@ -256,11 +250,7 @@ opcja z parametrem -m. BÍdzie on uøywany do wy∂wietlenia komunikatÛw
 demona.
 
 %prep
-#if ! %{with cvs}
 %setup -q -a1
-#else
-#setup -q -n %{name} -a1 -D
-#endif
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -344,7 +334,7 @@ cd $RPM_BUILD_ROOT%{_kdedocdir}/en/kspell
 ln -sf %{_kdedocdir}/en/common common
 cd -
 %if %{with apidocs}
-cd $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{_snap}-apidocs
+cd $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-apidocs
 ln -sf %{_kdedocdir}/en/common common
 cd -
 %endif
@@ -586,8 +576,8 @@ EOF
 %attr(755,root,root) %{_libdir}/kde3/kimg_dds.so
 %{_libdir}/kde3/kimg_eps.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
-%{_libdir}/kde3/kimg_exr.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
+#%{_libdir}/kde3/kimg_exr.la
+#%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
 %{_libdir}/kde3/kimg_ico.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
 %{_libdir}/kde3/kimg_jp2.la
@@ -724,7 +714,7 @@ EOF
 %{_datadir}/services/bmp.kimgio
 %{_datadir}/services/dds.kimgio
 %{_datadir}/services/eps.kimgio
-%{_datadir}/services/exr.kimgio
+#%{_datadir}/services/exr.kimgio
 %{_datadir}/services/gif.kimgio
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
@@ -892,7 +882,7 @@ EOF
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_kdedocdir}/en/%{name}%{!?with_cvs:-%{_snap}}-apidocs
+%{_kdedocdir}/en/%{name}-apidocs
 %endif
 
 %files artsmessage
