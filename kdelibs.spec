@@ -1,5 +1,3 @@
-# NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
-#	space.
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
@@ -7,7 +5,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040217
+%define		_snap		040225
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -19,7 +17,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -681,7 +679,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
-%{_datadir}/apps/dcopidlng
+%dir %{_datadir}/apps/dcopidlng
+%attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
+%{_datadir}/apps/dcopidlng/*.pm
 %{_datadir}/apps/katepart
 %{_datadir}/apps/kcertpart
 %{_datadir}/apps/kcm_componentchooser
@@ -755,6 +755,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/rlogin.protocol
 %{_datadir}/services/rtsp.protocol
 %{_datadir}/services/shellscript.desktop
+%{_datadir}/services/ssh.protocol
 %{_datadir}/services/telnet.protocol
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
