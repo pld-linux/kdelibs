@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.11
+Release:	0.%{sver}.12
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -17,6 +17,7 @@ Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
+Patch4:		%{name}-no_nas.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -103,6 +104,30 @@ aRts sound server.
 %description -l pl -n arts
 Serwer d¼wiêku aRts.
 
+%package -n arts-X11
+Summary:	X11 dependent part of aRts
+Summary(pl):	Czê¶æ aRts wymagaj±ca X11
+Group:		X11/Libraries
+Group(pl):	X11/Biblioteki
+
+%description -n arts-X11
+X11 dependent part of aRts
+
+%description -n arts-X11
+Czê¶æ aRts wymagaj±ca X11
+
+%package -n arts-qt
+Summary:	QT dependend part of aRts
+Summary(pl):	Czê¶æ aRts wymagaj±ca QT
+Group:		X11/Libraries
+Group(pl):	X11/Biblioteki
+
+%description -n arts-qt
+QT dependend part of aRts
+
+%description -l pl -n arts-qt
+Czê¶æ aRts wymagaj±ca QT
+
 %package -n arts-devel
 Summary:	sound server - header files
 Summary(pl):	serwer d¼wiêku - pliki nag³ówkowe
@@ -137,6 +162,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -253,11 +279,21 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artsplay
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
-%attr(755,root,root) %{_libdir}/lib[amqsx]*.so.*.*
-%attr(755,root,root) %{_libdir}/lib[amqsx]*.la
+%attr(755,root,root) %{_libdir}/lib[ams]*.so.*.*
+%attr(755,root,root) %{_libdir}/lib[ams]*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
 %{_libdir}/mcop/*
+
+%files -n arts-X11
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libx11globalcomm.so.*.*.*
+%attr(755,root,root) %{_libdir}/libx11globalcomm.la
+
+%files -n arts-qt
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libqtmcop.so.*.*.*
+%attr(755,root,root) %{_libdir}/libqtmcop.la
 
 %files -n arts-devel
 %defattr(644,root,root,755)
