@@ -14,7 +14,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.5a
-Release:	0.1
+Release:	0.2
 Epoch:		7
 License:	LGPL
 Group:		X11/Libraries
@@ -38,8 +38,8 @@ BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
-BuildRequires:	arts-devel >= 1.0.0
-BuildRequires:	arts-qt >= 1.0.0
+BuildRequires:	arts-devel >= 1.0.5a
+BuildRequires:	arts-qt >= 1.0.5a
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -61,7 +61,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
-Requires:	arts >= 1.0.0
+Requires:	arts >= 1.0.5a
 Requires:	qt >= 3.0.5
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
