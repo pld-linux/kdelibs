@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		0.1
+%define		_rel		1
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -25,7 +25,6 @@ Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
-Patch2:		%{name}-http_file_upload_security_fix.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -167,14 +166,13 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-autoconf
-#%{__make} -f Makefile.cvs
+#autoconf
+%{__make} -f Makefile.cvs
 if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
         CPPFLAGS="`pkg-config libpng12 --cflags`"
 fi
