@@ -84,12 +84,13 @@ Obsoletes:	kdeedu-kgeo
 Obsoletes:	kdegames-megami
 Obsoletes:	kdenetwork-kmail
 Obsoletes:	kdenetwork-knode
-Obsoletes:      kdepim-commonlibs < 3:3.1.91.030918-1
+Obsoletes:      kdepim-commonlibs
+Obsoletes:	kdepim-kaplan
+# More
 Obsoletes:      kdepim-kaddressbook < 3:3.1.91.030918-1
 Obsoletes:      kdepim-kmail < 3:3.1.91.030918-1
 Obsoletes:      kdepim-kontact < 3:3.1.91.030918-1
 Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
-Obsoletes:	kdepim-kaplan
 Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
