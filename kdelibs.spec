@@ -32,10 +32,9 @@ Group:		X11/Libraries
 # http://download.kde.org/stable/3.2.1/src/kdelibs-3.2.1.tar.bz2
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	50ae60072c1fc4ae4e41694bc2325dcb
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
-Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	1b484133af8a53b761c7bc9fcb6c1814
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	6e0c794ee212d252e5ee413a806fe835
 %endif
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-kstandarddirs.patch
