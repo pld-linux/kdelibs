@@ -1,13 +1,23 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
-%define		_sub_ver	rc3
+%define		_ver		3.0
+#define		_sub_ver
+%define		_rel		1
+
+%{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
+%{!?_sub_ver:	%define	_version	%{_ver}}
+%{?_sub_ver:	%define	_release	0.%{_sub_ver}.%{_rel}}
+%{!?_sub_ver:	%define	_release	%{_rel}}
+%{!?_sub_ver:	%define	_ftpdir	stable}
+%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}%{_sub_ver}}
+
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
-Version:	3.0
-Release:	0.%{_sub_ver}.2
+Version:	%{_version}
+Release:	%{_release}
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -19,9 +29,7 @@ Group(pl):	X11/Biblioteki
 Group(pt_BR):	X11/Bibliotecas
 Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
 Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
-%{!?_sub_ver:	%define	_ftpdir	stable}
-%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}%{_sub_ver}}
-Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/src/%{name}-%{version}%{_sub_ver}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
 # Merged
 #Patch0:		%{name}-final.patch
 # Merged
@@ -59,7 +67,7 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.0.1
+BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
 Requires:	arts >= 0.9.9
 Requires:	qt >= 2.2.4
@@ -161,6 +169,7 @@ Czê¶æ aRts wymagaj±ca KDE.
 Summary:	Headers for KDE dependent part of aRts
 Summary(pl):	Nag³ówki dla czê¶ci aRts wymagaj±ca KDE
 Group:		X11/Libraries
+Requires:	arts-kde = %{version}
 
 %description -n arts-kde-devel
 Headers for KDE dependent part of aRts.
@@ -185,7 +194,7 @@ Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %prep
-%setup -q -n "%{name}-%{version}%{_sub_ver}"
+%setup -q
 #%patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
@@ -247,7 +256,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/[cilkpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
 %attr(755,root,root) %{_libdir}/libc*.??
-%attr(755,root,root) %{_libdir}/libartskde.so
 %attr(755,root,root) %{_libdir}/libk[afhjpt]*.so.*.*
 %attr(755,root,root) %{_libdir}/libk[afjpt]*.la
 %attr(755,root,root) %{_libdir}/libkcertpart.??
@@ -339,6 +347,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n arts-kde-devel
 %defattr(644,root,root,755)
 %{_includedir}/arts/*
+%{_libdir}/libartskde.so
 
 %files -n arts-message
 %defattr(644,root,root,755)
