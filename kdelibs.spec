@@ -23,7 +23,9 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+#Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+Source0:       http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
+
 ##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
 #Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
@@ -340,7 +342,7 @@ Internationalization and localization files for kdelibs.
 Pliki umiêdzynarodawiaj±ce kdelibs.
 
 %prep 
-%setup -q -n %{name}
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -459,6 +461,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
+%attr(755,root,root) %{_bindir}/ghns
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
@@ -475,6 +478,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kdontchangethehostname
 %attr(755,root,root) %{_bindir}/kfile
 %attr(755,root,root) %{_bindir}/kgrantpty
+%attr(755,root,root) %{_bindir}/khotnewstuff
 %attr(755,root,root) %{_bindir}/kimage_concat
 %attr(755,root,root) %{_bindir}/kinstalltheme
 %attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
@@ -553,6 +557,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
 %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
+%{_libdir}/libknewstuff.la
+%attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
 %{_libdir}/libkio.la
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
 %{_libdir}/libkjava.la
@@ -727,6 +733,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdewidgets
 # also contains 3rdparty kpartplugins dir
 %{_datadir}/apps/khtml
+%{_datadir}/apps/knewstuff
 %{_datadir}/apps/kio_uiserver
 %{_datadir}/apps/kjava
 %{_datadir}/apps/knotify
@@ -926,12 +933,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/arts/*
 %{_mandir}/man1/dcopidl.1*
 %{_mandir}/man1/dcopidl2cpp.1*
-#%%lang(en) %{_docdir}/kde/HTML/en/kde-%{_snap}-apidocs
 
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_kdedocdir}/en/%{name}-apidocs
+#%{_kdedocdir}/en/%{name}-apidocs
+%{_kdedocdir}/en/%{name}-%{_snap}-apidocs
 %endif
 
 %files artsmessage
