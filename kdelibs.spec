@@ -1,13 +1,13 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
-%define		_sub_ver	beta2
+%define		_sub_ver	rc3
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Name:		kdelibs
 Version:	3.0
-Release:	0.%{_sub_ver}.2
+Release:	0.%{_sub_ver}.1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -20,11 +20,14 @@ Group(pt_BR):	X11/Bibliotecas
 Group(ru):	X11/‚…¬Ã…œ‘≈À…
 Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 %{!?_sub_ver:	%define	_ftpdir	stable}
-%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}-%{_sub_ver}}
+%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}%{_sub_ver}}
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/src/%{name}-%{version}%{_sub_ver}.tar.bz2
-Patch0:		%{name}-final.patch
-Patch1:		%{name}-nodebug.patch
-Patch2:		%{name}-directories.patch
+# Merged
+#Patch0:		%{name}-final.patch
+# Merged
+#Patch1:		%{name}-nodebug.patch
+# Merged
+#Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-libxml_closecallback.patch
 Patch5:		%{name}-cookieperms.patch
@@ -37,6 +40,8 @@ BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64 ppc
 BuildRequires:	alsa-lib-devel
 %endif
+BuildRequires:	arts-devel
+BuildRequires:	arts-qt
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -54,7 +59,7 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 2.3.0
+BuildRequires:	qt-devel >= 3.0.1
 BuildRequires:	zlib-devel
 Requires:	arts = %{version}
 Requires:	qt >= 2.2.4
@@ -141,102 +146,27 @@ Este pacote contÈm os arquivos de inclus„o que s„o necess·rios para
 compilar aplicativos KDE. ContÈm tambÈm a API do KDE documentada no
 formato HTML.
 
-%package -n arts
-Summary:	aRts sound server
-Summary(es):	Sound server used by KDE
-Summary(pl):	Serwer dºwiÍku
-Summary(pt_BR):	Servidor de sons usado pelo KDE
-Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	‚…¬Ã…œ‘≈À…
-Group(uk):	‚¶¬Ã¶œ‘≈À…
-
-%description -n arts
-aRts sound server.
-
-%description -n arts -l es
-Sound server and analog analyzer/synthetizer used by KDE.
-
-%description -n arts -l pl
-Serwer dºwiÍku aRts.
-
-%description -n arts -l pt_BR
-O aRts È um sintetizador analÛgico em tempo real que È completamente
-modular. VocÍ pode criar sons e m˙sicas (sÌntese em tempo real de
-midi) usando pequenos mÛdulos como oscilador para criar waveforms,
-v·rios filtros, mixers, faders, etc. VocÍ pode configurar tudo atravÈs
-de uma interface no KDE. O Servidor aRts È controlado via CORBA. Este
-design foi escolhido para permitir que outras aplicaÁıes usem o aRts
-como um sintetizador (ou fornecedor de filtros). Usado pelo KDE, entre
-outros.
-
-%package -n arts-X11
-Summary:	X11 dependent part of aRts
-Summary(pl):	CzÍ∂Ê aRts wymagaj±ca X11
+%package -n arts-kde
+Summary:	KDE dependent part of aRts
+Summary(pl):	CzÍ∂Ê aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/‚…¬Ã…œ‘≈À…
-Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 
-%description -n arts-X11
-X11 dependent part of aRts.
+%description -n arts-kde
+KDE dependent part of aRts.
 
-%description -n arts-X11 -l pl
-CzÍ∂Ê aRts wymagaj±ca X11.
+%description -n arts-kde -l pl
+CzÍ∂Ê aRts wymagaj±ca KDE.
 
-%package -n arts-qt
-Summary:	QT dependend part of aRts
-Summary(pl):	CzÍ∂Ê aRts wymagaj±ca QT
+%package -n arts-kde-devel
+Summary:	Headers for KDE dependent part of aRts
+Summary(pl):	Nag≥Ûwki dla czÍ∂ci aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Group(de):	X11/Libraries
-Group(es):	X11/Bibliotecas
-Group(fr):	X11/Librairies
-Group(pl):	X11/Biblioteki
-Group(pt_BR):	X11/Bibliotecas
-Group(ru):	X11/‚…¬Ã…œ‘≈À…
-Group(uk):	X11/‚¶¬Ã¶œ‘≈À…
 
-%description -n arts-qt
-QT dependend part of aRts.
+%description -n arts-kde-devel
+Headers for KDE dependent part of aRts.
 
-%description -n arts-qt -l pl
-CzÍ∂Ê aRts wymagaj±ca QT.
-
-%package -n arts-devel
-Summary:	Sound server - header files
-Summary(es):	Header files for compiling aRtsd applications
-Summary(pl):	Serwer dºwiÍku - pliki nag≥Ûwkowe
-Summary(pt_BR):	Arquivos para desenvolvimento com o o aRts
-Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Ú¡⁄“¡¬œ‘À¡/‚…¬Ã…œ‘≈À…
-Group(uk):	Úœ⁄“œ¬À¡/‚¶¬Ã¶œ‘≈À…
-
-%description -n arts-devel
-Header files required to compile programs using arts.
-
-%description -n arts-devel -l es
-This package includes the header files you will need to compile
-applications for aRtsd.
-
-%description -n arts-devel -l pl
-Pliki nag≥Ûwkowe niezbÍdne do budowania aplikacji korzystaj±cych z
-arts.
-
-%description -n arts-devel -l pt_BR
-Arquivos para desenvolvimento com o o aRts.
+%description -n arts-kde-devel -l pl
+Nag≥Ûwki dla zÍ∂ci aRts wymagaj±ca KDE.
 
 %package -n arts-message
 Summary:	Program which can be used to display aRts daemon messages
@@ -256,9 +186,9 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 
 %prep
 %setup -q -n "%{name}-%{version}%{_sub_ver}"
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch0 -p1
+#%patch1 -p1
+#%patch2 -p1
 # Not applicable.
 #%patch3 -p1
 %patch4 -p1
@@ -297,15 +227,13 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip arts/doc/{README,NEWS,TODO}
-
 %find_lang %{name} --with-kde --all-name
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post -n arts -p /sbin/ldconfig
-%postun -n arts -p /sbin/ldconfig
+%post -n arts-kde -p /sbin/ldconfig
+%postun -n arts-kde -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -352,13 +280,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
 #%attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
 #%attr(755,root,root) %{_libdir}/libkssl.la
-%attr(755,root,root) %{_libdir}/libkded_kssld.la
+#%attr(755,root,root) %{_libdir}/libkded_kssld.la
 %attr(755,root,root) %{_libdir}/libkscript.la
 #%attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
 #%attr(755,root,root) %{_libdir}/libksycoca.la
-%attr(755,root,root) %{_libdir}/libkwallet*.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkwallet*.la
-%attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
+#%attr(755,root,root) %{_libdir}/libkwallet*.so.*.*.*
+#%attr(755,root,root) %{_libdir}/libkwallet*.la
+%attr(755,root,root) %{_libdir}/libshellscript.la
+%attr(755,root,root) %{_libdir}/libshellscript.so.*.*
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %attr(755,root,root) %{_libdir}/libvcard.la
 #%attr(755,root,root) %{_libdir}/mega.so
@@ -394,50 +323,23 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libks[cpsy]*.so
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
-%{_libdir}/libkab.so
-%{_libdir}/libkwallet*.so
+#%{_libdir}/libkab.so
+#%{_libdir}/libkwallet*.so
+%{_libdir}/libshellscript.so
 %{_libdir}/libvcard.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
-%{_includedir}/addressbook.h
+#%{_includedir}/addressbook.h
 
-%files -n arts
+%files -n arts-kde
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/artscat
-%attr(755,root,root) %{_bindir}/artsd
-%attr(755,root,root) %{_bindir}/artsdsp
-%attr(755,root,root) %{_bindir}/artsplay
-%attr(755,root,root) %{_bindir}/artsrec
-%attr(755,root,root) %{_bindir}/artsshell
-%attr(755,root,root) %{_bindir}/artswrapper
-%attr(755,root,root) %{_libdir}/lib[am]*.so.*.*
-%attr(755,root,root) %{_libdir}/libs[!h]*.so.*.*
-%attr(755,root,root) %{_libdir}/lib[ams]*.la
-%attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
-%attr(755,root,root) %{_libdir}/libkmedia*.la
-%{_libdir}/mcop
+%{_libdir}/libartskde.la
+%{_libdir}/libartskde.so.*.*
 
-%files -n arts-X11
+%files -n arts-kde-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libx11globalcomm.so.*.*.*
-%attr(755,root,root) %{_libdir}/libx11globalcomm.la
-
-%files -n arts-qt
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libqtmcop.so.*.*.*
-%attr(755,root,root) %{_libdir}/libqtmcop.la
-
-%files -n arts-devel
-%defattr(644,root,root,755)
-%doc arts/doc/*.gz
-%attr(755,root,root) %{_bindir}/artsc-config
-%attr(755,root,root) %{_bindir}/mcopidl
-%{_libdir}/lib[mqsx]*.so
-%{_libdir}/libarts[!k]*.so
-%{_libdir}/libkmedia*.so
-%{_includedir}/arts
-%{_includedir}/artsc
+%{_includedir}/arts/*
 
 %files -n arts-message
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/artsmessage
+%{_bindir}/artsmessage
