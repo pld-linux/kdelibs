@@ -1,6 +1,6 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
-Summary:	K Desktop Environment - Libraries
+Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
@@ -53,8 +53,8 @@ BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	zlib-devel
-Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
+Requires:	qt >= 2.2.4
 %requires_eq	openssl
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -66,9 +66,9 @@ Obsoletes:	kdesupport-devel
 Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
-Obsoletes:      kdesupport-mimelib-static
+Obsoletes:	kdesupport-mimelib-static
 
-%define         _prefix         /usr/X11R6
+%define		_prefix		/usr/X11R6
 %define		_htmldir	/usr/share/doc/kde/HTML
 
 %description
@@ -103,7 +103,7 @@ aplicativo KDE.
 %package devel
 Summary:	kdelibs - header files and development documentation
 Summary(es):	Header files and documentation for compiling KDE applications
-Summary(pl):	kdelibs - pliki nagówkowe i dokumentacja do kdelibs
+Summary(pl):	kdelibs - pliki nag³ówkowe i dokumentacja do kdelibs
 Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KDE
 Group:		X11/Development/Libraries
 Group(de):	X11/Entwicklung/Libraries
@@ -124,16 +124,16 @@ Obsoletes:	kdelibs2-sound-devel
 This package contains header files and development documentation for
 kdelibs.
 
-%description -l es devel
+%description devel -l es
 This package includes the header files you will need to compile
 applications for KDE. Also included is the KDE API documentation in
 HTML format for easy browsing.
 
-%description -l pl devel
+%description devel -l pl
 Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy
 pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 
-%description -l pt_BR devel
+%description devel -l pt_BR
 Este pacote contém os arquivos de inclusão que são necessários para
 compilar aplicativos KDE. Contém também a API do KDE documentada no
 formato HTML.
@@ -141,7 +141,7 @@ formato HTML.
 %package -n arts
 Summary:	aRts sound server
 Summary(es):	Sound server used by KDE
-Summary(pl):	serwer d¼wiêku
+Summary(pl):	Serwer d¼wiêku
 Summary(pt_BR):	Servidor de sons usado pelo KDE
 Group:		Libraries
 Group(de):	Libraries
@@ -155,13 +155,13 @@ Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 %description -n arts
 aRts sound server.
 
-%description -l pl -n arts
-Serwer d¼wiêku aRts.
-
-%description -l es -n arts
+%description -n arts -l es
 Sound server and analog analyzer/synthetizer used by KDE.
 
-%description -l pt_BR -n arts
+%description -n arts -l pl
+Serwer d¼wiêku aRts.
+
+%description -n arts -l pt_BR
 O aRts é um sintetizador analógico em tempo real que é completamente
 modular. Você pode criar sons e músicas (síntese em tempo real de
 midi) usando pequenos módulos como oscilador para criar waveforms,
@@ -184,10 +184,10 @@ Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
 Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 
 %description -n arts-X11
-X11 dependent part of aRts
+X11 dependent part of aRts.
 
-%description -n arts-X11
-Czê¶æ aRts wymagaj±ca X11
+%description -n arts-X11 -l pl
+Czê¶æ aRts wymagaj±ca X11.
 
 %package -n arts-qt
 Summary:	QT dependend part of aRts
@@ -202,15 +202,15 @@ Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
 Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 
 %description -n arts-qt
-QT dependend part of aRts
+QT dependend part of aRts.
 
-%description -l pl -n arts-qt
-Czê¶æ aRts wymagaj±ca QT
+%description -n arts-qt -l pl
+Czê¶æ aRts wymagaj±ca QT.
 
 %package -n arts-devel
-Summary:	sound server - header files
+Summary:	Sound server - header files
 Summary(es):	Header files for compiling aRtsd applications
-Summary(pl):	serwer d¼wiêku - pliki nag³ówkowe
+Summary(pl):	Serwer d¼wiêku - pliki nag³ówkowe
 Summary(pt_BR):	Arquivos para desenvolvimento com o o aRts
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
@@ -224,20 +224,20 @@ Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 %description -n arts-devel
 Header files required to compile programs using arts.
 
-%description -l es -n arts-devel
+%description -n arts-devel -l es
 This package includes the header files you will need to compile
 applications for aRtsd.
 
-%description -l pl -n arts-devel
+%description -n arts-devel -l pl
 Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z
 arts.
 
-%description -l pt_BR -n arts-devel
-Arquivos para desenvolvimento com o o aRts
+%description -n arts-devel -l pt_BR
+Arquivos para desenvolvimento com o o aRts.
 
 %package -n arts-message
-Summary:	program which can be used to display aRts daemon messages
-Summary(pl):	program, do wy¶wietlania komunikatów daemona aRts
+Summary:	Program which can be used to display aRts daemon messages
+Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
 Group(de):	Entwicklung/Werkzeuge
 Group(fr):	Development/Outils
@@ -247,12 +247,12 @@ Group(pl):	Programowanie/Narzêdzia
 This program can be given as -m option argument to aRts daemon. It
 will be called to display messages generated by daemon.
 
-%description -l pl -n arts-message
+%description -n arts-message -l pl
 Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -295,10 +295,10 @@ gzip arts/doc/{README,NEWS,TODO}
 
 %find_lang %{name} --with-kde --all-name
 
-%post   -p /sbin/ldconfig
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post   -n arts -p /sbin/ldconfig
+%post -n arts -p /sbin/ldconfig
 %postun -n arts -p /sbin/ldconfig
 
 %clean
@@ -347,7 +347,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/webstyle.so
 %attr(755,root,root) %{_libdir}/webstyle.la
 %attr(755,root,root) %{_libdir}/kde2
-%attr(755,root,root) %dir %{_libdir}/mcop
 
 %config %{_datadir}/config
 %dir %{_pixmapsdir}/hicolor
@@ -390,7 +389,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib[ams]*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
-%{_libdir}/mcop/*
+%{_libdir}/mcop
 
 %files -n arts-X11
 %defattr(644,root,root,755)
