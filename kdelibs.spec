@@ -205,7 +205,7 @@ Requires:	%{name}-devel = %{epoch}:%{version}
 Requires:	audiofile-devel
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
-Requires:	libmad-devel
+Requires:	mad-devel
 Requires:	libvorbis-devel
 
 %description -n arts-kde-devel
