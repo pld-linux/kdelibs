@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0
 #define		_sub_ver
-%define		_rel		5
+%define		_rel		6
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -204,6 +204,9 @@ CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-final \
+%ifarch %{ix86}
+	--enable-fast-malloc=full \
+%endif
 	--disable-mysql \
 	--disable-informix \
 	--with-alsa \
