@@ -4,7 +4,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -84,6 +84,7 @@ Group(de):	X11/KDE/Entwicklung/Libraries
 Group(pl):	X11/KDE/Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	arts-devel = %{version}
+Requires:	qt-devel >= 2.3.0
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
