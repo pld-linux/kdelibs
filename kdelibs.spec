@@ -5,7 +5,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}
+Release:	0.%{sver}.2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -28,7 +28,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-#BuildRequires:	kdesupport-mimelib-devel => 2.1
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	gettext-devel
@@ -37,13 +36,8 @@ BuildRequires:	zlib-devel
 BuildRequires:	motif-devel
 BuildRequires:	openssl-devel
 BuildRequires:	bzip2-devel
-#BuildRequires:	unixODBC-devel
-#BuildRequires:	postgresql-devel
-# ??? BuildRequires:	OpenGL-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	pcre-devel
-# Needs libltdlc.la which is not present in our libltdl
-# BuildRequires:	libltdl-devel
 Requires:	qt >= 2.2.4
 Requires:	arts = %{version}
 URL:		http://www.kde.org/
@@ -76,6 +70,19 @@ Pakiet ten zawiera:
 - kfmlib - Biblioteka KDE file manager library,
 - khtmlw: Biblioteka KDE z HTML widget,
 - mediatool: Biblioteka KDE mediatool.
+
+%package core
+Summary:	kde core libraries
+Summary(pl):	g³ówne biblioteki kde
+Group:		X11/KDE/Development/Libraries
+Group(de):	X11/KDE/Entwicklung/Libraries
+Group(pl):	X11/KDE/Programowanie/Biblioteki
+
+%description core
+Libraries needed by aRts.
+
+%description -l pl core
+Biblioteki wymagane przez aRts.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
@@ -127,29 +134,10 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-#%patch4 -p1
-
-# Just to expose errors.
-#rm -rf libltdl
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
-#autoupdate
-#libtoolize --force --copy
-#aclocal
-#autoheader
-#autoconf
-#automake -a -c
-
-#cd libltdl
-#libtoolize --force --copy
-#aclocal
-#autoheader
-#autoconf
-#automake -a -c
-#cd ..
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}" 
@@ -161,8 +149,8 @@ ENABLE_DEBUG="%{?debug:--enable-debug}"
 	--disable-mysql \
 	--disable-informix \
 	--with-alsa \
-	--enable-mitshm \
-	#--enable-pgsql
+	--enable-mitshm
+
 %{__make}
 
 %install
@@ -186,19 +174,27 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/make*
-%attr(755,root,root) %{_bindir}/[ilkps]*
+%attr(755,root,root) %{_bindir}/mein*
+%attr(755,root,root) %{_bindir}/[cilkpsx]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
-%attr(755,root,root) %{_libdir}/libk[adfhijpst]*.so.*.*
-%attr(755,root,root) %{_libdir}/libk[adfijpt]*.la
+%attr(755,root,root) %{_libdir}/libk[afhijpst]*.so.*.*
+%attr(755,root,root) %{_libdir}/libk[afijpt]*.la
+%attr(755,root,root) %{_libdir}/libkdeprint*.so.*.*
+%attr(755,root,root) %{_libdir}/libkdeprint*.la
+%attr(755,root,root) %{_libdir}/libkdesu*.so.*.*
+%attr(755,root,root) %{_libdir}/libkdesu*.la
 %attr(755,root,root) %{_libdir}/libkhtml.la
+%attr(755,root,root) %{_libdir}/libkscreensaver.la
 %attr(755,root,root) %{_libdir}/libkspell.la
 %attr(755,root,root) %{_libdir}/libkssl.la
 %attr(755,root,root) %{_libdir}/libksycoca.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*
 %attr(755,root,root) %{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkhtmli*.??
-# Not found.
-# %attr(755,root,root) %{_libdir}/libksasl.??
+%attr(755,root,root) %{_libdir}/mega.so
+%attr(755,root,root) %{_libdir}/mega.la
+%attr(755,root,root) %{_libdir}/webstyle.so
+%attr(755,root,root) %{_libdir}/webstyle.la
 %attr(755,root,root) %{_libdir}/kde2
 %attr(755,root,root) %dir %{_libdir}/mcop
 
@@ -209,6 +205,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services
 %{_datadir}/servicetypes
 
+%files core
+%attr(755,root,root) %{_libdir}/libD*.so.*.*
+%attr(755,root,root) %{_libdir}/libD*.la
+%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
+%attr(755,root,root) %{_libdir}/libkdefakes.la
+%attr(755,root,root) %{_libdir}/libkdecore.so.*.*
+%attr(755,root,root) %{_libdir}/libkdecore.la
+%attr(755,root,root) %{_libdir}/libkdeui.so.*.*
+%attr(755,root,root) %{_libdir}/libkdeui.la
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl*
@@ -218,7 +224,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
 %{_libdir}/libkab.so
-# All subdirs not starting with 'a' and all *.h files.
+# All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
 %{_includedir}/addressbook.h
 
@@ -233,8 +239,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artswrapper
 %attr(755,root,root) %{_libdir}/lib[amqsx]*.so.*.*
 %attr(755,root,root) %{_libdir}/lib[amqsx]*.la
-%attr(755,root,root) %{_libdir}/libD*.so.*.*
-%attr(755,root,root) %{_libdir}/libD*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
 %{_libdir}/mcop/*
