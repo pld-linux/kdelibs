@@ -19,8 +19,6 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	3.1.95
-# Please dont downgrade this release, it was a msitake of mine but it went to builders
-# so its too late.
 Release:	0.1
 Epoch:		10
 License:	LGPL
@@ -249,18 +247,13 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 #oraz jej konwersjê.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
-for plik in `find . -name \*.desktop -o -name \*rc -o -name \*.print -o \
-	     -name all_languages -o -name \*.kimgio | xargs grep -l '\[nb\]'` ; do
-	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $plik 2>/dev/null
-done
-
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
