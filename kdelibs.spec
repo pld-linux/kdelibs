@@ -1,12 +1,12 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap space.
 #
 # Conditional build:
-# _without_alsa - disable alsa
+# _without_alsa - without alsa support
 # _with_nas	- with NAS support
 #
 
 %define		_state		snapshots
-%define		_snap		030409
+%define		_snap		030411
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
