@@ -6,8 +6,9 @@
 %bcond_with	i18n	# [not ready] include i18n files in package
 #
 %define		_state		unstable
-%define		_ver		3.1.94
+%define		_ver		3.1.95
 %define		_snap		040110
+%define         artsver         13:1.1.95
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -27,7 +28,6 @@ Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 # Source0-md5:	472b9e0862ae408caff2e20d417ef2df	
-%define         artsver         13:%{version}
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 %endif
