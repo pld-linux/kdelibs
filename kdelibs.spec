@@ -4,10 +4,11 @@
 # Conditional build:
 # _with_nas	- with NAS support
 # _without_alsa - disable alsa
+# _without_ldap - disable openldap
 #
 
 %define		_state		stable
-%define		_ver		3.1.1a
+%define		_ver		3.1.2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,16 +19,17 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	0.9
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
+#Patch3:		%{name}-vfolders.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
@@ -36,6 +38,7 @@ BuildRequires:	XFree86-devel
 %endif
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
+BuildRequires: 	sed >= 4.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -55,15 +58,14 @@ BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
+%{!?_without_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.6i
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
-BuildRequires:	perl
-Requires:	XFree86
+Requires:	XFree86-libs 
 Requires:	applnk
 Requires:	arts >= 1.1-1
-Requires:	openssl >= 0.9.6i
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -235,6 +237,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+#%%patch3 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -248,13 +251,13 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-for plik in `find ./ -name \*.desktop` ; do
-		echo $plik
-		perl -pi -e "s/\[nb\]/\[no\]/g" $plik
+for plik in `find ./ -name *.desktop` ; do
+	echo $plik
+	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
-CFLAGS="%{rpmcflags}"
-CXXFLAGS="%{rpmcflags}"
+%{__make} -f admin/Makefile.common cvs
+
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-final \
@@ -264,9 +267,11 @@ CXXFLAGS="%{rpmcflags}"
 	--disable-mysql \
 	--disable-informix \
 	--enable-mitshm \
+	%{?_without_ldap:--without-ldap} \
+	%{!?_without_ldap:--with-ldap} \
 	--with%{?_without_alsa:out}-alsa
 
-%if %{?_with_nas:0}1
+%if %{!?_with_nas:1}0
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
@@ -286,7 +291,6 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
 install -d \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
-
 install -d \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
@@ -296,12 +300,10 @@ rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
 install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-> %{name}.lang
-topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
-
-%find_lang %{name} --with-kde
+#find_lang kdelibs --with-kde --all-name > %{name}.lang
+topics="common kdelibs-apidocs kspell"
 
 for i in $topics; do
 	%find_lang $i --with-kde
@@ -343,7 +345,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
 %{_libdir}/kde3/plugins/styles/*.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
-
 %{_datadir}/config
 # Contains Components/kabc.desktop only
 %{_applnkdir}/Settings/KDE
@@ -352,7 +353,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
-%exclude %{_datadir}/mimelnk/image/x-pcx.desktop 
 %{_datadir}/services
 %{_datadir}/servicetypes
 %dir %{_docdir}/kde
