@@ -22,8 +22,8 @@ Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	8636c93405b20eceadb12af5c5483508
-# Source0-size:	15573765
+# Source0-md5:	5a961628fa569f3b53a21574a6656b02
+# Source0-size:	15572949
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 # Source1-size:	3376
