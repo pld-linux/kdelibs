@@ -34,8 +34,8 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-Patch3:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-http.patch
-Patch4:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-khtml.patch
+Patch3:		post-3.1.2-kdelibs-http.patch
+Patch4:		post-3.1.2-kdelibs-khtml.patch
 # Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
