@@ -1,14 +1,17 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
 #
+# TODO: 
+# - Where is Icon ?
+# - Make languages sectiona acording to current policy (blues ?)
+#
 # Conditional build:
 # _with_nas	- with NAS support
 # _without_alsa - disable alsa
-# _without_ldap - disable openldap
 #
 
 %define		_state		stable
-%define		_ver		3.1.2
+%define		_ver		3.1.1a
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -23,20 +26,20 @@ Release:	4
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	2b896ce9a6942e4cc4fe1758236bafa3
-#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde//%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	5d4f4b2bfcdd14ecf3f6af6b44dfc5fd
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-Patch3:		%{name}-vfolders.patch
-Patch4:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-http.patch
-Patch5:		http://piorun.ds.pg.gda.pl/~blues/patches/post-3.1.2-kdelibs-khtml.patch
-Icon:		kdelibs.xpm
+Patch3:		post-3.1.2-kdelibs-http.patch
+Patch4:		post-3.1.2-kdelibs-khtml.patch
+# Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
-BuildRequires:	XFree86-devel >= 4.2.99
+BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
@@ -47,9 +50,8 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
-BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-BuildRequires:	libart_lgpl-devel
+%{?!_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
@@ -63,15 +65,15 @@ BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
-%{!?_without_ldap:BuildRequires:	openldap-devel}
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.6i
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
-BuildRequires: 	sed >= 4.0
 BuildRequires:	zlib-devel
-Requires:	XFree86-libs >= 4.2.99
-Requires:	applnk >= 1.6.2-1
+BuildRequires:	perl
+Requires:	XFree86
+Requires:	applnk
 Requires:	arts >= 1.1-1
+Requires:	openssl >= 0.9.6i
 Requires:	qt >= 3.1-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kde-theme-keramik
@@ -84,8 +86,28 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+Obsoletes:	kde-i18n-Affrikaans kde-i18n-Arabic kde-i18n-Azerbaijani
+Obsoletes:	kde-i18n-Bulgarian kde-i18n-Bosnian kde-i18n-Catalan
+Obsoletes:	kde-i18n-Czech kde-i18n-Danish kde-i18n-German kde-i18n-Greek
+Obsoletes:	kde-i18n-English_UK kde-i18n-Esperanto kde-i18n-Spanish
+Obsoletes:	kde-i18n-Estonian kde-i18n-Finnish kde-i18n-French
+Obsoletes:	kde-i18n-Hebrew kde-i18n-Croatian kde-i18n-Hungarian
+Obsoletes:	kde-i18n-Indonesian kde-i18n-Icelandic kde-i18n-Italian
+Obsoletes:	kde-i18n-Japanese kde-i18n-Korean kde-i18n-Lithuanian
+Obsoletes:	kde-i18n-Latvian kde-i18n-Maltese kde-i18n-Dutch
+Obsoletes:	kde-i18n-Norwegian kde-i18n-Norwegian_Bokmaal
+Obsoletes:	kde-i18n-Norwegian_Nynorsk kde-i18n-Polish kde-i18n-Portugnese
+Obsoletes:	kde-i18n-Brazil_Portugnese kde-i18n-Portuguese
+Obsoletes:	kde-i18n-Brazil_Portuguese kde-i18n-Romanian kde-i18n-Russian
+Obsoletes:	kde-i18n-Slovak kde-i18n-Slovenian kde-i18n-Serbian
+Obsoletes:	kde-i18n-Swedish kde-i18n-Tamil kde-i18n-Thai kde-i18n-Turkish
+Obsoletes:	kde-i18n-Ukrainian kde-i18n-Venda kde-i18n-Vietnamese
+Obsoletes:	kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
+Obsoletes:	kde-i18n-Zulu
 
+%define         _prefix         /usr/X11R6
 %define		_htmldir	%{_docdir}/kde/HTML
+
 %define		no_install_post_chrpath		1
 
 %description
@@ -146,7 +168,7 @@ Summary(pt_BR):	Arquivos de inclusão e documentação para compilar aplicativos KD
 Summary(ru):	èÅÄÅÒÙ É ÄÏËÕÍÅÎÔÁÃÉÑ ÄÌÑ ËÏÍÐÉÌÌÑÃÉÉ ÐÒÏÇÒÁÍÍ KDE
 Summary(uk):	èÅÄÅÒÉ ÔÁ ÄÏËÕÍÅÎÔÁÃ¦Ñ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ KDE
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{version}
 Requires:	arts-devel >= 1.1-1
 Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
@@ -183,7 +205,7 @@ KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
 Summary:	KDE dependent part of aRts
 Summary(pl):	Czê¶æ aRts wymagaj±ca KDE
 Group:		X11/Libraries
-Requires:	%{name} >= %{epoch}:%{version}
+Requires:	%{name} >= %{version}
 
 %description -n arts-kde
 KDE dependent part of aRts.
@@ -207,7 +229,7 @@ Nag³ówki dla zê¶ci aRts wymagaj±ca KDE.
 Summary:	Program which can be used to display aRts daemon messages
 Summary(pl):	Program do wy¶wietlania komunikatów daemona aRts
 Group:		Development/Tools
-Requires:	%{name} >= %{epoch}:%{version}
+Requires:	%{name} >= %{version}
 
 %description -n arts-message
 This program can be given as -m option argument to aRts daemon. It
@@ -222,11 +244,10 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-cd kioslave/http 
-%patch4 -p0
+cd kioslave/http
+%patch3 -p0
 cd ../../khtml
-%patch5 -p0
+%patch4 -p0
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -240,13 +261,13 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-for plik in `find ./ -name *.desktop` ; do
-	echo $plik
-	sed -i -e "s/\[nb\]/\[no\]/g" $plik
+for plik in `find ./ -name \*.desktop` ; do
+		echo $plik
+		perl -pi -e "s/\[nb\]/\[no\]/g" $plik
 done
 
-%{__make} -f admin/Makefile.common cvs
-
+CFLAGS="%{rpmcflags}"
+CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--disable-informix \
@@ -256,11 +277,9 @@ done
 %endif
 	--enable-final \
 	--enable-mitshm \
-	%{?_without_ldap:--without-ldap} \
-	%{!?_without_ldap:--with-ldap} \
 	--with%{?_without_alsa:out}-alsa
 
-%if %{!?_with_nas:1}0
+%if %{?_with_nas:0}1
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
@@ -283,16 +302,16 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+> %{name}.lang
+topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
 
-#find_lang kdelibs --with-kde --all-name > %{name}.lang
-topics="common kdelibs-apidocs kspell"
+%find_lang %{name} --with-kde
 
 for i in $topics; do
 	%find_lang $i --with-kde
 	cat $i.lang >> %{name}.lang
 done
-
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -328,6 +347,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
 %{_libdir}/kde3/plugins/styles/*.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
+
 %{_datadir}/config
 # Contains Components/kabc.desktop only
 %{_applnkdir}/Settings/KDE
@@ -336,6 +356,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
+%exclude %{_datadir}/mimelnk/image/x-pcx.desktop 
 %{_datadir}/services
 %{_datadir}/servicetypes
 %dir %{_docdir}/kde
