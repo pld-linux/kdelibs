@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		1.1
+%define		_rel		1.2
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -168,12 +168,12 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0
+#%patch2 -p0
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-%{__make} -f Makefile.cvs
+#%{__make} -f Makefile.cvs
 if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
         CPPFLAGS="`pkg-config libpng12 --cflags`"
 fi
