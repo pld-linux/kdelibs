@@ -298,13 +298,14 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
+> %{name}.lang
 #%find_lang kdelibs --with-kde --all-name > %{name}.lang
-#topics="common kdelibs-apidocs kspell"
+topics="common kdelibs-apidocs kspell"
 
-#for i in $topics; do
-#	%find_lang $i --with-kde
-#	cat $i.lang >> %{name}.lang
-#done
+for i in $topics; do
+	%find_lang $i --with-kde
+	cat $i.lang >> %{name}.lang
+done
 
 
 %post   -p /sbin/ldconfig
