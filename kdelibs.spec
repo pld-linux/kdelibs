@@ -340,6 +340,7 @@ cp /usr/share/automake/config.sub admin
 	--enable-final \
 	--enable-mitshm \
 	--with-ldap=no \
+	--enable-pch \
 	--with%{!?with_alsa:out}-alsa
 
 %{__make}
