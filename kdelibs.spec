@@ -590,7 +590,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 # Messing one
-%exclude %{_datadir}/mimelnk/application/vnd.ms-asf.desktop
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
 %{_datadir}/services/kded
