@@ -37,6 +37,7 @@ URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
+BuildRequires:	artsc-devel >= %{artsver}
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
