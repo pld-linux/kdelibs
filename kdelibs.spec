@@ -24,7 +24,6 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
@@ -46,6 +45,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jasper-devel >= 1.600
+BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
@@ -56,6 +56,7 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
+BuildRequires:	openldap-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	openmotif-devel
 #
@@ -274,7 +275,7 @@ done
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
-%if %{?_with_nas:0}1
+%if %{!?_with_nas:1}0
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
@@ -292,8 +293,6 @@ cd ../../
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
 install -d \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
