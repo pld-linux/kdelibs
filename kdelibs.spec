@@ -295,6 +295,8 @@ innych u¿ytkowników lokalnych.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	kresources/kresources.desktop
