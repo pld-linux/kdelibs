@@ -41,6 +41,7 @@ Patch5:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 %if %{with xlibs}
+BuildRequires:	libICE-devel
 BuildRequires:	libXrender-devel
 %else
 BuildRequires:	XFree86-devel >= 4.2.99
