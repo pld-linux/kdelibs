@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.6
+Release:	0.7
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -297,7 +297,7 @@ rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-find_lang kdelibs --with-kde --all-name > %{name}.lang
+%find_lang kdelibs --with-kde --all-name > %{name}.lang
 #topics="common desktop_kde-i18n desktop_kdelibs kabc_dir kabc_ldap kabc_net kabc_sql kabcformat_binary \
 #katepart kdelibs-apidocs kmcop kspell knotify ktexteditor_insertfile ktexteditor_isearch \
 #ktexteditor_kdatatool libkscreensaver ppdtranslations timezones"
