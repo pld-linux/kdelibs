@@ -1,21 +1,20 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	1.94
+Version:	2.0
 Release:	1
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/distribution/2.0Beta5/tar/src/%{name}-%{version}.tar.bz2
-BuildRequires:	qt-devel >= 2.2.0
+Source0:	ftp://ftp.kde.org/pub/kde/stable/2.0/distribution/generic/tar/src/%{name}-%{version}.tar.bz2
+BuildRequires:	qt-devel >= 2.2.1
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	kdesupport-mimelib-devel = %{version}
 BuildRequires:	unixODBC-devel
-BuildRequires:	kdesupport-uulib-devel = %{version}
-Requires:	qt >= 2.2.0
+Requires:	qt >= 2.2.1
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -86,11 +85,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %config %{_datadir}/config
 %{_datadir}/apps
-%{_datadir}/doc/*
-%{_datadir}/mimelnk/*
-%{_datadir}/icons/*
-%{_datadir}/services/*
-%{_datadir}/servicetypes/*
+%{_datadir}/doc
+%{_datadir}/mimelnk
+%{_datadir}/icons
+%{_datadir}/services
+%{_datadir}/servicetypes
 
 %files devel
 %defattr(644,root,root,755)
