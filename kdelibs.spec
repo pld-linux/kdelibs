@@ -3,8 +3,8 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.2
-Release:	3
+Version:	2.2.1
+Release:	1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -16,10 +16,7 @@ Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
-Patch4:		%{name}-no_nas.patch
-Patch5:		%{name}-libxml_closecallback.patch
-#Patch6:		http://www.research.att.com/~leonb/objprelink/kde-admin-acinclude.patch
-#Patch6:		%{name}-objprelink.patch
+Patch4:		%{name}-libxml_closecallback.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -171,8 +168,6 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-#%patch6 -p0
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -189,8 +184,13 @@ CXXFLAGS="%{rpmcflags}"
 	--disable-mysql \
 	--disable-informix \
 	--with-alsa \
-	--enable-mitshm \
-	--enable-objprelink
+	--enable-mitshm
+
+# Cannot patch configure.in because it does not rebuild correctly on ac25
+sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
+	< config.h \
+	> config.h.tmp
+mv -f config.h{.tmp,}
 
 %{__make}
 
