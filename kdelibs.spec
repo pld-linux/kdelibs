@@ -268,9 +268,9 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
-for plik in `find ./ -name *.desktop | grep -l '\[nb\]'` ; do
-	echo $plik
-	echo -e ',s/\[nb\]/[no]/\n,w' | ed $plik
+for plik in `find . -name \*.desktop -o -name \*rc -o -name \*.print -o \
+	     -name all_languages -o -name \*.kimgio | xargs grep -l '\[nb\]'` ; do
+	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $plik 2>/dev/null
 done
 
 %{__libtoolize}
