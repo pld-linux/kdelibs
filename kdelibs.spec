@@ -306,6 +306,7 @@ rm -rf $RPM_BUILD_ROOT
 	kde_libs_htmldir=%{_kdedocdir}
 
 install -d \
+	$RPM_BUILD_ROOT/etc/security \
 	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
