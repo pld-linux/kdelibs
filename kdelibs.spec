@@ -1,18 +1,17 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
-%define	sver	beta1
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.2
-Release:	0.%{sver}.15
+Release:	0.1
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{version}%{sver}/src/%{name}-%{version}%{sver}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{version}%/src/%{name}-%{version}%.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
@@ -159,7 +158,8 @@ Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %prep
-%setup  -q -n %{name}-%{version}%{sver}
+#%setup  -q -n %{name}-%{version}%{sver}
+%setup  -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
