@@ -3,6 +3,7 @@
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	apidocs	# do not prepare API documentation
 %bcond_with	verbose	# verbose build
+%bcond_with	cvs	# use cvs build dirs insttead of supplied sources
 
 %define		_state		snapshots
 %define		_ver		3.2.90
@@ -23,10 +24,14 @@ Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-Source0:      	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+%if %{with cvs}
+Source0:	kdesource.tar.gz
+%else
+#Source0:       ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
+#Source0:       http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
 #Source0:	%{name}-%{_snap}.tar.bz2
 ##%% Source0-md5:	a1cc949c82151aa784526227c112413d
+%endif
 Source2:	%{name}-wmfplugin.tar.bz2 
 # Source2-md5:	f89739b063eca075bf4ac85f559eea77
 Patch0:		%{name}-kstandarddirs.patch
@@ -251,7 +256,11 @@ Ten program mo¿e byæ przekazany demonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 
 %prep 
+%if %{with cvs}
+%setup -q -n %{name} -a2 -D
+%else
 %setup -q -n %{name}-%{_snap} -a2
+%endif
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -262,6 +271,7 @@ echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %build
+
 cp /usr/share/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
@@ -281,7 +291,7 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 	--enable-fast-malloc=full \
 %endif
 	--with%{!?with_alsa:out}-alsa \
-	--with-qt-libraries=%{_libdir} \
+	--with-qt-libraries=%{_libdir} 
 
 %{__make} %{?with_verbose:VERBOSE=1}
 
