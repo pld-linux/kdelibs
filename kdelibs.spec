@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	apidocs	# do not prepare API documentation
+%bcond_without	broken_rpm # dont use BC's for borked rpm from ac
 %bcond_with	verbose	# verbose build
 
 %define		_state		stable
@@ -19,7 +20,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -29,6 +30,7 @@ Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
+Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
@@ -79,9 +81,12 @@ BuildRequires:	qt-devel >= 6:3.3.3-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
+BuildRequires:	mDNSResponder
+%if %{with brokenRpm}
 BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
+%endif
 PreReq:		setup >= 2.4.6-7
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
@@ -295,6 +300,7 @@ innych u¿ytkowników lokalnych.
 
 %prep
 %setup -q -a1
+%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -326,7 +332,8 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 	--enable-mitshm \
 	--with-ldap=no \
 	--with%{!?with_alsa:out}-alsa \
-	--with-qt-libraries=%{_libdir}
+	--with-qt-libraries=%{_libdir} \
+	--with-distribution="PLD Linux Distribution"
 
 %{__make} %{?with_verbose:VERBOSE=1}
 
