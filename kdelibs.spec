@@ -78,9 +78,6 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake >= 040511
-BuildRequires:	pcre-devel
-BuildRequires:	jack-audio-connector-kit-devel
-BuildRequires:	artsc-qt-devel
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim
 Requires:	arts >= %{artsver}
