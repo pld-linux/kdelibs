@@ -78,6 +78,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake >= 040511
 BuildConflicts:	kdepim-korganizer-libs
+BuildConflicts:	kdepim-libkdepim
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
@@ -123,7 +124,7 @@ Obsoletes:	kdepim-kontact < 3:3.1.91.030918-1
 Obsoletes:	kdepim-korganizer < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
-Obsoletes:	kdepim-libkdepim < 3:3.1.91.030918-1
+Obsoletes:	kdepim-libkdepim < 3:3.2.90
 Conflicts:	kdepim-devel < 3:3.2.90
 Conflicts:	pixieplus < 0.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
