@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -75,6 +75,17 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+# Not sure about it
+Obsoletes:      arts-message
+Obsoletes:      kdepim-commonlibs < 3:3.1.91.030918-1
+Obsoletes:      kdepim-kaddressbook < 3:3.1.91.030918-1
+Obsoletes:      kdepim-kmail < 3:3.1.91.030918-1
+Obsoletes:      kdepim-kontact < 3:3.1.91.030918-1
+Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
+Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
+Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
+Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
+#
 
 %define		no_install_post_chrpath		1
 
