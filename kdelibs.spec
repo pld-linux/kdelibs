@@ -157,6 +157,7 @@ ENABLE_DEBUG="%{?debug:--enable-debug}"
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
+
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 gzip arts/doc/{README,NEWS,TODO}
@@ -205,7 +206,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %dir %{_libdir}/mcop
 
 %config %{_datadir}/config
-%{_pixmapsdir}
+%dir %{_pixmapsdir}/hicolor
+%dir %{_pixmapsdir}/loicolor
+%dir %{_pixmapsdir}/*/[1-9]*
+%dir %{_pixmapsdir}/*/[1-9]*/*
+%{_pixmapsdir}/*/[1-9]*/*/*
+# I'm not sure what this file is for.
+%{_pixmapsdir}/hicolor/index.desktop
 %{_datadir}/apps
 %{_datadir}/mimelnk
 %{_datadir}/services
