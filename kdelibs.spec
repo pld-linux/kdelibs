@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.90
-%define		_snap		030726
+%define		_snap		030901
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	3
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -84,7 +84,6 @@ Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
 %define		_htmldir	%{_docdir}/kde/HTML
-%define		_icondir	%{_datadir}/icons
 
 %define		no_install_post_chrpath		1
 
@@ -237,7 +236,6 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 Summary:	TODO
 Summary(pl):	TODO
 Group:		X11/Applications
-Requires:	kdebase-core
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description kabc
@@ -270,7 +268,7 @@ for plik in `find ./ -name *.desktop` ; do
 	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
-#%%{__make} -f Makefile.cvs
+%{__make} -f Makefile.cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
@@ -301,29 +299,25 @@ rm -rf $RPM_BUILD_ROOT
 	
 install -d \
 	$RPM_BUILD_ROOT%{_datadir}/{apps/khtml/kpartplugins,wallpapers} \
-	$RPM_BUILD_ROOT%{_icondir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
-	$RPM_BUILD_ROOT%{_icondir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
-
-mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
+	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
+	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
+%post	-p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/brockenboring
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
 %attr(755,root,root) %{_bindir}/dcop
 %attr(755,root,root) %{_bindir}/dcopclient
 %attr(755,root,root) %{_bindir}/dcopfind
+%attr(755,root,root) %{_bindir}/dcopidlng
 %attr(755,root,root) %{_bindir}/dcopobject
 %attr(755,root,root) %{_bindir}/dcopquit
 %attr(755,root,root) %{_bindir}/dcopref
@@ -351,7 +345,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kioslave
 %attr(755,root,root) %{_bindir}/klauncher
 %attr(755,root,root) %{_bindir}/kmailservice
-#%attr(755,root,root) %{_bindir}/knotify
 %attr(755,root,root) %{_bindir}/kpac_dhcp_helper
 %attr(755,root,root) %{_bindir}/ksendbugmail
 %attr(755,root,root) %{_bindir}/kshell
@@ -376,6 +369,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libcupsdconf.so
 %{_libdir}/libkabc.la
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
+%{_libdir}/libkabc_dir.la
+%attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
+%{_libdir}/libkabc_file.la
+%attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
+%{_libdir}/libkabc_ldap.la
+%attr(755,root,root) %{_libdir}/libkabc_ldap.so.*.*.*
+%{_libdir}/libkabc_ldapkio.la
+%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
+%{_libdir}/libkabc_net.la
+%attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
 %{_libdir}/libkatepartinterfaces.la
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
 %{_libdir}/libkdecore.la
@@ -440,6 +443,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
 %{_libdir}/libshellscript.la
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
+%{_libdir}/libkwalletbackend.la
+%attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
+%{_libdir}/libkwalletclient.la
+%attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %{_libdir}/libvcards.la
@@ -465,6 +472,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kded_kpasswdserver.so
 %{_libdir}/kde3/kded_kssld.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kssld.so
+%{_libdir}/kde3/kded_kwalletd.la
+%attr(755,root,root) %{_libdir}/kde3/kded_kwalletd.so
 %{_libdir}/kde3/kded_proxyscout.la
 %attr(755,root,root) %{_libdir}/kde3/kded_proxyscout.so
 %{_libdir}/kde3/kdeprint_cups.la
@@ -531,6 +540,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkatepart.so
 %{_libdir}/kde3/libkcertpart.la
 %attr(755,root,root) %{_libdir}/kde3/libkcertpart.so
+%{_libdir}/kde3/libkhtmlpart.la
+%attr(755,root,root) %{_libdir}/kde3/libkhtmlpart.so
 %{_libdir}/kde3/libkmultipart.la
 %attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
 %dir %{_libdir}/kde3/plugins
@@ -548,6 +559,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
+%{_datadir}/apps/dcopidlng
 %{_datadir}/apps/katepart
 %{_datadir}/apps/kcertpart
 %{_datadir}/apps/kcm_componentchooser
@@ -570,11 +582,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
-# Already provided by openoffice
-%exclude %{_datadir}/mimelnk/application/vnd.sun.xml.calc.desktop
-%exclude %{_datadir}/mimelnk/application/vnd.sun.xml.impress.desktop
-%exclude %{_datadir}/mimelnk/application/vnd.sun.xml.writer.desktop
-#
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
 %{_datadir}/services/kded
@@ -626,7 +633,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/servicetypes
 %{_datadir}/wallpapers
-%{_icondir}/*
+%dir %{_desktopdir}/kde
+%{_iconsdir}/*
 %dir %{_docdir}/kde
 %dir %{_htmldir}
 %lang(en) %dir %{_htmldir}/en
@@ -642,18 +650,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libDCOP.so
 %{_libdir}/libartskde.so
 %{_libdir}/libkabc.so
+%{_libdir}/libkabc_dir.so
+%{_libdir}/libkabc_file.so
+%{_libdir}/libkabc_ldap.so
+%{_libdir}/libkabc_ldapkio.so
+%{_libdir}/libkabc_net.so
 %{_libdir}/libkatepartinterfaces.so
 %{_libdir}/libkdecore.so
 %{_libdir}/libkdefakes.so
 %{_libdir}/libkdefx.so
-#%{_libdir}/libkdeinit_dcopserver.so
-#%{_libdir}/libkdeinit_kbuildsycoca.so
-#%{_libdir}/libkdeinit_kconf_update.so
-#%{_libdir}/libkdeinit_kcookiejar.so
-#%{_libdir}/libkdeinit_kded.so
-#%{_libdir}/libkdeinit_kio_http_cache_cleaner.so
-#%{_libdir}/libkdeinit_kio_uiserver.so
-#%{_libdir}/libkdeinit_klauncher.so
 %{_libdir}/libkdeprint.so
 %{_libdir}/libkdeprint_management.so
 %{_libdir}/libkdesasl.so
@@ -674,6 +679,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libktexteditor.so
 %{_libdir}/libkutils.so
 %{_libdir}/libshellscript.so
+%{_libdir}/libkwalletbackend.so
+%{_libdir}/libkwalletclient.so
 %{_libdir}/libvcard.so
 %{_libdir}/libvcards.so
 
@@ -704,15 +711,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(0755,root,root) %{_libdir}/kde3/kabc_file.so
 %{_libdir}/kde3/kabc_ldap.la
 %attr(0755,root,root) %{_libdir}/kde3/kabc_ldap.so
+%{_libdir}/kde3/kabc_ldapkio.la
+%attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
 %{_libdir}/kde3/kabc_net.la
 %attr(0755,root,root) %{_libdir}/kde3/kabc_net.so
 %{_libdir}/kde3/kabcformat_binary.la
 %attr(0755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-#%{_libdir}/kde3/kabcformat_vcard2.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabcformat_vcard2.so
 %{_libdir}/kde3/kcm_kresources.la
 %attr(0755,root,root) %{_libdir}/kde3/kcm_kresources.so
 %{_datadir}/apps/kabc
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
-%{_applnkdir}/KDE-Settings/Components/kresources.desktop
+%{_desktopdir}/kde/kresources.desktop
