@@ -56,7 +56,7 @@ BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
 Requires:	arts >= 1.0.0
-Requires:	qt >= 3.0.5
+Requires:	qt >= 3.1
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
