@@ -28,7 +28,6 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-Patch3:         %{name}-kdefx.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -100,6 +99,7 @@ Obsoletes:	kde-i18n-Ukrainian kde-i18n-Venda kde-i18n-Vietnamese
 Obsoletes:	kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
 Obsoletes:	kde-i18n-Zulu
 
+%define         _prefix         /usr/X11R6
 %define		_htmldir	/usr/share/doc/kde/HTML
 
 %define		no_install_post_chrpath		1
@@ -238,10 +238,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
-%%{__make} -f admin/Makefile.common cvs
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
