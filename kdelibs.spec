@@ -244,6 +244,13 @@ echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
 echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
 cd -
 
+for plik in `find ./ -name *.desktop` ; do
+	if [ -d $plik ]; then
+		echo $plik
+		sed -ie 's/\[nb\]/\[no\]/g' $plik
+	fi
+done
+
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
 %configure \
