@@ -124,6 +124,7 @@ Obsoletes:	kdepim-korganizer < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.1.91.030918-1
+Conflicts:	kdepim-devel < 3:3.2.90
 Conflicts:	pixieplus < 0.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
