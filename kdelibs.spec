@@ -2,13 +2,13 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.0pre_%{REV}
-Release:	2
+Version:	2.0
+Release:	2.pre_%{REV}
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
 Vendor:		The KDE Team
-Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/kdelibs-%{REV}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/%{name}-%{REV}.tar.bz2
 #Source1:	kderc.PLD
 #Patch0:		kdelibs-DESTDIR.patch
 #Patch1:		kdelibs-iconpaths.patch
