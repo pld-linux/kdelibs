@@ -286,7 +286,7 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 install -d \
-	$RPM_BUILD_ROOT%{_bindir}/kconf_update_bin \
+	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
@@ -657,7 +657,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_kdedocdir}/en/kspell
 
 # 3rdparty directories
-%dir %{_bindir}/kconf_update_bin
+%dir %{_libdir}/kconf_update_bin
 %dir %{_datadir}/applnk
 %dir %{_datadir}/applnk/.hidden
 %dir %{_datadir}/apps/profiles
