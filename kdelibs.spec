@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.1
-Release:	3
+Release:	4
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -24,6 +24,7 @@ Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-libxml_closecallback.patch
+Patch5:		%{name}-libxml_includes.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -65,7 +66,7 @@ Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:      kdesupport-mimelib-static
 
 %define         _prefix         /usr/X11R6
-%define		_htmldir	%{_datadir}/doc/kde/HTML
+%define		_htmldir	/usr/share/doc/kde/HTML
 
 %description
 Libraries for the K Desktop Environment.
@@ -254,6 +255,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -356,7 +358,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
-%dir %{_datadir}/doc/kde
+%dir /usr/share/doc/kde
 %dir %{_htmldir}
 %lang(en) %dir %{_htmldir}/en
 
