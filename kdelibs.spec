@@ -295,19 +295,13 @@ innych u¿ytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 
-echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
-echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
-
-%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
-	kresources/kresources.desktop
-
 %build
 cp %{_datadir}/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -337,9 +331,6 @@ rm -rf $RPM_BUILD_ROOT
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
 install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
-
-#{__make} install \
-#	DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
 	$RPM_BUILD_ROOT/etc/security \
@@ -408,7 +399,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kcmshell
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
-#%%attr(755,root,root) %{_bindir}/kdb2html
 %attr(755,root,root) %{_bindir}/kde-config
 %attr(755,root,root) %{_bindir}/kde-menu
 %attr(755,root,root) %{_bindir}/kded
@@ -440,7 +430,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
-#%attr(755,root,root) %{_bindir}/xml2man
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
@@ -539,8 +528,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
-#%{_libdir}/libqt-addon.la
-#%attr(755,root,root) %{_libdir}/libqt-addon.so.*.*.*
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
@@ -788,6 +775,7 @@ rm -rf $RPM_BUILD_ROOT
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
+%{_iconsdir}/hicolor/*/actions/*.png
 %{_mandir}/man1/checkXML.1*
 %{_mandir}/man1/cupsdconf.1*
 %{_mandir}/man1/cupsdoprint.1*
