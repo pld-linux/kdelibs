@@ -47,8 +47,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
+BuildRequires:	esound-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
