@@ -120,8 +120,8 @@ export CXXFLAGS LDFLAGS
 	--disable-path-check
 make
 
-(cd mediatool/Documentation; make)
-dvips -f < mediatool/Documentation/Doc.dvi | gzip -9nf > mediatool.ps.gz
+#(cd mediatool/Documentation; make)
+#dvips -f < mediatool/Documentation/Doc.dvi | gzip -9nf > mediatool.ps.gz
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -143,11 +143,12 @@ rm -rf $RPM_BUILD_ROOT
 %files -f kde.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(644,root,root) %{_libdir}/X11GlobalComm.mcopclass
 %config /etc/X11/kde
 %attr(755,root,root) %{_bindir}/*
 %{_kde_toolbardir}
 %{_kde_datadir}
-%{_datadir}/kdelibs/*
+#%{_datadir}/kdelibs/*
 %{_datadir}/mimelnk/*
 %{_datadir}/pixmaps/*
 %{_datadir}/services/*
@@ -182,10 +183,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/*.so
 %{_libdir}/*.la
-%attr(755,root,root) %{_prefix}/libexec/*
+#%attr(755,root,root) %{_prefix}/libexec/*
 %{_includedir}/*.h
 %{_includedir}/kde.pot
 %{_includedir}/arts/*.h
+%{_includedir}/arts/*.idl
 %{_includedir}/dom/*.h
 %{_includedir}/kio/*.h
 %{_includedir}/kparts/*.h
+%{_includedir}/kdesu/*.h
+%{_includedir}/kjs/*.h
+%{_includedir}/libkmid/*.h
