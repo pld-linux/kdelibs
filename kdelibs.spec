@@ -915,6 +915,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkscreensaver.so
 %attr(755,root,root) %{_libdir}/libkscript.so
 %attr(755,root,root) %{_libdir}/libkspell.so
+%attr(755,root,root) %{_libdir}/libkspell2.so
 %attr(755,root,root) %{_libdir}/libktexteditor.so
 %attr(755,root,root) %{_libdir}/libkutils.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
