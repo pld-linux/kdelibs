@@ -29,7 +29,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
-Patch2:         %{name}-kcursor.patch
+Patch2:		%{name}-kcursor.patch
 Patch3:		%{name}-vfolders.patch
 Patch4:		%{name}-fonts.patch
 Icon:		kdelibs.xpm
@@ -68,7 +68,7 @@ BuildRequires:	motif-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
-BuildRequires: 	sed >= 4.0
+BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
 Requires:	applnk >= 1.6.2-1
