@@ -1,7 +1,7 @@
 Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
-Version:	2.1.1
+Version:	2.1.2
 Release:	1
 Epoch:		6
 License:	LGPL
@@ -9,12 +9,11 @@ Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
-Patch4:		%{name}-veryevilandbad.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -116,16 +115,13 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%ifarch alpha
-%patch4 -p1
-%endif
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}"
-CXXFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O0 -g}" 
+CFLAGS="%{rpmcflags}"
+CXXFLAGS="%{rpmcflags}" 
 ENABLE_DEBUG="%{?debug:--enable-debug}"
 %configure \
 	$ENABLE_DEBUG \
