@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.1.2
-Release:	1
+Release:	2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -25,7 +25,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
 BuildRequires:	kdesupport-mimelib-devel => 2.1
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	unixODBC-devel
 BuildRequires:	gettext-devel
