@@ -156,7 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 
 %changelog
-* Tue Jun 22 1999 Wojciech "sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
+* Tue Jun 22 1999 Wojciech "Sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
   [1.1.1-2]
 - added la files to devel subpackage,
 - added kde.pot to devel subpackage.
