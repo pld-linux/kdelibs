@@ -33,7 +33,7 @@ Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
 Patch3:		kde-common-am18.patch
-Patch4:         kde-common-libltdl-am18.patch
+Patch4:		kde-common-libltdl-am18.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
