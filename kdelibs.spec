@@ -6,7 +6,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040513
+%define		_snap		040515
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -255,6 +255,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch2 -p1
 %patch3 -p1
 
+echo "KDE_OPTIONS = nofinal" >> kdecore/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
@@ -318,10 +319,13 @@ for f in *.sgml ; do
 done
 cd -
 
-%find_lang %{name} --with-kde --all-name
-
-# Omit apidocs entries
-sed -i 's/.*apidocs.*//' *.lang
+# Problem with 'common' symlink
+cd $RPM_BUILD_ROOT%{_kdedocdir}/en/kspell
+ln -sf %{_kdedocdir}/en/common common
+cd - 
+cd $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{_snap}-apidocs
+ln -sf %{_kdedocdir}/en/common common
+cd - 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -329,7 +333,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -472,8 +476,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
-%{_libdir}/libqt-addon.la
-%attr(755,root,root) %{_libdir}/libqt-addon.so.*.*.*
+#%{_libdir}/libqt-addon.la
+#%attr(755,root,root) %{_libdir}/libqt-addon.so.*.*.*
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
@@ -749,6 +753,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_kdedocdir}
 %dir %{_kdedocdir}/en
 %{_kdedocdir}/en/common
+%lang(en) %{_kdedocdir}/en/kspell
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
@@ -819,7 +824,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkutils.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
-%attr(755,root,root) %{_libdir}/libqt-addon.so
+#%attr(755,root,root) %{_libdir}/libqt-addon.so
 %attr(755,root,root) %{_libdir}/libvcard.so
 %{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
