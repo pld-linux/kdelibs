@@ -610,6 +610,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{_docdir}/kde/HTML/en/kspell
 
 %files devel
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kde-config
