@@ -3,7 +3,7 @@
 #
 # TODO: 
 # - Where is Icon ?
-# - Make languages sectiona acording to current policy (blues ?)
+# - Update langs. Currently from 3.1.1a are used.
 #
 # Conditional build:
 # _with_nas	- with NAS support
@@ -11,7 +11,7 @@
 #
 
 %define		_state		stable
-%define		_ver		3.1.1a
+%define		_ver		3.1.3
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -22,20 +22,20 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	0.2
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde//%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
-Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
+# Source0-md5:	0069e199dd69f27f20afbd5b64449725
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-3.1.1a.tar.bz2
 # Source1-md5:	5d4f4b2bfcdd14ecf3f6af6b44dfc5fd
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-Patch3:		post-3.1.2-kdelibs-http.patch
-Patch4:		post-3.1.2-kdelibs-khtml.patch
+# Patch3:		post-3.1.2-kdelibs-http.patch
+# Patch4:		post-3.1.2-kdelibs-khtml.patch
 # Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
@@ -247,10 +247,12 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-cd kioslave/http
-%patch3 -p0
-cd ../../khtml
-%patch4 -p0
+# cd kioslave/http
+# %%patch3 -p0
+# cd ../../khtml
+
+#cd khtml
+#%%patch4 -p0
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
