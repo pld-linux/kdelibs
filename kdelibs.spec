@@ -875,6 +875,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesasl.so
 %attr(755,root,root) %{_libdir}/libkdesu.so
 %attr(755,root,root) %{_libdir}/libkdeui.so
+%attr(755,root,root) %{_libdir}/libkdnssd.so
 %attr(755,root,root) %{_libdir}/libkhtml.so
 %attr(755,root,root) %{_libdir}/libkimproxy.so
 %attr(755,root,root) %{_libdir}/libkio.so
