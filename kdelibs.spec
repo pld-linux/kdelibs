@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030602
+%define		_snap		030610
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -18,13 +18,13 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.%{_snap}.2
+Release:	0.%{_snap}.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	42d33b73b2753bb71d96993945309163
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	8074fd46896659cffcb8f872b5a6ee04
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 #Patch2:         %{name}-kcursor.patch
@@ -68,7 +68,7 @@ BuildRequires:	qt-devel >= 3.2-0.030606.1
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	arts >= 1.2
-Requires:	qt >= 3.2-0.030606-1
+Requires:	qt >= 3.2-0.030606.1
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
@@ -143,7 +143,7 @@ Summary(pt_BR):	Arquivos de inclusЦo e documentaГЦo para compilar aplicativos KD
 Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	arts-devel >= 1.1-1
 Requires:	qt-devel >= 3.1
 Obsoletes:	kdelibs-sound-devel
@@ -267,6 +267,8 @@ for plik in `find ./ -name *.desktop` ; do
 	sed -i -e "s/\[nb\]/\[no\]/g" $plik
 done
 
+#%%{__make} -f Makefile.cvs
+
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 %ifarch %{ix86}
@@ -291,7 +293,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
-	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
+	$RPM_BUILD_ROOT%{_datadir}/{apps/khtml/kpartplugins,wallpapers} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
@@ -588,24 +590,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/servicetypes
+%{_datadir}/wallpapers
 %{_pixmapsdir}/*
 %dir %{_docdir}/kde
 %dir %{_htmldir}
 %lang(en) %dir %{_htmldir}/en
 %lang(en) %{_htmldir}/en/common
-%lang(en) %dir %{_htmldir}/en/kdelibs-apidocs
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/common
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/dcop
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/interfaces
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kdecore
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kdefx
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kdeui
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/khtml
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kio
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kjs
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kparts
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/kutils
-%lang(en) %{_htmldir}/en/kdelibs-apidocs/libkmid
 %lang(en) %{_htmldir}/en/kspell
 
 %files devel
@@ -680,4 +670,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
 %{_applnkdir}/KDE-Settings/Components/kresources.desktop
-#%lang(en) %{_htmldir}/en/kdelibs-apidocs/kabc
