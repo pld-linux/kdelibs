@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.1.94
-%define		_snap		031204
+%define		_snap		040104
 %define		artsver		12:1.2.0.%{_snap}
 
 Summary:	K Desktop Environment - libraries
@@ -19,19 +19,20 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	5ca59e85817503d073c8d6e8f6547f69
+# Source0-md5:	9e292ceb442eef1170ac8d8d9e27e7f8
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 %endif
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
+Patch3:		kde-common-am18.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -249,6 +250,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -256,6 +258,8 @@ for plik in `find . -name \*.desktop -o -name \*rc -o -name \*.print -o \
 	     -name all_languages -o -name \*.kimgio | xargs grep -l '\[nb\]'` ; do
 	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $plik 2>/dev/null
 done
+
+echo "KDE_OPTIONS=nofinal" >> kabc/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -330,7 +334,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kbuildsycoca
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
-%attr(755,root,root) %{_bindir}/kdb2html
+#%%attr(755,root,root) %{_bindir}/kdb2html
 %attr(755,root,root) %{_bindir}/kde-config
 %attr(755,root,root) %{_bindir}/kde-menu
 %attr(755,root,root) %{_bindir}/kded
@@ -354,6 +358,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kshell
 %attr(755,root,root) %{_bindir}/ksvgtopng
 %attr(755,root,root) %{_bindir}/ktelnetservice
+%attr(755,root,root) %{_bindir}/ktradertest
 %attr(755,root,root) %{_bindir}/kwrapper
 %attr(755,root,root) %{_bindir}/lnusertemp
 %attr(755,root,root) %{_bindir}/make_driver_db_cups
@@ -631,6 +636,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/http.protocol
 %{_datadir}/services/https.protocol
 %{_datadir}/services/metainfo.protocol
+%{_datadir}/services/mailto.protocol
+%{_datadir}/services/mms.protocol
 %{_datadir}/services/rlogin.protocol
 %{_datadir}/services/rtsp.protocol
 %{_datadir}/services/shellscript.desktop
