@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030504
+%define		_snap		030509
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -30,8 +30,8 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		%{name}-vmenu_location.patch
-#Patch4:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
-#Patch5:		http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
+#Patch4:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
+#Patch5:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -58,7 +58,7 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
-BuildRequires:	motif-devel
+BuildRequires:	openmotif-devel
 #
 %{?_with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7
@@ -291,6 +291,12 @@ install -d \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post			-p /sbin/ldconfig
+%postun			-p /sbin/ldconfig
+
+%post	-n arts-kde	-p /sbin/ldconfig
+%postun	-n arts-kde	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/[!ad]*
@@ -299,11 +305,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/[dk]*.la
 %attr(755,root,root) %{_libdir}/[dk]*.so
 %{_libdir}/lib[!ack]*.la
-%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*
+%attr(755,root,root) %{_libdir}/lib[!ack]*.so.*.*.*
 %{_libdir}/libc*.la
 %attr(755,root,root) %{_libdir}/libc*.so
 %{_libdir}/libk[!c]*.la
-%attr(755,root,root) %{_libdir}/libk[!c]*.so.*
+%attr(755,root,root) %{_libdir}/libk[!c]*.so.*.*.*
 %dir %{_libdir}/kde3
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
@@ -339,7 +345,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n arts-kde
 %defattr(644,root,root,755)
 %{_libdir}/libartskde.la
-%attr(755,root,root) %{_libdir}/libartskde.so.*
+%attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 
 %files -n arts-kde-devel
 %defattr(644,root,root,755)
