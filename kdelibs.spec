@@ -7,7 +7,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
 Name:		kdelibs
 Version:	3.0
-Release:	0.%{_sub_ver}.1
+Release:	0.%{_sub_ver}.2
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -61,7 +61,7 @@ BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.0.1
 BuildRequires:	zlib-devel
-Requires:	arts = %{version}
+Requires:	arts >= 0.9.9
 Requires:	qt >= 2.2.4
 %requires_eq	openssl
 URL:		http://www.kde.org/
@@ -122,7 +122,7 @@ Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
 Group(ru):	X11/Разработка/Библиотеки
 Group(uk):	X11/Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
-Requires:	arts-devel = %{version}
+Requires:	arts-devel >= 0.9.9
 Requires:	qt-devel >= 2.3.0
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
