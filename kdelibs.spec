@@ -664,6 +664,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/klauncher.so
 %{_libdir}/kde3/knotify.la
 %attr(755,root,root) %{_libdir}/kde3/knotify.so
+%{_libdir}/kde3/kspell_aspell.la
+%attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
 %{_libdir}/kde3/kspell_ispell.la
 %attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
 %{_libdir}/kde3/ktexteditor_autobookmarker.la
@@ -752,6 +754,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmailservice.protocol
 %{_datadir}/services/kmultipart.desktop
 %{_datadir}/services/knotify.desktop
+%{_datadir}/services/kspell_aspell.desktop
 %{_datadir}/services/kspell_ispell.desktop
 %{_datadir}/services/ktexteditor_autobookmarker.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
