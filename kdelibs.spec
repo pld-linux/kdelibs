@@ -6,7 +6,8 @@
 #
 
 %define		_state		snapshots
-%define		_ver		030317
+%define		_snap		030317
+%define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -16,12 +17,12 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	3.2
-Release:	0.%{_ver}.0.1
+Version:	%{_ver}
+Release:	0.%{_snap}.0.2
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
@@ -60,7 +61,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
-Requires:	applnk
+Requires:	applnk >= 1.5.16
 Requires:	arts >= 1.2
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
@@ -75,7 +76,7 @@ Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
-%define		_htmldir	/usr/share/doc/kde/HTML
+%define		_htmldir	%{_docdir}/kde/HTML
 
 %define		no_install_post_chrpath		1
 
@@ -223,12 +224,12 @@ Ten program mo¿e byæ przekazany daemonowi aRts jako parametr opcji -m.
 Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %prep
-%setup -q -n %{name}-%{_ver}
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
+%patch4 -R -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -268,39 +269,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
+
+install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
+
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+
+mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 
 install -d \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
 
-mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
-
-rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
-
-install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
-
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-
-#find_lang kdelibs --with-kde --all-name > %{name}.lang
-topics="common kdelibs-apidocs kspell"
-
-for i in $topics; do
-	%find_lang $i --with-kde
-	cat $i.lang >> %{name}.lang
-done
-
-
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
-%post   -n arts-kde -p /sbin/ldconfig
-%postun -n arts-kde -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f kdelibs.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/[!ad]*
 %attr(755,root,root) %{_bindir}/dcop
@@ -313,8 +296,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libc*.so
 %{_libdir}/libk[!c]*.la
 %attr(755,root,root) %{_libdir}/libk[!c]*.so.*
-##%{_libdir}/libkcertpart.la
-##%attr(755,root,root) %{_libdir}/libkcertpart.so
 %dir %{_libdir}/kde3
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
@@ -325,19 +306,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/designer/*.so
 %{_libdir}/kde3/plugins/styles/*.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/*.so
-
-%config %{_datadir}/config
-# Contains Components/kabc.desktop only
-%{_applnkdir}/*
-%{_pixmapsdir}/*
 %{_datadir}/apps
 %{_datadir}/autostart
+%{_datadir}/config
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
-%dir %{_datadir}/doc/kde
-%dir %{_htmldir}
+%{_applnkdir}/*
+%{_pixmapsdir}/*
+%{_docdir}/kde
 
 %files devel
 %defattr(644,root,root,755)
