@@ -54,6 +54,7 @@ BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
+BuildRequires:	libxml2-progs
 Requires:	arts >= 1.0.0
 Requires:	qt >= 3.0.3
 URL:		http://www.kde.org/
