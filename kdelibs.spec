@@ -7,7 +7,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040424
+%define		_snap		040501
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -20,7 +20,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -565,6 +565,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkscript.so.*.*.*
 %{_libdir}/libkspell.la
 %attr(755,root,root) %{_libdir}/libkspell.so.*.*.*
+%{_libdir}/libkspell2.la
+%attr(755,root,root) %{_libdir}/libkspell2.so.*.*.*
 %{_libdir}/libktexteditor.la
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
 %{_libdir}/libkutils.la
@@ -664,6 +666,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/klauncher.so
 %{_libdir}/kde3/knotify.la
 %attr(755,root,root) %{_libdir}/kde3/knotify.so
+%{_libdir}/kde3/kspell_aspell.la
+%attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
+%{_libdir}/kde3/kspell_ispell.la
+%attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
 %{_libdir}/kde3/ktexteditor_autobookmarker.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
 %{_libdir}/kde3/ktexteditor_docwordcompletion.la
@@ -750,6 +756,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmailservice.protocol
 %{_datadir}/services/kmultipart.desktop
 %{_datadir}/services/knotify.desktop
+%{_datadir}/services/kspell_aspell.desktop
+%{_datadir}/services/kspell_ispell.desktop
 %{_datadir}/services/ktexteditor_autobookmarker.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
