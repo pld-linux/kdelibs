@@ -176,11 +176,11 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	arts-devel >= %{artsver}
 Requires:	qt-devel >= 6:3.2.1-4
 Obsoletes:	arts-kde-devel
-Obsoletes:	kdebase-devel <= 3.1.1-0.5.1
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
 Obsoletes:	kdelibs-static
+Conflicts:	kdebase-devel <= 9:3.1.90
 
 %description devel
 This package contains header files and development documentation for
