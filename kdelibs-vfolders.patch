@@ -1,0 +1,2656 @@
+diff -urN vf.orig/kbuildservicefactory.cpp vf/kbuildservicefactory.cpp
+--- kdelibs/kded.orig/kbuildservicefactory.cpp	2002-09-15 23:13:07.000000000 +0200
++++ kdelibs/kded/kbuildservicefactory.cpp	2003-02-28 00:31:44.000000000 +0100
+@@ -32,13 +32,13 @@
+ KBuildServiceFactory::KBuildServiceFactory( KSycocaFactory *serviceTypeFactory,
+ 	KBuildServiceGroupFactory *serviceGroupFactory ) :
+   KServiceFactory(),
++  m_serviceDict(977),
+   m_serviceTypeFactory( serviceTypeFactory ),
+-  m_serviceGroupFactory( serviceGroupFactory ),
+-  m_serviceDict(977)
++  m_serviceGroupFactory( serviceGroupFactory )
+ {
+    m_resourceList = new KSycocaResourceList();
+-   m_resourceList->add( "apps", "*.desktop" );
+-   m_resourceList->add( "apps", "*.kdelnk" );
++//   m_resourceList->add( "apps", "*.desktop" );
++//   m_resourceList->add( "apps", "*.kdelnk" );
+    m_resourceList->add( "services", "*.desktop" );
+    m_resourceList->add( "services", "*.kdelnk" );
+ }
+@@ -74,12 +74,6 @@
+   if (name.isEmpty())
+      return 0;
+ 
+-  if ( name == ".directory")
+-  {
+-     m_serviceGroupFactory->addNewEntry(file, resource, 0);
+-     return 0;
+-  }
+-
+   // Is it a .desktop file?
+   if ((name.right(8) != ".desktop") && (name.right(7) != ".kdelnk"))
+       return 0;
+@@ -198,13 +192,6 @@
+    KSycocaFactory::addEntry(newEntry, resource);
+ 
+    KService * service = (KService *) newEntry;
+-   if (!service->isDeleted())
+-   {
+-      m_serviceGroupFactory->addNewEntry(service->entryPath(), resource, service);
+-      QString parent = service->parentApp();
+-      if (!parent.isEmpty())
+-         m_serviceGroupFactory->addNewChild(parent, resource, service);
+-   }
+ 
+    QString name = service->desktopEntryName();
+    m_nameDict->add( name, newEntry );
+diff -urN vf.orig/kbuildservicefactory.h vf/kbuildservicefactory.h
+--- kdelibs/kded.orig/kbuildservicefactory.h	2001-10-07 15:12:20.000000000 +0200
++++ kdelibs/kded/kbuildservicefactory.h	2003-02-28 00:31:44.000000000 +0100
+@@ -76,9 +76,9 @@
+   void saveOfferList(QDataStream &str);
+   void saveInitList(QDataStream &str);
+ 
++  QDict<KService> m_serviceDict;
+   KSycocaFactory *m_serviceTypeFactory;
+   KBuildServiceGroupFactory *m_serviceGroupFactory;
+-  QDict<KService> m_serviceDict;
+ };
+ 
+ #endif
+diff -urN vf.orig/kbuildservicegroupfactory.cpp vf/kbuildservicegroupfactory.cpp
+--- kdelibs/kded.orig/kbuildservicegroupfactory.cpp	2002-09-15 23:13:07.000000000 +0200
++++ kdelibs/kded/kbuildservicegroupfactory.cpp	2003-04-03 00:31:22.000000000 +0200
+@@ -32,14 +32,14 @@
+   KServiceGroupFactory()
+ {
+    m_resourceList = new KSycocaResourceList();
+-   m_resourceList->add( "apps", "*.directory" );
++//   m_resourceList->add( "apps", "*.directory" );
+ }
+ 
+ // return all service types for this factory
+ // i.e. first arguments to m_resourceList->add() above
+ QStringList KBuildServiceGroupFactory::resourceTypes()
+ {
+-    return QStringList() << "apps";
++    return QStringList(); // << "apps";
+ }
+ 
+ KBuildServiceGroupFactory::~KBuildServiceGroupFactory()
+@@ -48,64 +48,70 @@
+ }
+ 
+ KServiceGroup *
+-KBuildServiceGroupFactory::createEntry( const QString& file, const char *resource )
++KBuildServiceGroupFactory::createEntry( const QString&, const char * )
+ {
+-  return addNewEntry(file, resource, 0);
++  // Unused
++  kdWarning("!!!! KBuildServiceGroupFactory::createEntry called!");
++  return 0; 
+ }
+ 
+-KServiceGroup *
+-KBuildServiceGroupFactory::addNewEntry( const QString& file, const char *resource, KSycocaEntry *newEntry)
+-{
+-  if (strcmp(resource, "apps") != 0) return 0;
+-
+-  QString name = file;
+-  int pos = name.findRev('/');
+-  if (pos != -1) {
+-     name = name.left(pos+1);
+-  } else {
+-     name = "/";
+-  }
+ 
++void KBuildServiceGroupFactory::addNewEntryTo( const QString &menuName, KService *newEntry)
++{
+   KServiceGroup *entry = 0;
+-  KSycocaEntry::Ptr *ptr = m_entryDict->find(name);
++  KSycocaEntry::Ptr *ptr = m_entryDict->find(menuName);
+   if (ptr)
+      entry = dynamic_cast<KServiceGroup *>(ptr->data());
+ 
+   if (!entry)
+   {
+-     // Create new group entry
+-     QString fullPath = locate( resource, name + ".directory");
++    kdWarning(7021) << "KBuildServiceGroupFactory::addNewEntryTo( " << menuName << ", " << newEntry->name() << " ): menu does not exists!" << endl;
++    return;
++  }
++  entry->addEntry( newEntry );
++}
+ 
+-     entry = new KServiceGroup(fullPath, name);
+-     addEntry( entry, resource );
++void
++KBuildServiceGroupFactory::addNew( const QString &menuName, const QString& file, KServiceGroup *entry)
++{
++  KSycocaEntry::Ptr *ptr = m_entryDict->find(menuName);
++  if (ptr)
++  {
++    kdWarning(7021) << "KBuildServiceGroupFactory::addNew( " << menuName << ", " << file << " ): menu already exists!" << endl;
++    return;
++  }
++
++  // Create new group entry
++  if (!entry)
++     entry = new KServiceGroup(file, menuName);
+ 
+-     if (name != "/")
++  addEntry( entry, "apps" ); // "vfolder" ??
++
++  if (menuName != "/")
++  {
++     // Make sure parent dir exists.
++     KServiceGroup *parentEntry = 0;
++     QString parent = menuName.left(menuName.length()-1);
++     int i = parent.findRev('/');
++     if (i > 0) {
++        parent = parent.left(i+1);
++     } else {
++        parent = "/";
++     }
++     parentEntry = 0;
++     ptr = m_entryDict->find(parent);
++     if (ptr)
++        parentEntry = dynamic_cast<KServiceGroup *>(ptr->data());
++     if (!parentEntry)
+      {
+-        // Make sure parent dir exists.
+-        KServiceGroup *parentEntry = 0;
+-        QString parent = name.left(name.length()-1);
+-        int i = parent.findRev('/');
+-        if (i > 0) {
+-           parent = parent.left(i+1);
+-        } else {
+-           parent = "/";
+-        }
+-        parentEntry = 0;
+-        ptr = m_entryDict->find(parent);
+-        if (ptr)
+-           parentEntry = dynamic_cast<KServiceGroup *>(ptr->data());
+-        if (!parentEntry)
+-        {
+-           parentEntry = addNewEntry( parent, resource, 0 );
+-        }
+-        if (parentEntry && !entry->isDeleted())
++        kdWarning(7021) << "KBuildServiceGroupFactory::addNew( " << menuName << ", " << file << " ): parent menu does not exist!" << endl;
++     }
++     else
++     {
++        if (!entry->isDeleted())
+            parentEntry->addEntry( entry );
+      }
+   }
+-  if (newEntry)
+-     entry->addEntry( newEntry );
+-
+-  return entry;
+ }
+ 
+ KServiceGroup *
+@@ -135,6 +141,7 @@
+ {
+    KSycocaFactory::addEntry(newEntry, resource);
+    KServiceGroup * serviceGroup = (KServiceGroup *) newEntry;
++   serviceGroup->m_serviceList.clear();
+ 
+    if ( !serviceGroup->baseGroupName().isEmpty() )
+    {
+diff -urN vf.orig/kbuildservicegroupfactory.h vf/kbuildservicegroupfactory.h
+--- kdelibs/kded.orig/kbuildservicegroupfactory.h	2002-09-15 23:13:07.000000000 +0200
++++ kdelibs/kded/kbuildservicegroupfactory.h	2003-04-03 00:31:22.000000000 +0200
+@@ -45,10 +45,9 @@
+   virtual KServiceGroup * createEntry(int) { assert(0); return 0L; }
+ 
+   /**
+-   * Adds the entry newEntry to the correct group, creating the group if
+-   * necassery. If newEntry is 0, only the group is created.
++   * Adds the entry @p newEntry to the menu @p menuName
+    */
+-  KServiceGroup *addNewEntry( const QString& file, const char *resource, KSycocaEntry *newEntry);
++  void addNewEntryTo( const QString &menuName, KService *newEntry);
+ 
+   /**
+    * Adds the entry @p newEntry to the "parent group" @p parent, creating
+@@ -59,7 +58,13 @@
+   KServiceGroup *addNewChild( const QString &parent, const char *resource, KSycocaEntry *newEntry);
+  
+   /**
+-   * Add a new entry
++   * Add new menu @p menuName defined by @p file
++   * When @p entry is non-null it is re-used, otherwise a new group is created.
++   */
++  void addNew( const QString &menuName, const QString& file, KServiceGroup *entry);
++
++  /**
++   * Add a new menu entry
+    */
+   virtual void addEntry( KSycocaEntry *newEntry, const char *resource );
+ 
+diff -urN vf.orig/kbuildservicetypefactory.cpp vf/kbuildservicetypefactory.cpp
+--- kdelibs/kded.orig/kbuildservicetypefactory.cpp	2002-10-27 00:16:43.000000000 +0200
++++ kdelibs/kded/kbuildservicetypefactory.cpp	2003-02-28 00:31:44.000000000 +0100
+@@ -212,7 +212,7 @@
+      // Justify to 6 chars with spaces, so that the size remains constant
+      // in the database file.
+      QString paddedPattern = (*it).leftJustify(6).right(4); // remove leading "*."
+-     //kdDebug(7020) << QString("FAST : '%1' '%2'").arg(paddedPattern).arg(dict[(*it)]->name()) << endl;
++     //kdDebug(7021) << QString("FAST : '%1' '%2'").arg(paddedPattern).arg(dict[(*it)]->name()) << endl;
+      str << paddedPattern;
+      str << dict[(*it)]->offset();
+      entrySize = str.device()->at() - start;
+@@ -233,7 +233,7 @@
+    it = otherPatterns.begin();
+    for ( ; it != otherPatterns.end() ; ++it )
+    {
+-     //kdDebug(7020) << QString("OTHER : '%1' '%2'").arg(*it).arg(dict[(*it)]->name()) << endl;
++     //kdDebug(7021) << QString("OTHER : '%1' '%2'").arg(*it).arg(dict[(*it)]->name()) << endl;
+      str << (*it);
+      str << dict[(*it)]->offset();
+    }
+@@ -255,7 +255,7 @@
+      if (!m_propertyTypeDict.contains(pit.key()))
+        m_propertyTypeDict.insert(pit.key(), pit.data());
+      else
+-       qWarning("Property '%s' is defined multiple times (%s)", pit.key().latin1(), serviceType->name().latin1());
++       kdWarning(7021) << "Property '"<< pit.key() << "' is defined multiple times ("<< serviceType->name() <<")" <<endl;
+    }
+ }
+ 
+diff -urN vf.orig/kbuildsycoca.cpp vf/kbuildsycoca.cpp
+--- kdelibs/kded.orig/kbuildsycoca.cpp	2003-05-05 20:02:13.000000000 +0200
++++ kdelibs/kded/kbuildsycoca.cpp	2003-04-11 00:31:31.000000000 +0200
+@@ -1,5 +1,6 @@
+ /*  This file is part of the KDE libraries
+  *  Copyright (C) 1999 David Faure <faure@kde.org>
++ *  Copyright (C) 2002-2003 Waldo Bastian <bastian@kde.org>
+  *
+  *  This library is free software; you can redistribute it and/or
+  *  modify it under the terms of the GNU Library General Public
+@@ -21,6 +22,7 @@
+ 
+ #include "kbuildsycoca.h"
+ #include "kresourcelist.h"
++#include "vfolder_menu.h"
+ 
+ #include <kservice.h>
+ #include <kmimetype.h>
+@@ -53,14 +55,30 @@
+ #include <unistd.h>
+ #include <time.h>
+ 
++typedef QDict<KSycocaEntry> KBSEntryDict;
++typedef QValueList<KSycocaEntry::List> KSycocaEntryListList;
++
+ static Q_UINT32 newTimestamp = 0;
+ 
+ static KBuildServiceFactory *g_bsf = 0;
+-
++static KBuildServiceGroupFactory *g_bsgf = 0;
++static KSycocaFactory *g_factory = 0;
++static KCTimeInfo *g_ctimeInfo = 0;
++static QDict<Q_UINT32> *g_ctimeDict = 0;
++static const char *g_resource = 0;
++static KBSEntryDict *g_entryDict = 0;
++static KBSEntryDict *g_serviceGroupEntryDict = 0;
++static KSycocaEntryListList *g_allEntries = 0;
+ static QStringList *g_changeList = 0;
++static QStringList *g_allResourceDirs = 0;
++static bool g_changed = false;
++
++static VFolderMenu *g_vfolder = 0;
+ 
+ static const char *cSycocaPath = 0;
+ 
++static bool bGlobalDatabase = 0;
++
+ void crashHandler(int)
+ {
+    // If we crash while reading sycoca, we delete the database
+@@ -72,15 +90,32 @@
+ static QString sycocaPath()
+ {
+   QString path;
+-  QCString ksycoca_env = getenv("KDESYCOCA");
+-  if (ksycoca_env.isEmpty())
+-     path = KGlobal::dirs()->saveLocation("tmp")+"ksycoca";
++  
++  if (bGlobalDatabase)
++  {
++     path = KGlobal::dirs()->saveLocation("services")+"ksycoca";
++  }
+   else
+-     path = QFile::decodeName(ksycoca_env);
++  {
++     QCString ksycoca_env = getenv("KDESYCOCA");
++     if (ksycoca_env.isEmpty())
++        path = KGlobal::dirs()->saveLocation("cache")+"ksycoca";
++     else
++        path = QFile::decodeName(ksycoca_env);
++  }
+ 
+   return path;     
+ }
+ 
++static QString oldSycocaPath()
++{
++  QCString ksycoca_env = getenv("KDESYCOCA");
++  if (ksycoca_env.isEmpty())
++     return KGlobal::dirs()->saveLocation("tmp")+"ksycoca";
++
++  return QString::null;
++}
++
+ KBuildSycoca::KBuildSycoca()
+   : KSycoca( true )
+ {
+@@ -138,15 +173,82 @@
+    fclose( f );
+ }
+ 
++KSycocaEntry *KBuildSycoca::createEntry(const QString &file)
++{
++   Q_UINT32 timeStamp = g_ctimeInfo->ctime(file);
++   if (!timeStamp)
++   {
++      timeStamp = KGlobal::dirs()->calcResourceHash( g_resource, file, true);
++   }
++   bool skip = false;
++   KSycocaEntry* entry = 0;
++   if (g_allEntries)
++   {
++      assert(g_ctimeDict);
++      Q_UINT32 *timeP = (*g_ctimeDict)[file];
++      Q_UINT32 oldTimestamp = timeP ? *timeP : 0;
++
++      if (timeStamp && (timeStamp == oldTimestamp))
++      {
++         // Re-use old entry
++         if (g_factory == g_bsgf) // Strip .directory from service-group entries
++         {
++            entry = g_entryDict->find(file.left(file.length()-10));
++         }
++         else if (g_factory == g_bsf)
++         {
++            entry = g_entryDict->find(file);
++            if (!entry)
++               skip = true;
++         }
++         else
++         {
++            entry = g_entryDict->find(file);
++         }
++         // remove from g_ctimeDict; if g_ctimeDict is not empty
++         // after all files have been processed, it means
++         // some files were removed since last time
++         g_ctimeDict->remove( file );
++      }
++      else if (oldTimestamp)
++      {
++         g_changed = true;
++         kdDebug(7021) << "modified: " << file << endl;
++      }
++      else 
++      {
++         g_changed = true;
++         kdDebug(7021) << "new: " << file << endl;
++      }
++   }
++   g_ctimeInfo->addCTime(file, timeStamp );
++   if (!entry && !skip)
++   {
++      // Create a new entry
++      entry = g_factory->createEntry( file, g_resource );
++   }
++   if ( entry && entry->isValid() )
++   {
++      g_factory->addEntry( entry, g_resource );
++      return entry;
++   }
++   return 0;
++}
++
++void KBuildSycoca::slotCreateEntry(const QString &file, KService **service)
++{
++   KSycocaEntry *entry = createEntry(file);
++   *service = dynamic_cast<KService *>(entry);
++}
++
+ // returns false if the database is up to date
+-bool KBuildSycoca::build(KSycocaEntryListList *allEntries,
+-                         QDict<Q_UINT32> *ctimeDict)
++bool KBuildSycoca::build()
+ {
+-  typedef QDict<KSycocaEntry> myEntryDict;
+-  typedef QPtrList<myEntryDict> myEntryDictList;
+-  myEntryDictList *entryDictList = 0;
++  typedef QPtrList<KBSEntryDict> KBSEntryDictList;
++  KBSEntryDictList *entryDictList = 0;
++  KBSEntryDict *serviceEntryDict = 0;
+ 
+-  entryDictList = new myEntryDictList();
++  entryDictList = new KBSEntryDictList();
+   // Convert for each factory the entryList to a Dict.
+   int i = 0;
+   // For each factory
+@@ -154,10 +256,10 @@
+        factory;
+        factory = m_lstFactories->next() )
+   {
+-     myEntryDict *entryDict = new myEntryDict();
+-     if (allEntries)
++     KBSEntryDict *entryDict = new KBSEntryDict();
++     if (g_allEntries)
+      {
+-         KSycocaEntry::List list = (*allEntries)[i++];
++         KSycocaEntry::List list = (*g_allEntries)[i++];
+          for( KSycocaEntry::List::Iterator it = list.begin();
+             it != list.end();
+             ++it)
+@@ -165,6 +267,10 @@
+             entryDict->insert( (*it)->entryPath(), static_cast<KSycocaEntry *>(*it));
+          }
+      }
++     if (factory == g_bsf)
++        serviceEntryDict = entryDict;
++     else if (factory == g_bsgf)
++        g_serviceGroupEntryDict = entryDict;
+      entryDictList->append(entryDict);
+   }
+ 
+@@ -188,19 +294,19 @@
+     }
+   }
+ 
+-  KCTimeInfo *ctimeInfo = new KCTimeInfo();
++  g_ctimeInfo = new KCTimeInfo(); // This is a build factory too, don't delete!!
+   bool uptodate = true;
+   // For all resources
+   for( QStringList::ConstIterator it1 = allResources.begin();
+        it1 != allResources.end();
+        ++it1 )
+   {
+-     bool changed = false;
+-     const char *resource = (*it1).ascii();
++     g_changed = false;
++     g_resource = (*it1).ascii();
+ 
+      QStringList relFiles;
+ 
+-     (void) KGlobal::dirs()->findAllResources( resource,
++     (void) KGlobal::dirs()->findAllResources( g_resource,
+                                                QString::null,
+                                                true, // Recursive!
+                                                true, // uniq
+@@ -209,14 +315,14 @@
+ 
+      // Now find all factories that use this resource....
+      // For each factory
+-     myEntryDict *entryDict = entryDictList->first();
+-     for (KSycocaFactory *factory = m_lstFactories->first();
+-          factory;
+-          factory = m_lstFactories->next(),
+-          entryDict = entryDictList->next() )
++     g_entryDict = entryDictList->first();
++     for (g_factory = m_lstFactories->first();
++          g_factory;
++          g_factory = m_lstFactories->next(),
++          g_entryDict = entryDictList->next() )
+      {
+         // For each resource the factory deals with
+-        const KSycocaResourceList *list = factory->resourceList();
++        const KSycocaResourceList *list = g_factory->resourceList();
+         if (!list) continue;
+ 
+         for( KSycocaResourceList::ConstIterator it2 = list->begin();
+@@ -234,62 +340,95 @@
+                // Check if file matches filter
+                if (res.filter.search(*it3) == -1) continue;
+ 
+-               Q_UINT32 timeStamp = ctimeInfo->ctime(*it3);
+-               if (!timeStamp)
+-               {
+-                   timeStamp = KGlobal::dirs()->calcResourceHash( resource, *it3, true);
+-               }
+-               KSycocaEntry* entry = 0;
+-               if (allEntries)
+-               {
+-                   assert(ctimeDict);
+-                   Q_UINT32 *timeP = (*ctimeDict)[*it3];
+-                   Q_UINT32 oldTimestamp = timeP ? *timeP : 0;
+-
+-                   if (timeStamp && (timeStamp == oldTimestamp))
+-                   {
+-                      // Re-use old entry
+-                      entry = entryDict->find(*it3);
+-                      // remove from ctimeDict; if ctimeDict is not empty
+-                      // after all files have been processed, it means
+-                      // some files were removed since last time
+-                      ctimeDict->remove( *it3 );
+-                   }
+-                   else if (oldTimestamp)
+-                   {
+-                      changed = true;
+-                      kdDebug(7021) << "modified: " << (*it3) << endl;
+-                   }
+-                   else 
+-                   {
+-                      changed = true;
+-                      kdDebug(7021) << "new: " << (*it3) << endl;
+-                   }
+-               }
+-               ctimeInfo->addCTime(*it3, timeStamp );
+-               if (!entry)
+-               {
+-                   // Create a new entry
+-                   entry = factory->createEntry( *it3, resource );
+-               }
+-               if ( entry && entry->isValid() )
+-                  factory->addEntry( entry, resource );
++               createEntry(*it3);
+            }
+         }
+-        if ((factory == g_bsf) && (strcmp(resource, "apps") == 0))
++        if ((g_factory == g_bsf) && (strcmp(g_resource, "services") == 0))
+            processGnomeVfs();
+      }
+-     if (changed || !allEntries)
++     if (g_changed || !g_allEntries)
++     {
++        uptodate = false;
++        g_changeList->append(g_resource);
++     }
++  }
++
++  bool result = !uptodate || !g_ctimeDict->isEmpty();
++  
++  if (result)
++  {
++     g_resource = "apps";
++     g_factory = g_bsf;
++     g_entryDict = serviceEntryDict;
++     g_changed = false;
++
++     g_vfolder = new VFolderMenu;
++
++     connect(g_vfolder, SIGNAL(newService(const QString &, KService **)),
++             this, SLOT(slotCreateEntry(const QString &, KService **)));
++             
++     VFolderMenu::SubMenu *kdeMenu = g_vfolder->parseMenu("applications.menu", true);
++
++     g_bsgf->addNew("/", QString::null, 0);
++     createMenu(QString::null, kdeMenu);
++     
++     (void) existingResourceDirs();
++     *g_allResourceDirs += g_vfolder->allDirectories(); 
++
++     disconnect(g_vfolder, SIGNAL(newService(const QString &, KService **)),
++             this, SLOT(slotCreateEntry(const QString &, KService **)));
++
++     if (g_changed || !g_allEntries)
+      {
+         uptodate = false;
+-        g_changeList->append(resource);
++        g_changeList->append(g_resource);
+      }
+   }
+   
+-  return !uptodate || !ctimeDict->isEmpty();
++  return result;
++}
++
++void KBuildSycoca::createMenu(QString name, VFolderMenu::SubMenu *menu)
++{
++  for(VFolderMenu::SubMenu *subMenu = menu->subMenus.first(); subMenu; subMenu = menu->subMenus.next())
++  {
++     QString subName = name+subMenu->name+"/";
++
++     QString directoryFile = subMenu->directoryFile;
++     if (directoryFile.isEmpty())
++        directoryFile = subName+".directory";
++     Q_UINT32 timeStamp = g_ctimeInfo->ctime(directoryFile);
++     if (!timeStamp)
++     {
++        timeStamp = KGlobal::dirs()->calcResourceHash( g_resource, directoryFile, true);
++     }
++
++     KServiceGroup* entry = 0;
++     if (g_allEntries)
++     {
++        Q_UINT32 *timeP = (*g_ctimeDict)[directoryFile];
++        Q_UINT32 oldTimestamp = timeP ? *timeP : 0;
++
++        if (timeStamp && (timeStamp == oldTimestamp))
++        {
++            entry = dynamic_cast<KServiceGroup *> (g_serviceGroupEntryDict->find(subName));
++            // TODO: Check that old version uses same directoryFile
++        }
++     }
++     g_ctimeInfo->addCTime(directoryFile, timeStamp);
++
++     g_bsgf->addNew(subName, subMenu->directoryFile, entry);
++     createMenu(subName, subMenu);
++  }
++  if (name.isEmpty())
++     name = "/";
++  for(QDictIterator<KService> it(menu->items); it.current(); ++it)
++  {
++     g_bsgf->addNewEntryTo(name, it.current());
++  }
+ }
+ 
+-void KBuildSycoca::recreate( KSycocaEntryListList *allEntries, QDict<Q_UINT32> *ctimeDict)
++void KBuildSycoca::recreate()
+ {
+   QString path(sycocaPath());
+ 
+@@ -310,12 +449,12 @@
+   // It is very important to build the servicetype one first
+   // Both are registered in KSycoca, no need to keep the pointers
+   KSycocaFactory *stf = new KBuildServiceTypeFactory;
+-  KBuildServiceGroupFactory *bsgf = new KBuildServiceGroupFactory();
+-  g_bsf = new KBuildServiceFactory(stf, bsgf);
++  g_bsgf = new KBuildServiceGroupFactory();
++  g_bsf = new KBuildServiceFactory(stf, g_bsgf);
+   (void) new KBuildImageIOFactory();
+   (void) new KBuildProtocolInfoFactory();
+ 
+-  if( build(allEntries, ctimeDict)) // Parse dirs
++  if( build()) // Parse dirs
+   {
+     save(); // Save database
+     if (m_str->device()->status())
+@@ -335,13 +474,31 @@
+     kdDebug(7021) << "Database is up to date" << endl;
+   }
+ 
+-  // update the timestamp file
+-  QString stamppath = path + "stamp";
+-  QFile ksycocastamp(stamppath);
+-  ksycocastamp.open( IO_WriteOnly );
+-  QDataStream str( &ksycocastamp );
+-  str << newTimestamp;
+-  str << existingResourceDirs();
++  if (!bGlobalDatabase)
++  {
++    // update the timestamp file
++    QString stamppath = path + "stamp";
++    QFile ksycocastamp(stamppath);
++    ksycocastamp.open( IO_WriteOnly );
++    QDataStream str( &ksycocastamp );
++    str << newTimestamp;
++    str << existingResourceDirs();
++    str << g_vfolder->allDirectories(); // Extra resource dirs
++
++    // Recreate compatibility symlink
++    QString oldPath = oldSycocaPath();
++    if (!oldPath.isEmpty())
++    {
++       KTempFile tmp;
++       if (tmp.status() == 0)
++       {
++          QString tmpFile = tmp.name();
++          tmp.unlink();
++          symlink(QFile::encodeName(path), QFile::encodeName(tmpFile));
++          rename(QFile::encodeName(tmpFile), QFile::encodeName(oldPath));
++       }
++    }
++  }
+ }
+ 
+ void KBuildSycoca::save()
+@@ -373,6 +530,7 @@
+    (*m_str) << newTimestamp;
+    (*m_str) << KGlobal::locale()->language();
+    (*m_str) << KGlobal::dirs()->calcResourceHash("services", "update_ksycoca", true);
++   (*m_str) << (*g_allResourceDirs);
+ 
+    // Write factory data....
+    for(KSycocaFactory *factory = m_lstFactories->first();
+@@ -445,13 +603,12 @@
+ // and also their directories
+ // if all of them all older than the timestamp in file ksycocastamp, this
+ // means that there's no need to rebuild ksycoca
+-bool KBuildSycoca::checkTimestamps( Q_UINT32 timestamp )
++bool KBuildSycoca::checkTimestamps( Q_UINT32 timestamp, const QStringList &dirs )
+ {
+    kdDebug( 7021 ) << "checking file timestamps" << endl;
+-   QStringList dirs = existingResourceDirs();
+    QDateTime stamp;
+    stamp.setTime_t( timestamp );
+-   for( QStringList::Iterator it = dirs.begin();
++   for( QStringList::ConstIterator it = dirs.begin();
+         it != dirs.end();
+         ++it )
+    {
+@@ -468,6 +625,7 @@
+    if( dirs != NULL )
+        return *dirs;
+    dirs = new QStringList;
++   g_allResourceDirs = new QStringList;
+    // these are all resources cached by ksycoca
+    QStringList resources;
+    resources += KBuildServiceTypeFactory::resourceTypes();
+@@ -481,6 +639,9 @@
+       *dirs += KGlobal::dirs()->resourceDirs( res.latin1());
+       resources.remove( res ); // remove this 'res' and all its duplicates
+    }
++   
++   *g_allResourceDirs = *dirs;
++   
+    for( QStringList::Iterator it = dirs->begin();
+         it != dirs->end(); )
+    {
+@@ -495,9 +656,10 @@
+ 
+ static KCmdLineOptions options[] = {
+    { "nosignal", I18N_NOOP("Don't signal applications."), 0 },
+-   { "incremental", I18N_NOOP("Incremental update."), 0 },
++   { "noincremental", I18N_NOOP("Not incremental update, re-read everything."), 0 },
+    { "checkstamps", I18N_NOOP("Check file timestamps."), 0 },
+-   { 0, 0, 0 }
++   { "global", I18N_NOOP("Create global database."), 0 },
++   KCmdLineLastOption
+ };
+ 
+ static const char *appName = "kbuildsycoca";
+@@ -521,6 +683,13 @@
+    KCmdLineArgs::init(argc, argv, &d);
+    KCmdLineArgs::addCmdLineOptions(options);
+    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
++   bGlobalDatabase = args->isSet("global");
++
++   if (bGlobalDatabase)
++   {
++     setenv("KDEHOME", "-", 1);
++     setenv("KDEROOTHOME", "-", 1);
++   }
+ 
+    KApplication::disableAutoDcopRegistration();
+    KApplication k(false, false);
+@@ -565,19 +734,16 @@
+    }
+    fprintf(stderr, "%s running...\n", appName);
+ 
+-   bool incremental = args->isSet("incremental");
++
++   bool incremental = !bGlobalDatabase && args->isSet("incremental");
+    if (incremental)
+    {
+-     KSycoca::self()->disableAutoRebuild(); // Don't deadlock
+-     QString current_kfsstnd = KGlobal::dirs()->kfsstnd_prefixes();
+-     QString ksycoca_kfsstnd = KSycoca::self()->kfsstnd_prefixes();
+      QString current_language = KGlobal::locale()->language();
+      QString ksycoca_language = KSycoca::self()->language();
+      Q_UINT32 current_update_sig = KGlobal::dirs()->calcResourceHash("services", "update_ksycoca", true);
+      Q_UINT32 ksycoca_update_sig = KSycoca::self()->updateSignature();
+      
+      if ((current_update_sig != ksycoca_update_sig) ||
+-         (current_kfsstnd != ksycoca_kfsstnd) ||
+          (current_language != ksycoca_language))
+      {
+         incremental = false;
+@@ -589,38 +755,46 @@
+ 
+    bool checkstamps = incremental && args->isSet("checkstamps");
+    Q_UINT32 filestamp = 0;
++   QStringList oldresourcedirs;
+    if( checkstamps && incremental )
+-       {
+-       QString path = KGlobal::dirs()->saveLocation("tmp")+"ksycocastamp";
++   {
++       QString path = sycocaPath()+"stamp";
+        QFile ksycocastamp(path);
+        if( ksycocastamp.open( IO_ReadOnly ))
+-           {
++       {
+            QDataStream str( &ksycocastamp );
+            str >> filestamp;
+-           QStringList oldresourcedirs;
+            str >> oldresourcedirs;
+            if( oldresourcedirs != KBuildSycoca::existingResourceDirs())
+                checkstamps = false;
++           if (!str.atEnd())
++           {
++              QStringList extraResourceDirs;
++              str >> extraResourceDirs;
++              oldresourcedirs += extraResourceDirs;
+            }
++       }
+        else
++       {
+            checkstamps = false;
+        }
++   }
+ 
+    newTimestamp = (Q_UINT32) time(0);
+ 
+-   if( !checkstamps || !KBuildSycoca::checkTimestamps( filestamp ))
++   if( !checkstamps || !KBuildSycoca::checkTimestamps( filestamp, oldresourcedirs ))
+    {
+       QCString qSycocaPath = QFile::encodeName(sycocaPath());
+       cSycocaPath = qSycocaPath.data();
+ 
+-      KBuildSycoca::KSycocaEntryListList *allEntries = 0;
+-      QDict<Q_UINT32> *ctimeDict = 0;
++      g_allEntries = 0;
++      g_ctimeDict = 0;
+       if (incremental)
+       {
+          KSycoca *oldSycoca = KSycoca::self();
+          KSycocaFactoryList *factories = new KSycocaFactoryList;
+-         allEntries = new KBuildSycoca::KSycocaEntryListList;
+-         ctimeDict = new QDict<Q_UINT32>(523);
++         g_allEntries = new KSycocaEntryListList;
++         g_ctimeDict = new QDict<Q_UINT32>(523);
+ 
+          // Must be in same order as in KBuildSycoca::recreate()!
+          factories->append( new KServiceTypeFactory );
+@@ -636,17 +810,17 @@
+          {
+              KSycocaEntry::List list;
+              list = factory->allEntries();
+-             allEntries->append( list );
++             g_allEntries->append( list );
+          }
+          delete factories; factories = 0;
+          KCTimeInfo *ctimeInfo = new KCTimeInfo;
+-         ctimeInfo->fillCTimeDict(*ctimeDict);
++         ctimeInfo->fillCTimeDict(*g_ctimeDict);
+          delete oldSycoca;
+       }
+       cSycocaPath = 0;
+ 
+       KBuildSycoca *sycoca= new KBuildSycoca; // Build data base
+-      sycoca->recreate(allEntries, ctimeDict);
++      sycoca->recreate();
+    }
+ 
+    if (args->isSet("signal"))
+diff -urN vf.orig/kbuildsycoca.h vf/kbuildsycoca.h
+--- kdelibs/kded.orig/kbuildsycoca.h	2001-09-24 22:52:47.000000000 +0200
++++ kdelibs/kded/kbuildsycoca.h	2003-04-01 00:36:49.000000000 +0200
+@@ -18,13 +18,17 @@
+ #ifndef __kbuildsycoca_h__
+ #define __kbuildsycoca_h__ 
+ 
++#include <sys/stat.h>
++
+ #include <qobject.h>
+ #include <qstring.h>
+ #include <qdict.h>
++
++#include <kservice.h>
+ #include <ksycoca.h>
+ #include <ksycocatype.h>
+ #include <ksycocaentry.h>
+-#include <sys/stat.h>
++#include "vfolder_menu.h"
+ 
+ class QDataStream;
+ 
+@@ -33,20 +37,21 @@
+ {
+    Q_OBJECT
+ public:
+-   typedef QValueList<KSycocaEntry::List> KSycocaEntryListList;
+-public:
+    KBuildSycoca();
+    virtual ~KBuildSycoca();
+ 
+    /**
+     * Recreate the database file
+     */
+-   void recreate(KSycocaEntryListList *, QDict<Q_UINT32> *);
++   void recreate();
+ 
+-   static bool checkTimestamps( Q_UINT32 timestamp );
++   static bool checkTimestamps( Q_UINT32 timestamp, const QStringList &dirs );
+ 
+    static QStringList existingResourceDirs();
+ 
++protected slots:
++   void slotCreateEntry(const QString &file, KService **entry);
++       
+ protected:
+ 
+    /**
+@@ -55,9 +60,20 @@
+    void processGnomeVfs();
+ 
+    /**
++    * Add single entry to the sycoca database.
++    * Either from a previous database or regenerated from file.
++    */
++   KSycocaEntry *createEntry(const QString &file);
++
++   /**
++    * Convert a VFolderMenu::SubMenu to KServiceGroups.
++    */
++   void createMenu(QString name, VFolderMenu::SubMenu *menu);
++
++   /**
+     * Build the whole system cache, from .desktop files
+     */
+-   bool build(KSycocaEntryListList *, QDict<Q_UINT32> *);
++   bool build();
+    
+    /**
+     * Save the ksycoca file
+@@ -76,6 +92,8 @@
+     * @return true if building (i.e. if a KBuildSycoca);
+     */
+    virtual bool isBuilding() { return true; }
++
++   QStringList m_allResourceDirs;
+ };
+ 
+ #endif
+diff -urN vf.orig/Makefile.am vf/Makefile.am
+--- kdelibs/kded.orig/Makefile.am	2002-09-15 23:13:07.000000000 +0200
++++ kdelibs/kded/Makefile.am	2003-05-12 00:05:28.000000000 +0200
+@@ -34,7 +34,8 @@
+ 				kbuildservicegroupfactory.cpp \
+ 				kbuildimageiofactory.cpp \
+ 				kbuildprotocolinfofactory.cpp \
+-				kctimefactory.cpp
++				kctimefactory.cpp \
++				vfolder_menu.cpp
+ 
+ bin_PROGRAMS = kded kbuildsycoca kdontchangethehostname
+ 
+diff -urN vf.orig/vfolder_menu.cpp vf/vfolder_menu.cpp
+--- kdelibs/kded.orig/vfolder_menu.cpp	1970-01-01 01:00:00.000000000 +0100
++++ kdelibs/kded/vfolder_menu.cpp	2003-04-11 22:16:47.000000000 +0200
+@@ -0,0 +1,1438 @@
++/*  This file is part of the KDE libraries
++ *  Copyright (C) 2003 Waldo Bastian <bastian@kde.org>
++ *
++ *  This library is free software; you can redistribute it and/or
++ *  modify it under the terms of the GNU Library General Public
++ *  License version 2 as published by the Free Software Foundation;
++ *
++ *  This library is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ *  Library General Public License for more details.
++ *
++ *  You should have received a copy of the GNU Library General Public License
++ *  along with this library; see the file COPYING.LIB.  If not, write to
++ *  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++ *  Boston, MA 02111-1307, USA.
++ **/
++
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <unistd.h>
++#include <dirent.h>
++#include <stdlib.h> // getenv
++
++#include <kdebug.h>
++#include <kglobal.h>
++#include <kstandarddirs.h>
++#include <kservice.h>
++
++#include <qmap.h>
++#include <qfile.h>
++#include <qdir.h>
++#include <qregexp.h>
++
++#include "vfolder_menu.h"
++
++static VFolderMenu* g_this = 0;
++
++
++static QDomDocument loadDoc(const QString &filename)
++{
++   QDomDocument doc;
++   if ( filename.isEmpty() )
++   {
++      return doc;
++   }
++   QFile file( filename );
++   if ( !file.open( IO_ReadOnly ) )
++   {
++      kdWarning(7021) << "Could not open " << filename << endl;
++      return doc;
++   }
++   QString errorMsg;
++   int errorRow;
++   int errorCol;
++   if ( !doc.setContent( &file, &errorMsg, &errorRow, &errorCol ) ) {
++      kdWarning(7021) << "Parse error in " << filename << ", line " << errorRow << ", col " << errorCol << ": " << errorMsg << endl;
++      file.close();
++      return doc;
++   }
++   file.close();
++   return doc;
++}                                            
++
++static void foldNode(QDomElement &docElem, QDomElement &e, QMap<QString,QDomElement> &dupeList, QString s=QString::null)
++{
++   if (s.isEmpty())
++      s = e.text();
++   QMap<QString,QDomElement>::iterator it = dupeList.find(s);
++   if (it != dupeList.end())
++   {
++      kdDebug(7021) << e.tagName() << " and " << s << " requires combining!" << endl;
++          
++      docElem.removeChild(*it);
++      dupeList.remove(it);
++   }
++   dupeList.insert(s, e);
++}
++
++static void replaceNode(QDomElement &docElem, QDomNode &n, const QStringList &list, const QString &tag)
++{
++   for(QStringList::ConstIterator it = list.begin();
++       it != list.end(); ++it)
++   {
++      QDomElement e = docElem.ownerDocument().createElement(tag);
++      QDomText txt = docElem.ownerDocument().createTextNode(*it);
++      e.appendChild(txt);
++      docElem.insertAfter(e, n);
++   }
++  
++   QDomNode next = n.nextSibling();
++   docElem.removeChild(n);
++   n = next;
++//   kdDebug(7021) << "Next tag = " << n.toElement().tagName() << endl;
++}
++
++void VFolderMenu::registerFile(const QString &file)
++{
++   int i = file.findRev('/');
++   if (i < 0)
++      return;
++   
++   QString dir = file.left(i+1); // Include trailing '/'
++   registerDirectory(dir);
++}
++
++void VFolderMenu::registerDirectory(const QString &directory)
++{
++   for(QStringList::Iterator it = m_allDirectories.begin();
++       it != m_allDirectories.end(); ++it)
++   {
++       if (directory.startsWith(*it))
++          return;
++       if ((*it).startsWith(directory))
++       {
++          // We only keep the most top-level directory.
++          *it = directory;
++          return;
++       }
++   }
++   m_allDirectories.prepend(directory);
++}
++
++QStringList VFolderMenu::allDirectories()
++{
++   return m_allDirectories;
++}
++
++void
++VFolderMenu::includeItems(QDict<KService> *items1, QDict<KService> *items2)
++{
++   for(QDictIterator<KService> it(*items2); it.current(); ++it)
++   {
++       items1->replace(relativePath(it.current()), it.current());
++   }
++}
++
++void
++VFolderMenu::matchItems(QDict<KService> *items1, QDict<KService> *items2)
++{
++   for(QDictIterator<KService> it(*items1); it.current(); )
++   {
++       QString entry = relativePath(it.current());
++       ++it;
++       if (!items2->find(entry))
++          items1->remove(entry);
++   }
++}
++
++void
++VFolderMenu::excludeItems(QDict<KService> *items1, QDict<KService> *items2)
++{
++   for(QDictIterator<KService> it(*items2); it.current(); ++it)
++   {
++       items1->remove(relativePath(it.current()));
++   }
++}
++
++VFolderMenu::SubMenu* 
++VFolderMenu::takeSubMenu(SubMenu *parentMenu, const QString &menuName)
++{
++   int i = menuName.find('/');
++   QString s1 = i > 0 ? menuName.left(i) : menuName;
++   QString s2 = menuName.mid(i+1);
++      
++   // Look up menu
++   for(SubMenu *menu = parentMenu->subMenus.first(); menu; menu = parentMenu->subMenus.next())
++   {
++      if (menu->name == s1)
++      {
++         if (i == -1)
++         {
++            // Take it out
++            return parentMenu->subMenus.take();
++         }
++         else
++         {
++            return takeSubMenu(menu, s2);
++         }
++      }
++   }
++   return 0; // Not found
++}
++
++void
++VFolderMenu::mergeMenu(SubMenu *menu1, SubMenu *menu2)
++{
++    // Merge newMenu with menu.
++   includeItems(&(menu1->items), &(menu2->items));
++   for(; menu2->subMenus.first(); )
++   {
++      SubMenu *subMenu = menu2->subMenus.take();
++      insertSubMenu(menu1, subMenu->name, subMenu);
++   }
++
++   if (!menu2->directoryFile.isEmpty())
++      menu1->directoryFile = menu2->directoryFile;
++
++   delete menu2;
++}
++
++void 
++VFolderMenu::insertSubMenu(SubMenu *parentMenu, const QString &menuName, SubMenu *newMenu)
++{
++   int i = menuName.find('/');
++   
++   QString s1 = menuName.left(i);
++   QString s2 = menuName.mid(i+1);
++      
++   // Look up menu
++   for(SubMenu *menu = parentMenu->subMenus.first(); menu; menu = parentMenu->subMenus.next())
++   {
++      if (menu->name == s1)
++      {
++         if (i == -1)
++         {
++            mergeMenu(menu, newMenu);
++            return;
++         }
++         else
++         {
++            insertSubMenu(menu, s2, newMenu);
++            return;
++         }
++      }
++   }
++   if (i == -1)
++   {
++     // Add it here
++     newMenu->name = menuName;
++     parentMenu->subMenus.append(newMenu);
++   }
++   else
++   {
++     SubMenu *menu = new SubMenu;
++     menu->name = s1;
++     parentMenu->subMenus.append(menu);
++     insertSubMenu(menu, s2, newMenu);
++   }
++}
++
++void 
++VFolderMenu::insertService(SubMenu *parentMenu, const QString &name, KService *newService)
++{
++   int i = name.find('/');
++   
++   if (i == -1)
++   {
++     // Add it here
++     parentMenu->items.replace(name, newService);
++     return;
++   }
++
++   QString s1 = name.left(i);
++   QString s2 = name.mid(i+1);
++      
++   // Look up menu
++   for(SubMenu *menu = parentMenu->subMenus.first(); menu; menu = parentMenu->subMenus.next())
++   {
++      if (menu->name == s1)
++      {
++         insertService(menu, s2, newService);
++         return;
++      }
++   }
++   
++   SubMenu *menu = new SubMenu;
++   menu->name = s1;
++   parentMenu->subMenus.append(menu);
++   insertService(menu, s2, newService);
++}
++
++
++VFolderMenu::VFolderMenu()
++{
++   m_rootMenu = 0;
++   initDirs();
++}
++
++VFolderMenu::~VFolderMenu()
++{
++   delete m_rootMenu;
++}
++
++#define FOR_ALL_APPLICATIONS(it) \
++   for(appsInfo *info = m_appsInfoStack.first(); \
++       info; info = m_appsInfoStack.next()) \
++   { \
++      for(QDictIterator<KService> it( info->applications ); \
++          it.current(); ++it ) \
++      {
++#define FOR_ALL_APPLICATIONS_END } }
++
++#define FOR_CATEGORY(category, it) \
++   for(appsInfo *info = m_appsInfoStack.first(); \
++       info; info = m_appsInfoStack.next()) \
++   { \
++      KService::List *list = info->dictCategories.find(category); \
++      if (list) for(KService::List::ConstIterator it = list->begin(); \
++             it != list->end(); ++it) \
++      { 
++#define FOR_CATEGORY_END } }
++
++KService *
++VFolderMenu::findApplication(const QString &relPath)
++{
++   for(appsInfo *info = m_appsInfoStack.first();
++       info; info = m_appsInfoStack.next())
++   {
++      KService *s = info->applications.find(relPath);
++      if (s)
++         return s;
++   }
++   return 0;
++}
++
++QString
++VFolderMenu::relativePath(KService *service)
++{
++   for(appsInfo *info = m_appsInfoStack.first();
++       info; info = m_appsInfoStack.next())
++   {
++      QString *result = info->appRelPaths.find(service);
++      if (result)
++         return *result;
++   }
++kdWarning(7021) << "Panic! " << service->desktopEntryPath() << " not found!" << endl;
++   return QString::null;
++}
++
++void
++VFolderMenu::addApplication(const QString &relPath, KService *service)
++{
++   m_appsInfo->appRelPaths.insert(service, new QString(relPath));
++   m_appsInfo->applications.replace(relPath, service);
++}
++
++void
++VFolderMenu::buildApplicationIndex()
++{
++   QDictIterator<appsInfo> it( m_appsInfoDict );
++   for( ; it.current(); ++it )
++   {
++      appsInfo *info = it.current();
++      for(QDictIterator<KService> it( info->applications );
++          it.current(); ++it )
++      {
++         KService *s = it.current();
++         QStringList cats = s->categories();
++         for(QStringList::ConstIterator it2 = cats.begin();
++             it2 != cats.end(); ++it2)
++         {
++            const QString &cat = *it2;
++            KService::List *list = info->dictCategories.find(cat);
++            if (!list)
++            {
++               list = new KService::List();
++               info->dictCategories.insert(cat, list);
++            }
++            list->append(s);
++         }
++      }
++   }
++}
++
++void
++VFolderMenu::createAppsInfo(const QString &name)
++{
++   if (m_appsInfo) return;
++   
++   m_appsInfo = new appsInfo;
++   m_appsInfoStack.prepend(m_appsInfo);
++   m_appsInfoDict.replace(name, m_appsInfo);
++}
++
++void
++VFolderMenu::loadAppsInfo(const QString &menuName)
++{
++   m_appsInfo = m_appsInfoDict.find(menuName);
++   if (!m_appsInfo)
++      return; // No appsInfo for this menu
++   
++   if (m_appsInfoStack.first() == m_appsInfo)
++      return; // Already added (By createAppsInfo?)
++      
++   m_appsInfoStack.prepend(m_appsInfo); // Add
++}
++
++void
++VFolderMenu::unloadAppsInfo(const QString &menuName)
++{
++   m_appsInfo = m_appsInfoDict.find(menuName);
++   if (!m_appsInfo)
++      return; // No appsInfo for this menu
++   
++   if (m_appsInfoStack.first() != m_appsInfo)
++   {
++      return; // Already removed (huh?)
++   }
++      
++   m_appsInfoStack.remove(m_appsInfo); // Remove
++   m_appsInfo = 0;
++}
++
++QString 
++VFolderMenu::absoluteDir(const QString &_dir)
++{
++   QString dir = _dir;
++   if (!dir.startsWith("/"))
++   {
++      dir = m_docInfo.absBaseDir + dir;
++   }
++   if (!dir.endsWith("/"))
++      dir += '/';
++   
++   dir = KGlobal::dirs()->realPath(dir);
++
++   return dir;
++}
++
++void 
++VFolderMenu::mergeFile(QDomElement &parent, const QDomNode &mergeHere)
++{
++kdDebug(7021) << "VFolderMenu::mergeFile: " << m_docInfo.path << endl;
++   QDomDocument doc = loadDoc(m_docInfo.path);
++   QDomElement docElem = doc.documentElement();
++   QDomNode n = docElem.firstChild();
++   QDomNode last = mergeHere;
++   while( !n.isNull() ) 
++   {
++      QDomElement e = n.toElement(); // try to convert the node to an element.
++      QDomNode next = n.nextSibling();
++
++      if (e.isNull())
++      {
++         // Skip
++      }
++      // The spec says we must ignore any Name nodes
++      else if (e.tagName() != "Name")
++      {
++         parent.insertAfter(n, last);
++         last = n;
++      }
++
++      docElem.removeChild(n);
++      n = next;
++   }
++}         
++
++
++void 
++VFolderMenu::mergeMenus(QDomElement &docElem, QString &name)
++{
++   QMap<QString,QDomElement> menuNodes;
++   QMap<QString,QDomElement> directoryNodes;
++   QMap<QString,QDomElement> appDirNodes;
++   QMap<QString,QDomElement> directoryDirNodes;
++   QMap<QString,QDomElement> legacyDirNodes;
++
++   QDomNode n = docElem.firstChild();
++   while( !n.isNull() ) {
++      QDomElement e = n.toElement(); // try to convert the node to an element.
++      if( e.isNull() ) {
++// kdDebug(7021) << "Empty node" << endl;
++      }
++      else if( e.tagName() == "DefaultAppDirs") {
++         // Replace with m_defaultAppDirs
++         replaceNode(docElem, n, m_defaultAppDirs, "AppDir");
++         continue;
++      }
++      else if( e.tagName() == "DefaultDirectoryDirs") {
++         // Replace with m_defaultDirectoryDirs
++         replaceNode(docElem, n, m_defaultDirectoryDirs, "DirectoryDir");
++         continue;
++      }
++      else if( e.tagName() == "DefaultMergeDirs") {
++         // Replace with m_defaultMergeDirs
++         replaceNode(docElem, n, m_defaultMergeDirs, "MergeDir");
++         continue;
++      }
++      else if( e.tagName() == "AppDir") {
++         // Filter out dupes
++         foldNode(docElem, e, appDirNodes);
++      }
++      else if( e.tagName() == "DirectoryDir") {
++         // Filter out dupes
++         foldNode(docElem, e, directoryDirNodes);
++      }
++      else if( e.tagName() == "LegacyDir") {
++         // Filter out dupes
++         foldNode(docElem, e, legacyDirNodes);
++      }
++      else if( e.tagName() == "Directory") {
++         // Filter out dupes
++         foldNode(docElem, e, directoryNodes);
++      }
++      else if( e.tagName() == "Move") {
++         // Filter out dupes
++         QString orig;
++         QDomNode n2 = e.firstChild();
++         while( !n2.isNull() ) {
++            QDomElement e2 = n2.toElement(); // try to convert the node to an element.
++            if( e2.tagName() == "Old")
++            {
++               orig = e2.text();
++               break;
++            }
++            n2 = n2.nextSibling();
++         }
++         foldNode(docElem, e, appDirNodes, orig);
++      }
++      else if( e.tagName() == "Menu") {
++         QString name;
++         mergeMenus(e, name);
++         QMap<QString,QDomElement>::iterator it = menuNodes.find(name);
++         if (it != menuNodes.end())
++         {
++           QDomElement docElem2 = *it;
++           QDomNode n2 = docElem2.firstChild();
++           QDomNode first = e.firstChild();
++           while( !n2.isNull() ) {
++             QDomElement e2 = n2.toElement(); // try to convert the node to an element.
++             QDomNode n3 = n2.nextSibling();
++             e.insertBefore(n2, first);
++             docElem2.removeChild(n2);
++             n2 = n3;
++           }
++           // We still have duplicated Name entries 
++           // but we don't care about that
++           
++           docElem.removeChild(docElem2);
++           menuNodes.remove(it);
++         }
++         menuNodes.insert(name, e);
++      }
++      else if( e.tagName() == "MergeFile") {
++         pushDocInfo(e.text());
++         mergeFile(docElem, n);
++         popDocInfo();
++
++         QDomNode last = n;
++         n = n.nextSibling();
++         docElem.removeChild(last); // Remove the MergeFile node
++         continue;
++      }
++      else if( e.tagName() == "MergeDir") {
++         QString dir = absoluteDir(e.text());
++
++         registerDirectory(dir);
++         // We look for a set of files.
++         DIR *dp = opendir( QFile::encodeName(dir));
++         if (dp)
++         {
++            struct dirent *ep;
++            while( ( ep = readdir( dp ) ) != 0L )
++            {
++               QString fn( QFile::decodeName(ep->d_name));
++               if (!fn.endsWith(".menu"))
++                  continue;
++
++               pushDocInfo(dir + fn);
++               mergeFile(docElem, n);
++               popDocInfo();
++            }
++            closedir( dp );
++         }
++         
++         QDomNode last = n;
++         n = n.nextSibling();
++         docElem.removeChild(last); // Remove the MergeDir node
++
++         continue;
++      }
++      else if( e.tagName() == "Name") {
++         name = e.text();
++      }
++      n = n.nextSibling();
++   }
++}
++
++static QString locateFile(const QStringList &files)
++{
++   for(QStringList::ConstIterator it = files.begin();
++       it != files.end();
++       ++it)
++   {
++kdDebug(7021) << "Checking for file " << (*it) << " (#1)" << endl;
++      if (KStandardDirs::exists(*it))
++         return (*it);
++   }
++   return QString::null;
++}
++
++void 
++VFolderMenu::pushDocInfo(const QString &fileName)
++{
++   m_docInfoStack.push(m_docInfo);
++   QString baseName = fileName;
++   if (baseName.startsWith("/"))
++      registerFile(baseName);
++   else
++      baseName = m_docInfo.baseDir + baseName;
++   int i;
++   
++   i = baseName.findRev('/');
++   if (i > 0)
++   {
++      m_docInfo.baseDir = baseName.left(i+1);
++      m_docInfo.baseName = baseName.mid(i+1, baseName.length() - i - 6);
++   }
++   else
++   {
++      m_docInfo.baseDir = QString::null;
++      m_docInfo.baseName = baseName.left( baseName.length() - 5 );
++   }
++
++   m_docInfo.path = locateMenuFile(fileName);
++   if (baseName.isEmpty())
++   {
++      m_docInfo.absBaseDir = QString::null;
++      m_docInfo.baseName = QString::null;
++      kdDebug(7021) << "Menu " << fileName << " not found." << endl;
++      return;
++   }
++   i = baseName.findRev('/');
++   m_docInfo.absBaseDir = baseName.left(i+1);
++}
++
++void
++VFolderMenu::popDocInfo()
++{
++   m_docInfo = m_docInfoStack.pop();
++}
++
++QStringList
++VFolderMenu::allConfLocations(const QString &fileName)
++{
++   QStringList locations;
++   QString tmp;
++
++   tmp = KStandardDirs::realPath(m_desktopUserDir+fileName);
++   if (!locations.contains(tmp)) 
++   {
++      registerFile(tmp);
++      locations.append(tmp);
++   }
++
++   for(QStringList::ConstIterator it = m_desktopSystemDirs.begin();
++       it != m_desktopSystemDirs.end();
++       ++it)
++   {
++      tmp = KStandardDirs::realPath((*it) + "etc/"+fileName);
++      if (!locations.contains(tmp)) 
++      {
++         registerFile(tmp);
++         locations.append(tmp);
++      }
++   }
++
++   // TODO: The spec refers to "sysconfdir" here
++   for(QStringList::ConstIterator it = m_defaultDataDirs.begin();
++       it != m_defaultDataDirs.end();
++       ++it)
++   {
++      tmp = KStandardDirs::realPath((*it) + "share/" + fileName);
++      if (!locations.contains(tmp)) 
++      {
++         registerFile(tmp);
++         locations.append(tmp);
++      }
++   }
++   
++   tmp = KStandardDirs::realPath("/etc/desktop/" + fileName);
++   if (!locations.contains(tmp))
++   {
++      registerFile(tmp);
++      locations.append(tmp);
++   }
++
++   return locations;
++}
++
++QStringList
++VFolderMenu::allDataLocations(const QString &fileName)
++{
++   QStringList locations;
++   QString tmp;
++
++   tmp = KStandardDirs::realPath(m_desktopUserDir+fileName);
++   if (!locations.contains(tmp)) locations.append(tmp);
++   
++   for(QStringList::ConstIterator it = m_desktopSystemDirs.begin();
++       it != m_desktopSystemDirs.end();
++       ++it)
++   {
++      tmp = KStandardDirs::realPath((*it) + "share/" + fileName);
++      if (!locations.contains(tmp)) locations.append(tmp);
++   }
++
++   for(QStringList::ConstIterator it = m_defaultDataDirs.begin();
++       it != m_defaultDataDirs.end();
++       ++it)
++   {
++      tmp = KStandardDirs::realPath((*it) + "share/" + fileName);
++      if (!locations.contains(tmp)) locations.append(tmp);
++   }
++
++   tmp = KStandardDirs::realPath("/usr/share/desktop/" + fileName);
++   if (!locations.contains(tmp)) locations.append(tmp);
++
++   return locations;
++}
++
++QString
++VFolderMenu::locateMenuFile(const QString &fileName)
++{
++   if (fileName.startsWith("/"))
++   {
++kdDebug(7021) << "Checking for file " << fileName << " (#2)" << endl;
++      if (KStandardDirs::exists(fileName))
++         return fileName;
++      return QString::null;
++   }
++
++   QString baseName = m_docInfo.baseDir + fileName;
++   QStringList locations = allConfLocations("menus/"+baseName);
++   // First location in the list wins
++    
++   QString result = locateFile(locations);
++
++   if (result.isEmpty() && !m_docInfo.baseDir.startsWith("/"))
++   {
++    //  result = locate("apps", m_docInfo.baseDir+"default_"+fileName);
++	result = "/etc/X11/desktop/menus/" + fileName;
++   }
++   return result;
++}
++
++QString
++VFolderMenu::locateDirectoryFile(const QString &fileName)
++{
++   if (fileName.isEmpty())
++      return QString::null;
++      
++kdDebug(7021) << "locateDirectoryFile(" << fileName << ")" << endl;
++   if (fileName.startsWith("/"))
++   {
++kdDebug(7021) << "Checking for file " << fileName << " (#3)" << endl;
++      if (KStandardDirs::exists(fileName))
++         return fileName;
++      return QString::null;
++   }
++
++   // First location in the list wins
++   QString tmp;
++   for(QStringList::ConstIterator it = m_directoryDirs.begin();
++       it != m_directoryDirs.end();
++       ++it)
++   {
++      tmp = (*it)+fileName;
++kdDebug(7021) << "Checking for file " << tmp << " (#4)" << endl;
++      if (KStandardDirs::exists(tmp))
++         return tmp;
++   }
++   
++   return QString::null;
++}
++
++void
++VFolderMenu::initDirs()
++{
++   QString home = QDir::homeDirPath();
++    
++   m_desktopUserDir = QFile::decodeName(getenv("DESKTOP_USER_DIR"));
++   if (m_desktopUserDir.isEmpty())
++      m_desktopUserDir = home+"/.desktop/";
++   if (!m_desktopUserDir.endsWith("/"))
++      m_desktopUserDir += "/";
++
++   QString tmp = QFile::decodeName(getenv("DESKTOP_DIRS"));
++   m_desktopSystemDirs = QStringList::split(':', tmp);
++   for(QStringList::Iterator it = m_desktopSystemDirs.begin();
++       it != m_desktopSystemDirs.end();
++       ++it)
++   {
++      if (!(*it).endsWith("/"))
++         *it += "/";
++   }
++
++   m_defaultDataDirs = QStringList::split(':', KGlobal::dirs()->kfsstnd_prefixes());
++   QString localDir = m_defaultDataDirs.first();
++   m_defaultDataDirs.remove(localDir); // Remove local dir
++   
++   m_defaultAppDirs = allDataLocations("applications/");
++   m_defaultDirectoryDirs = allDataLocations("desktop-directories/");
++   m_defaultLegacyDirs = KGlobal::dirs()->resourceDirs("apps");
++}
++
++void
++VFolderMenu::loadMenu(const QString &fileName)
++{
++   m_defaultMergeDirs.clear();
++    
++   if (!fileName.endsWith(".menu"))
++      return;
++
++   pushDocInfo(fileName);
++   m_defaultMergeDirs = allConfLocations("menus/"+m_docInfo.baseName+"-merged/");
++   m_doc = loadDoc(m_docInfo.path);
++   popDocInfo();
++
++   if (m_doc.isNull())
++   {
++      kdWarning(7021) << "Load error (" << m_docInfo.path << ")" << endl;
++      return;
++   }
++    
++   QDomElement e = m_doc.documentElement();
++   QString name;
++   mergeMenus(e, name);
++}
++
++void 
++VFolderMenu::processCondition(QDomElement &domElem, QDict<KService> *items)
++{
++   if (domElem.tagName() == "And")
++   {
++      QDomNode n = domElem.firstChild();
++      if (!n.isNull())
++      {
++         QDomElement e = n.toElement(); 
++         processCondition(e, items);
++         n = n.nextSibling();
++      }
++
++      QDict<KService> andItems;
++      while( !n.isNull() ) {
++         QDomElement e = n.toElement(); 
++         if (e.tagName() == "Not")
++         {
++            // Special handling for "and not"
++            QDomNode n2 = e.firstChild();
++            while( !n2.isNull() ) {
++               QDomElement e2 = n2.toElement(); 
++               andItems.clear();
++               processCondition(e2, &andItems);
++               excludeItems(items, &andItems);
++               n2 = n2.nextSibling();
++            }
++         }
++         else
++         {
++            andItems.clear();
++            processCondition(e, &andItems);
++            matchItems(items, &andItems);
++         }
++         n = n.nextSibling();
++      }
++   }
++   else if (domElem.tagName() == "Or")
++   {
++      QDomNode n = domElem.firstChild();
++      if (!n.isNull())
++      {
++         QDomElement e = n.toElement(); 
++         processCondition(e, items);
++         n = n.nextSibling();
++      }
++
++      QDict<KService> orItems;
++      while( !n.isNull() ) {
++         QDomElement e = n.toElement(); 
++         orItems.clear();
++         processCondition(e, &orItems);
++         includeItems(items, &orItems);
++         n = n.nextSibling();
++      }
++   }
++   else if (domElem.tagName() == "Not")
++   {
++      FOR_ALL_APPLICATIONS(it)
++      {
++         KService *s = it.current();
++         items->replace(relativePath(s), s);
++      }
++      FOR_ALL_APPLICATIONS_END
++      
++      QDict<KService> notItems;
++      QDomNode n = domElem.firstChild();
++      while( !n.isNull() ) {
++         QDomElement e = n.toElement(); 
++         notItems.clear();
++         processCondition(e, &notItems);
++         excludeItems(items, &notItems);
++         n = n.nextSibling();
++      }
++   }
++   else if (domElem.tagName() == "Category")
++   {
++      FOR_CATEGORY(domElem.text(), it)
++      {
++         KService *s = *it;
++         items->replace(relativePath(s), s);
++      }
++      FOR_CATEGORY_END
++   }
++   else if (domElem.tagName() == "All")
++   {
++      FOR_ALL_APPLICATIONS(it)
++      {
++         KService *s = it.current();
++         items->replace(relativePath(s), s);
++      }
++      FOR_ALL_APPLICATIONS_END
++   }
++   else if (domElem.tagName() == "Filename")
++   {
++      QString filename = domElem.text();
++kdDebug(7021) << "Adding file " << filename << endl;
++      KService *s = findApplication(filename);
++      if (s)
++         items->replace(filename, s);
++   }
++}
++
++void
++VFolderMenu::loadApplications(const QString &dir, const QString &relDir)
++{
++   kdDebug(7021) << "Looking up applications under " << dir << endl;
++
++   // We look for a set of files.
++   DIR *dp = opendir( QFile::encodeName(dir));
++   if (!dp)
++      return;
++
++   struct dirent *ep;
++   struct stat buff;
++
++   QString _dot(".");
++   QString _dotdot("..");
++
++   while( ( ep = readdir( dp ) ) != 0L )
++   {
++      QString fn( QFile::decodeName(ep->d_name));
++      if (fn == _dot || fn == _dotdot || fn.at(fn.length() - 1).latin1() == '~')
++         continue;
++
++      QString pathfn = dir + fn;
++      if ( stat( QFile::encodeName(pathfn), &buff ) != 0 ) {
++         continue; // Couldn't stat (e.g. no read permissions)
++      }
++      if ( S_ISDIR( buff.st_mode )) {
++         loadApplications(pathfn + '/', relDir + fn + '/');
++         continue;
++      }
++      
++      if ( S_ISREG( buff.st_mode))
++      {
++         if (!fn.endsWith(".desktop"))
++            continue;
++            
++         KService *service = 0;
++kdDebug(7021) << "Found " << pathfn << " (" << (relDir+fn) << ")" << endl;
++         emit newService(pathfn, &service); 
++         if (service)
++         {
++            addApplication(relDir+fn, service);
++         }
++         else
++         {
++// This is not an error!
++kdDebug(7021) << "Could not load " << pathfn << endl;
++         }
++         // list.append( pathfn );
++         // relList.append( relPart + fn );
++      }
++    }
++    closedir( dp );
++}
++
++void
++VFolderMenu::processKDELegacyDirs()
++{
++kdDebug(7021) << "processKDELegacyDirs()" << endl;
++
++   QStringList relFiles;
++   QRegExp files("\\.(desktop|kdelnk)$");
++   QRegExp dirs("\\.directory$");
++   
++   (void) KGlobal::dirs()->findAllResources( "apps",
++                                             QString::null,
++                                             true, // Recursive!
++                                             true, // uniq
++                                             relFiles);
++   for(QStringList::ConstIterator it = relFiles.begin();
++       it != relFiles.end(); ++it)
++   {
++      if (!m_forcedLegacyLoad && (dirs.search(*it) != -1))
++      {
++         QString name = *it;
++kdDebug(7021) << "KDE Legacy: Found menu " << name << endl;
++         if (!name.endsWith("/.directory"))
++            continue; // Probably ".directory", skip it.
++            
++         name = name.left(name.length()-11);
++      
++         SubMenu *newMenu = new SubMenu;
++         newMenu->directoryFile = locate("apps", *it);
++kdDebug(7021) << "KDE Legacy: Directory file = " << newMenu->directoryFile << endl;
++
++         insertSubMenu(m_currentMenu, name, newMenu);
++         continue;
++      }
++      
++      if (files.search(*it) != -1)
++      {
++         QString name = *it;
++         KService *service = 0;
++kdDebug(7021) << "KDE Legacy Found " << name << endl;
++         emit newService(name, &service);
++
++         if (service && !m_forcedLegacyLoad)
++         {
++            QString relPath = name;
++            // Strip path from relpath
++            int i = relPath.findRev('/');
++            if (i >= 0)
++               relPath = relPath.mid(i+1);
++
++            // TODO: add Legacy category
++            addApplication(relPath, service);
++
++            if (service->categories().isEmpty())
++            {
++               insertService(m_currentMenu, name, service);
++            }
++         }
++      }
++   }
++   m_legacyLoaded = true;
++}
++
++void
++VFolderMenu::processLegacyDir(const QString &dir, const QString &relDir)
++{
++kdDebug(7021) << "processLegacyDir(" << dir << ", " << relDir << ")" << endl;
++
++   // We look for a set of files.
++   DIR *dp = opendir( QFile::encodeName(dir));
++   if (!dp)
++      return;
++
++   struct dirent *ep;
++   struct stat buff;
++
++   QString _dot(".");
++   QString _dotdot("..");
++
++   while( ( ep = readdir( dp ) ) != 0L )
++   {
++      QString fn( QFile::decodeName(ep->d_name));
++      if (fn == _dot || fn == _dotdot || fn.at(fn.length() - 1).latin1() == '~')
++         continue;
++
++      QString pathfn = dir + fn;
++      if ( stat( QFile::encodeName(pathfn), &buff ) != 0 ) {
++         continue; // Couldn't stat (e.g. no read permissions)
++      }
++      if ( S_ISDIR( buff.st_mode )) {
++         SubMenu *parentMenu = m_currentMenu;
++
++kdDebug(7021) << "Legacy: adding menu " << fn << endl;
++         m_currentMenu = new SubMenu;
++         m_currentMenu->name = fn;
++         m_currentMenu->directoryFile = dir + fn + "/.directory";
++      
++         parentMenu->subMenus.append(m_currentMenu);
++         
++         processLegacyDir(pathfn + '/', relDir+fn+'/');
++         m_currentMenu = parentMenu;
++         continue;
++      }
++      
++      if ( S_ISREG( buff.st_mode))
++      {
++         if (!fn.endsWith(".desktop"))
++            continue;
++            
++         KService *service = 0;
++kdDebug(7021) << "Found " << pathfn << " (" << (relDir+fn) << ")" << endl;
++         emit newService(pathfn, &service);
++         if (service)
++         {
++            QString relPath = relDir+fn;
++
++            // TODO: Add legacy category
++            addApplication(relPath, service);
++            
++            if (service->categories().isEmpty())
++               m_currentMenu->items.replace(relPath, service);
++         }
++      }
++    }
++    closedir( dp );
++}
++
++
++
++void 
++VFolderMenu::processMenu(QDomElement &docElem, int pass)
++{
++   SubMenu *parentMenu = m_currentMenu;
++   unsigned int oldDirectoryDirsCount = m_directoryDirs.count();
++
++   QString name;
++   QString directoryFile;
++   bool onlyUnallocated = false;
++   bool isDeleted = false;
++   bool kdeLegacyDirsDone = false;
++
++   QDomElement query;
++   QDomNode n = docElem.firstChild();
++   while( !n.isNull() ) {
++      QDomElement e = n.toElement(); // try to convert the node to an element.
++      if (e.tagName() == "Name")
++      {
++         name = e.text();
++      }
++      else if (e.tagName() == "Directory")
++      {
++         directoryFile = e.text();
++      }
++      else if (e.tagName() == "DirectoryDir")
++      {
++         QString dir = absoluteDir(e.text());
++
++         m_directoryDirs.prepend(dir);
++      }
++      else if (e.tagName() == "OnlyUnallocated")
++      {
++         onlyUnallocated = true;
++      }
++      else if (e.tagName() == "NotOnlyUnallocated")
++      {
++         onlyUnallocated = false;
++      }
++      else if (e.tagName() == "Deleted")
++      {
++         isDeleted = true;
++      }
++      else if (e.tagName() == "NotDeleted")
++      {
++         isDeleted = false;
++      }
++      n = n.nextSibling();
++   }
++
++   // Setup current menu entry
++   if (pass == 0)
++   {
++      m_currentMenu = 0;
++      // Look up menu
++      if (parentMenu)
++      {
++         for(SubMenu *menu = parentMenu->subMenus.first(); menu; menu = parentMenu->subMenus.next())
++         {
++            if (menu->name == name)
++            {
++               m_currentMenu = menu;
++               break;
++            }
++         }
++      }
++
++      if (!m_currentMenu) // Not found?
++      {
++         // Create menu
++kdDebug(7021) << "VFolder: adding menu " << name << endl;
++         m_currentMenu = new SubMenu;
++         m_currentMenu->name = name;
++
++         if (parentMenu)
++            parentMenu->subMenus.append(m_currentMenu);
++         else
++            m_rootMenu = m_currentMenu;
++      }
++      if (directoryFile.isEmpty())
++      {
++         kdDebug(7021) << "Menu " << name << " does not specify a directory file." << endl;
++      }
++
++      // Override previous directoryFile iff available
++      QString tmp = locateDirectoryFile(directoryFile);
++      if (! tmp.isEmpty())
++         m_currentMenu->directoryFile = tmp;
++   }
++   else
++   {
++      // Look up menu
++      if (parentMenu)
++      {
++         for(SubMenu *menu = parentMenu->subMenus.first(); menu; menu = parentMenu->subMenus.next())
++         {
++            if (menu->name == name)
++            {
++               m_currentMenu = menu;
++               break;
++            }
++         }
++      }
++      else
++      {
++         m_currentMenu = m_rootMenu;
++      }
++   }
++   
++   // Process AppDir and LegacyDir
++   if (pass == 0)
++   {
++      QDomElement query;
++      QDomNode n = docElem.firstChild();
++      while( !n.isNull() ) {
++         QDomElement e = n.toElement(); // try to convert the node to an element.
++         if (e.tagName() == "AppDir")
++         {
++            createAppsInfo(name);
++            QString dir = absoluteDir(e.text());
++            
++            registerDirectory(dir);
++
++            loadApplications(dir, QString::null);
++         }
++         else if (e.tagName() == "KDELegacyDirs")
++         {
++            createAppsInfo(name);
++            if (!kdeLegacyDirsDone)
++            {
++kdDebug(7021) << "Processing KDE Legacy dirs for <KDE>" << endl;
++               SubMenu *oldMenu = m_currentMenu;
++               m_currentMenu = new SubMenu;
++
++               processKDELegacyDirs();
++               
++               m_legacyNodes.replace("<KDE>", m_currentMenu);
++               m_currentMenu = oldMenu;
++               
++               kdeLegacyDirsDone = true;
++            }
++         }
++         else if (e.tagName() == "LegacyDir")
++         {
++            createAppsInfo(name);
++            QString dir = absoluteDir(e.text());
++
++            if (m_defaultLegacyDirs.contains(dir))
++            {
++               if (!kdeLegacyDirsDone)
++               {
++kdDebug(7021) << "Processing KDE Legacy dirs for " << dir << endl;
++                  SubMenu *oldMenu = m_currentMenu;
++                  m_currentMenu = new SubMenu;
++
++                  processKDELegacyDirs();
++
++                  m_legacyNodes.replace("<KDE>", m_currentMenu);
++                  m_currentMenu = oldMenu;
++
++                  kdeLegacyDirsDone = true;
++               }
++            }
++            else
++            {
++               SubMenu *oldMenu = m_currentMenu;
++               m_currentMenu = new SubMenu;
++
++               registerDirectory(dir);
++
++               processLegacyDir(dir, QString::null);
++
++               m_legacyNodes.replace(dir, m_currentMenu);
++               m_currentMenu = oldMenu;
++            }
++         }
++         n = n.nextSibling();
++      }
++   }
++
++   loadAppsInfo(name); // Update the scope wrt the list of applications
++   
++   if (((pass == 1) && !onlyUnallocated) || ((pass == 2) && onlyUnallocated))
++   {
++      n = docElem.firstChild();
++
++      while( !n.isNull() ) {
++         QDomElement e = n.toElement(); // try to convert the node to an element.
++         if (e.tagName() == "Include")
++         {
++            QDict<KService> items;
++            
++            QDomNode n2 = e.firstChild();
++            while( !n2.isNull() ) {
++               QDomElement e2 = n2.toElement(); 
++               items.clear();
++               processCondition(e2, &items);
++               includeItems(&(m_currentMenu->items), &items);
++               n2 = n2.nextSibling();
++            }
++         }
++
++         else if (e.tagName() == "Exclude")
++         {
++            QDict<KService> items;
++            
++            QDomNode n2 = e.firstChild();
++            while( !n2.isNull() ) {
++               QDomElement e2 = n2.toElement(); 
++               items.clear();
++               processCondition(e2, &items);
++               excludeItems(&(m_currentMenu->items), &items);
++               n2 = n2.nextSibling();
++            }
++         }
++
++         n = n.nextSibling();
++      }
++   }
++
++   n = docElem.firstChild();
++   while( !n.isNull() ) {
++      QDomElement e = n.toElement(); // try to convert the node to an element.
++      if (e.tagName() == "Menu")
++      {
++         processMenu(e, pass);
++      }
++      else if (((pass == 1) && !onlyUnallocated) || ((pass == 2) && onlyUnallocated))
++      {
++         if (e.tagName() == "LegacyDir")
++         {
++            // Add legacy nodes to Menu structure
++            QString dir = absoluteDir(e.text());
++            SubMenu *legacyMenu = m_legacyNodes.find(dir);
++            if (legacyMenu)
++            {
++               mergeMenu(m_currentMenu, legacyMenu);
++            }
++         }
++
++         else if (e.tagName() == "KDELegacyDirs")
++         {
++            // Add legacy nodes to Menu structure
++            QString dir = "<KDE>";
++            SubMenu *legacyMenu = m_legacyNodes.find(dir);
++            if (legacyMenu)
++            {
++               mergeMenu(m_currentMenu, legacyMenu);
++            }
++         }
++      }
++      n = n.nextSibling();
++   }
++
++   if (pass == 2)
++   {
++      n = docElem.firstChild();
++      while( !n.isNull() ) {
++         QDomElement e = n.toElement(); // try to convert the node to an element.
++         if (e.tagName() == "Move")
++         {
++            QString orig;
++            QString dest;
++            QDomNode n2 = e.firstChild();
++            while( !n2.isNull() ) {
++               QDomElement e2 = n2.toElement(); // try to convert the node to an element.
++               if( e2.tagName() == "Old")
++                  orig = e2.text();
++               if( e2.tagName() == "New")
++                  dest = e2.text();
++               n2 = n2.nextSibling();
++            }
++            kdDebug(7021) << "Moving " << orig << " to " << dest << endl;
++            if (!orig.isEmpty() && !dest.isEmpty())
++            {
++              SubMenu *menu = takeSubMenu(m_currentMenu, orig);
++              if (menu)
++              {
++                insertSubMenu(m_currentMenu, dest, menu);
++              } 
++            }
++         }
++         n = n.nextSibling();
++      }
++   
++   }
++
++   unloadAppsInfo(name); // Update the scope wrt the list of applications
++
++   while (m_directoryDirs.count() > oldDirectoryDirsCount)
++      m_directoryDirs.pop_front();
++
++   m_currentMenu = parentMenu;
++}
++
++VFolderMenu::SubMenu *
++VFolderMenu::parseMenu(const QString &file, bool forceLegacyLoad)
++{
++   g_this = this;
++
++   m_forcedLegacyLoad = false;
++   m_legacyLoaded = false;
++   m_appsInfo = 0;
++
++   loadMenu(file);
++
++   delete m_rootMenu;
++   m_rootMenu = m_currentMenu = 0;
++
++   QDomElement docElem = m_doc.documentElement();
++
++   for (int pass = 0; pass <= 2; pass++)
++   {  
++      processMenu(docElem, pass);
++
++      if (pass == 0)
++      {
++         buildApplicationIndex();
++      }
++   }
++   
++   if (!m_legacyLoaded && forceLegacyLoad)
++   {
++      m_forcedLegacyLoad = true;
++      processKDELegacyDirs();
++   }
++
++   return m_rootMenu;   
++}
++
++#include "vfolder_menu.moc"
+diff -urN vf.orig/vfolder_menu.h vf/vfolder_menu.h
+--- kdelibs/kded.orig/vfolder_menu.h	1970-01-01 01:00:00.000000000 +0100
++++ kdelibs/kded/vfolder_menu.h	2003-04-01 00:36:50.000000000 +0200
+@@ -0,0 +1,244 @@
++/* 
++   This file is part of the KDE libraries
++   Copyright (c) 2003 Waldo Bastian <bastian@kde.org>
++   
++   This library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public
++   License version 2 as published by the Free Software Foundation.
++   
++   This library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
++   
++   You should have received a copy of the GNU Library General Public License
++   along with this library; see the file COPYING.LIB.  If not, write to
++   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
++   Boston, MA 02111-1307, USA.
++*/
++
++#ifndef _VFOLDER_MENU_H_
++#define _VFOLDER_MENU_H_
++
++#include <qobject.h>
++#include <qdom.h>
++#include <qstringlist.h>
++#include <qptrdict.h>
++#include <qvaluestack.h>
++
++#include <kservice.h>
++
++class VFolderMenu : public QObject
++{
++  Q_OBJECT
++public:
++  class SubMenu;
++
++public:
++  VFolderMenu();
++  ~VFolderMenu();
++
++  /**
++   * Parses VFolder menu defintion and generates a menu layout.
++   * The @ref newService signals is used as callback to load
++   * a specific service description.
++   *
++   * @param file Menu file to load
++   * @param forceLegacyLoad flag indicating whether the KDE "applnk"
++   * directory should be processed at least once.
++   */
++  SubMenu *parseMenu(const QString &file, bool forceLegacyLoad=false);
++  
++  /**
++   * Returns a list of all directories involved in the last call to 
++   * parseMenu(), excluding the KDE Legacy directories.
++   *
++   * A change in any of these directories or in any of their child-
++   * directories can result in changes to the menu.
++   */
++  QStringList allDirectories();
++
++signals:
++  void newService(const QString &path, KService **entry);
++
++public:
++  class SubMenu {
++  public:
++     SubMenu() : items(43) { }
++     ~SubMenu() { subMenus.setAutoDelete(true); }
++  
++  public:
++     QString name;
++     QString directoryFile;
++     QPtrList<SubMenu> subMenus;
++     QDict<KService> items;
++  };
++
++public:  
++  QStringList m_allDirectories; // A list of all the directories that we touch
++
++  QStringList m_desktopSystemDirs;
++
++  QStringList m_defaultDataDirs;
++  QStringList m_defaultAppDirs;
++  QStringList m_defaultDirectoryDirs;
++  QStringList m_defaultMergeDirs;
++  QStringList m_defaultLegacyDirs;
++
++  QStringList m_directoryDirs; // Current set of applicable <DirectoryDir> dirs
++  QDict<SubMenu> m_legacyNodes; // Dictionary that stores Menu nodes 
++                                // associated with legacy tree.
++
++  class docInfo {
++  public:
++     QString baseDir; // Relative base dir of current menu file
++     QString absBaseDir; // Absolute base dir of current menu file
++     QString baseName; // Filename of current menu file without ".menu"
++     QString path; // Filename of current menu file without ".menu"
++  };
++  
++
++  docInfo m_docInfo; // docInfo for current doc
++  QValueStack<VFolderMenu::docInfo> m_docInfoStack;
++
++  class appsInfo {
++  public:
++     appsInfo() : dictCategories(53), applications(997), appRelPaths(997)
++     {
++        dictCategories.setAutoDelete(true);
++     }
++
++     QDict<KService::List> dictCategories; // category -> apps
++     QDict<KService> applications; // rel path -> service
++     QPtrDict<QString> appRelPaths; // service -> rel path
++  };
++  
++  appsInfo *m_appsInfo; // appsInfo for current menu
++  QPtrList<appsInfo> m_appsInfoStack; // All applicable appsInfo for current menu
++  QDict<appsInfo> m_appsInfoDict; // menu -> appsInfo
++  
++  QString m_desktopUserDir;
++  QDomDocument m_doc;
++  SubMenu *m_rootMenu;
++  SubMenu *m_currentMenu;
++  bool m_forcedLegacyLoad;
++  bool m_legacyLoaded;
++
++private:
++  /**
++   * Lookup application by relative path
++   */
++  KService *findApplication(const QString &relPath);
++
++  /**
++   * Lookup relative path of an application
++   */
++  QString relativePath(KService *service);
++
++  /**
++   * Lookup applications by category
++   */
++  QPtrList<KService::List> findCategory(const QString &category);
++  
++  /**
++   * Add new application
++   */
++  void addApplication(const QString &relPath, KService *service);
++  
++  /**
++   * Build application indices
++   */
++  void buildApplicationIndex();
++  
++  /**
++   * Create a appsInfo frame for this menu
++   */
++  void createAppsInfo(const QString &menuName);
++
++  /**
++   * Load additional appsInfo frame for this menu
++   */
++  void loadAppsInfo(const QString &menuName);
++
++  /**
++   * Unload additional appsInfo frame for this menu
++   */
++  void unloadAppsInfo(const QString &menuName);
++
++  void mergeMenus(QDomElement &docElem, QString &name);
++  void mergeFile(QDomElement &docElem, const QDomNode &mergeHere);
++  void loadMenu(const QString &filename);
++
++  /**
++   * Merge the items2 set into the items1 set
++   */
++  void includeItems(QDict<KService> *items1, QDict<KService> *items2);
++
++  /**
++   * Remove all items from the items1 set that aren't also in the items2 set
++   */
++  void matchItems(QDict<KService> *items1, QDict<KService> *items2);
++
++  /**
++   * Remove all items in the items2 set from the items1 set
++   */
++  void excludeItems(QDict<KService> *items1, QDict<KService> *items2);
++
++  /**
++   * Search the parentMenu tree for the menu menuName and takes it
++   * out.
++   *
++   * This function returns a pointer to the menu if it was found 
++   * or 0 if it was not found.
++   */
++  SubMenu* takeSubMenu(SubMenu *parentMenu, const QString &menuName);
++
++  /**
++   * Insert the menu newMenu with name menuName into the parentMenu.
++   * If such menu already exist the result is merged, if any additional
++   * submenus are required they are created.
++   */
++  void insertSubMenu(VFolderMenu::SubMenu *parentMenu, const QString &menuName, VFolderMenu::SubMenu *newMenu);
++
++  /**
++   * Merge menu2 and it's submenus into menu1 and it's submenus
++   */
++  void mergeMenu(SubMenu *menu1, SubMenu *menu2);
++
++  /**
++   * Inserts service into the menu using name relative to parentMenu
++   * Any missing sub-menus are created.
++   */
++  void insertService(SubMenu *parentMenu, const QString &name, KService *newService);
++
++  /**
++   * Register the directory that @p file is in.
++   * @see allDirectories()
++   */
++  void registerFile(const QString &file);
++
++  /**
++   * Register @p directory
++   * @see allDirectories()
++   */
++  void registerDirectory(const QString &directory);
++
++  void processKDELegacyDirs();
++  void processLegacyDir(const QString &dir, const QString &relDir);
++  void processMenu(QDomElement &docElem, int pass);
++  void processCondition(QDomElement &docElem, QDict<KService> *items);
++
++  void initDirs();
++  QStringList allDataLocations(const QString &fileName);
++  QStringList allConfLocations(const QString &fileName);
++  
++  void pushDocInfo(const QString &fileName);
++  void popDocInfo();
++  
++  QString absoluteDir(const QString &);
++  QString locateMenuFile(const QString &fileName); 
++  QString locateDirectoryFile(const QString &fileName);
++  void loadApplications(const QString&, const QString&);
++};
++
++#endif
