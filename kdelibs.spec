@@ -188,7 +188,7 @@ Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	arts-devel >= %{artsver}
+Requires:	arts-qt-devel >= %{artsver}
 Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
