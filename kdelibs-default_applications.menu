@@ -25,7 +25,10 @@
 		<Name>Editors</Name>
 		<Directory>kde-editors.directory</Directory>
 		<Include>
+			<Or>
 			<Category>TextEditor</Category>
+			<Category>HexEditor</Category>
+			</Or>
 		</Include>
 	</Menu>
 	<Menu>
@@ -318,6 +321,7 @@
 			<Category>Utility</Category>
 			<Not><Category>GNOME</Category></Not>
 			<Not><Category>TerminalEmulator</Category></Not>
+			<Not><Category>TextEditor</Category></Not>
 			</And>
 		</Include>
 		<Menu>
