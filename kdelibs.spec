@@ -6,7 +6,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040323
+%define		_snap		040327
 %define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
@@ -348,6 +348,8 @@ Pliki umiêdzynarodawiaj±ce kdelibs.
 %patch3 -p1
 %patch4 -p1
 
+echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
+
 %build
 cp /usr/share/automake/config.sub admin
 
@@ -356,8 +358,6 @@ export kde_htmldir=%{_kdedocdir}
 #export kde_libs_htmldir=%{_kdedocdir}
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
-
-echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
