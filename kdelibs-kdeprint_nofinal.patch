@@ -1,7 +1,0 @@
---- kdelibs-030621/kdeprint/Makefile.am~	2003-06-05 00:31:08.000000000 +0200
-+++ kdelibs-030621/kdeprint/Makefile.am	2003-06-21 16:36:06.000000000 +0200
-@@ -1,3 +1,4 @@
-+KDE_OPTIONS = nofinal
- 
- if include_cups_SUBDIR
- CUPSSUBDIR=cups
