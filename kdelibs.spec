@@ -89,6 +89,8 @@ Obsoletes:      kde-i18n-Zulu
 %define		_prefix		/usr/X11R6
 %define		_htmldir	/usr/share/doc/kde/HTML
 
+%define		no_install_post_chrpath		1
+
 %description
 Libraries for the K Desktop Environment.
 
