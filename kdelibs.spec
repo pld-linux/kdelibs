@@ -79,7 +79,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	unsermake >= 040511
 BuildConflicts:	kdepim-korganizer-libs
-BuildConflicts:	kdepim-libkdepim
+BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
