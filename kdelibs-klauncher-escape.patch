@@ -1,0 +1,38 @@
+--- kdelibs/kio/klauncher/klauncher.cpp.esc	Thu Feb  1 20:03:01 2001
++++ kdelibs/kio/klauncher/klauncher.cpp	Tue Feb  6 18:31:36 2001
+@@ -816,11 +816,16 @@
+       // as a single argument even if they contain spaces. Those simple
+       // and double quotes are also removed.
+       enum { PARSE_ANY, PARSE_QUOTED, PARSE_DBLQUOTED } state = PARSE_ANY;
++      bool is_escaped = false;
+       QString arg;
+       for ( uint pos = 0; pos < exec.length() ; ++pos )
+       {
+           QChar ch = exec[pos];
+-          switch (state) {
++	  if(is_escaped) {
++		  arg += ch;
++		  is_escaped = false;
++	  }
++	  else switch (state) {
+               case PARSE_ANY:
+                   if ( ch == '\'' && arg.isEmpty() )
+                       state = PARSE_QUOTED;
+@@ -833,6 +838,8 @@
+                       arg = QString::null;
+                       state = PARSE_ANY;
+                   }
++		  else if ( ch == '\\' )
++                      is_escaped = 1;
+                   else
+                       arg += ch;
+                   break;
+@@ -853,6 +860,8 @@
+                       arg = QString::null;
+                       state = PARSE_ANY;
+                   }
++		  else if ( ch == '\\' )
++		      is_escaped = true;
+                   else
+                       arg += ch;
+                   break;
