@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.1
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -356,6 +356,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
+%dir %{_datadir}/doc/kde
+%dir %{_htmldir}
+%lang(en) %dir %{_htmldir}/en
 
 %files devel
 %defattr(644,root,root,755)
