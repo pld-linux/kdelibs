@@ -60,7 +60,7 @@ BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
-Requires:	XFree86 >= 4.2.99
+Requires:	XFree86-libs >= 4.2.99
 Requires:	applnk
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
