@@ -224,10 +224,18 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 
+
 %build
+kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
+
+cd kdecore
+> plddirs.h
+echo "#define kde_appsdir \"%{_applnkdir}\"" >> plddirs.h
+echo "#define kde_htmldir \"%{_htmldir}\"" >> plddirs.h
+echo "#define kde_icondir \"%{_pixmapsdir}\"" >> plddirs.h
+cd -
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
