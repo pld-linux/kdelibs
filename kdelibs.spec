@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -38,6 +38,8 @@ Patch3:		%{name}-use_system_sgml.patch
 ##Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
 Patch6:		kde-common-QTDOCDIR.patch
+Patch7:		%{name}-ktelnetservice.patch
+Patch8:		%{name}-kapplication.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	unsermake >= 040511
@@ -84,6 +86,7 @@ BuildRequires:	qt-devel >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
+BuildRequires:	expat-devel
 %if %{with apidocs}
 BuildRequires:	qt-doc >= %{qtver}
 BuildRequires:	doxygen
@@ -264,6 +267,8 @@ Dokumentacja API.
 ###%patch4 -p1
 %patch5 -p0
 %patch6 -p1
+%patch7 -p0
+%patch8 -p1
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
