@@ -1,0 +1,139 @@
+Index: kioslave/http/kcookiejar/kcookiejar.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kioslave/http/kcookiejar/kcookiejar.cpp,v
+retrieving revision 1.89.2.13
+diff -u -p -r1.89.2.13 kcookiejar.cpp
+--- kioslave/http/kcookiejar/kcookiejar.cpp	8 Aug 2003 16:14:22 -0000	1.89.2.13
++++ kioslave/http/kcookiejar/kcookiejar.cpp	27 Jul 2004 15:19:48 -0000
+@@ -235,6 +235,14 @@ KCookieJar::KCookieJar()
+     m_globalAdvice = KCookieDunno;
+     m_configChanged = false;
+     m_cookiesChanged = false;
++
++    QString twoLevelTLD="name,ai,au,bd,bh,ck,eg,et,fk,il,in,kh,kr,mk,mt,na,np,nz,pg,pk,qa,sa,sb,sg,sv,ua,ug,uk,uy,vn,za,zw";
++    QStringList countries = QStringList::split(',', twoLevelTLD);
++    for(QStringList::ConstIterator it = countries.begin();
++        it != countries.end(); ++it)
++    {
++       m_twoLevelTLD.replace(*it, (int *) 1);
++    }
+ }
+ 
+ //
+@@ -439,14 +447,14 @@ static const char * parseNameValue(const
+ 
+ }
+ 
+-static void stripDomain(const QString &_fqdn, QString &_domain)
++void KCookieJar::stripDomain(const QString &_fqdn, QString &_domain)
+ {
+    QStringList domains;
+-   KCookieJar::extractDomains(_fqdn, domains);
++   extractDomains(_fqdn, domains);
+    _domain = domains[0];
+ }
+ 
+-static QString stripDomain( KHttpCookiePtr cookiePtr)
++QString KCookieJar::stripDomain( KHttpCookiePtr cookiePtr)
+ {
+     QString domain; // We file the cookie under this domain.
+     if (cookiePtr->domain().isEmpty())
+@@ -531,6 +539,13 @@ void KCookieJar::extractDomains(const QS
+     {
+        if (partList.count() == 1)
+          break; // We only have a TLD left.
++       
++       if ((partList.count() == 2) && (m_twoLevelTLD[partList[1].lower()]))
++       {
++          // This domain uses two-level TLDs in the form xxxx.yy
++          break;
++       }
++       
+        if ((partList.count() == 2) && (partList[1].length() == 2))
+        {
+           // If this is a TLD, we should stop. (e.g. co.uk)
+@@ -543,14 +558,6 @@ void KCookieJar::extractDomains(const QS
+           QCString t = partList[0].lower().utf8();
+           if ((t == "com") || (t == "net") || (t == "org") || (t == "gov") || (t == "edu") || (t == "mil") || (t == "int"))
+               break;
+-
+-          // The .name domain uses <name>.<surname>.name
+-          // Although the TLD is striclty speaking .name, for our purpose
+-          // it should be <surname>.name since people should not be able
+-          // to set cookies for everyone with the same surname.
+-          // Matches <surname>.name
+-          if (partList[1].lower() == "name")
+-              break;
+        }
+        QString domain = partList.join(".");
+        _domains.append("." + domain);
+Index: kioslave/http/kcookiejar/kcookiejar.h
+===================================================================
+RCS file: /home/kde/kdelibs/kioslave/http/kcookiejar/kcookiejar.h,v
+retrieving revision 1.28.2.2
+diff -u -p -r1.28.2.2 kcookiejar.h
+--- kioslave/http/kcookiejar/kcookiejar.h	9 Feb 2003 14:09:59 -0000	1.28.2.2
++++ kioslave/http/kcookiejar/kcookiejar.h	27 Jul 2004 15:19:49 -0000
+@@ -300,8 +300,8 @@ public:
+     /**
+      * Returns a list of domains (_domainList) relevant for this host.
+      */
+-    static void extractDomains(const QString &_fqdn,
+-                               QStringList &_domainList);
++    void extractDomains(const QString &_fqdn,
++                        QStringList &_domainList);
+ 
+     static QString adviceToStr(KCookieAdvice _advice);
+     static KCookieAdvice strToAdvice(const QString &_str);
+@@ -322,12 +322,16 @@ public:
+       * by the cookie dialog.
+       */     
+      void setShowCookieDetails (bool value) { m_showCookieDetails = value; }
+-     
++
++protected:
++     void stripDomain(const QString &_fqdn, QString &_domain);
++     QString stripDomain( KHttpCookiePtr cookiePtr);
+      
+ protected:
+     QStringList m_domainList;
+     KCookieAdvice m_globalAdvice;
+     QDict<KHttpCookieList> m_cookieDomains;
++    QDict<int> m_twoLevelTLD;
+    
+     bool m_configChanged;
+     bool m_cookiesChanged;    
+Index: kioslave/http/kcookiejar/kcookieserver.cpp
+===================================================================
+RCS file: /home/kde/kdelibs/kioslave/http/kcookiejar/kcookieserver.cpp,v
+retrieving revision 1.47.2.2
+diff -u -p -r1.47.2.2 kcookieserver.cpp
+--- kioslave/http/kcookiejar/kcookieserver.cpp	15 Jul 2003 00:40:51 -0000	1.47.2.2
++++ kioslave/http/kcookiejar/kcookieserver.cpp	27 Jul 2004 15:19:49 -0000
+@@ -131,7 +131,7 @@ bool KCookieServer::cookiesPending( cons
+   if (!KCookieJar::parseURL(url, fqdn, path))
+      return false;
+ 
+-  KCookieJar::extractDomains( fqdn, domains );
++  mCookieJar->extractDomains( fqdn, domains );
+   for( KHttpCookie *cookie = mPendingCookies->first();
+        cookie != 0L;
+        cookie = mPendingCookies->next())
+@@ -560,7 +560,7 @@ KCookieServer::setDomainAdvice(QString u
+    if (KCookieJar::parseURL(url, fqdn, dummy))
+    {
+       QStringList domains;
+-      KCookieJar::extractDomains(fqdn, domains);
++      mCookieJar->extractDomains(fqdn, domains);
+       mCookieJar->setDomainAdvice(domains[0],
+                                   KCookieJar::strToAdvice(advice));
+    }
+@@ -576,7 +576,7 @@ KCookieServer::getDomainAdvice(QString u
+    if (KCookieJar::parseURL(url, fqdn, dummy))
+    {
+       QStringList domains;
+-      KCookieJar::extractDomains(fqdn, domains);
++      mCookieJar->extractDomains(fqdn, domains);
+       advice = mCookieJar->getDomainAdvice(domains[0]);
+    }
+    return KCookieJar::adviceToStr(advice);
