@@ -173,9 +173,11 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
-
-#autoconf
 %{__make} -f Makefile.cvs
+rm -f missing
+aclocal
+autoconf
+%{__automake}
 if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
         CPPFLAGS="`pkg-config libpng12 --cflags`"
 fi
