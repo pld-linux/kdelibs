@@ -1,20 +1,19 @@
---- kdelibs-3.0/kdecore/kiconloader.cpp.than	Wed Mar 27 00:18:08 2002
-+++ kdelibs-3.0/kdecore/kiconloader.cpp	Wed Mar 27 00:22:56 2002
-@@ -546,9 +546,15 @@
-             {
+--- kdelibs-3.0.98/kdecore/kiconloader.cpp.orig	Mon Nov  4 13:36:39 2002
++++ kdelibs-3.0.98/kdecore/kiconloader.cpp	Tue Nov  5 23:19:53 2002
+@@ -609,8 +609,14 @@
                  // Try "User" icon too. Some apps expect this.
-                 pix = loadIcon(name, KIcon::User, size, state, path_store, true);
+                 if (!name.isEmpty())
+                     pix = loadIcon(name, KIcon::User, size, state, path_store, true);
 -                if (!pix.isNull() || canReturnNull)
+-                    return pix;
 +                if (!pix.isNull() || canReturnNull) {
-+                    if ((group == KIcon::Small) && (pix.width() > 20 || pix.height() > 20)) {
++                    if ((group == KIcon::Small) && (pix.width() > 16 || pix.height() > 16)) {
 +                        QImage tmp = pix.convertToImage();
-+                        tmp = tmp.smoothScale(20, 20);
++                        tmp = tmp.smoothScale(16, 16);
 +                        pix.convertFromImage(tmp);
 +                    }
-                     return pix;
--
-+                }
-+		
++		    return pix;
++		}
+ 
                  icon = findMatchingIcon(str_unknown, size);
                  if (!icon.isValid())
-                 {
