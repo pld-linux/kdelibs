@@ -9,7 +9,9 @@ Copyright:	LGPL
 Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
 Source1:	kderc.PLD
-Patch:		kdelibs-DESTDIR.patch
+Patch0:		kdelibs-DESTDIR.patch
+Patch1:		kdelibs-iconpaths.patch
+Patch2:		kdelibs-x-kdelnk.patch
 BuildRequires:	qt-devel >= 1.44
 BuildRequires:	XFree86-devel
 Requires:	qt >= 1.44
@@ -73,8 +75,10 @@ Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy pisaniu
 w³asnych programów wykorzystuj±cych kdelibs.
 
 %prep
-%setup -q
-%patch -p1
+%setup  -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 export KDEDIR=%{_prefix}
