@@ -21,14 +21,14 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.4
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-# Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-# http://download.kde.org/stable/3.2.1/src/kdelibs-3.2.1.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	d9d1c4bd2016a96f156b491ca908dc16
+# http://download.kde.org/stable/3.2.1/src/kdelibs-3.2.1.tar.bz2
+#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 #Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
