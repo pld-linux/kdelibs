@@ -263,12 +263,12 @@ CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	--enable-final \
+	--disable-informix \
+	--disable-mysql \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
-	--disable-mysql \
-	--disable-informix \
+	--enable-final \
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
