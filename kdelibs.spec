@@ -76,6 +76,7 @@ BuildRequires:	motif-devel
 BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
+BuildRequires:	rpm-build >= 4.0.2-107
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs
 Requires:	applnk
