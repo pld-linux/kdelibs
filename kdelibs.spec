@@ -300,7 +300,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%{__make} -f Makefile.cvs
+#%{__make} -f Makefile.cvs
 
 CFLAGS="%{rpmcflags}"
 CXXFLAGS="%{rpmcflags}"
@@ -322,19 +322,17 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
-install -d $RPM_BUILD_ROOT%{_datadir}/templates/.source
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes} \
+	$RPM_BUILD_ROOT%{_datadir}/templates/.source
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-gzip arts/doc/{README,NEWS,TODO}
-
 %find_lang %{name} --with-kde --all-name
 
-%post -p /sbin/ldconfig
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post -n arts -p /sbin/ldconfig
+%post   -n arts -p /sbin/ldconfig
 %postun -n arts -p /sbin/ldconfig
 
 %clean
@@ -442,7 +440,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n arts-devel
 %defattr(644,root,root,755)
-%doc arts/doc/*.gz
+%doc arts/doc/{README,NEWS,TODO}
 %attr(755,root,root) %{_bindir}/artsc-config
 %attr(755,root,root) %{_bindir}/mcopidl
 %{_libdir}/lib[mqsx]*.so
