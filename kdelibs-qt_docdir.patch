@@ -1,0 +1,14 @@
+diff -urN kdelibs-2.2.2.orig/doc/api/configure.in.in kdelibs-2.2.2/doc/api/configure.in.in
+--- kdelibs-2.2.2.orig/doc/api/configure.in.in	Tue Jun 26 18:38:02 2001
++++ kdelibs-2.2.2/doc/api/configure.in.in	Mon Nov 26 14:16:49 2001
+@@ -4,7 +4,9 @@
+   kde_qtdir="$with_qt_dir"
+ fi
+ 
+-AC_FIND_FILE(qcolordialog.html, [ $kde_qtdir/doc/html $QTDIR/doc/html /usr/share/doc/packages/qt2/html /usr/lib/qt/doc /usr/doc/qt2/html /usr/doc/qt2], QTDOCDIR)
++pld_qtdocdir=/usr/share/doc/`rpm -q qt-devel --qf "%{name}-%{version}\n"`
++
++AC_FIND_FILE(qcolordialog.html, [ $pld_qtdocdir $kde_qtdir/doc/html $QTDIR/doc/html /usr/share/doc/packages/qt2/html /usr/lib/qt/doc /usr/doc/qt2/html /usr/doc/qt2], QTDOCDIR)
+ AC_MSG_RESULT($QTDOCDIR)
+ 
+ AC_SUBST(QTDOCDIR)
