@@ -2,7 +2,6 @@
 # 	space.
 # _without_alsa - disable alsa
 
-
 %define         _state          unstable
 %define         _kdever         kde-3.1-rc5
 
@@ -14,7 +13,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	3.1
-Release:	2
+Release:	3
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -23,10 +22,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
-Patch1:		%{name}-libxml_closecallback.patch
-#Patch2:		%{name}-am.patch
-Patch3:		%{name}-resize-icons.patch
-#Patch4:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
+Patch1:		%{name}-resize-icons.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel
@@ -225,11 +221,6 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p0
-%patch3 -p1
-#cd khtml
-#%patch4 -p0
-#cd ..
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
