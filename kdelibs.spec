@@ -71,6 +71,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR="$RPM_BUILD_ROOT"
 
+gzip -9nf arts/doc/{LICENSE,MCOP,TODO}
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -81,8 +83,32 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %dir %{_libdir}/Arts
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/[^l]*.so
 %attr(755,root,root) %{_libdir}/Arts/*
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/artscat
+%attr(755,root,root) %{_bindir}/artsd
+%attr(755,root,root) %{_bindir}/artsdsp
+%attr(755,root,root) %{_bindir}/artsplay
+%attr(755,root,root) %{_bindir}/artswrapper
+%attr(755,root,root) %{_bindir}/dcop
+%attr(755,root,root) %{_bindir}/dcopidl
+%attr(755,root,root) %{_bindir}/dcopserver
+%attr(755,root,root) %{_bindir}/kbuildsycoca
+%attr(755,root,root) %{_bindir}/kcookiejar
+%attr(755,root,root) %{_bindir}/kdb2html
+%attr(755,root,root) %{_bindir}/kded
+%attr(755,root,root) %{_bindir}/kdeinit
+%attr(755,root,root) %{_bindir}/kdeinit_wrapper
+%attr(755,root,root) %{_bindir}/kdesu_stub
+%attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
+%attr(755,root,root) %{_bindir}/kio_uiserver
+%attr(755,root,root) %{_bindir}/klauncher
+%attr(755,root,root) %{_bindir}/kmailservice
+%attr(755,root,root) %{_bindir}/knotify
+%attr(755,root,root) %{_bindir}/ksendbugmail
+%attr(755,root,root) %{_bindir}/lnusertemp
+%attr(755,root,root) %{_bindir}/settheme
+
 %config %{_datadir}/config
 %{_datadir}/apps
 %{_datadir}/doc
@@ -93,7 +119,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/*.so
+%docdir %{_docdir}/%{_name}-%{_version}-devel/Arts
+%doc arts/doc/*
+%attr(755,root,root) %{_bindir}/artsc-config
+%attr(755,root,root) %{_bindir}/dcopidl2cpp
+%attr(755,root,root) %{_bindir}/mcopidl
+
+%{_libdir}/lib*.so
 %{_libdir}/*.la
 %{_includedir}/*.h
 %{_includedir}/kde.pot
