@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.0
-Release:	2
+Release:	3
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -31,7 +31,6 @@ URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix	 		/usr/X11R6
-%define		_includedir		%{_prefix}/include/kde
 
 %description
 Libraries for the K Desktop Environment.
