@@ -84,7 +84,6 @@ Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
 %define		_htmldir	%{_docdir}/kde/HTML
-%define		_icondir	%{_datadir}/icons
 
 %define		no_install_post_chrpath		1
 
@@ -277,7 +276,6 @@ done
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
-	--enable-final \
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
@@ -309,11 +307,9 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
+%post 	-p /sbin/ldconfig
 
-%postun
-/sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -364,87 +360,55 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/xml2man
+# ltdl ?
 %{_libdir}/kaddprinterwizard.la
 %attr(755,root,root) %{_libdir}/kaddprinterwizard.so
 %{_libdir}/knotify.la
 %attr(755,root,root) %{_libdir}/knotify.so
-%{_libdir}/libDCOP.la
+# shared
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
-%{_libdir}/libartskde.la
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
-%{_libdir}/libcupsdconf.la
 %attr(755,root,root) %{_libdir}/libcupsdconf.so
-%{_libdir}/libkabc.la
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
-%{_libdir}/libkatepartinterfaces.la
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
-%{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
-%{_libdir}/libkdefakes.la
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
-%{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
-%{_libdir}/libkdeinit_dcopserver.la
+#plain dlopen() ?
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
-%{_libdir}/libkdeinit_kbuildsycoca.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
-%{_libdir}/libkdeinit_kconf_update.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
-%{_libdir}/libkdeinit_kcookiejar.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kcookiejar.so
-%{_libdir}/libkdeinit_kded.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kded.so
-%{_libdir}/libkdeinit_kio_http_cache_cleaner.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kio_http_cache_cleaner.so
-%{_libdir}/libkdeinit_kio_uiserver.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kio_uiserver.so
-%{_libdir}/libkdeinit_klauncher.la
 %attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so
-%{_libdir}/libkdeprint.la
+# shared
 %attr(755,root,root) %{_libdir}/libkdeprint.so.*.*.*
-%{_libdir}/libkdeprint_management.la
 %attr(755,root,root) %{_libdir}/libkdeprint_management.so.*.*.*
-%{_libdir}/libkdesasl.la
 %attr(755,root,root) %{_libdir}/libkdesasl.so.*.*.*
-%{_libdir}/libkdesu.la
 %attr(755,root,root) %{_libdir}/libkdesu.so.*.*.*
-%{_libdir}/libkdeui.la
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
-%{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
-%{_libdir}/libkio.la
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
-%{_libdir}/libkjava.la
 %attr(755,root,root) %{_libdir}/libkjava.so.*.*.*
-%{_libdir}/libkjs.la
 %attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
-%{_libdir}/libkmdi.la
 %attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
-%{_libdir}/libkmediaplayer.la
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
-%{_libdir}/libkmid.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
-%{_libdir}/libkparts.la
 %attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
-%{_libdir}/libkresources.la
 %attr(755,root,root) %{_libdir}/libkresources.so.*.*.*
-%{_libdir}/libkscreensaver.la
 %attr(755,root,root) %{_libdir}/libkscreensaver.so.*.*.*
-%{_libdir}/libkscript.la
 %attr(755,root,root) %{_libdir}/libkscript.so.*.*.*
-%{_libdir}/libkspell.la
 %attr(755,root,root) %{_libdir}/libkspell.so.*.*.*
-%{_libdir}/libktexteditor.la
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
-%{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
-%{_libdir}/libshellscript.la
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*.*
-%{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
-%{_libdir}/libvcards.la
 %attr(755,root,root) %{_libdir}/libvcards.so.*.*.*
+#
 %dir %{_libdir}/kde3
+# ltdl
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
 %{_libdir}/kde3/kbuildsycoca.la
@@ -546,6 +510,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/kthemestyle.so
 %{_libdir}/kde3/plugins/styles/light.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
+#
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
 %{_datadir}/apps/katepart
@@ -626,7 +591,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/servicetypes
 %{_datadir}/wallpapers
-%{_icondir}/*
+%{_iconsdir}/*
 %dir %{_docdir}/kde
 %dir %{_htmldir}
 %lang(en) %dir %{_htmldir}/en
@@ -639,6 +604,49 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kde-config
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
+#la section
+# shared
+%{_libdir}/libDCOP.la
+%{_libdir}/libartskde.la
+%{_libdir}/libcupsdconf.la
+%{_libdir}/libkabc.la
+%{_libdir}/libkatepartinterfaces.la
+%{_libdir}/libkdecore.la
+%{_libdir}/libkdefakes.la
+%{_libdir}/libkdefx.la
+# not needed at all?
+%{_libdir}/libkdeinit_dcopserver.la
+%{_libdir}/libkdeinit_kbuildsycoca.la
+%{_libdir}/libkdeinit_kconf_update.la
+%{_libdir}/libkdeinit_kcookiejar.la
+%{_libdir}/libkdeinit_kded.la
+%{_libdir}/libkdeinit_kio_http_cache_cleaner.la
+%{_libdir}/libkdeinit_kio_uiserver.la
+%{_libdir}/libkdeinit_klauncher.la
+# shared
+%{_libdir}/libkdeprint.la
+%{_libdir}/libkdeprint_management.la
+%{_libdir}/libkdesasl.la
+%{_libdir}/libkdesu.la
+%{_libdir}/libkdeui.la
+%{_libdir}/libkhtml.la
+%{_libdir}/libkio.la
+%{_libdir}/libkjava.la
+%{_libdir}/libkjs.la
+%{_libdir}/libkmdi.la
+%{_libdir}/libkmediaplayer.la
+%{_libdir}/libkmid.la
+%{_libdir}/libkparts.la
+%{_libdir}/libkresources.la
+%{_libdir}/libkscreensaver.la
+%{_libdir}/libkscript.la
+%{_libdir}/libkspell.la
+%{_libdir}/libktexteditor.la
+%{_libdir}/libkutils.la
+%{_libdir}/libshellscript.la
+%{_libdir}/libvcard.la
+%{_libdir}/libvcards.la
+#
 %{_libdir}/libDCOP.so
 %{_libdir}/libartskde.so
 %{_libdir}/libkabc.so
@@ -646,14 +654,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkdecore.so
 %{_libdir}/libkdefakes.so
 %{_libdir}/libkdefx.so
-#%{_libdir}/libkdeinit_dcopserver.so
-#%{_libdir}/libkdeinit_kbuildsycoca.so
-#%{_libdir}/libkdeinit_kconf_update.so
-#%{_libdir}/libkdeinit_kcookiejar.so
-#%{_libdir}/libkdeinit_kded.so
-#%{_libdir}/libkdeinit_kio_http_cache_cleaner.so
-#%{_libdir}/libkdeinit_kio_uiserver.so
-#%{_libdir}/libkdeinit_klauncher.so
 %{_libdir}/libkdeprint.so
 %{_libdir}/libkdeprint_management.so
 %{_libdir}/libkdesasl.so
