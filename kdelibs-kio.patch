@@ -1,0 +1,159 @@
+--- kdelibs-3.0.4/kio/kfile/kpropertiesdialog.cpp	Mon Aug  5 17:10:40 2002
++++ kdelibs-3.0.5/kio/kfile/kpropertiesdialog.cpp	Tue Nov  5 03:57:04 2002
+@@ -453,10 +453,11 @@
+   m_items.first()->setURL( _newUrl );
+   assert(!m_singleUrl.isEmpty());
+   // If we have an Exec page, set it dirty, so that a full file is saved locally
++  // Same for a URL page (because of the Name= hack)
+   for ( QPtrListIterator<KPropsDlgPlugin> it(m_pageList); it.current(); ++it )
+-   if ( it.current()->isA("KExecPropsPlugin") )
++   if ( it.current()->isA("KExecPropsPlugin") || it.current()->isA("KURLPropsPlugin") )
+    {
+-     kdDebug(250) << "Setting exec page dirty" << endl;
++     //kdDebug(250) << "Setting page dirty" << endl;
+      it.current()->setDirty();
+      break;
+    }
+@@ -1918,6 +1919,18 @@
+   config.setDesktopGroup();
+   config.writeEntry( QString::fromLatin1("Type"), QString::fromLatin1("Link"));
+   config.writeEntry( QString::fromLatin1("URL"), URLEdit->url() );
++  // Users can't create a Link .desktop file with a Name field,
++  // but distributions can. Update the Name field in that case.
++  if ( config.hasKey("Name") )
++  {
++    // ### duplicated from KApplicationPropsPlugin
++    QString nameStr = properties->kurl().fileName();
++    if ( nameStr.right(8) == QString::fromLatin1(".desktop") )
++      nameStr.truncate( nameStr.length() - 8 );
++    if ( nameStr.right(7) == QString::fromLatin1(".kdelnk") )
++      nameStr.truncate( nameStr.length() - 7 );
++    config.writeEntry( QString::fromLatin1("Name"), nameStr );
++  }
+ }
+ 
+ /* ----------------------------------------------------
+@@ -2106,7 +2119,8 @@
+   KSimpleConfig config( path );
+   config.setDesktopGroup();
+   config.writeEntry( QString::fromLatin1("Type"), QString::fromLatin1("Application"));
+-  config.writeEntry( QString::fromLatin1("Comment"), commentEdit->text(), true, false, true );
++  config.writeEntry( QString::fromLatin1( "Comment" ), commentEdit->text() );
++  config.writeEntry( QString::fromLatin1( "Comment" ), commentEdit->text(), true, false, true ); // for compa
+ 
+   QStringList selectedTypes;
+   for ( uint i = 0; i < extensionsList->count(); i++ )
+@@ -2125,6 +2139,7 @@
+     if ( nameStr.right(7) == QString::fromLatin1(".kdelnk") )
+       nameStr.truncate( nameStr.length() - 7 );
+   }
++  config.writeEntry( QString::fromLatin1("Name"), nameStr );
+   config.writeEntry( QString::fromLatin1("Name"), nameStr, true, false, true );
+ 
+   config.sync();
+@@ -2302,7 +2317,8 @@
+   config.writeEntry( QString::fromLatin1("Type"), QString::fromLatin1("MimeType") );
+ 
+   config.writeEntry( QString::fromLatin1("Patterns"),  patternEdit->text() );
+-  config.writeEntry( QString::fromLatin1("Comment"), commentEdit->text(), true, false, true );
++  config.writeEntry( QString::fromLatin1("Comment"), commentEdit->text() );
++  config.writeEntry( QString::fromLatin1("Comment"), commentEdit->text(), true, false, true ); // for compat
+   config.writeEntry( QString::fromLatin1("MimeType"), mimeEdit->text() );
+   if ( cbAutoEmbed->state() == QButton::NoChange )
+       config.deleteEntry( QString::fromLatin1("X-KDE-AutoEmbed"), false );
+--- kdelibs-3.0.4/kio/misc/ktelnetservice.cpp	Tue Sep 25 14:04:11 2001
++++ kdelibs-3.0.5/kio/misc/ktelnetservice.cpp	Tue Nov  5 03:57:04 2002
+@@ -1,4 +1,4 @@
+-/* 
++/*
+    Copyright (c) 2001 Malte Starostik <malte@kde.org>
+    based on kmailservice.cpp,
+    Copyright (c) 2000 Simon Hausmann <hausmann@kde.org>
+@@ -7,19 +7,19 @@
+    modify it under the terms of the GNU General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+- 
++
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
+- 
++
+    You should have received a copy of the GNU General Public License
+    along with this program; see the file COPYING.  If not, write to
+    the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+    Boston, MA 02111-1307, USA.
+ */
+ 
+-// $Id$
++// $Id$
+ 
+ #include <kapplication.h>
+ #include <kcmdlineargs.h>
+@@ -48,9 +48,16 @@
+ 
+ 	KURL url(args->arg(0));
+ 	QStringList cmd;
+-	
++
+ 	cmd << "-e";
+-	cmd << "telnet";
++        if ( url.protocol() == "telnet" )
++            cmd << "telnet";
++        else if ( url.protocol() == "rlogin" )
++            cmd << "rlogin";
++        else {
++            kdError() << "Invalid protocol " << url.protocol() << endl;
++            return 2;
++        }
+ 	if (!url.user().isEmpty())
+ 	{
+ 		cmd << "-l";
+@@ -61,7 +68,7 @@
+ 		cmd << QString::number(url.port());
+ 
+ 	app.kdeinitExec("konsole", cmd);
+-	
++
+ 	return 0;
+ }
+ 
+--- kdelibs-3.0.4/kio/misc/rlogin.protocol	Sun Jan 21 00:01:05 2001
++++ kdelibs-3.0.5/kio/misc/rlogin.protocol	Tue Nov  5 03:57:04 2002
+@@ -1,10 +1,10 @@
+ [Protocol]
+-exec=konsole -e rlogin `echo %u | sed -e 's,rlogin:/*,,'`
++exec=ktelnetservice %u
+ protocol=rlogin
+ input=none
+ output=none
+ helper=true
+-listing=false
++listing=
+ reading=false
+ writing=false
+ makedir=false
+--- kdelibs-3.0.4/kioslave/http/http.cc	Tue Sep 10 02:25:56 2002
++++ kdelibs-3.0.5/kioslave/http/http.cc	Tue Nov  5 03:57:04 2002
+@@ -4402,14 +4402,16 @@
+   {
+     int i = 0;
+     while( (*p == ' ') || (*p == ',') || (*p == '\t') ) { p++; }
+-    if ( strncasecmp( p, "realm=\"", 7 ) == 0 )
++    if ( strncasecmp( p, "realm=", 6 ) == 0 )
+     {
+-      p += 7;
+-      while( p[i] != '"' ) i++;
++      p += 6;
++      if (*p == '"') p++;
++      while( p[i] && p[i] != '"' ) i++;
+       if( b )
+         m_strProxyRealm = QString::fromLatin1( p, i );
+       else
+         m_strRealm = QString::fromLatin1( p, i );
++      if (!p[i]) break;
+     }
+     p+=(i+1);
+   }
