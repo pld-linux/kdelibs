@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -37,6 +37,7 @@ Patch3:		%{name}-add_japanese_utf8_detection.patch
 Patch4:		%{name}-kdeprint_qt33fix.patch
 Patch5:		%{name}-kssl_session_reuse.patch
 Patch6:         %{name}-dcop_qt33fix.patch
+Patch7:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	XFree86-devel >= 4.2.99
