@@ -248,7 +248,7 @@ demona.
 %package apidocs
 Summary:	API documentation
 Summary(pl):	Dokumentacja API
-Group:		Documentation	
+Group:		Documentation
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description apidocs
@@ -283,7 +283,7 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 	debian/man/ksendbugmail.sgml
 
 %build
-cp %{_datadir}/automake/config.sub admin
+cp -f /usr/share/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 export UNSERMAKE=%{_datadir}/unsermake/unsermake
@@ -345,7 +345,6 @@ cd -
 ##grep -v apidocs ${i}.lang|grep -v common > ${i}.lang.1
 ##mv ${i}.lang.1 ${i}.lang
 ## done
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -610,7 +609,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_libdir}/kde3/wmfthumbnail.la
 %attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
-
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
