@@ -17,7 +17,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	7
+Release:	8
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -298,6 +298,9 @@ innych u¿ytkowników lokalnych.
 
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
+
+%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
+	kresources/kresources.desktop
 
 %build
 
