@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.90
-%define		_snap		030724
+%define		_snap		030726
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -24,7 +24,7 @@ License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-##% Source0-md5:	b7633cf92a4254990da27fb10d6a148d
+# Source0-md5:	35d7321cb7b23f1186c77fc5aacc2b84
 #Source0:        http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
 #Patch0:	%{name}-directories.patch
 Patch0:		%{name}-kstandarddirs.patch
