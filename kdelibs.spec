@@ -1,9 +1,9 @@
 #
 # Conditional build:
-%bcond_without	alsa	# build without ALSA support
-%bcond_without	apidocs	# do not prepare API documentation
-%bcond_without	broken_rpm # dont use BC's for borked rpm from ac
-%bcond_with	verbose	# verbose build
+%bcond_without	alsa		# build without ALSA support
+%bcond_without	apidocs		# do not prepare API documentation
+%bcond_without	broken_rpm	# don't use BC's for borked rpm from ac
+%bcond_with	verbose		# verbose build
 
 %define		_state		stable
 %define		_kdever		3.4
@@ -60,6 +60,7 @@ BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	jasper-devel >= 1.600
+BuildRequires:	heimdal-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
@@ -73,17 +74,16 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	libwmf-devel >= 2:0.2.0
+BuildRequires:	mDNSResponder-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
+BuildRequires:	pkgconfig
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_apidocs:BuildRequires:	qt-doc}
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
-BuildRequires:	pkgconfig
-BuildRequires:	heimdal-devel
-BuildRequires:	mDNSResponder-devel
 %if %{with brokenRpm}
 BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
