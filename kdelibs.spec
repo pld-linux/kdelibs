@@ -87,6 +87,7 @@ Obsoletes:      kde-i18n-Xhosa kde-i18n-Simplified_Chinese kde-i18n-Chinese
 Obsoletes:      kde-i18n-Zulu
 
 %define		_htmldir	/usr/share/doc/kde/HTML
+%define		_applnkdir	/usr/share/applnk
 
 %define		no_install_post_chrpath		1
 
