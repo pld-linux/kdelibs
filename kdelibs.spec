@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0.1
 #define		_sub_ver
-%define		_rel		7
+%define		_rel		1
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -256,7 +256,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkspell.la
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*
 %attr(755,root,root) %{_libdir}/libkmid.la
-%attr(755,root,root) %{_libdir}/libkhtmli*.??
 %attr(755,root,root) %{_libdir}/libks[!ys]*.so.*.*.*
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.la
@@ -309,6 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libks[cpsy]*.so
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
+%{_libdir}/libshellscript.so
 %{_libdir}/libvcard.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
