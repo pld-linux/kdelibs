@@ -40,6 +40,7 @@ Patch5:		%{name}-idn.patch
 Patch6:		kde-common-QTDOCDIR.patch
 Patch7:		%{name}-ktelnetservice.patch
 Patch8:		%{name}-kapplication.patch
+Patch9:		%{name}-kdefx-no-altivec.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	unsermake >= 040511
@@ -268,6 +269,7 @@ Dokumentacja API.
 %patch6 -p1
 %patch7 -p0
 %patch8 -p1
+%patch9 -p0
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
