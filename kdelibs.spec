@@ -52,6 +52,7 @@ BuildRequires:	qt-devel >= 3.1
 BuildRequires:	zlib-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	libvorbis-devel
+BuildRequires:	mad-devel
 Requires:	applnk 
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1
