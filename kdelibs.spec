@@ -90,11 +90,11 @@ Biblioteki do K Desktop Environment.
 
 Pakiet ten zawiera:
 - jscript - biblioteka KDE do javascript,
-- kdecore - Biblioteka podstawowa,
-- KDE kdeui - Biblioteka KDE do interfejsu u¿ytkownika,
-- kfmlib - Biblioteka KDE file manager library,
-- khtmlw: Biblioteka KDE z HTML widget,
-- mediatool: Biblioteka KDE mediatool.
+- kdecore - biblioteka podstawowa,
+- KDE kdeui - biblioteka KDE do interfejsu u¿ytkownika,
+- kfmlib - biblioteka KDE file manager library,
+- khtmlw - biblioteka KDE z HTML widget,
+- mediatool - biblioteka KDE mediatool.
 
 %description -l pt_BR
 Bibliotecas de fundação do KDE requeridas por todo e qualquer
