@@ -2,7 +2,7 @@
 # 	space.
 %define		_ver		3.0
 #define		_sub_ver
-%define		_rel		4
+%define		_rel		5
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -30,16 +30,8 @@ Group(pt_BR):	X11/Bibliotecas
 Group(ru):	X11/âÉÂÌÉÏÔÅËÉ
 Group(uk):	X11/â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
-# Merged
-#Patch0:		%{name}-final.patch
-# Merged
-#Patch1:		%{name}-nodebug.patch
-# Merged
-#Patch2:		%{name}-directories.patch
-Patch3:		%{name}-klauncher-escape.patch
-Patch4:		%{name}-libxml_closecallback.patch
-Patch5:		%{name}-cookieperms.patch
-Patch6:		%{name}-qt_docdir.patch
+Patch0:		%{name}-directories.patch
+Patch1:		%{name}-libxml_closecallback.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -49,7 +41,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	arts-devel >= 1.0.0
-BuildRequires:	arts-qt >= 1.0.0
+#BuildRequires:	arts-qt >= 1.0.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -195,16 +187,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
-# Not applicable.
-#%patch3 -p1
-%patch4 -p1
-# Merged with sources.
-#%patch5 -p1
-# No idea yet how to do this.
-#%patch6 -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -272,7 +256,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libD*.so.*.*
 %attr(755,root,root) %{_libdir}/libD*.la
 %attr(755,root,root) %{_libdir}/libkatepart.so
-#%attr(755,root,root) %{_libdir}/libcepart.??
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*
 %attr(755,root,root) %{_libdir}/libkdefakes.la
 %attr(755,root,root) %{_libdir}/libkdefx.la
@@ -287,22 +270,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesu*.la
 %attr(755,root,root) %{_libdir}/libkio.la
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
-#%attr(755,root,root) %{_libdir}/libkssl.so.*.*.*
-#%attr(755,root,root) %{_libdir}/libkssl.la
-#%attr(755,root,root) %{_libdir}/libkded_kssld.la
 %attr(755,root,root) %{_libdir}/libkscript.la
-#%attr(755,root,root) %{_libdir}/libksycoca.so.*.*.*
-#%attr(755,root,root) %{_libdir}/libksycoca.la
-#%attr(755,root,root) %{_libdir}/libkwallet*.so.*.*.*
-#%attr(755,root,root) %{_libdir}/libkwallet*.la
 %attr(755,root,root) %{_libdir}/libshellscript.la
 %attr(755,root,root) %{_libdir}/libshellscript.so.*.*
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %attr(755,root,root) %{_libdir}/libvcard.la
-#%attr(755,root,root) %{_libdir}/mega.so
-#%attr(755,root,root) %{_libdir}/mega.la
-#%attr(755,root,root) %{_libdir}/webstyle.so
-#%attr(755,root,root) %{_libdir}/webstyle.la
 %attr(755,root,root) %{_libdir}/kde3
 
 %config %{_datadir}/config
@@ -332,13 +304,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libks[cpsy]*.so
 %{_libdir}/libkhtml.so
 %{_libdir}/libkmid.so
-#%{_libdir}/libkab.so
-#%{_libdir}/libkwallet*.so
-%{_libdir}/libshellscript.so
 %{_libdir}/libvcard.so
 # All subdirs and headers not starting with 'a'.
 %{_includedir}/[!a]*
-#%{_includedir}/addressbook.h
 
 %files -n arts-kde
 %defattr(644,root,root,755)
