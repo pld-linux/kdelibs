@@ -34,7 +34,7 @@ Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 ##Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
-Patch6:		kde-docs_fix.patch
+Patch6:		kde-common-QTDOCDIR.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 %if %{with xlibs}
