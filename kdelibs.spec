@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	4.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -42,6 +42,8 @@ Patch6:		%{name}-appicon_themable.patch
 Patch7:		post-3.2.3-%{name}-dcopserver.patch
 Patch8:		post-3.2.3-%{name}-kstandarddirs.patch
 Patch100:	%{name}-branch.diff
+Patch101:	%{name}-htmlframes.patch
+Patch102:	%{name}-kcookiejar.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	unsermake >= 040511
@@ -267,6 +269,8 @@ Zawiera:
 %prep
 %setup -q -a1
 %patch100 -p1
+%patch101 -p0
+%patch102 -p0
 
 %patch0 -p1
 %patch1 -p1
