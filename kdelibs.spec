@@ -26,7 +26,7 @@ License:	LGPL
 Group:		X11/Libraries
 %if ! %{with cvs}
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	8ca068050b13eeb530b3e13a5c6952ca
+##%% Source0-md5:	8ca068050b13eeb530b3e13a5c6952ca
 %else
 Source0:	kdesource.tar.gz
 %endif
