@@ -5475,6 +5475,31 @@ diff -urN -x CVS kdelibs.orig/kdecore/eventsrc kdelibs/kdecore/eventsrc
  Comment[nl]=Er wordt een vraag gesteld
  Comment[nn]=Eit spørsmål vert spurd
  Comment[pa]=ਇੱਕ ਸਵਾਲ ਪੁਛਿਆ ਜਾ ਰਿਹਾ ਹੈ
+diff -urN -x CVS kdelibs.orig/kdecore/kaccel.cpp kdelibs/kdecore/kaccel.cpp
+--- kdelibs.orig/kdecore/kaccel.cpp	Thu May 27 10:43:47 2004
++++ kdelibs/kdecore/kaccel.cpp	Thu Dec  2 09:35:45 2004
+@@ -20,6 +20,7 @@
+ #include "kaccel.h"
+ 
+ #include <qaccel.h>
++#include <qguardedptr.h>
+ #include <qpopupmenu.h>
+ #include <qstring.h>
+ #include <qtimer.h>
+@@ -316,9 +317,12 @@
+ 					KAccelAction* pAction = m_mapIDToAction[nID];
+ 					if( !pAction->isEnabled() )
+ 						continue;
++					QGuardedPtr<KAccelPrivate> me = this;
+ 					connect( this, SIGNAL(menuItemActivated()), pAction->objSlotPtr(), pAction->methodSlotPtr() );
+ 					emit menuItemActivated();
+-					disconnect( this, SIGNAL(menuItemActivated()), pAction->objSlotPtr(), pAction->methodSlotPtr() );
++					if (me) {
++						disconnect( me, SIGNAL(menuItemActivated()), pAction->objSlotPtr(), pAction->methodSlotPtr() );
++					}
+ 				} else
+ 					slotKeyPressed( nID );
+ 
 diff -urN -x CVS kdelibs.orig/kdecore/kcharsets.cpp kdelibs/kdecore/kcharsets.cpp
 --- kdelibs.orig/kdecore/kcharsets.cpp	Thu Jul  8 19:09:10 2004
 +++ kdelibs/kdecore/kcharsets.cpp	Fri Oct 29 18:42:36 2004
@@ -28379,7 +28404,7 @@ diff -urN -x CVS kdelibs.orig/khtml/rendering/render_applet.h kdelibs/khtml/rend
  #define render_applet_h
 diff -urN -x CVS kdelibs.orig/khtml/rendering/render_block.cpp kdelibs/khtml/rendering/render_block.cpp
 --- kdelibs.orig/khtml/rendering/render_block.cpp	Sat Oct  2 14:33:08 2004
-+++ kdelibs/khtml/rendering/render_block.cpp	Wed Nov 24 15:01:00 2004
++++ kdelibs/khtml/rendering/render_block.cpp	Tue Nov 30 16:05:46 2004
 @@ -5,6 +5,7 @@
   *           (C) 1999-2003 Antti Koivisto (koivisto@kde.org)
   *           (C) 2002-2003 Dirk Mueller (mueller@kde.org)
@@ -28981,7 +29006,7 @@ diff -urN -x CVS kdelibs.orig/khtml/rendering/render_block.cpp kdelibs/khtml/ren
                      static_cast<RenderBox*>(child)->calcHorizontalMargins
                          ( child->style()->marginLeft(), child->style()->marginRight(), cw);
 -                    chPos = leftOff + child->marginLeft();
-+                    
++                    chPos = leftOff + child->marginLeft();                    
                  }
              }
          } else {
@@ -37135,6 +37160,20 @@ diff -urN -x CVS kdelibs.orig/kio/kio/kmimetype.cpp kdelibs/kio/kio/kmimetype.cp
          if (!isempty && !strcmp(ep->d_name, ".directory"))
            isempty = (readdir(dp) == 0L);
          closedir( dp );
+diff -urN -x CVS kdelibs.orig/kio/kio/kprotocolmanager.cpp kdelibs/kio/kio/kprotocolmanager.cpp
+--- kdelibs.orig/kio/kio/kprotocolmanager.cpp	Thu Apr 15 16:49:05 2004
++++ kdelibs/kio/kio/kprotocolmanager.cpp	Wed Dec  1 15:32:17 2004
+@@ -72,8 +72,8 @@
+ 
+ // DEFAULT USERAGENT STRING
+ #define CFG_DEFAULT_UAGENT(X) \
+-QString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) (KHTML, like Gecko)") \
+-        .arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(X)
++QString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko)") \
++        .arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(X).arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(KDE_VERSION_RELEASE)
+ 
+ void KProtocolManager::reparseConfiguration()
+ {
 diff -urN -x CVS kdelibs.orig/kio/kio/slaveinterface.cpp kdelibs/kio/kio/slaveinterface.cpp
 --- kdelibs.orig/kio/kio/slaveinterface.cpp	Sun Jun 27 12:43:57 2004
 +++ kdelibs/kio/kio/slaveinterface.cpp	Tue Nov 23 13:26:25 2004
@@ -46508,14 +46547,3 @@ diff -urN -x CVS kdelibs.orig/pics/hicolor/index.theme kdelibs/pics/hicolor/inde
  Comment[mn]=64000-Өнгөтэй-Загвар
  Comment[mt]=Tema ta' ikoni b'ħafna kuluri
  Comment[nb]=Ikontema med mange farger
---- kdelibs/khtml/rendering/render_block.cpp	24 Nov 2004 14:01:00 -0000	1.38.2.5
-+++ kdelibs/khtml/rendering/render_block.cpp	30 Nov 2004 15:05:46 -0000	1.38.2.6
-@@ -1038,7 +1038,7 @@ void RenderBlock::layoutBlockChildren( b
-                     int cw = lineWidth( child->yPos() );
-                     static_cast<RenderBox*>(child)->calcHorizontalMargins
-                         ( child->style()->marginLeft(), child->style()->marginRight(), cw);
--                    
-+                    chPos = leftOff + child->marginLeft();                    
-                 }
-             }
-         } else {
