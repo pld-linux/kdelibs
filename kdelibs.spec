@@ -105,7 +105,7 @@ export  kde_htmldir kde_icondir kde_minidir kde_appsdir kde_sounddir \
 
 automake
 perl admin/automoc -padmin
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -DNO_DEBUG"
+CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -Wall -DNO_DEBUG"
 LDFLAGS="-s"
 export CXXFLAGS LDFLAGS
 %configure \
