@@ -23,7 +23,7 @@ Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
 Patch2:		%{name}-am.patch
 Patch3:		%{name}-resize-icons.patch
-#Patch4:		ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
+#Patch4:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.0.3-kdelibs-khtml.diff
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -265,9 +265,9 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/[!K]* $RPM_BUILD_ROOT%{_applnkdir}/Sett
 
 > %{name}.lang                                                                  
 topics="common kdelibs-apidocs kspell"  
-for i in $topicss; do                                                          
-        %find_lang $i --with-kde                                                
-	        cat $i.lang >> %{name}.lang                                             
+for i in $topics; do                                                          
+    %find_lang $i --with-kde                                                
+    cat $i.lang >> %{name}.lang                                             
 done
 
 %post   -p /sbin/ldconfig
