@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -333,7 +333,7 @@ i=%{name}
 
 # for i in $files; do
 
-grep -v apidocs ${i}.lang > ${i}.lang.1
+grep -v apidocs ${i}.lang|grep -v common > ${i}.lang.1
 mv ${i}.lang.1 ${i}.lang
 # done
 
@@ -732,7 +732,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
 %dir %{_kdedocdir}/en
-##%{_kdedocdir}/en/common
+%{_kdedocdir}/en/common
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
