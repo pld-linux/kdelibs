@@ -292,7 +292,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 #%find_lang kdelibs --with-kde --all-name
 
 > %{name}.lang
-topics="common kdelibs-apidocs kspell"
+topics="common kdelibs-%{version}-apidocs kspell"
 for i in $topics; do
 	%find_lang $i --with-kde
 	cat $i.lang >> %{name}.lang
