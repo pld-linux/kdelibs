@@ -27,7 +27,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	openssl-devel >= 0.9.6b
+BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	qt-devel >= 2.3.0
 BuildRequires:	gettext-devel
 BuildRequires:	zlib-devel
