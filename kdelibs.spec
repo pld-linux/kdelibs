@@ -140,8 +140,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %config /etc/X11/kde
+%attr(755,root,root) %{_bindir}/*
 %{_kde_toolbardir}
 %{_kde_datadir}
+%{_datadir}/kdelibs/*
+%{_datadir}/mimelnk/*
+%{_datadir}/pixmaps/*
+%{_datadir}/services/*
+%{_datadir}/servicetypes/*
+
 
 #%lang(br) %{_kde_locale}/br/charset
 #%lang(ca) %{_kde_locale}/ca/charset
@@ -169,6 +176,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/lib*.so
+%{_libdir}/*.so
+%{_libdir}/*.la
+%attr(755,root,root) %{_prefix}/libexec/*
 %{_includedir}/*.h
-%{_libdir}/lib*.la
+%{_includedir}/kde.pot
+%{_includedir}/arts/*.h
+%{_includedir}/dom/*.h
+%{_includedir}/kio/*.h
+%{_includedir}/kparts/*.h
