@@ -6,7 +6,7 @@
     {
 -      result = locate("apps", m_docInfo.baseDir+"default_"+fileName);
 +    //  result = locate("apps", m_docInfo.baseDir+"default_"+fileName);
-+	result = "/etc/X11/desktop/menus/applications.menu";
++	result = "/etc/X11/desktop/menus/" + fileName;
     }
     return result;
  }
