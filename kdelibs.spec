@@ -570,7 +570,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
 %{_libdir}/libvcard.la
-%attr(0755,root,root) %{_libdir}/libvcard.so.*.*.*
+%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %dir %{_libdir}/kde3
 %{_libdir}/kde3/dcopserver.la
 %attr(755,root,root) %{_libdir}/kde3/dcopserver.so
@@ -821,21 +821,21 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/wallpapers
 
 # merged kabc files
-%attr(0755,root,root) %{_bindir}/kab2kabc
+%attr(755,root,root) %{_bindir}/kab2kabc
 %{_libdir}/kde3/kabc_dir.la
-%attr(0755,root,root) %{_libdir}/kde3/kabc_dir.so
+%attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
 %{_libdir}/kde3/kabc_file.la
-%attr(0755,root,root) %{_libdir}/kde3/kabc_file.so
+%attr(755,root,root) %{_libdir}/kde3/kabc_file.so
 #%{_libdir}/kde3/kabc_ldap.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabc_ldap.so
+#%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
 %{_libdir}/kde3/kabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
 %{_libdir}/kde3/kabc_net.la
-%attr(0755,root,root) %{_libdir}/kde3/kabc_net.so
+%attr(755,root,root) %{_libdir}/kde3/kabc_net.so
 %{_libdir}/kde3/kabcformat_binary.la
-%attr(0755,root,root) %{_libdir}/kde3/kabcformat_binary.so
+%attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
 %{_libdir}/kde3/kcm_kresources.la
-%attr(0755,root,root) %{_libdir}/kde3/kcm_kresources.so
+%attr(755,root,root) %{_libdir}/kde3/kcm_kresources.so
 %{_datadir}/apps/kabc
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
@@ -897,21 +897,21 @@ rm -rf $RPM_BUILD_ROOT
 
 #%files kabc
 #%defattr(644,root,root,755)
-#%attr(0755,root,root) %{_bindir}/kab2kabc
+#%attr(755,root,root) %{_bindir}/kab2kabc
 #%{_libdir}/kde3/kabc_dir.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabc_dir.so
+#%attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
 #%{_libdir}/kde3/kabc_file.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabc_file.so
+#%attr(755,root,root) %{_libdir}/kde3/kabc_file.so
 #%{_libdir}/kde3/kabc_ldap.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabc_ldap.so
+#%attr(755,root,root) %{_libdir}/kde3/kabc_ldap.so
 #%{_libdir}/kde3/kabc_ldapkio.la
 #%attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
 #%{_libdir}/kde3/kabc_net.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabc_net.so
+#%attr(755,root,root) %{_libdir}/kde3/kabc_net.so
 #%{_libdir}/kde3/kabcformat_binary.la
-#%attr(0755,root,root) %{_libdir}/kde3/kabcformat_binary.so
+#%attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
 #%{_libdir}/kde3/kcm_kresources.la
-#%attr(0755,root,root) %{_libdir}/kde3/kcm_kresources.so
+#%attr(755,root,root) %{_libdir}/kde3/kcm_kresources.so
 #%{_datadir}/apps/kabc
 #%{_datadir}/autostart/kab2kabc.desktop
 #%{_datadir}/services/kresources/kabc
