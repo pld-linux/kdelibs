@@ -1,0 +1,124 @@
+--- kdoctools/Makefile.am.orig	Fri Jul  5 01:31:40 2002
++++ kdoctools/Makefile.am	Fri Jul  5 02:34:17 2002
+@@ -12,6 +12,7 @@
+ 
+ kio_help_la_SOURCES = $(FILTER_sources) kio_help.cpp main.cpp xslt.cpp
+ kio_help_la_LIBADD = $(LIBXSLT_LIBS) $(LIBXML_LIBS) $(FILTER_LIBS)
++	kgzipfilter.lo kbzip2filter.lo kio_help.lo main.lo xslt.lo
+ kio_help_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
+ noinst_HEADERS = kio_help.h
+ 
+@@ -19,11 +20,15 @@
+ kdelnkdir = $(kde_servicesdir)
+ 
+ bin_PROGRAMS = meinproc xml2man
+-meinproc_LDADD = xslt_pure.o $(LIBXSLT_LIBS) $(LIBXML_LIBS) $(FILTER_LIBS)
+-meinproc_SOURCES = meinproc.cpp $(FILTER_sources)
++meinproc_LDADD = xslt_pure.o $(LIBXSLT_LIBS) $(LIBXML_LIBS) $(FILTER_LIBS) \
++	kgzipfilter.lo kbzip2filter.lo
++
++meinproc_SOURCES = meinproc.cpp
+ 
+ xml2man_LDADD = xslt_pure.o $(LIBXSLT_LIBS) $(LIBXML_LIBS) $(FILTER_LIBS)
+-xml2man_SOURCES = xml2man.cpp $(FILTER_sources)
++	kgzipfilter.lo kbzip2filter.lo
++
++xml2man_SOURCES = xml2man.cpp
+ 
+ xslt_pure.o: xslt.cpp
+ 	-rm -f xslt_pure.cpp
+--- khtml/Makefile.am.orig	Fri Jul  5 01:41:14 2002
++++ khtml/Makefile.am	Fri Jul  5 02:24:11 2002
+@@ -41,11 +41,12 @@
+ 	./misc/libkhtmlmisc.la ./dom/libkhtmldom.la $(LIBKJAVA) \
+ 	../kio/libkio.la \
+ 	$(top_builddir)/kparts/libkparts.la \
+-	$(top_builddir)/kdeprint/libkdeprint.la 
++	$(top_builddir)/kdeprint/libkdeprint.la
+ 
+ khtmlimagepart_la_SOURCES = khtmlimage.cpp
+ khtmlimagepart_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries)
+ khtmlimagepart_la_LIBADD = libkhtml.la
++# khtmlimage.lo
+ 
+ INCLUDES = -I$(top_srcdir)/kjs -I$(top_srcdir)/kimgio \
+ 	-I$(srcdir)/java -I$(top_srcdir)/dcop -I$(srcdir)/misc \
+@@ -83,8 +84,12 @@
+ EXTRA_PROGRAMS = testcss testrender testkhtml_static test_regression
+ testkhtml_SOURCES = testkhtml.cpp domtreeview.cpp
+ testkhtml_LDADD = libkhtml.la 
+-testkhtml_static_SOURCES = testkhtml.cpp domtreeview.cpp $(libkhtml_la_SOURCES)
+-testkhtml_static_LDADD = $(LIB_KDEUI) $(libkhtml_la_LIBADD)
++testkhtml_static_SOURCES = testkhtml.cpp domtreeview.cpp
++testkhtml_static_LDADD = $(LIB_KDEUI) $(libkhtml_la_LIBADD) \
++	khtmlview.lo khtml_part.lo khtml_run.lo khtml_factory.lo \
++	khtml_settings.lo khtml_events.lo khtml_find.lo khtml_ext.lo \
++	khtml_pagecache.lo khtml_iface.lo khtml_printsettings.lo
++
+ testcss_SOURCES = testcss.cpp
+ testcss_LDADD = libkhtml.la
+ testrender_SOURCES = testrender.cpp
+--- kjs/Makefile.am.orig	Fri Jul  5 01:58:35 2002
++++ kjs/Makefile.am	Fri Jul  5 02:29:29 2002
+@@ -41,7 +41,15 @@
+ 		 function.h debugger.h property_map.h
+ 
+ libkjs_la_LDFLAGS = -version-info 1:0 -no-undefined $(USER_LDFLAGS) $(all_libraries)
+-libkjs_la_LIBADD = -lm $(LIBPCRE)
++libkjs_la_LIBADD = -lm $(LIBPCRE) \
++	ustring.lo internal.lo collector.lo nodes.lo \
++	grammar.lo lexer.lo lookup.lo operations.lo \
++	regexp.lo function_object.lo string_object.lo \
++	bool_object.lo number_object.lo date_object.lo \
++	array_object.lo math_object.lo object_object.lo \
++	regexp_object.lo error_object.lo function.lo \
++	debugger.lo value.lo types.lo object.lo \
++	interpreter.lo property_map.lo nodes2string.lo
+ 
+ EXTRA_DIST = grammar.y
+ 
+@@ -64,9 +72,27 @@
+ 
+ ## test program (in one program for easier profiling/memory debugging)
+ EXTRA_PROGRAMS = testkjs_static testavl
+-testkjs_static_SOURCES = testkjs.cpp  $(libkjs_la_SOURCES)
++testkjs_static_SOURCES = testkjs.cpp \
++	ustring.lo internal.lo collector.lo nodes.lo \
++	grammar.lo lexer.lo lookup.lo operations.lo \
++	regexp.lo function_object.lo string_object.lo \
++	bool_object.lo number_object.lo date_object.lo \
++	array_object.lo math_object.lo object_object.lo \
++	regexp_object.lo error_object.lo function.lo \
++	debugger.lo value.lo types.lo object.lo \
++	interpreter.lo property_map.lo nodes2string.lo
++
+ testkjs_static_LDADD = $(LIBPCRE)
+-testavl_SOURCES = testavl.cpp  $(libkjs_la_SOURCES)
++testavl_SOURCES = testavl.cpp \
++	ustring.lo internal.lo collector.lo nodes.lo \
++	grammar.lo lexer.lo lookup.lo operations.lo \
++	regexp.lo function_object.lo string_object.lo \
++	bool_object.lo number_object.lo date_object.lo \
++	array_object.lo math_object.lo object_object.lo \
++	regexp_object.lo error_object.lo function.lo \
++	debugger.lo value.lo types.lo object.lo \
++	interpreter.lo property_map.lo nodes2string.lo
++
+ testavl_LDADD = $(LIBPCRE)
+ 
+ ## test program (linked to libkjs)
+--- kparts/tests/Makefile.am.orig	Fri Jul  5 02:00:43 2002
++++ kparts/tests/Makefile.am	Fri Jul  5 02:38:21 2002
+@@ -5,8 +5,10 @@
+ 
+ check_PROGRAMS = kpartstest normalktmtest ghostviewtest 
+ 
+-kpartstest_SOURCES = example.cpp notepad.cpp parts.cpp
+-normalktmtest_SOURCES = normalktm.cpp notepad.cpp parts.cpp
++kpartstest_SOURCES = example.cpp parts.cpp
++kpartstest_LDADD = notepad.lo
++normalktmtest_SOURCES = normalktm.cpp parts.cpp
++normalktmtest_LDADD = notepad.lo
+ ghostviewtest_SOURCES = ghostview.cpp
+ ghostviewtest_LDADD = $(top_builddir)/kparts/libkparts.la $(LIB_KFILE)
+ 
