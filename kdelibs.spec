@@ -29,6 +29,7 @@ Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 #http://download.kde.org/stable/3.1.2/src/kdelibs-3.1.2.tar.bz2
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
 
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 
