@@ -348,8 +348,8 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 	debian/ksendbugmail.sgml
 
 %build
-#cp /usr/share/automake/config.sub admin
-#%{__make} -f admin/Makefile.common cvs
+cp /usr/share/automake/config.sub admin
+%{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
@@ -420,7 +420,7 @@ mv ${i}.lang.1 ${i}.lang
 
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
