@@ -19,11 +19,13 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.rc1.1
+Release:	0.rc2.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}-rc1.tar.bz2
+#Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}-rc2.tar.bz2
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-rc2.tar.bz2
+# Source0-md5:	49de25094d36cdaae26af29bdf9055c3
 #if ! %{with cvs}
 #Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
 #else
