@@ -23,7 +23,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	5
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -45,6 +45,7 @@ Patch5:		post-3.1.5-%{name}-kapplication.patch
 Patch6:		post-3.1.5-%{name}-ktelnetservice.patch
 Patch7:		post-3.1.5-%{name}-kstandarddirs.patch
 Patch8:		post-3.1.5-%{name}-htmlframes.patch
+Patch9:         post-3.1.5-%{name}-kcookiejar.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
@@ -270,6 +271,7 @@ oraz jej konwersjЙ.
 %patch6 -p0
 %patch7 -p1
 %patch8 -p0
+%patch9 -p0
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
