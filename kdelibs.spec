@@ -199,27 +199,20 @@ Conflicts:	kdebase-devel <= 9:3.1.90
 This package contains header files and development documentation for
 kdelibs.
 
-%description devel -l es
-This package includes the header files you will need to compile
-applications for KDE. Also included is the KDE API documentation in
-HTML format for easy browsing.
-
 %description devel -l pl
 Pakiet ten zawiera pliki nag³ówkowe i dokumentacjê potrzebn± przy
-pisaniu w³asnych programów wykorzystuj±cych kdelibs.
+pisaniu w³asnych programów wykorzystuj±cych kdelibs. 
 
 %description devel -l pt_BR
 Este pacote contém os arquivos de inclusão que são necessários para
-compilar aplicativos KDE. Contém também a API do KDE documentada no
-formato HTML.
+compilar aplicativos KDE.
 
 %description devel -l ru
 üÔÏÔ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÈÅÄÅÒÙ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍÐÉÌÑÃÉÉ ÐÒÏÇÒÁÍÍ ÄÌÑ
-KDE. ôÁËÖÅ ×ËÌÀÞÅÎÁ ÄÏËÕÍÅÎÔÁÃÉÑ × ÆÏÒÍÁÔÅ HTML.
+KDE.
 
 %description devel -l uk
 ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÈÅÄÅÒÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ ÄÌÑ KDE.
-ôÁËÏÖ ÄÏ ÎØÏÇÏ ×ÈÏÄÉÔØ ÄÏËÕÍÅÎÔÁÃ¦Ñ Õ ÆÏÒÍÁÔ¦ HTML.
 
 %package artsmessage
 Summary:	Program which can be used to display aRts daemon messages
