@@ -6,7 +6,7 @@
 #
 
 %define		_state		snapshots
-%define		_snap		030511
+%define		_snap		030512
 %define		_ver		3.2
 
 Summary:	K Desktop Environment - libraries
@@ -25,10 +25,10 @@ Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 Source2:	x-wmv.desktop
-Source3:	%{name}-default_applications.menu
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
+Patch3:         %{name}-defaultfonts.patch
 #Patch4:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
 #Patch5:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
 Icon:		kdelibs.xpm
@@ -244,6 +244,7 @@ TODO.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 #%patch4 -p1
 #%patch5 -p1
 
