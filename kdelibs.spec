@@ -7,7 +7,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040530
+%define		_snap		040601
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
@@ -32,10 +32,10 @@ Source0:	kdesource.tar.gz
 %endif
 Source2:	%{name}-wmfplugin.tar.bz2
 # Source2-md5:	f89739b063eca075bf4ac85f559eea77
-Patch0:		%{name}-kstandarddirs.patch
-Patch1:		%{name}-defaultfonts.patch
-Patch2:		%{name}-use_system_sgml.patch
-Patch3:		kde-common-QTDOCDIR.patch
+Patch0:		kde-common-PLD.patch
+Patch1:		%{name}-kstandarddirs.patch
+Patch2:		%{name}-defaultfonts.patch
+Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
@@ -230,8 +230,6 @@ KDE. Также включена документация в формате HTML.
 Summary:	API documentation
 Summary(pl):	Dokumentacja API
 Group:		Development/Docs
-######		Unknown group!
-#Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}
 
 %description apidocs
@@ -274,8 +272,8 @@ echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
 
 cp %{_datadir}/automake/config.sub admin
 
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
+#export kde_htmldir=%{_kdedocdir}
+#export kde_libs_htmldir=%{_kdedocdir}
 
 export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
@@ -300,10 +298,13 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %install
 rm -rf $RPM_BUILD_ROOT
 
+#%%{__make} install \
+#	DESTDIR=$RPM_BUILD_ROOT \
+#	kde_htmldir=%{_kdedocdir}
+#	kde_libs_htmldir=%{_kdedocdir}
+
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
-	kde_libs_htmldir=%{_kdedocdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d \
 	$RPM_BUILD_ROOT/etc/security \
@@ -356,31 +357,24 @@ cat << EOF
  *************************************************************
  *                                                           *
  * NOTE:                                                     *
- * kgrantpty should be installed with a set SETUID root bit. *
+ * kgrantpty should be installed with a set SUID root bit.   *
  * This is needed for konsole, etc. to ensure                *
  * that they can't be eavesdroped.                           *
+ *                                                           *
+ *                                                           *
+ * NOTE:                                                     *
+ * If You want the directories sharing from the context menu *
+ * functionality, do as following:                           *
+ * 1) Install sperl package,                                 *
+ * 2) Set SUID root bit for fileshareset script.             *
+ *                                                           *
+ * WARNING:                                                  *
+ * 1) That allows users to write to /etc/samba/smb.conf,     *
+ * 2) After all - using sperl is not safe.                   *
  *                                                           *
  *************************************************************
 
 EOF
-
-cat << _EOF_
-
- *********************************************************
- *                                                       *
- * NOTE:                                                 *
- * If You want the directories sharing from the context  *
- * menu functionality, do as following:                  *
- * 1) Install sperl package,                             *
- * 2) Set SUID for fileshareset script.                  *
- *                                                       *
- * WARNING:                                              *
- * 1) That allows users to write to /etc/samba/smb.conf, *
- * 2) After all - using sperl is not safe.               * 
- *                                                       *
- *********************************************************
-
-_EOF_
 
 %postun	-p /sbin/ldconfig
 
