@@ -302,6 +302,10 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
+# this is provided by openoffice:
+rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
+
+# lang-stuff:
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 > %{name}.lang
 topics="common cupsdconf desktop_kdelibs desktop_kde-i18n kab3 kabc_dir kabc_file kabc_ldap kabc_net kabc_sql kabcformat_binary katepart kdelibs-apidocs kfortune kio_help kmcop knotify ktexteditor_insertfile ktexteditor_isearch ktexteditor_kdatatool kspell libkscreensaver ppdtranslations timezones"
