@@ -8,7 +8,7 @@ Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/distribution/2.0Beta4/tar/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/distribution/2.0Beta5/tar/src/%{name}-%{version}.tar.bz2
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
