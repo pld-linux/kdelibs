@@ -3,7 +3,7 @@
 #
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
-%bcond_with	i18n	# dont build i18n subpackage
+%bcond_with	i18n	# with i18n stuff - not used in DEVEL branch
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
@@ -26,10 +26,8 @@ Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
 Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
 ##%% Source0-md5:	24be0d558725f4d3441fb9d580129720	
-%if %{with i18n}
-Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
-%endif
+#Source1:	http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
+##%% Source1-md5: 	1b484133af8a53b761c7bc9fcb6c1814 
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-defaultfonts.patch
 Patch2:		%{name}-use_system_sgml.patch
