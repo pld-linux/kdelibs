@@ -5,8 +5,8 @@
 %bcond_without	alsa	# build without ALSA support
 %bcond_with	i18n	# [not ready] include i18n files in package
 #
-%define		_state		unstable
-%define		_ver		3.1.95
+%define		_state		stable
+%define		_ver		3.2.0
 #%%define		_snap		040110
 %define         artsver         13:1.1.95
 
@@ -23,9 +23,9 @@ Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	472b9e0862ae408caff2e20d417ef2df	
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_ver}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+# Source0-md5:	24be0d558725f4d3441fb9d580129720	
 %if %{with i18n}
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 %endif
@@ -310,6 +310,7 @@ for f in *.sgml ; do
 	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
 done
 
+
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
@@ -326,7 +327,11 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files %{?with_i18n:-f %{name}.lang}
+%if %{with i18n}
+##%files i18n -f %{name}.lang
+%endif
+
+%files 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
@@ -649,7 +654,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/http.protocol
 %{_datadir}/services/https.protocol
 %{_datadir}/services/metainfo.protocol
-%{_datadir}/services/mailto.protocol
 %{_datadir}/services/mms.protocol
 %{_datadir}/services/rlogin.protocol
 %{_datadir}/services/rtsp.protocol
@@ -744,7 +748,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%lang(en) %{_kdedocdir}/en/%{name}-%{version}-apidocs
+%lang(en) %{_kdedocdir}/en/%{name}-apidocs
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
