@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -384,7 +384,6 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_datadir}/wallpapers \
-	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 # Debian manpages
@@ -762,8 +761,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/servicetypes
 %dir %{_desktopdir}/kde
-# contains also 3rdparty hicolor & crystalsvg/apps trees
-%{_iconsdir}/*
+# contains also 3rdparty crystalsvg/apps trees
+%{_iconsdir}/crystalvsg
 %{_mandir}/man1/checkXML.1*
 %{_mandir}/man1/cupsdconf.1*
 %{_mandir}/man1/cupsdoprint.1*
