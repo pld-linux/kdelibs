@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	2.1
-Release:	1
+Release:	4
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -13,6 +13,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/stable/2.1/distribution/tar/generic/src/%{nam
 Patch0:		%{name}-final.patch
 Patch1:		%{name}-nodebug.patch
 Patch2:		%{name}-directories.patch
+Patch3:		%{name}-Japanese.patch
+Patch4:		%{name}-klauncher-escape.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
@@ -35,6 +37,9 @@ BuildRequires:	postgresql-devel
 Requires:	qt >= 2.2.4
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	kdelibs2
+Obsoletes:	kdelibs2-sound
+Obsoletes:	kdelibs-sound
 
 %define         _prefix         /usr/X11R6
 
@@ -67,6 +72,9 @@ Group:		X11/KDE/Development/Libraries
 Group(de):	X11/KDE/Entwicklung/Libraries
 Group(pl):	X11/KDE/Programowanie/Biblioteki
 Requires:	%{name} = %{version}
+Obsoletes:	kdelibs-sound-devel
+Obsoletes:	kdelibs2-devel
+Obsoletes:	kdelibs2-sound-devel
 
 %description devel
 This package contains header files and development documentation for
@@ -107,6 +115,8 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 
