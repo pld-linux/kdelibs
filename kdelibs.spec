@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -32,6 +32,7 @@ Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Patch3:		%{name}-vfolders.patch
 Icon:		kdelibs.xpm
+URL:		http://www.kde.org/
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
 %ifnarch sparc sparc64
@@ -70,7 +71,6 @@ Requires:	XFree86-libs >= 4.2.99
 Requires:	applnk >= 1.6.2-1
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
-URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kde-theme-keramik
 Obsoletes:	kdelibs2
@@ -84,7 +84,6 @@ Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 
 %define		_htmldir	%{_docdir}/kde/HTML
-
 %define		no_install_post_chrpath		1
 
 %description
@@ -244,12 +243,12 @@ done
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
-	--enable-final \
+	--disable-informix \
+	--disable-mysql \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
-	--disable-mysql \
-	--disable-informix \
+	--enable-final \
 	--enable-mitshm \
 	%{?_without_ldap:--without-ldap} \
 	%{!?_without_ldap:--with-ldap} \
@@ -267,22 +266,16 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
-
-install -d \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes}
-install -d \
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE,%{_datadir}/apps/khtml/kpartplugins} \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
-
 rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
-
-install -d $RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
