@@ -1,13 +1,14 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap space.
-#
-# Conditional build:
-# _without_alsa - without alsa support
-# _with_nas	- with NAS support
-#
+
+%bcond_without alsa	# disables ALSA support
+
+%ifarch	sparc sparcv9 sparc64
+%undefine with_alsa
+%endif
 
 %define		_state		snapshots
 %define		_ver		3.1.92
-%define		_snap		031014
+%define		_snap		031024
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -30,9 +31,7 @@ Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel >= 4.2.99
-%ifnarch sparc sparc64
-%{!?_without_alsa:BuildRequires:	alsa-lib-devel}
-%endif
+%{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-devel >= 12:1.2.0.%{_snap}
 BuildRequires:	arts-qt >= 12:1.2.0.%{_snap}
 BuildRequires:	audiofile-devel
@@ -55,7 +54,6 @@ BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	mad-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openmotif-devel
-%{?_with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 6:3.2.1-4
@@ -75,18 +73,6 @@ Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
-# Not sure about it
-Obsoletes:      arts-message
-Obsoletes:      kdepim-commonlibs < 3:3.1.91.030918-1
-Obsoletes:      kdepim-kaddressbook < 3:3.1.91.030918-1
-Obsoletes:      kdepim-kmail < 3:3.1.91.030918-1
-Obsoletes:      kdepim-kontact < 3:3.1.91.030918-1
-Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
-Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
-Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
-Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
-Obsoletes:      kdesdk-kbabel < 3:3.1.90.030918-1
-#
 
 %define		no_install_post_chrpath		1
 
@@ -231,15 +217,7 @@ done
 	--enable-fast-malloc=full \
 %endif
 	--enable-mitshm \
-	--with%{?_without_alsa:out}-alsa
-
-%if %{!?_with_nas:1}0
-# Cannot patch configure.in because it does not rebuild correctly on ac25
-sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
-	< config.h \
-	> config.h.tmp
-mv -f config.h{.tmp,}
-%endif
+	--with%{?without_alsa:out}-alsa
 
 %{__make}
 
@@ -273,7 +251,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%dir %{_bindir}/kconf_update_bin
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
@@ -293,6 +270,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
 %attr(755,root,root) %{_bindir}/kdb2html
+%attr(755,root,root) %{_bindir}/kde-config
 %attr(755,root,root) %{_bindir}/kded
 %attr(755,root,root) %{_bindir}/kdeinit
 %attr(755,root,root) %{_bindir}/kdeinit_shutdown
@@ -320,7 +298,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/make_driver_db_lpr
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
-%attr(755,root,root) %{_bindir}/xml2man
+#%attr(755,root,root) %{_bindir}/xml2man
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %{_libdir}/libartskde.la
@@ -460,8 +438,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
 %{_libdir}/kde3/kimg_jp2.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_jp2.so
-%{_libdir}/kde3/kimg_krl.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_krl.so
+#%{_libdir}/kde3/kimg_krl.la
+#%attr(755,root,root) %{_libdir}/kde3/kimg_krl.so
 %{_libdir}/kde3/kimg_pcx.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_pcx.so
 %{_libdir}/kde3/kimg_tga.la
@@ -519,10 +497,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/kthemestyle.so
 %{_libdir}/kde3/plugins/styles/light.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
+
 %dir %{_datadir}/apps
-%dir %{_datadir}/apps/krichtexteditpart
-%dir %{_datadir}/apps/profiles
-%dir %{_datadir}/apps/remotes
 %{_datadir}/apps/LICENSES
 %{_datadir}/apps/dcopidlng
 %{_datadir}/apps/katepart
@@ -532,6 +508,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kdeprint
 %{_datadir}/apps/kdeui
 %{_datadir}/apps/kdewidgets
+# also contains 3rdparty kpartplugins dir
 %{_datadir}/apps/khtml
 %{_datadir}/apps/kio_uiserver
 %{_datadir}/apps/kjava
@@ -545,13 +522,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/proxyscout
 %dir %{_datadir}/autostart
 %{_datadir}/config
-%dir %{_datadir}/config.kcfg
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
-# messing one
+# Messing one
 %exclude %{_datadir}/mimelnk/application/vnd.ms-asf.desktop
 %dir %{_datadir}/services
-%dir %{_datadir}/services/kconfiguredialog
 %dir %{_datadir}/services/kresources
 %{_datadir}/services/kded
 %{_datadir}/services/http_cache_cleaner.desktop
@@ -575,7 +550,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
 %{_datadir}/services/jpeg.kimgio
-%{_datadir}/services/krl.kimgio
+#%{_datadir}/services/krl.kimgio
 %{_datadir}/services/pbm.kimgio
 %{_datadir}/services/pcx.kimgio
 %{_datadir}/services/pgm.kimgio
@@ -601,8 +576,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
 %{_datadir}/servicetypes
-%{_datadir}/wallpapers
 %dir %{_desktopdir}/kde
+# contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/*
 %dir %{_docdir}/kde
 %dir %{_docdir}/kde/HTML
@@ -610,12 +585,20 @@ rm -rf $RPM_BUILD_ROOT
 %lang(en) %{_docdir}/kde/HTML/en/common
 %lang(en) %{_docdir}/kde/HTML/en/kspell
 
+# 3rdparty directories
+%dir %{_bindir}/kconf_update_bin
+%dir %{_datadir}/apps/krichtexteditpart
+%dir %{_datadir}/apps/profiles
+%dir %{_datadir}/apps/remotes
+%dir %{_datadir}/config.kcfg
+%dir %{_datadir}/services/kconfiguredialog
+%dir %{_datadir}/wallpapers
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
-%attr(755,root,root) %{_bindir}/kde-config
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
 %{_libdir}/libkdefakes_nonpic.a
