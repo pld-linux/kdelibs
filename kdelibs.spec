@@ -25,6 +25,7 @@ Patch2:		%{name}-directories.patch
 Patch3:		%{name}-klauncher-escape.patch
 Patch4:		%{name}-libxml_closecallback.patch
 Patch5:		%{name}-libxml_includes.patch
+Patch6:		%{name}-cookieperms.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -256,6 +257,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
