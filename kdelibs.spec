@@ -4,6 +4,7 @@
 # Conditional build:
 %bcond_without	alsa	# build without ALSA support
 %bcond_without	i18n	# don't build i18n subpackage
+%bcond_without	xlibs
 #
 %define		_state		stable
 %define		_ver		3.2.0
@@ -39,7 +40,12 @@ Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
+%if %{with xlibs}
+BuildRequires:	libXrender-devel
+%else
 BuildRequires:	XFree86-devel >= 4.2.99
+BuildRequires:	xrender-devel
+%endif
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
 BuildRequires:	artsc-devel >= %{artsver}
@@ -73,7 +79,6 @@ BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	xrender-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libidn-devel
 Requires:	XFree86 >= 4.2.99
@@ -330,6 +335,7 @@ export kde_htmldir=%{_kdedocdir}
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
+	--x-includes=%{_includedir}/X11 \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
