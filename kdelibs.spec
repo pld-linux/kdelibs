@@ -3,11 +3,11 @@ Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	1.94
 Release:	1
+License:	LGPL
+Vendor:		The KDE Team
 Group:		X11/KDE/Libraries
 Group(de):	X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
-License:	LGPL
-Vendor:		The KDE Team
 Source0:	ftp://ftp.kde.org/pub/kde/unstable/distribution/2.0Beta4/tar/src/%{name}-%{version}.tar.bz2
 BuildRequires:	qt-devel >= 2.2.0
 BuildRequires:	XFree86-devel
@@ -26,20 +26,23 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Libraries for the K Desktop Environment.
 
 Included with this package are:
-
-jscript: KDE javascript library kdecore: KDE core library kdeui: KDE
-user interface library kfmlib: KDE file manager library khtmlw: KDE
-HTML widget mediatool: KDE mediatool library
+- jscript - KDE javascript library,
+- kdecore - KDE core library,
+- kdeui - KDE user interface library,
+- kfmlib - KDE file manager library,
+- khtmlw - KDE HTML widget,
+- mediatool - KDE mediatool library.
 
 %description -l pl
 Biblioteki do K Desktop Environment.
 
 Pakiet ten zawiera:
-
-jscript: biblioteka KDE do javascript kdecore: Biblioteka podstawowa
-KDE kdeui: Biblioteka KDE do interfejsu u¿ytkownika kfmlib: Biblioteka
-KDE file manager library khtmlw: Biblioteka KDE z HTML widget
-mediatool: Biblioteka KDE mediatool
+- jscript - biblioteka KDE do javascript,
+- kdecore - Biblioteka podstawowa,
+- KDE kdeui - Biblioteka KDE do interfejsu u¿ytkownika,
+- kfmlib - Biblioteka KDE file manager library,
+- khtmlw: Biblioteka KDE z HTML widget,
+- mediatool: Biblioteka KDE mediatool.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
