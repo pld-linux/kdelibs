@@ -7,9 +7,9 @@
 -                if (!pix.isNull() || canReturnNull)
 -                    return pix;
 +                if (!pix.isNull() || canReturnNull) {
-+                    if ((group == KIcon::Small) && (pix.width() > 20 || pix.height() > 20)) {
++                    if ((group == KIcon::Small) && (pix.width() > 16 || pix.height() > 16)) {
 +                        QImage tmp = pix.convertToImage();
-+                        tmp = tmp.smoothScale(20, 20);
++                        tmp = tmp.smoothScale(16, 16);
 +                        pix.convertFromImage(tmp);
 +                    }
 +		    return pix;
