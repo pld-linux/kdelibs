@@ -29,7 +29,7 @@ Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
-BuildRequires:	XFree86-devel >= 4.2.99
+BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
