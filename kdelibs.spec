@@ -8,7 +8,7 @@
 %define		_state		stable
 %define		_ver		3.2.0
 #%%define		_snap		040110
-%define         artsver         13:1.1.95
+%define         artsver         13:1.2.0
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
