@@ -38,9 +38,7 @@ Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
-%ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
-%endif
 BuildRequires:	arts-devel >= 1.1-1
 BuildRequires:	arts-qt >= 1.1-1
 BuildRequires:	audiofile-devel
