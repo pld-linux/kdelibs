@@ -50,7 +50,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
+BuildRequires:	esound-devel
+BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel
 %{?!_without_dist_kernel:BuildRequires:	kernel-headers}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
