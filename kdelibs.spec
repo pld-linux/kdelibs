@@ -38,8 +38,8 @@ BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
-BuildRequires:	arts-devel >= 1.0.0
-BuildRequires:	arts-qt >= 1.0.0
+BuildRequires:	arts-devel >= 1.0.5a
+BuildRequires:	arts-qt >= 1.0.5a
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
