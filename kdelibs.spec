@@ -577,8 +577,8 @@ EOF
 %attr(755,root,root) %{_libdir}/kde3/kimg_dds.so
 %{_libdir}/kde3/kimg_eps.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
-#%{_libdir}/kde3/kimg_exr.la
-#%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
+%{_libdir}/kde3/kimg_exr.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
 %{_libdir}/kde3/kimg_ico.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
 %{_libdir}/kde3/kimg_jp2.la
@@ -715,7 +715,7 @@ EOF
 %{_datadir}/services/bmp.kimgio
 %{_datadir}/services/dds.kimgio
 %{_datadir}/services/eps.kimgio
-#%{_datadir}/services/exr.kimgio
+%{_datadir}/services/exr.kimgio
 %{_datadir}/services/gif.kimgio
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
