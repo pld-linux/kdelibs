@@ -79,6 +79,7 @@ BuildRequires:	qt-devel >= 6:3.3.3-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
+BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 PreReq:		setup >= 2.4.6-7
@@ -130,6 +131,7 @@ Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.2.90
 Obsoletes:	openoffice-mimelinks
 Obsoletes:	kde-style-plastik
+Conflicts:	kdebase-core < 9:3.4.0
 Conflicts:	kdepim-devel < 3:3.2.90
 Conflicts:	kmplayer < 1:0.83-0.040705.2
 Conflicts:	kplayer < 0.5.1-5
