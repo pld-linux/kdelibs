@@ -1,0 +1,616 @@
+--- kdelibs/kdefx/Makefile.am	2002-12-29 13:27:46.000000000 +0000
++++ kdelibs/kdefx/Makefile.am	2003-02-11 11:47:03.000000000 +0000
+@@ -27,10 +27,10 @@
+ libkdefx_la_LIBADD = $(LIB_QT) $(LIB_XRENDER)
+ 
+ include_HEADERS = kpixmap.h kpixmapsplitter.h \
+-	kpixmapeffect.h kimageeffect.h kdrawutil.h kstyle.h
++	kpixmapeffect.h kimageeffect.h kdrawutil.h kstyle.h fxdata.h fxshadow.h
+ 
+ libkdefx_la_SOURCES = kpixmap.cpp kpixmapsplitter.cpp \
+-		kpixmapeffect.cpp kimageeffect.cpp kdrawutil.cpp kstyle.cpp
++		kpixmapeffect.cpp kimageeffect.cpp kdrawutil.cpp kstyle.cpp fxdata.cpp fxshadow.cpp
+ 
+ METASOURCES = AUTO
+ 
+diff -Nur -x Makefile -x Makefile.in -x '.*' -x CVS /home/kde-devel/work/cvs_original/kdelibs/kdefx/fxdata.cpp /home/kde-devel/work/cvs/kdelibs/kdefx/fxdata.cpp
+--- kdelibs/kdefx/fxdata.cpp	1970-01-01 00:00:00.000000000 +0000
++++ kdelibs/kdefx/fxdata.cpp	2003-02-11 12:36:26.000000000 +0000
+@@ -0,0 +1,169 @@
++/* This file is proposed to be part of the KDE libraries.
++ Copyright (C) 2003 Laur Ivan <laurivan@eircom.net>
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions
++are met:
++
++1. Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++2. Redistributions in binary form must reproduce the above copyright
++   notice, this list of conditions and the following disclaimer in the
++   documentation and/or other materials provided with the distribution.
++
++THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
++IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
++OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
++INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++*/
++
++// $Id$
++
++#include <qstring.h>
++#include "fxdata.h"
++
++
++FxShadowData::FxShadowData()
++{
++	// init the components with some default values
++	setDefaults();
++}
++
++//***********************************
++//               get methods
++//***********************************
++
++/**
++ * Returns the decay algorithm to be used (see the alg. enumeration in the .h)
++ */
++int FxShadowData::algorithm()
++{
++	return _algorithm;
++}
++
++/**
++ * Returns a multiplication facor used to average the resulted data
++ */
++double FxShadowData::multiplicationFactor()
++{
++	return _multiplicationFactor;
++}
++
++/**
++ * Returns the max opacity allowed (0 = transparent, 255 = opaque)
++ */
++double FxShadowData::maxOpacity()
++{
++	return _maxOpacity;
++}
++
++/**
++ * Returns the Y offset (0 is centered on text)
++ */
++int FxShadowData::offsetX()
++{
++	return _offsetX;
++}
++
++/**
++ * Returns the Y offset (0 is centered on text)
++ */
++int FxShadowData::offsetY()
++{
++	return _offsetY;
++}
++
++/**
++ * Returns the thickness. Used by the Shadow algorithm
++ */
++int FxShadowData::thickness()
++{
++	return _thickness;
++}
++
++/**
++ *
++ */
++int FxShadowData::selectionType()
++{
++	return _selectionType;
++}
++
++// set methods
++/**
++ *
++ */
++void FxShadowData::setDefaults()
++{
++	setOffsetX(0);
++	setOffsetY(0);
++	setMultiplicationFactor(4.0);
++	setMaxOpacity(255.0);
++	setThickness(3);
++	setAlgorithm(DefaultDecay);
++	setSelectionType(SelectionColorsOnSelection);
++}
++
++
++/**
++ *
++ */
++void FxShadowData::setAlgorithm(int val)
++{
++	_algorithm = val;
++}
++
++/**
++ *
++ */
++void FxShadowData::setMultiplicationFactor(double val)
++{
++	_multiplicationFactor = val;
++}
++
++/**
++ *
++ */
++void FxShadowData::setMaxOpacity(double val)
++{
++	_maxOpacity = val;
++}
++
++/**
++ *
++ */
++void FxShadowData::setOffsetX(int val)
++{
++	_offsetX = val;
++}
++
++/**
++ *
++ */
++void FxShadowData::setOffsetY(int val)
++{
++	_offsetY = val;
++}
++
++/**
++ *
++ */
++void FxShadowData::setThickness(int val)
++{
++	_thickness = val;
++}
++
++/**
++ *
++ */
++void FxShadowData::setSelectionType(int val)
++{
++	_selectionType = val;
++}
+diff -Nur -x Makefile -x Makefile.in -x '.*' -x CVS /home/kde-devel/work/cvs_original/kdelibs/kdefx/fxdata.h /home/kde-devel/work/cvs/kdelibs/kdefx/fxdata.h
+--- kdelibs/kdefx/fxdata.h	1970-01-01 00:00:00.000000000 +0000
++++ kdelibs/kdefx/fxdata.h	2003-02-11 12:42:31.000000000 +0000
+@@ -0,0 +1,129 @@
++/* This file is proposed to be part of the KDE libraries.
++ Copyright (C) 2003 Laur Ivan <laurivan@eircom.net>
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions
++are met:
++
++1. Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++2. Redistributions in binary form must reproduce the above copyright
++   notice, this list of conditions and the following disclaimer in the
++   documentation and/or other materials provided with the distribution.
++
++THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
++IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
++OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
++INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++*/
++
++// $Id$
++
++#ifndef __FX_DATA
++#define __FX_DATA
++
++/**
++ *	This class is a fussy implementaiton of a structure for the
++ *  various parameters required by the shadow class.
++ *
++ *	One may afford this implementation since the shadow class is
++ *	designed to be used as singleton for an application.
++ */
++class FxShadowData
++{
++	public:
++		/**
++		 * The algorithm used
++		 */
++		enum
++		{
++			DefaultDecay = 1, 	// the default AXIS/DIAGONAL_FACTOR based alg
++			DoubleLinearDecay,  // decay factor is 1/dx+dy
++			RadialDecay,				// decay factor is 1/sqrt(dx*dx + dy*dy)
++			NoDecay							// decay factor is 1 always
++		};
++		
++		/**
++		 * the selected method used
++		 */
++		enum
++		{
++			InverseVideoOnSelection = 0,	// when selected, the halo is on I/Video
++			SelectionColorsOnSelection		// the halo is made w/ selected colors
++		};
++
++		/**
++		 * The default constructor
++		 * Creates an object with default settings for all the variabless.
++		 */
++		FxShadowData();
++		
++		// get methods
++		virtual int algorithm();
++		virtual double multiplicationFactor();
++		virtual double maxOpacity();
++		virtual int offsetX();
++		virtual int offsetY();
++		virtual int thickness();
++		virtual int selectionType();
++		
++		// set methods
++		virtual void setDefaults();
++		
++		virtual void setAlgorithm(int);
++		virtual void setMultiplicationFactor(double);
++		virtual void setMaxOpacity(double);
++		virtual void setOffsetX(int);
++		virtual void setOffsetY(int);
++		virtual void setThickness(int);
++		virtual void setSelectionType(int);
++
++	private:
++		
++		/*
++		 * The employed algorithm (see fxshadow.h)
++		 */
++		int _algorithm;
++
++		/**
++		 * This is the multiplication factor for the resulted shadow
++		 */
++		double _multiplicationFactor;
++
++		/**
++		 * The maximum permitted opacity for the shadow
++		 */
++		double _maxOpacity;
++
++		/*
++		 * offsetX and offsetY are the x/y offsets of the shadow with
++		 * the mention that 0,0 is a centered shadow.
++		 */
++		int _offsetX;
++		int _offsetY;
++
++		/*
++		 * The shadow thickness:
++		 * shadow is this many pixels thicker than the text.
++		 */
++		int _thickness;
++		
++		/*
++		 * If the value is InverseVideoOnSelection, then the fg/bg
++		 * colours are swapped when the element is selected.
++		 * Otherwise, the selected fg/bg colors are used for text
++		 * as well
++		 */
++		int _selectionType;
++	
++};
++
++
++#endif
+diff -Nur -x Makefile -x Makefile.in -x '.*' -x CVS /home/kde-devel/work/cvs_original/kdelibs/kdefx/fxshadow.cpp /home/kde-devel/work/cvs/kdelibs/kdefx/fxshadow.cpp
+--- kdelibs/kdefx/fxshadow.cpp	1970-01-01 00:00:00.000000000 +0000
++++ kdelibs/kdefx/fxshadow.cpp	2003-02-11 12:36:55.000000000 +0000
+@@ -0,0 +1,187 @@
++/* This file is proposed to be part of the KDE libraries.
++ Copyright (C) 2003 Laur Ivan <laurivan@eircom.net>
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions
++are met:
++
++1. Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++2. Redistributions in binary form must reproduce the above copyright
++   notice, this list of conditions and the following disclaimer in the
++   documentation and/or other materials provided with the distribution.
++
++THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
++IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
++OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
++INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++*/
++
++// $Id$
++
++#include <qcolor.h>
++
++#include "fxdata.h"
++#include "fxshadow.h"
++
++FxShadow::FxShadow()
++{
++}
++
++FxShadow::FxShadow(const FxShadowData &fx)
++{
++	setFxShadowData(fx);
++}
++
++void FxShadow::setFxShadowData(const FxShadowData &fx)
++{
++	m_fxShadowData = fx;
++}
++
++FxShadowData &FxShadow::fxShadowData() 
++{
++	return m_fxShadowData;
++}
++
++QImage FxShadow::makeShadow(const QPixmap textPixmap, const QColor &bgColor)
++{
++	QImage result;
++
++	// create a new image for for the shaddow
++	int w = textPixmap.width();
++	int h = textPixmap.height();
++
++	// avoid calling these methods for every pixel
++	int bgRed = bgColor.red();
++	int bgGreen = bgColor.green();
++	int bgBlue = bgColor.blue();
++	
++	int thick = m_fxShadowData.thickness() >> 1;
++
++	double alphaShadow;
++
++	/*
++	*	This is the source pixmap/
++	*/
++	QImage img = textPixmap.convertToImage().convertDepth(32);
++	
++	/*
++	*	Resize the image if necessary
++	*/
++	if ((result.width() != w) || (result.height() != h))
++	{
++		result.create(w, h, 32);
++	} 
++
++	result.fill(0); // all black
++	result.setAlphaBuffer(true);
++
++	for (int i = thick; i < w - thick; i++)
++	{
++		for (int j = thick; j < h - thick; j++)
++		{
++			switch (m_fxShadowData.algorithm())
++			{
++				case FxShadowData::DoubleLinearDecay:
++					alphaShadow = doubleLinearDecay(img, i, j);
++					break;
++				case FxShadowData::RadialDecay:
++					alphaShadow = radialDecay(img, i, j);
++					break;
++				case FxShadowData::NoDecay:
++					alphaShadow = noDecay(img, i, j);
++					break;
++				case FxShadowData::DefaultDecay:
++				default:
++					alphaShadow = defaultDecay(img, i, j);
++			}
++			
++			alphaShadow = (alphaShadow > m_fxShadowData.maxOpacity()) ? m_fxShadowData.maxOpacity() : alphaShadow;
++
++			// update the shadow's i,j pixel.
++			result.setPixel(i,j, qRgba(bgRed, bgGreen , bgBlue, (int) alphaShadow));
++		}
++	}
++	return result;
++}
++
++// Multiplication factor for pixels directly above, under, or next to the text
++#define AXIS_FACTOR 2.0
++// Multiplication factor for pixels diagonal to the text
++#define DIAGONAL_FACTOR 1.0
++
++double FxShadow::defaultDecay(QImage source, int i, int j)
++{
++	double alphaShadow;
++	alphaShadow =(qGray(source.pixel(i-1,j-1)) * DIAGONAL_FACTOR +
++								qGray(source.pixel(i-1,j  )) * AXIS_FACTOR +
++								qGray(source.pixel(i-1,j+1)) * DIAGONAL_FACTOR +
++								qGray(source.pixel(i  ,j-1)) * AXIS_FACTOR +
++								0                         + 
++								qGray(source.pixel(i  ,j+1)) * AXIS_FACTOR +
++								qGray(source.pixel(i+1,j-1)) * DIAGONAL_FACTOR +
++								qGray(source.pixel(i+1,j  )) * AXIS_FACTOR +
++								qGray(source.pixel(i+1,j+1)) * DIAGONAL_FACTOR) / m_fxShadowData.multiplicationFactor();
++								
++	return alphaShadow;
++}
++
++double FxShadow::doubleLinearDecay(QImage source, int i, int j)
++{
++	printf("img: %p, %d %d\n", (char *) &source, i, j);
++	return 0.0;
++}
++
++double FxShadow::radialDecay(QImage source, int i, int j)
++{
++	printf("img: %p, %d %d\n", (char *) &source, i, j);
++	return 0.0;
++}
++
++double FxShadow::noDecay(QImage source, int i, int j)
++{
++	// create a new image for for the shaddow
++	int w = source.width();
++	int h = source.height();
++	int sx, sy;
++//	int thick = m_fxShadowData.thickness() >> 1;
++
++	double alphaShadow = 0;
++	double opacity = 0;
++	for (int k = 1; k <= m_fxShadowData.thickness(); k++) {
++		/* Generate a shadow THICKNESS pixels thicker
++		* on either side than the text image. Ensure
++		* that i +/- k and j +/- k are within the
++		* bounds of the text pixmap.
++		*/
++		opacity = 0;
++		for (int l = -k; l <= k; l++) {
++			if (i < k)
++				sx = 0;
++			else if (i >= w - k)
++				sx = w - 1;
++			else
++				sx = i + l;
++
++			for (int m = -k; m <= k; m++) {
++				if (j < k)
++					sy = 0;
++				else if (j >= h - k)
++					sy = h - 1;
++				else
++					sy = j + m;
++
++				opacity += qGray(source.pixel(sx, sy));
++			}
++		}
++		alphaShadow += opacity / m_fxShadowData.multiplicationFactor();
++	}
++	return alphaShadow;
++}
+diff -Nur -x Makefile -x Makefile.in -x '.*' -x CVS /home/kde-devel/work/cvs_original/kdelibs/kdefx/fxshadow.h /home/kde-devel/work/cvs/kdelibs/kdefx/fxshadow.h
+--- kdelibs/kdefx/fxshadow.h	1970-01-01 00:00:00.000000000 +0000
++++ kdelibs/kdefx/fxshadow.h	2003-02-11 12:50:29.000000000 +0000
+@@ -0,0 +1,100 @@
++/* This file is proposed to be part of the KDE libraries.
++ Copyright (C) 2003 Laur Ivan <laurivan@eircom.net>
++
++Redistribution and use in source and binary forms, with or without
++modification, are permitted provided that the following conditions
++are met:
++
++1. Redistributions of source code must retain the above copyright
++   notice, this list of conditions and the following disclaimer.
++2. Redistributions in binary form must reproduce the above copyright
++   notice, this list of conditions and the following disclaimer in the
++   documentation and/or other materials provided with the distribution.
++
++THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
++IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
++OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
++IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
++INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
++NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
++DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
++THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
++(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
++THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++*/
++
++// $Id$
++
++#ifndef __FX_SHADOW
++#define __FX_SHADOW
++
++#include <qpixmap.h>
++#include <qimage.h>
++#include <qcolor.h>
++
++#include "fxdata.h"
++
++/**
++ *	This class implements the shadow algorithm(s). It uses a FxData
++ *	object for its parameters. Note that the shadow algorithm is using the
++ *  luminosity of the original pixmap for the shadow one.
++ */
++class FxShadow
++{
++	public:
++		FxShadow();
++		FxShadow(const FxShadowData &fx);
++		
++		/*
++		 * set/get the FxShadowData object
++		 */
++		void setFxShadowData(const FxShadowData &fx);
++		FxShadowData &fxShadowData();
++		
++		/*
++		 * Make shadow!
++		 *
++		 * textPixmap is the original pixmap where a (white) text is drawn.
++		 * bgColor is the color used for the shadow.
++		 */
++		QImage makeShadow(const QPixmap textPixmap, const QColor &bgColor);
++		
++		/**
++		 * Aiding method to resize the original pixmap
++		 */
++		void resizePixmap(QPixmap &textPixamp, QRect textRect);
++		
++		/**
++		 * Aiding method returning the start of the shadow text
++		 */
++		QPoint &textStartPoint();
++	
++	private:
++		FxShadowData m_fxShadowData;
++		
++		/*
++		 * a simple algorithm with 3 pixels thickness
++		 */
++		double defaultDecay(QImage source, int x, int y);
++
++		/*
++		 * a slower algorithm where the influence of a pixel
++		 * is  qGray(px)/(abs(dx) + abs(dy) +1).
++		 */
++		double doubleLinearDecay(QImage source, int x, int y);
++
++		/*
++		 * a very slow algorithm where the influence of a pixel
++		 * is  qGray(px)/(sqrt(sqr(dx) + sqr(dy)) +1).
++		 */
++		double radialDecay(QImage source, int x, int y);
++		
++		/*
++		 * a nice/fast algorithm proposed by Bernardo Hung
++		 */
++		double noDecay(QImage source, int x, int y);
++	
++};
++
++#endif
