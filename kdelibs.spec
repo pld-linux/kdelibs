@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -29,6 +29,7 @@ Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-kstandarddirs.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-defaultfonts.patch
+Patch3:         %{name}-use_system_sgml.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -40,6 +41,9 @@ BuildRequires:	automake
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	gettext-devel
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	docbook-dtd42-xml
+BuildRequires:	docbook-style-xsl
 BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
@@ -61,6 +65,9 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	arts >= 12:1.2.0.%{_snap}
+Requires:	docbook-dtd412-xml
+Requires:	docbook-dtd42-xml
+Requires:	docbook-style-xsl
 Requires:	qt >= 6:3.2.1-4
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -222,6 +229,7 @@ TODO.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 
