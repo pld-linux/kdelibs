@@ -7,7 +7,7 @@ Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
 Vendor:		The KDE Team
-Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/distribution/2.0Beta4/tar/src/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-install-catalog.patch
 BuildRequires:	qt-devel >= 2.2.0_beta2
 BuildRequires:	XFree86-devel
