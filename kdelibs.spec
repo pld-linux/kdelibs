@@ -48,8 +48,8 @@ BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64 ppc
 BuildRequires:	alsa-lib-devel
 %endif
-BuildRequires:	arts-devel
-BuildRequires:	arts-qt
+BuildRequires:	arts-devel >= 1.0.0
+BuildRequires:	arts-qt >= 1.0.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
