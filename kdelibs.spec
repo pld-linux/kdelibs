@@ -26,6 +26,7 @@ Source0:	http://ftp.man.szczecin.pl/pub/kde/%{_state}/3.3/src/%{name}-%{_ver}.ta
 # Source0-md5:	1c208724987433fc1929d22928c1a358
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	f89739b063eca075bf4ac85f559eea77
+Patch100:	%{name}-branch.diff.patch
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
@@ -253,6 +254,7 @@ demona.
 
 %prep
 %setup -q -a1
+%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
