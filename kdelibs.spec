@@ -17,7 +17,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/snapshots/current/kdelibs-%{REV}.tar.bz2
 BuildRequires:	qt-devel >= 2.0
 BuildRequires:	XFree86-devel
 BuildRequires:	libstdc++-devel >= 2.0
-#BuildRequires:	kde-qt-addon-devel
+BuildRequires:	kde-qt-addon-devel
 BuildRequires:	kdesupport-mimelib-devel = %{version}
 BuildRequires:	kdesupport-odbc-devel = %{version}
 BuildRequires:	kdesupport-uulib-devel = %{version}
