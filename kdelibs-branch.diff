@@ -1007,6 +1007,54 @@ diff -urN -x CVS kdelibs.orig/debian/rules kdelibs/debian/rules
  #	dh_installdebconf
  #	dh_installlogrotate
  #	dh_installemacsen
+diff -urN -x CVS kdelibs.orig/kate/data/changelog.xml kdelibs/kate/data/changelog.xml
+--- kdelibs.orig/kate/data/changelog.xml	Sat Dec  7 21:21:32 2002
++++ kdelibs/kate/data/changelog.xml	Sun Jun  6 15:17:27 2004
+@@ -1,21 +1,28 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE language SYSTEM "language.dtd">
+-<language name="ChangeLog" version="1.01" kateversion="2.1" section="Other" extensions="ChangeLog" mimetype="">
+-        <highlighting>
+-          <contexts>
+-                <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+-                <RegExpr attribute="Keyword" context="#stay" String="^\d\d\d\d\s*-\s*\d\d\s*-\s*\d\d.*$"/>
+-                </context>
+-          </contexts>
+-          <itemDatas>
+-                <itemData name="Normal Text" defStyleNum="dsNormal"/>
+-                <itemData name="Keyword" defStyleNum="dsKeyword"/>
+-                <itemData name="Identifier" defStyleNum="dsOthers"/>
+-                <itemData name="Types" defStyleNum="dsDataType"/>
+-                <itemData name="String" defStyleNum="dsString"/>
+-                <itemData name="Comment" defStyleNum="dsComment"/>
+-          </itemDatas>
+-        </highlighting>
++<language name="ChangeLog" version="1.02" kateversion="2.1" section="Other" extensions="ChangeLog" mimetype="" author="Dominik Haumann (dhdev@gmx.de)" license="LGPL">
++  <highlighting>
++    <contexts>
++      <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
++        <RegExpr attribute="Date" context="line" String="^\d\d\d\d\s*-\s*\d\d\s*-\s*\d\d\s*"/>
++        <RegExpr attribute="Entry" context="entry" String="^\s*\*\s+"/>
++      </context>
++      <context attribute="Normal Text" lineEndContext="#pop" name="line">
++        <RegExpr attribute="Name" context="#stay" String="(\w\s*)+"/> 
++        <RegExpr attribute="E-Mail" context="#pop" String="&lt;.*&gt;\s*$"/>
++      </context>
++      <context attribute="Normal Text" lineEndContext="#pop" name="entry">
++        <RegExpr attribute="Entry" context="#pop" String=".*:" minimal="true"/>
++      </context> 
++    </contexts>
++    <itemDatas>
++      <itemData name="Normal Text" defStyleNum="dsNormal"/>
++      <itemData name="Name" defStyleNum="dsKeyword"/>
++      <itemData name="E-Mail" defStyleNum="dsOthers"/>
++      <itemData name="Date" defStyleNum="dsDataType"/>
++      <itemData name="Entry" defStyleNum="dsDecVal"/>
++    </itemDatas>
++  </highlighting>
+   <general>
+     <keywords casesensitive="1" />
+   </general>
 diff -urN -x CVS kdelibs.orig/kate/part/kateviewinternal.cpp kdelibs/kate/part/kateviewinternal.cpp
 --- kdelibs.orig/kate/part/kateviewinternal.cpp	Sat May 29 12:40:56 2004
 +++ kdelibs/kate/part/kateviewinternal.cpp	Tue Jun  1 14:36:56 2004
@@ -1022,13 +1070,13 @@ diff -urN -x CVS kdelibs.orig/kate/part/kateviewinternal.cpp kdelibs/kate/part/k
  
 diff -urN -x CVS kdelibs.orig/kde.pot kdelibs/kde.pot
 --- kdelibs.orig/kde.pot	Sun May 30 10:36:17 2004
-+++ kdelibs/kde.pot	Sat Jun  5 09:19:39 2004
++++ kdelibs/kde.pot	Mon Jun  7 10:27:19 2004
 @@ -6,7 +6,7 @@
  msgid ""
  msgstr ""
  "Project-Id-Version: PACKAGE VERSION\n"
 -"POT-Creation-Date: 2004-05-30 10:36+0200\n"
-+"POT-Creation-Date: 2004-06-05 09:19+0200\n"
++"POT-Creation-Date: 2004-06-07 10:27+0200\n"
  "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
  "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
  "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1134,6 +1182,27 @@ diff -urN -x CVS kdelibs.orig/kdeui/kmainwindow.cpp kdelibs/kdeui/kmainwindow.cp
      // Now read the previously saved settings
      applyMainWindowSettings( KGlobal::config(), groupName );
  }
+diff -urN -x CVS kdelibs.orig/kdeui/ktabwidget.cpp kdelibs/kdeui/ktabwidget.cpp
+--- kdelibs.orig/kdeui/ktabwidget.cpp	Thu Oct  9 00:10:45 2003
++++ kdelibs/kdeui/ktabwidget.cpp	Sat Jun  5 22:45:15 2004
+@@ -167,12 +167,14 @@
+     QPoint point( p );
+     QSize size( tabBar()->sizeHint() );
+     if ( ( tabPosition()==Top && point.y()< size.height() ) || ( tabPosition()==Bottom && point.y()>(height()-size.height() ) ) ) {
+-#if QT_VERSION >= 0x030200
+ 	// QTabWidget::cornerWidget isn't const even it doesn't write any data ;(
+ 	KTabWidget *that = const_cast<KTabWidget*>(this);
+-        if ( that->cornerWidget( TopLeft ) )
++        QWidget *leftcorner = that->cornerWidget( TopLeft );
++        if ( leftcorner ) {
++            if ( point.x()<=leftcorner->width() )
++                return true;
+             point.setX( point.x()-size.height() );
+-#endif
++        }
+ 	if ( tabPosition()==Bottom )
+             point.setY( point.y()-( height()-size.height() ) );
+         QTab *tab = tabBar()->selectTab( point);
 diff -urN -x CVS kdelibs.orig/kdeui/ktoolbar.cpp kdelibs/kdeui/ktoolbar.cpp
 --- kdelibs.orig/kdeui/ktoolbar.cpp	Tue May 25 15:37:16 2004
 +++ kdelibs/kdeui/ktoolbar.cpp	Tue Jun  1 18:46:01 2004
@@ -1184,3 +1253,272 @@ diff -urN -x CVS kdelibs.orig/kio/kio/job.cpp kdelibs/kio/kio/job.cpp
              files.remove( it );
              m_processedFiles++;
              break;
+diff -urN -x CVS kdelibs.orig/kio/kssl/ksslcertificatehome.cc kdelibs/kio/kssl/ksslcertificatehome.cc
+--- kdelibs.orig/kio/kssl/ksslcertificatehome.cc	Fri Feb 28 01:33:58 2003
++++ kdelibs/kio/kssl/ksslcertificatehome.cc	Sun Jun  6 17:33:31 2004
+@@ -71,8 +71,8 @@
+ 
+ 
+ // KDE 4: make it const QString &
+-void KSSLCertificateHome::addCertificate(KSSLPKCS12 *cert, QString passToStore) {
+-   if (!cert) return;
++bool KSSLCertificateHome::addCertificate(KSSLPKCS12 *cert, QString passToStore) {
++   if (!cert) return false;
+ 
+ KSimpleConfig cfg("ksslcertificates", false);
+ 
+@@ -80,8 +80,36 @@
+    cfg.writeEntry("PKCS12Base64", cert->toString());
+    cfg.writeEntry("Password", passToStore);
+    cfg.sync();
++return true;
+ }
+ 
++bool KSSLCertificateHome::deleteCertificate(const QString &filename, const QString &password) {
++KSSLPKCS12 *pkcs = KSSLPKCS12::loadCertFile(filename, password);
++
++   if (!pkcs) return false;
++
++   bool ok = deleteCertificate(pkcs);
++   delete pkcs;
++
++return ok;
++}
++
++bool KSSLCertificateHome::deleteCertificate(KSSLPKCS12 *cert) {
++   if (!cert) return false;
++   
++   return deleteCertificateByName(cert->name());
++}
++
++bool KSSLCertificateHome::deleteCertificateByName(const QString &name) {
++   if (name.isEmpty()) return false;
++
++KSimpleConfig cfg("ksslcertificates", false);
++
++   bool ok = cfg.deleteGroup(name);
++   cfg.sync();
++
++return ok;
++}
+ 
+ // KDE 4: make it const QString &
+ KSSLPKCS12* KSSLCertificateHome::getCertificateByName(QString name, QString password) {
+diff -urN -x CVS kdelibs.orig/kio/kssl/ksslcertificatehome.h kdelibs/kio/kssl/ksslcertificatehome.h
+--- kdelibs.orig/kio/kssl/ksslcertificatehome.h	Tue Feb 18 15:52:28 2003
++++ kdelibs/kio/kssl/ksslcertificatehome.h	Sun Jun  6 17:33:31 2004
+@@ -65,7 +65,15 @@
+ 	 *   Returns: true on success, false error
+ 	 */
+ 	static bool addCertificate(QString filename, QString password, bool storePass = false);
+-	static void addCertificate(KSSLPKCS12 *cert, QString passToStore = "");
++	static bool addCertificate(KSSLPKCS12 *cert, QString passToStore = QString::null);
++
++	/*
++	 *   These deletes a certificate from the repository.
++	 *   Returns: true on success, false error
++	 */
++	static bool deleteCertificate(const QString &filename, const QString &password);
++	static bool deleteCertificate(KSSLPKCS12 *cert);
++	static bool deleteCertificateByName(const QString &name);
+  
+ 	/*
+ 	 *   Returns the list of certificates available
+diff -urN -x CVS kdelibs.orig/kio/misc/kssld/Makefile.am kdelibs/kio/misc/kssld/Makefile.am
+--- kdelibs.orig/kio/misc/kssld/Makefile.am	Tue Dec 10 10:45:40 2002
++++ kdelibs/kio/misc/kssld/Makefile.am	Sun Jun  6 17:33:30 2004
+@@ -21,7 +21,7 @@
+ kde_module_LTLIBRARIES = kded_kssld.la
+ 
+ kded_kssld_la_LDFLAGS = $(all_libraries) -module -avoid-version
+-kded_kssld_la_LIBADD = $(LIB_KIO)
++kded_kssld_la_LIBADD = $(LIB_KIO) $(top_builddir)/kio/kssl/libkssl.la
+ kded_kssld_la_SOURCES = kssld.cpp kssld.skel
+ 
+ METASOURCES = AUTO
+diff -urN -x CVS kdelibs.orig/kio/misc/kssld/kssld.cpp kdelibs/kio/misc/kssld/kssld.cpp
+--- kdelibs.orig/kio/misc/kssld/kssld.cpp	Sat Jan 24 22:21:22 2004
++++ kdelibs/kio/misc/kssld/kssld.cpp	Sun Jun  6 17:33:30 2004
+@@ -31,6 +31,8 @@
+ #include <ksimpleconfig.h>
+ #include <ksslcertchain.h>
+ #include <ksslcertificate.h>
++#include <ksslcertificatehome.h>
++#include <ksslpkcs12.h>
+ #include <ksslx509map.h>
+ #include <qptrlist.h>
+ #include <sys/types.h>
+@@ -97,7 +99,7 @@
+ 				policy = KSSLCertificateCache::Unknown; 
+ 				permanent = true;
+ 			}
+-		~KSSLCNode() { if (cert) delete cert; }
++		~KSSLCNode() { delete cert; }
+ };
+ 
+ 
+@@ -203,7 +205,7 @@
+ 		n->permanent = cfg->readBoolEntry("Permanent");
+ 		n->expires = cfg->readDateTimeEntry("Expires");
+ 		n->hosts = cfg->readListEntry("Hosts");
+-		newCert->chain().setChain(cfg->readListEntry("Chain"));
++		newCert->chain().setCertChain(cfg->readListEntry("Chain"));
+ 		certList.append(n); 
+ 		searchAddCert(newCert);
+ 	}
+@@ -635,6 +637,78 @@
+ }
+ 
+ 
++/**
++  * @internal
++  * Returns a list of certificates as QStrings read from the given file
++  */
++static QStringList caReadCerticatesFromFile(QString filename) {
++
++	QStringList certificates;
++	QString certificate, temp;
++	QFile file(filename);
++
++	if (!file.open(IO_ReadOnly))
++		return certificates;
++
++	while (!file.atEnd()) {
++		file.readLine(temp, 999);
++		if (temp.startsWith("-----BEGIN CERTIFICATE-----")) {
++			certificate = QString::null;
++			continue;
++		}
++
++		if (temp.startsWith("-----END CERTIFICATE-----")) {
++			certificates.append(certificate);
++			certificate = QString::null;
++			continue;
++		}
++
++		certificate += temp.stripWhiteSpace();
++	}
++
++	file.close();
++
++	return certificates;
++}
++
++bool KSSLD::caAddFromFile(QString filename, bool ssl, bool email, bool code) {
++
++	QStringList certificates;
++	certificates = caReadCerticatesFromFile(filename);
++	if (certificates.isEmpty())
++		return false;
++
++	bool ok = true;
++
++	for (QStringList::Iterator it = certificates.begin();
++					it != certificates.end(); ++it ) {
++		ok &= caAdd(*it, ssl, email, code);
++	}
++
++	return ok;
++}
++
++bool KSSLD::caRemoveFromFile(QString filename) {
++
++	QStringList certificates;
++	certificates = caReadCerticatesFromFile(filename);
++	if (certificates.isEmpty())
++		return false;
++
++	bool ok = true;
++
++	for (QStringList::Iterator it = certificates.begin();
++					it != certificates.end(); ++it ) {
++		QString certificate = *it;
++		KSSLCertificate *x = KSSLCertificate::fromString(certificate.local8Bit());
++		ok &= x && caRemove(x->getSubject());
++		delete x;
++	}
++
++	return ok;
++}
++
++
+ QStringList KSSLD::caList() {
+ QStringList x;
+ KConfig cfg("ksslcalist", true, false);
+@@ -810,7 +884,41 @@
+ 
+ ///////////////////////////////////////////////////////////////////////////
+ 
++//
++//  Certificate Home methods
++//
++
++QStringList KSSLD::getHomeCertificateList() {
++	return KSSLCertificateHome::getCertificateList();
++}
+ 
++bool KSSLD::addHomeCertificateFile(QString filename, QString password, bool storePass) {
++	return KSSLCertificateHome::addCertificate(filename, password, storePass);
++}
++
++bool KSSLD::addHomeCertificatePKCS12(QString base64cert, QString passToStore) {
++	bool ok;
++	KSSLPKCS12 *pkcs12 = KSSLPKCS12::fromString(base64cert, passToStore);
++	ok = KSSLCertificateHome::addCertificate(pkcs12, passToStore);
++	delete pkcs12;
++	return ok;
++}
++
++bool KSSLD::deleteHomeCertificateByFile(QString filename, QString password) {
++	return KSSLCertificateHome::deleteCertificate(filename, password);
++}
++
++bool KSSLD::deleteHomeCertificateByPKCS12(QString base64cert, QString password) {
++	bool ok;
++	KSSLPKCS12 *pkcs12 = KSSLPKCS12::fromString(base64cert, password);
++	ok = KSSLCertificateHome::deleteCertificate(pkcs12);
++	delete pkcs12;
++	return ok;
++}
++
++bool KSSLD::deleteHomeCertificateByName(QString name) {
++	return KSSLCertificateHome::deleteCertificateByName(name);
++}
+ 
+ 
+ 
+diff -urN -x CVS kdelibs.orig/kio/misc/kssld/kssld.h kdelibs/kio/misc/kssld/kssld.h
+--- kdelibs.orig/kio/misc/kssld/kssld.h	Sat Jan 24 22:21:22 2004
++++ kdelibs/kio/misc/kssld/kssld.h	Sun Jun  6 17:33:30 2004
+@@ -99,8 +99,12 @@
+ 
+   bool caAdd(QString certificate, bool ssl, bool email, bool code);
+ 
++  bool caAddFromFile(QString filename, bool ssl, bool email, bool code);
++
+   bool caRemove(QString subject);
+ 
++  bool caRemoveFromFile(QString filename);
++
+   QString caGetCert(QString subject);
+ 
+   bool caSetUse(QString subject, bool ssl, bool email, bool code);
+@@ -113,6 +117,18 @@
+   //  Certificate Home methods
+   //
+ 
++  QStringList getHomeCertificateList();
++
++  bool addHomeCertificateFile(QString filename, QString password, bool storePass /*=false*/);
++
++  bool addHomeCertificatePKCS12(QString base64cert, QString passToStore);
++
++  bool deleteHomeCertificateByFile(QString filename, QString password);
++
++  bool deleteHomeCertificateByPKCS12(QString base64cert, QString password);
++
++  bool deleteHomeCertificateByName(QString name);
++
+ private:
+ 
+   void cacheClearList();
