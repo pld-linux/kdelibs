@@ -41,8 +41,8 @@ Patch5:		%{name}-idn.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 %if %{with xlibs}
-BuildRequires:	libICE-devel
 BuildRequires:	libXrender-devel
+BuildRequires:	libXt-devel
 %else
 BuildRequires:	XFree86-devel >= 4.2.99
 BuildRequires:	xrender-devel
@@ -327,16 +327,13 @@ rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
 
 %build
 cp /usr/share/automake/config.sub admin
-
 export kde_htmldir=%{_kdedocdir}
-
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
-	--x-includes=%{_includedir}/X11 \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
