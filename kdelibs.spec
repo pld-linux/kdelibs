@@ -9,7 +9,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.4
-Release:	1
+Release:	2
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -240,6 +240,7 @@ CXXFLAGS="%{rpmcflags}"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-final \
+	--disable-rpath \
 %ifarch %{ix86}
 	--enable-fast-malloc=full \
 %endif
