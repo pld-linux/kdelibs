@@ -34,6 +34,7 @@ Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 ##Patch4:		%{name}-add_japanese_utf8_detection.patch
 Patch5:		%{name}-idn.patch
+Patch6:		kde-docs_fix.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 %if %{with xlibs}
@@ -239,6 +240,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch3 -p1
 ###%patch4 -p1
 %patch5 -p0
+%patch6 -p0
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
