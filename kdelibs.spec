@@ -75,7 +75,6 @@ Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	qt >= 6:3.2.1-4
-URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
