@@ -14,7 +14,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.4
-Release:	7
+Release:	8
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -295,7 +295,8 @@ bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
 # moved
 rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,cdtrack,desktop,html,image,network,scanner,socket,sound}.png
 # resized
-# Note: arts is moved from kdebase, encrypted should be removed only from actions
+# Note: arts and penguin are moved from kdebase, encrypted should be removed
+#       only from actions
 rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{editcopy,history,launch,spellcheck}.png
 rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/actions/encrypted.png
 %endif
