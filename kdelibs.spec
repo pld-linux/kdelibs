@@ -31,7 +31,7 @@ Patch2:         %{name}-kcursor.patch
 Patch3:         %{name}-kdefx.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
-BuildRequires:	XFree86-devel
+BuildRequires:	XFree86-devel >= 4.2.99
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
@@ -47,27 +47,29 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
+BuildRequires:	libtool
+BuildRequires:	libvorbis-devel
+BuildRequires:	libxml2-devel >= 2.4.9
+BuildRequires:	libxml2-progs
+BuildRequires:	libxslt-devel >= 1.0.7
+BuildRequires:	mad-devel
 # For Netscape plugin support in Konqueror.
 BuildRequires:	motif-devel
-BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.9
-BuildRequires:	libxslt-devel >= 1.0.7
 %if %{?_with_ra:1}0
-BuildRequires:	openssl-devel = 0.9.6i
+BuildRequires:	openssl-devel >= 0.9.6i
 %else
 BuildRequires:	openssl-devel >= 0.9.7
 %endif
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
-BuildRequires:	libxml2-progs
-BuildRequires:	libvorbis-devel
-BuildRequires:	mad-devel
-BuildRequires:	XFree86-devel >= 4.2.99
+Requires:	XFree86 >= 4.2.99
 Requires:	applnk
 Requires:	arts >= 1.1-1
+%if %{?_with_ra:1}0
+Requires:	openssl >= 0.9.6i
+%endif
 Requires:	qt >= 3.1-3
-Requires:	XFree86 >= 4.2.99
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
