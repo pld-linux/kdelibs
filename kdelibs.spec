@@ -548,6 +548,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/config.kcfg
 %{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
+# messing one
+%exclude %{_datadir}/mimelnk/application/vnd.ms-asf.desktop
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kconfiguredialog
 %dir %{_datadir}/services/kresources
