@@ -6,7 +6,7 @@ Summary(pl):	K Desktop Environment - biblioteki
 Summary(pt_BR):	Bibliotecas de fundação do KDE
 Name:		kdelibs
 Version:	2.2.2
-Release:	5
+Release:	6
 Epoch:		6
 License:	LGPL
 Vendor:		The KDE Team
@@ -244,7 +244,8 @@ mv -f config.h{.tmp,}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes}
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48x48}/{actions,apps,devices,filesystems,mimetypes} \
+	%{_datadir}/templates/.source
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
@@ -318,6 +319,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %{_datadir}/services
 %{_datadir}/servicetypes
+%{_datadir}/templates
 %dir /usr/share/doc/kde
 %dir %{_htmldir}
 %lang(en) %dir %{_htmldir}/en
