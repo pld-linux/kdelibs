@@ -19,14 +19,14 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.3
+Release:	0.6
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	82c265de78d53c7060a09c5cb1a78942
-Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/3.1.3/kde-i18n-%{name}-3.1.3.tar.bz2
-# Source1-md5:	1c29f6df4c7456ba7418f48930b48796
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
@@ -36,7 +36,7 @@ Patch4:		%{name}-fonts.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
-#BuildRequires:	XFree86-devel >= 4.2.99
+BuildRequires:	XFree86-devel
 %ifnarch sparc sparc64
 %{!?_without_alsa:BuildRequires:	alsa-lib-devel}
 %endif
