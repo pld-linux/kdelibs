@@ -161,8 +161,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(no)           /usr/X11R6/share/locale/no/charset
 %lang(pl)           /usr/X11R6/share/locale/pl/LC_MESSAGES/kde.mo
 %lang(pl)           /usr/X11R6/share/locale/pl/charset
-%lang(pt_BR)        /usr/X11R6/share/locale/pt_BR/LC_MESSAGES/kde.mo
-%lang(pt_BR)        /usr/X11R6/share/locale/pt_BR/charset
+%lang(pt)           /usr/X11R6/share/locale/pt*/LC_MESSAGES/kde.mo
+%lang(pt)           /usr/X11R6/share/locale/pt*/charset
 %lang(ro)           /usr/X11R6/share/locale/ro/LC_MESSAGES/kde.mo
 %lang(ro)           /usr/X11R6/share/locale/ro/charset
 %lang(ru)           /usr/X11R6/share/locale/ru/LC_MESSAGES/kde.mo
@@ -174,18 +174,23 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sv)           /usr/X11R6/share/locale/sv/LC_MESSAGES/kde.mo
 %lang(sv)           /usr/X11R6/share/locale/sv/charset
 %lang(tr)           /usr/X11R6/share/locale/tr/LC_MESSAGES/kde.mo
-%lang(zh_CN.GB2312) /usr/X11R6/share/locale/zh_CN.GB2312/LC_MESSAGES/kde.mo
-%lang(zh_TW.Big5)   /usr/X11R6/share/locale/zh_TW.Big5/LC_MESSAGES/kde.mo
+%lang(zh)           /usr/X11R6/share/locale/zh*/LC_MESSAGES/kde.mo
 
 %files devel
 %defattr(644,root,root,755)
-%doc mediatool/Documentation
+%doc mediatool/Documentation po/kde.pot
 %attr(755,root,root) /usr/X11R6/bin/*
-/usr/X11R6/lib/lib*.so
+/usr/X11R6/lib/lib*.so*
 /usr/X11R6/lib/lib*.la
 /usr/X11R6/include/*.h
 
 %changelog
+* Tue May 18 1999 Wojciech "Sas" Cieciwa <cieciwa@alpha.zarz.agh.edu.pl>
+  [1.1.1-1]
+- fixes file in devel package,
+- fixes locale locations,
+- added kde.pot to documentation.
+
 * Mon Apr  3 1999 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
   [1.1-2]
 - URL added
@@ -238,5 +243,5 @@ rm -rf $RPM_BUILD_ROOT
 - Buildroot changed to /tmp/%%{name}-%%{version}-root,
 - simplified %post{un} and now ldconfig is -p parameter this sections,
 - added using %%{name} and %%{version} macros in Source,
-- added %lang macros for %{_datadir}/locale/*/LC_MESSAGES/ files,
+- added %lang macros for /usr/share/locale/*/LC_MESSAGES/ files,
 - "rm -rf $RPM_BUILD_ROOT" moved from %prep to %install.
