@@ -42,8 +42,10 @@ Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 %if %{with xlibs}
 BuildRequires:	libICE-devel
+BuildRequires:	libXrender-devel
 %else
 BuildRequires:	XFree86-devel >= 4.2.99
+BuildRequires:	xrender-devel
 %endif
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
@@ -62,7 +64,6 @@ BuildRequires:	ed
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jasper-devel >= 1.600
-BuildRequires:	libXrender-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
