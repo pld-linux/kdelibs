@@ -379,7 +379,7 @@ touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 
 if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
 mv -f $RPM_BUILD_ROOT{%{_kdedocdir}/en/%{name}-%{version}-apidocs,%{_kdedocdir}/en/%{name}-apidocs}
-
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
