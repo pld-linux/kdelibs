@@ -85,6 +85,7 @@ Obsoletes:      kdepim-korganizer < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkcal < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:      kdepim-libkdepim < 3:3.1.91.030918-1
+Obsoletes:      kdesdk-kbabel < 3:3.1.90.030918-1
 #
 
 %define		no_install_post_chrpath		1
