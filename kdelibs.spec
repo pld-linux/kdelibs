@@ -8,7 +8,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	3.0.3
-Release:	1
+Release:	2
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -18,6 +18,7 @@ Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
 Patch2:		%{name}-am.patch
+Patch3:		%{name}-resize-icons.patch
 Icon:		kdelibs.xpm
 # If you want gmcop you will need *working* pkgconfig --- there is no such
 # thing at the moment (2001-08-15) in known universe.
@@ -198,6 +199,7 @@ BÍdzie on wywo≥ywany w celu wy∂wietlenia komunikatÛw daemona.
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p0
+%patch3 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
