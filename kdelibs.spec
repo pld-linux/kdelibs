@@ -83,8 +83,11 @@ Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
 # No longer supported/existing
 Obsoletes:	arts-message
+Obsoletes:	kde-sdscreen-KDEGirl
 Obsoletes:	kde-sdscreen-default
+Obsoletes:	kde-splash-KDEGirl < 03-5
 Obsoletes:	kde-splash-default
+Obsoletes:	kde-splash-keramik
 Obsoletes:	kdeadmin-kwuftpd
 Obsoletes:	kdeadmin-kxconfig
 Obsoletes:	kdebase-kwmtheme
