@@ -18,7 +18,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -27,7 +27,7 @@ Group:		X11/Libraries
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
-Patch2:         %{name}-kcursor.patch
+#Patch2:         %{name}-kcursor.patch
 Patch3:         %{name}-defaultfonts.patch
 #Patch4:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-video-20030314.patch
 #Patch5:	http://rambo.its.tudelft.nl/~ewald/xine/kdelibs-3.1.1-streaming-20030317.patch
@@ -64,11 +64,11 @@ BuildRequires:	openmotif-devel
 %{?_with_nas:BuildRequires:	nas-devel}
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.2-0.030428.1
+BuildRequires:	qt-devel >= 3.2-0.030606.1
 BuildRequires:	zlib-devel
 Requires:	XFree86 >= 4.2.99
 Requires:	arts >= 1.2
-Requires:	qt >= 3.1-3
+Requires:	qt >= 3.2-0.030606-1
 URL:		http://www.kde.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	kdelibs2
@@ -245,7 +245,7 @@ TODO.
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 %patch3 -p1
 #%patch4 -p1
 #%patch5 -p1
