@@ -26,7 +26,7 @@ Release:	3
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde//%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	77cc0b44b43ea239cb3f8e37d7814f1a
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	5d4f4b2bfcdd14ecf3f6af6b44dfc5fd
