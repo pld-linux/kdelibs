@@ -43,9 +43,11 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
+BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	docbook-utils
 BuildRequires:	ed
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
@@ -252,6 +254,12 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów demona.
 %patch1 -p1
 %patch2 -p1
 
+# unwanted manpages (no binaries)
+rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
+# typo
+%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
+	debian/ksendbugmail.sgml
+
 %build
 cp /usr/share/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
@@ -290,6 +298,16 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/wallpapers \
 	$RPM_BUILD_ROOT%{_iconsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
+
+# Debian manpages
+install -d $RPM_BUILD_ROOT%{_mandir}/man1
+cd debian
+for f in *.sgml ; do
+	base="$(basename $f .sgml)"
+	upper="$(echo ${base} | tr a-z A-Z)"
+	db2man $f
+	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
+done
 
 %if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
@@ -642,6 +660,48 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_desktopdir}/kde
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/*
+%{_mandir}/man1/checkXML.1*
+%{_mandir}/man1/cupsdconf.1*
+%{_mandir}/man1/cupsdoprint.1*
+%{_mandir}/man1/dcop.1*
+%{_mandir}/man1/dcopclient.1*
+%{_mandir}/man1/dcopfind.1*
+%{_mandir}/man1/dcopobject.1*
+%{_mandir}/man1/dcopref.1*
+%{_mandir}/man1/dcopserver.1*
+%{_mandir}/man1/dcopserver_shutdown.1*
+%{_mandir}/man1/dcopstart.1*
+%{_mandir}/man1/imagetops.1*
+%{_mandir}/man1/kaddprinterwizard.1*
+%{_mandir}/man1/kbuildsycoca.1*
+%{_mandir}/man1/kconf_update.1*
+%{_mandir}/man1/kcookiejar.1*
+%{_mandir}/man1/kde-config.1*
+%{_mandir}/man1/kded.1*
+%{_mandir}/man1/kdeinit.1*
+%{_mandir}/man1/kdeinit_shutdown.1*
+%{_mandir}/man1/kdeinit_wrapper.1*
+%{_mandir}/man1/kdesu_stub.1*
+%{_mandir}/man1/kdontchangethehostname.1*
+%{_mandir}/man1/kfile.1*
+%{_mandir}/man1/kimage_concat.1*
+%{_mandir}/man1/kinstalltheme.1*
+%{_mandir}/man1/kio_http_cache_cleaner.1*
+%{_mandir}/man1/kio_uiserver.1*
+%{_mandir}/man1/kioslave.1*
+%{_mandir}/man1/klauncher.1*
+%{_mandir}/man1/kmailservice.1*
+%{_mandir}/man1/kpac_dhcp_helper.1*
+%{_mandir}/man1/ksendbugmail.1*
+%{_mandir}/man1/kshell.1*
+%{_mandir}/man1/ksvgtopng.1*
+%{_mandir}/man1/ktelnetservice.1*
+%{_mandir}/man1/kwrapper.1*
+%{_mandir}/man1/lnusertemp.1*
+%{_mandir}/man1/make_driver_db_cups.1*
+%{_mandir}/man1/make_driver_db_lpr.1*
+%{_mandir}/man1/meinproc.1*
+%{_mandir}/man1/preparetips.1*
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
 # this should not be %%lang: other language resources refer to it
@@ -679,6 +739,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
 %{_desktopdir}/kde/kresources.desktop
+%{_mandir}/man1/kab2kabc.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -686,49 +747,52 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
+%attr(755,root,root) %{_libdir}/libDCOP.so
+%attr(755,root,root) %{_libdir}/libartskde.so
+%attr(755,root,root) %{_libdir}/libkabc.so
+%attr(755,root,root) %{_libdir}/libkabc_dir.so
+%attr(755,root,root) %{_libdir}/libkabc_file.so
+#%attr(755,root,root) %{_libdir}/libkabc_ldap.so
+%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
+%attr(755,root,root) %{_libdir}/libkabc_net.so
+%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
+%attr(755,root,root) %{_libdir}/libkdecore.so
+%attr(755,root,root) %{_libdir}/libkdefakes.so
+%attr(755,root,root) %{_libdir}/libkdefx.so
+%attr(755,root,root) %{_libdir}/libkdeprint.so
+%attr(755,root,root) %{_libdir}/libkdeprint_management.so
+%attr(755,root,root) %{_libdir}/libkdesasl.so
+%attr(755,root,root) %{_libdir}/libkdesu.so
+%attr(755,root,root) %{_libdir}/libkdeui.so
+%attr(755,root,root) %{_libdir}/libkhtml.so
+%attr(755,root,root) %{_libdir}/libkio.so
+%attr(755,root,root) %{_libdir}/libkjava.so
+%attr(755,root,root) %{_libdir}/libkjs.so
+%attr(755,root,root) %{_libdir}/libkmdi.so
+%attr(755,root,root) %{_libdir}/libkmediaplayer.so
+%attr(755,root,root) %{_libdir}/libkmid.so
+%attr(755,root,root) %{_libdir}/libkparts.so
+%attr(755,root,root) %{_libdir}/libkresources.so
+%attr(755,root,root) %{_libdir}/libkscreensaver.so
+%attr(755,root,root) %{_libdir}/libkscript.so
+%attr(755,root,root) %{_libdir}/libkspell.so
+%attr(755,root,root) %{_libdir}/libktexteditor.so
+%attr(755,root,root) %{_libdir}/libkutils.so
+%attr(755,root,root) %{_libdir}/libshellscript.so
+%attr(755,root,root) %{_libdir}/libkwalletbackend.so
+%attr(755,root,root) %{_libdir}/libkwalletclient.so
+%attr(755,root,root) %{_libdir}/libvcard.so
+%{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
-%{_libdir}/libkdefakes_nonpic.a
-%{_libdir}/libDCOP.so
-%{_libdir}/libartskde.so
-%{_libdir}/libkabc.so
-%{_libdir}/libkabc_dir.so
-%{_libdir}/libkabc_file.so
-#%{_libdir}/libkabc_ldap.so
-%{_libdir}/libkabc_ldapkio.so
-%{_libdir}/libkabc_net.so
-%{_libdir}/libkatepartinterfaces.so
-%{_libdir}/libkdecore.so
-%{_libdir}/libkdefakes.so
-%{_libdir}/libkdefx.so
-%{_libdir}/libkdeprint.so
-%{_libdir}/libkdeprint_management.so
-%{_libdir}/libkdesasl.so
-%{_libdir}/libkdesu.so
-%{_libdir}/libkdeui.so
-%{_libdir}/libkhtml.so
-%{_libdir}/libkio.so
-%{_libdir}/libkjava.so
-%{_libdir}/libkjs.so
-%{_libdir}/libkmdi.so
-%{_libdir}/libkmediaplayer.so
-%{_libdir}/libkmid.so
-%{_libdir}/libkparts.so
-%{_libdir}/libkresources.so
-%{_libdir}/libkscreensaver.so
-%{_libdir}/libkscript.so
-%{_libdir}/libkspell.so
-%{_libdir}/libktexteditor.so
-%{_libdir}/libkutils.so
-%{_libdir}/libshellscript.so
-%{_libdir}/libkwalletbackend.so
-%{_libdir}/libkwalletclient.so
-%{_libdir}/libvcard.so
+%{_mandir}/man1/dcopidl.1*
+%{_mandir}/man1/dcopidl2cpp.1*
 #%%lang(en) %{_docdir}/kde/HTML/en/kde-%{_snap}-apidocs
 
 %files artsmessage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/artsmessage
+%{_mandir}/man1/artsmessage.1*
 
 #%files kabc
 #%defattr(644,root,root,755)
