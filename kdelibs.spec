@@ -42,6 +42,7 @@ Obsoletes:	kdelibs2-sound
 Obsoletes:	kdelibs-sound
 
 %define         _prefix         /usr/X11R6
+%define		_htmldir	%{_datadir}/doc/kde/HTML
 
 %description
 Libraries for the K Desktop Environment.
@@ -119,11 +120,6 @@ Pliki nag³ówkowe niezbêdne do budowania aplikacji korzystaj±cych z arts.
 %patch4 -p1
 
 %build
-
-# Forcing _whole_ KDE (check kcore/kstdir) to use /usr/share would be too
-# complicated.
-%define		_htmldir	%{_datadir}/doc/kde/HTML
-
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
@@ -153,18 +149,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f kdelibs.lang
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/[^a]*
+
 %attr(755,root,root) %{_libdir}/lib[^a]*.so.*.*
 %attr(755,root,root) %{_libdir}/[^l]*.so
 %attr(755,root,root) %{_libdir}/libkhtmli*.so
 %attr(755,root,root) %{_libdir}/libksasl.so
-# It _have_ to be here. KDE will not work without *.la files.
 %{_libdir}/[^l]*.la
 %{_libdir}/lib[^a]*.la
-%attr(755,root,root) %dir %{_libdir}/kde2
-%attr(755,root,root) %{_libdir}/kde2/*.so
-%{_libdir}/kde2/*.la
+%attr(755,root,root) %{_libdir}/kde2
 %attr(755,root,root) %dir %{_libdir}/mcop
-%attr(755,root,root) %{_bindir}/[^a]*
 
 %config %{_datadir}/config
 %{_htmldir}/default
@@ -202,16 +196,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n arts
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/liba*.so.*.*
 %attr(755,root,root) %{_bindir}/artscat
 %attr(755,root,root) %{_bindir}/artsd
 %attr(755,root,root) %{_bindir}/artsdsp
 %attr(755,root,root) %{_bindir}/artsplay
 %attr(755,root,root) %{_bindir}/artsshell
 %attr(755,root,root) %{_bindir}/artswrapper
+
+%attr(755,root,root) %{_libdir}/liba*.so.*.*
+%attr(755,root,root) %{_libdir}/liba*.la
 %attr(755,root,root) %{_libdir}/mcop/Arts
 %{_libdir}/mcop/*.*
-%attr(755,root,root) %{_libdir}/liba*.la
 
 %files -n arts-devel
 %defattr(644,root,root,755)
