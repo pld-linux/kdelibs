@@ -9,7 +9,7 @@
 	<DefaultDirectoryDirs/>
 	<Menu>
 		<Name>Amusements</Name>
-		<Directory>kde-amusements.directory</Directory>
+		<Directory>amusements.directory</Directory>
 		<Include>
 			<Category>Amusement</Category>
 		</Include>
@@ -146,7 +146,7 @@
 	</Menu>
 	<Menu>
 		<Name>Help</Name>
-		<Directory>kde-help.directory</Directory>
+		<Directory>help.directory</Directory>
 		<Include>
 			<Category>Help</Category>
 		</Include>
@@ -162,7 +162,7 @@
 		</Include>
 		<Menu>
 			<Name>Viewers</Name>
-			<Directory>kde-graphics-viewers.directory</Directory>
+			<Directory>graphics-viewers.directory</Directory>
 			<Include>
 				<And>
 				<Category>Graphics</Category>
@@ -182,7 +182,7 @@
 		</Include>
 		<Menu>
 			<Name>GNOME</Name>
-			<Directory>kde-gnome.directory</Directory>
+			<Directory>gnome.directory</Directory>
 			<Include>
 				<And>
 				<Category>AudioVideo</Category>
@@ -193,7 +193,7 @@
 	</Menu>
 	<Menu>
 		<Name>Network</Name>
-		<Directory>kde-network.directory</Directory>
+		<Directory>network.directory</Directory>
 		<Include>
 			<Category>Network</Category>
 		</Include>
@@ -207,7 +207,7 @@
 	</Menu>
 	<Menu>
 		<Name>Settings</Name>
-		<Directory>kde-settings.directory</Directory>
+		<Directory>settings.directory</Directory>
 		<Include>
 			<And>
 			<Category>Settings</Category>
@@ -216,7 +216,7 @@
 		</Include>
 		<Menu>
 			<Name>GNOME</Name>
-			<Directory>kde-gnome.directory</Directory>
+			<Directory>gnome.directory</Directory>
 			<Include>
 				<And>
 				<Category>Settings</Category>
@@ -226,7 +226,7 @@
 		</Menu>
 		<Menu>
 			<Name>KDE</Name>
-			<Directory>kde-settings-kde.directory</Directory>
+			<Directory>settings-kde.directory</Directory>
 			<Menu>
 			        <Name>Accessibility</Name>
 				<Directory>kde-settings-accessibility.directory</Directory>
@@ -286,7 +286,7 @@
 		</Include>
 		<Menu>
 			<Name>Administration</Name>
-			<Directory>kde-system-administration.directory</Directory>
+			<Directory>system-administration.directory</Directory>
 			<Include>
 				<And>
 				<Category>System</Category>
@@ -296,7 +296,7 @@
 		</Menu>
 		<Menu>
 			<Name>GNOME</Name>
-			<Directory>kde-gnome.directory</Directory>
+			<Directory>gnome.directory</Directory>
 			<Include>
 				<And>
 				<Category>System</Category>
@@ -308,14 +308,14 @@
 	</Menu>
 	<Menu>
 		<Name>Terminals</Name>
-		<Directory>kde-terminals.directory</Directory>
+		<Directory>terminals.directory</Directory>
 		<Include>
 			<Category>TerminalEmulator</Category>
 		</Include>
 	</Menu>
 	<Menu>
 		<Name>Utilities</Name>
-		<Directory>kde-utilities.directory</Directory>
+		<Directory>utilities.directory</Directory>
 		<Include>
 			<And>
 			<Category>Utility</Category>
@@ -326,7 +326,7 @@
 		</Include>
 		<Menu>
 			<Name>GNOME</Name>
-			<Directory>kde-gnome.directory</Directory>
+			<Directory>gnome.directory</Directory>
 			<Include>
 				<And>
 				<Category>Utility</Category>
