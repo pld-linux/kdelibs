@@ -188,8 +188,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/make*
 %attr(755,root,root) %{_bindir}/[ilkps]*
 %attr(755,root,root) %{_libdir}/[bdhk]*.??
-%attr(755,root,root) %{_libdir}/libD*.so.*.*
-%attr(755,root,root) %{_libdir}/libD*.la
 %attr(755,root,root) %{_libdir}/libk[adfhijpst]*.so.*.*
 %attr(755,root,root) %{_libdir}/libk[adfijpt]*.la
 %attr(755,root,root) %{_libdir}/libkhtml.la
@@ -235,6 +233,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/artswrapper
 %attr(755,root,root) %{_libdir}/lib[amqsx]*.so.*.*
 %attr(755,root,root) %{_libdir}/lib[amqsx]*.la
+%attr(755,root,root) %{_libdir}/libD*.so.*.*
+%attr(755,root,root) %{_libdir}/libD*.la
 %attr(755,root,root) %{_libdir}/libkmedia*.so.*.*
 %attr(755,root,root) %{_libdir}/libkmedia*.la
 %{_libdir}/mcop/*
