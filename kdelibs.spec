@@ -19,7 +19,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1.1
+Release:	2
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -29,7 +29,7 @@ Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
 Patch2:         %{name}-kcursor.patch
-#Patch3:		%{name}-vfolders.patch
+Patch3:		%{name}-vfolders.patch
 Icon:		kdelibs.xpm
 # Where is gmcop?!!!
 BuildRequires:	XFree86-devel >= 4.2.99
@@ -64,7 +64,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	qt-devel >= 3.1-3
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
-Requires:	applnk >= 1.6
+Requires:	applnk >= 1.6.2-1
 Requires:	arts >= 1.1-1
 Requires:	qt >= 3.1-3
 URL:		http://www.kde.org/
@@ -218,7 +218,7 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-#%patch3 -p1
+%patch3 -p1
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
