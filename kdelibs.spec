@@ -5,8 +5,8 @@
 %bcond_with	verbose	# verbose build
 
 %define		_state		stable
-%define		_ver		3.3.1
-%define         artsver         13:1.3.1
+%define		_ver		3.3.2
+%define		artsver		13:1.3.2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,26 +17,24 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	8
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	8636c93405b20eceadb12af5c5483508
-# Source0-size:	15573765
+# Source0-md5:	0473fb4c6c2cd2bc0f267cfa201f3fd8
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
-# Source1-size:	3376
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
-Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
-Patch5:         %{name}-appicon_themable.patch
-Patch6:         %{name}-kio_fix.patch
+Patch5:		%{name}-appicon_themable.patch
+Patch6:		%{name}-kio_fix.patch
+Patch7:		post-3.3.2-%{name}-htmlframes2.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel
@@ -220,11 +218,11 @@ pisaniu w³asnych programów wykorzystuj±cych kdelibs.
 
 %description devel -l pt_BR
 Este pacote contém os arquivos de inclusão que são necessários para
-compilar aplicativos KDE. 
+compilar aplicativos KDE.
 
 %description devel -l ru
 üÔÏÔ ÐÁËÅÔ ÓÏÄÅÒÖÉÔ ÈÅÄÅÒÙ, ÎÅÏÂÈÏÄÉÍÙÅ ÄÌÑ ËÏÍÐÉÌÑÃÉÉ ÐÒÏÇÒÁÍÍ ÄÌÑ
-KDE. 
+KDE.
 
 %description devel -l uk
 ãÅÊ ÐÁËÅÔ Í¦ÓÔÉÔØ ÈÅÄÅÒÉ, ÎÅÏÂÈ¦ÄÎ¦ ÄÌÑ ËÏÍÐ¦ÌÑÃ¦§ ÐÒÏÇÒÁÍ ÄÌÑ KDE.
@@ -292,14 +290,14 @@ innych u¿ytkowników lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1 
-%patch5 -p1 
-%patch6 -p1 
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p0
 
 echo "KDE_OPTIONS = nofinal" >> kdeui/Makefile.am
 echo "KDE_OPTIONS = nofinal" >> kjs/Makefile.am
@@ -365,7 +363,7 @@ install -d \
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 cd debian/man
 %{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-    ksendbugmail.sgml
+	ksendbugmail.sgml
 
 for f in *.sgml ; do
 	base="$(basename $f .sgml)"
@@ -377,7 +375,7 @@ cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-%{__sed} -i -e  "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
+%{__sed} -i -e "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
 
 if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
 mv -f $RPM_BUILD_ROOT{%{_kdedocdir}/en/%{name}-%{version}-apidocs,%{_kdedocdir}/en/%{name}-apidocs}
