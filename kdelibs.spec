@@ -6,8 +6,8 @@
 %bcond_with	cvs	# use cvs build dirs instead of supplied sources
 
 %define		_state		snapshots
-%define		_ver		3.2.90
-%define		_snap		040613
+%define		_ver		3.2.91
+%define		_snap		040629
 %define         artsver         13:1.2.0
 %define		_packager	adgor
 
