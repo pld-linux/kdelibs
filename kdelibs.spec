@@ -1,5 +1,9 @@
 # NOTE:	cc1plus takes 136+MB at one time so better prepare a lot of swap
 # 	space.
+#
+# Conditional build:
+# _with_pixmapsubdirs - leave different depth/resolution icons
+#
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
 Summary(ko):	KDE - ¶óÀÌºê·¯¸®.
@@ -9,13 +13,14 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	3.0.4
-Release:	4
+Release:	5
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Source2:	%{name}-extra_icons.tar.bz2
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-libxml_closecallback.patch
 Patch2:		%{name}-am.patch
@@ -43,6 +48,7 @@ BuildRequires:	arts-qt >= 1.0.0
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	awk
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	gettext-devel
@@ -270,7 +276,34 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}/{hicolor,locolor}/{16x16,22x22,32x32,48
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
+# create in toplevel %%{_pixmapsdir} links to icons
+for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/filesystems/{desktop,network,socket}.png \
+	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/devices/cdaudio_unmount.png
+do
+%if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
+	ln -sf `echo $i | sed "s:^$RPM_BUILD_ROOT%{_pixmapsdir}/::"` $RPM_BUILD_ROOT%{_pixmapsdir}	
+%else
+	cp -af $i $RPM_BUILD_ROOT%{_pixmapsdir}
+%endif
+done
+
+bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
+
+%if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
+# moved
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{cdaudio_unmount,desktop,network,socket}.png
+# resized
+# Note: arts is moved from kdebase, encrypted should be removed only from actions
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{editcopy,history,launch,spellcheck}.png
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/actions/encrypted.png
+%endif
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+
+for f in `find $RPM_BUILD_ROOT%{_applnkdir} -name '.directory' -o -name '*.desktop'` ; do
+	awk -v F=$f '/^Icon=/ && !/\.xpm$/ && !/\.png$/ { $0 = $0 ".png";} { print $0; } END { if(F == ".directory") print "Type=Directory"; }' < $f > $f.tmp
+	mv -f $f{.tmp,}
+done
 
 %find_lang kdelibs --with-kde --all-name
 
@@ -328,6 +361,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_pixmapsdir}/*/[1-9]*
 %dir %{_pixmapsdir}/*/[1-9]*/*
 %{_pixmapsdir}/*/[1-9]*/*/*
+%{_pixmapsdir}/*.png
 # I'm not sure what this file is for.
 %{_pixmapsdir}/hicolor/index.desktop
 %{_datadir}/apps
