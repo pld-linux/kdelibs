@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - Libraries
 Summary(pl):	K Desktop Environment - biblioteki
 Name:		kdelibs
 Version:	1.1.1
-Release:	2
+Release:	3
 Group:		X11/KDE/Libraries
 Group(pl):	X11/KDE/Biblioteki
 Copyright:	LGPL
@@ -76,7 +76,7 @@ export kde_confdir='\$(prefix)/../../etc/X11/kde'
 export kde_mimedir='\$(prefix)/../../etc/X11/kde/mimelnk'
 export kde_appsdir='\$(prefix)/../../etc/X11/kde/applnk'
 
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -fno-exceptions" \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" LDFLAGS="-s" \
 ./configure %{_target_platform} \
 	--prefix=$KDEDIR \
