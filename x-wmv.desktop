@@ -5,3 +5,4 @@ MimeType=video/x-wmv
 Icon=video
 Patterns=*.wmv;*.WMV;
 Comment=Windows Media Video
+# vi: encoding=utf-8
