@@ -2,11 +2,12 @@
 # 	space.
 #
 # Conditional build:
+# _with_nas	- with NAS support
 # _without_alsa - disable alsa
 #
 
 %define		_state		stable
-%define		_ver		3.1.1
+%define		_ver		3.1.1a
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -17,7 +18,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	0.1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
@@ -265,11 +266,13 @@ CXXFLAGS="%{rpmcflags}"
 	--enable-mitshm \
 	--with%{?_without_alsa:out}-alsa
 
+%if %{?_with_nas:0}1
 # Cannot patch configure.in because it does not rebuild correctly on ac25
 sed -e 's@#define HAVE_LIBAUDIONAS 1@/* #undef HAVE_LIBAUDIONAS */@' \
 	< config.h \
 	> config.h.tmp
 mv -f config.h{.tmp,}
+%endif
 
 %{__make}
 
