@@ -6,6 +6,7 @@
 # _without_alsa - disable alsa
 # _without_ldap - disable openldap
 #
+%bcond_without	i18n
 
 %define		_state		stable
 %define		_ver		3.1.4
@@ -23,16 +24,16 @@ Release:	1
 Epoch:		8
 License:	LGPL
 Group:		X11/Libraries
-# Source0-md5:	82c265de78d53c7060a09c5cb1a78942
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
+# Source0-md5:	82c265de78d53c7060a09c5cb1a78942
+%if %{with i18n}
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
+%endif
 Source2:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
-Patch2:		%{name}-kcursor.patch
-Patch3:		%{name}-vfolders.patch
-Patch4:		%{name}-fonts.patch
+Patch2:		%{name}-vfolders.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 # Where is gmcop?!!!
@@ -68,7 +69,7 @@ BuildRequires:	motif-devel
 %{!?_without_ldap:BuildRequires:	openldap-devel}
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	pcre-devel >= 3.5
-BuildRequires:	qt-devel >= 3.1-3
+BuildRequires:	qt-devel >= 3.2.1-4
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	XFree86-libs >= 4.2.99
@@ -230,9 +231,8 @@ Bêdzie on wywo³ywany w celu wy¶wietlenia komunikatów daemona.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%%patch2 -p1 -b .niedakh
+
 
 %build
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
@@ -278,23 +278,25 @@ mv -f config.h{.tmp,}
 %{__make}
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE,%{_datadir}/apps/khtml/kpartplugins} \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
-	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
+#rm -rf $RPM_BUILD_ROOT
+#install -d $RPM_BUILD_ROOT{%{_applnkdir}/Settings/KDE,%{_datadir}/apps/khtml/kpartplugins} \
+#	$RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/{16x16,22x22,32x32,48x48,64x64}/{actions,apps,mimetypes} \
+#	$RPM_BUILD_ROOT%{_pixmapsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
-%{__make} install \
+#$%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
-mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
-rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
+#install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
+#mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
+#rm -rf $RPM_BUILD_ROOT%{_htmldir}/en/kdelibs-apidocs/kspell
 
 # this is provided by openoffice:
-rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
+#rm -f $RPM_BUILD_ROOT%{_datadir}/mimielnk/application/vnd.sun.xml.{calc,impress,writer}
 
+%if %{with i18n}
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 mv $RPM_BUILD_ROOT%{_prefix}/X11R6/share/locale/* $RPM_BUILD_ROOT%{_datadir}/locale
+%endif
 
 %find_lang %{name} --all-name --with-kde
 
