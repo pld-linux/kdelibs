@@ -8,7 +8,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.1.93
-%define		_snap		031105
+%define		_snap		031114
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -19,17 +19,16 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	9258772eb787859e9de3097ee68d0c44
+# Source0-md5:	95a919c7896507f4d6f1622867d09d6a
 Patch0:		%{name}-kstandarddirs.patch
-Patch1:		%{name}-resize-icons.patch
-Patch2:         %{name}-defaultfonts.patch
-Patch3:         %{name}-use_system_sgml.patch
+Patch1:         %{name}-defaultfonts.patch
+Patch2:         %{name}-use_system_sgml.patch
 Icon:		kdelibs.xpm
 BuildRequires:	XFree86-devel >= 4.2.99
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
@@ -230,7 +229,6 @@ TODO.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 
@@ -264,7 +262,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d \
 	$RPM_BUILD_ROOT%{_bindir}/kconf_update_bin \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
-	$RPM_BUILD_ROOT%{_datadir}/apps/krichtexteditpart \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
 	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
 	$RPM_BUILD_ROOT%{_datadir}/config/magic \
@@ -620,10 +617,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # 3rdparty directories
 %dir %{_bindir}/kconf_update_bin
-%dir %{_datadir}/apps/krichtexteditpart
 %dir %{_datadir}/apps/profiles
 %dir %{_datadir}/apps/remotes
-%dir %{_datadir}/config/magic
 %dir %{_datadir}/config.kcfg
 %dir %{_datadir}/services/kconfiguredialog
 %dir %{_datadir}/wallpapers
