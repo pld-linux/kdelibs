@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -277,6 +277,8 @@ Zawiera:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+
+%{__sed} -i -e 's/^Terminal=0/Terminal=false/' kresources/kresources.desktop
 
 # unwanted manpages (no binaries)
 rm -f debian/{kdb2html.sgml,knotify.sgml,xml2man.sgml}
