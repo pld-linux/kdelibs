@@ -1,0 +1,36 @@
+Index: kssl.cc
+===================================================================
+RCS file: /home/kde/kdelibs/kio/kssl/kssl.cc,v
+retrieving revision 1.75
+diff -u -r1.75 kssl.cc
+--- kdelibs/kio/kssl/kssl.cc	6 Oct 2003 03:50:53 -0000	1.75
++++ kdelibs/kio/kssl/kssl.cc	1 Feb 2004 14:56:02 -0000
+@@ -282,7 +282,12 @@
+ 		return -1;
+ 
+ 	if (d->session) {
+-		if (1 == d->kossl->SSL_set_session(d->m_ssl,
++		if (static_cast<SSL_SESSION*>(d->session->_session)->sess_cert == 0)
++		{
++			kdDebug(7029) << "Can't reuse session, no certificate." << endl;
++			delete d->session;
++			d->session = 0;
++		} else if (1 == d->kossl->SSL_set_session(d->m_ssl,
+ 			static_cast<SSL_SESSION*>(d->session->_session))) {
+ 			kdDebug(7029) << "Session ID is being reused." << endl;
+ 		} else {
+@@ -363,7 +368,12 @@
+ 		return -1;
+ 
+ 	if (d->session) {
+-		if (1 == d->kossl->SSL_set_session(d->m_ssl,
++		if (static_cast<SSL_SESSION*>(d->session->_session)->sess_cert == 0)
++		{
++			kdDebug(7029) << "Can't reuse session, no certificate." << endl;
++			delete d->session;
++			d->session = 0;
++		} else if (1 == d->kossl->SSL_set_session(d->m_ssl,
+ 			static_cast<SSL_SESSION*>(d->session->_session))) {
+ 			kdDebug(7029) << "Session ID is being reused." << endl;
+ 		} else {
+
