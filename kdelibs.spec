@@ -12,7 +12,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.0.9
-Release:	1
+Release:	2
 Epoch:		7
 License:	LGPL
 Vendor:		The KDE Team
@@ -260,7 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/
+install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/video
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
 
