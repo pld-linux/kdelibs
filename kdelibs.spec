@@ -6,8 +6,8 @@
 %bcond_with	i18n	# [not ready] include i18n files in package
 #
 %define		_state		snapshots
-%define		_ver		3.1.93
-%define		_snap		031126
+%define		_ver		3.1.94
+%define		_snap		031204
 %define		artsver		12:1.2.0.%{_snap}
 
 Summary:	K Desktop Environment - libraries
@@ -276,10 +276,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_docdir}/kde/HTML
+	kde_htmldir=%{_kdedocdir}
 
 install -d \
 	$RPM_BUILD_ROOT%{_bindir}/kconf_update_bin \
+	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
 	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
 	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
@@ -646,6 +647,8 @@ rm -rf $RPM_BUILD_ROOT
 
 # 3rdparty directories
 %dir %{_bindir}/kconf_update_bin
+%dir %{_datadir}/applnk
+%dir %{_datadir}/applnk/.hidden
 %dir %{_datadir}/apps/profiles
 %dir %{_datadir}/apps/remotes
 %dir %{_datadir}/config.kcfg
