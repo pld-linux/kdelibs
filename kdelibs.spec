@@ -28,7 +28,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	96a06b72e19e48f1c43dabe8147556ba
 Source2:	%{name}-extra_icons.tar.bz2
-# Source2-md5:	cf1212007a2d48dcbb17f1cb9b9c5de6
+# Source2-md5:	13e68a0ac0e9724c9b4a74e6bc729087
 Source3:	x-wmv.desktop
 Patch0:		%{name}-directories.patch
 Patch1:		%{name}-resize-icons.patch
@@ -313,7 +313,16 @@ for i in {actions/misc,devices/{cdaudio_unmount,mouse,scanner}}.png \
 	ln -s crystalsvg/48x48/$i $RPM_BUILD_ROOT%{_pixmapsdir}/`basename $i`
 done
 
+for i in `find $RPM_BUILD_ROOT%{_applnkdir} -type f`; do
+	if grep '^Icon=.[^.]*$' $i >/dev/null; then
+		echo -e ',s/\(^Icon=.*$\)/\\1.png/\n,w' | ed $i
+	fi
+done
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
+	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
+done
 
 %find_lang kdelibs --with-kde --all-name > %{name}.lang
 #topics="common desktop_kde-i18n desktop_kdelibs kabc_dir kabc_ldap kabc_net kabc_sql kabcformat_binary \
