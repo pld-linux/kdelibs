@@ -44,14 +44,3 @@
      _menuFont->setStyleHint(QFont::SansSerif);
  
      KConfig *c = KGlobal::config();
-@@ -361,8 +361,8 @@
-     if(_taskbarFont)
-         return *_taskbarFont;
- 
--    _taskbarFont = new QFont("helvetica", 11);
--    _taskbarFont->setPixelSize(11);
-+    _taskbarFont = new QFont("helvetica", 10);
-+    _taskbarFont->setPixelSize(10);
-     _taskbarFont->setStyleHint(QFont::SansSerif);
- 
-     KConfig *c = KGlobal::config();
