@@ -84,7 +84,6 @@ BuildRequires:	qt-devel >= 6:3.3.3-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
-BuildRequires:	mDNSResponder
 %if %{with autoreqdep}
 BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
