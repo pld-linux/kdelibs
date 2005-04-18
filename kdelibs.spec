@@ -209,6 +209,7 @@ Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
+Requires:	mDNSResponder-devel
 Requires:	pcre-devel
 Requires:	qt-devel >= 6:3.3.3-4
 Obsoletes:	arts-kde-devel
