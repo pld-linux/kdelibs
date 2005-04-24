@@ -138,6 +138,7 @@ Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.2.90
 Obsoletes:	openoffice-mimelinks
 Obsoletes:	kde-style-plastik
+Conflicts:	kdeaddons-konqueror < 1:3.4.0
 Conflicts:	kdebase-core < 9:3.4.0
 Conflicts:	kdepim-devel < 3:3.2.90
 Conflicts:	kmplayer < 1:0.83-0.040705.2
