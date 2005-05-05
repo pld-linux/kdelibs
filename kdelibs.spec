@@ -20,7 +20,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -327,6 +327,7 @@ export kde_libs_htmldir=%{_kdedocdir}
 
 CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
+	kde_cv_val_gcc_visibility_bug=yes \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
