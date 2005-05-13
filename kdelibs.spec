@@ -30,6 +30,7 @@ Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
+Source4:	x-mplayer2.desktop
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
@@ -354,7 +355,8 @@ rm -rf $RPM_BUILD_ROOT
 	kde_libs_htmldir=%{_kdedocdir}
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
+install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
+install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
 install -d \
 	$RPM_BUILD_ROOT/etc/security \
