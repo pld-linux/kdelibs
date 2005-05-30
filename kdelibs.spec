@@ -95,6 +95,7 @@ Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
+Requires:	hicolor-icon-theme
 Requires:	qt >= 6:3.3.3-4
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
