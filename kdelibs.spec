@@ -368,7 +368,6 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/config/magic \
 	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
-	$RPM_BUILD_ROOT%{_datadir}/wallpapers \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
 # Debian manpages
@@ -866,7 +865,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/remotes
 %dir %{_datadir}/config.kcfg
 %dir %{_datadir}/services/kconfiguredialog
-%dir %{_datadir}/wallpapers
 
 # merged kabc files
 %attr(755,root,root) %{_bindir}/kab2kabc
