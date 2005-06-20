@@ -25,11 +25,7 @@ Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2
-Source0:        ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
-##% Source0-md5:	e5961a78b44a3005a7af6ada249e5888
-Source1:	%{name}-wmfplugin.tar.bz2
-# Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
+Source0:        ziew.tar.bz2
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 #Patch100:	%{name}-branch.diff
@@ -305,8 +301,7 @@ nieobs³uguj±cej pts-ów typu Unix98 i obawiasz siê inwigilacji ze strony
 innych u¿ytkowników lokalnych.
 
 %prep
-#%setup -q -a1
-%setup -q -n %{name}-%{_snap} -a1
+%setup -q -n %{name} -T -D
 #%patch100 -p1
 %patch0 -p1
 %patch1 -p1
@@ -315,18 +310,17 @@ innych u¿ytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 
-%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
-	kresources/kresources.desktop
+cp %{_datadir}/automake/config.sub admin
+export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
+%{__make} -f admin/Makefile.common cvs
 
 %build
-cp %{_datadir}/automake/config.sub admin
-
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 
 #export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
-%{__make} -f admin/Makefile.common cvs
 
 CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
@@ -335,7 +329,6 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 %endif
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	%{!?debug:--disable-rpath} \
-	--enable-final \
 	--enable-mitshm \
 	--with-ldap=no \
 	--with%{!?with_alsa:out}-alsa \
