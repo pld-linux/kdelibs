@@ -83,15 +83,15 @@
  %DocBookDTD;
  
  <!-- The current obsolete version will do (see below) -->
---- kdelibs-031105/kdoctools/Makefile.am.orig	2003-10-19 23:31:11.000000000 +0200
-+++ kdelibs-031105/kdoctools/Makefile.am	2003-11-05 23:05:30.000000000 +0100
-@@ -41,7 +41,7 @@
+--- kdelibs-050603/kdoctools/Makefile.am.orig	2005-06-03 10:13:26.000000000 +0200
++++ kdelibs-050603/kdoctools/Makefile.am	2005-06-03 21:54:45.143803856 +0200
+@@ -45,7 +45,7 @@
  	$(XGETTEXT) *.cpp -o $(podir)/kio_help.pot
  
  install-data-local:
 -	@(for subdir in customization docbook; do \
 +	@(for subdir in customization; do \
- 	   for dir in `(cd $(srcdir)/$$subdir && find . -type d ! -name CVS )`; do \
+ 	   for dir in `( cd $(srcdir)/$$subdir && find . -type d ! -name CVS | grep -v '\.svn' )`; do \
  		$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/ksgmltools2/$$subdir/$$dir ;\
  		for file in `(cd $(srcdir)/$$subdir && ls -1 $$dir/*)`; do \
 --- kdelibs-031105/kdoctools/meinproc.cpp.orig	2003-10-27 01:03:48.000000000 +0100
