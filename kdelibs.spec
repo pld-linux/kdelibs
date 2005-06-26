@@ -8,7 +8,7 @@
 %define		_state		unstable
 %define		_kdever		3.4.89
 %define		_ver		3.4.89
-%define         _snap           050428
+%define         _snap           050624
 
 %define		artsver		13:1.4.0
 
@@ -315,9 +315,6 @@ innych u¿ytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 
-%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
-	kresources/kresources.desktop
-
 %build
 cp %{_datadir}/automake/config.sub admin
 
@@ -450,6 +447,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ksvgtopng
 %attr(755,root,root) %{_bindir}/ktelnetservice
 %attr(755,root,root) %{_bindir}/ktradertest
+%attr(755,root,root) %{_bindir}/kunittestmodrunner
 %attr(755,root,root) %{_bindir}/kwrapper
 %attr(755,root,root) %{_bindir}/lnusertemp
 %attr(755,root,root) %{_bindir}/make_driver_db_cups
@@ -551,6 +549,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
 %{_libdir}/libkutils.la
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
+%{_libdir}/libkunittest.la
+%attr(755,root,root) %{_libdir}/libkunittest.so.*.*.*
 %{_libdir}/libkwalletbackend.la
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
 %{_libdir}/libkwalletclient.la
@@ -614,6 +614,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
 %{_libdir}/kde3/kimg_exr.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
+%{_libdir}/kde3/kimg_hdr.la
+%attr(755,root,root) %{_libdir}/kde3/kimg_hdr.so
 %{_libdir}/kde3/kimg_ico.la
 %attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
 %{_libdir}/kde3/kimg_jp2.la
@@ -767,6 +769,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/eps.kimgio
 %{_datadir}/services/exr.kimgio
 %{_datadir}/services/gif.kimgio
+%{_datadir}/services/hdr.kimgio
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
 %{_datadir}/services/jpeg.kimgio
@@ -931,6 +934,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkspell.so
 %attr(755,root,root) %{_libdir}/libkspell2.so
 %attr(755,root,root) %{_libdir}/libktexteditor.so
+%attr(755,root,root) %{_libdir}/libkunittest.so
 %attr(755,root,root) %{_libdir}/libkutils.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
