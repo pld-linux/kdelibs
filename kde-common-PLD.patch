@@ -1,5 +1,5 @@
---- kde-common/admin/acinclude.m4.in.orig	2005-03-30 13:39:59.000000000 +0200
-+++ kde-common/admin/acinclude.m4.in	2005-04-13 18:34:46.747977880 +0200
+--- kde-common/admin/acinclude.m4.in.orig	2005-04-28 18:09:13.000000000 +0200
++++ kde-common/admin/acinclude.m4.in	2005-04-29 19:47:39.000000000 +0200
 @@ -428,7 +428,7 @@
  if test "$1" = "default"; then
  
@@ -9,7 +9,7 @@
    fi
    if test -z "$kde_appsdir"; then
      kde_appsdir='\${datadir}/applnk'
-@@ -4364,9 +4364,9 @@
+@@ -4396,9 +4359,9 @@
    LIBPYTHON=-lpython$version
  fi
  
@@ -21,7 +21,7 @@
    python_moddir=no
  fi
  
-@@ -4513,32 +4513,11 @@
+@@ -4545,32 +4508,11 @@
  [
      AC_MSG_CHECKING([for utmp file])
  
@@ -58,7 +58,7 @@
  ])
  
  
-@@ -5321,7 +5300,7 @@
+@@ -5353,7 +5295,7 @@
    kde_qtdir="$with_qt_dir"
  fi
  
