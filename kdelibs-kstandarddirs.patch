@@ -1,6 +1,6 @@
---- kdelibs-030623/kdecore/kstandarddirs.cpp.orig1	2003-08-01 18:26:36.000000000 +0200
-+++ kdelibs-030623/kdecore/kstandarddirs.cpp	2003-08-01 18:29:23.000000000 +0200
-@@ -822,7 +822,7 @@
+--- kdelibs-3.9.01.050704/kdecore/kstandarddirs.cpp.orig	2005-07-04 14:26:17.000000000 +0200
++++ kdelibs-3.9.01.050704/kdecore/kstandarddirs.cpp	2005-07-04 18:20:24.369948104 +0200
+@@ -1020,7 +1020,7 @@
      if (!strcmp(type, "data"))
  	return "share/apps/";
      if (!strcmp(type, "html"))
@@ -9,10 +9,10 @@
      if (!strcmp(type, "icon"))
  	return "share/icons/";
      if (!strcmp(type, "config"))
-@@ -1167,6 +1167,10 @@
+@@ -1418,6 +1418,10 @@
      }
  
-     addResourceDir("home", QDir::homeDirPath());
+     addResourceDir("home", QDir::homePath());
 +    // For compatibility with PLD Ra applnk location
 +    addResourceDir("apps", "/usr/X11R6/share/applnk/");
 +    // Backward compatibility
