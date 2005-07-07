@@ -45,7 +45,7 @@ URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 #BuildRequires:	arts-qt-devel >= %{artsver}
-BuildRequires:	artsc-devel >= %{artsver}
+#BuildRequires:	artsc-devel >= %{artsver}
 BuildRequires:	aspell-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
@@ -94,7 +94,7 @@ BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 %endif
 PreReq:		setup >= 2.4.6-7
-Requires:	arts >= %{artsver}
+#Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
@@ -214,8 +214,8 @@ Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	arts-qt-devel >= %{artsver}
-Requires:	artsc-devel >= %{artsver}
+#Requires:	arts-qt-devel >= %{artsver}
+#Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
