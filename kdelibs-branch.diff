@@ -1,7 +1,7 @@
 Index: libkscreensaver/kscreensaver.cpp
 ===================================================================
---- libkscreensaver/kscreensaver.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ libkscreensaver/kscreensaver.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- libkscreensaver/kscreensaver.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ libkscreensaver/kscreensaver.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -65,6 +65,7 @@
      if ( w == 0 ) w = 600;
      if ( h == 0 ) h = 420;
@@ -26,8 +26,8 @@ Index: libkscreensaver/kscreensaver.cpp
  bool KScreenSaver::eventFilter( QObject *o, QEvent *e )
 Index: kate/part/katesearch.cpp
 ===================================================================
---- kate/part/katesearch.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kate/part/katesearch.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kate/part/katesearch.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kate/part/katesearch.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -130,6 +130,7 @@
    searchFlags.replace = false;
    searchFlags.finished = false;
@@ -44,10 +44,23 @@ Index: kate/part/katesearch.cpp
  
    searchFlags.backward = searchFlags.backward != back;
    searchFlags.fromBeginning = false;
+Index: mimetypes/audio/x-scpls.desktop
+===================================================================
+--- mimetypes/audio/x-scpls.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/audio/x-scpls.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -31,7 +31,7 @@
+ Comment[hu]=MP3 ShoutCast-lejátszási lista
+ Comment[id]=Playlist MP3 ShoutCast
+ Comment[is]=Mp3 ShoutCast lagalisti
+-Comment[it]=Playlist MP3 ShoutCast
++Comment[it]=Scaletta MP3 ShoutCast
+ Comment[ja]=MP3 ShoutCast プレイリスト
+ Comment[ko]=MP3 샤우트캐스트 연주 목록
+ Comment[lt]=MP3 ShoutCast gaidaraštis
 Index: mimetypes/application/x-gettext.desktop
 ===================================================================
---- mimetypes/application/x-gettext.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ mimetypes/application/x-gettext.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- mimetypes/application/x-gettext.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/application/x-gettext.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -6,6 +6,7 @@
  Comment[az]=GNU Gettext İsmarış Kataloqu
  Comment[bg]=Съобщения за превод (GNU Gettext)
@@ -56,10 +69,130 @@ Index: mimetypes/application/x-gettext.desktop
  Comment[bs]=GNU Gettext katalog poruka
  Comment[ca]=Catàleg de missatges Gettext de GNU
  Comment[cs]=Katalog zpráv (Gettext)
+Index: mimetypes/application/xsd.desktop
+===================================================================
+--- mimetypes/application/xsd.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/application/xsd.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -3,6 +3,7 @@
+ Comment=W3C XML Schema
+ Comment[af]=W3C XML Skema
+ Comment[bg]=Схема W3C XML
++Comment[br]=Steuñv XML W3C
+ Comment[bs]=W3C XML šema
+ Comment[ca]=Esquema XML W3C
+ Comment[cs]=W3C XML schéma
+Index: mimetypes/application/x-executable.desktop
+===================================================================
+--- mimetypes/application/x-executable.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/application/x-executable.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -6,6 +6,7 @@
+ Comment[az]=İcraçı Fayl
+ Comment[bg]=Изпълним файл
+ Comment[bn]=এক্সিকিউটেবল ফাইল
++Comment[br]=Restr sevenadus
+ Comment[bs]=Izvršna datoteka
+ Comment[ca]=Fitxer executable
+ Comment[cs]=Spustitelný soubor
+Index: mimetypes/application/x-executable-script.desktop
+===================================================================
+--- mimetypes/application/x-executable-script.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/application/x-executable-script.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -4,6 +4,7 @@
+ Comment[af]=Skrip (moontlik uitvoerbaar)
+ Comment[bg]=Скрипт (вероятно изпълним)
+ Comment[bn]=স্ক্রিপ্ট (সম্ভবত এক্সিকিউটেবল)
++Comment[br]=Urzhiaoueg (marteze ur sevenadus)
+ Comment[bs]=Skripta (možda izvršiva)
+ Comment[ca]=Guió (possiblement executable)
+ Comment[cs]=Pravděpodobně spustitelný skript
+Index: mimetypes/application/vnd.stardivision.writer-global.desktop
+===================================================================
+--- mimetypes/application/vnd.stardivision.writer-global.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/application/vnd.stardivision.writer-global.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -8,6 +8,7 @@
+ Comment[af]=StarOffice skrywer Meester Dokument
+ Comment[bg]=Главен документ на StarOffice Writer
+ Comment[bn]=স্টার-অফিস রাইটার মাস্টার নথী
++Comment[br]=Teul mestr StarOffice Writer
+ Comment[bs]=StarOffice Writer glavni dokument
+ Comment[ca]=Document mestre de l'StarOffice Writer
+ Comment[cs]=Hlavní dokument aplikace StarOffice Writer
+Index: mimetypes/application/vnd.stardivision.draw.desktop
+===================================================================
+--- mimetypes/application/vnd.stardivision.draw.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ mimetypes/application/vnd.stardivision.draw.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -9,6 +9,7 @@
+ Comment[be]=Малюнак StarOffice
+ Comment[bg]=Изображение на StarOffice Drawing
+ Comment[bn]=স্টার-অফিস ড্রয়িং
++Comment[br]=Tresaner StarOffice
+ Comment[bs]=StarOffice crtež
+ Comment[ca]=Dibuix de StarOffice
+ Comment[cs]=Kreslení aplikace StarOffice Draw
+Index: kioslave/file/file.cc
+===================================================================
+--- kioslave/file/file.cc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kioslave/file/file.cc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -1445,7 +1445,7 @@
+     QString pmountProg = KGlobal::dirs()->findExe("pmount", path);
+ 
+     if (pmountProg.isEmpty())
+-        pmountProg = "pmount";
++        return false;
+ 
+     QCString buffer;
+     buffer.sprintf( "%s %s", QFile::encodeName(pmountProg).data(),
+Index: kioslave/http/kcookiejar/kcookiejar.cpp
+===================================================================
+--- kioslave/http/kcookiejar/kcookiejar.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kioslave/http/kcookiejar/kcookiejar.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -773,14 +773,24 @@
+         while ((*cookieStr == ';') || (*cookieStr == ' '))
+         {
+             cookieStr++;
+-            
++
+             // Name-Value pair follows
+             cookieStr = parseNameValue(cookieStr, Name, Value);
+ 
+             QCString cName = Name.lower().latin1();
+             if (cName == "domain")
+             {
+-                lastCookie->mDomain = Value.lower();
++                QString dom = Value.lower();
++                // RFC2965 3.2.2: If an explicitly specified value does not
++                // start with a dot, the user agent supplies a leading dot
++                if(dom.length() && dom[0] != '.')
++                    dom.prepend(".");
++                // remove a trailing dot
++                if(dom.length() > 2 && dom[dom.length()-1] == '.')
++                    dom = dom.left(dom.length()-1);
++
++                if(dom.contains('.') > 1 || dom == ".local")
++                    lastCookie->mDomain = dom;
+             }
+             else if (cName == "max-age")
+             {
+Index: kioslave/http/kcookiejar/tests/cookie_rfc.test
+===================================================================
+--- kioslave/http/kcookiejar/tests/cookie_rfc.test	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kioslave/http/kcookiejar/tests/cookie_rfc.test	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -38,6 +38,11 @@
+ COOKIE ASK http://w.y.z/ Set-Cookie2: some_value=; Version=1; Path="/"; Max-Age=0
+ CHECK http://w.y.z/ Cookie: $Version=1; some_value2=foobar; $Path="/"
+ CLEAR COOKIES
++## Check if we prepend domain with a dot
++COOKIE ASK http://w.y.z/ Set-Cookie2: some_value=value2; Version=1; Path="/"; Domain=.y.z; Max-Age=3600
++COOKIE ASK http://w.y.z/ Set-Cookie2: some_value=value3; Version=1; Path="/"; Domain=y.z.; Max-Age=3600
++CHECK http://w.y.z/ Cookie: $Version=1; some_value=value3; $Path="/"; $Domain=".y.z"
++CLEAR COOKIES
+ ## Check if multiple cookies on a single line work
+ ## FIXME
+ #COOKIE ASK http://w.y.z/ Set-Cookie2: some_value=value3; Version=1; Path="/"; Max-Age=3600, some_value2=foobar; Version=1; Path="/"; Max-Age=3600
 Index: kioslave/ftp/ftp.protocol
 ===================================================================
---- kioslave/ftp/ftp.protocol	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kioslave/ftp/ftp.protocol	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kioslave/ftp/ftp.protocol	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kioslave/ftp/ftp.protocol	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -10,6 +10,7 @@
  writing=true
  makedir=true
@@ -68,10 +201,45 @@ Index: kioslave/ftp/ftp.protocol
  ProxiedBy=http
  Icon=ftp
  maxInstances=2
+Index: kimgio/psd.h
+===================================================================
+--- kimgio/psd.h	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kimgio/psd.h	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -10,11 +10,13 @@
+ #ifndef KIMG_PSD_H
+ #define KIMG_PSD_H
+ 
++#include <kdemacros.h>
++
+ class QImageIO;
+ 
+ extern "C" {
+-void kimgio_psd_read( QImageIO * );
+-void kimgio_psd_write( QImageIO * );
++KDE_EXPORT void kimgio_psd_read( QImageIO * );
++KDE_EXPORT void kimgio_psd_write( QImageIO * );
+ }
+ 
+ #endif
+Index: kio/kio/connection.cpp
+===================================================================
+--- kio/kio/connection.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kio/kio/connection.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -252,6 +252,10 @@
+ 		kdError(7017) << "Data read failed, errno=" << errno << endl;
+ 		return -1;
+ 	    }
++	    if ( !n ) { // 0 indicates end of file
++        	kdError(7017) << "Connection ended unexpectedly (" << n << "/" << bytesToGo << ")" << endl;
++      		return -1;
++    	    }
+ 
+ 	    bytesRead += n;
+ 	    bytesToGo -= n;
 Index: kio/kio/kmimemagic.cpp
 ===================================================================
---- kio/kio/kmimemagic.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kio/kio/kmimemagic.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kio/kio/kmimemagic.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kio/kio/kmimemagic.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -2262,6 +2262,15 @@
  			tmp += "src";
  		r->setMimeType(tmp);
@@ -90,8 +258,8 @@ Index: kio/kio/kmimemagic.cpp
  KMimeMagicResult *
 Index: kio/misc/kpac/eventsrc
 ===================================================================
---- kio/misc/kpac/eventsrc	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kio/misc/kpac/eventsrc	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kio/misc/kpac/eventsrc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kio/misc/kpac/eventsrc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -77,7 +77,7 @@
  Name[cy]=Sgript dirprwy annilys
  Name[da]=Ugyldigt proxy-script
@@ -110,10 +278,254 @@ Index: kio/misc/kpac/eventsrc
  Comment[eo]=La ŝarĝita prokuragordoskript estas nevalida
  Comment[es]=El procedimiento descargado para la configuración del proxy es inválido
  Comment[et]=Alla laaditud proxy seadistuse skript on vigane
+Index: kstyles/themes/light-v2.themerc
+===================================================================
+--- kstyles/themes/light-v2.themerc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kstyles/themes/light-v2.themerc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -4,6 +4,7 @@
+ Name[ar]=نمط خفيف، التنقيح الثاني
+ Name[az]=Yüngül Tərz, 2-ci buraxılış
+ Name[bn]=লাইট স্টাইল, দ্বিতীয় সংস্করণ
++Name[br]=Giz sklerijenn, eil stumm
+ Name[bs]=Light stil, druga revizija
+ Name[ca]=Estil Light, 2ona revisió
+ Name[cs]=Light Style, druhá verze
+Index: kstyles/themes/light-v3.themerc
+===================================================================
+--- kstyles/themes/light-v3.themerc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kstyles/themes/light-v3.themerc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -4,6 +4,7 @@
+ Name[ar]=نمط خفيف، التنقيح الثالث
+ Name[az]=Yüngül Tərz, 3-cü buraxılış
+ Name[bn]=লাইট স্টাইল, তৃতীয় সংস্করণ
++Name[br]=Giz sklerijenn, trede stumm
+ Name[bs]=Light stil, treća revizija
+ Name[ca]=Estil Light, 3era revisió
+ Name[cs]=Light Style, třetí verze
+Index: kstyles/themes/highcolor.themerc
+===================================================================
+--- kstyles/themes/highcolor.themerc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kstyles/themes/highcolor.themerc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -62,6 +62,7 @@
+ Comment[az]=Klassik tərzin zəngin rəngli buraxılışı
+ Comment[bg]=Класически стил на КДЕ с високо качество на цветовете
+ Comment[bn]=ক্লাসিক স্টাইলের হাই-কালার সংস্করণ
++Comment[br]=Stumm livioù uhel ar c'hiz da gustum
+ Comment[bs]=Highcolor verzija klasičnog stila
+ Comment[ca]=Versió Highcolor de l'estil clàssic
+ Comment[cs]=Mnohobarevná verze klasického stylu
+Index: kstyles/themes/beos.themerc
+===================================================================
+--- kstyles/themes/beos.themerc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kstyles/themes/beos.themerc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -9,6 +9,7 @@
+ Comment[az]=Örtüksüz BeOS bənzəri tərz
+ Comment[be]=Стыль падобны на BeOS (бяз тэм)
+ Comment[bg]=Стил без тема, подобен на BeOS
++Comment[br]=Giz evel BeOS anwisket
+ Comment[bs]=Stil bez teme, sličan Beos-u
+ Comment[ca]=Estil del tipus BeOS sense temes
+ Comment[cs]=Styl podobný BeOS (bez motivu)
+Index: kstyles/web/web.themerc
+===================================================================
+--- kstyles/web/web.themerc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kstyles/web/web.themerc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -73,6 +73,7 @@
+ Comment[az]=Veb pəncərəcik tərzi
+ Comment[bg]=Стил, приличащ на уеб графични обекти
+ Comment[bn]=ওয়েব উইজেট স্টাইল
++Comment[br]=Giz widget gwiad
+ Comment[bs]=Stil ukrasa na webu
+ Comment[ca]=Estil d'objectes web
+ Comment[cs]=Styl prvků webu
+Index: kabc/formats/binaryformat.cpp
+===================================================================
+--- kabc/formats/binaryformat.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kabc/formats/binaryformat.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -38,7 +38,7 @@
+ 
+ extern "C"
+ {
+-  FormatPlugin *format()
++  KDE_EXPORT FormatPlugin *format()
+   {
+     return new BinaryFormat;
+   }
+Index: knewstuff/downloaddialog.cpp
+===================================================================
+--- knewstuff/downloaddialog.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ knewstuff/downloaddialog.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -50,6 +50,7 @@
+ {
+     QString m_providerlist;
+     QWidget *m_page;
++    KListView *m_lvtmp_r, *m_lvtmp_d, *m_lvtmp_l;
+ };
+ 
+ class NumSortListViewItem : public KListViewItem
+@@ -206,7 +207,6 @@
+   KTabCtl *ctl;
+   QWidget *w_d, *w_r, *w_l;
+   QWidget *w2;
+-  KListView *lvtmp_r, *lvtmp_d, *lvtmp_l;
+   QTextBrowser *rt;
+   QString tmp;
+   int ret;
+@@ -244,27 +244,27 @@
+   QHBoxLayout *box = new QHBoxLayout(frame);
+   box->add(ctl);
+ 
+-  lvtmp_r = new KListView(w_r);
+-  lvtmp_r->addColumn(i18n("Name"));
+-  lvtmp_r->addColumn(i18n("Version"));
+-  lvtmp_r->addColumn(i18n("Rating"));
+-  lvtmp_r->setSorting(2, false);
++  d->m_lvtmp_r = new KListView(w_r);
++  d->m_lvtmp_r->addColumn(i18n("Name"));
++  d->m_lvtmp_r->addColumn(i18n("Version"));
++  d->m_lvtmp_r->addColumn(i18n("Rating"));
++  d->m_lvtmp_r->setSorting(2, false);
+ 
+-  lvtmp_d = new KListView(w_d);
+-  lvtmp_d->addColumn(i18n("Name"));
+-  lvtmp_d->addColumn(i18n("Version"));
+-  lvtmp_d->addColumn(i18n("Downloads"));
+-  lvtmp_d->setSorting(2, false);
++  d->m_lvtmp_d = new KListView(w_d);
++  d->m_lvtmp_d->addColumn(i18n("Name"));
++  d->m_lvtmp_d->addColumn(i18n("Version"));
++  d->m_lvtmp_d->addColumn(i18n("Downloads"));
++  d->m_lvtmp_d->setSorting(2, false);
+ 
+-  lvtmp_l = new KListView(w_l);
+-  lvtmp_l->addColumn(i18n("Name"));
+-  lvtmp_l->addColumn(i18n("Version"));
+-  lvtmp_l->addColumn(i18n("Release Date"));
+-  lvtmp_l->setSorting(2, false);
++  d->m_lvtmp_l = new KListView(w_l);
++  d->m_lvtmp_l->addColumn(i18n("Name"));
++  d->m_lvtmp_l->addColumn(i18n("Version"));
++  d->m_lvtmp_l->addColumn(i18n("Release Date"));
++  d->m_lvtmp_l->setSorting(2, false);
+ 
+-  connect(lvtmp_r, SIGNAL(selectionChanged()), SLOT(slotSelected()));
+-  connect(lvtmp_d, SIGNAL(selectionChanged()), SLOT(slotSelected()));
+-  connect(lvtmp_l, SIGNAL(selectionChanged()), SLOT(slotSelected()));
++  connect(d->m_lvtmp_r, SIGNAL(selectionChanged()), SLOT(slotSelected()));
++  connect(d->m_lvtmp_d, SIGNAL(selectionChanged()), SLOT(slotSelected()));
++  connect(d->m_lvtmp_l, SIGNAL(selectionChanged()), SLOT(slotSelected()));
+ 
+   rt = new QTextBrowser(frame);
+   rt->setMinimumWidth(150);
+@@ -285,14 +285,14 @@
+   connect(de, SIGNAL(clicked()), SLOT(slotDetails()));
+ 
+   QVBoxLayout *box2 = new QVBoxLayout(w_r);
+-  box2->add(lvtmp_r);
++  box2->add(d->m_lvtmp_r);
+   QVBoxLayout *box3 = new QVBoxLayout(w_d);
+-  box3->add(lvtmp_d);
++  box3->add(d->m_lvtmp_d);
+   QVBoxLayout *box4 = new QVBoxLayout(w_l);
+-  box4->add(lvtmp_l);
++  box4->add(d->m_lvtmp_l);
+ 
+   QValueList<KListView*> *v = new QValueList<KListView*>;
+-  *v << lvtmp_r << lvtmp_d << lvtmp_l;
++  *v << d->m_lvtmp_r << d->m_lvtmp_d << d->m_lvtmp_l;
+   m_map[frame] = v;
+   m_rts[frame] = rt;
+   QValueList<QPushButton*> *vb = new QValueList<QPushButton*>;
+@@ -300,7 +300,7 @@
+   m_buttons[frame] = vb;
+   m_providers[frame] = p;
+ 
+-  kdDebug() << "addProvider()/end; lvtmp_r = " << lvtmp_r << endl;
++  kdDebug() << "addProvider()/end; d->m_lvtmp_r = " << d->m_lvtmp_r << endl;
+ 
+   if(m_engine) slotPage(frame);
+ 
+@@ -353,7 +353,7 @@
+   QDate date;
+   QString datestring;
+   int installed;
+- 
++
+   kapp->config()->setGroup("KNewStuffStatus");
+   datestring = kapp->config()->readEntry(entry->name());
+   if(datestring.isNull()) installed = 0;
+@@ -456,6 +456,9 @@
+ {
+   Entry *e = getEntry();
+   if(!e) return;
++  d->m_lvtmp_r->setEnabled( false );
++  d->m_lvtmp_l->setEnabled( false );
++  d->m_lvtmp_d->setEnabled( false );
+ 
+   kdDebug() << "download entry now" << endl;
+ 
+@@ -467,9 +470,7 @@
+   else
+   {
+     m_s = new KNewStuffGeneric(e->type(), this);
+-
+     m_entry = e;
+-
+     KURL source = e->payload();
+     KURL dest = KURL(m_s->downloadDestination(e));
+ 
+@@ -492,7 +493,7 @@
+   m_entryitem = lv_l->findItem(m_entryname, 0);
+   if(m_entryitem) m_entryitem->setPixmap(0, pix);
+ 
+- 
++
+   QPushButton *in;
+   in = *(m_buttons[d->m_page]->at(0));
+   if(in) in->setEnabled(false);
+@@ -502,7 +503,6 @@
+ {
+   bool ret = (job->error() == 0);
+   KIO::FileCopyJob *cjob;
+-
+   if(ret)
+   {
+     cjob = static_cast<KIO::FileCopyJob*>(job);
+@@ -520,6 +520,9 @@
+     KMessageBox::information(this, i18n("Installation successful."), i18n("Installation"));
+   }
+   else KMessageBox::error(this, i18n("Installation failed."), i18n("Installation"));
++  d->m_lvtmp_r->setEnabled( true );
++  d->m_lvtmp_l->setEnabled( true );
++  d->m_lvtmp_d->setEnabled( true );
+ 
+   delete m_s;
+ }
+Index: kdecore/eventsrc
+===================================================================
+--- kdecore/eventsrc	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdecore/eventsrc	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -625,7 +625,7 @@
+ Comment[cy]=Methu agor y ffeil penodol i'w ddarllen neu i'w ysgrifennu.
+ Comment[da]=Den valgte fil kan ikke åbnes til læsning eller skrivning
+ Comment[de]=Die gewählte Datei kann nicht zum Lesen oder Schreiben geöffnet werden.
+-Comment[el]=Το επιλεγμένο αρχείο δε μπορεί να ανοιχθεί για εγγραφή ή ανάγνωση
++Comment[el]=Το επιλεγμένο αρχείο δεν μπορεί να ανοιχθεί για εγγραφή ή ανάγνωση
+ Comment[eo]=La elektita dosiero ne estas malfermebla por legado aŭ skribado
+ Comment[es]=El archivo seleccionado no se puede abrir para leer o escribir.
+ Comment[et]=Valitud faili pole võimalik avada lugemiseks või kirjutamiseks.
+@@ -1605,6 +1605,7 @@
+ Name[be]=Інфармацыйнае паведамленьне
+ Name[bg]=Информация
+ Name[bn]=তথ্যবার্তা
++Name[br]=Kemennad a titouroù
+ Name[bs]=Informativna poruka
+ Name[ca]=Missatge informatiu
+ Name[cs]=Informační zpráva
 Index: khtml/khtmlview.cpp
 ===================================================================
---- khtml/khtmlview.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ khtml/khtmlview.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- khtml/khtmlview.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ khtml/khtmlview.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -2238,7 +2238,9 @@
              guard = node;
  	}
@@ -126,8 +538,8 @@ Index: khtml/khtmlview.cpp
          emit m_part->nodeActivated(Node(node));
 Index: khtml/html/html_formimpl.cpp
 ===================================================================
---- khtml/html/html_formimpl.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ khtml/html/html_formimpl.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- khtml/html/html_formimpl.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ khtml/html/html_formimpl.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -954,16 +954,15 @@
  
  	if (!evt->defaultHandled() && m_render && m_render->isWidget()) {
@@ -151,8 +563,8 @@ Index: khtml/html/html_formimpl.cpp
              }
 Index: khtml/ecma/kjs_events.cpp
 ===================================================================
---- khtml/ecma/kjs_events.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ khtml/ecma/kjs_events.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- khtml/ecma/kjs_events.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ khtml/ecma/kjs_events.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -635,6 +635,9 @@
      return Boolean(static_cast<DOM::MouseEvent>(event).metaKey());
    case Button:
@@ -165,8 +577,8 @@ Index: khtml/ecma/kjs_events.cpp
      int domButton = static_cast<DOM::MouseEvent>(event).button();
 Index: khtml/rendering/render_list.cpp
 ===================================================================
---- khtml/rendering/render_list.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ khtml/rendering/render_list.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- khtml/rendering/render_list.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ khtml/rendering/render_list.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -402,7 +402,7 @@
  
      m_markerWidth = m_width = 0;
@@ -178,8 +590,8 @@ Index: khtml/rendering/render_list.cpp
              m_width = m_markerWidth;
 Index: khtml/rendering/render_object.cpp
 ===================================================================
---- khtml/rendering/render_object.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ khtml/rendering/render_object.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- khtml/rendering/render_object.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ khtml/rendering/render_object.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -1697,21 +1697,22 @@
  {
      // vertical align for table cells has a different meaning
@@ -209,8 +621,8 @@ Index: khtml/rendering/render_object.cpp
              int fontheight = ref->lineHeight( firstLine );
 Index: khtml/rendering/render_replaced.cpp
 ===================================================================
---- khtml/rendering/render_replaced.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ khtml/rendering/render_replaced.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- khtml/rendering/render_replaced.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ khtml/rendering/render_replaced.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -513,7 +513,7 @@
              QWidget* const w = ::qt_cast<QWidget *>(it.current());
  	    if ( w && !w->isTopLevel() && !w->isHidden()) {
@@ -226,8 +638,8 @@ Cannot display: file marked as a binary type.
 svn:mime-type = application/x-jar
 Index: kresources/kresources.desktop
 ===================================================================
---- kresources/kresources.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kresources/kresources.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kresources/kresources.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kresources/kresources.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -14,6 +14,7 @@
  Name[af]=KDE Hulpbronne
  Name[bg]=Системни ресурси
@@ -244,10 +656,201 @@ Index: kresources/kresources.desktop
  Comment[bs]=Podesite KDE resurse
  Comment[ca]=Configura els recursos KDE
  Comment[cs]=Nastavení zdrojů KDE
+Index: dcop/dcopsignals.cpp
+===================================================================
+--- dcop/dcopsignals.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ dcop/dcopsignals.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -154,7 +154,7 @@
+ 
+    list->append( current );
+    conn->signalConnectionList()->append(current);
+-   if (senderConn)
++   if (senderConn && senderConn != conn)
+       senderConn->signalConnectionList()->append(current);
+    return true;
+ #else //!Q_OS_UNIX
+Index: pics/crystalsvg/cr64-action-player_play.png
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = image/png
+
+Property changes on: pics/crystalsvg/cr64-action-player_play.png
+___________________________________________________________________
+Name: svn:mime-type
+   + image/png
+
+Index: kdoctools/customization/pl/user.entities
+===================================================================
+--- kdoctools/customization/pl/user.entities	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdoctools/customization/pl/user.entities	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -22,12 +22,12 @@
+ </inlinemediaobject>
+ </guiicon>"><!-- if image is localised, then entityref should be used instead of fileref -->
+ 
+-<!ENTITY ark    '&ark-mianownik;'>
+ <!ENTITY ark-mianownik    '<application>Ark</application>'>
+ <!ENTITY ark-dopelniacz    '<application>Arka</application>'>
+ <!ENTITY ark-miejscownik    '<application>Arku</application>'>
+ <!ENTITY ark-narzednik    '<application>Arkiem</application>'>
+ <!ENTITY ark-biernik    '<application>Arka</application>'>
++<!ENTITY ark    '&ark-mianownik;'>
+ 
+ <!ENTITY gif        		'<literal role="extension">.gif</literal>'>
+ 
+@@ -37,21 +37,21 @@
+ <!ENTITY GUI-biernik    'graficzny interfejs użytkownika'>
+ <!ENTITY GUI-miejscownik    'graficznym interfejsie użytkownika'>
+ 
+-<!ENTITY kappfinder    '&kappfinder-mianownik;'>
+ <!ENTITY kappfinder-mianownik    '<application>Kappfinder</application>'>
+ <!ENTITY kappfinder-dopelniacz    '<application>Kappfinder</application>'>
+ <!ENTITY kappfinder-celownik    '<application>Kappfinder</application>'>
+ <!ENTITY kappfinder-biernik    '<application>Kappfinder</application>'>
+ <!ENTITY kappfinder-narzednik    '<application>Kappfinder</application>'>
+ <!ENTITY kappfinder-miejscownik    '<application>Kappfinder</application>'>
++<!ENTITY kappfinder    '&kappfinder-mianownik;'>
+ 
+-<!ENTITY kcalc    '&kcalc-mianownik;'>
+ <!ENTITY kcalc-mianownik    '<application>Kalkulator</application>'>
+ <!ENTITY kcalc-dopelniacz    '<application>Kalkulatora</application>'>
+ <!ENTITY kcalc-celownik    '<application>Kalkulatorowi</application>'>
+ <!ENTITY kcalc-biernik    '<application>Kalkulator</application>'>
+ <!ENTITY kcalc-narzednik    '<application>Kalkulatorem</application>'>
+ <!ENTITY kcalc-miejscownik    '<application>Kalkulatorze</application>'>
++<!ENTITY kcalc    '&kcalc-mianownik;'>
+ 
+ <!ENTITY kcontrolcenter    '&kcontrolcenter-mianownik;'>
+ <!ENTITY kcontrolcenter-mianownik    '<application>Centrum sterowania &kde;</application>'>
+@@ -60,109 +60,109 @@
+ <!ENTITY kcontrolcenter-biernik    '<application>Centrum sterowania &kde;</application>'>
+ <!ENTITY kcontrolcenter-miejscownik    '<application>Centrum sterowania &kde;</application>'>
+ 
+-<!ENTITY kdm    '&kdm-mianownik;'>
+ <!ENTITY kdm-mianownik    '<application>KDM</application>'>
+ <!ENTITY kdm-dopelniacz    '<application>KDM</application>'>
+ <!ENTITY kdm-celownik    '<application>KDM</application>'>
+ <!ENTITY kdm-biernik    '<application>KDM</application>'>
+ <!ENTITY kdm-miejscownik    '<application>KDM</application>'>
++<!ENTITY kdm    '&kdm-mianownik;'>
+ 
+-<!ENTITY khelpcenter    '&khelpcenter-mianownik;'>
+ <!ENTITY khelpcenter-mianownik    '<application>Centrum pomocy &kde;</application>'>
+ <!ENTITY khelpcenter-dopelniacz    '<application>Centrum pomocy &kde;</application>'>
+ <!ENTITY khelpcenter-celownik    '<application>Centrum pomocy &kde;</application>'>
+ <!ENTITY khelpcenter-biernik    '<application>Centrum pomocy &kde;</application>'>
+ <!ENTITY khelpcenter-miejscownik    '<application>Centrum pomocy &kde;</application>'>
++<!ENTITY khelpcenter    '&khelpcenter-mianownik;'>
+ 
+-<!ENTITY kicker    '&kicker-mianownik;'>
+ <!ENTITY kicker-mianownik    '<application>Kicker</application>'>
+ <!ENTITY kicker-dopelniacz    '<application>Kickera</application>'>
+ <!ENTITY kicker-celownik    '<application>Kickerowi</application>'>
+ <!ENTITY kicker-biernik    '<application>Kickera</application>'>
+ <!ENTITY kicker-narzednik    '<application>Kickerem</application>'>
+ <!ENTITY kicker-miejscownik    '<application>Kickerze</application>'>
++<!ENTITY kicker    '&kicker-mianownik;'>
+ 
+-<!ENTITY klipper    '&klipper-mianownik;'>
+ <!ENTITY klipper-mianownik    '<application>Klipper</application>'>
+ <!ENTITY klipper-dopelniacz    '<application>Klippera</application>'>
+ <!ENTITY klipper-celownik    '<application>Klipperowi</application>'>
+ <!ENTITY klipper-biernik    '<application>Klippera</application>'>
+ <!ENTITY klipper-narzednik    '<application>Klipperem</application>'>
+ <!ENTITY klipper-miejscownik    '<application>Klipperze</application>'>
++<!ENTITY klipper    '&klipper-mianownik;'>
+ 
+-<!ENTITY kmail    '&kmail-mianownik;'>
+ <!ENTITY kmail-mianownik    '<application>Kmail</application>'>
+ <!ENTITY kmail-dopelniacz    '<application>Kmaila</application>'>
+ <!ENTITY kmail-celownik    '<application>Kmail-owi</application>'>
+ <!ENTITY kmail-biernik    '<application>Kmaila</application>'>
+ <!ENTITY kmail-miejscownik    '<application>Kmail-u</application>'>
++<!ENTITY kmail    '&kmail-mianownik;'>
+ 
+-<!ENTITY kmenu    '&kmenu-mianownik;'>
+-<!ENTITY kmenu-mianownik    'menu K'>
++<!ENTITY kmenu-mianownik    'Menu K'>
+ <!ENTITY kmenu-dopelniacz    '&kmenu-mianownik;'>
+ <!ENTITY kmenu-celownik    '&kmenu-mianownik;'>
+ <!ENTITY kmenu-biernik    '&kmenu-mianownik;'>
+ <!ENTITY kmenu-miejscownik    '&kmenu-mianownik;'>
++<!ENTITY kmenu    '&kmenu-mianownik;'>
+ 
+-<!ENTITY knode    '&knode-mianownik;'>
+ <!ENTITY knode-mianownik    '<application>Knode</application>'>
+ <!ENTITY knode-dopelniacz    '<application>Knode</application>'>
+ <!ENTITY knode-celownik    '<application>Knode</application>'>
+ <!ENTITY knode-biernik    '<application>Knode</application>'>
+ <!ENTITY knode-miejscownik    '<application>Knode</application>'>
++<!ENTITY knode    '&knode-mianownik;'>
+ 
+-<!ENTITY konqueror    '&konqueror-mianownik;'>
+ <!ENTITY konqueror-mianownik    '<application>Konqueror</application>'>
+ <!ENTITY konqueror-dopelniacz    '<application>Konquerora</application>'>
+ <!ENTITY konqueror-celownik    '<application>Konquerorowi</application>'>
+ <!ENTITY konqueror-biernik    '<application>Konquerora</application>'>
+ <!ENTITY konqueror-miejscownik    '<application>Konquerorze</application>'>
++<!ENTITY konqueror    '&konqueror-mianownik;'>
+ 
+-<!ENTITY konsole    '&konsole-mianownik;'>
+ <!ENTITY konsole-mianownik    '<application>Konsola</application>'>
+ <!ENTITY konsole-dopelniacz    '<application>Konsoli</application>'>
+ <!ENTITY konsole-celownik    '<application>Konsoli</application>'>
+ <!ENTITY konsole-biernik    '<application>Konsolę</application>'>
+ <!ENTITY konsole-narzednik    '<application>Konsolą</application>'>
+ <!ENTITY konsole-miejscownik    '<application>Konsoli</application>'>
++<!ENTITY konsole    '&konsole-mianownik;'>
+ 
+-<!ENTITY kontact    '&kontact-mianownik;'>
+ <!ENTITY kontact-mianownik    '<application>Kontact</application>'>
+ <!ENTITY kontact-dopelniacz    '<application>Kontact</application>'>
+ <!ENTITY kontact-celownik    '<application>Kontact</application>'>
+ <!ENTITY kontact-biernik    '<application>Kontact</application>'>
+ <!ENTITY kontact-narzednik    '<application>Kontact</application>'>
+ <!ENTITY kontact-miejscownik    '<application>Kontact</application>'>
++<!ENTITY kontact    '&kontact-mianownik;'>
+ 
+-<!ENTITY kopete    '&kopete-mianownik;'>
+ <!ENTITY kopete-mianownik    '<application>Kopete</application>'>
+ <!ENTITY kopete-dopelniacz    '<application>Kopete</application>'>
+ <!ENTITY kopete-celownik    '<application>Kopete</application>'>
+ <!ENTITY kopete-biernik    '<application>Kopete</application>'>
+ <!ENTITY kopete-narzednik    '<application>Kopete</application>'>
+ <!ENTITY kopete-miejscownik    '<application>Kopete</application>'>
++<!ENTITY kopete    '&kopete-mianownik;'>
+ 
+-<!ENTITY kwallet    '&kwallet-mianownik;'>
+ <!ENTITY kwallet-mianownik    '<application>Portfel &kde;</application>'>
+ <!ENTITY kwallet-dopelniacz    '<application>Portfela &kde;</application>'>
+ <!ENTITY kwallet-biernik    '<application>Portfel &kde;</application>'>
++<!ENTITY kwallet    '&kwallet-mianownik;'>
+ 
+-<!ENTITY kwalletmanager    '&kwalletmanager-mianownik;'>
+ <!ENTITY kwalletmanager-mianownik    '<application>Menedżer portfeli &kde;</application>'>
+ <!ENTITY kwalletmanager-dopelniacz    '<application>Menedżera portfeli &kde;</application>'>
++<!ENTITY kwalletmanager    '&kwalletmanager-mianownik;'>
+ 
+-<!ENTITY Linux    '&Linux-mianownik;'>
+ <!ENTITY Linux-mianownik    'Linux'>
+ <!ENTITY Linux-dopelniacz    'Linuksa'>
+ <!ENTITY Linux-celownik    'Linuksowi'>
+ <!ENTITY Linux-biernik    'Linuksa'>
+ <!ENTITY Linux-narzednik    'Linuksem'>
+ <!ENTITY Linux-miejscownik    'Linuksie'>
++<!ENTITY Linux    '&Linux-mianownik;'>
+ 
+-<!ENTITY Sendmail    '&Sendmail-mianownik;'>
+ <!ENTITY Sendmail-mianownik    '<application>Sendmail</application>'>
+ <!ENTITY Sendmail-dopelniacz    '<application>Sendmail-a</application>'>
+ <!ENTITY Sendmail-celownik    '<application>Sendmail-owi</application>'>
+ <!ENTITY Sendmail-biernik    '<application>Sendmail-a</application>'>
+ <!ENTITY Sendmail-narzednik    '<application>Sendmail-em</application>'>
+ <!ENTITY Sendmail-miejscownik    '<application>Sendmail-u/application>'>
++<!ENTITY Sendmail    '&Sendmail-mianownik;'>
 Index: Makefile.cvs
 ===================================================================
 --- Makefile.cvs	(.../tags/KDE/3.4.2/kdelibs)	(revision 0)
-+++ Makefile.cvs	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
++++ Makefile.cvs	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -0,0 +1,15 @@
 +
 +all:
@@ -270,10 +873,34 @@ ___________________________________________________________________
 Name: svn:keywords
    + Author Date Id Revision
 
+Index: kdeprint/filters/imagetops.desktop
+===================================================================
+--- kdeprint/filters/imagetops.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdeprint/filters/imagetops.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -24,6 +24,7 @@
+ Comment[ar]=مرشح الصور الى بوست سكريبت
+ Comment[az]=Ümumi Rəsm-PS Filtri
+ Comment[bn]=জেনেরিক চিত্র থেকে পোস্টস্ক্রিপ্ট ফিল্টার
++Comment[br]=Sil rummel skeudenn da PS
+ Comment[bs]=Opšti Image-to-PS filter
+ Comment[ca]=Imatge genèrica per al filtre PS
+ Comment[cs]=Obecný filtr pro převod obrázku do PS souboru
+Index: kdeprint/specials.desktop
+===================================================================
+--- kdeprint/specials.desktop	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdeprint/specials.desktop	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -809,6 +809,7 @@
+ Name[be]=Даслаць PDF файл
+ Name[bg]=Изпращане на файл PDF по е-поща
+ Name[bn]=পি-ডি-এফ ফাইল মেইল করো
++Name[br]=Postelañ ur restr PDF
+ Name[bs]=Pošalji PDF dokument na mail
+ Name[ca]=Envia fitxer PDF per correu
+ Name[cs]=Odeslat PDF soubor emailem
 Index: configure.in.in
 ===================================================================
---- configure.in.in	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ configure.in.in	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- configure.in.in	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ configure.in.in	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -26,7 +26,6 @@
  
  dnl Checks for programs.
@@ -293,8 +920,8 @@ Index: configure.in.in
  
 Index: kdeui/ksyntaxhighlighter.cpp
 ===================================================================
---- kdeui/ksyntaxhighlighter.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kdeui/ksyntaxhighlighter.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kdeui/ksyntaxhighlighter.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdeui/ksyntaxhighlighter.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -102,6 +102,7 @@
      int wordCount, errorCount;
      int checksRequested, checksDone;
@@ -322,8 +949,8 @@ Index: kdeui/ksyntaxhighlighter.cpp
  	else if ( !d->active && !tme )
 Index: kdeui/klistview.cpp
 ===================================================================
---- kdeui/klistview.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 442272)
-+++ kdeui/klistview.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 442272)
+--- kdeui/klistview.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdeui/klistview.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
 @@ -369,10 +369,10 @@
          QListViewItem *i=item;
          col=0;
@@ -337,6 +964,43 @@ Index: kdeui/klistview.cpp
      }
  }
  
+Index: kdeui/kpassivepopup.cpp
+===================================================================
+--- kdeui/kpassivepopup.cpp	(.../tags/KDE/3.4.2/kdelibs)	(revision 453462)
++++ kdeui/kpassivepopup.cpp	(.../branches/KDE/3.4/kdelibs)	(revision 453462)
+@@ -235,23 +235,23 @@
+ 
+     QRect r = KGlobalSettings::desktopGeometry(QPoint(x+w/2,y+h/2));
+ 
+-    if ( x < ( r.width() / 2 ) )
++    if ( x < r.center().x() )
+ 	x = x + target.width();
+     else
+ 	x = x - w;
+ 
+     // It's apparently trying to go off screen, so display it ALL at the bottom.
+-    if ( (y + h) > r.height() )
+-	y = r.height() - h;
++    if ( (y + h) > r.bottom() )
++	y = r.bottom() - h;
+ 
+-    if ( (x + w) > r.width() )
+-	x = r.width() - w;
++    if ( (x + w) > r.right() )
++	x = r.right() - w;
+ 
+-    if ( y < 0 )
+-        y = 0;
++    if ( y < r.top() )
++        y = r.top();
+ 
+-    if ( x < 0 )
+-	x = 0;
++    if ( x < r.left() )
++	x = r.left();
+ 
+     move( x, y );
+ }
 
 Property changes on: .
 ___________________________________________________________________
