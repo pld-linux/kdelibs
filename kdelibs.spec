@@ -6,10 +6,10 @@
 %bcond_with	verbose		# verbose build
 #
 %define		_state		stable
-%define		_kdever		3.4.2
-%define		_ver		3.4.2
+%define		_kdever		3.4.3
+%define		_ver		3.4.3
 
-%define		artsver		13:1.4.2
+%define		artsver		13:1.4.3
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -20,12 +20,12 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	3
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	fe69f2f5c66dffd8fc741dcff221b80c
+# Source0-md5:	0cd7c0c8a81e5d11b91b407a4aaaf3ff
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -307,7 +307,7 @@ innych uøytkownikÛw lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p0
+#%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
