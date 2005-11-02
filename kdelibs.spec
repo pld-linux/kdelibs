@@ -204,10 +204,14 @@ aplicativo KDE.
 
 %package libs
 Summary:	KDE libraries
+Summary(pl):	Biblioteki KDE
 Group:		Libraries
 
 %description libs
 KDE libraries.
+
+%description libs -l pl
+Biblioteki KDE.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
