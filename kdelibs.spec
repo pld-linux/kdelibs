@@ -8,7 +8,7 @@
 %bcond_with	verbose		# verbose build
 #
 %define		_state		stable
-%define		_kdever		3.5.0
+%define		_kdever		3.5
 %define		_ver		3.5.0
 
 %define		artsver		13:1.5.0
