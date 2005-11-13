@@ -340,7 +340,7 @@ export kde_libs_htmldir=%{_kdedocdir}
 #export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 
-CPPFLAGS="-I$(pwd)/kdecore/network -I/usr/include/lua50"
+CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
