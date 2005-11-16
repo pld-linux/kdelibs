@@ -22,7 +22,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.1
+Release:	0.2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -353,7 +353,10 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 	--with-qt-libraries=%{_libdir} \
 	--with-distribution="PLD Linux Distribution"
 
-%{__make} %{?with_verbose:VERBOSE=1}
+%{__make} \
+	%{?with_verbose:VERBOSE=1} \
+	CXXLD=%{_host_cpu}-%{_vendor}-%{_os}-g++ \
+	CCLD=%{_host_cpu}-%{_vendor}-%{_os}-gcc
 
 %{?with_apidocs:%{__make} apidox}
 
@@ -533,6 +536,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/eps.kimgio
 %{_datadir}/services/exr.kimgio
 %{_datadir}/services/gif.kimgio
+%{_datadir}/services/hdr.kimgio
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
 %{_datadir}/services/jpeg.kimgio
@@ -568,7 +572,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/telnet.protocol
 %{_datadir}/services/webdav.protocol
 %{_datadir}/services/webdavs.protocol
-%{_datadir}/services/wmfthumbnail.desktop
 %{_datadir}/services/mmst.protocol
 %{_datadir}/services/mmsu.protocol
 %{_datadir}/services/rtspt.protocol
@@ -602,7 +605,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/kdesu_stub.1*
 %{_mandir}/man1/kdontchangethehostname.1*
 %{_mandir}/man1/kfile.1*
-%{_mandir}/man1/kimage_concat.1*
+# removed?
+#%{_mandir}/man1/kimage_concat.1*
 %{_mandir}/man1/kinstalltheme.1*
 %{_mandir}/man1/kio_http_cache_cleaner.1*
 %{_mandir}/man1/kio_uiserver.1*
@@ -894,163 +898,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
 %{_libdir}/kde3/plugins/styles/plastik.la
 %attr(755,root,root) %{_libdir}/kde3/plugins/styles/plastik.so
-
-%dir %{_datadir}/apps
-%{_datadir}/apps/LICENSES
-%dir %{_datadir}/apps/dcopidlng
-%attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
-%{_datadir}/apps/dcopidlng/*.pm
-%{_datadir}/apps/katepart
-%{_datadir}/apps/kcertpart
-%{_datadir}/apps/kcm_componentchooser
-%dir %{_datadir}/apps/kconf_update
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
-%{_datadir}/apps/kconf_update/*.upd
-%{_datadir}/apps/kdeprint
-%{_datadir}/apps/kdeui
-%{_datadir}/apps/kdewidgets
-# also contains 3rdparty kpartplugins dir
-%{_datadir}/apps/khtml
-%{_datadir}/apps/knewstuff
-%{_datadir}/apps/kio_uiserver
-%{_datadir}/apps/kjava
-%{_datadir}/apps/knotify
-%{_datadir}/apps/ksgmltools2
-%{_datadir}/apps/kssl
-%{_datadir}/apps/kstyle
-%{_datadir}/apps/ktexteditor_docwordcompletion
-%{_datadir}/apps/ktexteditor_insertfile
-%{_datadir}/apps/ktexteditor_isearch
-%{_datadir}/apps/ktexteditor_kdatatool
-%{_datadir}/apps/proxyscout
-%dir %{_datadir}/autostart
-%{_datadir}/config
-%dir %{_datadir}/emoticons
-%{_datadir}/emoticons/Default
-%{_datadir}/locale/all_languages
-%{_datadir}/mimelnk
-%dir %{_datadir}/services
-%dir %{_datadir}/services/kresources
-%{_datadir}/services/kresources/kabc_manager.desktop
-%{_datadir}/services/kded
-%{_datadir}/services/http_cache_cleaner.desktop
-%{_datadir}/services/katepart.desktop
-%{_datadir}/services/kbzip2filter.desktop
-%{_datadir}/services/kcertpart.desktop
-%{_datadir}/services/kgzipfilter.desktop
-%{_datadir}/services/khtml.desktop
-%{_datadir}/services/khtmlimage.desktop
-%{_datadir}/services/kio_uiserver.desktop
-%{_datadir}/services/kjavaappletviewer.desktop
-%{_datadir}/services/kmailservice.protocol
-%{_datadir}/services/kmultipart.desktop
-%{_datadir}/services/knotify.desktop
-%{_datadir}/services/kspell_aspell.desktop
-%{_datadir}/services/kspell_ispell.desktop
-#%{_datadir}/services/ktexteditor_autobookmarker.desktop
-%{_datadir}/services/ktexteditor_docwordcompletion.desktop
-%{_datadir}/services/ktexteditor_insertfile.desktop
-%{_datadir}/services/ktexteditor_isearch.desktop
-%{_datadir}/services/ktexteditor_kdatatool.desktop
-%{_datadir}/services/bmp.kimgio
-%{_datadir}/services/dds.kimgio
-%{_datadir}/services/eps.kimgio
-%{_datadir}/services/exr.kimgio
-%{_datadir}/services/gif.kimgio
-%{_datadir}/services/hdr.kimgio
-%{_datadir}/services/ico.kimgio
-%{_datadir}/services/jp2.kimgio
-%{_datadir}/services/jpeg.kimgio
-#%{_datadir}/services/krl.kimgio
-%{_datadir}/services/mng.kimgio
-%{_datadir}/services/pbm.kimgio
-%{_datadir}/services/pcx.kimgio
-%{_datadir}/services/pgm.kimgio
-%{_datadir}/services/png.kimgio
-%{_datadir}/services/ppm.kimgio
-%{_datadir}/services/psd.kimgio
-%{_datadir}/services/rgb.kimgio
-%{_datadir}/services/tga.kimgio
-%{_datadir}/services/tiff.kimgio
-%{_datadir}/services/xbm.kimgio
-%{_datadir}/services/xcf.kimgio
-%{_datadir}/services/xpm.kimgio
-%{_datadir}/services/xv.kimgio
-%{_datadir}/services/data.protocol
-%{_datadir}/services/file.protocol
-%{_datadir}/services/ftp.protocol
-%{_datadir}/services/ghelp.protocol
-%{_datadir}/services/help.protocol
-%{_datadir}/services/http.protocol
-%{_datadir}/services/https.protocol
-%{_datadir}/services/metainfo.protocol
-%{_datadir}/services/mms.protocol
-%{_datadir}/services/pnm.protocol
-%{_datadir}/services/rlogin.protocol
-%{_datadir}/services/rtsp.protocol
-%{_datadir}/services/shellscript.desktop
-%{_datadir}/services/ssh.protocol
-%{_datadir}/services/telnet.protocol
-%{_datadir}/services/webdav.protocol
-%{_datadir}/services/webdavs.protocol
-%{_datadir}/services/mmst.protocol
-%{_datadir}/services/mmsu.protocol
-%{_datadir}/services/rtspt.protocol
-%{_datadir}/services/rtspu.protocol
-%{_datadir}/servicetypes
-%dir %{_desktopdir}/kde
-# contains also 3rdparty hicolor & crystalsvg/apps trees
-%{_iconsdir}/crystalsvg
-%{_iconsdir}/default.kde
-%{_mandir}/man1/checkXML.1*
-%{_mandir}/man1/cupsdconf.1*
-%{_mandir}/man1/cupsdoprint.1*
-%{_mandir}/man1/dcop.1*
-%{_mandir}/man1/dcopclient.1*
-%{_mandir}/man1/dcopfind.1*
-%{_mandir}/man1/dcopobject.1*
-%{_mandir}/man1/dcopref.1*
-%{_mandir}/man1/dcopserver.1*
-%{_mandir}/man1/dcopserver_shutdown.1*
-%{_mandir}/man1/dcopstart.1*
-%{_mandir}/man1/imagetops.1*
-%{_mandir}/man1/kaddprinterwizard.1*
-%{_mandir}/man1/kbuildsycoca.1*
-%{_mandir}/man1/kconf_update.1*
-%{_mandir}/man1/kcookiejar.1*
-%{_mandir}/man1/kde-config.1*
-%{_mandir}/man1/kded.1*
-%{_mandir}/man1/kdeinit.1*
-%{_mandir}/man1/kdeinit_shutdown.1*
-%{_mandir}/man1/kdeinit_wrapper.1*
-%{_mandir}/man1/kdesu_stub.1*
-%{_mandir}/man1/kdontchangethehostname.1*
-%{_mandir}/man1/kfile.1*
-# removed?
-#%{_mandir}/man1/kimage_concat.1*
-%{_mandir}/man1/kinstalltheme.1*
-%{_mandir}/man1/kio_http_cache_cleaner.1*
-%{_mandir}/man1/kio_uiserver.1*
-%{_mandir}/man1/kioslave.1*
-%{_mandir}/man1/klauncher.1*
-%{_mandir}/man1/kmailservice.1*
-%{_mandir}/man1/kpac_dhcp_helper.1*
-%{_mandir}/man1/ksendbugmail.1*
-%{_mandir}/man1/kshell.1*
-%{_mandir}/man1/ksvgtopng.1*
-%{_mandir}/man1/ktelnetservice.1*
-%{_mandir}/man1/kwrapper.1*
-%{_mandir}/man1/lnusertemp.1*
-%{_mandir}/man1/make_driver_db_cups.1*
-%{_mandir}/man1/make_driver_db_lpr.1*
-%{_mandir}/man1/meinproc.1*
-%{_mandir}/man1/preparetips.1*
-%dir %{_docdir}/kde
-%dir %{_kdedocdir}
-%dir %{_kdedocdir}/en
-%{_kdedocdir}/en/common
-%lang(en) %{_kdedocdir}/en/kspell
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
