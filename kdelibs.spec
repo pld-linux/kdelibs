@@ -22,7 +22,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.2
+Release:	0.3
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -356,7 +356,8 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 %{__make} \
 	%{?with_verbose:VERBOSE=1} \
 	CXXLD=%{_host_cpu}-%{_vendor}-%{_os}-g++ \
-	CCLD=%{_host_cpu}-%{_vendor}-%{_os}-gcc
+	CCLD=%{_host_cpu}-%{_vendor}-%{_os}-gcc \
+	AM_MAKEFLAGS='CXXLD=$(CXXLD) CCLD=$(CCLD)'
 
 %{?with_apidocs:%{__make} apidox}
 
