@@ -1,5 +1,9 @@
 # TODO
-# - devel perhaps needs only -libs?
+# warning: Installed (but unpackaged) file(s) found:
+#   /etc/xdg/menus/applications.menu
+#   /usr/share/icons/hicolor/index.theme
+#   /usr/share/man/man1/kimage_concat.1.gz
+#   /usr/share/services/wmfthumbnail.desktop
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# do not prepare API documentation
