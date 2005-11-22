@@ -1,0 +1,11 @@
+--- kdelibs-3.5.0/kdeui/kbugreport.cpp~	2005-10-10 18:06:39.000000000 +0300
++++ kdelibs-3.5.0/kdeui/kbugreport.cpp	2005-11-22 15:45:48.000000000 +0200
+@@ -274,7 +274,7 @@
+ 
+ void KBugReport::updateURL()
+ {
+-    KURL url ( "http://bugs.kde.org/wizard.cgi" );
++    KURL url ( "https://bugs.kde.org/wizard.cgi" );
+     url.addQueryItem( "os", d->os );
+     url.addQueryItem( "compiler", KDE_COMPILER_VERSION );
+     url.addQueryItem( "kdeVersion", d->kde_version );
