@@ -1,9 +1,3 @@
-# TODO
-# warning: Installed (but unpackaged) file(s) found:
-#   /etc/xdg/menus/applications.menu
-#   /usr/share/icons/hicolor/index.theme
-#   /usr/share/man/man1/kimage_concat.1.gz
-#   /usr/share/services/wmfthumbnail.desktop
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# do not prepare API documentation
@@ -26,7 +20,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	0.5
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -67,6 +61,7 @@ BuildRequires:	ed
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	graphviz}
+BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
 %{?with_heimdal:BuildRequires:	heimdal-devel}
 BuildRequires:	libart_lgpl-devel
@@ -533,11 +528,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/knotify.desktop
 %{_datadir}/services/kspell_aspell.desktop
 %{_datadir}/services/kspell_ispell.desktop
+%{_datadir}/services/kspell_hspell.desktop
 #%{_datadir}/services/ktexteditor_autobookmarker.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
 %{_datadir}/services/ktexteditor_kdatatool.desktop
+%{_datadir}/services/wmfthumbnail.desktop
 %{_datadir}/services/bmp.kimgio
 %{_datadir}/services/dds.kimgio
 %{_datadir}/services/eps.kimgio
@@ -860,6 +857,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
 %{_libdir}/kde3/kspell_ispell.la
 %attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
+%{_libdir}/kde3/kspell_hspell.la
+%attr(755,root,root) %{_libdir}/kde3/kspell_hspell.so
 %{_libdir}/kde3/kstyle_highcontrast_config.la
 %attr(755,root,root) %{_libdir}/kde3/kstyle_highcontrast_config.so
 %{_libdir}/kde3/kstyle_plastik_config.la
