@@ -42,6 +42,7 @@ Patch6:		%{name}-kbugreport-https.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
+BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
 BuildRequires:	artsc-devel >= %{artsver}
@@ -221,6 +222,7 @@ Summary(ru):	Хедеры и документация для компилляции программ KDE
 Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	acl-devel
 Requires:	arts-qt-devel >= %{artsver}
 Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
