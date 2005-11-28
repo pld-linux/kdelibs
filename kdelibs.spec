@@ -153,6 +153,8 @@ Conflicts:	pixieplus < 0.3-4
 Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_noautoreq mDNSResponder
+
 %description
 This package includes libraries that are central to the development
 and execution of a KDE program, misc HTML documentation and theme
