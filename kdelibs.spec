@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# do not prepare API documentation
@@ -78,7 +79,7 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	libwmf-devel >= 2:0.2.0
-BuildRequires:	mDNSResponder-devel
+BuildRequires:	mDNSResponder-devel >= 107-2
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
@@ -152,8 +153,6 @@ Conflicts:	kplayer < 0.5.1-5
 Conflicts:	pixieplus < 0.3-4
 Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_noautoreq mDNSResponder
 
 %description
 This package includes libraries that are central to the development
