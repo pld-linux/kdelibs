@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -94,7 +94,7 @@ BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 %endif
-PreReq:		setup >= 2.4.6-7
+Requires:	setup >= 2.4.6-7
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
@@ -302,9 +302,10 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description kgrantpty
 This suid root program fixes the permissions of pseudo-terminal device
-files so that they cannot be eavesdropped by other local users. Systems
-that support /dev/pts (typical PLD installations do) don't require an
-extra program to do it, in that case this package is useless.
+files so that they cannot be eavesdropped by other local users.
+Systems that support /dev/pts (typical PLD installations do) don't
+require an extra program to do it, in that case this package is
+useless.
 
 Install this package if you're running a custom system that lacks
 Unix98 pts support and privacy from other local users is a concern for
@@ -313,17 +314,17 @@ you.
 %description kgrantpty -l pl
 Ten program, dzia≥aj±cy z uprawnieniami roota, poprawia uprawnienia
 plikÛw pseudo-terminali, øeby unikn±Ê ich pods≥uchiwania przez innych
-lokalnych uøytkownikÛw. Systemy obs≥uguj±ce /dev/pts (typowe instalacje
-PLD go obs≥uguj±) nie wymagaj± do tego dodatkowego programu, w tym
-przypadku ten pakiet jest bezuøyteczny.
+lokalnych uøytkownikÛw. Systemy obs≥uguj±ce /dev/pts (typowe
+instalacje PLD go obs≥uguj±) nie wymagaj± do tego dodatkowego
+programu, w tym przypadku ten pakiet jest bezuøyteczny.
 
 Zainstaluj ten pakiet jeøeli korzystasz z nietypowej konfiguracji
-nieobs≥uguj±cej pts-Ûw typu Unix98 i obawiasz siÍ inwigilacji ze strony
-innych uøytkownikÛw lokalnych.
+nieobs≥uguj±cej pts-Ûw typu Unix98 i obawiasz siÍ inwigilacji ze
+strony innych uøytkownikÛw lokalnych.
 
 %prep
 %setup -q -a1
-#%patch100 -p0
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
