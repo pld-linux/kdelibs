@@ -353,7 +353,7 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	%{!?debug:--disable-rpath} \
-	--enable-final \
+	--disable-final \
 	%{?with_hidden_visibility:--enable-gcc-hidden-visibility} \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
