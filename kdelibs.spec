@@ -24,7 +24,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	7
+Release:	8
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -43,6 +43,7 @@ Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
 Patch6:		%{name}-kbugreport-https.patch
+Patch7:		%{name}-kjs.patch
 Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
@@ -339,6 +340,7 @@ strony innych u¿ytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p0
 
 cp %{_datadir}/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
