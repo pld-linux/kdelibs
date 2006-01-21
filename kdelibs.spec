@@ -44,7 +44,6 @@ Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
 Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-kjs.patch
-Icon:		kdelibs.xpm
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
