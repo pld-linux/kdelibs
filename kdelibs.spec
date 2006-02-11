@@ -24,7 +24,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -331,7 +331,7 @@ strony innych u©ytkownikСw lokalnych.
 
 %prep
 %setup -q -a1
-#%patch100 -p0
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
