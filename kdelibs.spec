@@ -232,14 +232,16 @@ Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
-Requires:	arts-qt-devel >= %{artsver}
 Requires:	artsc-devel >= %{artsver}
+Requires:	arts-qt-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
 Requires:	mdns-bonjour-devel
 Requires:	pcre-devel
 Requires:	qt-devel >= 6:3.3.3-4
+Requires:	xorg-lib-libXmu-devel
+Requires:	xorg-lib-libXt-devel
 Obsoletes:	arts-kde-devel
 Obsoletes:	kdelibs-sound-devel
 Obsoletes:	kdelibs2-devel
