@@ -24,7 +24,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	%{_ver}
-Release:	4
+Release:	5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -84,7 +84,7 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	libwmf-devel >= 2:0.2.0
 BuildRequires:	lua50-devel
-BuildRequires:	mDNSResponder-devel >= 107-2
+BuildRequires:	mdns-bonjour-devel
 BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
@@ -237,7 +237,7 @@ Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
-Requires:	mDNSResponder-devel
+Requires:	mdns-bonjour-devel
 Requires:	pcre-devel
 Requires:	qt-devel >= 6:3.3.3-4
 Obsoletes:	arts-kde-devel
