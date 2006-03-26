@@ -10,10 +10,10 @@
 					# to g++ 
 #
 %define		_state		stable
-%define		_kdever		3.5.1
-%define		_ver		3.5.1
+%define		_kdever		3.5.2
+%define		_ver		3.5.2
 
-%define		artsver		13:1.5.1
+%define		artsver		13:1.5.2
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -24,12 +24,12 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	%{_ver}
-Release:	2
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	2a22193ae7c23f3759b02723dab02d30
+# Source0-md5:	367738696dc468859cf90d5a6e8f18a9
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -43,6 +43,8 @@ Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
 Patch6:		%{name}-kbugreport-https.patch
+Patch7:		%{name}-xgl.patch
+Patch8:		%{name}-tango.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
@@ -331,7 +333,7 @@ strony innych u¿ytkowników lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p0
+#%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 #%patch2 -p1
@@ -339,6 +341,8 @@ strony innych u¿ytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p0
 
 cp %{_datadir}/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
@@ -399,17 +403,17 @@ install -d \
 
 # Debian manpages
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
-cd debian/man
-%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-	ksendbugmail.sgml
-
-for f in *.sgml ; do
-	base="$(basename $f .sgml)"
-	upper="$(echo ${base} | tr a-z A-Z)"
-	db2man $f
-	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
-done
-cd -
+#cd debian/man
+#%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
+#	ksendbugmail.sgml
+#
+#for f in *.sgml ; do
+#	base="$(basename $f .sgml)"
+#	upper="$(echo ${base} | tr a-z A-Z)"
+#	db2man $f
+#	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
+#done
+#cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
@@ -596,49 +600,49 @@ rm -rf $RPM_BUILD_ROOT
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
-%{_mandir}/man1/checkXML.1*
-%{_mandir}/man1/cupsdconf.1*
-%{_mandir}/man1/cupsdoprint.1*
-%{_mandir}/man1/dcop.1*
-%{_mandir}/man1/dcopclient.1*
-%{_mandir}/man1/dcopfind.1*
-%{_mandir}/man1/dcopobject.1*
-%{_mandir}/man1/dcopref.1*
-%{_mandir}/man1/dcopserver.1*
-%{_mandir}/man1/dcopserver_shutdown.1*
-%{_mandir}/man1/dcopstart.1*
-%{_mandir}/man1/imagetops.1*
-%{_mandir}/man1/kaddprinterwizard.1*
-%{_mandir}/man1/kbuildsycoca.1*
-%{_mandir}/man1/kconf_update.1*
-%{_mandir}/man1/kcookiejar.1*
-%{_mandir}/man1/kde-config.1*
-%{_mandir}/man1/kded.1*
-%{_mandir}/man1/kdeinit.1*
-%{_mandir}/man1/kdeinit_shutdown.1*
-%{_mandir}/man1/kdeinit_wrapper.1*
-%{_mandir}/man1/kdesu_stub.1*
-%{_mandir}/man1/kdontchangethehostname.1*
-%{_mandir}/man1/kfile.1*
+#%{_mandir}/man1/checkXML.1*
+#%{_mandir}/man1/cupsdconf.1*
+#%{_mandir}/man1/cupsdoprint.1*
+#%{_mandir}/man1/dcop.1*
+#%{_mandir}/man1/dcopclient.1*
+#%{_mandir}/man1/dcopfind.1*
+#%{_mandir}/man1/dcopobject.1*
+#%{_mandir}/man1/dcopref.1*
+#%{_mandir}/man1/dcopserver.1*
+#%{_mandir}/man1/dcopserver_shutdown.1*
+#%{_mandir}/man1/dcopstart.1*
+#%{_mandir}/man1/imagetops.1*
+#%{_mandir}/man1/kaddprinterwizard.1*
+#%{_mandir}/man1/kbuildsycoca.1*
+#%{_mandir}/man1/kconf_update.1*
+#%{_mandir}/man1/kcookiejar.1*
+#%{_mandir}/man1/kde-config.1*
+#%{_mandir}/man1/kded.1*
+#%{_mandir}/man1/kdeinit.1*
+#%{_mandir}/man1/kdeinit_shutdown.1*
+#%{_mandir}/man1/kdeinit_wrapper.1*
+#%{_mandir}/man1/kdesu_stub.1*
+#%{_mandir}/man1/kdontchangethehostname.1*
+#%{_mandir}/man1/kfile.1*
 # removed?
 #%{_mandir}/man1/kimage_concat.1*
-%{_mandir}/man1/kinstalltheme.1*
-%{_mandir}/man1/kio_http_cache_cleaner.1*
-%{_mandir}/man1/kio_uiserver.1*
-%{_mandir}/man1/kioslave.1*
-%{_mandir}/man1/klauncher.1*
-%{_mandir}/man1/kmailservice.1*
-%{_mandir}/man1/kpac_dhcp_helper.1*
-%{_mandir}/man1/ksendbugmail.1*
-%{_mandir}/man1/kshell.1*
-%{_mandir}/man1/ksvgtopng.1*
-%{_mandir}/man1/ktelnetservice.1*
-%{_mandir}/man1/kwrapper.1*
-%{_mandir}/man1/lnusertemp.1*
-%{_mandir}/man1/make_driver_db_cups.1*
-%{_mandir}/man1/make_driver_db_lpr.1*
-%{_mandir}/man1/meinproc.1*
-%{_mandir}/man1/preparetips.1*
+#%{_mandir}/man1/kinstalltheme.1*
+#%{_mandir}/man1/kio_http_cache_cleaner.1*
+#%{_mandir}/man1/kio_uiserver.1*
+#%{_mandir}/man1/kioslave.1*
+#%{_mandir}/man1/klauncher.1*
+#%{_mandir}/man1/kmailservice.1*
+#%{_mandir}/man1/kpac_dhcp_helper.1*
+#%{_mandir}/man1/ksendbugmail.1*
+#%{_mandir}/man1/kshell.1*
+#%{_mandir}/man1/ksvgtopng.1*
+#%{_mandir}/man1/ktelnetservice.1*
+#%{_mandir}/man1/kwrapper.1*
+#%{_mandir}/man1/lnusertemp.1*
+#%{_mandir}/man1/make_driver_db_cups.1*
+#%{_mandir}/man1/make_driver_db_lpr.1*
+#%{_mandir}/man1/meinproc.1*
+#%{_mandir}/man1/preparetips.1*
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
 %dir %{_kdedocdir}/en
@@ -659,7 +663,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
 %{_desktopdir}/kde/kresources.desktop
-%{_mandir}/man1/kab2kabc.1*
+#%{_mandir}/man1/kab2kabc.1*
 
 %files libs
 %defattr(644,root,root,755)
@@ -982,8 +986,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
-%{_mandir}/man1/dcopidl.1*
-%{_mandir}/man1/dcopidl2cpp.1*
+#%{_mandir}/man1/dcopidl.1*
+#%{_mandir}/man1/dcopidl2cpp.1*
 
 %if %{with apidocs}
 %files apidocs
@@ -994,7 +998,7 @@ rm -rf $RPM_BUILD_ROOT
 %files artsmessage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/artsmessage
-%{_mandir}/man1/artsmessage.1*
+#%{_mandir}/man1/artsmessage.1*
 
 %files kgrantpty
 %defattr(644,root,root,755)
