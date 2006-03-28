@@ -371,12 +371,7 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 	--with-lua-includes=%{_includedir}/lua50 \
 	--with-distribution="PLD Linux Distribution"
 
-%{__make} \
-	%{?with_verbose:VERBOSE=1} \
-	CXXLD=%{_host_cpu}-%{_vendor}-%{_os}-g++ \
-	CCLD=%{_host_cpu}-%{_vendor}-%{_os}-gcc \
-	AM_MAKEFLAGS='CXXLD=$(CXXLD) CCLD=$(CCLD)'
-
+%{__make}
 %{?with_apidocs:%{__make} apidox}
 
 %install
