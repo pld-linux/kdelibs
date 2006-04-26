@@ -105,6 +105,7 @@ Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
 Requires:	qt >= 6:3.3.3-4
+Requires:	xorg-app-iceauth
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
 Obsoletes:	%{name}-kabc
