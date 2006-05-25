@@ -10,7 +10,7 @@
 					# to g++ 
 #
 %define		_state		stable
-%define		artsver		13:1.5.2
+%define		artsver		13:1.5.3
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -20,13 +20,13 @@ Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
 Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
-Version:	3.5.2
+Version:	3.5.3
 Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	367738696dc468859cf90d5a6e8f18a9
+# Source0-md5:	972c2c6855f912179bd7830bf2ed91d8
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
