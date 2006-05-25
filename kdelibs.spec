@@ -161,6 +161,9 @@ Conflicts:	pixieplus < 0.3-4
 Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# confuses OpenEXR detection
+%undefine	with_confcache
+
 %description
 This package includes libraries that are central to the development
 and execution of a KDE program, misc HTML documentation and theme
