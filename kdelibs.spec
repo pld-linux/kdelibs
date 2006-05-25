@@ -65,9 +65,9 @@ BuildRequires:	fam-devel
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	graphviz}
+%{?with_heimdal:BuildRequires:	heimdal-devel}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
-%{?with_heimdal:BuildRequires:	heimdal-devel}
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
@@ -77,10 +77,10 @@ BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:1.5-2
 BuildRequires:	libvorbis-devel
+BuildRequires:	libwmf-devel >= 2:0.2.0
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	libwmf-devel >= 2:0.2.0
 BuildRequires:	lua50-devel
 BuildRequires:	mdns-bonjour-devel
 BuildRequires:	openmotif-devel
@@ -90,34 +90,34 @@ BuildRequires:	pkgconfig
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
 %{?with_apidocs:BuildRequires:	qt-doc}
-#BuildRequires:	unsermake >= 040511
 BuildRequires:	rpmbuild(macros) >= 1.129
+#BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
 BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 %endif
-Requires:	setup >= 2.4.6-7
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
 Requires:	qt >= 6:3.3.3-4
+Requires:	setup >= 2.4.6-7
 Requires:	xorg-app-iceauth
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
-Obsoletes:	%{name}-kabc
+Obsoletes:	kdelibs-kabc
+Obsoletes:	kdelibs-sound
 Obsoletes:	kdelibs2
 Obsoletes:	kdelibs2-sound
-Obsoletes:	kdelibs-sound
 Obsoletes:	kdesupport
 Obsoletes:	kdesupport-devel
-Obsoletes:	kdesupport-static
 Obsoletes:	kdesupport-mimelib
 Obsoletes:	kdesupport-mimelib-devel
 Obsoletes:	kdesupport-mimelib-static
+Obsoletes:	kdesupport-static
 Obsoletes:	kimproxy
 # No longer supported/existing
 Obsoletes:	arts-message
@@ -140,6 +140,7 @@ Obsoletes:	kdepim-kaplan
 Obsoletes:	kdesdk
 Obsoletes:	kdesdk-devel
 # More
+Obsoletes:	kde-style-plastik
 Obsoletes:	kdepim-kaddressbook < 3:3.1.91.030918-1
 Obsoletes:	kdepim-kmail < 3:3.1.91.030918-1
 Obsoletes:	kdepim-kontact < 3:3.1.91.030918-1
@@ -149,11 +150,10 @@ Obsoletes:	kdepim-libkdenetwork < 3:3.1.91.030918-1
 Obsoletes:	kdepim-libkdepim < 3:3.2.90
 Obsoletes:	kdetoys-kaphorism < 9:3.2.0
 Obsoletes:	openoffice-mimelinks
-Obsoletes:	kde-style-plastik
 Conflicts:	kaffeine <= 0.5-1
 Conflicts:	kdeaddons-konqueror < 1:3.4.0
 Conflicts:	kdebase-core < 9:3.4.0
-Conflicts:	kdenetwork-kit  < 10:3.3.0
+Conflicts:	kdenetwork-kit < 10:3.3.0
 Conflicts:	kdepim-devel < 3:3.2.90
 Conflicts:	kmplayer <= 2:0.8.4-1
 Conflicts:	kplayer < 0.5.1-5
@@ -234,8 +234,8 @@ Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
-Requires:	artsc-devel >= %{artsver}
 Requires:	arts-qt-devel >= %{artsver}
+Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
@@ -246,9 +246,9 @@ Requires:	xorg-lib-libXmu-devel
 Requires:	xorg-lib-libXt-devel
 Obsoletes:	arts-kde-devel
 Obsoletes:	kdelibs-sound-devel
+Obsoletes:	kdelibs-static
 Obsoletes:	kdelibs2-devel
 Obsoletes:	kdelibs2-sound-devel
-Obsoletes:	kdelibs-static
 Obsoletes:	kttsd-devel
 Conflicts:	kdebase-devel <= 9:3.1.90
 
