@@ -344,14 +344,12 @@ strony innych u¿ytkowników lokalnych.
 %patch7 -p1
 %patch8 -p0
 
+%build
 cp %{_datadir}/automake/config.sub admin
+
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 %{__make} -f admin/Makefile.common cvs
-
-%build
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
 
 CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
