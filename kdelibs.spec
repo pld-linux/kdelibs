@@ -416,7 +416,7 @@ if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
 fi
 
 # packaged by hicolor-icon-theme
-rm -f $RPM_BUILD_ROOT/usr/share/icons/hicolor/index.theme
+rm -f $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 %clean
 rm -rf $RPM_BUILD_ROOT
