@@ -1,4 +1,3 @@
-#
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# don't prepare API documentation
@@ -20,13 +19,13 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.5.3
+Version:	3.5.4
 Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	972c2c6855f912179bd7830bf2ed91d8
+# Source0-md5:	979d056ca0e21c12caed270126e60e3e
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -415,6 +414,9 @@ touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
 	mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
 fi
+
+# packaged by hicolor-icon-theme
+rm -f $RPM_BUILD_ROOT/usr/share/icons/hicolor/index.theme
 
 %clean
 rm -rf $RPM_BUILD_ROOT
