@@ -7,7 +7,7 @@
 %bcond_with	verbose		# verbose build
 %bcond_without	hidden_visibility	# pass '--fvisibility=hidden'
 					# & '--fvisibility-inlines-hidden'
-					# to g++ 
+					# to g++
 #
 %define		_state		stable
 %define		artsver		13:1.5.4
