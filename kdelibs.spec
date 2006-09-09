@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	3.5.4
-Release:	3
+Release:	4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -42,6 +42,7 @@ Patch5:		%{name}-appicon_themable.patch
 Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		kde-ac260-lt.patch
+Patch9:		%{name}-avahi.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
@@ -346,6 +347,7 @@ strony innych u¿ytkowników lokalnych.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 cp %{_datadir}/automake/config.sub admin
