@@ -37,13 +37,13 @@
 +	my $mercy = shift; # true if dir doesn't have to exist
      my $ok = 1;
 -    $ok &&= m|^/|;
--    $ok &&= !m|/../|;
+-    $ok &&= !m|/\.\./|;
 -    $ok &&= !m|[\0\n\r]|;
 -    $ok &&= -d $_;
 -    $ok &&= own($_);
 +	$ok &&= length $_;
 +    $ok &&=  m#^/#;
-+    $ok &&= !m#/../#;
++    $ok &&= !m#/\.\./#;
 +    $ok &&= !m#[\0\n\r]#;
 +	if ($ok && $mercy && !-d && m#^/#) {
 +		my $tmp = $_;
