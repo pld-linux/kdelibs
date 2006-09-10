@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.4
-Release:	5
+Release:	6
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -487,6 +487,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
+%attr(755,root,root) %{_bindir}/start_kdeinit
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
