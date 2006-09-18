@@ -9,7 +9,7 @@
 					# to g++
 #
 %define		_state		stable
-%define		artsver		13:1.5.3
+%define		artsver		13:1.5.4
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
