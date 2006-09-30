@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	3.5.4
-Release:	8
+Release:	9
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -35,7 +35,6 @@ Source4:	x-mplayer2.desktop
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
-Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
@@ -340,7 +339,6 @@ strony innych uøytkownikÛw lokalnych.
 %patch100 -p0
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
@@ -356,7 +354,6 @@ export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 %{__make} -f admin/Makefile.common cvs
 
-CPPFLAGS="-I$(pwd)/kdecore/network"
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	%{!?debug:--disable-rpath} \
@@ -366,11 +363,11 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 	--enable-libsuffix=64 \
 %endif
 	--enable-mitshm \
-	--with-ldap=no \
 	--with%{!?with_alsa:out}-alsa \
-	--with-qt-libraries=%{_libdir} \
+	--with-distribution="PLD Linux Distribution" \
+	--with-ldap=no \
 	--with-lua-includes=%{_includedir}/lua50 \
-	--with-distribution="PLD Linux Distribution"
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 %{?with_apidocs:%{__make} apidox}
@@ -398,20 +395,6 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
-
-# Debian manpages
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
-#cd debian/man
-#%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-#	ksendbugmail.sgml
-#
-#for f in *.sgml ; do
-#	base="$(basename $f .sgml)"
-#	upper="$(echo ${base} | tr a-z A-Z)"
-#	db2man $f
-#	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
-#done
-#cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
