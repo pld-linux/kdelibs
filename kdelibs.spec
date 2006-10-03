@@ -10,7 +10,7 @@
 					# to g++
 #
 %define		_state		stable
-%define		artsver		13:1.5.4
+%define		artsver		13:1.5.5
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -20,19 +20,20 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.5.4
-Release:	9
+Version:	3.5.5
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	979d056ca0e21c12caed270126e60e3e
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ep09.pld-linux.org/software/kde/%{name}-%{version}.tar.bz2
+# Source0-md5:	ffabfdec81cb1f632f5dadb8a7be6c8d
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
-Patch100:	%{name}-branch.diff
+#Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch3:		%{name}-use_system_sgml.patch
@@ -336,7 +337,7 @@ strony innych uøytkownikÛw lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p0
+#%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
