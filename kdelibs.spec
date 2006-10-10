@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# don't prepare API documentation
@@ -9,7 +10,7 @@
 					# to g++
 #
 %define		_state		stable
-%define		artsver		13:1.5.4
+%define		artsver		13:1.5.5
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -19,13 +20,13 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	3.5.4
-Release:	1
+Version:	3.5.5
+Release:	0.5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	979d056ca0e21c12caed270126e60e3e
+# Source0-md5:	2cba792e3b0a766431b837c8ef924117
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -34,13 +35,12 @@ Source4:	x-mplayer2.desktop
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
-Patch2:		%{name}-defaultfonts.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
 Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
-Patch8:		%{name}-tango.patch
+Patch8:		kde-ac260-lt.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
@@ -332,16 +332,15 @@ strony innych u¿ytkowników lokalnych.
 
 %prep
 %setup -q -a1
-#%patch100 -p0
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p0
+%patch8 -p1
 
 %build
 cp %{_datadir}/automake/config.sub admin
@@ -350,7 +349,7 @@ export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 %{__make} -f admin/Makefile.common cvs
 
-CPPFLAGS="-I$(pwd)/kdecore/network"
+export path_sudo=/usr/bin/sudo
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	%{!?debug:--disable-rpath} \
@@ -360,11 +359,11 @@ CPPFLAGS="-I$(pwd)/kdecore/network"
 	--enable-libsuffix=64 \
 %endif
 	--enable-mitshm \
-	--with-ldap=no \
 	--with%{!?with_alsa:out}-alsa \
-	--with-qt-libraries=%{_libdir} \
+	--with-distribution="PLD Linux Distribution" \
+	--with-ldap=no \
 	--with-lua-includes=%{_includedir}/lua50 \
-	--with-distribution="PLD Linux Distribution"
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 %{?with_apidocs:%{__make} apidox}
@@ -392,20 +391,6 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
-
-# Debian manpages
-install -d $RPM_BUILD_ROOT%{_mandir}/man1
-#cd debian/man
-#%{__perl} -pi -e 's/ksendbugemail/ksendbugmail/;s/KSENDBUGEMAIL/KSENDBUGMAIL/' \
-#	ksendbugmail.sgml
-#
-#for f in *.sgml ; do
-#	base="$(basename $f .sgml)"
-#	upper="$(echo ${base} | tr a-z A-Z)"
-#	db2man $f
-#	install ${upper}.1 $RPM_BUILD_ROOT%{_mandir}/man1/${base}.1
-#done
-#cd -
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
@@ -484,6 +469,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
+%attr(755,root,root) %{_bindir}/start_kdeinit
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
