@@ -1,7 +1,7 @@
 Index: interfaces/kspeech/kspeech.h
 ===================================================================
---- interfaces/kspeech/kspeech.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ interfaces/kspeech/kspeech.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- interfaces/kspeech/kspeech.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ interfaces/kspeech/kspeech.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -371,10 +371,11 @@
   *
   * A Talker Code consists of a series of XML tags and attributes.
@@ -17,8 +17,8 @@ Index: interfaces/kspeech/kspeech.h
   * Markup Language (SSML) and Java Speech Markup Language (JSML).
 Index: interfaces/kmediaplayer/kfileaudiopreview/kfileaudiopreview.cpp
 ===================================================================
---- interfaces/kmediaplayer/kfileaudiopreview/kfileaudiopreview.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ interfaces/kmediaplayer/kfileaudiopreview/kfileaudiopreview.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- interfaces/kmediaplayer/kfileaudiopreview/kfileaudiopreview.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ interfaces/kmediaplayer/kfileaudiopreview/kfileaudiopreview.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -21,8 +21,10 @@
  {
  protected:
@@ -33,8 +33,8 @@ Index: interfaces/kmediaplayer/kfileaudiopreview/kfileaudiopreview.cpp
  };
 Index: kmdi/kmdi/mainwindow.h
 ===================================================================
---- kmdi/kmdi/mainwindow.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kmdi/kmdi/mainwindow.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kmdi/kmdi/mainwindow.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kmdi/kmdi/mainwindow.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -107,6 +107,10 @@
       * as toplevel and stay-on-top on the application's main widget.
       * @param pWnd widget for the toolview
@@ -48,8 +48,8 @@ Index: kmdi/kmdi/mainwindow.h
      KMDI::ToolViewAccessor *addToolWindow( QWidget* pWnd, KDockWidget::DockPosition pos = KDockWidget::DockNone, QWidget* pTargetWnd = 0L, int percent = 50, const QString& tabToolTip = 0, const QString& tabCaption = 0);
 Index: kmdi/kmdi/dockcontainer.h
 ===================================================================
---- kmdi/kmdi/dockcontainer.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kmdi/kmdi/dockcontainer.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kmdi/kmdi/dockcontainer.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kmdi/kmdi/dockcontainer.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -50,7 +50,7 @@
      /**
       * Add a widget to this container.
@@ -70,8 +70,8 @@ Index: kmdi/kmdi/dockcontainer.h
      virtual void setToolTip (KDockWidget *, QString &);
 Index: kate/part/katecodecompletion.cpp
 ===================================================================
---- kate/part/katecodecompletion.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/katecodecompletion.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/katecodecompletion.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/katecodecompletion.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -56,7 +56,6 @@
    public:
      /**
@@ -82,8 +82,8 @@ Index: kate/part/katecodecompletion.cpp
      {
 Index: kate/part/katefactory.h
 ===================================================================
---- kate/part/katefactory.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/katefactory.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/katefactory.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/katefactory.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -75,6 +75,7 @@
       * @param widgetName widget name
       * @param parent QObject parent
@@ -94,8 +94,8 @@ Index: kate/part/katefactory.h
       */
 Index: kate/part/katejscript.cpp
 ===================================================================
---- kate/part/katejscript.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/katejscript.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/katejscript.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/katejscript.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -360,7 +360,7 @@
  
  const KJS::ClassInfo KateJSDocument::info = { "KateJSDocument", 0, 0, 0 };
@@ -125,8 +125,8 @@ Index: kate/part/katejscript.cpp
  
 Index: kate/part/kateview.h
 ===================================================================
---- kate/part/kateview.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/kateview.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/kateview.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/kateview.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -286,8 +286,8 @@
          { return getDoc()->textLine( cursorLine() ); }
      QString currentWord()
@@ -148,8 +148,8 @@ Index: kate/part/kateview.h
      void findPrev()               { findAgain( true );           }
 Index: kate/part/katedocument.h
 ===================================================================
---- kate/part/katedocument.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/katedocument.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/katedocument.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/katedocument.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -264,6 +264,7 @@
       * @p removeLine is true, @p length is ignored (eg not needed).
       * @param line line number
@@ -169,8 +169,8 @@ Index: kate/part/katedocument.h
  
 Index: kate/part/kateautoindent.h
 ===================================================================
---- kate/part/kateautoindent.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/kateautoindent.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/kateautoindent.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/kateautoindent.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -349,7 +349,7 @@
      KateCSmartIndent (KateDocument *doc);
      ~KateCSmartIndent ();
@@ -209,8 +209,8 @@ Index: kate/part/kateautoindent.h
      virtual void processLine (KateDocCursor &line);
 Index: kate/part/kateviewhelpers.cpp
 ===================================================================
---- kate/part/kateviewhelpers.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/kateviewhelpers.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/kateviewhelpers.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/kateviewhelpers.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -277,7 +277,7 @@
    public:
      KateCmdLineFlagCompletion() {;}
@@ -222,8 +222,8 @@ Index: kate/part/kateviewhelpers.cpp
      }
 Index: kate/part/katefactory.cpp
 ===================================================================
---- kate/part/katefactory.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/katefactory.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/katefactory.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/katefactory.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -52,6 +52,7 @@
       * @param widgetName widget name
       * @param parent QObject parent
@@ -234,8 +234,8 @@ Index: kate/part/katefactory.cpp
       */
 Index: kate/part/katesearch.h
 ===================================================================
---- kate/part/katesearch.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kate/part/katesearch.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kate/part/katesearch.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/katesearch.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -223,7 +223,7 @@
      bool help(class Kate::View *, const QString &, QString &);
      QStringList cmds();
@@ -245,10 +245,49 @@ Index: kate/part/katesearch.h
  
    private:
      /**
+Index: kate/part/kateautoindent.cpp
+===================================================================
+--- kate/part/kateautoindent.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kate/part/kateautoindent.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
+@@ -714,6 +714,7 @@
+   int parenCount = 0;  // Possibly in a multiline for stmt.  Used to skip ';' ...
+   bool found = false;
+   bool isSpecial = false;
++  bool potentialAnchorSeen = false;
+ 
+   //kdDebug(13030) << "calcIndent begin line:" << begin.line() << " col:" << begin.col() << endl;
+ 
+@@ -733,7 +734,7 @@
+       {
+         QChar tc = textLine->getChar (pos);
+         if ((tc == ';' || tc == ':' || tc == ',') && otherAnchor == -1 && parenCount <= 0)
+-          otherAnchor = pos;
++          otherAnchor = pos, potentialAnchorSeen = true;
+         else if (tc == ')')
+           parenCount++;
+         else if (tc == '(')
+@@ -742,7 +743,7 @@
+           openCount--;
+         else if (tc == '{')
+         {
+-          openCount++;
++          openCount++, potentialAnchorSeen = true;
+           if (openCount == 1)
+             break;
+         }
+@@ -826,7 +827,7 @@
+   }
+ 
+   // treat beginning of document as anchor position
+-  if (cur.line() == 0 && cur.col() == 0)
++  if (cur.line() == 0 && cur.col() == 0 && potentialAnchorSeen)
+     found = true;
+ 
+   if (!found)
 Index: kab/qconfigDB.h
 ===================================================================
---- kab/qconfigDB.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kab/qconfigDB.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kab/qconfigDB.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kab/qconfigDB.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -199,7 +199,7 @@
    bool save(QTextStream& file, int count); 
    /**
@@ -368,8 +407,8 @@ Index: kab/qconfigDB.h
     */
 Index: kab/addressbook.h
 ===================================================================
---- kab/addressbook.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kab/addressbook.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kab/addressbook.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kab/addressbook.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -178,7 +178,7 @@
   *  your mainwindow (or whereever). (The toolbar is not implemented by now). <BR>
   *  Some parts of the AddressBook widget are \e interactive, that means they are
@@ -472,8 +511,8 @@ Index: kab/addressbook.h
     **/
 Index: kab/kabapi.h
 ===================================================================
---- kab/kabapi.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kab/kabapi.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kab/kabapi.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kab/kabapi.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -77,6 +77,7 @@
     * without failures. Thus you have to call init before you can
     * use the database.
@@ -493,8 +532,8 @@ Index: kab/kabapi.h
     * @return NoError if an entry is found or NoEntry.
 Index: arts/kde/kplayobject.h
 ===================================================================
---- arts/kde/kplayobject.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ arts/kde/kplayobject.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- arts/kde/kplayobject.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ arts/kde/kplayobject.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -37,7 +37,7 @@
  
  	/**
@@ -506,8 +545,8 @@ Index: arts/kde/kplayobject.h
  	
 Index: mimetypes/application/x-mplayer2.desktop
 ===================================================================
---- mimetypes/application/x-mplayer2.desktop	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ mimetypes/application/x-mplayer2.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- mimetypes/application/x-mplayer2.desktop	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ mimetypes/application/x-mplayer2.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -15,6 +15,7 @@
  Comment[es]=Formator de medios de Microsoft
  Comment[et]=Microsoft Media
@@ -518,8 +557,8 @@ Index: mimetypes/application/x-mplayer2.desktop
  Comment[hu]=Microsoft Media-fájl
 Index: kioslave/file/file.h
 ===================================================================
---- kioslave/file/file.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kioslave/file/file.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kioslave/file/file.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kioslave/file/file.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -48,10 +48,10 @@
    virtual ~FileProtocol() { }
  
@@ -536,8 +575,8 @@ Index: kioslave/file/file.h
    virtual void symlink( const QString &target, const KURL &dest,
 Index: kioslave/http/http.h
 ===================================================================
---- kioslave/http/http.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kioslave/http/http.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kioslave/http/http.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kioslave/http/http.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -190,16 +190,16 @@
    virtual void slave_status();
  
@@ -562,8 +601,8 @@ Index: kioslave/http/http.h
    bool davHostOk();
 Index: kioslave/ftp/ftp.h
 ===================================================================
---- kioslave/ftp/ftp.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kioslave/ftp/ftp.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kioslave/ftp/ftp.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kioslave/ftp/ftp.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -260,7 +260,7 @@
  
    virtual void listDir( const KURL & url );
@@ -575,8 +614,8 @@ Index: kioslave/ftp/ftp.h
  
 Index: kioslave/gzip/kgzipfilter.cpp
 ===================================================================
---- kioslave/gzip/kgzipfilter.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kioslave/gzip/kgzipfilter.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kioslave/gzip/kgzipfilter.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kioslave/gzip/kgzipfilter.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -38,8 +38,12 @@
  public:
      KGzipFilterFactory() : KLibFactory() {}
@@ -593,8 +632,8 @@ Index: kioslave/gzip/kgzipfilter.cpp
  };
 Index: kio/kio/slavebase.cpp
 ===================================================================
---- kio/kio/slavebase.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kio/slavebase.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kio/slavebase.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kio/slavebase.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -85,21 +85,22 @@
  
     QStringList groupList() const { return QStringList(); }
@@ -626,8 +665,8 @@ Index: kio/kio/slavebase.cpp
       return entry;
 Index: kio/kio/defaultprogress.h
 ===================================================================
---- kio/kio/defaultprogress.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kio/defaultprogress.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kio/defaultprogress.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kio/defaultprogress.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -48,7 +48,7 @@
    /**
     * Creates a new default progress dialog.
@@ -712,8 +751,8 @@ Index: kio/kio/defaultprogress.h
     * Called when the job is cleaned.
 Index: kio/kio/slavebase.h
 ===================================================================
---- kio/kio/slavebase.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kio/slavebase.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kio/slavebase.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kio/slavebase.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -395,7 +395,7 @@
       *
       * @see canResume()
@@ -725,8 +764,8 @@ Index: kio/kio/slavebase.h
       * Finds all details for one file or directory.
 Index: kio/kio/kservice.cpp
 ===================================================================
---- kio/kio/kservice.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kio/kservice.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kio/kservice.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kio/kservice.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -447,19 +447,21 @@
  
     QStringList groupList() const { return QStringList(); }
@@ -757,8 +796,8 @@ Index: kio/kio/kservice.cpp
     QCString value;
 Index: kio/kio/kscan.h
 ===================================================================
---- kio/kio/kscan.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kio/kscan.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kio/kscan.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kio/kscan.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -339,7 +339,7 @@
      KOCRDialogFactory( QObject *parent=0, const char *name=0 );
  
@@ -770,8 +809,8 @@ Index: kio/kio/kscan.h
  
 Index: kio/kfile/kfiletreeview.h
 ===================================================================
---- kio/kfile/kfiletreeview.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kfile/kfiletreeview.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kfile/kfiletreeview.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kfile/kfiletreeview.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -214,9 +214,9 @@
     // The drop event allows to differentiate between move and copy
     void dropped( QWidget*, QDropEvent*, KURL::List&, KURL& );
@@ -786,8 +825,8 @@ Index: kio/kfile/kfiletreeview.h
  protected:
 Index: kio/kfile/kurlrequester.cpp
 ===================================================================
---- kio/kfile/kurlrequester.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kfile/kurlrequester.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kfile/kurlrequester.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kfile/kurlrequester.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -306,7 +306,7 @@
      emit urlSelected( d->url() );
  }
@@ -799,8 +838,8 @@ Index: kio/kfile/kurlrequester.cpp
      d->fileDialogMode = mode;
 Index: kio/misc/uiserver.h
 ===================================================================
---- kio/misc/uiserver.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/misc/uiserver.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/misc/uiserver.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/misc/uiserver.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -276,6 +276,7 @@
  
    /**
@@ -811,8 +850,8 @@ Index: kio/misc/uiserver.h
     *   QuestionYesNo = 1, WarningYesNo = 2, WarningContinueCancel = 3,
 Index: kio/kssl/ksslcsessioncache.h
 ===================================================================
---- kio/kssl/ksslcsessioncache.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kssl/ksslcsessioncache.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kssl/ksslcsessioncache.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kssl/ksslcsessioncache.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -31,14 +31,14 @@
  
      /**
@@ -832,8 +871,8 @@ Index: kio/kssl/ksslcsessioncache.h
      static QString getSessionForURL(const KURL &kurl);
 Index: kio/kssl/ksmimecrypto.h
 ===================================================================
---- kio/kssl/ksmimecrypto.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kio/kssl/ksmimecrypto.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kio/kssl/ksmimecrypto.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kio/kssl/ksmimecrypto.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -85,7 +85,7 @@
       * Does not check certificates for validity!
       * @param signedText signed message block
@@ -854,8 +893,8 @@ Index: kio/kssl/ksmimecrypto.h
      rc encryptMessage(const QCString &clearText,
 Index: kabc/plugins/sql/resourcesql.h
 ===================================================================
---- kabc/plugins/sql/resourcesql.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kabc/plugins/sql/resourcesql.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kabc/plugins/sql/resourcesql.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kabc/plugins/sql/resourcesql.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -43,7 +43,7 @@
    Ticket *requestSaveTicket();
  
@@ -867,8 +906,8 @@ Index: kabc/plugins/sql/resourcesql.h
  
 Index: kabc/plugins/ldapkio/resourceldapkio.h
 ===================================================================
---- kabc/plugins/ldapkio/resourceldapkio.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kabc/plugins/ldapkio/resourceldapkio.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kabc/plugins/ldapkio/resourceldapkio.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kabc/plugins/ldapkio/resourceldapkio.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -57,8 +57,8 @@
  
      virtual bool load();
@@ -882,8 +921,8 @@ Index: kabc/plugins/ldapkio/resourceldapkio.h
  
 Index: kabc/sortmode.h
 ===================================================================
---- kabc/sortmode.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kabc/sortmode.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kabc/sortmode.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kabc/sortmode.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -66,6 +66,7 @@
        Creates a NameSortMethod with the specified name type.
  
@@ -902,8 +941,8 @@ Index: kabc/sortmode.h
  
 Index: kabc/sound.h
 ===================================================================
---- kabc/sound.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kabc/sound.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kabc/sound.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kabc/sound.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -51,7 +51,7 @@
   *      }
   *      KAudioPlayer::play( tmpFile ); 
@@ -915,8 +954,8 @@ Index: kabc/sound.h
   *
 Index: kabc/field.h
 ===================================================================
---- kabc/field.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kabc/field.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kabc/field.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kabc/field.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -97,7 +97,7 @@
    virtual bool isCustom();
  
@@ -928,8 +967,8 @@ Index: kabc/field.h
  
 Index: kcert/kcertpart.h
 ===================================================================
---- kcert/kcertpart.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kcert/kcertpart.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kcert/kcertpart.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kcert/kcertpart.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -73,7 +73,7 @@
  	    const QStringList &args = QStringList() );
    virtual ~KCertPart();
@@ -941,8 +980,8 @@ Index: kcert/kcertpart.h
  
 Index: kdesu/process.h
 ===================================================================
---- kdesu/process.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdesu/process.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdesu/process.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdesu/process.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -119,7 +119,7 @@
       */
      int pid() {return m_Pid;};
@@ -980,8 +1019,8 @@ Index: kdesu/process.h
      ** If child @p pid has exited, return its exit status,
 Index: kspell2/plugins/aspell/kspell_aspellclient.h
 ===================================================================
---- kspell2/plugins/aspell/kspell_aspellclient.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/plugins/aspell/kspell_aspellclient.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/plugins/aspell/kspell_aspellclient.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/plugins/aspell/kspell_aspellclient.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -990,8 +1029,8 @@ Index: kspell2/plugins/aspell/kspell_aspellclient.h
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/plugins/aspell/kspell_aspellclient.cpp
 ===================================================================
---- kspell2/plugins/aspell/kspell_aspellclient.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/plugins/aspell/kspell_aspellclient.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/plugins/aspell/kspell_aspellclient.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/plugins/aspell/kspell_aspellclient.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1000,8 +1039,8 @@ Index: kspell2/plugins/aspell/kspell_aspellclient.cpp
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/plugins/ispell/kspell_ispellclient.cpp
 ===================================================================
---- kspell2/plugins/ispell/kspell_ispellclient.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/plugins/ispell/kspell_ispellclient.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/plugins/ispell/kspell_ispellclient.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/plugins/ispell/kspell_ispellclient.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1010,8 +1049,8 @@ Index: kspell2/plugins/ispell/kspell_ispellclient.cpp
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/plugins/ispell/kspell_ispellclient.h
 ===================================================================
---- kspell2/plugins/ispell/kspell_ispellclient.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/plugins/ispell/kspell_ispellclient.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/plugins/ispell/kspell_ispellclient.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/plugins/ispell/kspell_ispellclient.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1020,8 +1059,8 @@ Index: kspell2/plugins/ispell/kspell_ispellclient.h
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/settings.cpp
 ===================================================================
---- kspell2/settings.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/settings.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/settings.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/settings.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1031,8 +1070,8 @@ Index: kspell2/settings.cpp
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/threadevents.h
 ===================================================================
---- kspell2/threadevents.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/threadevents.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/threadevents.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/threadevents.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1041,8 +1080,8 @@ Index: kspell2/threadevents.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/dictionary.h
 ===================================================================
---- kspell2/dictionary.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/dictionary.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/dictionary.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/dictionary.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1052,8 +1091,8 @@ Index: kspell2/dictionary.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/backgroundengine.h
 ===================================================================
---- kspell2/backgroundengine.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/backgroundengine.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/backgroundengine.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/backgroundengine.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1062,8 +1101,8 @@ Index: kspell2/backgroundengine.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/client.cpp
 ===================================================================
---- kspell2/client.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/client.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/client.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/client.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1073,8 +1112,8 @@ Index: kspell2/client.cpp
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/defaultdictionary.h
 ===================================================================
---- kspell2/defaultdictionary.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/defaultdictionary.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/defaultdictionary.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/defaultdictionary.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1083,8 +1122,8 @@ Index: kspell2/defaultdictionary.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/client.h
 ===================================================================
---- kspell2/client.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/client.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/client.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/client.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1117,8 +1156,8 @@ Index: kspell2/client.h
          Q_OBJECT
 Index: kspell2/filter.cpp
 ===================================================================
---- kspell2/filter.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/filter.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/filter.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/filter.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1128,8 +1167,8 @@ Index: kspell2/filter.cpp
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/filter.h
 ===================================================================
---- kspell2/filter.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/filter.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/filter.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/filter.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1139,8 +1178,8 @@ Index: kspell2/filter.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/configwidget.h
 ===================================================================
---- kspell2/ui/configwidget.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/configwidget.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/configwidget.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/configwidget.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1149,8 +1188,8 @@ Index: kspell2/ui/configwidget.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/highlighter.cpp
 ===================================================================
---- kspell2/ui/highlighter.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/highlighter.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/highlighter.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/highlighter.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1159,8 +1198,8 @@ Index: kspell2/ui/highlighter.cpp
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/dialog.cpp
 ===================================================================
---- kspell2/ui/dialog.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/dialog.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/dialog.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/dialog.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1169,8 +1208,8 @@ Index: kspell2/ui/dialog.cpp
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/highlighter.h
 ===================================================================
---- kspell2/ui/highlighter.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/highlighter.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/highlighter.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/highlighter.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1179,8 +1218,8 @@ Index: kspell2/ui/highlighter.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/dialog.h
 ===================================================================
---- kspell2/ui/dialog.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/dialog.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/dialog.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/dialog.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,5 +1,5 @@
  // -*- Mode: C++; c-basic-offset: 4; indent-tabs-mode: nil; -*-
 -/**
@@ -1190,8 +1229,8 @@ Index: kspell2/ui/dialog.h
   * Copyright (C)  2003  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/configdialog.cpp
 ===================================================================
---- kspell2/ui/configdialog.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/configdialog.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/configdialog.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/configdialog.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1200,8 +1239,8 @@ Index: kspell2/ui/configdialog.cpp
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/configwidget.cpp
 ===================================================================
---- kspell2/ui/configwidget.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/configwidget.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/configwidget.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/configwidget.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1210,8 +1249,8 @@ Index: kspell2/ui/configwidget.cpp
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kspell2/ui/configdialog.h
 ===================================================================
---- kspell2/ui/configdialog.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kspell2/ui/configdialog.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kspell2/ui/configdialog.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kspell2/ui/configdialog.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1220,8 +1259,8 @@ Index: kspell2/ui/configdialog.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: kdecore/kglobalaccel_mac.h
 ===================================================================
---- kdecore/kglobalaccel_mac.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kglobalaccel_mac.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kglobalaccel_mac.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kglobalaccel_mac.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -14,16 +14,16 @@
      {}
  
@@ -1249,10 +1288,49 @@ Index: kdecore/kglobalaccel_mac.h
      bool disconnectKey( const KKeyServer::Key& )
      { return false; }
  };
+Index: kdecore/kstandarddirs.cpp
+===================================================================
+--- kdecore/kstandarddirs.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kstandarddirs.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
+@@ -441,7 +441,7 @@
+     }
+ 
+ #ifndef NDEBUG
+-    if(false && type != "locale")
++    if(false && strcmp(type, "locale"))
+       kdDebug() << "KStdDirs::findResDir(): can't find \"" << filename << "\" in type \"" << type << "\"." << endl;
+ #endif
+ 
+@@ -690,7 +690,7 @@
+ 
+     /* If the path contains symlinks, get the real name */
+     if (realpath( QFile::encodeName(dirname).data(), realpath_buffer) != 0) {
+-        // succes, use result from realpath
++        // success, use result from realpath
+         int len = strlen(realpath_buffer);
+         realpath_buffer[len] = '/';
+         realpath_buffer[len+1] = 0;
+@@ -708,7 +708,7 @@
+ 
+     /* If the path contains symlinks, get the real name */
+     if (realpath( QFile::encodeName(filename).data(), realpath_buffer) != 0) {
+-        // succes, use result from realpath
++        // success, use result from realpath
+         return QFile::decodeName(realpath_buffer);
+     }
+ 
+@@ -1287,6 +1287,7 @@
+            kdedirList.append(kdedir);
+         }
+     }
++
+ #ifndef Q_OS_WIN //no default KDEDIR on win32 defined
+     kdedirList.append(KDEDIR);
+ #endif
 Index: kdecore/kglobalaccel_emb.h
 ===================================================================
---- kdecore/kglobalaccel_emb.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kglobalaccel_emb.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kglobalaccel_emb.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kglobalaccel_emb.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -9,7 +9,7 @@
  public:
  	KGlobalAccelPrivate();
@@ -1264,8 +1342,8 @@ Index: kdecore/kglobalaccel_emb.h
  	virtual bool disconnectKey( KAccelAction&, KKeySequence );
 Index: kdecore/kaccelprivate.h
 ===================================================================
---- kdecore/kaccelprivate.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kaccelprivate.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kaccelprivate.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kaccelprivate.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -21,17 +21,17 @@
  
  	KAccelPrivate( KAccel* pParent, QWidget* pWatch );
@@ -1292,8 +1370,8 @@ Index: kdecore/kaccelprivate.h
  	void menuItemActivated();
 Index: kdecore/kglobalaccel_x11.h
 ===================================================================
---- kdecore/kglobalaccel_x11.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kglobalaccel_x11.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kglobalaccel_x11.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kglobalaccel_x11.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -38,13 +38,13 @@
  	KGlobalAccelPrivate();
  	virtual ~KGlobalAccelPrivate();
@@ -1316,8 +1394,8 @@ Index: kdecore/kglobalaccel_x11.h
  	/**
 Index: kdecore/kglobalaccel_win.h
 ===================================================================
---- kdecore/kglobalaccel_win.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kglobalaccel_win.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kglobalaccel_win.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kglobalaccel_win.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -38,13 +38,13 @@
  	KGlobalAccelPrivate();
  	virtual ~KGlobalAccelPrivate();
@@ -1340,8 +1418,8 @@ Index: kdecore/kglobalaccel_win.h
  
 Index: kdecore/kconfigbase.h
 ===================================================================
---- kdecore/kconfigbase.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kconfigbase.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kconfigbase.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kconfigbase.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -2133,7 +2133,7 @@
    bool groupIsImmutable() const;
  
@@ -1353,8 +1431,8 @@ Index: kdecore/kconfigbase.h
     virtual void sync();
 Index: kdecore/kwin.h
 ===================================================================
---- kdecore/kwin.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdecore/kwin.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdecore/kwin.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kwin.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -394,7 +394,7 @@
       * Convenience function to set the current viewport to @p viewport.
       * See NETRootInfo.
@@ -1364,10 +1442,63 @@ Index: kdecore/kwin.h
       * @since 3.5.5
       */
      static void setCurrentDesktopViewport( int desktop, QPoint viewport );
+Index: kdecore/kstartupinfo.cpp
+===================================================================
+--- kdecore/kstartupinfo.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kstartupinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
+@@ -146,7 +146,7 @@
+         d->wm_module = NULL;
+     connect( &d->msgs, SIGNAL( gotMessage( const QString& )), SLOT( got_message( const QString& )));
+ #endif
+-    d->cleanup = new QTimer( this );
++    d->cleanup = new QTimer( this, "cleanup" );
+     connect( d->cleanup, SIGNAL( timeout()), SLOT( startups_cleanup()));
+     }
+ 
+Index: kdecore/kstartupinfo.h
+===================================================================
+--- kdecore/kstartupinfo.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdecore/kstartupinfo.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
+@@ -175,7 +175,7 @@
+         static bool sendStartup( const KStartupInfoId& id, const KStartupInfoData& data );
+ 
+ 	/**
+-	 * Like sendStartup , uses dpy instead of qt_x11display() for sending the info.
++	 * Like sendStartup , uses dpy instead of qt_xdisplay() for sending the info.
+ 	 * @param dpy the display of the application. Note that the name field
+          * in data is required.
+ 	 * @param id the id of the application
+@@ -198,7 +198,7 @@
+         static bool sendChange( const KStartupInfoId& id, const KStartupInfoData& data );
+ 
+ 	/**
+-	 * Like sendChange , uses dpy instead of qt_x11display() for sending the info.
++	 * Like sendChange , uses dpy instead of qt_xdisplay() for sending the info.
+ 	 * @param dpy the display of the application.
+ 	 * @param id the id of the application
+ 	 * @param data the application's data
+@@ -215,7 +215,7 @@
+         static bool sendFinish( const KStartupInfoId& id );
+ 
+ 	/**
+-	 * Like sendFinish , uses dpy instead of qt_x11display() for sending the info.
++	 * Like sendFinish , uses dpy instead of qt_xdisplay() for sending the info.
+ 	 * @param dpy the display of the application.
+ 	 * @param id the id of the application
+ 	 * @return true if successful, false otherwise
+@@ -232,7 +232,7 @@
+         static bool sendFinish( const KStartupInfoId& id, const KStartupInfoData& data );
+ 
+ 	/**
+-	 * Like sendFinish , uses dpy instead of qt_x11display() for sending the info.
++	 * Like sendFinish , uses dpy instead of qt_xdisplay() for sending the info.
+ 	 * @param dpy the display of the application.
+ 	 * @param id the id of the application
+ 	 * @param data the application's data
 Index: khtml/html/html_formimpl.h
 ===================================================================
---- khtml/html/html_formimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/html/html_formimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/html/html_formimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/html/html_formimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -289,7 +289,7 @@
  
      virtual bool maintainsState() { return true; }
@@ -1397,8 +1528,8 @@ Index: khtml/html/html_formimpl.h
  
 Index: khtml/ecma/kjs_events.h
 ===================================================================
---- khtml/ecma/kjs_events.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/ecma/kjs_events.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/ecma/kjs_events.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/ecma/kjs_events.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -35,7 +35,9 @@
    public:
      /**
@@ -1411,8 +1542,8 @@ Index: khtml/ecma/kjs_events.h
      JSEventListener(Object _listener, ObjectImp *_compareListenerImp, const Object &_win, bool _html = false);
 Index: khtml/ecma/kjs_events.cpp
 ===================================================================
---- khtml/ecma/kjs_events.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/ecma/kjs_events.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/ecma/kjs_events.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/ecma/kjs_events.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -602,7 +602,7 @@
      if ( rend ) {
        int xPos, yPos;
@@ -1424,8 +1555,8 @@ Index: khtml/ecma/kjs_events.cpp
        }
 Index: khtml/rendering/render_style.cpp
 ===================================================================
---- khtml/rendering/render_style.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/rendering/render_style.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/rendering/render_style.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/rendering/render_style.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -658,7 +658,7 @@
      if (noninherited_flags.f._styleType==NOPSEUDO)
          for (ps = pseudoStyle; ps; ps = ps->pseudoStyle)
@@ -1437,8 +1568,8 @@ Index: khtml/rendering/render_style.cpp
  
 Index: khtml/khtml_ext.h
 ===================================================================
---- khtml/khtml_ext.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/khtml_ext.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/khtml_ext.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/khtml_ext.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -160,7 +160,7 @@
              const char *slot, QObject *parent, const char *name );
      virtual ~KHTMLZoomFactorAction();
@@ -1450,8 +1581,8 @@ Index: khtml/khtml_ext.h
      void slotActivated( int );
 Index: khtml/css/css_renderstyledeclarationimpl.h
 ===================================================================
---- khtml/css/css_renderstyledeclarationimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/css/css_renderstyledeclarationimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/css/css_renderstyledeclarationimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/css/css_renderstyledeclarationimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1460,8 +1591,8 @@ Index: khtml/css/css_renderstyledeclarationimpl.h
   * Copyright (C)  2004  Zack Rusin <zack@kde.org>
 Index: khtml/css/css_renderstyledeclarationimpl.cpp
 ===================================================================
---- khtml/css/css_renderstyledeclarationimpl.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/css/css_renderstyledeclarationimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/css/css_renderstyledeclarationimpl.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/css/css_renderstyledeclarationimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -330,12 +330,12 @@
  RenderStyleDeclarationImpl::RenderStyleDeclarationImpl( DOM::NodeImpl *node )
      : CSSStyleDeclarationImpl(0), m_node(node)
@@ -1479,8 +1610,8 @@ Index: khtml/css/css_renderstyledeclarationimpl.cpp
  DOM::DOMString RenderStyleDeclarationImpl::cssText() const
 Index: khtml/xml/dom_nodeimpl.cpp
 ===================================================================
---- khtml/xml/dom_nodeimpl.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/xml/dom_nodeimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/xml/dom_nodeimpl.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/xml/dom_nodeimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
 -/**
 +/*
@@ -1489,8 +1620,8 @@ Index: khtml/xml/dom_nodeimpl.cpp
   * Copyright (C) 1999 Lars Knoll (knoll@kde.org)
 Index: khtml/xml/dom_nodeimpl.h
 ===================================================================
---- khtml/xml/dom_nodeimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/xml/dom_nodeimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/xml/dom_nodeimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/xml/dom_nodeimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -447,7 +447,18 @@
       * @param found          When this is set to true, don't print anymore but closing tags.
       * @return An html formatted string for this node and its children between the selectionStart and selectionEnd.
@@ -1513,8 +1644,8 @@ Index: khtml/xml/dom_nodeimpl.h
      DocumentPtr *document;
 Index: khtml/xml/dom_stringimpl.cpp
 ===================================================================
---- khtml/xml/dom_stringimpl.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/xml/dom_stringimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/xml/dom_stringimpl.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/xml/dom_stringimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -87,7 +87,7 @@
      }
  }
@@ -1553,8 +1684,8 @@ Index: khtml/xml/dom_stringimpl.cpp
    if(pos+len > l)
 Index: khtml/xml/dom_docimpl.h
 ===================================================================
---- khtml/xml/dom_docimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/xml/dom_docimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/xml/dom_docimpl.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/xml/dom_docimpl.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -234,12 +234,12 @@
  
      /**
@@ -1583,8 +1714,8 @@ Index: khtml/xml/dom_docimpl.h
       *
 Index: khtml/Makefile.am
 ===================================================================
---- khtml/Makefile.am	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ khtml/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- khtml/Makefile.am	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ khtml/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -125,7 +125,8 @@
  testregression_LDADD = libkhtml.la
  
@@ -1597,8 +1728,8 @@ Index: khtml/Makefile.am
  .PHONY: parser
 Index: kresources/resource.h
 ===================================================================
---- kresources/resource.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kresources/resource.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kresources/resource.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kresources/resource.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -389,9 +389,13 @@
      virtual ConfigWidget *configWidget( QWidget *parent ) = 0;
  
@@ -1617,8 +1748,8 @@ Index: kresources/resource.h
  };
 Index: kjs/operations.h
 ===================================================================
---- kjs/operations.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kjs/operations.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kjs/operations.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kjs/operations.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -55,6 +55,9 @@
    /**
     * Additive operator. Either performs an addition or substraction of v1
@@ -1641,8 +1772,8 @@ Index: kjs/operations.h
     * @return The result of the operation.
 Index: kjs/lookup.h
 ===================================================================
---- kjs/lookup.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kjs/lookup.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kjs/lookup.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kjs/lookup.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -160,10 +160,10 @@
     * unknown property).
     *
@@ -1660,8 +1791,8 @@ Index: kjs/lookup.h
     * @param exec execution state, as usual
 Index: kdoctools/customization/pt-BR/entities/help-menu.docbook
 ===================================================================
---- kdoctools/customization/pt-BR/entities/help-menu.docbook	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdoctools/customization/pt-BR/entities/help-menu.docbook	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdoctools/customization/pt-BR/entities/help-menu.docbook	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdoctools/customization/pt-BR/entities/help-menu.docbook	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -28,10 +28,10 @@
  <varlistentry>
  <term><menuchoice>
@@ -1687,8 +1818,8 @@ Index: kdoctools/customization/pt-BR/entities/help-menu.docbook
  <varlistentry>
 Index: kdoctools/customization/pt-BR/entities/install-intro.docbook
 ===================================================================
---- kdoctools/customization/pt-BR/entities/install-intro.docbook	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdoctools/customization/pt-BR/entities/install-intro.docbook	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdoctools/customization/pt-BR/entities/install-intro.docbook	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdoctools/customization/pt-BR/entities/install-intro.docbook	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -1,4 +1,4 @@
  <!-- requires that packagename is defined in the documentation prologue -->
 -<para>&kappname; faz parte do projeto &kde; &kde-http;.</para>
@@ -1698,8 +1829,8 @@ Index: kdoctools/customization/pt-BR/entities/install-intro.docbook
 +<para>O &kappname; pode ser encontrado no pacote &package; no servidor &FTP; principal do projeto &kde; &kde-ftp;.</para>
 Index: kdeprint/tools/escputil/escpwidget.cpp
 ===================================================================
---- kdeprint/tools/escputil/escpwidget.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeprint/tools/escputil/escpwidget.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeprint/tools/escputil/escpwidget.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeprint/tools/escputil/escpwidget.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -39,8 +39,9 @@
  public:
  	EscpFactory(QObject *parent = 0, const char *name = 0) : KLibFactory(parent, name) {}
@@ -1713,8 +1844,8 @@ Index: kdeprint/tools/escputil/escpwidget.cpp
  		if (args.count() > 0)
 Index: kdeprint/cups/kmcupsmanager.cpp
 ===================================================================
---- kdeprint/cups/kmcupsmanager.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeprint/cups/kmcupsmanager.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeprint/cups/kmcupsmanager.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeprint/cups/kmcupsmanager.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -920,7 +920,7 @@
  	kdDebug(500) << "Checking for update possible" << endl;
  	delete m_socket;
@@ -1735,8 +1866,8 @@ Index: kdeprint/cups/kmcupsmanager.cpp
              m_socket->connect( QString(), CupsInfos::self()->host());
 Index: kdeprint/lpd/kmlpdfactory.h
 ===================================================================
---- kdeprint/lpd/kmlpdfactory.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeprint/lpd/kmlpdfactory.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeprint/lpd/kmlpdfactory.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeprint/lpd/kmlpdfactory.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -29,7 +29,7 @@
  	virtual ~KLpdFactory();
  
@@ -1748,8 +1879,8 @@ Index: kdeprint/lpd/kmlpdfactory.h
  #endif
 Index: kdeprint/tests/richpage.h
 ===================================================================
---- kdeprint/tests/richpage.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeprint/tests/richpage.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeprint/tests/richpage.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeprint/tests/richpage.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -12,8 +12,8 @@
  	RichPage(QWidget *parent = 0, const char *name = 0);
  	~RichPage();
@@ -1763,8 +1894,8 @@ Index: kdeprint/tests/richpage.h
  	QSpinBox	*margin_;
 Index: kdeprint/management/kiconselectaction.h
 ===================================================================
---- kdeprint/management/kiconselectaction.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeprint/management/kiconselectaction.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeprint/management/kiconselectaction.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeprint/management/kiconselectaction.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -35,7 +35,7 @@
  
  public slots:
@@ -1776,8 +1907,8 @@ Index: kdeprint/management/kiconselectaction.h
  	void createPopupMenu();
 Index: kdeprint/kpdriverpage.h
 ===================================================================
---- kdeprint/kpdriverpage.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeprint/kpdriverpage.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeprint/kpdriverpage.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeprint/kpdriverpage.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -30,7 +30,7 @@
  	KPDriverPage(KMPrinter *p, DrMain *d = 0, QWidget *parent = 0, const char *name = 0);
  	~KPDriverPage();
@@ -1789,8 +1920,8 @@ Index: kdeprint/kpdriverpage.h
  
 Index: kdeui/kactionclasses.h
 ===================================================================
---- kdeui/kactionclasses.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeui/kactionclasses.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeui/kactionclasses.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeui/kactionclasses.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -940,7 +940,7 @@
          return currentText();
      }
@@ -1802,8 +1933,8 @@ Index: kdeui/kactionclasses.h
      void setFont( const QString &family );
 Index: kdeui/kactionshortcutlist.h
 ===================================================================
---- kdeui/kactionshortcutlist.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeui/kactionshortcutlist.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeui/kactionshortcutlist.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeui/kactionshortcutlist.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -16,13 +16,13 @@
  	virtual ~KActionShortcutList();
  
@@ -1848,8 +1979,8 @@ Index: kdeui/kactionshortcutlist.h
  	virtual bool setOther( Other, uint index, QVariant );
 Index: kdeui/kpanelappmenu.h
 ===================================================================
---- kdeui/kpanelappmenu.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeui/kpanelappmenu.h	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeui/kpanelappmenu.h	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeui/kpanelappmenu.h	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -80,7 +80,7 @@
       * @internal
       */
@@ -1861,8 +1992,8 @@ Index: kdeui/kpanelappmenu.h
      /**
 Index: kdeui/kedittoolbar.cpp
 ===================================================================
---- kdeui/kedittoolbar.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594231)
-+++ kdeui/kedittoolbar.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594231)
+--- kdeui/kedittoolbar.cpp	(.../tags/KDE/3.5.5/kdelibs)	(revision 594434)
++++ kdeui/kedittoolbar.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 594434)
 @@ -208,7 +208,7 @@
  {
  public:
