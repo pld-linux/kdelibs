@@ -348,7 +348,7 @@ strony innych u¿ytkowników lokalnych.
 %patch9 -p1
 
 %build
-cp %{_datadir}/automake/config.sub admin
+cp /usr/share/automake/config.sub admin
 
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
@@ -398,11 +398,14 @@ install -d \
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-%{__sed} -i -e "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
+%{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
 
-if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
+if [ -d $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs ] ; then
 	mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
 fi
+
+# packaged by hicolor-icon-theme
+rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 %clean
 rm -rf $RPM_BUILD_ROOT
