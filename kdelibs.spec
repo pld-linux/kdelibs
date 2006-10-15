@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	0.5
+Release:	0.9
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -160,7 +160,7 @@ Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # confuses OpenEXR detection
-%undefine	with_confcache
+%undefine	configure_cache
 
 %description
 This package includes libraries that are central to the development
@@ -342,12 +342,15 @@ strony innych u©ytkownikСw lokalnych.
 %patch7 -p1
 %patch8 -p1
 
-%build
-cp %{_datadir}/automake/config.sub admin
+rm -f configure
+cp /usr/share/automake/config.sub admin
 
+%build
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
-%{__make} -f admin/Makefile.common cvs
+if [ ! -f configure ]; then
+	%{__make} -f admin/Makefile.common cvs
+fi
 
 export path_sudo=/usr/bin/sudo
 %configure \
@@ -363,7 +366,8 @@ export path_sudo=/usr/bin/sudo
 	--with-distribution="PLD Linux Distribution" \
 	--with-ldap=no \
 	--with-lua-includes=%{_includedir}/lua50 \
-	--with-qt-libraries=%{_libdir}
+	--with-qt-libraries=%{_libdir} \
+	--with-sudo-kdesu-backend
 
 %{__make}
 %{?with_apidocs:%{__make} apidox}
@@ -394,14 +398,14 @@ install -d \
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-%{__sed} -i -e "s|/etc/init.d|/etc/rc.d/init.d|g" $RPM_BUILD_ROOT%{_bindir}/fileshare*
+%{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
 
-if [ -d "$RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs" ] ; then
+if [ -d $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs ] ; then
 	mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
 fi
 
 # packaged by hicolor-icon-theme
-rm -f $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
+rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 %clean
 rm -rf $RPM_BUILD_ROOT
