@@ -162,7 +162,7 @@ Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # confuses OpenEXR detection
-%undefine	with_confcache
+%undefine	configure_cache
 
 %description
 This package includes libraries that are central to the development
@@ -347,13 +347,17 @@ strony innych u¿ytkowników lokalnych.
 %patch8 -p1
 %patch9 -p1
 
-%build
+rm -f configure
 cp /usr/share/automake/config.sub admin
 
+%build
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
-%{__make} -f admin/Makefile.common cvs
+if [ ! -f configure ]; then
+	%{__make} -f admin/Makefile.common cvs
+fi
 
+export path_sudo=/usr/bin/sudo
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	%{!?debug:--disable-rpath} \
@@ -367,7 +371,8 @@ export kde_libs_htmldir=%{_kdedocdir}
 	--with-distribution="PLD Linux Distribution" \
 	--with-ldap=no \
 	--with-lua-includes=%{_includedir}/lua50 \
-	--with-qt-libraries=%{_libdir}
+	--with-qt-libraries=%{_libdir} \
+	--with-sudo-kdesu-backend
 
 %{__make}
 %{?with_apidocs:%{__make} apidox}
