@@ -42,6 +42,7 @@ Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		kde-ac260-lt.patch
 Patch9:		%{name}-avahi.patch
+Patch10:	kde-am.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
@@ -346,6 +347,7 @@ strony innych u¿ytkowników lokalnych.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 rm -f configure
 cp /usr/share/automake/config.sub admin
