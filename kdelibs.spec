@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	0.9
+Release:	0.13
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -473,7 +473,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
-%attr(755,root,root) %{_bindir}/start_kdeinit
+%attr(4755,root,root) %{_bindir}/start_kdeinit
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
@@ -529,7 +529,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kspell_aspell.desktop
 %{_datadir}/services/kspell_ispell.desktop
 %{_datadir}/services/kspell_hspell.desktop
-#%{_datadir}/services/ktexteditor_autobookmarker.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
@@ -585,49 +584,6 @@ rm -rf $RPM_BUILD_ROOT
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
-#%{_mandir}/man1/checkXML.1*
-#%{_mandir}/man1/cupsdconf.1*
-#%{_mandir}/man1/cupsdoprint.1*
-#%{_mandir}/man1/dcop.1*
-#%{_mandir}/man1/dcopclient.1*
-#%{_mandir}/man1/dcopfind.1*
-#%{_mandir}/man1/dcopobject.1*
-#%{_mandir}/man1/dcopref.1*
-#%{_mandir}/man1/dcopserver.1*
-#%{_mandir}/man1/dcopserver_shutdown.1*
-#%{_mandir}/man1/dcopstart.1*
-#%{_mandir}/man1/imagetops.1*
-#%{_mandir}/man1/kaddprinterwizard.1*
-#%{_mandir}/man1/kbuildsycoca.1*
-#%{_mandir}/man1/kconf_update.1*
-#%{_mandir}/man1/kcookiejar.1*
-#%{_mandir}/man1/kde-config.1*
-#%{_mandir}/man1/kded.1*
-#%{_mandir}/man1/kdeinit.1*
-#%{_mandir}/man1/kdeinit_shutdown.1*
-#%{_mandir}/man1/kdeinit_wrapper.1*
-#%{_mandir}/man1/kdesu_stub.1*
-#%{_mandir}/man1/kdontchangethehostname.1*
-#%{_mandir}/man1/kfile.1*
-# removed?
-#%{_mandir}/man1/kimage_concat.1*
-#%{_mandir}/man1/kinstalltheme.1*
-#%{_mandir}/man1/kio_http_cache_cleaner.1*
-#%{_mandir}/man1/kio_uiserver.1*
-#%{_mandir}/man1/kioslave.1*
-#%{_mandir}/man1/klauncher.1*
-#%{_mandir}/man1/kmailservice.1*
-#%{_mandir}/man1/kpac_dhcp_helper.1*
-#%{_mandir}/man1/ksendbugmail.1*
-#%{_mandir}/man1/kshell.1*
-#%{_mandir}/man1/ksvgtopng.1*
-#%{_mandir}/man1/ktelnetservice.1*
-#%{_mandir}/man1/kwrapper.1*
-#%{_mandir}/man1/lnusertemp.1*
-#%{_mandir}/man1/make_driver_db_cups.1*
-#%{_mandir}/man1/make_driver_db_lpr.1*
-#%{_mandir}/man1/meinproc.1*
-#%{_mandir}/man1/preparetips.1*
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
 %dir %{_kdedocdir}/en
@@ -648,7 +604,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/services/kresources/kabc
 %{_desktopdir}/kde/kresources.desktop
-#%{_mandir}/man1/kab2kabc.1*
 
 %files libs
 %defattr(644,root,root,755)
@@ -863,8 +818,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kstyle_highcontrast_config.so
 %{_libdir}/kde3/kstyle_plastik_config.la
 %attr(755,root,root) %{_libdir}/kde3/kstyle_plastik_config.so
-#%{_libdir}/kde3/ktexteditor_autobookmarker.la
-#%attr(755,root,root) %{_libdir}/kde3/ktexteditor_autobookmarker.so
 %{_libdir}/kde3/ktexteditor_docwordcompletion.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_docwordcompletion.so
 %{_libdir}/kde3/ktexteditor_insertfile.la
@@ -971,8 +924,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkdefakes_nonpic.a
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
-#%{_mandir}/man1/dcopidl.1*
-#%{_mandir}/man1/dcopidl2cpp.1*
 
 %if %{with apidocs}
 %files apidocs
@@ -983,7 +934,6 @@ rm -rf $RPM_BUILD_ROOT
 %files artsmessage
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/artsmessage
-#%{_mandir}/man1/artsmessage.1*
 
 %files kgrantpty
 %defattr(644,root,root,755)
