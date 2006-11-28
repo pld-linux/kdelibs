@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	3.3
+Release:	3.4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -161,6 +161,8 @@ Conflicts:	kplayer < 0.5.1-5
 Conflicts:	pixieplus < 0.3-4
 Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreq	libtool(.*)
 
 # confuses OpenEXR detection
 %undefine	configure_cache
