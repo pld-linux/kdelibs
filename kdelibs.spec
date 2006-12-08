@@ -10,7 +10,6 @@
 					# to g++
 #
 %define		_state		unstable
-%define		artsver		13:1.5.5
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -51,8 +50,6 @@ BuildRequires:	QtXml-devel <= 4.2.1
 BuildRequires:	QtXml-devel >= 4.2.0
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
-BuildRequires:	arts-qt-devel >= %{artsver}
-BuildRequires:	artsc-devel >= %{artsver}
 BuildRequires:	aspell-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
@@ -240,8 +237,6 @@ Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
-Requires:	arts-qt-devel >= %{artsver}
-Requires:	artsc-devel >= %{artsver}
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
