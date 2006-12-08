@@ -1,0 +1,15 @@
+--- cmake/modules/FindQt4.cmake	2006-10-26 04:24:14.000000000 +0200
++++ cmake/modules/FindQt4.cmake-new	2006-12-05 00:19:27.000000000 +0100
+@@ -176,8 +176,12 @@
+   "[HKEY_CURRENT_USER\\Software\\Trolltech\\Qt3Versions\\4.0.0;InstallDir]/bin"
+   "[HKEY_CURRENT_USER\\Software\\Trolltech\\Versions\\4.0.0;InstallDir]/bin"
+   $ENV{QTDIR}/bin
++
+ )
+ 
++SET(QT_QMAKE_EXECUTABLE /usr/bin/qt4-qmake)
++SET(QT_DBUSXML2CPP_EXECUTABLE /usr/bin/qdbusxml2cpp)
++
+ SET(QT4_INSTALLED_VERSION_TOO_OLD FALSE)
+ 
+ 
