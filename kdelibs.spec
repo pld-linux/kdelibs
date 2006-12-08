@@ -32,21 +32,13 @@ Source3:	x-mplayer2.desktop
 Patch0:		%{name}-findqt4.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
-BuildRequires:	Qt3Support-devel <= 4.2.1
 BuildRequires:	Qt3Support-devel >= 4.2.0
-BuildRequires:	QtCore-devel <= 4.2.1
 BuildRequires:	QtCore-devel >= 4.2.0
-BuildRequires:	QtDBus-devel <= 4.2.1
 BuildRequires:	QtDBus-devel >= 4.2.0
-BuildRequires:	QtDesigner-devel <= 4.2.1
 BuildRequires:	QtDesigner-devel >= 4.2.0
-BuildRequires:	QtGui-devel <= 4.2.1
 BuildRequires:	QtGui-devel >= 4.2.0
-BuildRequires:	QtSvg-devel <= 4.2.1
 BuildRequires:	QtSvg-devel >= 4.2.0
-BuildRequires:	QtUiTools-devel <= 4.2.1
 BuildRequires:	QtUiTools-devel >= 4.2.0
-BuildRequires:	QtXml-devel <= 4.2.1
 BuildRequires:	QtXml-devel >= 4.2.0
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
