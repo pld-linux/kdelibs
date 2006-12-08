@@ -9,7 +9,7 @@
 					# & '--fvisibility-inlines-hidden'
 					# to g++
 #
-%define		_state		stable
+%define		_state		unstable
 %define		artsver		13:1.5.5
 
 Summary:	K Desktop Environment - libraries
@@ -20,31 +20,35 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	3.5.5
-Release:	3.5
+Version:	3.80.2
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	2cba792e3b0a766431b837c8ef924117
-Source1:	%{name}-wmfplugin.tar.bz2
-# Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
-Source2:	pnm.protocol
-Source3:	x-icq.mimelnk
-Source4:	x-mplayer2.desktop
-Patch100:	%{name}-branch.diff
-Patch0:		kde-common-PLD.patch
-Patch1:		%{name}-kstandarddirs.patch
-Patch3:		%{name}-use_system_sgml.patch
-Patch4:		%{name}-fileshareset.patch
-Patch5:		%{name}-appicon_themable.patch
-Patch6:		%{name}-kbugreport-https.patch
-Patch7:		%{name}-xgl.patch
-Patch8:		kde-ac260-lt.patch
-Patch9:		%{name}-avahi.patch
-Patch10:	kde-am.patch
+# Source0-md5:	697cb962328c21b69ccf81c810030fce
+Source1:	pnm.protocol
+Source2:	x-icq.mimelnk
+Source3:	x-mplayer2.desktop
+Patch0:		%{name}-findqt4.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
+BuildRequires:	Qt3Support-devel <= 4.2.1
+BuildRequires:	Qt3Support-devel >= 4.2.0
+BuildRequires:	QtCore-devel <= 4.2.1
+BuildRequires:	QtCore-devel >= 4.2.0
+BuildRequires:	QtDBus-devel <= 4.2.1
+BuildRequires:	QtDBus-devel >= 4.2.0
+BuildRequires:	QtDesigner-devel <= 4.2.1
+BuildRequires:	QtDesigner-devel >= 4.2.0
+BuildRequires:	QtGui-devel <= 4.2.1
+BuildRequires:	QtGui-devel >= 4.2.0
+BuildRequires:	QtSvg-devel <= 4.2.1
+BuildRequires:	QtSvg-devel >= 4.2.0
+BuildRequires:	QtUiTools-devel <= 4.2.1
+BuildRequires:	QtUiTools-devel >= 4.2.0
+BuildRequires:	QtXml-devel <= 4.2.1
+BuildRequires:	QtXml-devel >= 4.2.0
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
@@ -54,6 +58,7 @@ BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	bzip2-devel
+BuildRequires:	cmake
 BuildRequires:	cups-devel
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd412-xml
@@ -88,9 +93,7 @@ BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
-BuildRequires:	qt-devel >= 6:3.3.3-4
-%{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
-%{?with_apidocs:BuildRequires:	qt-doc}
+%{?with_apidocs:BuildRequires:	qt4-doc}
 BuildRequires:	rpmbuild(macros) >= 1.129
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
@@ -99,12 +102,12 @@ BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 %endif
+Requires:	QtCore >= 4.2.0
 Requires:	arts >= %{artsver}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
-Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
 Requires:	xorg-app-iceauth
 Obsoletes:	arts-kde
@@ -338,60 +341,33 @@ nieobs³uguj±cej pts-ów typu Unix98 i obawiasz siê inwigilacji ze
 strony innych u¿ytkowników lokalnych.
 
 %prep
-%setup -q -a1
-%patch100 -p0
-%patch0 -p1
-%patch1 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-
-rm -f configure
-cp /usr/share/automake/config.sub admin
+%setup -q
+%patch0 -p0
 
 %build
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
-if [ ! -f configure ]; then
-	%{__make} -f admin/Makefile.common cvs
-fi
-
-export path_sudo=/usr/bin/sudo
-%configure \
-	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
-	%{!?debug:--disable-rpath} \
-	--disable-final \
-	%{?with_hidden_visibility:--enable-gcc-hidden-visibility} \
-%if "%{_lib}" == "lib64"
-	--enable-libsuffix=64 \
-%endif
-	--enable-mitshm \
-	--with%{!?with_alsa:out}-alsa \
-	--with-distribution="PLD Linux Distribution" \
-	--with-ldap=no \
-	--with-lua-includes=%{_includedir}/lua50 \
-	--with-qt-libraries=%{_libdir} \
-	--with-sudo-kdesu-backend
+export KDEDIR=%{_prefix}
+export QTDIR=%{_prefix}
+mkdir build
+cd build
+%cmake \
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	../
 
 %{__make}
-%{?with_apidocs:%{__make} apidox}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
+cd build
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir} \
 	kde_libs_htmldir=%{_kdedocdir}
 
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
-install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
+#install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/services
+#install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
+#install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
 install -d \
 	$RPM_BUILD_ROOT/etc/security \
@@ -428,26 +404,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
-%attr(755,root,root) %{_bindir}/dcop
-%attr(755,root,root) %{_bindir}/dcopclient
-%attr(755,root,root) %{_bindir}/dcopfind
-%attr(755,root,root) %{_bindir}/dcopidlng
-%attr(755,root,root) %{_bindir}/dcopobject
-%attr(755,root,root) %{_bindir}/dcopquit
-%attr(755,root,root) %{_bindir}/dcopref
-%attr(755,root,root) %{_bindir}/dcopserver
-%attr(755,root,root) %{_bindir}/dcopserver_shutdown
-%attr(755,root,root) %{_bindir}/dcopstart
-#%attr(755,root,root) %{_bindir}/ghns
-%attr(2755,root,fileshare) %{_bindir}/filesharelist
 %attr(2755,root,fileshare) %{_bindir}/fileshareset
-%attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
+%attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kbuildsycoca
 %attr(755,root,root) %{_bindir}/kcmshell
 %attr(755,root,root) %{_bindir}/kconf_update
 %attr(755,root,root) %{_bindir}/kcookiejar
-%attr(755,root,root) %{_bindir}/kde-config
+%attr(755,root,root) %{_bindir}/kde4-config
 %attr(755,root,root) %{_bindir}/kde-menu
 %attr(755,root,root) %{_bindir}/kded
 %attr(755,root,root) %{_bindir}/kdeinit
@@ -458,15 +422,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kdostartupconfig
 %attr(755,root,root) %{_bindir}/kfile
 %attr(755,root,root) %{_bindir}/khotnewstuff
-# removed?
-#%attr(755,root,root) %{_bindir}/kimage_concat
 %attr(755,root,root) %{_bindir}/kinstalltheme
 %attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
 %attr(755,root,root) %{_bindir}/kio_uiserver
 %attr(755,root,root) %{_bindir}/kioexec
 %attr(755,root,root) %{_bindir}/kioslave
+%attr(755,root,root) %{_bindir}/kjscmd
+%attr(755,root,root) %{_bindir}/kjsconsole
 %attr(755,root,root) %{_bindir}/klauncher
 %attr(755,root,root) %{_bindir}/kmailservice
+%attr(755,root,root) %{_bindir}/knotify
+%attr(755,root,root) %{_bindir}/knotifytest
 %attr(755,root,root) %{_bindir}/kpac_dhcp_helper
 %attr(755,root,root) %{_bindir}/ksendbugmail
 %attr(755,root,root) %{_bindir}/kshell
@@ -482,26 +448,21 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
-%attr(4755,root,root) %{_bindir}/start_kdeinit
 
 %dir %{_datadir}/apps
-%{_datadir}/apps/LICENSES
-%dir %{_datadir}/apps/dcopidlng
-%attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
-%{_datadir}/apps/dcopidlng/*.pm
-%{_datadir}/apps/katepart
-%{_datadir}/apps/kcertpart
-%{_datadir}/apps/kcm_componentchooser
 %dir %{_datadir}/apps/kconf_update
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kconf_update/*.upd
+
+%{_datadir}/apps/LICENSES
+%{_datadir}/apps/katepart
+%{_datadir}/apps/kcertpart
+%{_datadir}/apps/kcm_componentchooser
 %{_datadir}/apps/kdeprint
 %{_datadir}/apps/kdeui
 %{_datadir}/apps/kdewidgets
-# also contains 3rdparty kpartplugins dir
 %{_datadir}/apps/khtml
-%{_datadir}/apps/knewstuff
 %{_datadir}/apps/kio_uiserver
 %{_datadir}/apps/kjava
 %{_datadir}/apps/knotify
@@ -513,93 +474,41 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ktexteditor_isearch
 %{_datadir}/apps/ktexteditor_kdatatool
 %{_datadir}/apps/proxyscout
-%dir %{_datadir}/autostart
-%{_datadir}/config
-%dir %{_datadir}/emoticons
-%{_datadir}/emoticons/Default
-%{_datadir}/locale/all_languages
-%{_datadir}/mimelnk
-%dir %{_datadir}/services
-%dir %{_datadir}/services/kresources
-%{_datadir}/services/kresources/kabc_manager.desktop
-%{_datadir}/services/kded
-%{_datadir}/services/http_cache_cleaner.desktop
-%{_datadir}/services/katepart.desktop
-%{_datadir}/services/kbzip2filter.desktop
-%{_datadir}/services/kcertpart.desktop
-%{_datadir}/services/kgzipfilter.desktop
-%{_datadir}/services/khtml.desktop
-%{_datadir}/services/khtmlimage.desktop
-%{_datadir}/services/kio_uiserver.desktop
-%{_datadir}/services/kjavaappletviewer.desktop
-%{_datadir}/services/kmailservice.protocol
-%{_datadir}/services/kmultipart.desktop
-%{_datadir}/services/knotify.desktop
-%{_datadir}/services/kspell_aspell.desktop
-%{_datadir}/services/kspell_ispell.desktop
-%{_datadir}/services/kspell_hspell.desktop
-%{_datadir}/services/ktexteditor_docwordcompletion.desktop
-%{_datadir}/services/ktexteditor_insertfile.desktop
-%{_datadir}/services/ktexteditor_isearch.desktop
-%{_datadir}/services/ktexteditor_kdatatool.desktop
-%{_datadir}/services/wmfthumbnail.desktop
-%{_datadir}/services/bmp.kimgio
-%{_datadir}/services/dds.kimgio
-%{_datadir}/services/eps.kimgio
-%{_datadir}/services/exr.kimgio
-%{_datadir}/services/gif.kimgio
-%{_datadir}/services/hdr.kimgio
-%{_datadir}/services/ico.kimgio
-%{_datadir}/services/jp2.kimgio
-%{_datadir}/services/jpeg.kimgio
-#%{_datadir}/services/krl.kimgio
-%{_datadir}/services/mng.kimgio
-%{_datadir}/services/pbm.kimgio
-%{_datadir}/services/pcx.kimgio
-%{_datadir}/services/pgm.kimgio
-%{_datadir}/services/png.kimgio
-%{_datadir}/services/ppm.kimgio
-%{_datadir}/services/psd.kimgio
-%{_datadir}/services/rgb.kimgio
-%{_datadir}/services/tga.kimgio
-%{_datadir}/services/tiff.kimgio
-%{_datadir}/services/xbm.kimgio
-%{_datadir}/services/xcf.kimgio
-%{_datadir}/services/xpm.kimgio
-%{_datadir}/services/xv.kimgio
-%{_datadir}/services/data.protocol
-%{_datadir}/services/file.protocol
-%{_datadir}/services/ftp.protocol
-%{_datadir}/services/ghelp.protocol
-%{_datadir}/services/help.protocol
-%{_datadir}/services/http.protocol
-%{_datadir}/services/https.protocol
-%{_datadir}/services/metainfo.protocol
-%{_datadir}/services/mms.protocol
-%{_datadir}/services/pnm.protocol
-%{_datadir}/services/rlogin.protocol
-%{_datadir}/services/rtsp.protocol
-%{_datadir}/services/shellscript.desktop
-%{_datadir}/services/ssh.protocol
-%{_datadir}/services/telnet.protocol
-%{_datadir}/services/webdav.protocol
-%{_datadir}/services/webdavs.protocol
-%{_datadir}/services/mmst.protocol
-%{_datadir}/services/mmsu.protocol
-%{_datadir}/services/rtspt.protocol
-%{_datadir}/services/rtspu.protocol
-%{_datadir}/servicetypes
-%dir %{_desktopdir}/kde
-# contains also 3rdparty hicolor & crystalsvg/apps trees
-%{_iconsdir}/crystalsvg
-%{_iconsdir}/default.kde
-%dir %{_docdir}/kde
-%dir %{_kdedocdir}
-%dir %{_kdedocdir}/en
-%{_kdedocdir}/en/common
-%lang(en) %{_kdedocdir}/en/kspell
 
-# 3rdparty directories
+%dir %{_datadir}/apps/emoticons
+%{_datadir}/apps/emoticons/Default
+
+%dir %{_datadir}/apps/knotifytest
+%{_datadir}/apps/knotifytest/knotifytest.notifyrc
+%{_datadir}/apps/knotifytest/knotifytestui.rc
+
+%dir %{_datadir}/apps/solidfakehwbackend
+%{_datadir}/apps/solidfakehwbackend/fakecomputer.xml
+%dir %{_datadir}/apps/solidfakenetbackend
+%{_datadir}/apps/solidfakenetbackend/fakenetworking.xml
+
+%dir %{_datadir}/services
+%{_datadir}/services/kded
+%{_datadir}/services/*.desktop
+%{_datadir}/services/*.protocol
+
+%dir %{_datadir}/services/qimageioplugins
+%{_datadir}/services/qimageioplugins/*.desktop
+
+%dir %{_datadir}/services/solidbackends
+%{_datadir}/services/solidbackends/*.desktop
+
+%dir %{_datadir}/services/phononbackends
+%{_datadir}/services/phononbackends/fake.desktop
+
+%{_iconsdir}/crystalsvg
+
+%dir %{_datadir}/apps/kde
+%{_datadir}/apps/kde/kde.notifyrc
+
+%dir %{_docdir}/HTML/en
+%lang(en) %{_docdir}/HTML/en/common
+
 %dir %{_datadir}/applnk
 %dir %{_datadir}/applnk/.hidden
 %dir %{_datadir}/apps/profiles
@@ -607,342 +516,118 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/config.kcfg
 %dir %{_datadir}/services/kconfiguredialog
 
-# merged kabc files
-%attr(755,root,root) %{_bindir}/kab2kabc
-%{_datadir}/apps/kabc
-%{_datadir}/autostart/kab2kabc.desktop
-%{_datadir}/services/kresources/kabc
-%{_desktopdir}/kde/kresources.desktop
+%{_datadir}/config
+%{_datadir}/locale/all_languages
+%{_datadir}/mimelnk
+%{_datadir}/servicetypes
+
+%dir %{_prefix}%{_sysconfdir}/xdg/menus
+%{_prefix}%{_sysconfdir}/xdg/menus/applications.menu
 
 %files libs
 %defattr(644,root,root,755)
-%{_libdir}/libDCOP.la
-%attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
-%{_libdir}/libartskde.la
-%attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
-%{_libdir}/libkabc.la
-%attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
-%{_libdir}/libkabc_dir.la
-%attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
-%{_libdir}/libkabc_file.la
-%attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
-%{_libdir}/libkabc_ldapkio.la
-%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
-%{_libdir}/libkabc_net.la
-%attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
-%{_libdir}/libkatepartinterfaces.la
-%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
-%{_libdir}/libkdecore.la
-%attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
-%{_libdir}/libkdefakes.la
-%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
-%{_libdir}/libkdefx.la
-%attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
-%{_libdir}/libkdeinit_cupsdconf.la
-%attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
-%{_libdir}/libkdeinit_dcopserver.la
-%attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
-%{_libdir}/libkdeinit_kaddprinterwizard.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
-%{_libdir}/libkdeinit_kbuildsycoca.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
-%{_libdir}/libkdeinit_kcmshell.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kcmshell.so
-%{_libdir}/libkdeinit_kconf_update.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
-%{_libdir}/libkdeinit_kcookiejar.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kcookiejar.so
-%{_libdir}/libkdeinit_kded.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kded.so
-%{_libdir}/libkdeinit_kio_http_cache_cleaner.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kio_http_cache_cleaner.so
-%{_libdir}/libkdeinit_kio_uiserver.la
-%attr(755,root,root) %{_libdir}/libkdeinit_kio_uiserver.so
-%{_libdir}/libkdeinit_klauncher.la
-%attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so
-%{_libdir}/libkdeprint.la
-%attr(755,root,root) %{_libdir}/libkdeprint.so.*.*.*
-%{_libdir}/libkdeprint_management.la
-%attr(755,root,root) %{_libdir}/libkdeprint_management.so.*.*.*
-%{_libdir}/libkdesasl.la
-%attr(755,root,root) %{_libdir}/libkdesasl.so.*.*.*
-%{_libdir}/libkdesu.la
-%attr(755,root,root) %{_libdir}/libkdesu.so.*.*.*
-%{_libdir}/libkdeui.la
-%attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
-%{_libdir}/libkdnssd.la
-%attr(755,root,root) %{_libdir}/libkdnssd.so.*.*.*
-%{_libdir}/libkhtml.la
-%attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
-%{_libdir}/libkimproxy.la
-%attr(755,root,root) %{_libdir}/libkimproxy.so.*.*.*
-%{_libdir}/libkio.la
-%attr(755,root,root) %{_libdir}/libkio.so.*.*.*
-%{_libdir}/libkjava.la
-%attr(755,root,root) %{_libdir}/libkjava.so.*.*.*
-%{_libdir}/libkjs.la
-%attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
-%{_libdir}/libkmdi.la
-%attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
-%{_libdir}/libkmdi2.la
-%attr(755,root,root) %{_libdir}/libkmdi2.so.*.*.*
-%{_libdir}/libkmediaplayer.la
-%attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
-%{_libdir}/libkmid.la
-%attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
-%{_libdir}/libknewstuff.la
-%attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
-%{_libdir}/libkntlm.la
-%attr(755,root,root) %{_libdir}/libkntlm.so.*.*.*
-%{_libdir}/libkparts.la
-%attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
-%{_libdir}/libkresources.la
-%attr(755,root,root) %{_libdir}/libkresources.so.*.*.*
-%{_libdir}/libkscreensaver.la
-%attr(755,root,root) %{_libdir}/libkscreensaver.so.*.*.*
-%{_libdir}/libkscript.la
-%attr(755,root,root) %{_libdir}/libkscript.so.*.*.*
-%{_libdir}/libkspell.la
-%attr(755,root,root) %{_libdir}/libkspell.so.*.*.*
-%{_libdir}/libkspell2.la
-%attr(755,root,root) %{_libdir}/libkspell2.so.*.*.*
-%{_libdir}/libktexteditor.la
-%attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
-%{_libdir}/libkunittest.la
-%attr(755,root,root) %{_libdir}/libkunittest.so.*.*.*
-%{_libdir}/libkutils.la
-%attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
-%{_libdir}/libkwalletbackend.la
-%attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
-%{_libdir}/libkwalletclient.la
-%attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
-%{_libdir}/libvcard.la
-%attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
-%dir %{_libdir}/kde3
-%{_libdir}/kde3/cupsdconf.la
-%attr(755,root,root) %{_libdir}/kde3/cupsdconf.so
-%{_libdir}/kde3/dcopserver.la
-%attr(755,root,root) %{_libdir}/kde3/dcopserver.so
-%{_libdir}/kde3/kaddprinterwizard.la
-%attr(755,root,root) %{_libdir}/kde3/kaddprinterwizard.so
-%{_libdir}/kde3/kbuildsycoca.la
-%attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
-%{_libdir}/kde3/kbzip2filter.la
-%attr(755,root,root) %{_libdir}/kde3/kbzip2filter.so
-%{_libdir}/kde3/kcmshell.la
-%attr(755,root,root) %{_libdir}/kde3/kcmshell.so
-%{_libdir}/kde3/kconf_update.la
-%attr(755,root,root) %{_libdir}/kde3/kconf_update.so
-%{_libdir}/kde3/kcookiejar.la
-%attr(755,root,root) %{_libdir}/kde3/kcookiejar.so
-%{_libdir}/kde3/kded.la
-%attr(755,root,root) %{_libdir}/kde3/kded.so
-%{_libdir}/kde3/kded_kcookiejar.la
-%attr(755,root,root) %{_libdir}/kde3/kded_kcookiejar.so
-%{_libdir}/kde3/kded_kdeprintd.la
-%attr(755,root,root) %{_libdir}/kde3/kded_kdeprintd.so
-%{_libdir}/kde3/kded_kdetrayproxy.la
-%attr(755,root,root) %{_libdir}/kde3/kded_kdetrayproxy.so
-%{_libdir}/kde3/kded_kpasswdserver.la
-%attr(755,root,root) %{_libdir}/kde3/kded_kpasswdserver.so
-%{_libdir}/kde3/kded_kssld.la
-%attr(755,root,root) %{_libdir}/kde3/kded_kssld.so
-%{_libdir}/kde3/kded_kwalletd.la
-%attr(755,root,root) %{_libdir}/kde3/kded_kwalletd.so
-%{_libdir}/kde3/kded_proxyscout.la
-%attr(755,root,root) %{_libdir}/kde3/kded_proxyscout.so
-%{_libdir}/kde3/kdeprint_cups.la
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_cups.so
-%{_libdir}/kde3/kdeprint_ext.la
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_ext.so
-%{_libdir}/kde3/kdeprint_lpdunix.la
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_lpdunix.so
-%{_libdir}/kde3/kdeprint_lpr.la
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_lpr.so
-%{_libdir}/kde3/kdeprint_rlpr.la
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_rlpr.so
-%{_libdir}/kde3/kdeprint_tool_escputil.la
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_tool_escputil.so
-%{_libdir}/kde3/kfileaudiopreview.la
-%attr(755,root,root) %{_libdir}/kde3/kfileaudiopreview.so
-%{_libdir}/kde3/kgzipfilter.la
-%attr(755,root,root) %{_libdir}/kde3/kgzipfilter.so
-%{_libdir}/kde3/khtmlimagepart.la
-%attr(755,root,root) %{_libdir}/kde3/khtmlimagepart.so
-%{_libdir}/kde3/kimg_dds.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_dds.so
-%{_libdir}/kde3/kimg_eps.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
-%{_libdir}/kde3/kimg_exr.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so
-%{_libdir}/kde3/kimg_hdr.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_hdr.so
-%{_libdir}/kde3/kimg_ico.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
-%{_libdir}/kde3/kimg_jp2.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_jp2.so
-%{_libdir}/kde3/kimg_pcx.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_pcx.so
-%{_libdir}/kde3/kimg_psd.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_psd.so
-%{_libdir}/kde3/kimg_rgb.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_rgb.so
-%{_libdir}/kde3/kimg_tga.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_tga.so
-%{_libdir}/kde3/kimg_tiff.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_tiff.so
-%{_libdir}/kde3/kimg_xcf.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_xcf.so
-%{_libdir}/kde3/kimg_xview.la
-%attr(755,root,root) %{_libdir}/kde3/kimg_xview.so
-%{_libdir}/kde3/kio_file.la
-%attr(755,root,root) %{_libdir}/kde3/kio_file.so
-%{_libdir}/kde3/kio_ftp.la
-%attr(755,root,root) %{_libdir}/kde3/kio_ftp.so
-%{_libdir}/kde3/kio_ghelp.la
-%attr(755,root,root) %{_libdir}/kde3/kio_ghelp.so
-%{_libdir}/kde3/kio_help.la
-%attr(755,root,root) %{_libdir}/kde3/kio_help.so
-%{_libdir}/kde3/kio_http.la
-%attr(755,root,root) %{_libdir}/kde3/kio_http.so
-%{_libdir}/kde3/kio_http_cache_cleaner.la
-%attr(755,root,root) %{_libdir}/kde3/kio_http_cache_cleaner.so
-%{_libdir}/kde3/kio_metainfo.la
-%attr(755,root,root) %{_libdir}/kde3/kio_metainfo.so
-%{_libdir}/kde3/kio_uiserver.la
-%attr(755,root,root) %{_libdir}/kde3/kio_uiserver.so
-%{_libdir}/kde3/kjavaappletviewer.la
-%attr(755,root,root) %{_libdir}/kde3/kjavaappletviewer.so
-%{_libdir}/kde3/klauncher.la
-%attr(755,root,root) %{_libdir}/kde3/klauncher.so
-%{_libdir}/kde3/knotify.la
-%attr(755,root,root) %{_libdir}/kde3/knotify.so
-%{_libdir}/kde3/kspell_aspell.la
-%attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
-%{_libdir}/kde3/kspell_ispell.la
-%attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
-%{_libdir}/kde3/kspell_hspell.la
-%attr(755,root,root) %{_libdir}/kde3/kspell_hspell.so
-%{_libdir}/kde3/kstyle_highcontrast_config.la
-%attr(755,root,root) %{_libdir}/kde3/kstyle_highcontrast_config.so
-%{_libdir}/kde3/kstyle_plastik_config.la
-%attr(755,root,root) %{_libdir}/kde3/kstyle_plastik_config.so
-%{_libdir}/kde3/ktexteditor_docwordcompletion.la
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_docwordcompletion.so
-%{_libdir}/kde3/ktexteditor_insertfile.la
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_insertfile.so
-%{_libdir}/kde3/ktexteditor_isearch.la
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_isearch.so
-%{_libdir}/kde3/ktexteditor_kdatatool.la
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_kdatatool.so
-%{_libdir}/kde3/libkatepart.la
-%attr(755,root,root) %{_libdir}/kde3/libkatepart.so
-%{_libdir}/kde3/libkcertpart.la
-%attr(755,root,root) %{_libdir}/kde3/libkcertpart.so
-%{_libdir}/kde3/libkdeprint_management_module.la
-%attr(755,root,root) %{_libdir}/kde3/libkdeprint_management_module.so
-%{_libdir}/kde3/libkhtmlpart.la
-%attr(755,root,root) %{_libdir}/kde3/libkhtmlpart.so
-%{_libdir}/kde3/libkmultipart.la
-%attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
-%{_libdir}/kde3/libshellscript.la
-%attr(755,root,root) %{_libdir}/kde3/libshellscript.so
-%{_libdir}/kde3/wmfthumbnail.la
-%attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
-%dir %{_libdir}/kde3/plugins
-%dir %{_libdir}/kde3/plugins/designer
-%{_libdir}/kde3/plugins/designer/kdewidgets.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/designer/kdewidgets.so
-%dir %{_libdir}/kde3/plugins/styles
-%{_libdir}/kde3/plugins/styles/highcolor.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcolor.so
-%{_libdir}/kde3/plugins/styles/highcontrast.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcontrast.so
-%{_libdir}/kde3/plugins/styles/keramik.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/keramik.so
-%{_libdir}/kde3/plugins/styles/kthemestyle.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/kthemestyle.so
-%{_libdir}/kde3/plugins/styles/light.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
-%{_libdir}/kde3/plugins/styles/plastik.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/plastik.so
+%attr(755,root,root) %{_libdir}/libkde3support.so.*
+%attr(755,root,root) %{_libdir}/libkdecore.so.*
+%attr(755,root,root) %{_libdir}/libkdefakes.so.*
+%attr(755,root,root) %{_libdir}/libkdefx.so.*
+%attr(755,root,root) %{_libdir}/libkdeprint.so.*
+%attr(755,root,root) %{_libdir}/libkdeprint_management.so.*
+%attr(755,root,root) %{_libdir}/libkdesu.so.*
+%attr(755,root,root) %{_libdir}/libkdeui.so.*
+%attr(755,root,root) %{_libdir}/libkdnssd.so.*
+%attr(755,root,root) %{_libdir}/libkdocument.so.*
+%attr(755,root,root) %{_libdir}/libkhtml.so.*
+%attr(755,root,root) %{_libdir}/libkimproxy.so.*
+%attr(755,root,root) %{_libdir}/libkio.so.*
+%attr(755,root,root) %{_libdir}/libkjs.so.*
+%attr(755,root,root) %{_libdir}/libkjsembed.so.*
+%attr(755,root,root) %{_libdir}/libkmediaplayer.so.*
+%attr(755,root,root) %{_libdir}/libknewstuff.so.*
+%attr(755,root,root) %{_libdir}/libknotifyconfig.so.*
+%attr(755,root,root) %{_libdir}/libkntlm.so.*
+%attr(755,root,root) %{_libdir}/libkparts.so.*
+%attr(755,root,root) %{_libdir}/libkspell2.so.*
+%attr(755,root,root) %{_libdir}/libktexteditor.so.*
+%attr(755,root,root) %{_libdir}/libkunittest.so.*
+%attr(755,root,root) %{_libdir}/libkutils.so.*
+%attr(755,root,root) %{_libdir}/libkwalletbackend.so.*
+%attr(755,root,root) %{_libdir}/libkwalletclient.so.*
+%attr(755,root,root) %{_libdir}/libkxmlcore.so.*
+%attr(755,root,root) %{_libdir}/libphononcore.so.*
+%attr(755,root,root) %{_libdir}/libphononui.so.*
+%attr(755,root,root) %{_libdir}/libsolid.so.*
+%attr(755,root,root) %{_libdir}/libsolidifaces.so.*
+%attr(755,root,root) %{_libdir}/libthreadweaver.so.*
 
-# 3rdparty directories
+%dir %{_libdir}/kde4
+%attr(755,root,root) %{_libdir}/kde4/*.so
+%dir %{_libdir}/kde4/plugins
+%dir %{_libdir}/kde4/plugins/designer
+%attr(755,root,root) %{_libdir}/kde4/plugins/designer/kdewidgets.so
+%dir %{_libdir}/kde4/plugins/styles
+%attr(755,root,root) %{_libdir}/kde4/plugins/styles/keramik.so
+%attr(755,root,root) %{_libdir}/kde4/plugins/styles/plastik.so
+%dir %{_libdir}/kde4/plugins/imageformats
+%attr(755,root,root) %{_libdir}/kde4/plugins/imageformats/kimg*.so
 %dir %{_libdir}/kconf_update_bin
-
-# merged kabc files
-%{_libdir}/kde3/kabc_dir.la
-%attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
-%{_libdir}/kde3/kabc_file.la
-%attr(755,root,root) %{_libdir}/kde3/kabc_file.so
-%{_libdir}/kde3/kabc_ldapkio.la
-%attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
-%{_libdir}/kde3/kabc_net.la
-%attr(755,root,root) %{_libdir}/kde3/kabc_net.so
-%{_libdir}/kde3/kabcformat_binary.la
-%attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-%{_libdir}/kde3/kcm_kresources.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_kresources.so
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/dcopidl
-%attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
-%attr(755,root,root) %{_libdir}/libDCOP.so
-%attr(755,root,root) %{_libdir}/libartskde.so
-%attr(755,root,root) %{_libdir}/libkabc.so
-%attr(755,root,root) %{_libdir}/libkabc_dir.so
-%attr(755,root,root) %{_libdir}/libkabc_file.so
-%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
-%attr(755,root,root) %{_libdir}/libkabc_net.so
-%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
+%{_datadir}/apps/cmake
+%attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
+%attr(755,root,root) %{_libdir}/libkde3support.so
 %attr(755,root,root) %{_libdir}/libkdecore.so
 %attr(755,root,root) %{_libdir}/libkdefakes.so
 %attr(755,root,root) %{_libdir}/libkdefx.so
+%attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
+%attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca.so
+%attr(755,root,root) %{_libdir}/libkdeinit_kcmshell.so
+%attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
+%attr(755,root,root) %{_libdir}/libkdeinit_kded.so
+%attr(755,root,root) %{_libdir}/libkdeinit_kio_http_cache_cleaner.so
+%attr(755,root,root) %{_libdir}/libkdeinit_kio_uiserver.so
+%attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so
+%attr(755,root,root) %{_libdir}/libkdeinit_knotify.so
 %attr(755,root,root) %{_libdir}/libkdeprint.so
 %attr(755,root,root) %{_libdir}/libkdeprint_management.so
-%attr(755,root,root) %{_libdir}/libkdesasl.so
 %attr(755,root,root) %{_libdir}/libkdesu.so
 %attr(755,root,root) %{_libdir}/libkdeui.so
 %attr(755,root,root) %{_libdir}/libkdnssd.so
+%attr(755,root,root) %{_libdir}/libkdocument.so
 %attr(755,root,root) %{_libdir}/libkhtml.so
 %attr(755,root,root) %{_libdir}/libkimproxy.so
 %attr(755,root,root) %{_libdir}/libkio.so
-%attr(755,root,root) %{_libdir}/libkjava.so
 %attr(755,root,root) %{_libdir}/libkjs.so
-%attr(755,root,root) %{_libdir}/libkmdi.so
-%attr(755,root,root) %{_libdir}/libkmdi2.so
+%attr(755,root,root) %{_libdir}/libkjsembed.so
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so
-%attr(755,root,root) %{_libdir}/libkmid.so
 %attr(755,root,root) %{_libdir}/libknewstuff.so
+%attr(755,root,root) %{_libdir}/libknotifyconfig.so
 %attr(755,root,root) %{_libdir}/libkntlm.so
 %attr(755,root,root) %{_libdir}/libkparts.so
-%attr(755,root,root) %{_libdir}/libkresources.so
-%attr(755,root,root) %{_libdir}/libkscreensaver.so
-%attr(755,root,root) %{_libdir}/libkscript.so
-%attr(755,root,root) %{_libdir}/libkspell.so
 %attr(755,root,root) %{_libdir}/libkspell2.so
 %attr(755,root,root) %{_libdir}/libktexteditor.so
 %attr(755,root,root) %{_libdir}/libkunittest.so
 %attr(755,root,root) %{_libdir}/libkutils.so
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
-#%attr(755,root,root) %{_libdir}/libqt-addon.so
-%attr(755,root,root) %{_libdir}/libvcard.so
-%{_libdir}/libkdefakes_nonpic.a
-%{_includedir}/[!a]*
-%{_includedir}/arts/*
+%attr(755,root,root) %{_libdir}/libkxmlcore.so
+%attr(755,root,root) %{_libdir}/libphononcore.so
+%attr(755,root,root) %{_libdir}/libphononui.so
+%attr(755,root,root) %{_libdir}/libsolid.so
+%attr(755,root,root) %{_libdir}/libsolidifaces.so
+%attr(755,root,root) %{_libdir}/libthreadweaver.so
+%{_includedir}/*
 
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_kdedocdir}/en/%{name}*-apidocs
+#%{_kdedocdir}/en/%{name}*-apidocs
 %endif
 
 %files artsmessage
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/artsmessage
+#%attr(755,root,root) %{_bindir}/artsmessage
 
 %files kgrantpty
 %defattr(644,root,root,755)
