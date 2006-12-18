@@ -417,7 +417,9 @@ fi
 rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 # remove *.la for dynamic plugins. kde lib loader handles .so now.
-find $RPM_BUILD_ROOT%{_libdir}/kde3 -type f -name '*.la' | xargs rm
+rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
+rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
 rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
 
 %clean
