@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	3.7
+Release:	3.8
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -789,6 +789,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdecore.so
 %{_libdir}/libkdefakes.la
 %attr(755,root,root) %{_libdir}/libkdefakes.so
+%{_libdir}/libkdefakes_nonpic.a
 %{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so
 %{_libdir}/libkdeprint.la
