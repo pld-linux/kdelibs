@@ -766,6 +766,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kconfig_compiler
 %{_includedir}/[!a]*
 %{_includedir}/arts/*
+%{_libdir}/kde3/plugins/designer/kdewidgets.la
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so
 %{_libdir}/libartskde.la
