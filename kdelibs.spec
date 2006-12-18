@@ -83,8 +83,8 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
 %{?with_apidocs:BuildRequires:	qt4-doc}
+BuildRequires:	qt4-qmake
 BuildRequires:	rpmbuild(macros) >= 1.129
-#BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
 BuildConflicts:	kdebase-core < 9:3.4.0
