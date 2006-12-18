@@ -20,7 +20,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.80.2
-Release:	0.1
+Release:	0.2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -235,7 +235,7 @@ Requires:	libart_lgpl-devel
 Requires:	libidn-devel
 Requires:	mdns-bonjour-devel
 Requires:	pcre-devel
-Requires:	qt-devel >= 6:3.3.3-4
+#Requires:	qt-devel >= 6:3.3.3-4
 Requires:	xorg-lib-libXmu-devel
 Requires:	xorg-lib-libXt-devel
 Obsoletes:	arts-kde-devel
