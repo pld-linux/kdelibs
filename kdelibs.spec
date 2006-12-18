@@ -84,6 +84,7 @@ BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
 %{?with_apidocs:BuildRequires:	qt4-doc}
 BuildRequires:	qt4-qmake
+BuildRequires:	qt4-build
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
