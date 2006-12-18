@@ -336,7 +336,7 @@ export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 export KDEDIR=%{_prefix}
 export QTDIR=%{_prefix}
-mkdir build
+install -d build
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
