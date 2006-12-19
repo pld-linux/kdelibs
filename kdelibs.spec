@@ -1,4 +1,8 @@
 #
+# TODO:
+#		extend lib loader for handling *.so{,.*,.*.*} and remove redundant .so symlinks
+#		from kdelibs,base,multimedia.
+#
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# don't prepare API documentation
