@@ -1,8 +1,4 @@
 #
-# TODO:
-#		extend lib loader for handling *.so{,.*,.*.*} and remove redundant .so symlinks
-#		from kdelibs,base,multimedia.
-#
 # Conditional build:
 %bcond_without	alsa		# build without ALSA support
 %bcond_without	apidocs		# don't prepare API documentation
@@ -25,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	4.1
+Release:	5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -58,6 +54,8 @@ BuildRequires:	aspell-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
+BuildRequires:	boost-filesystem-devel
+BuildRequires:	boost-regex-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel
 BuildRequires:	docbook-dtd41-sgml
