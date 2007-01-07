@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	3.5.5
-Release:	5
+Release:	6
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -41,11 +41,10 @@ Patch5:		%{name}-appicon_themable.patch
 Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		kde-ac260-lt.patch
-Patch9:		%{name}-avahi.patch
-Patch10:	kde-am.patch
-Patch11:	%{name}-lib_loader.patch
+Patch9:		kde-am.patch
+Patch10:	%{name}-lib_loader.patch
 URL:		http://www.kde.org/
-BuildRequires:	OpenEXR-devel >= 1.2.2
+BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
@@ -351,7 +350,6 @@ strony innych u¿ytkowników lokalnych.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
 
 rm -f configure
 cp /usr/share/automake/config.sub admin
