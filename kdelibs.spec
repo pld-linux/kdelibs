@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	7
+Release:	8
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -607,22 +607,38 @@ rm -rf $RPM_BUILD_ROOT
 %{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
 
-%lang(cs) %dir %{_kdedocdir}/cs/{,common}
-%lang(da) %dir %{_kdedocdir}/da/{,common}
-%lang(de) %dir %{_kdedocdir}/de/{,common}
-%lang(es) %dir %{_kdedocdir}/es/{,common}
-%lang(et) %dir %{_kdedocdir}/et/{,common}
-%lang(fi) %dir %{_kdedocdir}/fi/{,common}
-%lang(fr) %dir %{_kdedocdir}/fr/{,common}
-%lang(hu) %dir %{_kdedocdir}/hu/{,common}
-%lang(it) %dir %{_kdedocdir}/it/{,common}
-%lang(nb) %dir %{_kdedocdir}/nb/{,common}
-%lang(nl) %dir %{_kdedocdir}/nl/{,common}
-%lang(pl) %dir %{_kdedocdir}/pl/{,common}
-%lang(pt) %dir %{_kdedocdir}/pt/{,common}
-%lang(pt_BR) %dir %{_kdedocdir}/pt_BR/{,common} 
-%lang(ru) %dir %{_kdedocdir}/ru/{,common}
-%lang(sv) %dir %{_kdedocdir}/sv/{,common}
+%lang(cs) %dir %{_kdedocdir}/cs
+%lang(cs) %dir %{_kdedocdir}/cs/common
+%lang(da) %dir %{_kdedocdir}/da
+%lang(da) %dir %{_kdedocdir}/da/common
+%lang(de) %dir %{_kdedocdir}/de
+%lang(de) %dir %{_kdedocdir}/de/common
+%lang(es) %dir %{_kdedocdir}/es
+%lang(es) %dir %{_kdedocdir}/es/common
+%lang(et) %dir %{_kdedocdir}/et
+%lang(et) %dir %{_kdedocdir}/et/common
+%lang(fi) %dir %{_kdedocdir}/fi
+%lang(fi) %dir %{_kdedocdir}/fi/common
+%lang(fr) %dir %{_kdedocdir}/fr
+%lang(fr) %dir %{_kdedocdir}/fr/common
+%lang(hu) %dir %{_kdedocdir}/hu
+%lang(hu) %dir %{_kdedocdir}/hu/common
+%lang(it) %dir %{_kdedocdir}/it
+%lang(it) %dir %{_kdedocdir}/it/common
+%lang(nb) %dir %{_kdedocdir}/nb
+%lang(nb) %dir %{_kdedocdir}/nb/common
+%lang(nl) %dir %{_kdedocdir}/nl
+%lang(nl) %dir %{_kdedocdir}/nl/common
+%lang(pl) %dir %{_kdedocdir}/pl
+%lang(pl) %dir %{_kdedocdir}/pl/common
+%lang(pt) %dir %{_kdedocdir}/pt
+%lang(pt) %dir %{_kdedocdir}/pt/common
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR/common
+%lang(ru) %dir %{_kdedocdir}/ru
+%lang(ru) %dir %{_kdedocdir}/ru/common
+%lang(sv) %dir %{_kdedocdir}/sv
+%lang(sv) %dir %{_kdedocdir}/sv/common
 
 # 3rdparty directories
 %dir %{_datadir}/applnk
