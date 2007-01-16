@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.5
-Release:	6
+Release:	7
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -405,6 +405,8 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
+install -d $RPM_BUILD_ROOT%{_kdedocdir}/{cs,da,de,en,es,et,fi,fr,hu,it,nb,nl,pl,pt,pt_BR,ru,sv}/common
+
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
 %{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
@@ -604,6 +606,23 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_kdedocdir}/en
 %{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
+
+%lang(cs) %dir %{_kdedocdir}/cs/{,common}
+%lang(da) %dir %{_kdedocdir}/da/{,common}
+%lang(de) %dir %{_kdedocdir}/de/{,common}
+%lang(es) %dir %{_kdedocdir}/es/{,common}
+%lang(et) %dir %{_kdedocdir}/et/{,common}
+%lang(fi) %dir %{_kdedocdir}/fi/{,common}
+%lang(fr) %dir %{_kdedocdir}/fr/{,common}
+%lang(hu) %dir %{_kdedocdir}/hu/{,common}
+%lang(it) %dir %{_kdedocdir}/it/{,common}
+%lang(nb) %dir %{_kdedocdir}/nb/{,common}
+%lang(nl) %dir %{_kdedocdir}/nl/{,common}
+%lang(pl) %dir %{_kdedocdir}/pl/{,common}
+%lang(pt) %dir %{_kdedocdir}/pt/{,common}
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR/{,common} 
+%lang(ru) %dir %{_kdedocdir}/ru/{,common}
+%lang(sv) %dir %{_kdedocdir}/sv/{,common}
 
 # 3rdparty directories
 %dir %{_datadir}/applnk
