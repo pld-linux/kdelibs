@@ -21,7 +21,7 @@ Summary(ru.UTF-8):   K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):   K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.6
-Release:	4
+Release:	5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -238,6 +238,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
 Requires:	arts-qt-devel >= %{artsver}
 Requires:	artsc-devel >= %{artsver}
+Requires:	boost-filesystem-devel
+Requires:	boost-regex-devel
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
