@@ -13,12 +13,12 @@
 %define		artsver		13:1.5.6
 
 Summary:	K Desktop Environment - libraries
-Summary(es.UTF-8):   K Desktop Environment - bibliotecas
-Summary(ko.UTF-8):   KDE - 라이브러리
-Summary(pl.UTF-8):   K Desktop Environment - biblioteki
-Summary(pt_BR.UTF-8):   Bibliotecas de fundação do KDE
-Summary(ru.UTF-8):   K Desktop Environment - Библиотеки
-Summary(uk.UTF-8):   K Desktop Environment - Бібліотеки
+Summary(es.UTF-8):	K Desktop Environment - bibliotecas
+Summary(ko.UTF-8):	KDE - 라이브러리
+Summary(pl.UTF-8):	K Desktop Environment - biblioteki
+Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE
+Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
+Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.6
 Release:	5
@@ -218,7 +218,7 @@ aplicativo KDE.
 
 %package libs
 Summary:	KDE libraries
-Summary(pl.UTF-8):   Biblioteki KDE
+Summary(pl.UTF-8):	Biblioteki KDE
 Group:		Libraries
 
 %description libs
@@ -229,10 +229,10 @@ Biblioteki KDE.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
-Summary(pl.UTF-8):   kdelibs - pliki nagłówkowe i dokumentacja do kdelibs
-Summary(pt_BR.UTF-8):   Arquivos de inclusão e documentação para compilar aplicativos KDE
-Summary(ru.UTF-8):   Хедеры и документация для компилляции программ KDE
-Summary(uk.UTF-8):   Хедери та документація для компіляції програм KDE
+Summary(pl.UTF-8):	kdelibs - pliki nagłówkowe i dokumentacja do kdelibs
+Summary(pt_BR.UTF-8):	Arquivos de inclusão e documentação para compilar aplicativos KDE
+Summary(ru.UTF-8):	Хедеры и документация для компилляции программ KDE
+Summary(uk.UTF-8):	Хедери та документація для компіляції програм KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
@@ -277,7 +277,7 @@ KDE.
 
 %package apidocs
 Summary:	API documentation
-Summary(pl.UTF-8):   Dokumentacja API
+Summary(pl.UTF-8):	Dokumentacja API
 Group:		Documentation
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	kttsd-apidocs
@@ -296,7 +296,7 @@ Zawiera:
 
 %package artsmessage
 Summary:	Program used to display aRts daemon messages
-Summary(pl.UTF-8):   Program do wyświetlania komunikatów demona aRts
+Summary(pl.UTF-8):	Program do wyświetlania komunikatów demona aRts
 Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	arts-message
@@ -312,7 +312,7 @@ demona.
 
 %package kgrantpty
 Summary:	Helper program to fix terminal permissions
-Summary(pl.UTF-8):   Program pomocniczy do ustawiania uprawnień terminala
+Summary(pl.UTF-8):	Program pomocniczy do ustawiania uprawnień terminala
 Group:		Applications/Terminal
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
