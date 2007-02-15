@@ -21,7 +21,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.6
-Release:	5
+Release:	6
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -238,8 +238,6 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
 Requires:	arts-qt-devel >= %{artsver}
 Requires:	artsc-devel >= %{artsver}
-Requires:	boost-filesystem-devel
-Requires:	boost-regex-devel
 Requires:	fam-devel
 Requires:	libart_lgpl-devel
 Requires:	libidn-devel
@@ -423,6 +421,10 @@ rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 # keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
 rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
 rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
+
+# remove unwanted boost deps from .la
+sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
+sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
