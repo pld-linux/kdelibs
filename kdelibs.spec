@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):   Bibliotecas de fundação do KDE
 Summary(ru.UTF-8):   K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):   K Desktop Environment - Бібліотеки
 Name:		kdelibs
-Version:	3.80.2
-Release:	0.2
+Version:	3.80.3
+Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	697cb962328c21b69ccf81c810030fce
+# Source0-md5:	9b091e0d68e7eb8eaef5254e0f127d2d
 Source1:	pnm.protocol
 Source2:	x-icq.mimelnk
 Source3:	x-mplayer2.desktop
