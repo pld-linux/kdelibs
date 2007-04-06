@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
 Version:	3.5.6
-Release:	3
+Release:	4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -35,6 +35,7 @@ Source4:	x-mplayer2.desktop
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
+Patch2:		%{name}-khtml-slow_page_change.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
@@ -336,6 +337,7 @@ strony innych uøytkownikÛw lokalnych.
 %patch100 -p0
 %patch0 -p1
 %patch1 -p1
+%patch2 -p4
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
