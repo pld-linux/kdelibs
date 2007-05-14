@@ -10,7 +10,7 @@
 					# to g++
 #
 %define		_state		stable
-%define		artsver		13:1.5.6
+%define		artsver		13:1.5.7
 
 Summary:	K Desktop Environment - libraries
 Summary(es.UTF-8):	K Desktop Environment - bibliotecas
@@ -20,13 +20,13 @@ Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE
 Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
-Version:	3.5.6
-Release:	12
+Version:	3.5.7
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	e4d137879a66e92b895b3de5413a61d8
+# Source0-md5:	0e94ea8e9bc1b69dd5f5e6ae38037338
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -338,7 +338,7 @@ strony innych użytkowników lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p0
+#%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
@@ -741,7 +741,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
-%attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
@@ -794,7 +793,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
 %attr(755,root,root) %{_libdir}/kde3/kabc_file.so
 %attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
-%attr(755,root,root) %{_libdir}/kde3/kabc_net.so
 %attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
 %attr(755,root,root) %{_libdir}/kde3/kcm_kresources.so
 
@@ -818,8 +816,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_file.so
 %{_libdir}/libkabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
-%{_libdir}/libkabc_net.la
-%attr(755,root,root) %{_libdir}/libkabc_net.so
 %{_libdir}/libkatepartinterfaces.la
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
 %{_libdir}/libkdecore.la
