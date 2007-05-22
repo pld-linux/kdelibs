@@ -10,7 +10,7 @@
 					# to g++
 #
 %define		_state		stable
-%define		artsver		13:1.5.6
+%define		artsver		13:1.5.7
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -20,22 +20,21 @@ Summary(pt_BR):	Bibliotecas de fundaÁ„o do KDE
 Summary(ru):	K Desktop Environment - ‚…¬Ã…œ‘≈À…
 Summary(uk):	K Desktop Environment - ‚¶¬Ã¶œ‘≈À…
 Name:		kdelibs
-Version:	3.5.6
-Release:	4
+Version:	3.5.7
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	e4d137879a66e92b895b3de5413a61d8
+# Source0-md5:	0e94ea8e9bc1b69dd5f5e6ae38037338
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
-Patch100:	%{name}-branch.diff
+#Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
-Patch2:		%{name}-khtml-slow_page_change.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
@@ -334,10 +333,9 @@ strony innych uøytkownikÛw lokalnych.
 
 %prep
 %setup -q -a1
-%patch100 -p0
+#%patch100 -p0
 %patch0 -p1
 %patch1 -p1
-%patch2 -p4
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
@@ -399,6 +397,8 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
+
+install -d $RPM_BUILD_ROOT%{_kdedocdir}/{cs,da,de,en,es,et,fi,fr,hu,it,nb,nl,pl,pt,pt_BR,ru,sv}/common
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
@@ -594,6 +594,39 @@ rm -rf $RPM_BUILD_ROOT
 %{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
 
+%lang(cs) %dir %{_kdedocdir}/cs
+%lang(cs) %dir %{_kdedocdir}/cs/common
+%lang(da) %dir %{_kdedocdir}/da
+%lang(da) %dir %{_kdedocdir}/da/common
+%lang(de) %dir %{_kdedocdir}/de
+%lang(de) %dir %{_kdedocdir}/de/common
+%lang(es) %dir %{_kdedocdir}/es
+%lang(es) %dir %{_kdedocdir}/es/common
+%lang(et) %dir %{_kdedocdir}/et
+%lang(et) %dir %{_kdedocdir}/et/common
+%lang(fi) %dir %{_kdedocdir}/fi
+%lang(fi) %dir %{_kdedocdir}/fi/common
+%lang(fr) %dir %{_kdedocdir}/fr
+%lang(fr) %dir %{_kdedocdir}/fr/common
+%lang(hu) %dir %{_kdedocdir}/hu
+%lang(hu) %dir %{_kdedocdir}/hu/common
+%lang(it) %dir %{_kdedocdir}/it
+%lang(it) %dir %{_kdedocdir}/it/common
+%lang(nb) %dir %{_kdedocdir}/nb
+%lang(nb) %dir %{_kdedocdir}/nb/common
+%lang(nl) %dir %{_kdedocdir}/nl
+%lang(nl) %dir %{_kdedocdir}/nl/common
+%lang(pl) %dir %{_kdedocdir}/pl
+%lang(pl) %dir %{_kdedocdir}/pl/common
+%lang(pt) %dir %{_kdedocdir}/pt
+%lang(pt) %dir %{_kdedocdir}/pt/common
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR/common
+%lang(ru) %dir %{_kdedocdir}/ru
+%lang(ru) %dir %{_kdedocdir}/ru/common
+%lang(sv) %dir %{_kdedocdir}/sv
+%lang(sv) %dir %{_kdedocdir}/sv/common
+
 # 3rdparty directories
 %dir %{_datadir}/applnk
 %dir %{_datadir}/applnk/.hidden
@@ -623,8 +656,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
 %{_libdir}/libkabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
-%{_libdir}/libkabc_net.la
-%attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
 %{_libdir}/libkatepartinterfaces.la
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
 %{_libdir}/libkdecore.la
@@ -872,8 +903,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kabc_file.so
 %{_libdir}/kde3/kabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
-%{_libdir}/kde3/kabc_net.la
-%attr(755,root,root) %{_libdir}/kde3/kabc_net.so
 %{_libdir}/kde3/kabcformat_binary.la
 %attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
 %{_libdir}/kde3/kcm_kresources.la
@@ -890,7 +919,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_dir.so
 %attr(755,root,root) %{_libdir}/libkabc_file.so
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
-%attr(755,root,root) %{_libdir}/libkabc_net.so
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
 %attr(755,root,root) %{_libdir}/libkdecore.so
 %attr(755,root,root) %{_libdir}/libkdefakes.so
