@@ -38,6 +38,7 @@ BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtDesigner-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	QtSvg-devel >= 4.3.0
+BuildRequires:	QtUiTools-devel >= 4.3.0
 BuildRequires:	QtXml-devel >= 4.3.0
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
