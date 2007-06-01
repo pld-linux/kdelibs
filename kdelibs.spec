@@ -86,6 +86,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	qt4-qmake
 BuildRequires:	qt4-build
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	strigi-devel
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
 BuildConflicts:	kdebase-core < 9:3.4.0
