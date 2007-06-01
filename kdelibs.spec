@@ -38,6 +38,7 @@ BuildRequires:	QtDBus-devel >= 4.3.0
 BuildRequires:	QtDesigner-devel >= 4.3.0
 BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	QtSvg-devel >= 4.3.0
+BuildRequires:	QtTest-devel >= 4.3.0
 BuildRequires:	QtUiTools-devel >= 4.3.0
 BuildRequires:	QtXml-devel >= 4.3.0
 BuildRequires:	acl-devel
@@ -82,9 +83,9 @@ BuildRequires:	openmotif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
-%{?with_apidocs:BuildRequires:	qt4-doc}
-BuildRequires:	qt4-qmake
-BuildRequires:	qt4-build
+%{?with_apidocs:BuildRequires:	qt4-doc >= 4.3.0}
+BuildRequires:	qt4-qmake >= 4.3.0
+BuildRequires:	qt4-build >= 4.3.0
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	strigi-devel
 BuildRequires:	zlib-devel
