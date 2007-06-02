@@ -87,6 +87,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	qt4-qmake >= 4.3.0
 BuildRequires:	qt4-build >= 4.3.0
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	soprano-devel
 BuildRequires:	strigi-devel
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
@@ -431,6 +432,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
+%attr(755,root,root) %{_bindir}/kmetadata_rcgen
 
 %dir %{_datadir}/apps
 %dir %{_datadir}/apps/kconf_update
@@ -455,6 +457,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ktexteditor_kdatatool
 %{_datadir}/apps/proxyscout
 %{_datadir}/apps/kcharselect
+%{_datadir}/apps/kmetadata
+%{_datadir}/apps/knepomuk
 
 %dir %{_datadir}/apps/emoticons
 %{_datadir}/apps/emoticons/Default
@@ -532,7 +536,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libphonon.so.*
 %attr(755,root,root) %{_libdir}/libphononexperimental.so.*
 %attr(755,root,root) %{_libdir}/libwtf.so.*
-
+%attr(755,root,root) %{_libdir}/libkmetadata.so.*
+%attr(755,root,root) %{_libdir}/libknepomuk.so.*
+%attr(755,root,root) %{_libdir}/libkonto.so.*
 
 %dir %{_libdir}/kde4
 %attr(755,root,root) %{_libdir}/kde4/*.so
