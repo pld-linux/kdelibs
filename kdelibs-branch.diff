@@ -1,7 +1,34 @@
+Index: libkscreensaver/main.cpp
+===================================================================
+--- libkscreensaver/main.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkscreensaver/main.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -113,6 +113,7 @@
+     if (args->isSet("setup"))
+     {
+        QDialog *dlg = kss_setup();
++       args->clear();
+        dlg->exec();
+        delete dlg;
+        exit(0);
+@@ -151,12 +152,11 @@
+         demoWidget->setFixedSize( 600, 420 );
+         demoWidget->show();
+     }
+-
++    args->clear();
+     app.exec();
+ 
+     delete target;
+-    if ( demoWidget )
+-        delete demoWidget;
++    delete demoWidget;
+ 
+     return 0;
+ }
 Index: interfaces/kscript/scriptmanager.cpp
 ===================================================================
---- interfaces/kscript/scriptmanager.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ interfaces/kscript/scriptmanager.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- interfaces/kscript/scriptmanager.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ interfaces/kscript/scriptmanager.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -17,7 +17,7 @@
  		QString scriptFile;
  		QString scriptMethod;
@@ -13,8 +40,8 @@ Index: interfaces/kscript/scriptmanager.cpp
  {
 Index: interfaces/kimproxy/interface/kcm_instantmessenger.desktop
 ===================================================================
---- interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -69,7 +69,7 @@
  Comment[cy]=Mae'r negesydd chwim yn caniatàu sgwrs dwy-ffordd rhwng unigolion a grwpiau.
  Comment[da]=Instant messenger tillader tovejs chat mellem individer og grupper.
@@ -26,8 +53,8 @@ Index: interfaces/kimproxy/interface/kcm_instantmessenger.desktop
  Comment[et]=Kiirsuhtlus võimaldab üksikisikute ja gruppide kahepoolset vestlust.
 Index: interfaces/ktexteditor/selectioninterfaceext.cpp
 ===================================================================
---- interfaces/ktexteditor/selectioninterfaceext.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ interfaces/ktexteditor/selectioninterfaceext.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- interfaces/ktexteditor/selectioninterfaceext.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ interfaces/ktexteditor/selectioninterfaceext.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -30,8 +30,8 @@
  //BEGIN KTextEditor::SelectionInterfaceExt
  class KTextEditor::PrivateSelectionInterfaceExt {
@@ -41,8 +68,8 @@ Index: interfaces/ktexteditor/selectioninterfaceext.cpp
  };
 Index: kate/plugins/isearch/ISearchPlugin.cpp
 ===================================================================
---- kate/plugins/isearch/ISearchPlugin.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kate/plugins/isearch/ISearchPlugin.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kate/plugins/isearch/ISearchPlugin.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kate/plugins/isearch/ISearchPlugin.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -382,14 +382,9 @@
  {
  	if( !text.isNull() && !text.isEmpty() ) {
@@ -60,8 +87,8 @@ Index: kate/plugins/isearch/ISearchPlugin.cpp
  	}
 Index: kate/part/katerenderer.cpp
 ===================================================================
---- kate/part/katerenderer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kate/part/katerenderer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kate/part/katerenderer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kate/part/katerenderer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -798,6 +798,11 @@
      Q_ASSERT(width);
      x += width;
@@ -88,8 +115,8 @@ Index: kate/part/katerenderer.cpp
        if (lastWhiteSpace > -1)
 Index: kate/part/kateview.cpp
 ===================================================================
---- kate/part/kateview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kate/part/kateview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kate/part/kateview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kate/part/kateview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -1521,32 +1521,32 @@
        // We have to tag the whole lot if
        // 1) we have a selection, and:
@@ -133,8 +160,8 @@ Index: kate/part/kateview.cpp
  
 Index: kate/part/kateviewinternal.cpp
 ===================================================================
---- kate/part/kateviewinternal.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kate/part/kateviewinternal.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kate/part/kateviewinternal.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kate/part/kateviewinternal.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -1653,7 +1653,22 @@
  
    if (maxX && range.wrap) {
@@ -189,8 +216,8 @@ Index: kate/part/kateviewinternal.cpp
      else
 Index: kate/data/pascal.xml
 ===================================================================
---- kate/data/pascal.xml	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kate/data/pascal.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kate/data/pascal.xml	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kate/data/pascal.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE language SYSTEM "language.dtd">
@@ -217,8 +244,8 @@ Index: kate/data/pascal.xml
        <item> Integer </item>
 Index: mimetypes/audio/x-pn-realaudio-plugin.desktop
 ===================================================================
---- mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -14,6 +14,8 @@
  Comment[es]=Archivo de extensión para RealAudio
  Comment[et]=RealAudio plugina fail
@@ -230,8 +257,8 @@ Index: mimetypes/audio/x-pn-realaudio-plugin.desktop
  Comment[hr]=RealAudio datoteka dodatka
 Index: kioslave/ftp/ftp.cc
 ===================================================================
---- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -1203,7 +1203,7 @@
    kdDebug(7102) << "ftpCloseCommand: reading command result" << endl;
    m_bBusy = false;
@@ -259,8 +286,8 @@ Index: kioslave/ftp/ftp.cc
  
 Index: kinit/start_kdeinit.c
 ===================================================================
---- kinit/start_kdeinit.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kinit/start_kdeinit.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -24,6 +24,7 @@
  #include <signal.h>
  #include <stdio.h>
@@ -325,7 +352,7 @@ Index: kinit/start_kdeinit.c
 Index: kinit/start_kdeinit_wrapper.c
 ===================================================================
 --- kinit/start_kdeinit_wrapper.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 0)
-+++ kinit/start_kdeinit_wrapper.c	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
++++ kinit/start_kdeinit_wrapper.c	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -0,0 +1,92 @@
 +/*
 + * This file is part of the KDE libraries
@@ -419,10 +446,22 @@ Index: kinit/start_kdeinit_wrapper.c
 +   return 1;
 +}
 +#endif
+Index: kinit/wrapper.c
+===================================================================
+--- kinit/wrapper.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kinit/wrapper.c	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -351,6 +351,7 @@
+       header.cmd = LAUNCHER_TERMINATE_KDE;
+       header.arg_length = 0;
+       write_socket(sock, (char *) &header, sizeof(header));
++      read_socket(sock, (char *) &header, 1); /* wait for the socket to close */
+       return 0;
+    }
+ 
 Index: kinit/Makefile.am
 ===================================================================
---- kinit/Makefile.am	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kinit/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kinit/Makefile.am	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kinit/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -20,7 +20,7 @@
  SUBDIRS = . tests
  
@@ -443,8 +482,8 @@ Index: kinit/Makefile.am
  noinst_HEADERS = klauncher.h autostart.h klauncher_cmds.h setproctitle.h
 Index: kio/kio/knfsshare.cpp
 ===================================================================
---- kio/kio/knfsshare.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kio/kio/knfsshare.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kio/kio/knfsshare.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kio/kio/knfsshare.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -180,7 +180,7 @@
    if ( path[path.length()-1] != '/' )
         fixedPath += '/';
@@ -454,10 +493,23 @@ Index: kio/kio/knfsshare.cpp
  }
  
  QStringList KNFSShare::sharedDirectories() const {
+Index: kio/kio/defaultprogress.cpp
+===================================================================
+--- kio/kio/defaultprogress.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kio/kio/defaultprogress.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -236,7 +236,7 @@
+                                             unsigned long totalFiles )
+ {
+   if ( totalSize )
+-      return i18n( "%1 % of %2 " ).arg( percent ).arg( KIO::convertSize( totalSize ) );
++      return i18n( "%1 % of %2 " ).arg( QString::number(percent) , KIO::convertSize( totalSize ) );
+   else if ( totalFiles )
+       return i18n( "%1 % of 1 file", "%1 % of %n files", totalFiles ).arg( percent );
+   else
 Index: kabc/ldapurl.h
 ===================================================================
---- kabc/ldapurl.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kabc/ldapurl.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kabc/ldapurl.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kabc/ldapurl.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -59,7 +59,7 @@
       * Returns the dn part of the LDAP Url (same as path(), but slash removed
       * from the beginning).
@@ -478,8 +530,8 @@ Index: kabc/ldapurl.h
  
 Index: kabc/ldif.h
 ===================================================================
---- kabc/ldif.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kabc/ldif.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kabc/ldif.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kabc/ldif.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -41,9 +41,9 @@
    {
    public:
@@ -504,8 +556,8 @@ Index: kabc/ldif.h
        * MoreData, but actually you don't have more data.
 Index: kutils/kcmoduleinfo.cpp
 ===================================================================
---- kutils/kcmoduleinfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kutils/kcmoduleinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kutils/kcmoduleinfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kutils/kcmoduleinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -36,9 +36,9 @@
    public:
      KCModuleInfoPrivate() :
@@ -520,8 +572,8 @@ Index: kutils/kcmoduleinfo.cpp
      bool testModule;
 Index: kutils/kcmodulecontainer.cpp
 ===================================================================
---- kutils/kcmodulecontainer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kutils/kcmodulecontainer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kutils/kcmodulecontainer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kutils/kcmodulecontainer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -51,7 +51,7 @@
  			, btnRootMode( 0 )
  			, btnLayout( 0 )
@@ -533,8 +585,8 @@ Index: kutils/kcmodulecontainer.cpp
  		QTabWidget *tabWidget;
 Index: kutils/kcmoduleinfo.h
 ===================================================================
---- kutils/kcmoduleinfo.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kutils/kcmoduleinfo.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kutils/kcmoduleinfo.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kutils/kcmoduleinfo.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -110,12 +110,12 @@
    /**
     * @return the filename of the .desktop file that describes the KCM
@@ -665,8 +717,8 @@ Index: kutils/kcmoduleinfo.h
     * Reads the service entries specific for KCModule from the desktop file.
 Index: kutils/kplugininfo.cpp
 ===================================================================
---- kutils/kplugininfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kutils/kplugininfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kutils/kplugininfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kutils/kplugininfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -24,6 +24,7 @@
  #include <kconfigbase.h>
  #include <kglobal.h>
@@ -708,8 +760,8 @@ Index: kutils/kplugininfo.cpp
          d->email = file.readEntry( "Email" );
 Index: kdesu/process.h
 ===================================================================
---- kdesu/process.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdesu/process.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdesu/process.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdesu/process.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -112,12 +112,12 @@
      /**
       * Returns the filedescriptor of the process.
@@ -727,8 +779,8 @@ Index: kdesu/process.h
      /*
 Index: kdesu/kcookie.cpp
 ===================================================================
---- kdesu/kcookie.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdesu/kcookie.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdesu/kcookie.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdesu/kcookie.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -172,7 +172,7 @@
  	    break;
  	}
@@ -738,10 +790,87 @@ Index: kdesu/kcookie.cpp
  	    output += buf;
  	if (pclose(f) < 0) 
  	{
+Index: kdecore/netwm.h
+===================================================================
+--- kdecore/netwm.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/netwm.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -373,6 +373,22 @@
+     int virtualRootsCount() const;
+ 
+     /**
++       Returns the desktop layout orientation.
++    **/
++    NET::Orientation desktopLayoutOrientation() const;
++
++    /**
++       Returns the desktop layout number of columns and rows. Note that
++       either may be 0 (see _NET_DESKTOP_LAYOUT).
++    **/
++    QSize desktopLayoutColumnsRows() const;
++
++    /**
++       Returns the desktop layout starting corner.
++    **/
++    NET::DesktopLayoutCorner desktopLayoutCorner() const;
++
++    /**
+        Returns the number of desktops.
+ 
+        @return the number of desktops
+@@ -518,6 +534,13 @@
+     void setVirtualRoots(Window *windows, unsigned int count);
+     
+     /**
++       Sets the desktop layout. This is set by the pager. When setting, the pager must
++       own the _NET_DESKTOP_LAYOUT_Sn manager selection. See _NET_DESKTOP_LAYOUT for details.
++    **/
++    void setDesktopLayout(NET::Orientation orientation, int columns, int rows,
++        NET::DesktopLayoutCorner corner);
++
++    /**
+      * Sets the _NET_SHOWING_DESKTOP status (whether desktop is being shown).
+      * @since 3.5
+      */
+Index: kdecore/kcmdlineargs.cpp
+===================================================================
+--- kdecore/kcmdlineargs.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/kcmdlineargs.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -1248,21 +1248,22 @@
+ 
+ KURL KCmdLineArgs::makeURL(const char *_urlArg)
+ {
+-   QString urlArg = QFile::decodeName(_urlArg);
+-   if (!QDir::isRelativePath(urlArg))
+-   {
++   const QString urlArg = QFile::decodeName(_urlArg);
++   QFileInfo fileInfo(urlArg);
++   if (!fileInfo.isRelative()) { // i.e. starts with '/', on unix
+       KURL result;
+       result.setPath(urlArg);
+       return result; // Absolute path.
+    }
+ 
+-   if ( !KURL::isRelativeURL(urlArg) )
+-     return KURL(urlArg); // Argument is a URL
++   if ( KURL::isRelativeURL(urlArg) || fileInfo.exists() ) {
++      KURL result;
++      result.setPath( cwd()+'/'+urlArg );
++      result.cleanPath();
++      return result;  // Relative path
++   }
+ 
+-   KURL result;
+-   result.setPath( cwd()+"/"+urlArg );
+-   result.cleanPath();
+-   return result;  // Relative path
++   return KURL(urlArg); // Argument is a URL
+ }
+ 
+ void
 Index: kdecore/eventsrc
 ===================================================================
---- kdecore/eventsrc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdecore/eventsrc	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdecore/eventsrc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/eventsrc	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -1793,6 +1793,8 @@
  Name[el]=Η αποσύνδεση ακυρώθηκε
  Name[es]=Salida cancelada
@@ -760,10 +889,355 @@ Index: kdecore/eventsrc
  Comment[fy]=KDE ôfmelding wie ôfbrutsen
  Comment[hu]=A KDE-s kijelentkezés megszakadt
  Comment[is]=Hætt var við KDE útstimplun
+Index: kdecore/kiconloader.cpp
+===================================================================
+--- kdecore/kiconloader.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/kiconloader.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -460,19 +460,17 @@
+     static const QString &xpm_ext = KGlobal::staticQString(".xpm");
+     ext[count++]=&xpm_ext;
+ 
+-    /* antlarr: Multiple inheritance is a broken concept on icon themes, so
+-       the next code doesn't support it on purpose because in fact, it was
+-       never supported at all. This makes the order in which we look for an
+-       icon as:
++    /* JRT: To follow the XDG spec, the order in which we look for an
++       icon 1s:
+ 
+        png, svgz, svg, xpm exact match
++       png, svgz, svg, xpm best match
+        next theme in inheritance tree : png, svgz, svg, xpm exact match
++                                        png, svgz, svg, xpm best match
+        next theme in inheritance tree : png, svgz, svg, xpm exact match
++                                        png, svgz, svg, xpm best match
+        and so on
+ 
+-       And if the icon couldn't be found then it tries best match in the same
+-       order.
+-
+        */
+     for ( KIconThemeNode *themeNode = d->links.first() ; themeNode ;
+ 	themeNode = d->links.next() )
+@@ -484,11 +482,6 @@
+ 		return icon;
+ 	}
+ 
+-    }
+-
+-    for ( KIconThemeNode *themeNode = d->links.first() ; themeNode ;
+-	themeNode = d->links.next() )
+-    {
+ 	for (int i = 0 ; i < count ; i++)
+ 	{
+ 	    icon = themeNode->theme->iconPath(name + *ext[i], size, KIcon::MatchBest);
+Index: kdecore/netwm_p.h
+===================================================================
+--- kdecore/netwm_p.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/netwm_p.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -103,6 +103,9 @@
+     unsigned long clients_count, stacking_count, virtual_roots_count,
+ 	kde_system_tray_windows_count;
+     bool showing_desktop;
++    NET::Orientation desktop_layout_orientation;
++    NET::DesktopLayoutCorner desktop_layout_corner;
++    int desktop_layout_columns, desktop_layout_rows;
+ 
+     unsigned long properties[ 5 ];
+     unsigned long client_properties[ 5 ]; // properties the client is interested in
+Index: kdecore/kgrantpty.c
+===================================================================
+--- kdecore/kgrantpty.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/kgrantpty.c	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -36,7 +36,7 @@
+ #include <unistd.h>
+ 
+ #include <sys/param.h>
+-#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__DragonFly__)
+ #  define BSD_PTY_HACK
+ #  include <paths.h>
+ #  include <dirent.h>
+Index: kdecore/kapplication.cpp
+===================================================================
+--- kdecore/kapplication.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/kapplication.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -2597,6 +2597,9 @@
+       {
+          if (error)
+             *error = i18n("Could not register with DCOP.\n");
++         if (!kapp)
++            delete dcopClient;
++
+          return -1;
+       }
+    }
+Index: kdecore/netwm_def.h
+===================================================================
+--- kdecore/netwm_def.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/netwm_def.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -590,6 +590,7 @@
+         @li WM2WindowClass  WM_CLASS
+         @li WM2WindowRole   WM_WINDOW_ROLE
+         @li WM2ClientMachine WM_CLIENT_MACHINE
++        @li WM2DesktopLayout _NET_DESKTOP_LAYOUT
+         
+         @since 3.2
+ 
+@@ -608,7 +609,8 @@
+         WM2WindowClass         = 1<<10, ///< @since 3.3
+         WM2WindowRole          = 1<<11, ///< @since 3.3
+         WM2ClientMachine       = 1<<12, ///< @since 3.3
+-        WM2ShowingDesktop      = 1<<13  ///< @since 3.5
++        WM2ShowingDesktop      = 1<<13, ///< @since 3.5
++        WM2DesktopLayout       = 1<<15  ///< @since 3.5.8
+     };
+ 
+     /**
+@@ -632,6 +634,24 @@
+     };
+     
+     /**
++      Orientation.
++    **/
++    enum Orientation {
++        OrientationHorizontal = 0,
++        OrientationVertical = 1
++    };
++    
++    /**
++     Starting corner for desktop layout.
++    **/
++    enum DesktopLayoutCorner {
++        DesktopLayoutCornerTopLeft = 0,
++        DesktopLayoutCornerTopRight = 1,
++        DesktopLayoutCornerBottomLeft = 2,
++        DesktopLayoutCornerBottomRight = 3
++    };
++    
++    /**
+      Compares two X timestamps, taking into account wrapping and 64bit architectures.
+      Return value is like with strcmp(), 0 for equal, -1 for time1 < time2, 1 for time1 > time2.
+      @since 3.5.3
+Index: kdecore/netwm.cpp
+===================================================================
+--- kdecore/netwm.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdecore/netwm.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -56,6 +56,7 @@
+ static Atom net_supporting_wm_check  = 0;
+ static Atom net_virtual_roots        = 0;
+ static Atom net_showing_desktop      = 0;
++static Atom net_desktop_layout       = 0;
+ 
+ // root window messages
+ static Atom net_close_window         = 0;
+@@ -235,7 +236,7 @@
+ }
+ 
+ 
+-static const int netAtomCount = 83;
++static const int netAtomCount = 84;
+ static void create_atoms(Display *d) {
+     static const char * const names[netAtomCount] =
+     {
+@@ -252,6 +253,7 @@
+ 	    "_NET_ACTIVE_WINDOW",
+ 	    "_NET_WORKAREA",
+ 	    "_NET_VIRTUAL_ROOTS",
++            "_NET_DESKTOP_LAYOUT",
+             "_NET_SHOWING_DESKTOP",
+ 	    "_NET_CLOSE_WINDOW",
+             "_NET_RESTACK_WINDOW",
+@@ -346,6 +348,7 @@
+ 	    &net_active_window,
+ 	    &net_workarea,
+ 	    &net_virtual_roots,
++            &net_desktop_layout,
+             &net_showing_desktop,
+ 	    &net_close_window,
+             &net_restack_window,
+@@ -613,6 +616,9 @@
+     p->kde_system_tray_windows = 0;
+     p->kde_system_tray_windows_count = 0;
+     p->showing_desktop = false;
++    p->desktop_layout_orientation = OrientationHorizontal;
++    p->desktop_layout_corner = DesktopLayoutCornerTopLeft;
++    p->desktop_layout_columns = p->desktop_layout_rows = 0;
+     setDefaultProperties();
+     if( properties_size > PROPERTIES_SIZE ) {
+         fprintf( stderr, "NETRootInfo::NETRootInfo(): properties array too large\n");
+@@ -624,7 +630,7 @@
+     p->properties[ PROTOCOLS ] |= ( Supported | SupportingWMCheck );
+     p->client_properties[ PROTOCOLS ] = DesktopNames // the only thing that can be changed by clients
+ 			                | WMPing; // or they can reply to this
+-    p->client_properties[ PROTOCOLS2 ] = WM2TakeActivity;
++    p->client_properties[ PROTOCOLS2 ] = WM2TakeActivity | WM2DesktopLayout;
+ 
+     role = WindowManager;
+ 
+@@ -711,6 +717,9 @@
+     p->kde_system_tray_windows = 0;
+     p->kde_system_tray_windows_count = 0;
+     p->showing_desktop = false;
++    p->desktop_layout_orientation = OrientationHorizontal;
++    p->desktop_layout_corner = DesktopLayoutCornerTopLeft;
++    p->desktop_layout_columns = p->desktop_layout_rows = 0;
+     setDefaultProperties();
+     if( properties_size > 2 ) {
+         fprintf( stderr, "NETWinInfo::NETWinInfo(): properties array too large\n");
+@@ -769,6 +778,9 @@
+     p->kde_system_tray_windows = 0;
+     p->kde_system_tray_windows_count = 0;
+     p->showing_desktop = false;
++    p->desktop_layout_orientation = OrientationHorizontal;
++    p->desktop_layout_corner = DesktopLayoutCornerTopLeft;
++    p->desktop_layout_columns = p->desktop_layout_rows = 0;
+     setDefaultProperties();
+     p->client_properties[ PROTOCOLS ] = properties;
+     for( int i = 0; i < PROPERTIES_SIZE; ++i )
+@@ -873,6 +885,7 @@
+ #endif
+ 
+ 	setSupported();
++	update(p->client_properties);
+     } else {
+ 
+ #ifdef    NETWMDEBUG
+@@ -1166,6 +1179,9 @@
+     if (p->properties[ PROTOCOLS ] & VirtualRoots)
+ 	atoms[pnum++] = net_virtual_roots;
+ 
++    if (p->properties[ PROTOCOLS2 ] & WM2DesktopLayout)
++	atoms[pnum++] = net_desktop_layout;
++
+     if (p->properties[ PROTOCOLS ] & CloseWindow)
+ 	atoms[pnum++] = net_close_window;
+ 
+@@ -1398,6 +1414,9 @@
+     else if( atom == net_virtual_roots )
+         p->properties[ PROTOCOLS ] |= VirtualRoots;
+ 
++    else if( atom == net_desktop_layout )
++        p->properties[ PROTOCOLS2 ] |= WM2DesktopLayout;
++
+     else if( atom == net_close_window )
+         p->properties[ PROTOCOLS ] |= CloseWindow;
+ 
+@@ -1652,6 +1671,29 @@
+ }
+ 
+ 
++void NETRootInfo::setDesktopLayout(NET::Orientation orientation, int columns, int rows,
++    NET::DesktopLayoutCorner corner)
++{
++    p->desktop_layout_orientation = orientation;
++    p->desktop_layout_columns = columns;
++    p->desktop_layout_rows = rows;
++    p->desktop_layout_corner = corner;
++
++#ifdef   NETWMDEBUG
++    fprintf(stderr, "NETRootInfo::setDesktopLayout: %d %d %d %d\n",
++	    orientation, columns, rows, corner);
++#endif
++
++    long data[ 4 ];
++    data[ 0 ] = orientation;
++    data[ 1 ] = columns;
++    data[ 2 ] = rows;
++    data[ 3 ] = corner;
++    XChangeProperty(p->display, p->root, net_desktop_layout, XA_CARDINAL, 32,
++		    PropModeReplace, (unsigned char *) &data, 4);
++}
++
++
+ void NETRootInfo::setShowingDesktop( bool showing ) {
+     if (role == WindowManager) {
+ 	long d = p->showing_desktop = showing;
+@@ -2547,6 +2589,36 @@
+ 	}
+     }
+ 
++    if (dirty2 & WM2DesktopLayout) {
++        p->desktop_layout_orientation = OrientationHorizontal;
++        p->desktop_layout_corner = DesktopLayoutCornerTopLeft;
++        p->desktop_layout_columns = p->desktop_layout_rows = 0;
++	if (XGetWindowProperty(p->display, p->root, net_desktop_layout,
++			       0, MAX_PROP_SIZE, False, XA_CARDINAL, &type_ret,
++			       &format_ret, &nitems_ret, &unused, &data_ret)
++	    == Success) {
++	    if (type_ret == XA_CARDINAL && format_ret == 32) {
++                long* data = (long*) data_ret;
++                if( nitems_ret >= 4 && data[ 3 ] >= 0 && data[ 3 ] <= 3 )
++                    p->desktop_layout_corner = (NET::DesktopLayoutCorner)data[ 3 ];
++                if( nitems_ret >= 3 ) {
++                    if( data[ 0 ] >= 0 && data[ 0 ] <= 1 )
++                        p->desktop_layout_orientation = (NET::Orientation)data[ 0 ];
++                    p->desktop_layout_columns = data[ 1 ];
++                    p->desktop_layout_rows = data[ 2 ];
++                }
++	    }
++
++#ifdef    NETWMDEBUG
++	    fprintf(stderr, "NETRootInfo::updated: desktop layout updated (%d %d %d %d)\n",
++                p->desktop_layout_orientation, p->desktop_layout_columns,
++                p->desktop_layout_rows, p->desktop_layout_corner );
++#endif
++	    if ( data_ret )
++		XFree(data_ret);
++	}
++    }
++
+     if (dirty2 & WM2ShowingDesktop) {
+         p->showing_desktop = false;
+ 	if (XGetWindowProperty(p->display, p->root, net_showing_desktop,
+@@ -2702,6 +2774,21 @@
+ }
+ 
+ 
++NET::Orientation NETRootInfo::desktopLayoutOrientation() const {
++    return p->desktop_layout_orientation;
++}
++
++
++QSize NETRootInfo::desktopLayoutColumnsRows() const {
++    return QSize( p->desktop_layout_columns, p->desktop_layout_rows );
++}
++
++
++NET::DesktopLayoutCorner NETRootInfo::desktopLayoutCorner() const {
++    return p->desktop_layout_corner;
++}
++
++
+ int NETRootInfo::numberOfDesktops() const {
+     return p->number_of_desktops == 0 ? 1 : p->number_of_desktops;
+ }
+Index: khtml/khtmlview.cpp
+===================================================================
+--- khtml/khtmlview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ khtml/khtmlview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -1252,8 +1252,17 @@
+ 
+     if ( ( mailtoCursor || newWindowCursor ) && isVisible() && hasFocus() ) {
+ #ifdef Q_WS_X11
++        QPixmap icon_pixmap = KGlobal::iconLoader()->loadIcon( mailtoCursor ? "mail_generic" : "window_new", KIcon::Small, 0, KIcon::DefaultState, 0, true );
++
++        if (d->cursor_icon_widget) {
++            const QPixmap *pm = d->cursor_icon_widget->backgroundPixmap();
++            if (!pm || pm->serialNumber()!=icon_pixmap.serialNumber()) {
++                delete d->cursor_icon_widget;
++                d->cursor_icon_widget = 0;
++            }
++        }
++
+         if( !d->cursor_icon_widget ) {
+-            QPixmap icon_pixmap = KGlobal::iconLoader()->loadIcon( mailtoCursor ? "mail_generic" : "window_new", KIcon::Small, 0, KIcon::DefaultState, 0, true );
+             d->cursor_icon_widget = new QWidget( NULL, NULL, WX11BypassWM );
+             XSetWindowAttributes attr;
+             attr.save_under = True;
 Index: khtml/html/html_elementimpl.cpp
 ===================================================================
---- khtml/html/html_elementimpl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ khtml/html/html_elementimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- khtml/html/html_elementimpl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ khtml/html/html_elementimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -503,7 +503,6 @@
          case ID_COLGROUP:
          case ID_FRAMESET:
@@ -774,8 +1248,8 @@ Index: khtml/html/html_elementimpl.cpp
          case ID_TFOOT:
 Index: khtml/rendering/render_flow.cpp
 ===================================================================
---- khtml/rendering/render_flow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ khtml/rendering/render_flow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- khtml/rendering/render_flow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ khtml/rendering/render_flow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -85,7 +85,7 @@
  void RenderFlow::addChildWithContinuation(RenderObject* newChild, RenderObject* beforeChild)
  {
@@ -787,8 +1261,8 @@ Index: khtml/rendering/render_flow.cpp
      }
 Index: dcop/dcopserver.cpp
 ===================================================================
---- dcop/dcopserver.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ dcop/dcopserver.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- dcop/dcopserver.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ dcop/dcopserver.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -35,6 +35,7 @@
  #include <sys/param.h>
  #endif
@@ -831,8 +1305,8 @@ Index: dcop/dcopserver.cpp
     fcntl(fd, F_SETFL, fd_fl);
 Index: dcop/dcopclient.cpp
 ===================================================================
---- dcop/dcopclient.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ dcop/dcopclient.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- dcop/dcopclient.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ dcop/dcopclient.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -41,6 +41,8 @@
  #include <sys/stat.h>
  #include <sys/file.h>
@@ -852,8 +1326,8 @@ Index: dcop/dcopclient.cpp
  
 Index: kjs/configure.in.in
 ===================================================================
---- kjs/configure.in.in	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kjs/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kjs/configure.in.in	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kjs/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -16,7 +16,8 @@
      LIBS="-lm"
      AC_MSG_CHECKING([for isnan with <math.h>])
@@ -874,10 +1348,24 @@ Index: kjs/configure.in.in
  	[AC_MSG_RESULT(yes)
  	    AC_DEFINE([HAVE_FUNC_ISINF], [1], [Define if you have isinf])],
  	AC_MSG_RESULT(no)
+Index: kdeprint/management/kxmlcommanddlg.cpp
+===================================================================
+--- kdeprint/management/kxmlcommanddlg.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeprint/management/kxmlcommanddlg.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
+@@ -171,7 +171,8 @@
+ 	m_outputpipe = new QLineEdit(gb_output);
+ 
+ 	m_comment = new KTextEdit( this );
+-	m_comment->setTextFormat( Qt::PlainText );
++	m_comment->setTextFormat(Qt::RichText );
++	m_comment->setReadOnly(true);
+ 	QLabel *m_commentlab = new QLabel( i18n( "Comment:" ), this );
+ 
+ 	QVBoxLayout	*l2 = new QVBoxLayout(this, 0, KDialog::spacingHint());
 Index: kdeui/kdatepicker.h
 ===================================================================
---- kdeui/kdatepicker.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kdatepicker.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kdatepicker.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kdatepicker.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -121,7 +121,7 @@
     * widget.
     * @since 3.2
@@ -889,8 +1377,8 @@ Index: kdeui/kdatepicker.h
     * Sets the font size of the widgets elements.
 Index: kdeui/kpixmapregionselectordialog.h
 ===================================================================
---- kdeui/kpixmapregionselectordialog.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kpixmapregionselectordialog.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kpixmapregionselectordialog.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kpixmapregionselectordialog.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -59,7 +59,7 @@
      * parameters can be set by using it.
      */
@@ -902,8 +1390,8 @@ Index: kdeui/kpixmapregionselectordialog.h
      * Creates a modal dialog, lets the user to select a region of the @p pixmap
 Index: kdeui/kcmodule.h
 ===================================================================
---- kdeui/kcmodule.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kcmodule.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kcmodule.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kcmodule.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -163,7 +163,7 @@
     *
     * @note The default behavior is to call defaults().
@@ -933,8 +1421,8 @@ Index: kdeui/kcmodule.h
     * Sets the RootOnly message.
 Index: kdeui/kcolordrag.h
 ===================================================================
---- kdeui/kcolordrag.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kcolordrag.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kcolordrag.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kcolordrag.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -45,7 +45,7 @@
       * Constructs a color drag with the color @p col.
       */
@@ -946,8 +1434,8 @@ Index: kdeui/kcolordrag.h
      virtual QByteArray encodedData ( const char * m ) const;
 Index: kdeui/kactionselector.h
 ===================================================================
---- kdeui/kactionselector.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kactionselector.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kactionselector.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kactionselector.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -370,7 +370,7 @@
    /**
      connected to both list boxes to set the buttons enabled
@@ -959,8 +1447,8 @@ Index: kdeui/kactionselector.h
  
 Index: kdeui/kdatetbl.cpp
 ===================================================================
---- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -665,7 +665,7 @@
  public:
          KDateInternalMonthPrivate (int y, int m, int d)
@@ -972,8 +1460,8 @@ Index: kdeui/kdatetbl.cpp
          int day;
 Index: kdeui/kpanelextension.h
 ===================================================================
---- kdeui/kpanelextension.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kpanelextension.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kpanelextension.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kpanelextension.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -303,14 +303,14 @@
       * Reimplement this change handler in order to adjust the look of your
       * applet.
@@ -993,8 +1481,8 @@ Index: kdeui/kpanelextension.h
       * Use this method to set the custom menu for this extensions so that it can be shown
 Index: kdeui/kmainwindow.cpp
 ===================================================================
---- kdeui/kmainwindow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kmainwindow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kmainwindow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kmainwindow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -86,7 +86,7 @@
  public:
      KMWSessionManaged()
@@ -1006,8 +1494,8 @@ Index: kdeui/kmainwindow.cpp
      }
 Index: kdeui/kcombobox.h
 ===================================================================
---- kdeui/kcombobox.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kcombobox.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kcombobox.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kcombobox.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -457,7 +457,7 @@
      /**
      * @deprecated
@@ -1019,8 +1507,8 @@ Index: kdeui/kcombobox.h
      * Completes text according to the completion mode.
 Index: kdeui/kbuttonbox.cpp
 ===================================================================
---- kdeui/kbuttonbox.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kbuttonbox.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kbuttonbox.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kbuttonbox.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -65,7 +65,7 @@
    unsigned short stretch;
    unsigned short actual_size;
@@ -1032,8 +1520,8 @@ Index: kdeui/kbuttonbox.cpp
  template class QPtrList<KButtonBox::Item>;
 Index: kdeui/kwindowlistmenu.cpp
 ===================================================================
---- kdeui/kwindowlistmenu.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kwindowlistmenu.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kwindowlistmenu.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kwindowlistmenu.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -61,8 +61,8 @@
  class NameSortedInfoList : public QPtrList<KWin::WindowInfo>
  {
@@ -1047,8 +1535,8 @@ Index: kdeui/kwindowlistmenu.cpp
      int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
 Index: kdeui/kpanelapplet.h
 ===================================================================
---- kdeui/kpanelapplet.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kpanelapplet.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kpanelapplet.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kpanelapplet.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -324,7 +324,7 @@
       * Reimplement this change handler in order to adjust the look of your
       * applet.
@@ -1060,8 +1548,8 @@ Index: kdeui/kpanelapplet.h
       * Use this method to set the custom menu for this applet so that it can be shown
 Index: kdeui/kdockwidget_private.h
 ===================================================================
---- kdeui/kdockwidget_private.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kdockwidget_private.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kdockwidget_private.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kdockwidget_private.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -57,7 +57,7 @@
     * @param pos procentual position of the splitter. Must be int [0...100].
     */
@@ -1073,8 +1561,8 @@ Index: kdeui/kdockwidget_private.h
     * Initialize the splitter. If @p c0 or @p c1 is 0L the child will not
 Index: kdeui/qxembed.cpp
 ===================================================================
---- kdeui/qxembed.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/qxembed.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/qxembed.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/qxembed.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -136,7 +136,7 @@
          mapAfterRelease = false;
          lastPos = QPoint(0,0);
@@ -1095,8 +1583,8 @@ Index: kdeui/qxembed.cpp
  }
 Index: kdeui/kfontcombo.cpp
 ===================================================================
---- kdeui/kfontcombo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kfontcombo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kfontcombo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kfontcombo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -40,7 +40,7 @@
            size(0),
            lineSpacing(0)
@@ -1108,8 +1596,8 @@ Index: kdeui/kfontcombo.cpp
      bool italic : 1;
 Index: kdeui/kdockwidget.h
 ===================================================================
---- kdeui/kdockwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kdockwidget.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kdockwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kdockwidget.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -116,23 +116,23 @@
    /**
     * Destructs this.
@@ -1232,8 +1720,8 @@ Index: kdeui/kdockwidget.h
      bool hide;
 Index: kdeui/kpixmapregionselectorwidget.h
 ===================================================================
---- kdeui/kpixmapregionselectorwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kpixmapregionselectorwidget.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kpixmapregionselectorwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kpixmapregionselectorwidget.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -66,7 +66,7 @@
      * @return the original whole pixmap that we're using in this widget as the
      * pixmap the user is selecting a region from.
@@ -1245,8 +1733,8 @@ Index: kdeui/kpixmapregionselectorwidget.h
      * Sets the selected region to be @p rect (in zoomed pixmap coordinates)
 Index: kdeui/kstatusbar.h
 ===================================================================
---- kdeui/kstatusbar.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ kdeui/kstatusbar.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- kdeui/kstatusbar.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ kdeui/kstatusbar.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -40,7 +40,7 @@
  
  
@@ -1258,8 +1746,8 @@ Index: kdeui/kstatusbar.h
  
 Index: libkmid/deviceman.h
 ===================================================================
---- libkmid/deviceman.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/deviceman.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/deviceman.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/deviceman.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -204,7 +204,7 @@
       *
       */
@@ -1322,8 +1810,8 @@ Index: libkmid/deviceman.h
       * Returns the name of the @p i-th device . In case the DeviceManager wasn't
 Index: libkmid/voiceman.h
 ===================================================================
---- libkmid/voiceman.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/voiceman.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/voiceman.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/voiceman.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -151,17 +151,17 @@
      /**
       * Returns the channel that voice @p v is using.
@@ -1347,8 +1835,8 @@ Index: libkmid/voiceman.h
       * Clears the lists of used voices.
 Index: libkmid/notearray.h
 ===================================================================
---- libkmid/notearray.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/notearray.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/notearray.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/notearray.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -123,12 +123,12 @@
     * @see get()
     * @see next()
@@ -1366,8 +1854,8 @@ Index: libkmid/notearray.h
     * Advances the iterator to the next position.
 Index: libkmid/track.h
 ===================================================================
---- libkmid/track.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/track.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/track.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/track.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -202,14 +202,14 @@
      /**
       * Returns the number of ticks left for the next event.
@@ -1387,8 +1875,8 @@ Index: libkmid/track.h
       * Change the tempo of the song.
 Index: libkmid/alsaout.h
 ===================================================================
---- libkmid/alsaout.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/alsaout.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/alsaout.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/alsaout.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -126,7 +126,7 @@
     *
     * @see deviceName
@@ -1427,8 +1915,8 @@ Index: libkmid/alsaout.h
    virtual void tmrSetTempo (int v);
 Index: libkmid/midistat.h
 ===================================================================
---- libkmid/midistat.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/midistat.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/midistat.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/midistat.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -83,7 +83,7 @@
      /**
       * Returns the patch currently used in channel @p chn.
@@ -1467,8 +1955,8 @@ Index: libkmid/midistat.h
       * Stores a sysex message that will be send in the next call to sendData
 Index: libkmid/midimapper.h
 ===================================================================
---- libkmid/midimapper.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/midimapper.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/midimapper.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/midimapper.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -169,12 +169,12 @@
      /**
       * Returns the status of the object.
@@ -1486,8 +1974,8 @@ Index: libkmid/midimapper.h
       * Returns the patch which pgm used on channel chn should be mapped to.
 Index: libkmid/player.h
 ===================================================================
---- libkmid/player.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/player.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/player.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/player.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -314,13 +314,13 @@
     * Returns true if there's a song already loaded (with a previous call to 
     * loadSong() ) and false if not.
@@ -1524,8 +2012,8 @@ Index: libkmid/player.h
     * Sets the position in a song. 
 Index: libkmid/midiout.h
 ===================================================================
---- libkmid/midiout.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 669586)
-+++ libkmid/midiout.h	(.../branches/KDE/3.5/kdelibs)	(wersja 669586)
+--- libkmid/midiout.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 673248)
++++ libkmid/midiout.h	(.../branches/KDE/3.5/kdelibs)	(wersja 673248)
 @@ -136,7 +136,7 @@
     *
     * @see deviceName
