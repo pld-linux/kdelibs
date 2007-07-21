@@ -1,7 +1,7 @@
 Index: libkscreensaver/main.cpp
 ===================================================================
---- libkscreensaver/main.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkscreensaver/main.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkscreensaver/main.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkscreensaver/main.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -113,6 +113,7 @@
      if (args->isSet("setup"))
      {
@@ -27,8 +27,8 @@ Index: libkscreensaver/main.cpp
  }
 Index: interfaces/kscript/scriptmanager.cpp
 ===================================================================
---- interfaces/kscript/scriptmanager.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ interfaces/kscript/scriptmanager.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- interfaces/kscript/scriptmanager.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ interfaces/kscript/scriptmanager.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -17,7 +17,7 @@
  		QString scriptFile;
  		QString scriptMethod;
@@ -40,8 +40,8 @@ Index: interfaces/kscript/scriptmanager.cpp
  {
 Index: interfaces/kscript/scriptinterface.desktop
 ===================================================================
---- interfaces/kscript/scriptinterface.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ interfaces/kscript/scriptinterface.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- interfaces/kscript/scriptinterface.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ interfaces/kscript/scriptinterface.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -48,7 +48,7 @@
  Comment[mt]=Magna ġenerika biex tittestja l-interfaċċja tal-iskritti
  Comment[nb]=Dette er et generisk testskript for å teste skriptgrensesnitt.
@@ -53,8 +53,8 @@ Index: interfaces/kscript/scriptinterface.desktop
  Comment[nso]=Ye ke engine ya thswaelo ya teko ya kakaretso yeo e somiswago go leka sefahlego sa tshwaelo.
 Index: interfaces/kimproxy/interface/kcm_instantmessenger.desktop
 ===================================================================
---- interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ interfaces/kimproxy/interface/kcm_instantmessenger.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -69,7 +69,7 @@
  Comment[cy]=Mae'r negesydd chwim yn caniatàu sgwrs dwy-ffordd rhwng unigolion a grwpiau.
  Comment[da]=Instant messenger tillader tovejs chat mellem individer og grupper.
@@ -66,8 +66,8 @@ Index: interfaces/kimproxy/interface/kcm_instantmessenger.desktop
  Comment[et]=Kiirsuhtlus võimaldab üksikisikute ja gruppide kahepoolset vestlust.
 Index: interfaces/kspeech/dcoptexttospeech.desktop
 ===================================================================
---- interfaces/kspeech/dcoptexttospeech.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ interfaces/kspeech/dcoptexttospeech.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- interfaces/kspeech/dcoptexttospeech.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ interfaces/kspeech/dcoptexttospeech.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -61,6 +61,7 @@
  Comment[te]=డికాప్ ఇంటర్ఫేస్ కల్గిన వాచకం నుంచి మాటలకు మార్చు సేవ
  Comment[tg]=Хизматгузории Мант-ба-Талаффуз бо интерфейси DCOP
@@ -78,8 +78,8 @@ Index: interfaces/kspeech/dcoptexttospeech.desktop
  Comment[vi]=Dịch vụ Văn bản sang Tiếng nói có giao diện DCOP
 Index: interfaces/ktexteditor/selectioninterfaceext.cpp
 ===================================================================
---- interfaces/ktexteditor/selectioninterfaceext.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ interfaces/ktexteditor/selectioninterfaceext.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- interfaces/ktexteditor/selectioninterfaceext.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ interfaces/ktexteditor/selectioninterfaceext.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -30,8 +30,8 @@
  //BEGIN KTextEditor::SelectionInterfaceExt
  class KTextEditor::PrivateSelectionInterfaceExt {
@@ -93,8 +93,8 @@ Index: interfaces/ktexteditor/selectioninterfaceext.cpp
  };
 Index: kate/plugins/autobookmarker/ktexteditor_autobookmarker.desktop
 ===================================================================
---- kate/plugins/autobookmarker/ktexteditor_autobookmarker.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/plugins/autobookmarker/ktexteditor_autobookmarker.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/plugins/autobookmarker/ktexteditor_autobookmarker.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/plugins/autobookmarker/ktexteditor_autobookmarker.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -102,7 +102,7 @@
  Comment[ms]=Tetapkan penanda buku pada baris yang padan dengan paten apabila dokumen dimuatkan
  Comment[nb]=Bestem bokmerke på linjer som passer til et mønster når dokument blir åpnet
@@ -106,8 +106,8 @@ Index: kate/plugins/autobookmarker/ktexteditor_autobookmarker.desktop
  Comment[pa]=ਜਦੋਂ ਵੀ ਦਸਤਾਵੇਜ਼ ਨੂੰ ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੋਵੇ ਤਾਂ ਬੁੱਕਮਾਰਕ ਨੂੰ ਸਤਰ-ਮੇਲ ਤਰਤੀਬ ਨਿਰਧਾਰਿਤ ਕਰੋ
 Index: kate/plugins/isearch/ISearchPlugin.cpp
 ===================================================================
---- kate/plugins/isearch/ISearchPlugin.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/plugins/isearch/ISearchPlugin.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/plugins/isearch/ISearchPlugin.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/plugins/isearch/ISearchPlugin.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -382,14 +382,9 @@
  {
  	if( !text.isNull() && !text.isEmpty() ) {
@@ -125,8 +125,8 @@ Index: kate/plugins/isearch/ISearchPlugin.cpp
  	}
 Index: kate/part/katerenderer.cpp
 ===================================================================
---- kate/part/katerenderer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/part/katerenderer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/part/katerenderer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/part/katerenderer.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -798,6 +798,11 @@
      Q_ASSERT(width);
      x += width;
@@ -153,8 +153,8 @@ Index: kate/part/katerenderer.cpp
        if (lastWhiteSpace > -1)
 Index: kate/part/katedocument.h
 ===================================================================
---- kate/part/katedocument.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/part/katedocument.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/part/katedocument.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/part/katedocument.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -373,7 +373,9 @@
      // these two variables are for resetting the document to
      // non-modified if all changes have been undone...
@@ -167,8 +167,8 @@ Index: kate/part/katedocument.h
      void updateModified();
 Index: kate/part/kateview.cpp
 ===================================================================
---- kate/part/kateview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/part/kateview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/part/kateview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/part/kateview.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1521,32 +1521,32 @@
        // We have to tag the whole lot if
        // 1) we have a selection, and:
@@ -212,8 +212,8 @@ Index: kate/part/kateview.cpp
  
 Index: kate/part/katedocument.cpp
 ===================================================================
---- kate/part/katedocument.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/part/katedocument.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/part/katedocument.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/part/katedocument.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -98,7 +98,9 @@
    m_undoDontMerge(false),
    m_undoIgnoreCancel(false),
@@ -362,8 +362,8 @@ Index: kate/part/katedocument.cpp
  
 Index: kate/part/kateviewinternal.cpp
 ===================================================================
---- kate/part/kateviewinternal.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/part/kateviewinternal.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/part/kateviewinternal.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/part/kateviewinternal.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1653,7 +1653,22 @@
  
    if (maxX && range.wrap) {
@@ -418,8 +418,8 @@ Index: kate/part/kateviewinternal.cpp
      else
 Index: kate/scripts/jstest.desktop
 ===================================================================
---- kate/scripts/jstest.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/scripts/jstest.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/scripts/jstest.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/scripts/jstest.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -87,7 +87,7 @@
  Comment[ms]=Skrip untuk menguji penskripan bahagian kate
  Comment[nb]=Skript til å teste kate parts skripting
@@ -431,8 +431,8 @@ Index: kate/scripts/jstest.desktop
  Comment[pa]=kate part ਦੀ ਸਕ੍ਰਿਪਟਿੰਗ ਦੀ ਜਾਂਚ ਲਈ ਸਕ੍ਰਿਪਟ
 Index: kate/data/pascal.xml
 ===================================================================
---- kate/data/pascal.xml	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kate/data/pascal.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kate/data/pascal.xml	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/data/pascal.xml	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE language SYSTEM "language.dtd">
@@ -457,10 +457,23 @@ Index: kate/data/pascal.xml
      </list>
      <list name="types">
        <item> Integer </item>
+Index: kate/data/rhtml.xml
+===================================================================
+--- kate/data/rhtml.xml	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kate/data/rhtml.xml	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -44,7 +44,7 @@
+ -->
+ 	
+ <!-- Hold the "language" opening tag on a single line, as mentioned in "language.dtd". -->
+-<language name="Ruby/Rails/RHTML" version="1.00" kateversion="2.4" section="Markup" extensions="*.rhtml" mimetype="" author="Richard Dale rdale@foton.es" license="LGPL">
++<language name="Ruby/Rails/RHTML" version="1.00" kateversion="2.4" section="Markup" extensions="*.rhtml;*.html.erb" mimetype="" author="Richard Dale rdale@foton.es" license="LGPL">
+ 	
+ 	<highlighting>
+ 	
 Index: libltdl/ltdl.m4
 ===================================================================
---- libltdl/ltdl.m4	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libltdl/ltdl.m4	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libltdl/ltdl.m4	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libltdl/ltdl.m4	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -97,7 +97,7 @@
  	linux*)
  	  libltdl_cv_sys_dlopen_deplibs=yes
@@ -472,8 +485,8 @@ Index: libltdl/ltdl.m4
  	solaris*)
 Index: mimetypes/audio/x-pn-realaudio-plugin.desktop
 ===================================================================
---- mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -14,6 +14,8 @@
  Comment[es]=Archivo de extensión para RealAudio
  Comment[et]=RealAudio plugina fail
@@ -493,8 +506,8 @@ Index: mimetypes/audio/x-pn-realaudio-plugin.desktop
  Comment[zh_TW]=RealAudio 外掛程式檔案
 Index: mimetypes/image/x-hdr.desktop
 ===================================================================
---- mimetypes/image/x-hdr.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/image/x-hdr.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/image/x-hdr.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/image/x-hdr.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -52,6 +52,7 @@
  Comment[te]=ఎక్కువ పరిణామశీల వ్యాప్తి కలిగిన ప్రతిబింబం
  Comment[tg]=Тасвир бо андозаи динамикии балад
@@ -505,8 +518,8 @@ Index: mimetypes/image/x-hdr.desktop
  Comment[vi]=Ảnh phạm vị động cao
 Index: mimetypes/image/x-vnd.trolltech.qpicture.desktop
 ===================================================================
---- mimetypes/image/x-vnd.trolltech.qpicture.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/image/x-vnd.trolltech.qpicture.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/image/x-vnd.trolltech.qpicture.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/image/x-vnd.trolltech.qpicture.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -49,7 +49,7 @@
  Comment[ms]=Fail Meta QPicture
  Comment[nb]=QPicture metafil
@@ -518,8 +531,8 @@ Index: mimetypes/image/x-vnd.trolltech.qpicture.desktop
  Comment[pa]=QPicture ਮੈਟਾਫਾਇਲ਼
 Index: mimetypes/image/x-photo-cd.desktop
 ===================================================================
---- mimetypes/image/x-photo-cd.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/image/x-photo-cd.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/image/x-photo-cd.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/image/x-photo-cd.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -50,7 +50,7 @@
  Comment[mt]=Stampa PhotoCD
  Comment[nb]=PhotoCD-bilde
@@ -531,8 +544,8 @@ Index: mimetypes/image/x-photo-cd.desktop
  Comment[nso]=Ponagalo ya CD ya Seswantsho
 Index: mimetypes/image/x-raw.desktop
 ===================================================================
---- mimetypes/image/x-raw.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/image/x-raw.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/image/x-raw.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/image/x-raw.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -58,6 +58,7 @@
  Comment[te]=రా కెమెరా ప్రతిబింబం
  Comment[tg]=RAW тасвири фотоаппарат
@@ -543,8 +556,8 @@ Index: mimetypes/image/x-raw.desktop
  Comment[zh_CN]=RAW 相机图像
 Index: mimetypes/image/fits.desktop
 ===================================================================
---- mimetypes/image/fits.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/image/fits.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/image/fits.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/image/fits.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -60,6 +60,7 @@
  Comment[te]=FITS ప్రతిబింబం
  Comment[tg]=Тасвири FITS
@@ -555,8 +568,8 @@ Index: mimetypes/image/fits.desktop
  Comment[vi]=Ảnh FITS
 Index: mimetypes/application/chm.desktop
 ===================================================================
---- mimetypes/application/chm.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/chm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/chm.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/chm.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -55,6 +55,7 @@
  Comment[te]=HTML సహాయ పత్రం
  Comment[tg]=Ҳуҷҷати Ёрмандии HTML
@@ -567,8 +580,8 @@ Index: mimetypes/application/chm.desktop
  Comment[vi]=Tài liệu trợ giúp HTML
 Index: mimetypes/application/x-mplayer2.desktop
 ===================================================================
---- mimetypes/application/x-mplayer2.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/x-mplayer2.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/x-mplayer2.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/x-mplayer2.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -52,6 +52,7 @@
  Comment[te]=మైక్రొసాఫ్ట్ మీడియా వీడియో
  Comment[tg]=Андозаи Майкрософт Медиа
@@ -579,8 +592,8 @@ Index: mimetypes/application/x-mplayer2.desktop
  Comment[zh_CN]=Microsoft 媒体格式
 Index: mimetypes/application/vnd.sun.xml.base.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.base.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.base.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.base.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.base.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -37,7 +37,7 @@
  Comment[ms]=Pangkalan Data OpenOffice.org
  Comment[nb]=OpenOffice.org database
@@ -592,8 +605,8 @@ Index: mimetypes/application/vnd.sun.xml.base.desktop
  Comment[pa]=OpenOffice.org ਡਾਟਾਬੇਸ
 Index: mimetypes/application/x-tbz.desktop
 ===================================================================
---- mimetypes/application/x-tbz.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/x-tbz.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/x-tbz.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/x-tbz.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -55,6 +55,7 @@
  Comment[te]=బిజిప్ చేయబడిన టార్ ఆర్కైవ్
  Comment[tg]=Архиви Tar Bzip2-карда шуд
@@ -604,8 +617,8 @@ Index: mimetypes/application/x-tbz.desktop
  Comment[vi]=Bản Tar đã nén Bzip
 Index: mimetypes/application/vnd.sun.xml.writer.master.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.writer.master.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.writer.master.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.writer.master.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.writer.master.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -40,7 +40,7 @@
  Comment[ms]=OpenOffice.org Dokumen Teks Utama
  Comment[nb]=OpenOffice.org-hovedtekstdokument
@@ -617,8 +630,8 @@ Index: mimetypes/application/vnd.sun.xml.writer.master.desktop
  Comment[pa]=OpenOffice.org ਮਾਸਟਰ ਪਾਠ ਦਸਤਾਵੇਜ਼
 Index: mimetypes/application/vnd.sun.xml.calc.template.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.calc.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.calc.template.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.calc.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.calc.template.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -42,7 +42,7 @@
  Comment[ms]=OpenOffice.org Templat Lembaran Kerja
  Comment[nb]=OpenOffice.org-regnearkmal
@@ -630,8 +643,8 @@ Index: mimetypes/application/vnd.sun.xml.calc.template.desktop
  Comment[pa]=OpenOffice.org ਸਾਰਣੀਕਾਰ ਨਮੂਨਾ
 Index: mimetypes/application/xml-dtd.desktop
 ===================================================================
---- mimetypes/application/xml-dtd.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/xml-dtd.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/xml-dtd.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/xml-dtd.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -56,6 +56,7 @@
  Comment[te]=XML డిటిడి పత్రం
  Comment[tg]=Ҳуҷҷати XML DTD
@@ -642,8 +655,8 @@ Index: mimetypes/application/xml-dtd.desktop
  Comment[vi]=Tài liệu DTD XML
 Index: mimetypes/application/vnd.sun.xml.writer.template.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.writer.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.writer.template.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.writer.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.writer.template.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -42,7 +42,7 @@
  Comment[ms]=OpenOffice.org Templat Dokumen Teks
  Comment[nb]=OpenOffice.org-tekstdokumentmal
@@ -655,8 +668,8 @@ Index: mimetypes/application/vnd.sun.xml.writer.template.desktop
  Comment[pa]=OpenOffice.org ਪਾਠ ਦਸਤਾਵੇਜ਼ ਨਮੂਨਾ
 Index: mimetypes/application/x-designer.desktop
 ===================================================================
---- mimetypes/application/x-designer.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/x-designer.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/x-designer.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/x-designer.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -69,7 +69,7 @@
  Comment[te]=క్యుటి డిజైనర్ దస్త్రం
  Comment[tg]=Файли Qt Designer
@@ -668,8 +681,8 @@ Index: mimetypes/application/x-designer.desktop
  Comment[uz]=Qt Designer-файли
 Index: mimetypes/application/vnd.sun.xml.writer.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.writer.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.writer.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.writer.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.writer.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -45,7 +45,7 @@
  Comment[ms]=Dokumen Teks OpenOffice.org
  Comment[nb]=OpenOffice.org tekstdokument
@@ -681,8 +694,8 @@ Index: mimetypes/application/vnd.sun.xml.writer.desktop
  Comment[pa]=OpenOffice.org ਪਾਠ ਦਸਤਾਵੇਜ਼
 Index: mimetypes/application/vnd.sun.xml.impress.template.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.impress.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.impress.template.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.impress.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.impress.template.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -42,7 +42,7 @@
  Comment[ms]=OpenOffice.org Templat Persembahan
  Comment[nb]=OpenOffice.org-presentasjonsmal
@@ -694,8 +707,8 @@ Index: mimetypes/application/vnd.sun.xml.impress.template.desktop
  Comment[pa]=OpenOffice.org ਪੇਸ਼ਕਾਰੀ ਨਮੂਨਾ
 Index: mimetypes/application/Makefile.am
 ===================================================================
---- mimetypes/application/Makefile.am	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/Makefile.am	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -3,7 +3,7 @@
  	x-tex-gf.desktop x-gzip.desktop x-pak.desktop \
  	x-object.desktop x-tex-pk.desktop pdf.desktop \
@@ -707,8 +720,8 @@ Index: mimetypes/application/Makefile.am
  	x-gzpostscript.desktop postscript.desktop octet-stream.desktop \
 Index: mimetypes/application/vnd.stardivision.impress.desktop
 ===================================================================
---- mimetypes/application/vnd.stardivision.impress.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.stardivision.impress.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.stardivision.impress.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.stardivision.impress.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -48,7 +48,7 @@
  Comment[ms]=Persembahan StarOffice Impress
  Comment[nb]=StarOffice Impress presentasjon
@@ -720,8 +733,8 @@ Index: mimetypes/application/vnd.stardivision.impress.desktop
  Comment[pa]=ਸਟਾਰਆਫਿਸ Impress ਪੇਸ਼ਕਾਰ
 Index: mimetypes/application/x-sqlite2.desktop
 ===================================================================
---- mimetypes/application/x-sqlite2.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/x-sqlite2.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/x-sqlite2.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/x-sqlite2.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -60,6 +60,7 @@
  Comment[te]=ఎస్క్యూఎల్ ఐట్౨ డెటాబేస్ దస్త్రం
  Comment[tg]=Файли Базаи Маълумотии SQLite2
@@ -732,8 +745,8 @@ Index: mimetypes/application/x-sqlite2.desktop
  Comment[vi]=Tập tin cơ sở dữ liệu SQLite2
 Index: mimetypes/application/x-sqlite3.desktop
 ===================================================================
---- mimetypes/application/x-sqlite3.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/x-sqlite3.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/x-sqlite3.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/x-sqlite3.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -60,6 +60,7 @@
  Comment[te]=ఎస్క్యూఎల్ ఐట్౩ డెటాబేస్ దస్త్రం
  Comment[tg]=Файли Базаи Маълумотии SQLite3
@@ -744,8 +757,8 @@ Index: mimetypes/application/x-sqlite3.desktop
  Comment[vi]=Tập tin cơ sở dữ liệu SQLite3
 Index: mimetypes/application/fits.desktop
 ===================================================================
---- mimetypes/application/fits.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/fits.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/fits.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/fits.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -53,6 +53,7 @@
  Comment[te]=FITS దత్తాంసం
  Comment[tg]=Маълумоти FITS
@@ -756,8 +769,8 @@ Index: mimetypes/application/fits.desktop
  Comment[vi]=Dữ liệu FITS
 Index: mimetypes/application/vnd.sun.xml.impress.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.impress.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.impress.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.impress.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.impress.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -45,7 +45,7 @@
  Comment[ms]=Persembahan OpenOffice.org
  Comment[nb]=OpenOffice.org presentasjon
@@ -769,8 +782,8 @@ Index: mimetypes/application/vnd.sun.xml.impress.desktop
  Comment[pl]=Prezentacja OpenOffice.org
 Index: mimetypes/application/vnd.sun.xml.draw.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.draw.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.draw.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.draw.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.draw.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -44,7 +44,7 @@
  Comment[ms]=OpenOffice.org Lukis
  Comment[nb]=OpenOffice.org tegning
@@ -782,8 +795,8 @@ Index: mimetypes/application/vnd.sun.xml.draw.desktop
  Comment[pl]=Rysunek OpenOffice.org
 Index: mimetypes/application/vnd.sun.xml.draw.template.desktop
 ===================================================================
---- mimetypes/application/vnd.sun.xml.draw.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/vnd.sun.xml.draw.template.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/vnd.sun.xml.draw.template.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/vnd.sun.xml.draw.template.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -42,7 +42,7 @@
  Comment[ms]=OpenOffice.org Templat Lukis
  Comment[nb]=OpenOffice.org-tegnemal
@@ -795,8 +808,8 @@ Index: mimetypes/application/vnd.sun.xml.draw.template.desktop
  Comment[pa]=OpenOffice.org ਡਰਾਇੰਗ ਨਮੂਨਾ
 Index: mimetypes/application/mbox.desktop
 ===================================================================
---- mimetypes/application/mbox.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/application/mbox.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/application/mbox.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/application/mbox.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -58,6 +58,7 @@
  Comment[te]=MBOX తపాలా ఫోల్డర్
  Comment[tg]=MBOX Феҳристи почта
@@ -807,8 +820,8 @@ Index: mimetypes/application/mbox.desktop
  Comment[vi]=Thư mục thư dạng .mbox.
 Index: mimetypes/text/x-mswinurl.desktop
 ===================================================================
---- mimetypes/text/x-mswinurl.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ mimetypes/text/x-mswinurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- mimetypes/text/x-mswinurl.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ mimetypes/text/x-mswinurl.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -50,7 +50,7 @@
  Comment[mt]=Taqsira tal-internet
  Comment[nb]=Snarvei til internett
@@ -818,10 +831,24 @@ Index: mimetypes/text/x-mswinurl.desktop
  Comment[nl]=Internet snelkoppeling
  Comment[nn]=Internett-snarveg
  Comment[nso]=Tselakopana ya Internet
+Index: kioslave/http/http.cc
+===================================================================
+--- kioslave/http/http.cc	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kioslave/http/http.cc	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -4269,6 +4269,9 @@
+ 
+         if ( m_cpMimeBuffer )
+         {
++          // Do not make any assumption about the state of the QByteArray we received.
++          // Fix the crash described by BR# 130104.
++          d.detach();
+           d.resize(0);
+           d.resize(m_mimeTypeBuffer.size());
+           memcpy( d.data(), m_mimeTypeBuffer.data(),
 Index: kioslave/ftp/ftp.cc
 ===================================================================
---- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1203,7 +1203,7 @@
    kdDebug(7102) << "ftpCloseCommand: reading command result" << endl;
    m_bBusy = false;
@@ -849,8 +876,8 @@ Index: kioslave/ftp/ftp.cc
  
 Index: kinit/start_kdeinit.c
 ===================================================================
---- kinit/start_kdeinit.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kinit/start_kdeinit.c	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -24,6 +24,7 @@
  #include <signal.h>
  #include <stdio.h>
@@ -914,8 +941,8 @@ Index: kinit/start_kdeinit.c
        case 0: /* child, keep privileges and do the privileged work */
 Index: kinit/start_kdeinit_wrapper.c
 ===================================================================
---- kinit/start_kdeinit_wrapper.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 0)
-+++ kinit/start_kdeinit_wrapper.c	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kinit/start_kdeinit_wrapper.c	(.../tags/KDE/3.5.7/kdelibs)	(revision 0)
++++ kinit/start_kdeinit_wrapper.c	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -0,0 +1,92 @@
 +/*
 + * This file is part of the KDE libraries
@@ -1011,8 +1038,8 @@ Index: kinit/start_kdeinit_wrapper.c
 +#endif
 Index: kinit/wrapper.c
 ===================================================================
---- kinit/wrapper.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kinit/wrapper.c	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kinit/wrapper.c	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kinit/wrapper.c	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -351,6 +351,7 @@
        header.cmd = LAUNCHER_TERMINATE_KDE;
        header.arg_length = 0;
@@ -1023,8 +1050,8 @@ Index: kinit/wrapper.c
  
 Index: kinit/Makefile.am
 ===================================================================
---- kinit/Makefile.am	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kinit/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kinit/Makefile.am	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kinit/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -20,7 +20,7 @@
  SUBDIRS = . tests
  
@@ -1045,8 +1072,8 @@ Index: kinit/Makefile.am
  noinst_HEADERS = klauncher.h autostart.h klauncher_cmds.h setproctitle.h
 Index: kimgio/hdr.kimgio
 ===================================================================
---- kimgio/hdr.kimgio	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kimgio/hdr.kimgio	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kimgio/hdr.kimgio	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kimgio/hdr.kimgio	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -48,6 +48,7 @@
  Name[te]=ఎక్కువ పరిణామశీల వ్యాప్తి కలిగిన ప్రతిబింబం
  Name[tg]=Тасвири динамикии баландқатор
@@ -1057,8 +1084,8 @@ Index: kimgio/hdr.kimgio
  Name[vi]=Ảnh phạm vị động cao
 Index: kimgio/psd.kimgio
 ===================================================================
---- kimgio/psd.kimgio	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kimgio/psd.kimgio	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kimgio/psd.kimgio	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kimgio/psd.kimgio	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -56,6 +56,7 @@
  Name[te]=ఎడోబ్ ఫొటోషాప్ ప్రతిబింబం
  Name[tg]=Тасвири Adobe Photoshop
@@ -1069,8 +1096,8 @@ Index: kimgio/psd.kimgio
  Name[vi]=Ảnh Photoshop của Adobe
 Index: kio/kio/knfsshare.cpp
 ===================================================================
---- kio/kio/knfsshare.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/kio/knfsshare.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/kio/knfsshare.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kio/knfsshare.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -180,7 +180,7 @@
    if ( path[path.length()-1] != '/' )
         fixedPath += '/';
@@ -1080,10 +1107,23 @@ Index: kio/kio/knfsshare.cpp
  }
  
  QStringList KNFSShare::sharedDirectories() const {
+Index: kio/kio/kmimetyperesolver.h
+===================================================================
+--- kio/kio/kmimetyperesolver.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kio/kmimetyperesolver.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -37,7 +37,7 @@
+     virtual void slotViewportAdjusted() = 0;
+     virtual void slotProcessMimeIcons() = 0;
+ protected:
+-    virtual void virtual_hook( int, void* ) {};
++    virtual void virtual_hook( int, void* ) {}
+ };
+ 
+ /**
 Index: kio/kio/kmimemagic.cpp
 ===================================================================
---- kio/kio/kmimemagic.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/kio/kmimemagic.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/kio/kmimemagic.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kio/kmimemagic.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -230,6 +230,9 @@
  #define L_DIFF   0x400          /* Output of diff */
  #define L_OBJC   0x800          /* Objective C */
@@ -1131,8 +1171,8 @@ Index: kio/kio/kmimemagic.cpp
              }
 Index: kio/kio/klimitediodevice.h
 ===================================================================
---- kio/kio/klimitediodevice.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/kio/klimitediodevice.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/kio/klimitediodevice.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kio/klimitediodevice.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -91,7 +91,7 @@
          pos = QMIN( pos, m_length ); // Apply upper limit
          return m_dev->at( m_start + pos );
@@ -1144,8 +1184,8 @@ Index: kio/kio/klimitediodevice.h
      Q_ULONG m_start;
 Index: kio/kio/kservicetypefactory.cpp
 ===================================================================
---- kio/kio/kservicetypefactory.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/kio/kservicetypefactory.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/kio/kservicetypefactory.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kio/kservicetypefactory.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -156,7 +156,7 @@
              // don't return newServiceType - there may be an "other" pattern that
              // matches best this file, like *.tar.bz
@@ -1157,8 +1197,8 @@ Index: kio/kio/kservicetypefactory.cpp
           else
 Index: kio/kio/defaultprogress.cpp
 ===================================================================
---- kio/kio/defaultprogress.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/kio/defaultprogress.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/kio/defaultprogress.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kio/defaultprogress.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -236,7 +236,7 @@
                                              unsigned long totalFiles )
  {
@@ -1170,8 +1210,8 @@ Index: kio/kio/defaultprogress.cpp
    else
 Index: kio/kfile/kpropsdlgplugin.desktop
 ===================================================================
---- kio/kfile/kpropsdlgplugin.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/kfile/kpropsdlgplugin.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/kfile/kpropsdlgplugin.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kfile/kpropsdlgplugin.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -47,7 +47,7 @@
  Comment[mt]=Plugin għad-djalogu tal-propjetajiet
  Comment[nb]=Programtillegg for dialogvinduet for egenskaper
@@ -1181,10 +1221,23 @@ Index: kio/kfile/kpropsdlgplugin.desktop
  Comment[nl]=Plugin voor de 'Eigenschappen'-dialoog
  Comment[nn]=Tillegg til eigenskapar-dialogen
  Comment[nso]=Tsenyo ya Poledisano ya Dithoto
+Index: kio/kfile/kfilesharedlg.cpp
+===================================================================
+--- kio/kfile/kfilesharedlg.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/kfile/kfilesharedlg.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -204,7 +204,7 @@
+     if (d->m_configProc) return;
+ 
+     d->m_configProc = new KProcess(this);
+-    (*d->m_configProc) << KStandardDirs::findExe("kdesu") << "kcmshell" << "fileshare";
++    (*d->m_configProc) << KStandardDirs::findExe("kdesu") << locate("exe", "kcmshell") << "fileshare";
+     if (!d->m_configProc->start( KProcess::NotifyOnExit ))
+     {
+        delete d->m_configProc;
 Index: kio/tests/kmimetypetest.cpp
 ===================================================================
---- kio/tests/kmimetypetest.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/tests/kmimetypetest.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/tests/kmimetypetest.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/tests/kmimetypetest.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -63,5 +63,14 @@
      checkIcon( "trash:/foo/", "folder" );
    }
@@ -1202,8 +1255,8 @@ Index: kio/tests/kmimetypetest.cpp
  }
 Index: kio/data.protocol
 ===================================================================
---- kio/data.protocol	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kio/data.protocol	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kio/data.protocol	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kio/data.protocol	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -59,6 +59,7 @@
  Description[te]=దత్తాంశం యుఆరైల కొరకు కెఐఓబానిస (rfc2397)
  Description[tg]=kioslave барои URIs (rfc2397)
@@ -1214,8 +1267,8 @@ Index: kio/data.protocol
  Description[vi]=Một kioslave cho các địa điểm URI kiểu dữ liệu (rfc2397).
 Index: kstyles/themes/mega.themerc
 ===================================================================
---- kstyles/themes/mega.themerc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kstyles/themes/mega.themerc	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kstyles/themes/mega.themerc	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kstyles/themes/mega.themerc	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -38,7 +38,7 @@
  Name[mt]=Stil MegaGradient
  Name[nb]=MegaGradient mangefargestil
@@ -1227,8 +1280,8 @@ Index: kstyles/themes/mega.themerc
  Name[nso]=Mokgwa wa kholoro ya godimo ya MegaGradient
 Index: kstyles/themes/keramik.themerc
 ===================================================================
---- kstyles/themes/keramik.themerc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kstyles/themes/keramik.themerc	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kstyles/themes/keramik.themerc	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kstyles/themes/keramik.themerc	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -82,6 +82,7 @@
  Comment[te]=ఆల్ఫా బ్లెండింగ్ వాడు ఒక శైలి
  Comment[tg]=Услуб бо истифодаи тобиши алфа
@@ -1239,8 +1292,8 @@ Index: kstyles/themes/keramik.themerc
  Comment[vi]=Kiểu dáng hợp nhau anfa.
 Index: kstyles/plastik/plastik.h
 ===================================================================
---- kstyles/plastik/plastik.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kstyles/plastik/plastik.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kstyles/plastik/plastik.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kstyles/plastik/plastik.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -337,7 +337,7 @@
                          (height == other.height) &&
                          (c1Rgb == other.c1Rgb) &&
@@ -1252,8 +1305,8 @@ Index: kstyles/plastik/plastik.h
  //                 qDebug("width: %d\t\tother width: %d", width, other.width);
 Index: kabc/ldapurl.h
 ===================================================================
---- kabc/ldapurl.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kabc/ldapurl.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kabc/ldapurl.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kabc/ldapurl.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -59,7 +59,7 @@
       * Returns the dn part of the LDAP Url (same as path(), but slash removed
       * from the beginning).
@@ -1274,8 +1327,8 @@ Index: kabc/ldapurl.h
  
 Index: kabc/ldif.h
 ===================================================================
---- kabc/ldif.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kabc/ldif.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kabc/ldif.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kabc/ldif.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -41,9 +41,9 @@
    {
    public:
@@ -1298,10 +1351,25 @@ Index: kabc/ldif.h
      /**
        * Indicates the end of the LDIF file/stream. Call if nextItem() returned
        * MoreData, but actually you don't have more data.
+Index: kutils/kcmoduleproxy.cpp
+===================================================================
+--- kutils/kcmoduleproxy.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kutils/kcmoduleproxy.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -363,8 +363,8 @@
+ 		*d->rootProcess << kdesu;
+ 		*d->rootProcess << "--nonewdcop" << "-n" << "-d" << QString( "-i%1" ).arg(moduleInfo().icon());
+ 
+-		*d->rootProcess << QString("kcmshell %1 --embed-proxy %2 --lang %3").arg(cmd).arg
+-			(d->embedWidget->winId()).arg(KGlobal::locale()->language());
++		*d->rootProcess << QString("%1 %2 --embed-proxy %3 --lang %4").arg(locate("exe", "kcmshell"))
++			.arg(cmd).arg(d->embedWidget->winId()).arg(KGlobal::locale()->language());
+ 
+ 		connect(d->rootProcess, SIGNAL(processExited(KProcess*)), SLOT(rootExited()));
+ 
 Index: kutils/kcmoduleinfo.cpp
 ===================================================================
---- kutils/kcmoduleinfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kutils/kcmoduleinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kutils/kcmoduleinfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kutils/kcmoduleinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -36,9 +36,9 @@
    public:
      KCModuleInfoPrivate() :
@@ -1316,8 +1384,8 @@ Index: kutils/kcmoduleinfo.cpp
      bool testModule;
 Index: kutils/kcmodulecontainer.cpp
 ===================================================================
---- kutils/kcmodulecontainer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kutils/kcmodulecontainer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kutils/kcmodulecontainer.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kutils/kcmodulecontainer.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -51,7 +51,7 @@
  			, btnRootMode( 0 )
  			, btnLayout( 0 )
@@ -1329,8 +1397,8 @@ Index: kutils/kcmodulecontainer.cpp
  		QTabWidget *tabWidget;
 Index: kutils/kcmoduleinfo.h
 ===================================================================
---- kutils/kcmoduleinfo.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kutils/kcmoduleinfo.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kutils/kcmoduleinfo.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kutils/kcmoduleinfo.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -110,12 +110,12 @@
    /**
     * @return the filename of the .desktop file that describes the KCM
@@ -1461,8 +1529,8 @@ Index: kutils/kcmoduleinfo.h
     * Reads the service entries specific for KCModule from the desktop file.
 Index: kutils/kplugininfo.cpp
 ===================================================================
---- kutils/kplugininfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kutils/kplugininfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kutils/kplugininfo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kutils/kplugininfo.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -24,6 +24,7 @@
  #include <kconfigbase.h>
  #include <kglobal.h>
@@ -1504,8 +1572,8 @@ Index: kutils/kplugininfo.cpp
          d->email = file.readEntry( "Email" );
 Index: kdesu/process.h
 ===================================================================
---- kdesu/process.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdesu/process.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdesu/process.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdesu/process.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -112,12 +112,12 @@
      /**
       * Returns the filedescriptor of the process.
@@ -1523,8 +1591,8 @@ Index: kdesu/process.h
      /*
 Index: kdesu/kcookie.cpp
 ===================================================================
---- kdesu/kcookie.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdesu/kcookie.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdesu/kcookie.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdesu/kcookie.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -172,7 +172,7 @@
  	    break;
  	}
@@ -1536,8 +1604,8 @@ Index: kdesu/kcookie.cpp
  	{
 Index: kspell2/plugins/aspell/kspell_aspell.desktop
 ===================================================================
---- kspell2/plugins/aspell/kspell_aspell.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kspell2/plugins/aspell/kspell_aspell.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kspell2/plugins/aspell/kspell_aspell.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kspell2/plugins/aspell/kspell_aspell.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -16,7 +16,7 @@
  Name[bn]=এ-স্পেল
  Name[hi]=आ-स्पैल
@@ -1549,8 +1617,8 @@ Index: kspell2/plugins/aspell/kspell_aspell.desktop
  Name[te]=ఏస్పెల్
 Index: kspell2/plugins/hspell/kspell_hspell.desktop
 ===================================================================
---- kspell2/plugins/hspell/kspell_hspell.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kspell2/plugins/hspell/kspell_hspell.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kspell2/plugins/hspell/kspell_hspell.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kspell2/plugins/hspell/kspell_hspell.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -14,6 +14,6 @@
  X-KDE-PluginInfo-EnabledByDefault=true
  Name=HSpell
@@ -1561,8 +1629,8 @@ Index: kspell2/plugins/hspell/kspell_hspell.desktop
  Name[te]=హెచ్ స్పెల్
 Index: kspell2/plugins/ispell/kspell_ispell.desktop
 ===================================================================
---- kspell2/plugins/ispell/kspell_ispell.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kspell2/plugins/ispell/kspell_ispell.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kspell2/plugins/ispell/kspell_ispell.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kspell2/plugins/ispell/kspell_ispell.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -16,7 +16,7 @@
  Name[bn]=আই-স্পেল
  Name[hi]=आई-स्पैल
@@ -1574,8 +1642,8 @@ Index: kspell2/plugins/ispell/kspell_ispell.desktop
  Name[te]=ఐస్పెల్
 Index: kspell2/kspellclient.desktop
 ===================================================================
---- kspell2/kspellclient.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kspell2/kspellclient.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kspell2/kspellclient.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kspell2/kspellclient.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -42,7 +42,7 @@
  Comment[ms]=Klien KSpell
  Comment[nb]=KSpell-klient
@@ -1587,8 +1655,8 @@ Index: kspell2/kspellclient.desktop
  Comment[pl]=Klient KSpell
 Index: kdecore/netwm.h
 ===================================================================
---- kdecore/netwm.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/netwm.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/netwm.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/netwm.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -373,6 +373,22 @@
      int virtualRootsCount() const;
  
@@ -1628,8 +1696,8 @@ Index: kdecore/netwm.h
       */
 Index: kdecore/kcmdlineargs.cpp
 ===================================================================
---- kdecore/kcmdlineargs.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/kcmdlineargs.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/kcmdlineargs.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/kcmdlineargs.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1248,21 +1248,22 @@
  
  KURL KCmdLineArgs::makeURL(const char *_urlArg)
@@ -1664,8 +1732,8 @@ Index: kdecore/kcmdlineargs.cpp
  void
 Index: kdecore/eventsrc
 ===================================================================
---- kdecore/eventsrc	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/eventsrc	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/eventsrc	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/eventsrc	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1771,7 +1771,7 @@
  Comment[te]=కెడిఈ నిష్క్రమిస్తుంది
  Comment[tg]=Баромад аз KDE
@@ -1686,7 +1754,15 @@ Index: kdecore/eventsrc
  Name[hu]=Kijelentkezés megszakítva
  Name[is]=Hætt við útstimplun
  Name[it]=Uscita annullata
-@@ -1815,6 +1818,7 @@
+@@ -1801,6 +1804,7 @@
+ Name[kk]=Шығу доғарылды
+ Name[km]=ការ​ចេញ​បាន​បោះបង់
+ Name[lt]=Išsiregistravimas atšauktas
++Name[mk]=Откажано одјавување
+ Name[nds]=Afmellen afbraken
+ Name[nl]=Afmelden geannuleerd
+ Name[pa]=ਲਾਗਆਉਟ ਰੱਦ ਕੀਤਾ ਗਿਆ
+@@ -1815,6 +1819,7 @@
  Name[sv]=Utloggning avbruten
  Name[te]=లాగౌట్ రద్దుచేయబడినది
  Name[th]=ยกเลิกการล็อกเอาต์
@@ -1694,7 +1770,7 @@ Index: kdecore/eventsrc
  Name[uk]=Вихід скасовано
  Name[zh_TW]=取消登出
  Comment=KDE logout was canceled
-@@ -1827,7 +1831,10 @@
+@@ -1827,7 +1832,10 @@
  Comment[el]=Η αποσύνδεση από το KDE ακυρώθηκε
  Comment[es]=La salida de KDE fue cancelada
  Comment[et]=KDE väljalogimine katkestati
@@ -1705,7 +1781,15 @@ Index: kdecore/eventsrc
  Comment[hu]=A KDE-s kijelentkezés megszakadt
  Comment[is]=Hætt var við KDE útstimplun
  Comment[it]=L'uscita da KDE è stata annullata
-@@ -1849,6 +1856,7 @@
+@@ -1835,6 +1843,7 @@
+ Comment[kk]=KDE-ден шығу доғарылды
+ Comment[km]=ការ​ចេញ​របស់ KDE ត្រូវ​បាន​បោះបង់
+ Comment[lt]=Išsiregistravimas iš KDE buvo atšauktas
++Comment[mk]=Одјавувањето од KDE е откажано
+ Comment[nds]=Afmellen vun KDE wöör afbraken
+ Comment[nl]=Uitloggen KDE was geannuleerd
+ Comment[pa]=KDE ਲਾਗ-ਆਉਟ ਰੱਦ ਕੀਤਾ ਗਿਆ ਹੈ
+@@ -1849,6 +1858,7 @@
  Comment[sv]=Utloggning från KDE avbröts
  Comment[te]=కెడిఈ లాగౌట్ రద్దుచేయబడినది
  Comment[th]=การล็อกเอาท์ออกจาก KDE ถูกยกเลิก
@@ -1715,8 +1799,8 @@ Index: kdecore/eventsrc
  default_presentation=16
 Index: kdecore/kiconloader.cpp
 ===================================================================
---- kdecore/kiconloader.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/kiconloader.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/kiconloader.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/kiconloader.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -460,19 +460,17 @@
      static const QString &xpm_ext = KGlobal::staticQString(".xpm");
      ext[count++]=&xpm_ext;
@@ -1756,8 +1840,8 @@ Index: kdecore/kiconloader.cpp
  	    icon = themeNode->theme->iconPath(name + *ext[i], size, KIcon::MatchBest);
 Index: kdecore/netwm_p.h
 ===================================================================
---- kdecore/netwm_p.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/netwm_p.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/netwm_p.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/netwm_p.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -103,6 +103,9 @@
      unsigned long clients_count, stacking_count, virtual_roots_count,
  	kde_system_tray_windows_count;
@@ -1770,9 +1854,25 @@ Index: kdecore/netwm_p.h
      unsigned long client_properties[ 5 ]; // properties the client is interested in
 Index: kdecore/all_languages.desktop
 ===================================================================
---- kdecore/all_languages.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/all_languages.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
-@@ -3401,7 +3401,7 @@
+--- kdecore/all_languages.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/all_languages.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -3060,6 +3060,7 @@
+ Name[kk]=Ирланд галлша
+ Name[km]=អៀរឡង់ ហ្កែលិគ
+ Name[lb]=Irescht Gällesch
++Name[mk]=Ирски галски
+ Name[nb]=Irsk gaelisk
+ Name[nds]=Irsch Gäälsch
+ Name[ne]=आइरिश ग्यालिक
+@@ -3123,6 +3124,7 @@
+ Name[km]=ហ្កែលិគ
+ Name[lb]=Gällesch
+ Name[lt]=Galų
++Name[mk]=Галски
+ Name[mn]=Гаели
+ Name[nb]=Gælisk
+ Name[nds]=Gäälsch
+@@ -3401,7 +3403,7 @@
  Name[mk]=Хауса
  Name[mn]=Хауса
  Name[nds]=Haussa
@@ -1781,7 +1881,7 @@ Index: kdecore/all_languages.desktop
  Name[nso]=Se-Hausa
  Name[pa]=ਹਾਉਸਾ
  Name[ro]=Hausă
-@@ -3472,7 +3472,7 @@
+@@ -3472,7 +3474,7 @@
  Name[mt]=Lhudi
  Name[nb]=Hebraisk
  Name[nds]=Hebrääsch
@@ -1790,7 +1890,7 @@ Index: kdecore/all_languages.desktop
  Name[nl]=Hebreeuws
  Name[nn]=Hebraisk
  Name[nso]=Se-Heberu
-@@ -4043,7 +4043,7 @@
+@@ -4043,7 +4045,7 @@
  Name[mt]=Indoneżjan
  Name[nb]=Indonesisk
  Name[nds]=Indoneesch
@@ -1799,7 +1899,7 @@ Index: kdecore/all_languages.desktop
  Name[nl]=Indonesisch
  Name[nn]=Indonesisk
  Name[nso]=Se-Indonesian
-@@ -4099,7 +4099,7 @@
+@@ -4099,7 +4101,7 @@
  Name[lv]=Interlingva
  Name[mk]=Интерлингва
  Name[mn]=Интерлингуе
@@ -1808,7 +1908,7 @@ Index: kdecore/all_languages.desktop
  Name[nso]=Se-Interlingue
  Name[pa]=ਇੰਟਰਈਨੂਗੂਈ
  Name[rw]=Ikinyenterilinge
-@@ -8198,6 +8198,7 @@
+@@ -8198,6 +8200,7 @@
  Name[te]=రొమని
  Name[tg]=Романӣ
  Name[th]=ภาษาโรมานี
@@ -1816,7 +1916,7 @@ Index: kdecore/all_languages.desktop
  Name[uk]=Циганська
  Name[vi]=Rô-ma-ny
  Name[zh_CN]=吉普赛语
-@@ -9264,6 +9265,7 @@
+@@ -9264,6 +9267,7 @@
  Name[te]=సెర్బియన్ లాటిన్
  Name[tg]=Лотини Сербиявӣ
  Name[th]=ภาษาละตินเซอร์เบีย
@@ -1824,7 +1924,7 @@ Index: kdecore/all_languages.desktop
  Name[uk]=Сербська (латинь)
  Name[uz]=Сербча (Лотин)
  Name[vi]=Xéc-bi (La-tinh)
-@@ -11332,6 +11334,7 @@
+@@ -11332,6 +11336,7 @@
  Name[te]=చైనీస్ (హాంగ్ కాంగ్)
  Name[tg]=Хитоӣ (Гон-Конг)
  Name[th]=ภาษาจีี (ฮ่องกง)น
@@ -1834,8 +1934,8 @@ Index: kdecore/all_languages.desktop
  Name[vi]=Trung quốc (Hồng Kông)
 Index: kdecore/kprocess.h
 ===================================================================
---- kdecore/kprocess.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/kprocess.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/kprocess.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/kprocess.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -35,6 +35,7 @@
  
  /**
@@ -1855,8 +1955,8 @@ Index: kdecore/kprocess.h
     * @return false if an error has occurred
 Index: kdecore/kgrantpty.c
 ===================================================================
---- kdecore/kgrantpty.c	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/kgrantpty.c	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/kgrantpty.c	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/kgrantpty.c	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -36,7 +36,7 @@
  #include <unistd.h>
  
@@ -1868,8 +1968,8 @@ Index: kdecore/kgrantpty.c
  #  include <dirent.h>
 Index: kdecore/kapplication.cpp
 ===================================================================
---- kdecore/kapplication.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/kapplication.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/kapplication.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/kapplication.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -518,7 +518,7 @@
      {
          QWidget* w = static_cast< QWidget* >( receiver );
@@ -1891,8 +1991,8 @@ Index: kdecore/kapplication.cpp
     }
 Index: kdecore/netwm_def.h
 ===================================================================
---- kdecore/netwm_def.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/netwm_def.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/netwm_def.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/netwm_def.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -590,6 +590,7 @@
          @li WM2WindowClass  WM_CLASS
          @li WM2WindowRole   WM_WINDOW_ROLE
@@ -1938,8 +2038,8 @@ Index: kdecore/netwm_def.h
       @since 3.5.3
 Index: kdecore/netwm.cpp
 ===================================================================
---- kdecore/netwm.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdecore/netwm.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdecore/netwm.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdecore/netwm.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -56,6 +56,7 @@
  static Atom net_supporting_wm_check  = 0;
  static Atom net_virtual_roots        = 0;
@@ -2144,10 +2244,32 @@ Index: kdecore/netwm.cpp
  int NETRootInfo::numberOfDesktops() const {
      return p->number_of_desktops == 0 ? 1 : p->number_of_desktops;
  }
+Index: khtml/khtml_ext.cpp
+===================================================================
+--- khtml/khtml_ext.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ khtml/khtml_ext.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
+@@ -685,7 +685,7 @@
+     bool ok = false;
+ 
+     QString url = KInputDialog::getText( i18n("Add URL to Filter"),
+-                                         "Enter the URL:",
++                                         i18n("Enter the URL:"),
+                                          d->m_imageURL.url(),
+                                          &ok);
+     if ( ok ) {
+@@ -698,7 +698,7 @@
+ {
+     bool ok = false;
+     QString url = KInputDialog::getText( i18n( "Add URL to Filter"),
+-                                               "Enter the URL:",
++                                               i18n("Enter the URL:"),
+                                                d->m_khtml->url().url(),
+                                                &ok );
+     if ( ok ) {
 Index: khtml/khtmlview.cpp
 ===================================================================
---- khtml/khtmlview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ khtml/khtmlview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- khtml/khtmlview.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ khtml/khtmlview.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -1252,8 +1252,17 @@
  
      if ( ( mailtoCursor || newWindowCursor ) && isVisible() && hasFocus() ) {
@@ -2169,8 +2291,8 @@ Index: khtml/khtmlview.cpp
              attr.save_under = True;
 Index: khtml/html/html_elementimpl.cpp
 ===================================================================
---- khtml/html/html_elementimpl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ khtml/html/html_elementimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- khtml/html/html_elementimpl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ khtml/html/html_elementimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -503,7 +503,6 @@
          case ID_COLGROUP:
          case ID_FRAMESET:
@@ -2181,8 +2303,8 @@ Index: khtml/html/html_elementimpl.cpp
          case ID_TFOOT:
 Index: khtml/ecma/kjs_events.cpp
 ===================================================================
---- khtml/ecma/kjs_events.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ khtml/ecma/kjs_events.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- khtml/ecma/kjs_events.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ khtml/ecma/kjs_events.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -286,7 +286,8 @@
    case TimeStamp:
      return Number((long unsigned int)event.timeStamp()); // ### long long ?
@@ -2195,8 +2317,8 @@ Index: khtml/ecma/kjs_events.cpp
    default:
 Index: khtml/rendering/render_flow.cpp
 ===================================================================
---- khtml/rendering/render_flow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ khtml/rendering/render_flow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- khtml/rendering/render_flow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ khtml/rendering/render_flow.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -85,7 +85,7 @@
  void RenderFlow::addChildWithContinuation(RenderObject* newChild, RenderObject* beforeChild)
  {
@@ -2208,8 +2330,8 @@ Index: khtml/rendering/render_flow.cpp
      }
 Index: khtml/css/cssstyleselector.cpp
 ===================================================================
---- khtml/css/cssstyleselector.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ khtml/css/cssstyleselector.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- khtml/css/cssstyleselector.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ khtml/css/cssstyleselector.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -2303,7 +2303,7 @@
      {
          FontDef fontDef = style->htmlFont().fontDef;
@@ -2221,8 +2343,8 @@ Index: khtml/css/cssstyleselector.cpp
          else {
 Index: kresources/kresources.desktop
 ===================================================================
---- kresources/kresources.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kresources/kresources.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kresources/kresources.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kresources/kresources.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -80,7 +80,7 @@
  Comment=Configure KDE Resources
  Comment[af]=Stel KDE Hulpbronne op
@@ -2243,8 +2365,8 @@ Index: kresources/kresources.desktop
  Keywords[pl]=zasoby,konnector,zasoby wizytówek,zasoby kalendarzy,zasoby notatek,źródła danych wizytówek,źródła danych kalendarzy,źródła danych notatek,imap
 Index: dcop/dcopserver.cpp
 ===================================================================
---- dcop/dcopserver.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ dcop/dcopserver.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- dcop/dcopserver.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ dcop/dcopserver.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -35,6 +35,7 @@
  #include <sys/param.h>
  #endif
@@ -2287,8 +2409,8 @@ Index: dcop/dcopserver.cpp
     fcntl(fd, F_SETFL, fd_fl);
 Index: dcop/dcopclient.cpp
 ===================================================================
---- dcop/dcopclient.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ dcop/dcopclient.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- dcop/dcopclient.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ dcop/dcopclient.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -41,6 +41,8 @@
  #include <sys/stat.h>
  #include <sys/file.h>
@@ -2308,8 +2430,8 @@ Index: dcop/dcopclient.cpp
  
 Index: kjs/configure.in.in
 ===================================================================
---- kjs/configure.in.in	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kjs/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kjs/configure.in.in	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kjs/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -16,7 +16,8 @@
      LIBS="-lm"
      AC_MSG_CHECKING([for isnan with <math.h>])
@@ -2332,8 +2454,8 @@ Index: kjs/configure.in.in
  	AC_MSG_RESULT(no)
 Index: kdoctools/customization/fr/user.entities
 ===================================================================
---- kdoctools/customization/fr/user.entities	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdoctools/customization/fr/user.entities	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdoctools/customization/fr/user.entities	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdoctools/customization/fr/user.entities	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -185,9 +185,12 @@
  <!ENTITY traducteurBriceRothschild '<othercredit role="translator"><firstname>Brice</firstname><surname>Rothschild</surname><affiliation><address><email>brice.rothschild@gmail.com</email></address> </affiliation><contrib>Traduction française</contrib></othercredit>'>
  <!ENTITY relecteurBriceRothschild         '<othercredit role="reviewer"><firstname>Brice</firstname><surname>Rothschild</surname><affiliation><address><email>brice.rothschild@gmail.com</email></address> </affiliation><contrib>Relecture de la documentation française</contrib></othercredit>'>
@@ -2358,8 +2480,8 @@ Index: kdoctools/customization/fr/user.entities
  <!ENTITY GillesThioliere   'Gilles Thiolière <email>zhovirax@wanadoo.fr</email>'>
 Index: kdoctools/customization/nl/user.entities
 ===================================================================
---- kdoctools/customization/nl/user.entities	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdoctools/customization/nl/user.entities	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdoctools/customization/nl/user.entities	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdoctools/customization/nl/user.entities	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -36,6 +36,7 @@
  <!ENTITY Sander.Koning      '<othercredit role="translator"><firstname>Alexander</firstname><surname>S. Koning</surname><affiliation><address><email>sanderkoning@kde.nl</email></address></affiliation><contrib>Vertaler/Nalezer</contrib></othercredit>'>
  <!ENTITY Natalie.Koning      '<othercredit role="translator"><firstname>Natalie</firstname><surname>Koning</surname><affiliation><address><email>nat@switch.demon.nl</email></address></affiliation><contrib>Vertaler/Nalezer</contrib></othercredit>'>
@@ -2386,8 +2508,8 @@ Index: kdoctools/customization/nl/user.entities
  <!ENTITY Alt     "<keycap>Alt</keycap>">
 Index: kdeprint/filters/poster.desktop
 ===================================================================
---- kdeprint/filters/poster.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeprint/filters/poster.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeprint/filters/poster.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeprint/filters/poster.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -121,7 +121,7 @@
  Description[ms]=Utiliti untuk mencetak poster besar pada banyak helaian kertas. Untuk menggunakan fungsi ini ini, <b>poster</b> boleh laksana mesti ada pada <tt>PATH</tt> anda.Kod sumber untuk utiliti ini ada di <a href="http://printing.kde.org/downloads">Laman KDEPrint</a>. <p><b><u>AMARAN:</u></b> Pakej di laman KDEPrint ialah versi telah diubah dari versi asal yang boleh diperoleh dari mana-mana cermin arkib CTAN. Namun, pakej asal <b>tidak</b> boleh berfungsi dengan KDE. Anda <b>mesti</b> menggunakan pakej yang terdapat di <a href="http://printing.kde.org/downloads">Laman KDEPrint</a>.
  Description[nb]=Hjelpeprogram for å skrive ut store plakater fordelt på mange små papirark. Du må ha <b>poster</b>-programmet i søkestien din, <tt>PATH</tt>. Kildekoden for dette programmet kan hentes fra <a href="http://printing.kde.org/downloads">KDEPrint-siden</a>. <p><b>ADVARSEL</u></b> Pakken som finnes på KDEPrint-siden er en modifisert utgave av originalen som kan finnes på alle CTAN-arkivspeil, men originalen virker <b>ikke</b> med KDE. Du <b>må</b> bruke utgaven fra <a href="http://printing.kde.org/downloads">KDEPrint-siden</a>.
@@ -2399,8 +2521,8 @@ Index: kdeprint/filters/poster.desktop
  Description[nso]=Sebereka sago gatisa diswantsho tse kgolo go matlakala a mantshi a mannyane. Go somisa taelo ye, phethagatsego ya <b>seswantsho</b> e swanetse go tsenelega kago <tt>TSEJANA</tt> ya gago. Khoutu ya mothopo wa sebereka se ekaba ele go <a href="http://printing.kde.org/downloads">Lefelo la web la Kgatiso ya KDE</a>. <p> <b><u>TEMOSO:</u></b> Pakana yeo e hweditswego kago lefelo la web la Kgatiso ya KDE ke tsweletso yeo e kaonafaditswego ya ya mathomothomo yeo eka hwetswago kago seipone sa polokelo ya CTAN, efela pakana ya mathomothomo e <b>kase</b> beereke le KDE. O <b>swanetse</b> go somisa pakana yeo e hweditswego kago <a href="http://printing.kde.org/downloads">lefelo la web la Kgatiso ya KDE</a>.
 Index: kdeprint/filters/psnup.desktop
 ===================================================================
---- kdeprint/filters/psnup.desktop	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeprint/filters/psnup.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeprint/filters/psnup.desktop	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeprint/filters/psnup.desktop	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -48,7 +48,7 @@
  Comment[mt]=Filtru għal iżjed minn paġna waħda fuq kull karta
  Comment[nb]=Filter for flere sider på hvert ark
@@ -2412,8 +2534,8 @@ Index: kdeprint/filters/psnup.desktop
  Comment[nso]=Matlakala A Mantshintshi ka Sesekodi sa Letlakala
 Index: kdeprint/management/kxmlcommanddlg.cpp
 ===================================================================
---- kdeprint/management/kxmlcommanddlg.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeprint/management/kxmlcommanddlg.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeprint/management/kxmlcommanddlg.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeprint/management/kxmlcommanddlg.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -171,7 +171,8 @@
  	m_outputpipe = new QLineEdit(gb_output);
  
@@ -2426,8 +2548,8 @@ Index: kdeprint/management/kxmlcommanddlg.cpp
  	QVBoxLayout	*l2 = new QVBoxLayout(this, 0, KDialog::spacingHint());
 Index: kdeui/kdatepicker.h
 ===================================================================
---- kdeui/kdatepicker.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kdatepicker.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kdatepicker.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kdatepicker.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -121,7 +121,7 @@
     * widget.
     * @since 3.2
@@ -2439,8 +2561,8 @@ Index: kdeui/kdatepicker.h
     * Sets the font size of the widgets elements.
 Index: kdeui/kpixmapregionselectordialog.h
 ===================================================================
---- kdeui/kpixmapregionselectordialog.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kpixmapregionselectordialog.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kpixmapregionselectordialog.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kpixmapregionselectordialog.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -59,7 +59,7 @@
      * parameters can be set by using it.
      */
@@ -2452,8 +2574,8 @@ Index: kdeui/kpixmapregionselectordialog.h
      * Creates a modal dialog, lets the user to select a region of the @p pixmap
 Index: kdeui/kcmodule.h
 ===================================================================
---- kdeui/kcmodule.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kcmodule.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kcmodule.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kcmodule.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -163,7 +163,7 @@
     *
     * @note The default behavior is to call defaults().
@@ -2483,8 +2605,8 @@ Index: kdeui/kcmodule.h
     * Sets the RootOnly message.
 Index: kdeui/kcolordrag.h
 ===================================================================
---- kdeui/kcolordrag.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kcolordrag.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kcolordrag.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kcolordrag.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -45,7 +45,7 @@
       * Constructs a color drag with the color @p col.
       */
@@ -2496,8 +2618,8 @@ Index: kdeui/kcolordrag.h
      virtual QByteArray encodedData ( const char * m ) const;
 Index: kdeui/kactionselector.h
 ===================================================================
---- kdeui/kactionselector.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kactionselector.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kactionselector.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kactionselector.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -370,7 +370,7 @@
    /**
      connected to both list boxes to set the buttons enabled
@@ -2509,8 +2631,8 @@ Index: kdeui/kactionselector.h
  
 Index: kdeui/kdatetbl.cpp
 ===================================================================
---- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -665,7 +665,7 @@
  public:
          KDateInternalMonthPrivate (int y, int m, int d)
@@ -2522,8 +2644,8 @@ Index: kdeui/kdatetbl.cpp
          int day;
 Index: kdeui/kpanelextension.h
 ===================================================================
---- kdeui/kpanelextension.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kpanelextension.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kpanelextension.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kpanelextension.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -303,14 +303,14 @@
       * Reimplement this change handler in order to adjust the look of your
       * applet.
@@ -2543,8 +2665,8 @@ Index: kdeui/kpanelextension.h
       * Use this method to set the custom menu for this extensions so that it can be shown
 Index: kdeui/kmainwindow.cpp
 ===================================================================
---- kdeui/kmainwindow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kmainwindow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kmainwindow.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kmainwindow.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -86,7 +86,7 @@
  public:
      KMWSessionManaged()
@@ -2556,8 +2678,8 @@ Index: kdeui/kmainwindow.cpp
      }
 Index: kdeui/kcombobox.h
 ===================================================================
---- kdeui/kcombobox.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kcombobox.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kcombobox.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kcombobox.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -457,7 +457,7 @@
      /**
      * @deprecated
@@ -2569,8 +2691,8 @@ Index: kdeui/kcombobox.h
      * Completes text according to the completion mode.
 Index: kdeui/kbuttonbox.cpp
 ===================================================================
---- kdeui/kbuttonbox.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kbuttonbox.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kbuttonbox.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kbuttonbox.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -65,7 +65,7 @@
    unsigned short stretch;
    unsigned short actual_size;
@@ -2582,8 +2704,8 @@ Index: kdeui/kbuttonbox.cpp
  template class QPtrList<KButtonBox::Item>;
 Index: kdeui/kwindowlistmenu.cpp
 ===================================================================
---- kdeui/kwindowlistmenu.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kwindowlistmenu.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kwindowlistmenu.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kwindowlistmenu.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -61,8 +61,8 @@
  class NameSortedInfoList : public QPtrList<KWin::WindowInfo>
  {
@@ -2597,8 +2719,8 @@ Index: kdeui/kwindowlistmenu.cpp
      int compareItems( QPtrCollection::Item s1, QPtrCollection::Item s2 );
 Index: kdeui/kpanelapplet.h
 ===================================================================
---- kdeui/kpanelapplet.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kpanelapplet.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kpanelapplet.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kpanelapplet.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -324,7 +324,7 @@
       * Reimplement this change handler in order to adjust the look of your
       * applet.
@@ -2610,8 +2732,8 @@ Index: kdeui/kpanelapplet.h
       * Use this method to set the custom menu for this applet so that it can be shown
 Index: kdeui/kdockwidget_private.h
 ===================================================================
---- kdeui/kdockwidget_private.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kdockwidget_private.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kdockwidget_private.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kdockwidget_private.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -57,7 +57,7 @@
     * @param pos procentual position of the splitter. Must be int [0...100].
     */
@@ -2623,8 +2745,8 @@ Index: kdeui/kdockwidget_private.h
     * Initialize the splitter. If @p c0 or @p c1 is 0L the child will not
 Index: kdeui/qxembed.cpp
 ===================================================================
---- kdeui/qxembed.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/qxembed.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/qxembed.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/qxembed.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -136,7 +136,7 @@
          mapAfterRelease = false;
          lastPos = QPoint(0,0);
@@ -2645,8 +2767,8 @@ Index: kdeui/qxembed.cpp
  }
 Index: kdeui/kfontcombo.cpp
 ===================================================================
---- kdeui/kfontcombo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kfontcombo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kfontcombo.cpp	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kfontcombo.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -40,7 +40,7 @@
            size(0),
            lineSpacing(0)
@@ -2658,8 +2780,8 @@ Index: kdeui/kfontcombo.cpp
      bool italic : 1;
 Index: kdeui/kdockwidget.h
 ===================================================================
---- kdeui/kdockwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kdockwidget.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kdockwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kdockwidget.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -116,23 +116,23 @@
    /**
     * Destructs this.
@@ -2782,8 +2904,8 @@ Index: kdeui/kdockwidget.h
      bool hide;
 Index: kdeui/kpixmapregionselectorwidget.h
 ===================================================================
---- kdeui/kpixmapregionselectorwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kpixmapregionselectorwidget.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kpixmapregionselectorwidget.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kpixmapregionselectorwidget.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -66,7 +66,7 @@
      * @return the original whole pixmap that we're using in this widget as the
      * pixmap the user is selecting a region from.
@@ -2795,8 +2917,8 @@ Index: kdeui/kpixmapregionselectorwidget.h
      * Sets the selected region to be @p rect (in zoomed pixmap coordinates)
 Index: kdeui/kstatusbar.h
 ===================================================================
---- kdeui/kstatusbar.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ kdeui/kstatusbar.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- kdeui/kstatusbar.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ kdeui/kstatusbar.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -40,7 +40,7 @@
  
  
@@ -2808,8 +2930,8 @@ Index: kdeui/kstatusbar.h
  
 Index: libkmid/deviceman.h
 ===================================================================
---- libkmid/deviceman.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/deviceman.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/deviceman.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/deviceman.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -204,7 +204,7 @@
       *
       */
@@ -2872,8 +2994,8 @@ Index: libkmid/deviceman.h
       * Returns the name of the @p i-th device . In case the DeviceManager wasn't
 Index: libkmid/voiceman.h
 ===================================================================
---- libkmid/voiceman.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/voiceman.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/voiceman.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/voiceman.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -151,17 +151,17 @@
      /**
       * Returns the channel that voice @p v is using.
@@ -2897,8 +3019,8 @@ Index: libkmid/voiceman.h
       * Clears the lists of used voices.
 Index: libkmid/notearray.h
 ===================================================================
---- libkmid/notearray.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/notearray.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/notearray.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/notearray.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -123,12 +123,12 @@
     * @see get()
     * @see next()
@@ -2916,8 +3038,8 @@ Index: libkmid/notearray.h
     * Advances the iterator to the next position.
 Index: libkmid/track.h
 ===================================================================
---- libkmid/track.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/track.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/track.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/track.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -202,14 +202,14 @@
      /**
       * Returns the number of ticks left for the next event.
@@ -2937,8 +3059,8 @@ Index: libkmid/track.h
       * Change the tempo of the song.
 Index: libkmid/alsaout.h
 ===================================================================
---- libkmid/alsaout.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/alsaout.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/alsaout.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/alsaout.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -126,7 +126,7 @@
     *
     * @see deviceName
@@ -2977,8 +3099,8 @@ Index: libkmid/alsaout.h
    virtual void tmrSetTempo (int v);
 Index: libkmid/midistat.h
 ===================================================================
---- libkmid/midistat.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/midistat.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/midistat.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/midistat.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -83,7 +83,7 @@
      /**
       * Returns the patch currently used in channel @p chn.
@@ -3017,8 +3139,8 @@ Index: libkmid/midistat.h
       * Stores a sysex message that will be send in the next call to sendData
 Index: libkmid/midimapper.h
 ===================================================================
---- libkmid/midimapper.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/midimapper.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/midimapper.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/midimapper.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -169,12 +169,12 @@
      /**
       * Returns the status of the object.
@@ -3036,8 +3158,8 @@ Index: libkmid/midimapper.h
       * Returns the patch which pgm used on channel chn should be mapped to.
 Index: libkmid/player.h
 ===================================================================
---- libkmid/player.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/player.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/player.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/player.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -314,13 +314,13 @@
     * Returns true if there's a song already loaded (with a previous call to 
     * loadSong() ) and false if not.
@@ -3074,8 +3196,8 @@ Index: libkmid/player.h
     * Sets the position in a song. 
 Index: libkmid/midiout.h
 ===================================================================
---- libkmid/midiout.h	(.../tags/KDE/3.5.7/kdelibs)	(wersja 686795)
-+++ libkmid/midiout.h	(.../branches/KDE/3.5/kdelibs)	(wersja 686795)
+--- libkmid/midiout.h	(.../tags/KDE/3.5.7/kdelibs)	(revision 690474)
++++ libkmid/midiout.h	(.../branches/KDE/3.5/kdelibs)	(revision 690474)
 @@ -136,7 +136,7 @@
     *
     * @see deviceName
@@ -3104,9 +3226,9 @@ Index: libkmid/midiout.h
    /**
     * Returns the path to the file where the current used MidiMapper object
 
-Zmiany atrybutów dla: .
+Property changes on: .
 ___________________________________________________________________
-Nazwa: svn:externals
+Name: svn:externals
    + admin https://svn.kde.org/home/kde/branches/KDE/3.5/kde-common/admin
 
 
