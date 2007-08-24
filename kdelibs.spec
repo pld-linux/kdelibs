@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
 Version:	3.5.7
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -42,6 +42,7 @@ Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		%{name}-konqueror-agent.patch
 Patch9:		kde-ac260-lt.patch
+Patch10:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.5.7-kdelibs-kdecore.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
@@ -343,6 +344,7 @@ strony innych u¿ytkowników lokalnych.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p0
 
 rm -f configure
 cp /usr/share/automake/config.sub admin
