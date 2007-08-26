@@ -88,7 +88,7 @@ BuildRequires:	qt4-qmake >= 4.3.0
 BuildRequires:	qt4-build >= 4.3.0
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	soprano-devel
-BuildRequires:	strigi-devel >= 0.5.3
+BuildRequires:	strigi-devel = 0.5.4
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
 BuildConflicts:	kdebase-core < 9:3.4.0
