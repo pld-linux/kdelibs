@@ -422,25 +422,26 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kconf_update/*.upd
 
-#%{_datadir}/apps/LICENSES
-#%{_datadir}/apps/katepart
-#%{_datadir}/apps/kcertpart
-#%{_datadir}/apps/kcm_componentchooser
-#%{_datadir}/apps/kdeprint
-#%{_datadir}/apps/kdeui
-#%{_datadir}/apps/kdewidgets
-#%{_datadir}/apps/khtml
-#%{_datadir}/apps/kjava
-#%{_datadir}/apps/ksgmltools2
-#%{_datadir}/apps/kssl
-#%{_datadir}/apps/kstyle
-#%{_datadir}/apps/ktexteditor_docwordcompletion
-#%{_datadir}/apps/ktexteditor_insertfile
-#%{_datadir}/apps/ktexteditor_kdatatool
-#%{_datadir}/apps/proxyscout
-#%{_datadir}/apps/kcharselect
-#%{_datadir}/apps/kmetadata
-#%{_datadir}/apps/knepomuk
+%{_datadir}/apps/LICENSES
+%{_datadir}/apps/katepart
+%{_datadir}/apps/kcertpart
+%{_datadir}/apps/kcm_componentchooser
+%{_datadir}/apps/kdeprint
+%{_datadir}/apps/kdeui
+%{_datadir}/apps/kdewidgets
+%{_datadir}/apps/khtml
+%{_datadir}/apps/kjava
+%{_datadir}/apps/ksgmltools2
+%{_datadir}/apps/kssl
+%{_datadir}/apps/kstyle
+%{_datadir}/apps/ktexteditor_docwordcompletion
+%{_datadir}/apps/ktexteditor_insertfile
+%{_datadir}/apps/ktexteditor_kdatatool
+%{_datadir}/apps/proxyscout
+%{_datadir}/apps/kcharselect
+%{_datadir}/apps/kcm_phonon
+%{_datadir}/apps/nepomuk
+
 
 %dir %{_datadir}/emoticons
 %{_datadir}/emoticons/Default
