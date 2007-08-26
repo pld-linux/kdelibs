@@ -347,7 +347,7 @@ cd build
 	-DLIB_INSTALL_DIR=%{_libdir} \
 	../
 
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
