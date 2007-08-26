@@ -511,7 +511,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libphononexperimental.so.*
 %attr(755,root,root) %{_libdir}/libnepomuk.so.*
 %attr(755,root,root) %{_libdir}/libnepomuk-middleware.so.*
-
+%attr(755,root,root) %{_libdir}/libcupsdconf.so.*
 
 %dir %{_libdir}/kde4
 %attr(755,root,root) %{_libdir}/kde4/*.so
