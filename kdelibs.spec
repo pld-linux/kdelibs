@@ -394,45 +394,27 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %ghost /etc/security/fileshare.conf
+%attr(755,root,root) %{_bindir}/kde4automoc
+%attr(755,root,root) %{_bindir}/nepomuk-rcgen
 %attr(755,root,root) %{_bindir}/checkXML
-%attr(755,root,root) %{_bindir}/cupsdconf
-%attr(755,root,root) %{_bindir}/cupsdoprint
-%attr(755,root,root) %{_bindir}/kaddprinterwizard
-%attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/js
 %attr(755,root,root) %{_bindir}/kbuildsycoca4
-%attr(755,root,root) %{_bindir}/kconf_update
-%attr(755,root,root) %{_bindir}/kcookiejar
+%attr(755,root,root) %{_bindir}/kcookiejar4
 %attr(755,root,root) %{_bindir}/kde4-config
-%attr(755,root,root) %{_bindir}/kde-menu
-%attr(755,root,root) %{_bindir}/kded
+%attr(755,root,root) %{_bindir}/kded4
 %attr(755,root,root) %{_bindir}/kdeinit4
 %attr(755,root,root) %{_bindir}/kdeinit4_shutdown
 %attr(755,root,root) %{_bindir}/kdeinit4_wrapper
-%attr(755,root,root) %{_bindir}/kdesu_stub
-%attr(755,root,root) %{_bindir}/kdontchangethehostname
-%attr(755,root,root) %{_bindir}/kdostartupconfig
-%attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
-%attr(755,root,root) %{_bindir}/kioslave
 %attr(755,root,root) %{_bindir}/kjscmd
 %attr(755,root,root) %{_bindir}/kjsconsole
-%attr(755,root,root) %{_bindir}/klauncher
-%attr(755,root,root) %{_bindir}/knotifytest
-%attr(755,root,root) %{_bindir}/kpac_dhcp_helper
 %attr(755,root,root) %{_bindir}/kross
-%attr(755,root,root) %{_bindir}/ksendbugmail
 %attr(755,root,root) %{_bindir}/kshell4
-%attr(755,root,root) %{_bindir}/kstartupconfig
 %attr(755,root,root) %{_bindir}/ksvgtopng
-%attr(755,root,root) %{_bindir}/ktradertest
 %attr(755,root,root) %{_bindir}/kunittestmodrunner
 %attr(755,root,root) %{_bindir}/kwrapper4
-%attr(755,root,root) %{_bindir}/make_driver_db_cups
-%attr(755,root,root) %{_bindir}/make_driver_db_lpr
 %attr(755,root,root) %{_bindir}/makekdewidgets
-%attr(755,root,root) %{_bindir}/meinproc
+%attr(755,root,root) %{_bindir}/meinproc4
 %attr(755,root,root) %{_bindir}/preparetips
-%attr(755,root,root) %{_bindir}/kmetadata_rcgen
 
 %dir %{_datadir}/apps
 %dir %{_datadir}/apps/kconf_update
@@ -440,32 +422,32 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kconf_update/*.upd
 
-%{_datadir}/apps/LICENSES
-%{_datadir}/apps/katepart
-%{_datadir}/apps/kcertpart
-%{_datadir}/apps/kcm_componentchooser
-%{_datadir}/apps/kdeprint
-%{_datadir}/apps/kdeui
-%{_datadir}/apps/kdewidgets
-%{_datadir}/apps/khtml
-%{_datadir}/apps/kjava
-%{_datadir}/apps/ksgmltools2
-%{_datadir}/apps/kssl
-%{_datadir}/apps/kstyle
-%{_datadir}/apps/ktexteditor_docwordcompletion
-%{_datadir}/apps/ktexteditor_insertfile
-%{_datadir}/apps/ktexteditor_kdatatool
-%{_datadir}/apps/proxyscout
-%{_datadir}/apps/kcharselect
-%{_datadir}/apps/kmetadata
-%{_datadir}/apps/knepomuk
+#%{_datadir}/apps/LICENSES
+#%{_datadir}/apps/katepart
+#%{_datadir}/apps/kcertpart
+#%{_datadir}/apps/kcm_componentchooser
+#%{_datadir}/apps/kdeprint
+#%{_datadir}/apps/kdeui
+#%{_datadir}/apps/kdewidgets
+#%{_datadir}/apps/khtml
+#%{_datadir}/apps/kjava
+#%{_datadir}/apps/ksgmltools2
+#%{_datadir}/apps/kssl
+#%{_datadir}/apps/kstyle
+#%{_datadir}/apps/ktexteditor_docwordcompletion
+#%{_datadir}/apps/ktexteditor_insertfile
+#%{_datadir}/apps/ktexteditor_kdatatool
+#%{_datadir}/apps/proxyscout
+#%{_datadir}/apps/kcharselect
+#%{_datadir}/apps/kmetadata
+#%{_datadir}/apps/knepomuk
 
-%dir %{_datadir}/apps/emoticons
-%{_datadir}/apps/emoticons/Default
+%dir %{_datadir}/emoticons
+%{_datadir}/emoticons/Default
 
-%dir %{_datadir}/apps/knotifytest
-%{_datadir}/apps/knotifytest/knotifytest.notifyrc
-%{_datadir}/apps/knotifytest/knotifytestui.rc
+#%dir %{_datadir}/apps/knotifytest
+#%{_datadir}/apps/knotifytest/knotifytest.notifyrc
+#%{_datadir}/apps/knotifytest/knotifytestui.rc
 
 %dir %{_datadir}/apps/phonon
 %{_datadir}/apps/phonon/phonon.notifyrc
@@ -505,7 +487,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdesu.so.*
 %attr(755,root,root) %{_libdir}/libkdeui.so.*
 %attr(755,root,root) %{_libdir}/libkdnssd.so.*
-#%attr(755,root,root) %{_libdir}/libkdocument.so.*
 %attr(755,root,root) %{_libdir}/libkhtml.so.*
 %attr(755,root,root) %{_libdir}/libkimproxy.so.*
 %attr(755,root,root) %{_libdir}/libkio.so.*
@@ -516,29 +497,21 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libknotifyconfig.so.*
 %attr(755,root,root) %{_libdir}/libkntlm.so.*
 %attr(755,root,root) %{_libdir}/libkparts.so.*
-#%attr(755,root,root) %{_libdir}/libkspell2.so.*
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*
 %attr(755,root,root) %{_libdir}/libkunittest.so.*
 %attr(755,root,root) %{_libdir}/libkutils.so.*
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*
-#%attr(755,root,root) %{_libdir}/libkwalletclient.so.*
-#%attr(755,root,root) %{_libdir}/libkxmlcore.so.*
-#%attr(755,root,root) %{_libdir}/libphononcore.so.*
-#%attr(755,root,root) %{_libdir}/libphononui.so.*
 %attr(755,root,root) %{_libdir}/libsolid.so.*
-#%attr(755,root,root) %{_libdir}/libsolidifaces.so.*
 %attr(755,root,root) %{_libdir}/libthreadweaver.so.*
 %attr(755,root,root) %{_libdir}/libkaudiodevicelist.so.*
-%attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca4.so.*
 %attr(755,root,root) %{_libdir}/libkfile.so.*
 %attr(755,root,root) %{_libdir}/libkrosscore.so.*
 %attr(755,root,root) %{_libdir}/libkrossui.so.*
 %attr(755,root,root) %{_libdir}/libphonon.so.*
 %attr(755,root,root) %{_libdir}/libphononexperimental.so.*
-%attr(755,root,root) %{_libdir}/libwtf.so.*
-%attr(755,root,root) %{_libdir}/libkmetadata.so.*
-%attr(755,root,root) %{_libdir}/libknepomuk.so.*
-%attr(755,root,root) %{_libdir}/libkonto.so.*
+%attr(755,root,root) %{_libdir}/libnepomuk.so.*
+%attr(755,root,root) %{_libdir}/libnepomuk-middleware.so.*
+
 
 %dir %{_libdir}/kde4
 %attr(755,root,root) %{_libdir}/kde4/*.so
@@ -560,20 +533,16 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kconfig_compiler
 %{_datadir}/apps/cmake
-%attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
+%attr(755,root,root) %{_libdir}/libkdeinit4_kaddprinterwizard.so
+%attr(755,root,root) %{_libdir}/libkdeinit4_kbuildsycoca4.so
+%attr(755,root,root) %{_libdir}/libkdeinit4_kconf_update.so
+%attr(755,root,root) %{_libdir}/libkdeinit4_kded4.so
+%attr(755,root,root) %{_libdir}/libkdeinit4_kio_http_cache_cleaner.so
+%attr(755,root,root) %{_libdir}/libkdeinit4_klauncher.so
 %attr(755,root,root) %{_libdir}/libkde3support.so
 %attr(755,root,root) %{_libdir}/libkdecore.so
 %attr(755,root,root) %{_libdir}/libkdefakes.so
 %attr(755,root,root) %{_libdir}/libkdefx.so
-%attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
-%attr(755,root,root) %{_libdir}/libkdeinit_kbuildsycoca4.so
-#%attr(755,root,root) %{_libdir}/libkdeinit_kcmshell.so
-%attr(755,root,root) %{_libdir}/libkdeinit_kconf_update.so
-%attr(755,root,root) %{_libdir}/libkdeinit_kded.so
-%attr(755,root,root) %{_libdir}/libkdeinit_kio_http_cache_cleaner.so
-%attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so
-%attr(755,root,root) %{_libdir}/libkdeprint.so
-%attr(755,root,root) %{_libdir}/libkdeprint_management.so
 %attr(755,root,root) %{_libdir}/libkdesu.so
 %attr(755,root,root) %{_libdir}/libkdeui.so
 %attr(755,root,root) %{_libdir}/libkdnssd.so
