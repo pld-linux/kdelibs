@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):   Bibliotecas de fundação do KDE
 Summary(ru.UTF-8):   K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):   K Desktop Environment - Бібліотеки
 Name:		kdelibs
-Version:	3.90.1
+Version:	3.92.0
 Release:	0.1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	950b6f4dd6f0e17ed2551e8e81ff8bd6
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.92/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	1a32d2892c9a7ac4a7fd4d77a86f720b
 Source1:	pnm.protocol
 Source2:	x-icq.mimelnk
 Source3:	x-mplayer2.desktop
@@ -88,7 +88,7 @@ BuildRequires:	qt4-qmake >= 4.3.0
 BuildRequires:	qt4-build >= 4.3.0
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	soprano-devel
-BuildRequires:	strigi-devel
+BuildRequires:	strigi-devel >= 0.5.3
 BuildRequires:	zlib-devel
 %if %{with autoreqdep}
 BuildConflicts:	kdebase-core < 9:3.4.0
