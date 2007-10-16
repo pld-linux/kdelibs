@@ -10,7 +10,7 @@
 					# to g++
 #
 %define		_state		stable
-%define		artsver		13:1.5.7
+%define		artsver		13:1.5.8
 
 Summary:	K Desktop Environment - libraries
 Summary(es):	K Desktop Environment - bibliotecas
@@ -20,13 +20,13 @@ Summary(pt_BR):	Bibliotecas de fundação do KDE
 Summary(ru):	K Desktop Environment - âÉÂÌÉÏÔÅËÉ
 Summary(uk):	K Desktop Environment - â¦ÂÌ¦ÏÔÅËÉ
 Name:		kdelibs
-Version:	3.5.7
-Release:	2
+Version:	3.5.8
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	50ed644f2ec91963570fe2b155652957
+# Source0-md5:	acaa37e79e840d10dca326277a20863c
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -42,7 +42,6 @@ Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		%{name}-konqueror-agent.patch
 Patch9:		kde-ac260-lt.patch
-Patch10:	ftp://ftp.kde.org/pub/kde/security_patches/post-3.5.7-kdelibs-kdecore.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.2.2
 BuildRequires:	acl-devel
@@ -344,7 +343,6 @@ strony innych u¿ytkowników lokalnych.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p0
 
 rm -f configure
 cp /usr/share/automake/config.sub admin
