@@ -21,7 +21,7 @@ Summary(ru):	K Desktop Environment - Библиотеки
 Summary(uk):	K Desktop Environment - Б╕бл╕отеки
 Name:		kdelibs
 Version:	3.5.8
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -478,7 +478,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(4755,root,root) %{_bindir}/start_kdeinit
-
+%attr(755,root,root) %{_bindir}/start_kdeinit_wrapper
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
 %dir %{_datadir}/apps/dcopidlng
