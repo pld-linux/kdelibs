@@ -398,7 +398,7 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
-install -d $RPM_BUILD_ROOT%{_kdedocdir}/{cs,da,de,en,es,et,fi,fr,hu,it,nb,nl,pl,pt,pt_BR,ru,sv}/common
+install -d $RPM_BUILD_ROOT%{_kdedocdir}/{ca,cs,da,de,en,en_GB,es,et,fi,fr,hu,it,ja,nb,nl,pl,pt,pt_BR,ro,ru,sk,sl,sv,tr,uk,zh_TW}/common
 
 # For fileshare
 touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
@@ -595,6 +595,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
 
+%lang(ca) %dir %{_kdedocdir}/ca
+%lang(ca) %dir %{_kdedocdir}/ca/common
 %lang(cs) %dir %{_kdedocdir}/cs
 %lang(cs) %dir %{_kdedocdir}/cs/common
 %lang(da) %dir %{_kdedocdir}/da
@@ -603,6 +605,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(de) %dir %{_kdedocdir}/de/common
 %lang(es) %dir %{_kdedocdir}/es
 %lang(es) %dir %{_kdedocdir}/es/common
+%lang(en_GB) %dir %{_kdedocdir}/en_GB
+%lang(en_GB) %dir %{_kdedocdir}/en_GB/common
 %lang(et) %dir %{_kdedocdir}/et
 %lang(et) %dir %{_kdedocdir}/et/common
 %lang(fi) %dir %{_kdedocdir}/fi
@@ -613,6 +617,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(hu) %dir %{_kdedocdir}/hu/common
 %lang(it) %dir %{_kdedocdir}/it
 %lang(it) %dir %{_kdedocdir}/it/common
+%lang(ja) %dir %{_kdedocdir}/ja
+%lang(ja) %dir %{_kdedocdir}/ja/common
 %lang(nb) %dir %{_kdedocdir}/nb
 %lang(nb) %dir %{_kdedocdir}/nb/common
 %lang(nl) %dir %{_kdedocdir}/nl
@@ -623,10 +629,22 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pt) %dir %{_kdedocdir}/pt/common
 %lang(pt_BR) %dir %{_kdedocdir}/pt_BR
 %lang(pt_BR) %dir %{_kdedocdir}/pt_BR/common
+%lang(ro) %dir %{_kdedocdir}/ro
+%lang(ro) %dir %{_kdedocdir}/ro/common
 %lang(ru) %dir %{_kdedocdir}/ru
 %lang(ru) %dir %{_kdedocdir}/ru/common
+%lang(sk) %dir %{_kdedocdir}/sk
+%lang(sk) %dir %{_kdedocdir}/sk/common
+%lang(sl) %dir %{_kdedocdir}/sl
+%lang(sl) %dir %{_kdedocdir}/sl/common
 %lang(sv) %dir %{_kdedocdir}/sv
 %lang(sv) %dir %{_kdedocdir}/sv/common
+%lang(tr) %dir %{_kdedocdir}/tr
+%lang(tr) %dir %{_kdedocdir}/tr/common
+%lang(uk) %dir %{_kdedocdir}/uk
+%lang(uk) %dir %{_kdedocdir}/uk/common
+%lang(zh_TW) %dir %{_kdedocdir}/zh_TW
+%lang(zh_TW) %dir %{_kdedocdir}/zh_TW/common
 
 # 3rdparty directories
 %dir %{_datadir}/applnk
