@@ -1,7 +1,7 @@
 Index: mimetypes/application/x-tex-pk.desktop
 ===================================================================
---- mimetypes/application/x-tex-pk.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-tex-pk.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-tex-pk.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-tex-pk.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -17,7 +17,7 @@
  Comment[de]=Schriftpaket
  Comment[el]=Packed γραμματοσειρά
@@ -13,8 +13,8 @@ Index: mimetypes/application/x-tex-pk.desktop
  Comment[fa]=قلم بسته‌ای
 Index: mimetypes/application/x-font-speedo.desktop
 ===================================================================
---- mimetypes/application/x-font-speedo.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-speedo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-speedo.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-speedo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -21,7 +21,7 @@
  Comment[de]=Speedo-Schriftart
  Comment[el]=Γραμματοσειρά Speedo
@@ -26,8 +26,8 @@ Index: mimetypes/application/x-font-speedo.desktop
  Comment[fa]=قلم Speedo
 Index: mimetypes/application/x-font-ghostscript.desktop
 ===================================================================
---- mimetypes/application/x-font-ghostscript.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-ghostscript.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-ghostscript.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-ghostscript.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -21,7 +21,7 @@
  Comment[de]=Ghostscript-Schrift
  Comment[el]=Έγγραφο Ghostscript
@@ -39,8 +39,8 @@ Index: mimetypes/application/x-font-ghostscript.desktop
  Comment[fa]=قلم Ghostscript
 Index: mimetypes/application/x-font-otf.desktop
 ===================================================================
---- mimetypes/application/x-font-otf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-otf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-otf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-otf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -17,7 +17,7 @@
  Comment[de]=OpenType-Schrift
  Comment[el]=Γραμματοσειρά OpenType
@@ -52,8 +52,8 @@ Index: mimetypes/application/x-font-otf.desktop
  Comment[fa]=قلم نوع باز
 Index: mimetypes/application/x-font-pcf.desktop
 ===================================================================
---- mimetypes/application/x-font-pcf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-pcf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-pcf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-pcf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -21,7 +21,7 @@
  Comment[de]=PCF-Bitmap-Schrift
  Comment[el]=Γραμματοσειρά PCF bitmap
@@ -63,10 +63,23 @@ Index: mimetypes/application/x-font-pcf.desktop
  Comment[et]=PCF bittrasterfont
  Comment[eu]=PCF bitmap-en letra-tipoa
  Comment[fa]=قلم نگاشت بیت PCF
+Index: mimetypes/application/x-java-applet.desktop
+===================================================================
+--- mimetypes/application/x-java-applet.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-java-applet.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+@@ -15,7 +15,7 @@
+ Comment[cy]=Rhaglennig Java
+ Comment[da]=Java-applet
+ Comment[de]=Java-Programm
+-Comment[el]=Εφαρμογίδιο Java
++Comment[el]=Μικροεφαρμογή Java
+ Comment[eo]=Javaplikaĵo
+ Comment[es]=Applet de Java
+ Comment[et]=Java aplett
 Index: mimetypes/application/x-font-snf.desktop
 ===================================================================
---- mimetypes/application/x-font-snf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-snf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-snf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-snf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -21,7 +21,7 @@
  Comment[de]=SNF-Bitmap-Schrift
  Comment[el]=Γραμματοσειρά SNF bitmap
@@ -78,8 +91,8 @@ Index: mimetypes/application/x-font-snf.desktop
  Comment[fa]=قلم نگاشت بیت SNF
 Index: mimetypes/application/x-font-ttc.desktop
 ===================================================================
---- mimetypes/application/x-font-ttc.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-ttc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-ttc.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-ttc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -17,7 +17,7 @@
  Comment[de]=TrueType-Schriftensammlung
  Comment[el]=Συλλογή γραμματοσειρών TrueType
@@ -91,8 +104,8 @@ Index: mimetypes/application/x-font-ttc.desktop
  Comment[fa]=مجموعۀ قلم حقیقی
 Index: mimetypes/application/x-font-ttf.desktop
 ===================================================================
---- mimetypes/application/x-font-ttf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-ttf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-ttf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-ttf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -17,7 +17,7 @@
  Comment[de]=TrueType-Schrift
  Comment[el]=Γραμματοσειρά TrueType
@@ -104,8 +117,8 @@ Index: mimetypes/application/x-font-ttf.desktop
  Comment[fa]=قلم حقیقی
 Index: mimetypes/application/x-afm.desktop
 ===================================================================
---- mimetypes/application/x-afm.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-afm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-afm.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-afm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -16,7 +16,7 @@
  Comment[de]=Metrische Informationen für PostScript-Schrift
  Comment[el]=Μετρικά γραμματοσειράς PostScript
@@ -117,8 +130,8 @@ Index: mimetypes/application/x-afm.desktop
  Comment[fa]=اندازۀ قلم پست‌اسکریپت
 Index: mimetypes/application/x-tex-gf.desktop
 ===================================================================
---- mimetypes/application/x-tex-gf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-tex-gf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-tex-gf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-tex-gf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -17,7 +17,7 @@
  Comment[de]=Generische Schrift
  Comment[el]=Γενική γραμματοσειρά
@@ -130,8 +143,8 @@ Index: mimetypes/application/x-tex-gf.desktop
  Comment[fa]=قلم عمومی
 Index: mimetypes/application/x-font-bdf.desktop
 ===================================================================
---- mimetypes/application/x-font-bdf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-bdf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-bdf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-bdf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -21,7 +21,7 @@
  Comment[de]=BDF-Bitmap-Schrift
  Comment[el]=Γραμματοσειρά BDF bitmap
@@ -143,8 +156,8 @@ Index: mimetypes/application/x-font-bdf.desktop
  Comment[fa]=قلم نگاشت بیت BDF
 Index: mimetypes/application/x-font-type1.desktop
 ===================================================================
---- mimetypes/application/x-font-type1.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ mimetypes/application/x-font-type1.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- mimetypes/application/x-font-type1.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ mimetypes/application/x-font-type1.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -21,7 +21,7 @@
  Comment[de]=Type1-Schrift
  Comment[el]=Γραμματοσειρά PostScript Type1
@@ -156,8 +169,17 @@ Index: mimetypes/application/x-font-type1.desktop
  Comment[fa]=قلم نوع ۱ پست‌اسکریپت
 Index: kioslave/http/kcookiejar/kcookiejar.cpp
 ===================================================================
---- kioslave/http/kcookiejar/kcookiejar.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kioslave/http/kcookiejar/kcookiejar.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kioslave/http/kcookiejar/kcookiejar.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kioslave/http/kcookiejar/kcookiejar.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+@@ -340,7 +340,7 @@
+     bool secureRequest = (_url.find( L1("https://"), 0, false) == 0 ||
+                           _url.find( L1("webdavs://"), 0, false) == 0);
+ 
+-    kdDebug(7104) << "findCookies: URL= " << _url << ", secure = " << secureRequest << endl;
++    // kdDebug(7104) << "findCookies: URL= " << _url << ", secure = " << secureRequest << endl;
+ 
+     extractDomains(fqdn, domains);
+ 
 @@ -991,7 +991,7 @@
  #ifdef MAX_COOKIE_LIMIT
          if (cookieList->count() >= MAX_COOKIES_PER_HOST)
@@ -178,8 +200,8 @@ Index: kioslave/http/kcookiejar/kcookiejar.cpp
      {
 Index: kioslave/http/http.cc
 ===================================================================
---- kioslave/http/http.cc	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kioslave/http/http.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kioslave/http/http.cc	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kioslave/http/http.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -3409,10 +3409,6 @@
  
    } while (!m_bEOF && (len || noHeader) && (headerSize < maxHeaderSize) && (gets(buffer, sizeof(buffer)-1)));
@@ -219,8 +241,8 @@ Index: kioslave/http/http.cc
       }
 Index: kio/kio/kservice.cpp
 ===================================================================
---- kio/kio/kservice.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kio/kio/kservice.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kio/kio/kservice.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kio/kio/kservice.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -109,6 +109,7 @@
    entryMap.remove("Hidden");
    if (m_bDeleted)
@@ -267,8 +289,8 @@ Index: kio/kio/kservice.cpp
  }
 Index: kdecore/kstartupinfo.cpp
 ===================================================================
---- kdecore/kstartupinfo.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdecore/kstartupinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdecore/kstartupinfo.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdecore/kstartupinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -545,7 +545,7 @@
  
  void KStartupInfo::setNewStartupId( QWidget* window, const QCString& startup_id )
@@ -311,8 +333,8 @@ Index: kdecore/kstartupinfo.cpp
              }
 Index: khtml/ecma/kjs_navigator.cpp
 ===================================================================
---- khtml/ecma/kjs_navigator.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ khtml/ecma/kjs_navigator.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- khtml/ecma/kjs_navigator.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ khtml/ecma/kjs_navigator.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -625,7 +625,7 @@
  
  /*****************************************************************************/
@@ -322,10 +344,23 @@ Index: khtml/ecma/kjs_navigator.cpp
  /*
  @begin MimeTypeTable 4
    description  	MimeType_Description    	DontDelete|ReadOnly
+Index: khtml/java/kjavaappletviewer.desktop
+===================================================================
+--- khtml/java/kjavaappletviewer.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ khtml/java/kjavaappletviewer.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+@@ -13,7 +13,7 @@
+ Name[cy]=Gwelydd Rhaglennig Java Mewnadeiladedig
+ Name[da]=Indlejret Java-applet fremviser
+ Name[de]=Eingebetteter Betrachter für Java-Programme
+-Name[el]=Ενσωματωμένος προβολέας εφαρμογιδίων Java
++Name[el]=Ενσωματωμένος προβολέας μικροεφαρμογών Java
+ Name[eo]=Enkonstruita javaplikaĵrigardilo
+ Name[es]=Visor de applets de Java empotrables
+ Name[et]=Põimitav Java apleti näitaja
 Index: kdoctools/customization/ja/entities/underGPL.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underGPL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/underGPL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/underGPL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/underGPL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,2 +1,2 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/gpl-translated.html">GNU General Public License</ulink>.</para>
@@ -333,16 +368,16 @@ Index: kdoctools/customization/ja/entities/underGPL.docbook
 +url="common/gpl-translated.html">GNU General Public License </ulink> です。</para>
 Index: kdoctools/customization/ja/entities/underArtisticLicense.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,2 +1 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/artistic-license.html">Artistic License</ulink>.</para>
 +<para>このプログラムのライセンスは <ulink url="common/artistic-license.html">Artistic License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/underFDL.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underFDL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/underFDL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/underFDL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/underFDL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,3 +1,3 @@
 -<para id="gnu-fdl" xreflabel="the section entitled &quot;GNU Free Documentation License&quot;">This documentation is licensed under the terms of the <ulink
 +<para id="gnu-fdl" xreflabel="the section entitled &quot;GNU Free Documentation License&quot;">このドキュメンテーションのライセンスは <ulink
@@ -351,16 +386,16 @@ Index: kdoctools/customization/ja/entities/underFDL.docbook
 +License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/underBSDLicense.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,2 +1 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/bsd-license.html">BSD License</ulink>.</para>
 +<para>このプログラムのライセンスは <ulink url="common/bsd-license.html">BSD License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/help-menu.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/help-menu.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/help-menu.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/help-menu.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/help-menu.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,58 +1,93 @@
  <variablelist>
  <varlistentry>
@@ -495,16 +530,16 @@ Index: kdoctools/customization/ja/entities/help-menu.docbook
  </variablelist>
 Index: kdoctools/customization/ja/entities/underX11License.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underX11License.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/underX11License.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/underX11License.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/underX11License.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,2 +1 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/x11-license.html">X11 License</ulink>.</para>
 +<para>このプログラムのライセンスは <ulink url="common/x11-license.html">X11 License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/install-compile.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/install-compile.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/install-compile.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/install-compile.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/install-compile.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,12 +1,8 @@
 -<para>In order to compile and install &kappname; on your system, type the
 -following in the base directory of the &kappname; distribution:</para>
@@ -522,8 +557,8 @@ Index: kdoctools/customization/ja/entities/install-compile.docbook
 +<para>&kappname; は <command>autoconf</command> と <command>automake</command> を使っているので容易にコンパイルできるはずです。問題にぶつかった場合は、&kde; のメーリングリストに報告してください。</para>
 Index: kdoctools/customization/ja/entities/install-intro.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/install-intro.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 726267)
-+++ kdoctools/customization/ja/entities/install-intro.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 726267)
+--- kdoctools/customization/ja/entities/install-intro.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/ja/entities/install-intro.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
 @@ -1,6 +1,4 @@
  <!-- requires that packagename is defined in the documentation prologue -->
 -<para>&kappname; is part of the &kde; project &kde-http;.</para>
@@ -533,6 +568,52 @@ Index: kdoctools/customization/ja/entities/install-intro.docbook
 -&kde-ftp;, the main &FTP; site of the &kde;
 -project.</para>
 +<para>&kappname; は &kde; プロジェクトのメイン &FTP; サイトである &kde-ftp; にある &package; パッケージに含まれています。</para>
+Index: kdoctools/customization/fr/user.entities
+===================================================================
+--- kdoctools/customization/fr/user.entities	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdoctools/customization/fr/user.entities	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+@@ -12,7 +12,7 @@
+ <!ENTITY relecteurDavidAmmouial        '<othercredit role="reviewer"><firstname>David</firstname><surname>Ammouial</surname><affiliation><address><email></email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
+ 
+ <!ENTITY traducteurPierreAuckenthaler      '<othercredit role="translator"><firstname>Pierre</firstname><surname>Auckenthaler</surname><affiliation><address><email>pierre.auckenthaler@polytechnique.org</email></address></affiliation><contrib>Traduction française&nbsp;</contrib></othercredit>'>
+-<!ENTITY relecteurPierreAuckenthaler        '<othercredit role="reviewer"><firstname>Pierre</firstname><surname>Auckenthaler</surname><affiliation><address><email>pierre.auckenthaler@polytechnique.org</email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
++<!ENTITY relecteurPierreAuckenthaler         '<othercredit role="reviewer"><firstname>Pierre</firstname><surname>Auckenthaler</surname><affiliation><address><email>pierre.auckenthaler@polytechnique.org</email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
+ 
+ <!ENTITY traducteurEricBischoff       '<othercredit role="translator"><firstname>Éric</firstname><surname>Bischoff</surname><affiliation><address><email>e.bischoff@noos.fr</email></address></affiliation><contrib>Traduction française&nbsp;</contrib></othercredit>'>
+ <!ENTITY relecteurEricBischoff        '<othercredit role="reviewer"><firstname>Éric</firstname><surname>Bischoff</surname><affiliation><address><email>e.bischoff@noos.fr</email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
+@@ -86,6 +86,9 @@
+ <!ENTITY traducteurGuillaumeDuweltzRebert     '<othercredit role="translator"><firstname>Guillaume</firstname><surname>Duweltz</surname><affiliation><address><email>gduwelz-rebert.cs@clearstream.com</email></address></affiliation><contrib>Traduction française&nbsp;</contrib></othercredit>'>
+ <!ENTITY relecteurGuillaumeDuweltzRebert      '<othercredit role="relecteur"><firstname>Guillaume</firstname><surname>Duweltz</surname><affiliation><address><email>gduwelz-rebert.cs@clearstream.com</email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
+ 
++<!ENTITY traducteurGuillaumeFahrner     '<othercredit role="translator"><firstname>Guillaume</firstname><surname>Fahrner</surname><affiliation><address><email>Admin@SecurityHack.Org</email></address></affiliation><contrib>Traduction française&nbsp;</contrib></othercredit>'>
++<!ENTITY relecteurGuillaumeFahrner      '<othercredit role="relecteur"><firstname>Guillaume</firstname><surname>Fahrner</surname><affiliation><address><email>Admin@SecurityHack.Org</email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
++
+ <!ENTITY traducteurSamiFantar    '<othercredit role="translator"><firstname>Sami</firstname><surname>Fantar</surname><affiliation><address><email>sami.fantar@laposte.net</email></address></affiliation><contrib>Traduction française&nbsp;</contrib></othercredit>'>
+ <!ENTITY relecteurSamiFantar     '<othercredit role="reviewer"><firstname>Sami</firstname><surname>Fantar</surname><affiliation><address><email>sami.fantar@laposte.net</email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
+ 
+@@ -243,6 +246,7 @@
+ <!ENTITY NicolasDupuis     'Nicolas Dupuis <email>ndupuis@tiscali.be</email>'>
+ <!ENTITY HeleneDuwelzRebert 'Hélène Duwelz-Rebert <email>helened@herbalife.com</email>'>
+ <!ENTITY GuillaumeDuwelzRebert 'Guillaume Duwelz-Rebert <email>gduwelz-rebert.cs@clearstream.com</email>'>
++<!ENTITY GuillaumeFahrner 'Guillaume Fahrner <email>Admin@SecurityHack.Org</email>'>
+ <!ENTITY SamiFantar          'Sami Fantar <email>sami.fantar@laposte.net</email>'>
+ <!ENTITY NilsSergioFernandez 'Nils Sergio Fernandez Rönningen <email>nilsfernandez@yahoo.fr</email>'>
+ <!ENTITY JeanJacquesFinazzi 'Jean-Jacques Finazzi <email>jj.finazzi@club.fr</email>'>
+Index: kdeui/kactionclasses.cpp
+===================================================================
+--- kdeui/kactionclasses.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
++++ kdeui/kactionclasses.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+@@ -667,8 +667,8 @@
+     KToolBar* bar = static_cast<KToolBar*>( widget );
+     int id_ = KAction::getToolButtonID();
+     bar->insertCombo( comboItems(), id_, isEditable(),
+-                      SIGNAL( activated( int ) ), this,
+-                      SLOT( slotActivated( int ) ), isEnabled(),
++                      SIGNAL( activated( const QString & ) ), this,
++                      SLOT( slotActivated( const QString & ) ), isEnabled(),
+                       toolTip(), -1, index );
+ 
+     QComboBox *cb = bar->getCombo( id_ );
 
 Zmiany atrybutów dla: .
 ___________________________________________________________________
