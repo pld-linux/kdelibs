@@ -58,7 +58,7 @@ BuildRequires:	automake >= 1.6.1
 BuildRequires:	boost-filesystem-devel
 BuildRequires:	boost-regex-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	cups-devel
+BuildRequires:	cups-devel >= 1:1.3.0
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
