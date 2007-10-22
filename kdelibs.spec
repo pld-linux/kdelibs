@@ -223,6 +223,7 @@ aplicativo KDE.
 Summary:	KDE libraries
 Summary(pl.UTF-8):	Biblioteki KDE
 Group:		Libraries
+Requires:	cups-lib >= 1:1.3.0
 
 %description libs
 KDE libraries.
