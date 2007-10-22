@@ -21,7 +21,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.8
-Release:	3
+Release:	4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -43,6 +43,8 @@ Patch7:		%{name}-xgl.patch
 Patch8:		kde-ac260-lt.patch
 Patch9:		%{name}-lib_loader.patch
 Patch10:	%{name}-konqueror-agent.patch
+# http://kate-editor.org/downloads/syntax_highlighting?kateversion=2.5
+Patch11:	%{name}-kate-syntax.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -350,6 +352,7 @@ strony innych użytkowników lokalnych.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 rm -f configure
 cp /usr/share/automake/config.sub admin
