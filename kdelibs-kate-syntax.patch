@@ -16024,7 +16024,7 @@ diff -urN kdelibs-3.5.8/kate/data.org/Makefile.am kdelibs-3.5.8/kate/data/Makefi
 -                purebasic.xml mips.xml logtalk.xml txt2tags.xml xslt.xml stata.xml glsl.xml \
 -                lilypond.xml abc.xml asp.xml asm-avr.xml rib.xml cmake.xml octave.xml javadoc.xml cgis.xml \
 -                spice.xml nasm.xml mediawiki.xml apache.xml m3u.xml ini.xml fstab.xml actionscript.xml
-+syntaxkate_DATA = language.dtd syntax.template \
++syntaxkate_DATA = language.dtd syntax.template html-php.xml css-php.xml javascript-php.xml \
 +		abap.xml abc.xml actionscript.xml ada.xml ahdl.xml alert.xml ansic89.xml ansys.xml \
 +		apache.xml asm6502.xml asm-avr.xml asn1.xml asp.xml awk.xml bash.xml bibtex.xml \
 +		cgis.xml cg.xml changelog.xml cisco.xml clipper.xml cmake.xml coldfusion.xml \
