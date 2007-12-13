@@ -1,7 +1,20 @@
+Index: mimetypes/multipart/x-mixed-replace.desktop
+===================================================================
+--- mimetypes/multipart/x-mixed-replace.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/multipart/x-mixed-replace.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -18,7 +18,7 @@
+ Comment[de]=Datenstrom (Server Push)
+ Comment[el]=Ροή από δεδομένα (προώθηση εξυπηρετητή)
+ Comment[eo]=Datumfluo (servosendata)
+-Comment[es]=Flujo de datos (envio del servidor)
++Comment[es]=Flujo de datos (envío del servidor)
+ Comment[et]=Andmevoog (server push)
+ Comment[eu]=Datu korrontea (Server push)
+ Comment[fa]=جریان داده( فشار کارساز)
 Index: mimetypes/application/x-tex-pk.desktop
 ===================================================================
---- mimetypes/application/x-tex-pk.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-tex-pk.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-tex-pk.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-tex-pk.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -17,7 +17,7 @@
  Comment[de]=Schriftpaket
  Comment[el]=Packed γραμματοσειρά
@@ -13,8 +26,8 @@ Index: mimetypes/application/x-tex-pk.desktop
  Comment[fa]=قلم بسته‌ای
 Index: mimetypes/application/x-font-speedo.desktop
 ===================================================================
---- mimetypes/application/x-font-speedo.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-speedo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-speedo.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-speedo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -21,7 +21,7 @@
  Comment[de]=Speedo-Schriftart
  Comment[el]=Γραμματοσειρά Speedo
@@ -26,8 +39,8 @@ Index: mimetypes/application/x-font-speedo.desktop
  Comment[fa]=قلم Speedo
 Index: mimetypes/application/x-font-ghostscript.desktop
 ===================================================================
---- mimetypes/application/x-font-ghostscript.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-ghostscript.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-ghostscript.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-ghostscript.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -21,7 +21,7 @@
  Comment[de]=Ghostscript-Schrift
  Comment[el]=Έγγραφο Ghostscript
@@ -39,8 +52,8 @@ Index: mimetypes/application/x-font-ghostscript.desktop
  Comment[fa]=قلم Ghostscript
 Index: mimetypes/application/x-font-otf.desktop
 ===================================================================
---- mimetypes/application/x-font-otf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-otf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-otf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-otf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -17,7 +17,7 @@
  Comment[de]=OpenType-Schrift
  Comment[el]=Γραμματοσειρά OpenType
@@ -52,8 +65,8 @@ Index: mimetypes/application/x-font-otf.desktop
  Comment[fa]=قلم نوع باز
 Index: mimetypes/application/x-font-pcf.desktop
 ===================================================================
---- mimetypes/application/x-font-pcf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-pcf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-pcf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-pcf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -21,7 +21,7 @@
  Comment[de]=PCF-Bitmap-Schrift
  Comment[el]=Γραμματοσειρά PCF bitmap
@@ -63,10 +76,23 @@ Index: mimetypes/application/x-font-pcf.desktop
  Comment[et]=PCF bittrasterfont
  Comment[eu]=PCF bitmap-en letra-tipoa
  Comment[fa]=قلم نگاشت بیت PCF
+Index: mimetypes/application/x-designer.desktop
+===================================================================
+--- mimetypes/application/x-designer.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-designer.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -44,7 +44,7 @@
+ Comment[mn]=Qt-Designer-Файл
+ Comment[ms]=Fail Qt Designer
+ Comment[mt]=Fajl Qt Designer
+-Comment[nb]=QT-designer fil
++Comment[nb]=Qt-designer-fil
+ Comment[nds]="Qt Designer"-Datei
+ Comment[ne]=Qt डिजाइनर फाइल
+ Comment[nl]=Qt Designer-bestand
 Index: mimetypes/application/x-java-applet.desktop
 ===================================================================
---- mimetypes/application/x-java-applet.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-java-applet.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-java-applet.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-java-applet.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -15,7 +15,7 @@
  Comment[cy]=Rhaglennig Java
  Comment[da]=Java-applet
@@ -78,8 +104,8 @@ Index: mimetypes/application/x-java-applet.desktop
  Comment[et]=Java aplett
 Index: mimetypes/application/x-font-snf.desktop
 ===================================================================
---- mimetypes/application/x-font-snf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-snf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-snf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-snf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -21,7 +21,7 @@
  Comment[de]=SNF-Bitmap-Schrift
  Comment[el]=Γραμματοσειρά SNF bitmap
@@ -91,8 +117,8 @@ Index: mimetypes/application/x-font-snf.desktop
  Comment[fa]=قلم نگاشت بیت SNF
 Index: mimetypes/application/x-font-ttc.desktop
 ===================================================================
---- mimetypes/application/x-font-ttc.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-ttc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-ttc.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-ttc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -17,7 +17,7 @@
  Comment[de]=TrueType-Schriftensammlung
  Comment[el]=Συλλογή γραμματοσειρών TrueType
@@ -104,8 +130,8 @@ Index: mimetypes/application/x-font-ttc.desktop
  Comment[fa]=مجموعۀ قلم حقیقی
 Index: mimetypes/application/x-font-ttf.desktop
 ===================================================================
---- mimetypes/application/x-font-ttf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-ttf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-ttf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-ttf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -17,7 +17,7 @@
  Comment[de]=TrueType-Schrift
  Comment[el]=Γραμματοσειρά TrueType
@@ -117,8 +143,8 @@ Index: mimetypes/application/x-font-ttf.desktop
  Comment[fa]=قلم حقیقی
 Index: mimetypes/application/x-afm.desktop
 ===================================================================
---- mimetypes/application/x-afm.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-afm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-afm.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-afm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -16,7 +16,7 @@
  Comment[de]=Metrische Informationen für PostScript-Schrift
  Comment[el]=Μετρικά γραμματοσειράς PostScript
@@ -128,10 +154,23 @@ Index: mimetypes/application/x-afm.desktop
  Comment[et]=PostScript fondimeetrika (PFM)
  Comment[eu]=PostScript letra-tipoen metrika
  Comment[fa]=اندازۀ قلم پست‌اسکریپت
+Index: mimetypes/application/x-javascript.desktop
+===================================================================
+--- mimetypes/application/x-javascript.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-javascript.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -17,7 +17,7 @@
+ Comment[de]=JavaScript-Datei
+ Comment[el]=Αρχείο κώδικα JavaScript
+ Comment[eo]=Javskripta dosiero
+-Comment[es]=Archivo JavaScipt
++Comment[es]=Archivo JavaScript
+ Comment[et]=JavaScripti fail
+ Comment[eu]=JavaScript fitxategia
+ Comment[fa]=پروندۀ جاوااسکریپت
 Index: mimetypes/application/x-tex-gf.desktop
 ===================================================================
---- mimetypes/application/x-tex-gf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-tex-gf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-tex-gf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-tex-gf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -17,7 +17,7 @@
  Comment[de]=Generische Schrift
  Comment[el]=Γενική γραμματοσειρά
@@ -143,8 +182,8 @@ Index: mimetypes/application/x-tex-gf.desktop
  Comment[fa]=قلم عمومی
 Index: mimetypes/application/x-font-bdf.desktop
 ===================================================================
---- mimetypes/application/x-font-bdf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-bdf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-bdf.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-bdf.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -21,7 +21,7 @@
  Comment[de]=BDF-Bitmap-Schrift
  Comment[el]=Γραμματοσειρά BDF bitmap
@@ -156,8 +195,8 @@ Index: mimetypes/application/x-font-bdf.desktop
  Comment[fa]=قلم نگاشت بیت BDF
 Index: mimetypes/application/x-font-type1.desktop
 ===================================================================
---- mimetypes/application/x-font-type1.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ mimetypes/application/x-font-type1.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- mimetypes/application/x-font-type1.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/application/x-font-type1.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -21,7 +21,7 @@
  Comment[de]=Type1-Schrift
  Comment[el]=Γραμματοσειρά PostScript Type1
@@ -167,10 +206,23 @@ Index: mimetypes/application/x-font-type1.desktop
  Comment[et]=PostScript Type1 font
  Comment[eu]=PostScript Type1 letra-tipoa
  Comment[fa]=قلم نوع ۱ پست‌اسکریپت
+Index: mimetypes/text/javascript.desktop
+===================================================================
+--- mimetypes/text/javascript.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ mimetypes/text/javascript.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -16,7 +16,7 @@
+ Comment[de]=JavaScript-Datei
+ Comment[el]=Αρχείο κώδικα JavaScript
+ Comment[eo]=Javskripta dosiero
+-Comment[es]=Archivo JavaScipt
++Comment[es]=Archivo JavaScript
+ Comment[et]=JavaScripti fail
+ Comment[eu]=JavaScript fitxategia
+ Comment[fa]=پروندۀ جاوااسکریپت
 Index: kioslave/http/kcookiejar/kcookiejar.cpp
 ===================================================================
---- kioslave/http/kcookiejar/kcookiejar.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kioslave/http/kcookiejar/kcookiejar.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kioslave/http/kcookiejar/kcookiejar.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kioslave/http/kcookiejar/kcookiejar.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -340,7 +340,7 @@
      bool secureRequest = (_url.find( L1("https://"), 0, false) == 0 ||
                            _url.find( L1("webdavs://"), 0, false) == 0);
@@ -200,8 +252,8 @@ Index: kioslave/http/kcookiejar/kcookiejar.cpp
      {
 Index: kioslave/http/http.cc
 ===================================================================
---- kioslave/http/http.cc	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kioslave/http/http.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kioslave/http/http.cc	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kioslave/http/http.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -3409,10 +3409,6 @@
  
    } while (!m_bEOF && (len || noHeader) && (headerSize < maxHeaderSize) && (gets(buffer, sizeof(buffer)-1)));
@@ -239,10 +291,35 @@ Index: kioslave/http/http.cc
          m_request.expireDate = expireDate;
          m_maxCacheSize = config()->readNumEntry("MaxCacheSize", DEFAULT_MAX_CACHE_SIZE) / 2;
       }
+Index: kinit/start_kdeinit_wrapper.c
+===================================================================
+--- kinit/start_kdeinit_wrapper.c	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kinit/start_kdeinit_wrapper.c	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -85,7 +85,7 @@
+    if(argc == 0)
+       return 1;
+    argv[0] = "start_kdeinit";
+-   execv("start_kdeinit",argv);
++   execvp("start_kdeinit",argv);
+    perror("start_kdeinit");
+    return 1;
+ }
+Index: kio/kio/karchive.cpp
+===================================================================
+--- kio/kio/karchive.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kio/kio/karchive.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -204,6 +204,7 @@
+     QDir dir( path );
+     if ( !dir.exists() )
+         return false;
++    dir.setFilter(dir.filter() | QDir::Hidden);
+     QStringList files = dir.entryList();
+     for ( QStringList::Iterator it = files.begin(); it != files.end(); ++it )
+     {
 Index: kio/kio/kservice.cpp
 ===================================================================
---- kio/kio/kservice.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kio/kio/kservice.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kio/kio/kservice.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kio/kio/kservice.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -109,6 +109,7 @@
    entryMap.remove("Hidden");
    if (m_bDeleted)
@@ -287,10 +364,341 @@ Index: kio/kio/kservice.cpp
       m_mapProps.insert( it.key(), QVariant( it.data()));
    }
  }
+Index: kio/misc/kpac/script.cpp
+===================================================================
+--- kio/misc/kpac/script.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kio/misc/kpac/script.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -64,7 +64,7 @@
+         static Address parse( const UString& ip )
+             { return Address( ip.qstring(), true ); }
+ 
+-        operator const in_addr_t() const {
++        operator in_addr_t() const {
+           const sockaddr_in* sin = m_address;
+           return sin->sin_addr.s_addr;
+         }
+@@ -167,7 +167,7 @@
+         virtual Value call( ExecState* exec, Object&, const List& args )
+         {
+             if ( args.size() != 1 ) return Undefined();
+-            try { Address::resolve( args[ 0 ].toString( exec ) ); }
++            try { ::Address::resolve( args[ 0 ].toString( exec ) ); }
+             catch ( const Address::Error& ) { return Boolean( false ); }
+             return Boolean( true );
+         }
+@@ -202,7 +202,7 @@
+         virtual Value call( ExecState* exec, Object&, const List& args )
+         {
+             if ( args.size() != 1 ) return Undefined();
+-            try { return Address::resolve( args[ 0 ].toString( exec ) ); }
++            try { return String(Address::resolve( args[ 0 ].toString( exec ))); }
+             catch ( const Address::Error& ) { return Undefined(); }
+         }
+     };
+@@ -217,7 +217,7 @@
+             char hostname[ 256 ];
+             gethostname( hostname, 255 );
+             hostname[ 255 ] = 0;
+-            try { return Address::resolve( hostname ); }
++            try { return String(Address::resolve( hostname )); }
+             catch ( const Address::Error& ) { return Undefined(); }
+         }
+     };
+Index: kio/misc/kpac/eventsrc
+===================================================================
+--- kio/misc/kpac/eventsrc	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kio/misc/kpac/eventsrc	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -41,7 +41,7 @@
+ Comment[mk]=Автоматска конфигурација на прокси
+ Comment[mn]=Автомат итгэмжилэгчийн тохиргоо
+ Comment[ms]=Penyelarasan Proksi Automatik
+-Comment[nb]=Automatisk mellomtjenerinstilling
++Comment[nb]=Automatisk mellomtjenerinnstilling
+ Comment[nds]=Proxy automaatsch instellen
+ Comment[ne]=स्वचालित प्रोक्सी कन्फिगरेसन
+ Comment[nl]=Automatische proxyconfiguratie
+Index: kabc/scripts/addressee.src.cpp
+===================================================================
+--- kabc/scripts/addressee.src.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kabc/scripts/addressee.src.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -379,9 +379,11 @@
+     text = e;
+   else {
+     QRegExp needQuotes( "[^ 0-9A-Za-z\\x0080-\\xFFFF]" );
+-    if ( realName().find( needQuotes ) != -1 )
+-      text = "\"" + realName() + "\" <" + e + ">";
+-    else
++    if ( realName().find( needQuotes ) != -1 ) {
++      QString name = realName();
++      name.replace( "\"", "\\\"" );
++      text = "\"" + name + "\" <" + e + ">";
++    } else
+       text = realName() + " <" + e + ">";
+   }
+ 
+Index: kabc/plugins/net/net.desktop
+===================================================================
+--- kabc/plugins/net/net.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kabc/plugins/net/net.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -37,6 +37,7 @@
+ Name[kk]=Желі
+ Name[km]=បណ្តាញ
+ Name[ko]=네트워크
++Name[ku]=Tor
+ Name[lb]=Netzwierk
+ Name[lt]=Tinklas
+ Name[lv]=Tīkls
+Index: kabc/plugins/dir/dir.desktop
+===================================================================
+--- kabc/plugins/dir/dir.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kabc/plugins/dir/dir.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -38,6 +38,7 @@
+ Name[kk]=Каталог
+ Name[km]=ថត
+ Name[ko]=자료방
++Name[ku]=Peldank
+ Name[lb]=Verzeechnis
+ Name[lt]=Aplankas
+ Name[lv]=Direktorija
+Index: kabc/kabc_manager.desktop
+===================================================================
+--- kabc/kabc_manager.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kabc/kabc_manager.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -34,6 +34,7 @@
+ Name[ja]=コンタクト
+ Name[kk]=Контакттар
+ Name[km]=ទំនាក់ទំនង
++Name[ku]=Tekilî
+ Name[lb]=Kontakter
+ Name[lt]=Kontaktai
+ Name[lv]=Kontakti
+Index: kdecore/kcmdlineargs.cpp
+===================================================================
+--- kdecore/kcmdlineargs.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/kcmdlineargs.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -396,6 +396,8 @@
+                int p = nextOption.find(' ');
+                if (p > 0)
+                   nextOption = nextOption.left(p);
++               if (nextOption[0] == '!')
++                  nextOption = nextOption.mid(1);
+                if (strncmp(nextOption.data(), "no", 2) == 0)
+                {
+                   nextOption = nextOption.mid(2);
+Index: kdecore/eventsrc
+===================================================================
+--- kdecore/eventsrc	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/eventsrc	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -614,7 +614,7 @@
+ Comment=There is more than one possible match
+ Comment[af]=Daar is meer as een moontlik ooreenkoms
+ Comment[be]=Знойдзена некалькі варыянтаў заканчэння
+-Comment[bg]=Повече от едно съвпадение са намерени
++Comment[bg]=Намерени са повече от едно съвпадение
+ Comment[bn]=একাধিক সম্ভাব্য পরিপূরক বর্তমান
+ Comment[br]=Tremen ur c'hendoare a zo
+ Comment[bs]=Postoji više od jednog mogućeg pogotka
+@@ -937,7 +937,7 @@
+ Comment=There was a serious error causing the program to exit
+ Comment[af]=Daar was 'n ernstige fout wat veroorsaak het dat die program beïendig is.
+ Comment[be]=Адбылася сур'ёзная памылка, якая прывяла да выхаду з праграмы
+-Comment[bg]=Появи се сериозна грешка, която предизвика прекъсване на програмата
++Comment[bg]=Появи се сериозна грешка, която предизвика спиране на програмата
+ Comment[bn]=একটি গুরুতর ত্রুটির দরুণ প্রোগ্রামটি থেমে গেছে
+ Comment[br]=Ur fazi grevus a voe pennabeg mont er-maez ar goulev.
+ Comment[bs]=Program je morao završiti zbog ozbiljne greške
+@@ -1404,7 +1404,7 @@
+ Comment[ar]=حدث خطأ كبير سيؤدي على الأقل الى ايقاف البرنامج
+ Comment[az]=Çox ciddi bir xəta yarandə və proqramı çıxmağa məcbur etdi
+ Comment[be]=Адбылася вельмі сур'ёзная памылка, якая прывяла да выхаду з праграмы
+-Comment[bg]=Появи се сериозна грешка, която предизвика прекъсване на програмата
++Comment[bg]=Появи се сериозна грешка, която предизвика спиране на програмата
+ Comment[bn]=একটি গম্ভীর ত্রুটির ফলে প্রোগ্রামটি থেমে গেছে
+ Comment[br]=Ur fazi grevus-tre a c'hoarvezas, a lakas d'an nebeutañ ar goulev da vont er-maez
+ Comment[bs]=Došlo je do vrlo ozbiljne greške koja je uzrokovala najmanje prekid programa
+@@ -1514,6 +1514,7 @@
+ Name[kk]=Кіру
+ Name[km]=ចូល
+ Name[ko]=로그인
++Name[ku]=Têketin
+ Name[lb]=Umellen
+ Name[lt]=Registracija
+ Name[lv]=Pieteikties
+@@ -1668,6 +1669,7 @@
+ Name[kk]=Шығу
+ Name[km]=ចេញ
+ Name[ko]=로그아웃
++Name[ku]=Derketin
+ Name[lb]=Ofmellen
+ Name[lt]=Išsiregistravimas
+ Name[lv]=Atteikties
+Index: kdecore/kconfigbase.h
+===================================================================
+--- kdecore/kconfigbase.h	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/kconfigbase.h	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -2008,6 +2008,12 @@
+ private:
+   class KConfigBasePrivate;
+   KConfigBasePrivate *d;
++
++  void writeEntry( const char *pKey, const QString &rValue,
++    bool bPersistent, bool bGlobal, bool bNLS, bool bExpand );
++  void writeEntry( const char *pKey, const QStringList &rValue,
++    char sep, bool bPersistent, bool bGlobal, bool bNLS, bool bExpand );
++
+ };
+ 
+ class KConfigGroupSaverPrivate;
+Index: kdecore/all_languages.desktop
+===================================================================
+--- kdecore/all_languages.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/all_languages.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -1568,7 +1568,7 @@
+ Name[da]=Kirkeslavisk
+ Name[de]=Kirchenslawisch
+ Name[eo]=Eklezia Slava
+-Name[es]=Eslávo eclesiástico
++Name[es]=Eslavo eclesiástico
+ Name[et]=Kirikuslaavi
+ Name[eu]=Church Eslaviera
+ Name[fa]=یوگوسلاویایی
+@@ -5097,6 +5097,7 @@
+ Name[kk]=Курдше
+ Name[km]=ឃឺដ
+ Name[ko]=쿠르드어
++Name[ku]=Kurdî
+ Name[lb]=Kurdesch
+ Name[lt]=Kurdų
+ Name[lv]=Kurdu
+@@ -10132,6 +10133,7 @@
+ Name[kk]=Түрікше
+ Name[km]=ទួរគី
+ Name[ko]=터키어
++Name[ku]=Tirkî
+ Name[lb]=Türkesch
+ Name[lt]=Turkų
+ Name[lv]=Turku
+Index: kdecore/kconfigbase.cpp
+===================================================================
+--- kdecore/kconfigbase.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/kconfigbase.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -1022,6 +1022,15 @@
+                                  bool bGlobal,
+                                  bool bNLS )
+ {
++   writeEntry(pKey, value, bPersistent,  bGlobal, bNLS, false);
++}
++
++void KConfigBase::writeEntry( const char *pKey, const QString& value,
++                                 bool bPersistent,
++                                 bool bGlobal,
++                                 bool bNLS,
++                                 bool bExpand )
++{
+   // the KConfig object is dirty now
+   // set this before any IO takes place so that if any derivative
+   // classes do caching, they won't try and flush the cache out
+@@ -1040,6 +1049,7 @@
+   aEntryData.mValue = value.utf8();  // set new value
+   aEntryData.bGlobal = bGlobal;
+   aEntryData.bNLS = bNLS;
++  aEntryData.bExpand = bExpand;
+ 
+   if (bPersistent)
+     aEntryData.bDirty = true;
+@@ -1121,7 +1131,7 @@
+                                   bool bPersistent, bool bGlobal,
+                                   bool bNLS)
+ {
+-   writeEntry(pKey, translatePath(path), bPersistent, bGlobal, bNLS);
++   writeEntry(pKey, translatePath(path), bPersistent, bGlobal, bNLS, true);
+ }
+ 
+ void KConfigBase::writePathEntry ( const QString& pKey, const QStringList &list,
+@@ -1147,7 +1157,7 @@
+       QString value = *it;
+       new_list.append( translatePath(value) );
+     }
+-  writeEntry( pKey, new_list, sep, bPersistent, bGlobal, bNLS );
++  writeEntry( pKey, new_list, sep, bPersistent, bGlobal, bNLS, true );
+ }
+ 
+ void KConfigBase::deleteEntry( const QString& pKey,
+@@ -1364,6 +1374,13 @@
+                                char sep , bool bPersistent,
+                                bool bGlobal, bool bNLS )
+ {
++  writeEntry(pKey, list, sep, bPersistent, bGlobal, bNLS, false);
++}
++
++void KConfigBase::writeEntry ( const char *pKey, const QStringList &list,
++                               char sep, bool bPersistent,
++                               bool bGlobal, bool bNLS, bool bExpand )
++{
+   if( list.isEmpty() )
+     {
+       writeEntry( pKey, QString::fromLatin1(""), bPersistent );
+@@ -1387,7 +1404,7 @@
+     }
+   if( str_list.at(str_list.length() - 1) == sep )
+     str_list.truncate( str_list.length() -1 );
+-  writeEntry( pKey, str_list, bPersistent, bGlobal, bNLS );
++  writeEntry( pKey, str_list, bPersistent, bGlobal, bNLS, bExpand );
+ }
+ 
+ void KConfigBase::writeEntry ( const QString& pKey, const QValueList<int> &list,
+Index: kdecore/tests/kurltest.cpp
+===================================================================
+--- kdecore/tests/kurltest.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/tests/kurltest.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -92,6 +92,7 @@
+   check( "KURL::isValid()", emptyURL.isValid() ? "TRUE":"FALSE", "FALSE");
+   check( "KURL::isEmpty()", emptyURL.isEmpty() ? "TRUE":"FALSE", "TRUE");
+   check( "prettyURL()", emptyURL.prettyURL(), "");
++  check( "isLocalFile()", emptyURL.isLocalFile()?"TRUE":"FALSE", "FALSE" );
+ 
+   emptyURL = "";
+   check( "KURL::isMalformed()", emptyURL.isMalformed() ? "TRUE":"FALSE", "TRUE");
+@@ -159,6 +160,15 @@
+   check("KURL::encodedHtmlRef()", url1.ref(), "%6a");
+   check("KURL::htmlRef()", url1.htmlRef(), "j");
+ 
++  KURL dxOffEagle( KURL("http://something/other.html"), "newpage.html?[{\"foo: bar\"}]" );
++  check("isValid", dxOffEagle.isValid() ? "OK" : "KO", "OK");
++  check("url", dxOffEagle.url(), QString("http://something/newpage.html?[{\"foo:%20bar\"}]") );
++
++  KURL javascript( KURL("javascript:window.location+\"__flashplugin_unique__\"") );
++  check("isValid", javascript.isValid() ? "OK" : "KO", "OK");
++  check("url", javascript.url(), QString("javascript:window.location+\"__flashplugin_unique__\"") );
++
++
+   u1 = "file:///home/dfaure/my#myref";
+   url1 = u1;
+   check("KURL::url()", url1.url(), "file:///home/dfaure/my#myref");
+@@ -288,6 +298,10 @@
+   check("KURL::prettyURL()", url15582.prettyURL(), "http://alain.knaff.linux.lu/bug-reports/kde/percentage%in%url.html");
+   check("KURL::url()", url15582.url(), "http://alain.knaff.linux.lu/bug-reports/kde/percentage%25in%25url.html");
+ 
++  KURL longUserName("http://thisisaverylongusername@foobar.com/");
++  check("KURL::prettyURL()", longUserName.prettyURL(), "http://thisisaverylongusername@foobar.com/");
++  check("KURL(KURL::prettyURL())", KURL(longUserName.prettyURL()).url(), "http://thisisaverylongusername@foobar.com/");
++
+   KURL whitespaceInUser("http://google.com%20%20%20@foobar.com/");
+   check("KURL::prettyURL()", whitespaceInUser.prettyURL(), "http://google.com%20%20%20@foobar.com/");
+ 
+@@ -609,7 +623,7 @@
+          "www.meinestadt.de&url_plain=http");
+   check("http: URL with empty path string", waba1.htmlURL(),
+          "http://www.meinestadt.de&amp;url_plain=http");
+- 
++
+   check("http: URL with empty path string", waba1.path(),
+          "");
+ 
 Index: kdecore/kstartupinfo.cpp
 ===================================================================
---- kdecore/kstartupinfo.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdecore/kstartupinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdecore/kstartupinfo.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/kstartupinfo.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -545,7 +545,7 @@
  
  void KStartupInfo::setNewStartupId( QWidget* window, const QCString& startup_id )
@@ -331,10 +739,62 @@ Index: kdecore/kstartupinfo.cpp
              if( ok )
                  return time;
              }
+Index: kdecore/kurl.cpp
+===================================================================
+--- kdecore/kurl.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdecore/kurl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -30,7 +30,6 @@
+ #include <kglobal.h>
+ #include <kidna.h>
+ #include <kprotocolinfo.h>
+-#include <kstringhandler.h>
+ #endif
+ 
+ #include <stdio.h>
+@@ -1541,13 +1540,7 @@
+     u += "//";
+     if ( hasUser() )
+     {
+-      QString s = m_strUser;
+-#ifndef KDE_QT_ONLY
+-      // shorten the username, its unlikely to be valid without password anyway
+-      if (!hasPass())
+-          s = KStringHandler::csqueeze(s, 16);
+-#endif
+-      u += encode(s, 0, 0);
++      u += encode(m_strUser, 0, 0);
+       // Don't show password!
+       u += "@";
+     }
+Index: khtml/khtml_part.cpp
+===================================================================
+--- khtml/khtml_part.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/khtml_part.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -3272,6 +3272,7 @@
+     {
+       //kdDebug(6050) << "Restarting" << endl;
+       initFindNode( false, options & KFindDialog::FindBackwards, false );
++      d->m_find->resetCounts();
+       findTextNext( reverse );
+     }
+     else // really done
+Index: khtml/html/html_formimpl.cpp
+===================================================================
+--- khtml/html/html_formimpl.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/html/html_formimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -963,7 +963,7 @@
+     if (id() == ID_BUTTON)
+ 	return true;
+ 
+-    if (!m_render)
++    if (!m_render || !m_render->isWidget())
+ 	return false;
+ 
+     QWidget* widget = static_cast<RenderWidget*>(m_render)->widget();
 Index: khtml/ecma/kjs_navigator.cpp
 ===================================================================
---- khtml/ecma/kjs_navigator.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ khtml/ecma/kjs_navigator.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- khtml/ecma/kjs_navigator.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/ecma/kjs_navigator.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -625,7 +625,7 @@
  
  /*****************************************************************************/
@@ -344,10 +804,100 @@ Index: khtml/ecma/kjs_navigator.cpp
  /*
  @begin MimeTypeTable 4
    description  	MimeType_Description    	DontDelete|ReadOnly
+Index: khtml/ecma/kjs_html.h
+===================================================================
+--- khtml/ecma/kjs_html.h	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/ecma/kjs_html.h	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -84,7 +84,7 @@
+            LinkSheet, TitleText, MetaName, MetaHttpEquiv, MetaContent, MetaScheme,
+            BaseHref, BaseTarget, IsIndexForm, IsIndexPrompt, StyleDisabled,
+            StyleSheet, StyleType, StyleMedia, BodyBackground, BodyVLink, BodyText,
+-           BodyLink, BodyALink, BodyBgColor,  BodyOnLoad,
++           BodyLink, BodyALink, BodyBgColor,  BodyOnLoad, BodyFocus, 
+            FormAction, FormEncType, FormElements, FormLength, FormAcceptCharset,
+            FormReset, FormTarget, FormName, FormMethod, FormSubmit, SelectAdd,
+            SelectTabIndex, SelectValue, SelectSelectedIndex, SelectLength,
+Index: khtml/ecma/kjs_html.cpp
+===================================================================
+--- khtml/ecma/kjs_html.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/ecma/kjs_html.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -683,6 +683,11 @@
+ # IE extension
+   onload        KJS::HTMLElement::BodyOnLoad     DontDelete
+ @end
++@begin HTMLBodyElementProtoTable 2
++# Mozilla'ish extension. Ideally we would want to support this on all elements.
++# Not hard, but not an immediate need.
++  focus         KJS::HTMLElement::BodyFocus      DontDelete|Function 0
++@end
+ @begin HTMLFormElementTable 11
+ # Also supported, by name/index
+   elements	KJS::HTMLElement::FormElements	DontDelete|ReadOnly
+@@ -2181,6 +2186,15 @@
+       }
+     }
+     break;
++    case ID_BODY: {
++      if (id == KJS::HTMLElement::BodyFocus) {
++        // Just blur everything. Not perfect, but good enough for now
++        if (DOM::NodeImpl* impl = element.handle()) {
++          impl->getDocument()->setFocusNode(0);
++        }
++      }
++    }
++    break;
+     case ID_SELECT: {
+       DOM::HTMLSelectElement select = element;
+       if (id == KJS::HTMLElement::SelectAdd) {
+@@ -3138,7 +3152,8 @@
+ KJS_EMPTY_PROTOTYPE_WITH_PROTOTYPE("HTMLStyleElement", HTMLStyleElementProto, HTMLElementProto)
+ IMPLEMENT_PSEUDO_CONSTRUCTOR(HTMLStyleElementPseudoCtor, "HTMLStyleElement", HTMLStyleElementProto)
+ 
+-KJS_EMPTY_PROTOTYPE_WITH_PROTOTYPE("HTMLBodyElement", HTMLBodyElementProto, HTMLElementProto)
++KJS_DEFINE_PROTOTYPE_WITH_PROTOTYPE(HTMLBodyElementProto, HTMLElementProto)
++KJS_IMPLEMENT_PROTOTYPE("HTMLBodyElement", HTMLBodyElementProto, HTMLElementFunction)
+ IMPLEMENT_PSEUDO_CONSTRUCTOR(HTMLBodyElementPseudoCtor, "HTMLBodyElement", HTMLBodyElementProto)
+ 
+ KJS_DEFINE_PROTOTYPE_WITH_PROTOTYPE(HTMLFormElementProto, HTMLElementProto)
+Index: khtml/java/org/kde/kjas/server/KJASProtocolHandler.java
+===================================================================
+--- khtml/java/org/kde/kjas/server/KJASProtocolHandler.java	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/java/org/kde/kjas/server/KJASProtocolHandler.java	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -279,10 +279,13 @@
+             String appletID  = getArg( command );
+             int objid  = Integer.parseInt( getArg( command ) );
+             String name  = getArg( command );
++            int arg_count  = Integer.parseInt( getArg( command ) );
+             java.util.List args = new java.util.Vector();
+             try { // fix getArg
+                 String param = getArg(command);
+-                while (param != null) {
++                while (arg_count-- > 0) {
++                    if (param == null)
++                        param = new String();
+                     args.add(param);
+                     param = getArg(command);
+                 }
+Index: khtml/java/kjavaappletviewer.cpp
+===================================================================
+--- khtml/java/kjavaappletviewer.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/java/kjavaappletviewer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -570,6 +570,7 @@
+     args.append (QString::number (applet->appletId ()));
+     args.append (QString::number ((int) objid));
+     args.append (func);
++    args.append (QString::number ((int) fargs.size ()));
+     {
+         QStringList::const_iterator it = fargs.begin();
+         const QStringList::const_iterator itEnd = fargs.end();
+Index: khtml/java/kjava.jar
+===================================================================
+Nie można wyświetlić: plik binarny.
+svn:mime-type = application/x-jar
 Index: khtml/java/kjavaappletviewer.desktop
 ===================================================================
---- khtml/java/kjavaappletviewer.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ khtml/java/kjavaappletviewer.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- khtml/java/kjavaappletviewer.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ khtml/java/kjavaappletviewer.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -13,7 +13,7 @@
  Name[cy]=Gwelydd Rhaglennig Java Mewnadeiladedig
  Name[da]=Indlejret Java-applet fremviser
@@ -359,8 +909,8 @@ Index: khtml/java/kjavaappletviewer.desktop
  Name[et]=Põimitav Java apleti näitaja
 Index: kdoctools/customization/ja/entities/underGPL.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underGPL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/underGPL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/underGPL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/underGPL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,2 +1,2 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/gpl-translated.html">GNU General Public License</ulink>.</para>
@@ -368,16 +918,16 @@ Index: kdoctools/customization/ja/entities/underGPL.docbook
 +url="common/gpl-translated.html">GNU General Public License </ulink> です。</para>
 Index: kdoctools/customization/ja/entities/underArtisticLicense.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/underArtisticLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,2 +1 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/artistic-license.html">Artistic License</ulink>.</para>
 +<para>このプログラムのライセンスは <ulink url="common/artistic-license.html">Artistic License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/underFDL.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underFDL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/underFDL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/underFDL.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/underFDL.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,3 +1,3 @@
 -<para id="gnu-fdl" xreflabel="the section entitled &quot;GNU Free Documentation License&quot;">This documentation is licensed under the terms of the <ulink
 +<para id="gnu-fdl" xreflabel="the section entitled &quot;GNU Free Documentation License&quot;">このドキュメンテーションのライセンスは <ulink
@@ -386,16 +936,16 @@ Index: kdoctools/customization/ja/entities/underFDL.docbook
 +License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/underBSDLicense.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/underBSDLicense.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,2 +1 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/bsd-license.html">BSD License</ulink>.</para>
 +<para>このプログラムのライセンスは <ulink url="common/bsd-license.html">BSD License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/help-menu.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/help-menu.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/help-menu.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/help-menu.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/help-menu.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,58 +1,93 @@
  <variablelist>
  <varlistentry>
@@ -530,16 +1080,16 @@ Index: kdoctools/customization/ja/entities/help-menu.docbook
  </variablelist>
 Index: kdoctools/customization/ja/entities/underX11License.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/underX11License.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/underX11License.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/underX11License.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/underX11License.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,2 +1 @@
 -<para>This program is licensed under the terms of the <ulink
 -url="common/x11-license.html">X11 License</ulink>.</para>
 +<para>このプログラムのライセンスは <ulink url="common/x11-license.html">X11 License</ulink> です。</para>
 Index: kdoctools/customization/ja/entities/install-compile.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/install-compile.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/install-compile.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/install-compile.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/install-compile.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,12 +1,8 @@
 -<para>In order to compile and install &kappname; on your system, type the
 -following in the base directory of the &kappname; distribution:</para>
@@ -557,8 +1107,8 @@ Index: kdoctools/customization/ja/entities/install-compile.docbook
 +<para>&kappname; は <command>autoconf</command> と <command>automake</command> を使っているので容易にコンパイルできるはずです。問題にぶつかった場合は、&kde; のメーリングリストに報告してください。</para>
 Index: kdoctools/customization/ja/entities/install-intro.docbook
 ===================================================================
---- kdoctools/customization/ja/entities/install-intro.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/ja/entities/install-intro.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/ja/entities/install-intro.docbook	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/ja/entities/install-intro.docbook	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -1,6 +1,4 @@
  <!-- requires that packagename is defined in the documentation prologue -->
 -<para>&kappname; is part of the &kde; project &kde-http;.</para>
@@ -570,8 +1120,8 @@ Index: kdoctools/customization/ja/entities/install-intro.docbook
 +<para>&kappname; は &kde; プロジェクトのメイン &FTP; サイトである &kde-ftp; にある &package; パッケージに含まれています。</para>
 Index: kdoctools/customization/fr/user.entities
 ===================================================================
---- kdoctools/customization/fr/user.entities	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdoctools/customization/fr/user.entities	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdoctools/customization/fr/user.entities	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdoctools/customization/fr/user.entities	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -12,7 +12,7 @@
  <!ENTITY relecteurDavidAmmouial        '<othercredit role="reviewer"><firstname>David</firstname><surname>Ammouial</surname><affiliation><address><email></email></address></affiliation><contrib>Relecture de la documentation française&nbsp;</contrib></othercredit>'>
  
@@ -599,10 +1149,82 @@ Index: kdoctools/customization/fr/user.entities
  <!ENTITY SamiFantar          'Sami Fantar <email>sami.fantar@laposte.net</email>'>
  <!ENTITY NilsSergioFernandez 'Nils Sergio Fernandez Rönningen <email>nilsfernandez@yahoo.fr</email>'>
  <!ENTITY JeanJacquesFinazzi 'Jean-Jacques Finazzi <email>jj.finazzi@club.fr</email>'>
+Index: kdeprint/filters/pdfwrite.desktop
+===================================================================
+--- kdeprint/filters/pdfwrite.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeprint/filters/pdfwrite.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -67,7 +67,7 @@
+ Comment[nso]=Mongwadi wa PDF (o hloka tshwaelo yaGhost)
+ Comment[pa]=PDF ਲੇਖਕ (ਗੋਸਟ ਸਕ੍ਰਿਪਟ)
+ Comment[pl]=Zapisywacz PDF (wymaga GhostScripta)
+-Comment[pt]=Visualizador de PDF (necessita do GhostScript)
++Comment[pt]=Gravador de PDF (necessita do Ghostscript)
+ Comment[pt_BR]= Editor PDF  (necessita do GhostScript)
+ Comment[ro]=Generator de PDF (are nevoie de Ghostscript)
+ Comment[ru]=Сохранение в PDF (должен быть установлен GhostScript)
+Index: kdeprint/filters/pdf2ps.desktop
+===================================================================
+--- kdeprint/filters/pdf2ps.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeprint/filters/pdf2ps.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -10,6 +10,8 @@
+ Comment[eo]=Konvertilo de la dokumenttipo PDF al PS
+ Comment[es]=Conversor de PDF a PostScript
+ Comment[et]=PDF->PostScript teisendamine
++Comment[hr]=Pretvaranje iz PDF-a u PostScript
++Comment[hu]=PDF -> PostScript konvertálóprogram
+ Comment[it]=Convertitore da PDF a PostScript
+ Comment[ja]=PDF から PostScript に変換
+ Comment[km]=កម្មវិធីបម្លែង PDF ទៅ​ជា PostScript
+@@ -17,6 +19,7 @@
+ Comment[nl]=Conversie van PDF naar PostScript
+ Comment[pt]=Conversor de PDF para PostScript
+ Comment[pt_BR]=Conversor de PDF para PostScript
++Comment[ru]=Преобразование PDF в PostScript
+ Comment[sk]=Prevod súborov z PDF do PostScript
+ Comment[sl]=Pretvornik datotek PDF v PostScript
+ Comment[sr]=Конвертор из PDF-а у PostScript
+Index: kdeprint/filters/psresize.desktop
+===================================================================
+--- kdeprint/filters/psresize.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeprint/filters/psresize.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -56,7 +56,7 @@
+ Comment[mn]=Хэвлэх зайг өөр хэмжээтэй цаасанд тааруулах
+ Comment[ms]=Skala Cetak Kandungan untuk menepati Saiz Kertas Lain
+ Comment[mt]=Kabbar/ċekken id-daqs ta'l-print biex joqgħod fuq karta ta' daqs differenti
+-Comment[nb]=Tilpass utskriften til en annen papirstørrelse
++Comment[nb]=Tilpass utskrifta til en annen papirstørrelse
+ Comment[nds]=Utdruck en anner Papeergrött topassen
+ Comment[ne]=अन्य कागज साइजमा ठीक गर्न मापन मुद्रण सामग्री
+ Comment[nl]=Schaal de afdrukinhoud zodat deze past op een andere papierformaat
+Index: kdeprint/specials.desktop
+===================================================================
+--- kdeprint/specials.desktop	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeprint/specials.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -1101,7 +1101,7 @@
+ Name[de]=Erweitertes Faxprogramm (ksendfax)
+ Name[el]=Προχωρημένο εργαλείο αποστολής φαξ (ksendfax)
+ Name[eo]=Pliluksa Faksilo (ksendfax)
+-Name[es]=Herramienta avanzada de envio de faxes (ksendfax)
++Name[es]=Herramienta avanzada de envío de faxes (ksendfax)
+ Name[et]=Võimas faksimise rakendus (ksendfax)
+ Name[eu]=Faxaren tresna aurreratua (ksendfax)
+ Name[fa]=ابزار دورنگار پیشرفته)KSendFax(
+Index: kdeui/qxembed.h
+===================================================================
+--- kdeui/qxembed.h	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeui/qxembed.h	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -226,6 +226,7 @@
+     QXEmbedData* d;
+     void checkGrab();
+     void sendSyntheticConfigureNotifyEvent();
++    void handleEmbed();
+ };
+ 
+ 
 Index: kdeui/kactionclasses.cpp
 ===================================================================
---- kdeui/kactionclasses.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 727611)
-+++ kdeui/kactionclasses.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 727611)
+--- kdeui/kactionclasses.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeui/kactionclasses.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
 @@ -667,8 +667,8 @@
      KToolBar* bar = static_cast<KToolBar*>( widget );
      int id_ = KAction::getToolButtonID();
@@ -614,6 +1236,112 @@ Index: kdeui/kactionclasses.cpp
                        toolTip(), -1, index );
  
      QComboBox *cb = bar->getCombo( id_ );
+Index: kdeui/qxembed.cpp
+===================================================================
+--- kdeui/qxembed.cpp	(.../tags/KDE/3.5.8/kdelibs)	(wersja 748139)
++++ kdeui/qxembed.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 748139)
+@@ -1013,6 +1013,44 @@
+     }
+ }
+ 
++// When a window is reparented into QXEmbed (or created inside of it), this function
++// sets up the actual embedding.
++void QXEmbed::handleEmbed()
++{
++    // only XEMBED apps can survive crash,
++    // see http://lists.kde.org/?l=kfm-devel&m=106752026501968&w=2
++    if( !d->xplain )
++        XAddToSaveSet( qt_xdisplay(), window );
++    XResizeWindow(qt_xdisplay(), window, width(), height());
++    XMapRaised(qt_xdisplay(), window);
++    // L2024: see L2900.
++    sendSyntheticConfigureNotifyEvent();
++    // L2025: ??? [any idea about drag&drop?] 
++    extraData()->xDndProxy = window;
++    if ( parent() ) {
++        // L2030: embedded window might have new size requirements.
++        //        see L2500, L2520, L2550.
++        QEvent * layoutHint = new QEvent( QEvent::LayoutHint );
++        QApplication::postEvent( parent(), layoutHint );
++    }
++    windowChanged( window );
++    if (d->xplain) {
++        // L2040: Activation has changed. Grab state might change. See L2800.
++        checkGrab();
++        if ( hasFocus() )
++            // L2041: Send fake focus message to inform the client. See L1521.
++            sendFocusMessage(window, XFocusIn, NotifyNormal, NotifyPointer );
++    } else {
++        // L2050: Send XEMBED messages (see L0670, L1312, L1322, L1530)
++        sendXEmbedMessage( window, XEMBED_EMBEDDED_NOTIFY, 0, (long) winId() );
++        if (isActiveWindow())
++            sendXEmbedMessage( window, XEMBED_WINDOW_ACTIVATE);
++        else
++            sendXEmbedMessage( window, XEMBED_WINDOW_DEACTIVATE);
++        if ( hasFocus() )
++            sendXEmbedMessage( window, XEMBED_FOCUS_IN, XEMBED_FOCUS_CURRENT );
++    }
++}
+ 
+ // L1800: Returns the window identifier of the embedded window
+ WId QXEmbed::embeddedWinId() const
+@@ -1051,6 +1089,13 @@
+             emit embeddedWindowDestroyed();
+         }
+         break;
++    case CreateNotify:
++        // A window was created inside of QXEmbed, handle it as embedded
++        if( window == 0 ) { // only one window
++            window = e->xcreatewindow.window;
++            handleEmbed();
++        }
++        break;
+     case ReparentNotify:
+         if ( e->xreparent.window == d->focusProxy->winId() )
+             break; // ignore proxy
+@@ -1067,40 +1112,8 @@
+                 XRemoveFromSaveSet( qt_xdisplay(), window );
+         } else if ( e->xreparent.parent == winId()){
+             // L2020: We got a window. Complete the embedding process.
+-            window = e->xreparent.window;
+-            // only XEMBED apps can survive crash,
+-            // see http://lists.kde.org/?l=kfm-devel&m=106752026501968&w=2
+-            if( !d->xplain )
+-                XAddToSaveSet( qt_xdisplay(), window );
+-            XResizeWindow(qt_xdisplay(), window, width(), height());
+-            XMapRaised(qt_xdisplay(), window);
+-            // L2024: see L2900.
+-            sendSyntheticConfigureNotifyEvent();
+-            // L2025: ??? [any idea about drag&drop?] 
+-            extraData()->xDndProxy = window;
+-            if ( parent() ) {
+-                // L2030: embedded window might have new size requirements.
+-                //        see L2500, L2520, L2550.
+-                QEvent * layoutHint = new QEvent( QEvent::LayoutHint );
+-                QApplication::postEvent( parent(), layoutHint );
+-            }
+-            windowChanged( window );
+-            if (d->xplain) {
+-                // L2040: Activation has changed. Grab state might change. See L2800.
+-                checkGrab();
+-                if ( hasFocus() )
+-                    // L2041: Send fake focus message to inform the client. See L1521.
+-                    sendFocusMessage(window, XFocusIn, NotifyNormal, NotifyPointer );
+-            } else {
+-                // L2050: Send XEMBED messages (see L0670, L1312, L1322, L1530)
+-                sendXEmbedMessage( window, XEMBED_EMBEDDED_NOTIFY, 0, (long) winId() );
+-                if (isActiveWindow())
+-                    sendXEmbedMessage( window, XEMBED_WINDOW_ACTIVATE);
+-                else
+-                    sendXEmbedMessage( window, XEMBED_WINDOW_DEACTIVATE);
+-                if ( hasFocus() )
+-                    sendXEmbedMessage( window, XEMBED_FOCUS_IN, XEMBED_FOCUS_CURRENT );
+-            }
++            if( e->xreparent.window == window )
++                handleEmbed();
+         }
+         break;
+     case ButtonPress:
 
 Zmiany atrybutów dla: .
 ___________________________________________________________________
