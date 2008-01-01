@@ -21,7 +21,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.8
-Release:	9
+Release:	10
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -111,6 +111,7 @@ Requires:	hicolor-icon-theme
 Requires:	libxml2-progs
 Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
+Requires:	sperl
 Requires:	xorg-app-iceauth
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
