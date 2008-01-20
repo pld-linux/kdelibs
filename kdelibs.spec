@@ -105,6 +105,7 @@ Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
+Requires:	kdelibs-shared
 Requires:	libxml2-progs
 Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
@@ -339,6 +340,14 @@ Zainstaluj ten pakiet jeżeli korzystasz z nietypowej konfiguracji
 nieobsługującej pts-ów typu Unix98 i obawiasz się inwigilacji ze
 strony innych użytkowników lokalnych.
 
+%package shared
+Summary:	KDE3 and KDE4 shared files
+Group:		X11/Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description shared
+KDE3 and KDE4 shared files
+
 %prep
 %setup -q -a1
 %patch100 -p0
@@ -440,7 +449,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %ghost /etc/security/fileshare.conf
-%attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
 %attr(755,root,root) %{_bindir}/dcop
@@ -489,12 +497,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/ksvgtopng
 %attr(755,root,root) %{_bindir}/ktelnetservice
 %attr(755,root,root) %{_bindir}/ktradertest
-%attr(755,root,root) %{_bindir}/kunittestmodrunner
 %attr(755,root,root) %{_bindir}/kwrapper
 %attr(755,root,root) %{_bindir}/lnusertemp
 %attr(755,root,root) %{_bindir}/make_driver_db_cups
 %attr(755,root,root) %{_bindir}/make_driver_db_lpr
-%attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(4755,root,root) %{_bindir}/start_kdeinit
@@ -505,24 +511,22 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/dcopidlng
 %attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
 %{_datadir}/apps/dcopidlng/*.pm
-%{_datadir}/apps/katepart
 %{_datadir}/apps/kcertpart
-%{_datadir}/apps/kcm_componentchooser
-%dir %{_datadir}/apps/kconf_update
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kconf_update/*.upd
 %{_datadir}/apps/kdeprint
-%{_datadir}/apps/kdeui
-%{_datadir}/apps/kdewidgets
 # also contains 3rdparty kpartplugins dir
-%{_datadir}/apps/khtml
+%{_datadir}/apps/khtml/domain_info
+%{_datadir}/apps/khtml/icons
+%{_datadir}/apps/khtml/khtml.rc
+%{_datadir}/apps/khtml/khtml_popupmenu.rc
+%{_datadir}/apps/khtml/kpartplugins
 %{_datadir}/apps/knewstuff
 %{_datadir}/apps/kio_uiserver
-%{_datadir}/apps/kjava
+%{_datadir}/apps/kjava/icons
+%{_datadir}/apps/kjava/kjava.policy
+%{_datadir}/apps/kjava/pluginsinfo
 %{_datadir}/apps/knotify
-%{_datadir}/apps/ksgmltools2
-%{_datadir}/apps/kssl
 %{_datadir}/apps/kstyle
 %{_datadir}/apps/ktexteditor_docwordcompletion
 %{_datadir}/apps/ktexteditor_insertfile
@@ -530,10 +534,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ktexteditor_kdatatool
 %{_datadir}/apps/proxyscout
 %dir %{_datadir}/autostart
-%{_datadir}/config
+%{_datadir}/config/colors
+%{_datadir}/config/ipv6blacklist
+%{_datadir}/config/katefiletyperc
+%{_datadir}/config/katesyntaxhighlightingrc
+%{_datadir}/config/kdeprintrc
+%{_datadir}/config/khotnewstuffrc
+%{_datadir}/config/ksslcalist
+%{_datadir}/config/kthemestylerc
+%{_datadir}/config/language.codes
+%{_datadir}/config/magic
+%{_datadir}/config/ui/kprintpreviewui.rc
 %dir %{_datadir}/emoticons
 %{_datadir}/emoticons/Default
-%{_datadir}/locale/all_languages
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
@@ -612,7 +625,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_docdir}/kde
 %dir %{_kdedocdir}
 %dir %{_kdedocdir}/en
-%{_kdedocdir}/en/common
 %lang(en) %{_kdedocdir}/en/kspell
 
 %lang(ca) %dir %{_kdedocdir}/ca
@@ -667,11 +679,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(zh_TW) %dir %{_kdedocdir}/zh_TW/common
 
 # 3rdparty directories
-%dir %{_datadir}/applnk
-%dir %{_datadir}/applnk/.hidden
-%dir %{_datadir}/apps/profiles
-%dir %{_datadir}/apps/remotes
-%dir %{_datadir}/config.kcfg
 %dir %{_datadir}/services/kconfiguredialog
 
 # merged kabc files
@@ -921,3 +928,31 @@ rm -rf $RPM_BUILD_ROOT
 %files kgrantpty
 %defattr(644,root,root,755)
 %attr(4755,root,root) %{_bindir}/kgrantpty
+
+%files shared
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/checkXML
+%attr(755,root,root) %{_bindir}/kunittestmodrunner
+%attr(755,root,root) %{_bindir}/makekdewidgets
+%{_datadir}/apps/katepart
+%{_datadir}/apps/kcm_componentchooser
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
+%{_datadir}/apps/kdeui
+%{_datadir}/apps/kdewidgets
+%{_datadir}/apps/khtml/css/html4.css
+%{_datadir}/apps/khtml/css/quirks.css
+%{_datadir}/apps/khtml/khtml_browser.rc
+%{_datadir}/apps/kjava/kjava.jar
+%{_datadir}/apps/ksgmltools2
+%{_datadir}/apps/kssl
+%{_datadir}/config/ui/ui_standards.rc
+%{_datadir}/config/kdebug.areas
+%{_datadir}/config/kdebugrc
+%lang(en) %{_kdedocdir}/en/common
+%{_datadir}/locale/all_languages
+%dir %{_datadir}/apps/khtml
+%dir %{_datadir}/apps/khtml/css
+%dir %{_datadir}/apps/kjava
+%dir %{_datadir}/config
+%dir %{_datadir}/config/ui
+%dir %{_datadir}/apps/kconf_update
