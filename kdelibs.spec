@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.8
-Release:	11
+Release:	12
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -67,9 +67,9 @@ BuildRequires:	fam-devel
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	graphviz}
-%{?with_kerberos5:BuildRequires:	krb5-devel}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
+%{?with_kerberos5:BuildRequires:	krb5-devel}
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
@@ -105,6 +105,7 @@ Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
+Requires:	kde-common-dirs
 Requires:	kdelibs-shared
 Requires:	libxml2-progs
 Requires:	qt >= 6:3.3.3-4
@@ -413,7 +414,6 @@ install -d \
 	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
 	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
 	$RPM_BUILD_ROOT%{_datadir}/config/magic \
-	$RPM_BUILD_ROOT%{_datadir}/config.kcfg \
 	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
 	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
