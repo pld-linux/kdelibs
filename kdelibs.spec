@@ -7,7 +7,7 @@
 %bcond_without	hidden_visibility	# no gcc hidden visibility
 #
 %define		_state		stable
-%define		artsver		13:1.5.8
+%define		artsver		13:1.5.9
 
 Summary:	K Desktop Environment - libraries
 Summary(es.UTF-8):	K Desktop Environment - bibliotecas
@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE
 Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
-Version:	3.5.8
-Release:	12
+Version:	3.5.9
+Release:	1
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	acaa37e79e840d10dca326277a20863c
+# Source0-md5:	55e5f00874933d1a7ba7c95e369a205e
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -351,7 +351,7 @@ KDE3 and KDE4 shared files
 
 %prep
 %setup -q -a1
-%patch100 -p0
+#%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
@@ -480,6 +480,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kdontchangethehostname
 %attr(755,root,root) %{_bindir}/kdostartupconfig
 %attr(755,root,root) %{_bindir}/kfile
+%attr(755,root,root) %{_bindir}/kfmexec
 %attr(755,root,root) %{_bindir}/khotnewstuff
 # removed?
 #%attr(755,root,root) %{_bindir}/kimage_concat
