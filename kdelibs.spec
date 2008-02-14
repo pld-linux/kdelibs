@@ -13,12 +13,12 @@
 %define		artsver		13:1.5.8
 
 Summary:	K Desktop Environment - libraries
-Summary(es):	K Desktop Environment - bibliotecas
-Summary(ko):	KDE - ╤Сюл╨Й╥╞╦╝
-Summary(pl):	K Desktop Environment - biblioteki
-Summary(pt_BR):	Bibliotecas de fundaГЦo do KDE
-Summary(ru):	K Desktop Environment - Библиотеки
-Summary(uk):	K Desktop Environment - Б╕бл╕отеки
+Summary(es.UTF-8):	K Desktop Environment - bibliotecas
+Summary(ko.UTF-8):	KDE - К²╪Л²╢К╦▄К÷╛К╕╛
+Summary(pl.UTF-8):	K Desktop Environment - biblioteki
+Summary(pt_BR.UTF-8):	Bibliotecas de fundaц╖цёo do KDE
+Summary(ru.UTF-8):	K Desktop Environment - п▒п╦п╠п╩п╦п╬я┌п╣п╨п╦
+Summary(uk.UTF-8):	K Desktop Environment - п▒я√п╠п╩я√п╬я┌п╣п╨п╦
 Name:		kdelibs
 Version:	3.5.8
 Release:	4
@@ -174,62 +174,62 @@ Included in this package are among others:
 - khtml - KDE HTML widget with javascript and CSS support,
 - kwallet - KDE password manager.
 
-%description -l es
+%description -l es.UTF-8
 Bibliotecas para KDE.
 
-%description -l pl
+%description -l pl.UTF-8
 Ten pakiet zawiera biblioteki potrzebne do rozwijania i uruchamiania
-aplikacji KDE, rС©n╠ dokumentacjЙ oraz moduЁy z motywami wygl╠du KDE.
+aplikacji KDE, rцЁе╪nд┘ dokumentacjд≥ oraz moduе┌y z motywami wyglд┘du KDE.
 
-Pakiet ten zawiera miЙdzy innymi:
-- kdecore - podstawow╠ bibliotekЙ KDE,
-- kdeui - interfejs u©ytkownika KDE,
-- khtml - obsЁugЙ HTML, javascript oraz CSS dla KDE,
-- kwallet - system zarz╠dzania hasЁami w KDE.
+Pakiet ten zawiera miд≥dzy innymi:
+- kdecore - podstawowд┘ bibliotekд≥ KDE,
+- kdeui - interfejs uе╪ytkownika KDE,
+- khtml - obsе┌ugд≥ HTML, javascript oraz CSS dla KDE,
+- kwallet - system zarzд┘dzania hasе┌ami w KDE.
 
-%description -l pt_BR
-Bibliotecas de fundaГЦo do KDE requeridas por todo e qualquer
+%description -l pt_BR.UTF-8
+Bibliotecas de fundaц╖цёo do KDE requeridas por todo e qualquer
 aplicativo KDE.
 
-%description -l ru
-Библиотеки для K Desktop Environment.
+%description -l ru.UTF-8
+п▒п╦п╠п╩п╦п╬я┌п╣п╨п╦ п╢п╩я▐ K Desktop Environment.
 
-Включены библиотеки KDE:
+п▓п╨п╩я▌я┤п╣п╫я▀ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ KDE:
 - jscript (javascript),
-- kdecore (ядро KDE),
-- kdeui (интерфейс пользователя),
-- khtmlw (работа с HTML),
-- kimgio (обработка изображений).
-- kspell (проверка орфографии),
+- kdecore (я▐п╢я─п╬ KDE),
+- kdeui (п╦п╫я┌п╣я─я└п╣п╧я│ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐),
+- khtmlw (я─п╟п╠п╬я┌п╟ я│ HTML),
+- kimgio (п╬п╠я─п╟п╠п╬я┌п╨п╟ п╦п╥п╬п╠я─п╟п╤п╣п╫п╦п╧).
+- kspell (п©я─п╬п╡п╣я─п╨п╟ п╬я─я└п╬пЁя─п╟я└п╦п╦),
 
-%description -l uk
-Б╕бл╕отеки для K Desktop Environment.
+%description -l uk.UTF-8
+п▒я√п╠п╩я√п╬я┌п╣п╨п╦ п╢п╩я▐ K Desktop Environment.
 
-Включен╕ так╕ б╕бл╕отеки KDE:
+п▓п╨п╩я▌я┤п╣п╫я√ я┌п╟п╨я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦ KDE:
 - jscript (javascript),
-- kdecore (ядро KDE),
-- kdeui (╕нтерфейс користувача),
-- khtmlw (робота з HTML),
-- kimgio (обробка зображень).
-- kspell (перев╕рка орфограф╕╖),
+- kdecore (я▐п╢я─п╬ KDE),
+- kdeui (я√п╫я┌п╣я─я└п╣п╧я│ п╨п╬я─п╦я│я┌я┐п╡п╟я┤п╟),
+- khtmlw (я─п╬п╠п╬я┌п╟ п╥ HTML),
+- kimgio (п╬п╠я─п╬п╠п╨п╟ п╥п╬п╠я─п╟п╤п╣п╫я▄).
+- kspell (п©п╣я─п╣п╡я√я─п╨п╟ п╬я─я└п╬пЁя─п╟я└я√я≈),
 
 %package libs
 Summary:	KDE libraries
-Summary(pl):	Biblioteki KDE
+Summary(pl.UTF-8):	Biblioteki KDE
 Group:		Libraries
 
 %description libs
 KDE libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki KDE.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
-Summary(pl):	kdelibs - pliki nagЁСwkowe i dokumentacja do kdelibs
-Summary(pt_BR):	Arquivos de inclusЦo e documentaГЦo para compilar aplicativos KDE
-Summary(ru):	Хедеры и документация для компилляции программ KDE
-Summary(uk):	Хедери та документац╕я для комп╕ляц╕╖ програм KDE
+Summary(pl.UTF-8):	kdelibs - pliki nagе┌цЁwkowe i dokumentacja do kdelibs
+Summary(pt_BR.UTF-8):	Arquivos de inclusцёo e documentaц╖цёo para compilar aplicativos KDE
+Summary(ru.UTF-8):	п╔п╣п╢п╣я─я▀ п╦ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├п╦я▐ п╢п╩я▐ п╨п╬п╪п©п╦п╩п╩я▐я├п╦п╦ п©я─п╬пЁя─п╟п╪п╪ KDE
+Summary(uk.UTF-8):	п╔п╣п╢п╣я─п╦ я┌п╟ п╢п╬п╨я┐п╪п╣п╫я┌п╟я├я√я▐ п╢п╩я▐ п╨п╬п╪п©я√п╩я▐я├я√я≈ п©я─п╬пЁя─п╟п╪ KDE
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
@@ -253,24 +253,24 @@ Conflicts:	kdebase-devel <= 9:3.1.90
 This package contains header files and development documentation for
 kdelibs.
 
-%description devel -l pl
-Pakiet ten zawiera pliki nagЁСwkowe i dokumentacjЙ potrzebn╠ przy
-pisaniu wЁasnych programСw wykorzystuj╠cych kdelibs.
+%description devel -l pl.UTF-8
+Pakiet ten zawiera pliki nagе┌цЁwkowe i dokumentacjд≥ potrzebnд┘ przy
+pisaniu wе┌asnych programцЁw wykorzystujд┘cych kdelibs.
 
-%description devel -l pt_BR
-Este pacote contИm os arquivos de inclusЦo que sЦo necessАrios para
+%description devel -l pt_BR.UTF-8
+Este pacote contц╘m os arquivos de inclusцёo que sцёo necessц║rios para
 compilar aplicativos KDE.
 
-%description devel -l ru
-Этот пакет содержит хедеры, необходимые для компиляции программ для
+%description devel -l ru.UTF-8
+п╜я┌п╬я┌ п©п╟п╨п╣я┌ я│п╬п╢п╣я─п╤п╦я┌ я┘п╣п╢п╣я─я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ п╨п╬п╪п©п╦п╩я▐я├п╦п╦ п©я─п╬пЁя─п╟п╪п╪ п╢п╩я▐
 KDE.
 
-%description devel -l uk
-Цей пакет м╕стить хедери, необх╕дн╕ для комп╕ляц╕╖ програм для KDE.
+%description devel -l uk.UTF-8
+п╕п╣п╧ п©п╟п╨п╣я┌ п╪я√я│я┌п╦я┌я▄ я┘п╣п╢п╣я─п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ п╨п╬п╪п©я√п╩я▐я├я√я≈ п©я─п╬пЁя─п╟п╪ п╢п╩я▐ KDE.
 
 %package apidocs
 Summary:	API documentation
-Summary(pl):	Dokumentacja API
+Summary(pl.UTF-8):	Dokumentacja API
 Group:		Documentation
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	kttsd-apidocs
@@ -281,15 +281,15 @@ Annotated reference of KDE libraries programming interface including:
 - class members
 - namespaces
 
-%description apidocs -l pl
+%description apidocs -l pl.UTF-8
 Dokumentacja interfejsu programowania bibliotek KDE z przypisami.
 Zawiera:
-- listy klas i ich skЁadnikСw
-- listЙ przestrzeni nazw (namespace)
+- listy klas i ich skе┌adnikцЁw
+- listд≥ przestrzeni nazw (namespace)
 
 %package artsmessage
 Summary:	Program used to display aRts daemon messages
-Summary(pl):	Program do wy╤wietlania komunikatСw demona aRts
+Summary(pl.UTF-8):	Program do wyе⌡wietlania komunikatцЁw demona aRts
 Group:		Applications
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	arts-message
@@ -298,14 +298,14 @@ Obsoletes:	arts-message
 This program is run when a -m option argument is passed to aRts
 daemon. It displays messages generated by daemon.
 
-%description artsmessage -l pl
+%description artsmessage -l pl.UTF-8
 Ten program jest uruchamiany, gdy do demona aRts zostanie przekazana
-opcja z parametrem -m. BЙdzie on u©ywany do wy╤wietlenia komunikatСw
+opcja z parametrem -m. Bд≥dzie on uе╪ywany do wyе⌡wietlenia komunikatцЁw
 demona.
 
 %package kgrantpty
 Summary:	Helper program to fix terminal permissions
-Summary(pl):	Program pomocniczy do ustawiania uprawnieЯ terminala
+Summary(pl.UTF-8):	Program pomocniczy do ustawiania uprawnieе└ terminala
 Group:		Applications/Terminal
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -320,16 +320,16 @@ Install this package if you're running a custom system that lacks
 Unix98 pts support and privacy from other local users is a concern for
 you.
 
-%description kgrantpty -l pl
-Ten program, dziaЁaj╠cy z uprawnieniami roota, poprawia uprawnienia
-plikСw pseudo-terminali, ©eby unikn╠Ф ich podsЁuchiwania przez innych
-lokalnych u©ytkownikСw. Systemy obsЁuguj╠ce /dev/pts (typowe
-instalacje PLD go obsЁuguj╠) nie wymagaj╠ do tego dodatkowego
-programu, w tym przypadku ten pakiet jest bezu©yteczny.
+%description kgrantpty -l pl.UTF-8
+Ten program, dziaе┌ajд┘cy z uprawnieniami roota, poprawia uprawnienia
+plikцЁw pseudo-terminali, е╪eby uniknд┘д┤ ich podsе┌uchiwania przez innych
+lokalnych uе╪ytkownikцЁw. Systemy obsе┌ugujд┘ce /dev/pts (typowe
+instalacje PLD go obsе┌ugujд┘) nie wymagajд┘ do tego dodatkowego
+programu, w tym przypadku ten pakiet jest bezuе╪yteczny.
 
-Zainstaluj ten pakiet je©eli korzystasz z nietypowej konfiguracji
-nieobsЁuguj╠cej pts-Сw typu Unix98 i obawiasz siЙ inwigilacji ze
-strony innych u©ytkownikСw lokalnych.
+Zainstaluj ten pakiet jeе╪eli korzystasz z nietypowej konfiguracji
+nieobsе┌ugujд┘cej pts-цЁw typu Unix98 i obawiasz siд≥ inwigilacji ze
+strony innych uе╪ytkownikцЁw lokalnych.
 
 %prep
 %setup -q -a1
