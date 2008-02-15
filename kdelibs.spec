@@ -1,4 +1,3 @@
-#
 # Conditional build:
 %bcond_without	alsa			# build without ALSA support
 %bcond_without	apidocs			# don't prepare API documentation
@@ -43,7 +42,7 @@ Patch10:	%{name}-konqueror-agent.patch
 # http://kate-editor.org/downloads/syntax_highlighting?kateversion=2.5
 Patch11:	%{name}-kate-syntax.patch
 URL:		http://www.kde.org/
-BuildRequires:	OpenEXR-devel >= 1.2.2
+BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 BuildRequires:	arts-qt-devel >= %{artsver}
@@ -362,10 +361,10 @@ KDE3 and KDE4 shared files
 %patch10 -p1
 %patch11 -p1
 
-rm -f configure
-cp /usr/share/automake/config.sub admin
+mv -f configure{,.dist}
 
 %build
+cp /usr/share/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 if [ ! -f configure ]; then
@@ -393,50 +392,57 @@ export path_sudo=/usr/bin/sudo
 %{?with_apidocs:%{__make} apidox}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
+	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
-	kde_libs_htmldir=%{_kdedocdir}
-
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
-install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
-
-install -d \
-	$RPM_BUILD_ROOT/etc/security \
-	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
-	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
-	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
-	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
-	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
-	$RPM_BUILD_ROOT%{_datadir}/config/magic \
-	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
-	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
-
-install -d $RPM_BUILD_ROOT%{_kdedocdir}/{ca,cs,da,de,en,en_GB,es,et,fi,fr,hu,it,ja,nb,nl,pl,pt,pt_BR,ro,ru,sk,sl,sv,tr,uk,zh_TW}/common
-
-# For fileshare
-touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-%{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
-
-if [ -d $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs ] ; then
-	mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
+	%{__make} install \
+		DESTDIR=$RPM_BUILD_ROOT \
+		kde_htmldir=%{_kdedocdir}
+		kde_libs_htmldir=%{_kdedocdir}
+	touch makeinstall.stamp
 fi
 
-# packaged by hicolor-icon-theme
-rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
+if [ ! -f installed.stamp ]; then
+	install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
+	install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
+	install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
-# remove *.la for dynamic plugins. kde lib loader handles .so now.
-rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
-# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
-rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
-rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
+	install -d \
+		$RPM_BUILD_ROOT/etc/security \
+		$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
+		$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
+		$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
+		$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
+		$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
+		$RPM_BUILD_ROOT%{_datadir}/config/magic \
+		$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
+		$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
-# remove unwanted boost deps from .la
-sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
-sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
+	install -d $RPM_BUILD_ROOT%{_kdedocdir}/{ca,cs,da,de,en,en_GB,es,et,fi,fr,hu,it,ja,nb,nl,pl,pt,pt_BR,ro,ru,sk,sl,sv,tr,uk,zh_TW}/common
+
+	# For fileshare
+	touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
+	%{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
+
+	if [ -d $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs ] ; then
+		mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
+	fi
+
+	# packaged by hicolor-icon-theme
+	rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
+
+	# remove *.la for dynamic plugins. kde lib loader handles .so now.
+	rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+	# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
+	rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
+	rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
+
+	# remove unwanted boost deps from .la
+	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
+	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
+
+	touch installed.stamp
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -766,15 +772,25 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libshellscript.so
 %attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libDCOP.so.4
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libartskde.so.1
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc.so.1
 %attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_dir.so.1
 %attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_file.so.1
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_ldapkio.so.1
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkatepartinterfaces.so.0
 %attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdecore.so.4
 %attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdefakes.so.4
 %attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdefx.so.4
 %attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
 %attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
@@ -787,34 +803,63 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_kio_uiserver.so
 %attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so
 %attr(755,root,root) %{_libdir}/libkdeprint.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdeprint.so.4
 %attr(755,root,root) %{_libdir}/libkdeprint_management.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdeprint_management.so.4
 %attr(755,root,root) %{_libdir}/libkdesasl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdesasl.so.1
 %attr(755,root,root) %{_libdir}/libkdesu.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdesu.so.4
 %attr(755,root,root) %{_libdir}/libkdeui.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdeui.so.4
 %attr(755,root,root) %{_libdir}/libkdnssd.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdnssd.so.1
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkhtml.so.4
 %attr(755,root,root) %{_libdir}/libkimproxy.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkimproxy.so.0
 %attr(755,root,root) %{_libdir}/libkio.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkio.so.4
 %attr(755,root,root) %{_libdir}/libkjava.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkjava.so.1
 %attr(755,root,root) %{_libdir}/libkjs.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkjs.so.1
 %attr(755,root,root) %{_libdir}/libkmdi.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkmdi.so.1
 %attr(755,root,root) %{_libdir}/libkmdi2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkmdi2.so.1
 %attr(755,root,root) %{_libdir}/libkmediaplayer.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkmediaplayer.so.0
 %attr(755,root,root) %{_libdir}/libkmid.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkmid.so.0
 %attr(755,root,root) %{_libdir}/libknewstuff.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libknewstuff.so.1
 %attr(755,root,root) %{_libdir}/libkntlm.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkntlm.so.0
 %attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkparts.so.2
 %attr(755,root,root) %{_libdir}/libkresources.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkresources.so.1
 %attr(755,root,root) %{_libdir}/libkscreensaver.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkscreensaver.so.4
 %attr(755,root,root) %{_libdir}/libkscript.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkscript.so.0
 %attr(755,root,root) %{_libdir}/libkspell.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkspell.so.4
 %attr(755,root,root) %{_libdir}/libkspell2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkspell2.so.1
 %attr(755,root,root) %{_libdir}/libktexteditor.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libktexteditor.so.0
 %attr(755,root,root) %{_libdir}/libkunittest.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkunittest.so.1
 %attr(755,root,root) %{_libdir}/libkutils.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkutils.so.1
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkwalletbackend.so.1
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkwalletclient.so.1
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libvcard.so.0
 
 # 3rdparty directories
 %dir %{_libdir}/kconf_update_bin
