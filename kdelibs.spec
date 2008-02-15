@@ -999,4 +999,3 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/kjava
 %dir %{_datadir}/config
 %dir %{_datadir}/config/ui
-%dir %{_datadir}/apps/kconf_update
