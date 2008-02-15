@@ -517,8 +517,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
 %{_datadir}/apps/dcopidlng/*.pm
 %{_datadir}/apps/kcertpart
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
 %{_datadir}/apps/kconf_update/*.upd
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kdeprint
 # also contains 3rdparty kpartplugins dir
 %{_datadir}/apps/khtml/domain_info
@@ -980,7 +981,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %{_datadir}/apps/katepart
 %{_datadir}/apps/kcm_componentchooser
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kdeui
 %{_datadir}/apps/kdewidgets
 %{_datadir}/apps/khtml/css/html4.css
