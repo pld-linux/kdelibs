@@ -17,7 +17,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.9
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -110,7 +110,6 @@ Requires:	kdelibs-shared
 Requires:	libxml2-progs
 Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
-Requires:	sperl
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
 Obsoletes:	kdelibs-kabc
