@@ -397,51 +397,51 @@ export path_sudo=/usr/bin/sudo
 if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
 	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
-	kde_libs_htmldir=%{_kdedocdir}
+	%{__make} install \
+		DESTDIR=$RPM_BUILD_ROOT \
+		kde_htmldir=%{_kdedocdir}
+		kde_libs_htmldir=%{_kdedocdir}
 	touch makeinstall.stamp
 fi
 
 if [ ! -f installed.stamp ]; then
-install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
-install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
-install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
+	install %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
+	install %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
+	install %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
-install -d \
-	$RPM_BUILD_ROOT/etc/security \
-	$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
-	$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
-	$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
-	$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
-	$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
-	$RPM_BUILD_ROOT%{_datadir}/config/magic \
-	$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
-	$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
+	install -d \
+		$RPM_BUILD_ROOT/etc/security \
+		$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
+		$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
+		$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
+		$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
+		$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
+		$RPM_BUILD_ROOT%{_datadir}/config/magic \
+		$RPM_BUILD_ROOT%{_datadir}/services/kconfiguredialog \
+		$RPM_BUILD_ROOT%{_iconsdir}/crystalsvg/{16x16,22x22,32x32,48x48,64x64,128x128}/apps
 
-install -d $RPM_BUILD_ROOT%{_kdedocdir}/{ca,cs,da,de,en,en_GB,es,et,fi,fr,hu,it,ja,nb,nl,pl,pt,pt_BR,ro,ru,sk,sl,sv,tr,uk,zh_TW}/common
+	install -d $RPM_BUILD_ROOT%{_kdedocdir}/{ca,cs,da,de,en,en_GB,es,et,fi,fr,hu,it,ja,nb,nl,pl,pt,pt_BR,ro,ru,sk,sl,sv,tr,uk,zh_TW}/common
 
-# For fileshare
-touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
-%{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
+	# For fileshare
+	touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
+	%{__sed} -i -e 's|/etc/init.d|/etc/rc.d/init.d|g' $RPM_BUILD_ROOT%{_bindir}/fileshare*
 
-if [ -d $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs ] ; then
-	mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
-fi
+	if [ -d $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-%{version}-apidocs ] ; then
+		mv -f $RPM_BUILD_ROOT%{_kdedocdir}/en/%{name}-{%{version}-,}apidocs
+	fi
 
-# packaged by hicolor-icon-theme
-rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
+	# packaged by hicolor-icon-theme
+	rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
-# remove *.la for dynamic plugins. kde lib loader handles .so now.
-rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
-# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
-rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
-rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
+	# remove *.la for dynamic plugins. kde lib loader handles .so now.
+	rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+	# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
+	rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
+	rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
 
-# remove unwanted boost deps from .la
-sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
-sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
+	# remove unwanted boost deps from .la
+	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
+	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
 
 	touch installed.stamp
 fi
