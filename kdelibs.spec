@@ -341,12 +341,16 @@ nieobsługującej pts-ów typu Unix98 i obawiasz się inwigilacji ze
 strony innych użytkowników lokalnych.
 
 %package shared
-Summary:	KDE3 and KDE4 shared files
+Summary:	KDE 3 and KDE 4 shared files
+Summary(pl.UTF-8):	Pliki współdzielone między KDE 3 i KDE 4
 Group:		X11/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description shared
-KDE3 and KDE4 shared files
+KDE 3 and KDE 4 shared files.
+
+%description shared -l pl.UTF-8
+Pliki współdzielone między KDE 3 i KDE 4.
 
 %prep
 %setup -q -a1
