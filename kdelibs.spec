@@ -29,7 +29,7 @@ Source1:	%{name}-wmfplugin.tar.bz2
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
-#Patch100:	%{name}-branch.diff
+Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch3:		%{name}-use_system_sgml.patch
@@ -354,7 +354,7 @@ Pliki współdzielone między KDE 3 i KDE 4.
 
 %prep
 %setup -q -a1
-#%patch100 -p0
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
