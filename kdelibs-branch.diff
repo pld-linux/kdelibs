@@ -1,7 +1,7 @@
 Index: kate/part/katesupercursor.cpp
 ===================================================================
---- kate/part/katesupercursor.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ kate/part/katesupercursor.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- kate/part/katesupercursor.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ kate/part/katesupercursor.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -186,7 +186,7 @@
  {
    if (newLine)
@@ -13,8 +13,8 @@ Index: kate/part/katesupercursor.cpp
           m_col -= col;
 Index: mimetypes/audio/x-oggflac.desktop
 ===================================================================
---- mimetypes/audio/x-oggflac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-oggflac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-oggflac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-oggflac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Ogg FLAC Klank
  Comment[ar]=ملف Ogg FLAC صوتي
@@ -26,8 +26,8 @@ Index: mimetypes/audio/x-oggflac.desktop
  Comment[bs]=Ogg FLAC audio
 Index: mimetypes/audio/vnd.rn-realaudio.desktop
 ===================================================================
---- mimetypes/audio/vnd.rn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/vnd.rn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/vnd.rn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/vnd.rn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -10,7 +10,7 @@
  Comment[ar]=ملف Real Audio
  Comment[az]=RealAudio Faylı
@@ -39,8 +39,8 @@ Index: mimetypes/audio/vnd.rn-realaudio.desktop
  Comment[bs]=RealAudio datoteka
 Index: mimetypes/audio/x-vorbis.desktop
 ===================================================================
---- mimetypes/audio/x-vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Ogg Vorbis Klank
  Comment[ar]=ملف Ogg Vorbis صوتي
@@ -52,8 +52,8 @@ Index: mimetypes/audio/x-vorbis.desktop
  Comment[bs]=Ogg Vorbis audio
 Index: mimetypes/audio/x-flac.desktop
 ===================================================================
---- mimetypes/audio/x-flac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-flac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-flac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-flac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -5,7 +5,7 @@
  Comment[af]=FLAC Klank
  Comment[ar]=ملف FLAC صوتي
@@ -65,8 +65,8 @@ Index: mimetypes/audio/x-flac.desktop
  Comment[bs]=FLAC audio
 Index: mimetypes/audio/x-aiff.desktop
 ===================================================================
---- mimetypes/audio/x-aiff.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-aiff.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-aiff.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-aiff.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -5,7 +5,7 @@
  Comment[af]=Aiff/Amiga Klank
  Comment[ar]=صوت AIFF/Amiga
@@ -78,8 +78,8 @@ Index: mimetypes/audio/x-aiff.desktop
  Comment[bs]=AIFF/Amiga audio
 Index: mimetypes/audio/mpegurl.desktop
 ===================================================================
---- mimetypes/audio/mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -10,7 +10,7 @@
  Comment[ar]=صوت انسيابي من MPEG الطبقة 3
  Comment[az]=Axıcı MPEG Layer 3 Audio
@@ -91,8 +91,8 @@ Index: mimetypes/audio/mpegurl.desktop
  Comment[bs]=Streaming MPEG Layer 3 audio
 Index: mimetypes/audio/x-musepack.desktop
 ===================================================================
---- mimetypes/audio/x-musepack.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-musepack.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-musepack.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-musepack.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=Musepack Audio
  Comment[af]=Musepack Klank
@@ -104,8 +104,8 @@ Index: mimetypes/audio/x-musepack.desktop
  Comment[bs]=Musepack audio
 Index: mimetypes/audio/x-mpegurl.desktop
 ===================================================================
---- mimetypes/audio/x-mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[ar]=صوت انسيابي من MPEG الطبقة 3
  Comment[az]=Axıcı MPEG Layer 3 Audio
@@ -117,8 +117,8 @@ Index: mimetypes/audio/x-mpegurl.desktop
  Comment[bs]=Streaming MPEG Layer 3 audio
 Index: mimetypes/audio/basic.desktop
 ===================================================================
---- mimetypes/audio/basic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/basic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/basic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/basic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -5,7 +5,7 @@
  Comment[af]=Ulaw (Sun) Audio
  Comment[ar]=صوت ULAW (صن) 
@@ -130,8 +130,8 @@ Index: mimetypes/audio/basic.desktop
  Comment[bs]=ULAW (Sun) audio
 Index: mimetypes/audio/prs.sid.desktop
 ===================================================================
---- mimetypes/audio/prs.sid.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/prs.sid.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/prs.sid.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/prs.sid.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=C64 SID Music
  Comment[af]=C64 SID Musiek
@@ -143,8 +143,8 @@ Index: mimetypes/audio/prs.sid.desktop
  Comment[bs]=C64 SID muzika
 Index: mimetypes/audio/x-mod.desktop
 ===================================================================
---- mimetypes/audio/x-mod.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-mod.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-mod.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-mod.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=Amiga Soundtracker Audio
  Comment[ar]=صوت Amiga Soundtracker
@@ -156,8 +156,8 @@ Index: mimetypes/audio/x-mod.desktop
  Comment[bs]=Amiga Soundtracker audio
 Index: mimetypes/audio/aac.desktop
 ===================================================================
---- mimetypes/audio/aac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/aac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/aac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/aac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف AAC صوتي
  Comment[az]=AAC Səsi
@@ -169,8 +169,8 @@ Index: mimetypes/audio/aac.desktop
  Comment[bs]=AAC zvuk
 Index: mimetypes/audio/x-pn-realaudio.desktop
 ===================================================================
---- mimetypes/audio/x-pn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-pn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-pn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-pn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[ar]=ملف Real Audio
  Comment[az]=RealAudio Faylı
@@ -182,8 +182,8 @@ Index: mimetypes/audio/x-pn-realaudio.desktop
  Comment[bs]=RealAudio datoteka
 Index: mimetypes/audio/x-matroska.desktop
 ===================================================================
---- mimetypes/audio/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Matroska Klank
  Comment[ar]=ملف ماتروسكا صوتي
@@ -195,8 +195,8 @@ Index: mimetypes/audio/x-matroska.desktop
  Comment[bs]=Matroska audio
 Index: mimetypes/audio/x-midi.desktop
 ===================================================================
---- mimetypes/audio/x-midi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-midi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-midi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-midi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=MIDI Klank
  Comment[ar]=صوت MIDI
@@ -208,8 +208,8 @@ Index: mimetypes/audio/x-midi.desktop
  Comment[bs]=MIDI audio
 Index: mimetypes/audio/mpeg.desktop
 ===================================================================
---- mimetypes/audio/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment=MPEG Audio
  Comment[af]=MPEG Klank
@@ -221,8 +221,8 @@ Index: mimetypes/audio/mpeg.desktop
  Comment[bs]=MPEG audio
 Index: mimetypes/audio/x-adpcm.desktop
 ===================================================================
---- mimetypes/audio/x-adpcm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-adpcm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-adpcm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-adpcm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -5,7 +5,7 @@
  Comment[af]=PCM Klank
  Comment[ar]=صوت PCM
@@ -234,8 +234,8 @@ Index: mimetypes/audio/x-adpcm.desktop
  Comment[bs]=PCM audio
 Index: mimetypes/audio/x-speex.desktop
 ===================================================================
---- mimetypes/audio/x-speex.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-speex.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-speex.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-speex.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Speex Klank
  Comment[ar]=ملف Speex صوتي
@@ -247,8 +247,8 @@ Index: mimetypes/audio/x-speex.desktop
  Comment[bs]=Speex audio
 Index: mimetypes/audio/mp4.desktop
 ===================================================================
---- mimetypes/audio/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=MPEG-4 Klank
  Comment[ar]=صوت MPEG-4
@@ -260,8 +260,8 @@ Index: mimetypes/audio/mp4.desktop
  Comment[bs]=MPEG-4 audio
 Index: mimetypes/audio/x-wav.desktop
 ===================================================================
---- mimetypes/audio/x-wav.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-wav.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-wav.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-wav.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Wav Audio
  Comment[ar]=صوت WAV
@@ -273,8 +273,8 @@ Index: mimetypes/audio/x-wav.desktop
  Comment[bs]=WAV audio
 Index: mimetypes/audio/x-mp2.desktop
 ===================================================================
---- mimetypes/audio/x-mp2.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-mp2.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-mp2.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-mp2.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment=MPEG Layer 2 Audio
  Comment[af]=MPEG Vlak 2 Klank
@@ -286,8 +286,8 @@ Index: mimetypes/audio/x-mp2.desktop
  Comment[bs]=MPEG Layer 2 audio
 Index: mimetypes/audio/vorbis.desktop
 ===================================================================
---- mimetypes/audio/vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Ogg Vorbis Klank
  Comment[ar]=ملف Ogg Vorbis صوتي
@@ -299,8 +299,8 @@ Index: mimetypes/audio/vorbis.desktop
  Comment[bs]=Ogg Vorbis audio
 Index: mimetypes/audio/x-mp3.desktop
 ===================================================================
---- mimetypes/audio/x-mp3.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-mp3.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-mp3.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-mp3.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment[af]=MPEG Vlak 3 Klank
  Comment[ar]=صوت MPEG الطبقة 3
@@ -312,8 +312,8 @@ Index: mimetypes/audio/x-mp3.desktop
  Comment[bs]=MPEG Layer 3 audio
 Index: mimetypes/audio/x-ms-wma.desktop
 ===================================================================
---- mimetypes/audio/x-ms-wma.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/audio/x-ms-wma.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/audio/x-ms-wma.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/audio/x-ms-wma.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=Windows Media Audio
  Comment[af]=Windows Media Klank
@@ -325,8 +325,8 @@ Index: mimetypes/audio/x-ms-wma.desktop
  Comment[bs]=Windows Media audio
 Index: mimetypes/text/vnd.abc.desktop
 ===================================================================
---- mimetypes/text/vnd.abc.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/text/vnd.abc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/text/vnd.abc.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/text/vnd.abc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -3,7 +3,7 @@
  Comment=ABC Music File
  Comment[af]=ABC Musiek Lêer
@@ -338,8 +338,8 @@ Index: mimetypes/text/vnd.abc.desktop
  Comment[bs]=ABC muzička datoteka
 Index: mimetypes/video/x-ogm.desktop
 ===================================================================
---- mimetypes/video/x-ogm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/x-ogm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/x-ogm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/x-ogm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment=Ogg/Ogm Video
  Comment[ar]=ملف مرئي Ogg/Ogm
@@ -351,8 +351,8 @@ Index: mimetypes/video/x-ogm.desktop
  Comment[bs]=Ogg/Ogm video
 Index: mimetypes/video/x-theora.desktop
 ===================================================================
---- mimetypes/video/x-theora.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/x-theora.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/x-theora.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/x-theora.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=Theora Video
  Comment[ar]=ملف فيديو Theora
@@ -364,8 +364,8 @@ Index: mimetypes/video/x-theora.desktop
  Comment[bs]=Theora video
 Index: mimetypes/video/mpeg.desktop
 ===================================================================
---- mimetypes/video/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف مرئي MPEG
  Comment[az]=MPEG Video Faylı
@@ -377,8 +377,8 @@ Index: mimetypes/video/mpeg.desktop
  Comment[ca]=Vídeo MPEG
 Index: mimetypes/video/quicktime.desktop
 ===================================================================
---- mimetypes/video/quicktime.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/quicktime.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/quicktime.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/quicktime.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=Quicktime Video
  Comment[ar]=ملف مرئي Quicktime
@@ -390,8 +390,8 @@ Index: mimetypes/video/quicktime.desktop
  Comment[ca]=Vídeo Quicktime
 Index: mimetypes/video/x-ms-wmv.desktop
 ===================================================================
---- mimetypes/video/x-ms-wmv.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/x-ms-wmv.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/x-ms-wmv.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/x-ms-wmv.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -5,7 +5,7 @@
  Comment[ar]=ملف مرئي Windows Media
  Comment[az]=Windows Mediya Video Faylı
@@ -403,8 +403,8 @@ Index: mimetypes/video/x-ms-wmv.desktop
  Comment[bs]=Windows Media video
 Index: mimetypes/video/x-msvideo.desktop
 ===================================================================
---- mimetypes/video/x-msvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/x-msvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/x-msvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/x-msvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -8,7 +8,7 @@
  Comment[af]=Microsoft Avi Video
  Comment[ar]=مرئي Microsoft AVI
@@ -416,8 +416,8 @@ Index: mimetypes/video/x-msvideo.desktop
  Comment[bs]=Microsoft AVI video
 Index: mimetypes/video/vnd.rn-realvideo.desktop
 ===================================================================
---- mimetypes/video/vnd.rn-realvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/vnd.rn-realvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/vnd.rn-realvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/vnd.rn-realvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف RealVideo
  Comment[az]=RealVideo Faylı
@@ -429,8 +429,8 @@ Index: mimetypes/video/vnd.rn-realvideo.desktop
  Comment[bs]=RealVideo datoteka
 Index: mimetypes/video/avi.desktop
 ===================================================================
---- mimetypes/video/avi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/avi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/avi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/avi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment[af]=Microsoft Avi Video
  Comment[ar]=مرئي Microsoft AVI
@@ -442,8 +442,8 @@ Index: mimetypes/video/avi.desktop
  Comment[bs]=Microsoft AVI video
 Index: mimetypes/video/mp4.desktop
 ===================================================================
---- mimetypes/video/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=MPEG-4 Video
  Comment[ar]=ملف مرئي MPEG-4
@@ -455,8 +455,8 @@ Index: mimetypes/video/mp4.desktop
  Comment[bs]=MPEG-4 video
 Index: mimetypes/video/x-flic.desktop
 ===================================================================
---- mimetypes/video/x-flic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/x-flic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/x-flic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/x-flic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف FLIC لأوتوديسك
  Comment[az]=Autodesk FLIC Faylı
@@ -468,8 +468,8 @@ Index: mimetypes/video/x-flic.desktop
  Comment[bs]=Autodesk FLIC datoteke
 Index: mimetypes/video/x-matroska.desktop
 ===================================================================
---- mimetypes/video/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 780364)
-+++ mimetypes/video/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 780364)
+--- mimetypes/video/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 781012)
++++ mimetypes/video/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 781012)
 @@ -7,7 +7,7 @@
  Comment=Matroska Video
  Comment[ar]=مرئي Matroska
