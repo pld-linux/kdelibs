@@ -1,7 +1,7 @@
 Index: kate/part/katesupercursor.cpp
 ===================================================================
---- kate/part/katesupercursor.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ kate/part/katesupercursor.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- kate/part/katesupercursor.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kate/part/katesupercursor.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -186,7 +186,7 @@
  {
    if (newLine)
@@ -11,10 +11,36 @@ Index: kate/part/katesupercursor.cpp
      {
        if(m_line == int(line))
           m_col -= col;
+Index: kate/data/debiancontrol.xml
+===================================================================
+--- kate/data/debiancontrol.xml	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kate/data/debiancontrol.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -3,7 +3,7 @@
+ <language name="Debian Control" version="0.82" kateversion="2.4" section="Other" extensions="" mimetype="">
+     <highlighting>
+         <contexts>
+-            <context attribute="Normal Text" lineEndContext="#stay">
++            <context attribute="Normal Text" lineEndContext="#stay" name="INIT">
+                 <StringDetect attribute="Keyword" context="DependencyField" String="Depends:"/>
+                 <StringDetect attribute="Keyword" context="DependencyField" String="Recommends:"/>
+                 <StringDetect attribute="Keyword" context="DependencyField" String="Suggests:"/>
+Index: kate/data/debianchangelog.xml
+===================================================================
+--- kate/data/debianchangelog.xml	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kate/data/debianchangelog.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -23,7 +23,7 @@
+         </list>
+ 
+         <contexts>
+-            <context attribute="Normal Text" lineEndContext="#stay">
++            <context attribute="Normal Text" lineEndContext="#stay" name="INIT">
+                 <RegExpr attribute="Keyword" context="Head" String="[^ ]*" column="0"/>
+                 <RegExpr attribute="Email" context="#stay" String="&lt;.*@.*&gt;"/>
+                 <RegExpr attribute="Keyword" context="#stay" String=" \-\-" column="0"/>
 Index: kate/data/haskell.xml
 ===================================================================
---- kate/data/haskell.xml	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ kate/data/haskell.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- kate/data/haskell.xml	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kate/data/haskell.xml	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -1,7 +1,7 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE language SYSTEM "language.dtd">
@@ -34,8 +60,8 @@ Index: kate/data/haskell.xml
  		<item> infixr </item>
 Index: mimetypes/audio/x-oggflac.desktop
 ===================================================================
---- mimetypes/audio/x-oggflac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-oggflac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-oggflac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-oggflac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Ogg FLAC Klank
  Comment[ar]=ملف Ogg FLAC صوتي
@@ -47,8 +73,8 @@ Index: mimetypes/audio/x-oggflac.desktop
  Comment[bs]=Ogg FLAC audio
 Index: mimetypes/audio/vnd.rn-realaudio.desktop
 ===================================================================
---- mimetypes/audio/vnd.rn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/vnd.rn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/vnd.rn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/vnd.rn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -10,7 +10,7 @@
  Comment[ar]=ملف Real Audio
  Comment[az]=RealAudio Faylı
@@ -60,8 +86,8 @@ Index: mimetypes/audio/vnd.rn-realaudio.desktop
  Comment[bs]=RealAudio datoteka
 Index: mimetypes/audio/x-vorbis.desktop
 ===================================================================
---- mimetypes/audio/x-vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Ogg Vorbis Klank
  Comment[ar]=ملف Ogg Vorbis صوتي
@@ -73,8 +99,8 @@ Index: mimetypes/audio/x-vorbis.desktop
  Comment[bs]=Ogg Vorbis audio
 Index: mimetypes/audio/x-flac.desktop
 ===================================================================
---- mimetypes/audio/x-flac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-flac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-flac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-flac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -5,7 +5,7 @@
  Comment[af]=FLAC Klank
  Comment[ar]=ملف FLAC صوتي
@@ -86,8 +112,8 @@ Index: mimetypes/audio/x-flac.desktop
  Comment[bs]=FLAC audio
 Index: mimetypes/audio/x-aiff.desktop
 ===================================================================
---- mimetypes/audio/x-aiff.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-aiff.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-aiff.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-aiff.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -5,7 +5,7 @@
  Comment[af]=Aiff/Amiga Klank
  Comment[ar]=صوت AIFF/Amiga
@@ -99,8 +125,8 @@ Index: mimetypes/audio/x-aiff.desktop
  Comment[bs]=AIFF/Amiga audio
 Index: mimetypes/audio/mpegurl.desktop
 ===================================================================
---- mimetypes/audio/mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -10,7 +10,7 @@
  Comment[ar]=صوت انسيابي من MPEG الطبقة 3
  Comment[az]=Axıcı MPEG Layer 3 Audio
@@ -112,8 +138,8 @@ Index: mimetypes/audio/mpegurl.desktop
  Comment[bs]=Streaming MPEG Layer 3 audio
 Index: mimetypes/audio/x-musepack.desktop
 ===================================================================
---- mimetypes/audio/x-musepack.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-musepack.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-musepack.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-musepack.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=Musepack Audio
  Comment[af]=Musepack Klank
@@ -125,8 +151,8 @@ Index: mimetypes/audio/x-musepack.desktop
  Comment[bs]=Musepack audio
 Index: mimetypes/audio/x-mpegurl.desktop
 ===================================================================
---- mimetypes/audio/x-mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-mpegurl.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-mpegurl.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[ar]=صوت انسيابي من MPEG الطبقة 3
  Comment[az]=Axıcı MPEG Layer 3 Audio
@@ -138,8 +164,8 @@ Index: mimetypes/audio/x-mpegurl.desktop
  Comment[bs]=Streaming MPEG Layer 3 audio
 Index: mimetypes/audio/basic.desktop
 ===================================================================
---- mimetypes/audio/basic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/basic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/basic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/basic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -5,7 +5,7 @@
  Comment[af]=Ulaw (Sun) Audio
  Comment[ar]=صوت ULAW (صن) 
@@ -149,10 +175,21 @@ Index: mimetypes/audio/basic.desktop
  Comment[bn]=ULAW (সান) অডিও
  Comment[br]=Klevet ULAW (Sun)
  Comment[bs]=ULAW (Sun) audio
+Index: mimetypes/audio/x-pn-realaudio-plugin.desktop
+===================================================================
+--- mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-pn-realaudio-plugin.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -48,5 +48,6 @@
+ Comment[th]=แฟ้มปลั๊กอิน RealAudio
+ Comment[tr]=RealAudio Eklenti Dosyası
+ Comment[uk]=Файл втулку RealAudio
++Comment[uz]=RealAudio плагин файли
+ Comment[zh_CN]=RealAudio 插件文件
+ Comment[zh_TW]=RealAudio 外掛程式檔案
 Index: mimetypes/audio/prs.sid.desktop
 ===================================================================
---- mimetypes/audio/prs.sid.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/prs.sid.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/prs.sid.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/prs.sid.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=C64 SID Music
  Comment[af]=C64 SID Musiek
@@ -164,8 +201,8 @@ Index: mimetypes/audio/prs.sid.desktop
  Comment[bs]=C64 SID muzika
 Index: mimetypes/audio/x-mod.desktop
 ===================================================================
---- mimetypes/audio/x-mod.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-mod.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-mod.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-mod.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=Amiga Soundtracker Audio
  Comment[ar]=صوت Amiga Soundtracker
@@ -177,8 +214,8 @@ Index: mimetypes/audio/x-mod.desktop
  Comment[bs]=Amiga Soundtracker audio
 Index: mimetypes/audio/aac.desktop
 ===================================================================
---- mimetypes/audio/aac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/aac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/aac.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/aac.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف AAC صوتي
  Comment[az]=AAC Səsi
@@ -190,8 +227,8 @@ Index: mimetypes/audio/aac.desktop
  Comment[bs]=AAC zvuk
 Index: mimetypes/audio/x-pn-realaudio.desktop
 ===================================================================
---- mimetypes/audio/x-pn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-pn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-pn-realaudio.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-pn-realaudio.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[ar]=ملف Real Audio
  Comment[az]=RealAudio Faylı
@@ -203,8 +240,8 @@ Index: mimetypes/audio/x-pn-realaudio.desktop
  Comment[bs]=RealAudio datoteka
 Index: mimetypes/audio/x-matroska.desktop
 ===================================================================
---- mimetypes/audio/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Matroska Klank
  Comment[ar]=ملف ماتروسكا صوتي
@@ -216,8 +253,8 @@ Index: mimetypes/audio/x-matroska.desktop
  Comment[bs]=Matroska audio
 Index: mimetypes/audio/x-midi.desktop
 ===================================================================
---- mimetypes/audio/x-midi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-midi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-midi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-midi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=MIDI Klank
  Comment[ar]=صوت MIDI
@@ -229,8 +266,8 @@ Index: mimetypes/audio/x-midi.desktop
  Comment[bs]=MIDI audio
 Index: mimetypes/audio/mpeg.desktop
 ===================================================================
---- mimetypes/audio/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment=MPEG Audio
  Comment[af]=MPEG Klank
@@ -242,8 +279,8 @@ Index: mimetypes/audio/mpeg.desktop
  Comment[bs]=MPEG audio
 Index: mimetypes/audio/x-adpcm.desktop
 ===================================================================
---- mimetypes/audio/x-adpcm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-adpcm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-adpcm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-adpcm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -5,7 +5,7 @@
  Comment[af]=PCM Klank
  Comment[ar]=صوت PCM
@@ -255,8 +292,8 @@ Index: mimetypes/audio/x-adpcm.desktop
  Comment[bs]=PCM audio
 Index: mimetypes/audio/x-speex.desktop
 ===================================================================
---- mimetypes/audio/x-speex.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-speex.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-speex.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-speex.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Speex Klank
  Comment[ar]=ملف Speex صوتي
@@ -268,8 +305,8 @@ Index: mimetypes/audio/x-speex.desktop
  Comment[bs]=Speex audio
 Index: mimetypes/audio/mp4.desktop
 ===================================================================
---- mimetypes/audio/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=MPEG-4 Klank
  Comment[ar]=صوت MPEG-4
@@ -281,8 +318,8 @@ Index: mimetypes/audio/mp4.desktop
  Comment[bs]=MPEG-4 audio
 Index: mimetypes/audio/x-wav.desktop
 ===================================================================
---- mimetypes/audio/x-wav.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-wav.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-wav.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-wav.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Wav Audio
  Comment[ar]=صوت WAV
@@ -294,8 +331,8 @@ Index: mimetypes/audio/x-wav.desktop
  Comment[bs]=WAV audio
 Index: mimetypes/audio/x-mp2.desktop
 ===================================================================
---- mimetypes/audio/x-mp2.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-mp2.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-mp2.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-mp2.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment=MPEG Layer 2 Audio
  Comment[af]=MPEG Vlak 2 Klank
@@ -307,8 +344,8 @@ Index: mimetypes/audio/x-mp2.desktop
  Comment[bs]=MPEG Layer 2 audio
 Index: mimetypes/audio/vorbis.desktop
 ===================================================================
---- mimetypes/audio/vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/vorbis.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/vorbis.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Ogg Vorbis Klank
  Comment[ar]=ملف Ogg Vorbis صوتي
@@ -320,8 +357,8 @@ Index: mimetypes/audio/vorbis.desktop
  Comment[bs]=Ogg Vorbis audio
 Index: mimetypes/audio/x-mp3.desktop
 ===================================================================
---- mimetypes/audio/x-mp3.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-mp3.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-mp3.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-mp3.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment[af]=MPEG Vlak 3 Klank
  Comment[ar]=صوت MPEG الطبقة 3
@@ -333,8 +370,8 @@ Index: mimetypes/audio/x-mp3.desktop
  Comment[bs]=MPEG Layer 3 audio
 Index: mimetypes/audio/x-ms-wma.desktop
 ===================================================================
---- mimetypes/audio/x-ms-wma.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/audio/x-ms-wma.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/audio/x-ms-wma.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/audio/x-ms-wma.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=Windows Media Audio
  Comment[af]=Windows Media Klank
@@ -346,8 +383,8 @@ Index: mimetypes/audio/x-ms-wma.desktop
  Comment[bs]=Windows Media audio
 Index: mimetypes/text/vnd.abc.desktop
 ===================================================================
---- mimetypes/text/vnd.abc.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/text/vnd.abc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/text/vnd.abc.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/text/vnd.abc.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -3,7 +3,7 @@
  Comment=ABC Music File
  Comment[af]=ABC Musiek Lêer
@@ -359,8 +396,8 @@ Index: mimetypes/text/vnd.abc.desktop
  Comment[bs]=ABC muzička datoteka
 Index: mimetypes/video/x-ogm.desktop
 ===================================================================
---- mimetypes/video/x-ogm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/x-ogm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/x-ogm.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/x-ogm.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment=Ogg/Ogm Video
  Comment[ar]=ملف مرئي Ogg/Ogm
@@ -372,8 +409,8 @@ Index: mimetypes/video/x-ogm.desktop
  Comment[bs]=Ogg/Ogm video
 Index: mimetypes/video/x-theora.desktop
 ===================================================================
---- mimetypes/video/x-theora.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/x-theora.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/x-theora.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/x-theora.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=Theora Video
  Comment[ar]=ملف فيديو Theora
@@ -385,8 +422,8 @@ Index: mimetypes/video/x-theora.desktop
  Comment[bs]=Theora video
 Index: mimetypes/video/mpeg.desktop
 ===================================================================
---- mimetypes/video/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/mpeg.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/mpeg.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف مرئي MPEG
  Comment[az]=MPEG Video Faylı
@@ -398,8 +435,8 @@ Index: mimetypes/video/mpeg.desktop
  Comment[ca]=Vídeo MPEG
 Index: mimetypes/video/quicktime.desktop
 ===================================================================
---- mimetypes/video/quicktime.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/quicktime.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/quicktime.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/quicktime.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=Quicktime Video
  Comment[ar]=ملف مرئي Quicktime
@@ -411,8 +448,8 @@ Index: mimetypes/video/quicktime.desktop
  Comment[ca]=Vídeo Quicktime
 Index: mimetypes/video/x-ms-wmv.desktop
 ===================================================================
---- mimetypes/video/x-ms-wmv.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/x-ms-wmv.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/x-ms-wmv.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/x-ms-wmv.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -5,7 +5,7 @@
  Comment[ar]=ملف مرئي Windows Media
  Comment[az]=Windows Mediya Video Faylı
@@ -424,8 +461,8 @@ Index: mimetypes/video/x-ms-wmv.desktop
  Comment[bs]=Windows Media video
 Index: mimetypes/video/x-msvideo.desktop
 ===================================================================
---- mimetypes/video/x-msvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/x-msvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/x-msvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/x-msvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -8,7 +8,7 @@
  Comment[af]=Microsoft Avi Video
  Comment[ar]=مرئي Microsoft AVI
@@ -437,8 +474,8 @@ Index: mimetypes/video/x-msvideo.desktop
  Comment[bs]=Microsoft AVI video
 Index: mimetypes/video/vnd.rn-realvideo.desktop
 ===================================================================
---- mimetypes/video/vnd.rn-realvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/vnd.rn-realvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/vnd.rn-realvideo.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/vnd.rn-realvideo.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف RealVideo
  Comment[az]=RealVideo Faylı
@@ -450,8 +487,8 @@ Index: mimetypes/video/vnd.rn-realvideo.desktop
  Comment[bs]=RealVideo datoteka
 Index: mimetypes/video/avi.desktop
 ===================================================================
---- mimetypes/video/avi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/avi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/avi.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/avi.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment[af]=Microsoft Avi Video
  Comment[ar]=مرئي Microsoft AVI
@@ -463,8 +500,8 @@ Index: mimetypes/video/avi.desktop
  Comment[bs]=Microsoft AVI video
 Index: mimetypes/video/mp4.desktop
 ===================================================================
---- mimetypes/video/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/mp4.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/mp4.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=MPEG-4 Video
  Comment[ar]=ملف مرئي MPEG-4
@@ -476,8 +513,8 @@ Index: mimetypes/video/mp4.desktop
  Comment[bs]=MPEG-4 video
 Index: mimetypes/video/x-flic.desktop
 ===================================================================
---- mimetypes/video/x-flic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/x-flic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/x-flic.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/x-flic.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -9,7 +9,7 @@
  Comment[ar]=ملف FLIC لأوتوديسك
  Comment[az]=Autodesk FLIC Faylı
@@ -489,8 +526,8 @@ Index: mimetypes/video/x-flic.desktop
  Comment[bs]=Autodesk FLIC datoteke
 Index: mimetypes/video/x-matroska.desktop
 ===================================================================
---- mimetypes/video/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ mimetypes/video/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- mimetypes/video/x-matroska.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ mimetypes/video/x-matroska.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -7,7 +7,7 @@
  Comment=Matroska Video
  Comment[ar]=مرئي Matroska
@@ -500,10 +537,210 @@ Index: mimetypes/video/x-matroska.desktop
  Comment[bn]=মাত্রোস্কা ভিডিও
  Comment[br]=Video Matroska
  Comment[bs]=Matroska video
+Index: kinit/start_kdeinit.c
+===================================================================
+--- kinit/start_kdeinit.c	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -37,9 +37,10 @@
+  not have this protection, kdeinit will after forking send the new
+  PID using the pipe and wait for a signal. This parent will reset the protection
+  and SIGUSR1 the process to continue.
++ returns 1 if pid is valid
+ */
+ 
+-static void set_protection( pid_t pid, int enable )
++static int set_protection( pid_t pid, int enable )
+ {
+    char buf[ 1024 ];
+    int procfile;
+@@ -49,7 +50,7 @@
+           belongs to this user. */
+        struct stat st;
+        if( lstat( buf, &st ) < 0 || st.st_uid != getuid())
+-           return;
++           return 0;
+    }
+    procfile = open( buf, O_WRONLY );
+    if( procfile >= 0 ) {
+@@ -59,6 +60,7 @@
+          write( procfile, "0", sizeof( "0" ));
+       close( procfile );
+    }
++   return 1;
+ }
+ 
+ int main(int argc, char **argv)
+@@ -67,14 +69,14 @@
+    int new_argc;
+    const char** new_argv;
+    char helper_num[ 1024 ];
+-   int i;
++   unsigned i;
+    char** orig_environ = NULL;
+    char header[ 7 ];
+    if( pipe( pipes ) < 0 ) {
+       perror( "pipe()" );
+       return 1;
+    }
+-   if( argc > 1000 )
++   if( argc < 0 || argc > 1000 )
+        abort(); /* paranoid */
+    set_protection( getpid(), 1 );
+    switch( fork()) {
+@@ -82,29 +84,30 @@
+          perror( "fork()" );
+          return 1;
+       default: /* parent, drop privileges and exec */
+-#if defined (HAVE_SETEUID) && !defined (HAVE_SETEUID_FAKE) 
+-         seteuid(getuid());
+-#else
+-         setreuid(-1, getuid());
+-#endif
+-         if (geteuid() != getuid()) {
++         if (setgid(getgid())) {
++             perror("setgid()");
++             return 1;
++         }
++         if (setuid(getuid()) || geteuid() != getuid()) {
+             perror("setuid()");
+             return 1;
+          }
+          close( pipes[ 0 ] );
+          /* read original environment passed by start_kdeinit_wrapper */
+          if( read( 0, header, 7 ) == 7 && strncmp( header, "environ", 7 ) == 0 ) {
+-             int count;
+-             if( read( 0, &count, sizeof( int )) == sizeof( int )) {
++             unsigned count;
++             if( read( 0, &count, sizeof( unsigned )) == sizeof( unsigned )
++                 && count && count < (1<<16)) {
+                  char** env = malloc(( count + 1 ) * sizeof( char* ));
+                  int ok = 1;
+                  for( i = 0;
+                       i < count && ok;
+                       ++i ) {
+-                     int len;
+-                     if( read( 0, &len, sizeof( int )) == sizeof( int )) {
++                     unsigned len;
++                     if( read( 0, &len, sizeof( unsigned )) == sizeof( unsigned )
++                         && len && len < (1<<12)) {
+                          env[ i ] = malloc( len + 1 );
+-                         if( read( 0, env[ i ], len ) == len ) {
++                         if( (unsigned) read( 0, env[ i ], len ) == len ) {
+                              env[ i ][ len ] = '\0';
+                          } else {
+                              ok = 0;
+@@ -128,7 +131,7 @@
+          sprintf( helper_num, "%d", pipes[ 1 ] );
+          new_argv[ 2 ] = helper_num;
+          for( i = 1;
+-              i <= argc;
++              i <= (unsigned) argc;
+               ++i )
+              new_argv[ i + 2 ] = argv[ i ];
+          if( orig_environ )
+@@ -145,10 +148,10 @@
+             if( ret < 0 && errno == EINTR )
+                continue;
+             if( ret <= 0 ) /* pipe closed or error, exit */
+-               return 0;
++               _exit(0);
+             if( pid != 0 ) {
+-                set_protection( pid, 0 );
+-                kill( pid, SIGUSR1 );
++                if (set_protection( pid, 0 ))
++                    kill( pid, SIGUSR1 );
+             }
+          }
+    }
+Index: kwallet/backend/kwalletbackend.cc
+===================================================================
+--- kwallet/backend/kwalletbackend.cc	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kwallet/backend/kwalletbackend.cc	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -54,8 +54,13 @@
+ #define KWMAGIC "KWALLET\n\r\0\r\n"
+ #define KWMAGIC_LEN 12
+ 
++static void initKWalletDir()
++{
++    KGlobal::dirs()->addResourceType("kwallet", "share/apps/kwallet");
++}
++
+ Backend::Backend(const QString& name, bool isPath) : _name(name), _ref(0) {
+-	KGlobal::dirs()->addResourceType("kwallet", "share/apps/kwallet");
++	initKWalletDir();
+ 	if (isPath) {
+ 		_path = name;
+ 	} else {
+@@ -239,7 +244,8 @@
+ 
+ 
+ bool Backend::exists(const QString& wallet) {
+-QString path = KGlobal::dirs()->saveLocation("kwallet") + "/" + wallet + ".kwl";
++	initKWalletDir();
++	QString path = KGlobal::dirs()->saveLocation("kwallet") + "/" + wallet + ".kwl";
+ 	// Note: 60 bytes is presently the minimum size of a wallet file.
+ 	//       Anything smaller is junk.
+ return QFile::exists(path) && QFileInfo(path).size() >= 60;
+Index: kdecore/ktempfile.cpp
+===================================================================
+--- kdecore/ktempfile.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdecore/ktempfile.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -233,11 +233,14 @@
+ 
+    if (mFd >= 0)
+    {
+-      result = FDATASYNC(mFd);
+-      if (result)
++      if( qstrcmp( getenv( "KDE_EXTRA_FSYNC" ), "1" ) == 0 )
+       {
+-         kdWarning() << "KTempFile: Error trying to sync " << mTmpName << ": " << strerror(errno) << endl;
+-         mError = errno;
++         result = FDATASYNC(mFd);
++         if (result)
++         {
++            kdWarning() << "KTempFile: Error trying to sync " << mTmpName << ": " << strerror(errno) << endl;
++            mError = errno;
++         }
+       }
+    }
+ 
+Index: kdecore/eventsrc
+===================================================================
+--- kdecore/eventsrc	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdecore/eventsrc	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -1832,6 +1832,7 @@
+ Name[th]=ยกเลิกการล็อกเอาต์
+ Name[tr]=Oturumu kapatma işlemi iptal edildi
+ Name[uk]=Вихід скасовано
++Name[uz]=Чиқиш бекор қилинди
+ Name[zh_CN]=注消已取消
+ Name[zh_TW]=取消登出
+ Comment=KDE logout was canceled
+@@ -1876,6 +1877,7 @@
+ Comment[th]=การล็อกเอาท์ออกจาก KDE ถูกยกเลิก
+ Comment[tr]=KDE oturumunu kapatma işlemi iptal edildi
+ Comment[uk]=Вихід з KDE скасовано
++Comment[uz]=KDE'дан чиқиш бекор қилинди
+ Comment[zh_CN]=KDE 注销已取消
+ Comment[zh_TW]=KDE 登出動作已被取消
+ default_presentation=16
+Index: kdecore/all_languages.desktop
+===================================================================
+--- kdecore/all_languages.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdecore/all_languages.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -1925,7 +1925,7 @@
+ Name[tr]=Almanca
+ Name[tt]=Almança
+ Name[uk]=Німецька
+-Name[uz]=Олмонча
++Name[uz]=Немисча
+ Name[ven]=Mudzhemeni
+ Name[vi]=Đức
+ Name[wa]=Almand
 Index: kdecore/tests/kurltest.cpp
 ===================================================================
---- kdecore/tests/kurltest.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ kdecore/tests/kurltest.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- kdecore/tests/kurltest.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdecore/tests/kurltest.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -112,6 +112,11 @@
    check( "KURL::host()", url1.host(), "www1.foo.bar");
    check( "KURL::url()", url1.url(), "http://www1.foo.bar");
@@ -518,8 +755,8 @@ Index: kdecore/tests/kurltest.cpp
    check( "KURL::url()", rel_url.url(), "http://www.foo.bar/top//test1/file.html" );
 Index: kdecore/kapplication.cpp
 ===================================================================
---- kdecore/kapplication.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ kdecore/kapplication.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- kdecore/kapplication.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdecore/kapplication.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -1244,6 +1244,32 @@
      d->session_save = false;
  }
@@ -572,8 +809,8 @@ Index: kdecore/kapplication.cpp
  #endif
 Index: kdecore/netwm.cpp
 ===================================================================
---- kdecore/netwm.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ kdecore/netwm.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- kdecore/netwm.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdecore/netwm.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -512,7 +512,7 @@
      CARD32 *data32;
      unsigned long i, j, k, sz, s;
@@ -585,8 +822,8 @@ Index: kdecore/netwm.cpp
  	icons[j].size.height = *d++;
 Index: khtml/khtmlview.cpp
 ===================================================================
---- khtml/khtmlview.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/khtmlview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/khtmlview.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/khtmlview.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -813,16 +813,20 @@
          } else {
              ref = root;
@@ -615,8 +852,8 @@ Index: khtml/khtmlview.cpp
          if (_height !=  visibleHeight() || _width != visibleWidth()) {;
 Index: khtml/html/html_baseimpl.cpp
 ===================================================================
---- khtml/html/html_baseimpl.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/html/html_baseimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/html/html_baseimpl.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/html/html_baseimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -170,6 +170,10 @@
          getDocument()->setHTMLWindowEventListener(EventImpl::KEYPRESS_EVENT,
  	    getDocument()->createHTMLEventListener(attr->value().string(), "onkeypress", NULL));
@@ -630,8 +867,8 @@ Index: khtml/html/html_baseimpl.cpp
      default:
 Index: khtml/html/html_elementimpl.cpp
 ===================================================================
---- khtml/html/html_elementimpl.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/html/html_elementimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/html/html_elementimpl.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/html/html_elementimpl.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -259,6 +259,10 @@
          setHTMLEventListener(EventImpl::BLUR_EVENT,
              getDocument()->createHTMLEventListener(attr->value().string(), "onblur", this));
@@ -645,8 +882,8 @@ Index: khtml/html/html_elementimpl.cpp
  #ifdef UNSUPPORTED_ATTR
 Index: khtml/rendering/render_flow.cpp
 ===================================================================
---- khtml/rendering/render_flow.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/rendering/render_flow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/rendering/render_flow.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_flow.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -314,7 +314,7 @@
  RenderFlow::lowestPosition(bool includeOverflowInterior, bool includeSelf) const
  {
@@ -685,8 +922,8 @@ Index: khtml/rendering/render_flow.cpp
      // FIXME: Come up with a way to use the layer tree to avoid visiting all the kids.
 Index: khtml/rendering/render_object.h
 ===================================================================
---- khtml/rendering/render_object.h	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/rendering/render_object.h	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/rendering/render_object.h	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_object.h	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -173,11 +173,11 @@
  	{ return QRect(0,0,0,0); }
      virtual QRect getClipRect(int /*tx*/, int /*ty*/) { return QRect(0,0,0,0); }
@@ -710,7 +947,17 @@ Index: khtml/rendering/render_object.h
      void setIsSelectionBorder(bool b=true) { m_isSelectionBorder = b; }
  
      void scheduleRelayout(RenderObject *clippedObj = 0);
-@@ -834,8 +835,10 @@
+@@ -754,6 +755,9 @@
+     virtual void deleteInlineBoxes(RenderArena* arena=0) {(void)arena;}
+     virtual void detach( );
+ 
++    void setDoNotDelete(bool b) { m_doNotDelete = b; }
++    bool doNotDelete() const { return m_doNotDelete; }
++
+     const QFont &font(bool firstLine) const {
+ 	return style( firstLine )->font();
+     }
+@@ -834,10 +838,14 @@
  
      bool m_needsPageClear            : 1;
      bool m_containsPageBreak         : 1;
@@ -718,25 +965,30 @@ Index: khtml/rendering/render_object.h
 +    bool m_hasOverflowClip           : 1;
  
 -    // ### we have 16 + 24 bits. Cut 8 and save 32
-+    // ### we have 16 + 25 bits.
++    bool m_doNotDelete 	             : 1; // This object should not be auto-deleted
  
++    // ### we have 16 + 26 bits.
  
++
      void arenaDelete(RenderArena *arena, void *objectBase);
+ 
+     friend class RenderLayer;
 Index: khtml/rendering/render_object.cpp
 ===================================================================
---- khtml/rendering/render_object.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/rendering/render_object.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
-@@ -178,7 +178,8 @@
+--- khtml/rendering/render_object.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_object.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -178,7 +178,9 @@
        m_isRoot( false ),
        m_afterPageBreak( false ),
        m_needsPageClear( false ),
 -      m_containsPageBreak( false )
 +      m_containsPageBreak( false ),
-+      m_hasOverflowClip(false)
++      m_hasOverflowClip( false ),
++      m_doNotDelete( false )
  {
    assert( node );
    if (node->getDocument()->documentElement() == node) setIsRoot(true);
-@@ -508,12 +509,12 @@
+@@ -508,12 +510,12 @@
  // scrollWidth/scrollHeight is the size including the overflow area
  short RenderObject::scrollWidth() const
  {
@@ -751,7 +1003,7 @@ Index: khtml/rendering/render_object.cpp
  }
  
  bool RenderObject::hasStaticX() const
-@@ -1302,6 +1303,7 @@
+@@ -1302,6 +1304,7 @@
          m_positioned = false;
          m_relPositioned = false;
          m_paintBackground = false;
@@ -759,7 +1011,7 @@ Index: khtml/rendering/render_object.cpp
      }
  
      // only honour z-index for non-static objects
-@@ -1486,9 +1488,9 @@
+@@ -1486,9 +1489,9 @@
  bool RenderObject::absolutePosition(int &xPos, int &yPos, bool f) const
  {
      RenderObject* p = parent();
@@ -772,7 +1024,7 @@ Index: khtml/rendering/render_object.cpp
              p->layer()->subtractScrollOffset( xPos, yPos );
          return true;
      }
-@@ -1782,7 +1784,7 @@
+@@ -1782,7 +1785,7 @@
          isTableRow() || isTableSection() || inside || mouseInside() ))) {
          if ( hitTestAction == HitTestChildrenOnly )
              inside = false;
@@ -783,8 +1035,8 @@ Index: khtml/rendering/render_object.cpp
              if (!child->layer() && child->nodeAtPoint(info, _x, _y, tx, ty, HitTestAll))
 Index: khtml/rendering/render_layer.cpp
 ===================================================================
---- khtml/rendering/render_layer.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/rendering/render_layer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/rendering/render_layer.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_layer.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -284,7 +284,7 @@
  short RenderLayer::width() const
  {
@@ -845,10 +1097,67 @@ Index: khtml/rendering/render_layer.cpp
          if (!m_marquee)
              m_marquee = new Marquee(this);
          m_marquee->updateMarqueeStyle();
+Index: khtml/rendering/render_container.cpp
+===================================================================
+--- khtml/rendering/render_container.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_container.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -79,6 +79,8 @@
+     kdDebug( 6040 ) << this << ": " <<  renderName() << "(RenderObject)::addChild( " << newChild << ": " <<
+         newChild->renderName() << ", " << (beforeChild ? beforeChild->renderName() : "0") << " )" << endl;
+ #endif
++    // protect ourselves from deletion
++    setDoNotDelete(true);
+ 
+     bool needsTable = false;
+ 
+@@ -159,6 +161,8 @@
+             static_cast<RenderText*>(newChild)->setText(textToTransform, true);
+     }
+     newChild->attach();
++
++    setDoNotDelete(false);
+ }
+ 
+ RenderObject* RenderContainer::removeChildNode(RenderObject* oldChild)
+@@ -545,7 +549,7 @@
+ 	RenderObject *next = child->nextSibling();
+ 
+ 	if ( child->isRenderBlock() && child->isAnonymousBlock() && !child->continuation() &&
+-             !child->childrenInline() && !child->isTableCell() ) {
++	     !child->childrenInline() && !child->isTableCell() && !child->doNotDelete()) {
+ 	    RenderObject *firstAnChild = child->firstChild();
+ 	    RenderObject *lastAnChild = child->lastChild();
+ 	    if ( firstAnChild ) {
+@@ -560,17 +564,20 @@
+ 		    child->previousSibling()->setNextSibling( firstAnChild );
+ 		if ( child->nextSibling() )
+ 		    child->nextSibling()->setPreviousSibling( lastAnChild );
++		if ( child == firstChild() )
++		    m_first = firstAnChild;
++		if ( child == lastChild() )
++		    m_last = lastAnChild;
+ 	    } else {
+ 		if ( child->previousSibling() )
+ 		    child->previousSibling()->setNextSibling( child->nextSibling() );
+ 		if ( child->nextSibling() )
+ 		    child->nextSibling()->setPreviousSibling( child->previousSibling() );
+-
++		if ( child == firstChild() )
++		    m_first = child->nextSibling();
++		if ( child == lastChild() )
++		    m_last = child->previousSibling();
+ 	    }
+-	    if ( child == firstChild() )
+-		m_first = firstAnChild;
+-	    if ( child == lastChild() )
+-		m_last = lastAnChild;
+ 	    child->setParent( 0 );
+ 	    child->setPreviousSibling( 0 );
+ 	    child->setNextSibling( 0 );
 Index: khtml/rendering/render_box.cpp
 ===================================================================
---- khtml/rendering/render_box.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/rendering/render_box.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/rendering/render_box.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_box.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -114,6 +114,26 @@
      }
  }
@@ -924,8 +1233,8 @@ Index: khtml/rendering/render_box.cpp
          m_height = height;
 Index: khtml/rendering/render_block.cpp
 ===================================================================
---- khtml/rendering/render_block.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/rendering/render_block.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/rendering/render_block.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/rendering/render_block.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -736,13 +736,13 @@
          // blocks that have overflowed content.
          // Check for an overhanging float first.
@@ -1025,8 +1334,8 @@ Index: khtml/rendering/render_block.cpp
      if (isRoot() || isCanvas())
 Index: khtml/misc/htmlattrs.in
 ===================================================================
---- khtml/misc/htmlattrs.in	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/misc/htmlattrs.in	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/misc/htmlattrs.in	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/misc/htmlattrs.in	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -143,6 +143,7 @@
  onmouseup
  onreset
@@ -1037,8 +1346,8 @@ Index: khtml/misc/htmlattrs.in
  profile
 Index: khtml/misc/htmlattrs.c
 ===================================================================
---- khtml/misc/htmlattrs.c	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/misc/htmlattrs.c	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/misc/htmlattrs.c	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/misc/htmlattrs.c	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -1,4 +1,4 @@
 -/* ANSI-C code produced by gperf version 3.0.1 */
 +/* ANSI-C code produced by gperf version 3.0.3 */
@@ -2651,8 +2960,8 @@ Index: khtml/misc/htmlattrs.c
  
 Index: khtml/misc/htmlattrs.h
 ===================================================================
---- khtml/misc/htmlattrs.h	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ khtml/misc/htmlattrs.h	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- khtml/misc/htmlattrs.h	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ khtml/misc/htmlattrs.h	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -149,18 +149,19 @@
  #define ATTR_ONMOUSEUP 138
  #define ATTR_ONRESET 139
@@ -2687,8 +2996,8 @@ Index: khtml/misc/htmlattrs.h
  
 Index: dcop/dcopserver.cpp
 ===================================================================
---- dcop/dcopserver.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ dcop/dcopserver.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- dcop/dcopserver.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ dcop/dcopserver.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -1318,6 +1318,8 @@
      if (!shutdown)
      {
@@ -2698,10 +3007,36 @@ Index: dcop/dcopserver.cpp
         m_timer->start( 10000 ); // if within 10 seconds nothing happens, we'll terminate
         disconnect( m_timer, SIGNAL(timeout()), this, SLOT(slotTerminate()) );
         connect( m_timer, SIGNAL(timeout()), this, SLOT(slotExit()) );
+Index: dcop/dcopidl2cpp/Makefile.am
+===================================================================
+--- dcop/dcopidl2cpp/Makefile.am	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ dcop/dcopidl2cpp/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -10,7 +10,7 @@
+ noinst_HEADERS = main.h
+ 
+ dcopidl2cpp_LDADD = $(LIB_QT)
+-dcopidl2cpp_LDFLAGS = $(KDE_RPATH)
++dcopidl2cpp_LDFLAGS = $(KDE_RPATH) $(AM_LDFLAGS)
+ 
+ dcopidl_output.kidl: ../dcopidl/dcopidl $(srcdir)/dcopidl_test.h
+ 	../dcopidl/dcopidl $(srcdir)/dcopidl_test.h > dcopidl_output.kidl
+Index: dcop/dcopidl/Makefile.am
+===================================================================
+--- dcop/dcopidl/Makefile.am	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ dcop/dcopidl/Makefile.am	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -11,7 +11,7 @@
+ noinst_HEADERS = yacc.cc.h
+ 
+ dcopidl_LDADD = $(LIB_QT)
+-dcopidl_LDFLAGS = $(KDE_RPATH)
++dcopidl_LDFLAGS = $(KDE_RPATH) $(AM_LDFLAGS)
+ 
+ ####### Build rules
+ 
 Index: kparts/browserrun.cpp
 ===================================================================
---- kparts/browserrun.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 793728)
-+++ kparts/browserrun.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 793728)
+--- kparts/browserrun.cpp	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kparts/browserrun.cpp	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
 @@ -291,9 +291,9 @@
      // The strange order in the i18n() calls below is due to the possibility
      // of surl containing a '%'
@@ -2714,6 +3049,18 @@ Index: kparts/browserrun.cpp
  }
  
  //static
+Index: kdeprint/filters/pdf2ps.desktop
+===================================================================
+--- kdeprint/filters/pdf2ps.desktop	(.../tags/KDE/3.5.9/kdelibs)	(wersja 801801)
++++ kdeprint/filters/pdf2ps.desktop	(.../branches/KDE/3.5/kdelibs)	(wersja 801801)
+@@ -31,6 +31,7 @@
+ Comment[tg]=Конвертори PDF ба PostScript
+ Comment[th]=ตัวแปลง PDF ไปเป็นแฟ้มโพสต์สคริปต์
+ Comment[uk]=Конвертер документів з формату PDF в PostScript
++Comment[uz]=PDF'ни PostScrip'га айлантирадиган дастур
+ Comment[zh_TW]=PDF 至 PostScript 轉換器
+ MimeTypeIn=application/pdf
+ MimeTypeOut=application/postscript
 
 Zmiany atrybutów dla: .
 ___________________________________________________________________
