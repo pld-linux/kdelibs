@@ -52,8 +52,7 @@ BuildRequires:	aspell-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
-BuildRequires:	boost-filesystem-devel
-BuildRequires:	boost-regex-devel
+BuildRequires:	boost-devel >= 1.35.0
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel >= 1:1.3.0
 BuildRequires:	docbook-dtd41-sgml
