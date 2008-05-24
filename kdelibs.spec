@@ -39,9 +39,10 @@ Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		kde-ac260-lt.patch
 Patch9:		%{name}-lib_loader.patch
-Patch10:	%{name}-konqueror-agent.patch
 # http://kate-editor.org/downloads/syntax_highlighting?kateversion=2.5
-Patch11:	%{name}-kate-syntax.patch
+Patch10:	%{name}-kate-syntax.patch
+Patch11:	%{name}-konqueror-ti-agent.patch
+Patch12:	%{name}-konqueror-agent.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -91,6 +92,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	qt-devel >= 6:3.3.3-4
 %{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
 %{?with_apidocs:BuildRequires:	qt-doc}
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.129
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
@@ -365,7 +367,11 @@ Pliki współdzielone między KDE 3 i KDE 4.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%if "%{pld_release}" == "ti"
 %patch11 -p1
+%else
+%patch12 -p1
+%endif
 
 mv -f configure{,.dist}
 
