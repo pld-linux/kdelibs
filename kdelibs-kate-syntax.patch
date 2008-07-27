@@ -3669,6 +3669,21 @@ diff -urN kdelibs-3.5.8.org/kate/data/c.xml kdelibs-3.5.8/kate/data/c.xml
 +    <keywords casesensitive="1" />
    </general>
  </language>
+diff -urN kdelibs-3.5.8.org/kate/data/debiancontrol.xml kdelibs-3.5.8/kate/data/debiancontrol.xml
+--- kdelibs-3.5.8.org/kate/data/debiancontrol.xml	2005-09-10 10:26:35.000000000 +0200
++++ kdelibs-3.5.8/kate/data/debiancontrol.xml	2007-10-19 00:00:12.000000000 +0200
+@@ -1,9 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE language SYSTEM "language.dtd">
+-<language name="Debian Control" version="0.82" kateversion="2.4" section="Other" extensions="" mimetype="">
++<language name="Debian Control" version="0.83" kateversion="2.4" section="Other" extensions="control" mimetype="">
+     <highlighting>
+         <contexts>
+-            <context attribute="Normal Text" lineEndContext="#stay">
++            <context attribute="Normal Text" lineEndContext="#stay" name="INIT">
+                 <StringDetect attribute="Keyword" context="DependencyField" String="Depends:"/>
+                 <StringDetect attribute="Keyword" context="DependencyField" String="Recommends:"/>
+                 <StringDetect attribute="Keyword" context="DependencyField" String="Suggests:"/>
 diff -urN kdelibs-3.5.8.org/kate/data/djangotemplate.xml kdelibs-3.5.8/kate/data/djangotemplate.xml
 --- kdelibs-3.5.8.org/kate/data/djangotemplate.xml	1970-01-01 01:00:00.000000000 +0100
 +++ kdelibs-3.5.8/kate/data/djangotemplate.xml	2006-12-15 18:00:07.000000000 +0100
@@ -20397,6 +20412,18 @@ diff -urN kdelibs-3.5.8.org/kate/data/rapidq.xml kdelibs-3.5.8/kate/data/rapidq.
 +    <keywords casesensitive="0" />
 +  </general>
 +</language>
+diff -urN kdelibs-3.5.8.org/kate/data/ruby.xml kdelibs-3.5.8/kate/data/ruby.xml
+--- kdelibs-3.5.8.org/kate/data/ruby.xml	2007-10-08 11:51:56.000000000 +0200
++++ kdelibs-3.5.8/kate/data/ruby.xml	2006-04-14 21:48:14.000000000 +0200
+@@ -34,7 +34,7 @@
+ -->
+ 
+ <!-- Hold the "language" opening tag on a single line, as mentioned in "language.dtd". -->
+-<language name="Ruby" version="1.17" kateversion="2.4" section="Scripts" extensions="*.rb;*.rjs;*.rxml;*.xml.erb;*.js.erb" mimetype="application/x-ruby" author="Stefan Lang (langstefan@gmx.at), Sebastian Vuorinen (sebastian.vuorinen@helsinki.fi)" license="LGPL">
++<language name="Ruby" version="1.17" kateversion="2.4" section="Scripts" extensions="*.rb;*.rjs;*.rxml" mimetype="application/x-ruby" author="Stefan Lang (langstefan@gmx.at), Sebastian Vuorinen (sebastian.vuorinen@helsinki.fi)" license="LGPL">
+ 	
+ 	<highlighting>
+ 	
 diff -urN kdelibs-3.5.8.org/kate/data/r.xml kdelibs-3.5.8/kate/data/r.xml
 --- kdelibs-3.5.8.org/kate/data/r.xml	2007-01-15 12:33:49.000000000 +0100
 +++ kdelibs-3.5.8/kate/data/r.xml	2007-10-29 18:00:24.000000000 +0100
