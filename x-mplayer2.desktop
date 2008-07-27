@@ -1,4 +1,5 @@
 [Desktop Entry]
+Encoding=UTF-8
 Type=MimeType
 Comment=MS Media Format
 Comment[br]=Furmad MS Media
@@ -24,5 +25,5 @@ Comment[xx]=xxMS Media Formatxx
 Comment[zh_CN]=MS Media 格式
 MimeType=application/x-mplayer2
 Icon=video
-Patterns=*.avi;*.AVI;*.asf;*.ASF;*.wmv;*.WMV;*.asx;*.ASX;*.wma;*.WMA;*.wmx;*.WMX;
+Patterns=*.avi;*.AVI;*.asf;*.ASF;*.wmv;*.WMV;*.asx;*.ASX;*.wma;*.WMA;*.wmx;*.WMX
 X-KDE-AutoEmbed=true
