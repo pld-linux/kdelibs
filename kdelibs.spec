@@ -539,13 +539,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kjava/kjava.policy
 %{_datadir}/apps/kjava/pluginsinfo
 %{_datadir}/apps/knotify
-%{_datadir}/apps/kstyle
+%{_datadir}/apps/kstyle/pixmaps
+%{_datadir}/apps/kstyle/themes/*
 %{_datadir}/apps/ktexteditor_docwordcompletion
 %{_datadir}/apps/ktexteditor_insertfile
 %{_datadir}/apps/ktexteditor_isearch
 %{_datadir}/apps/ktexteditor_kdatatool
 %{_datadir}/apps/proxyscout
-%dir %{_datadir}/autostart
 %{_datadir}/config/colors
 %{_datadir}/config/ipv6blacklist
 %{_datadir}/config/katefiletyperc
@@ -557,10 +557,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config/language.codes
 %{_datadir}/config/magic
 %{_datadir}/config/ui/kprintpreviewui.rc
-%dir %{_datadir}/emoticons
 %{_datadir}/emoticons/Default
 %{_datadir}/mimelnk
-%dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
 %{_datadir}/services/kresources/kabc_manager.desktop
 %{_datadir}/services/kded
@@ -634,9 +632,6 @@ rm -rf $RPM_BUILD_ROOT
 # contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
-%dir %{_docdir}/kde
-%dir %{_kdedocdir}
-%dir %{_kdedocdir}/en
 %lang(en) %{_kdedocdir}/en/kspell
 
 %lang(ca) %dir %{_kdedocdir}/ca
@@ -868,9 +863,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvcard.so.0
 
-# 3rdparty directories
-%dir %{_libdir}/kconf_update_bin
-
 # merged kabc files
 %attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
 %attr(755,root,root) %{_libdir}/kde3/kabc_file.so
@@ -1004,4 +996,3 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps/khtml/css
 %dir %{_datadir}/apps/kjava
 %dir %{_datadir}/config
-%dir %{_datadir}/config/ui
