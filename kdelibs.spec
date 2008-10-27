@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	1
+Release:	2
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -29,6 +29,8 @@ Source1:	%{name}-wmfplugin.tar.bz2
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
+Source5:	https://www.cacert.org/certs/root.crt
+# Source5-md5:	fb262d55709427e2e9acadf2c1298c99
 #Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
@@ -369,7 +371,16 @@ Pliki współdzielone między KDE 3 i KDE 4.
 
 mv -f configure{,.dist}
 
+# add https://www.cacert.org/ root certificate
+cp -a %{SOURCE5} kio/kssl/kssl/cacert.pem
+echo 'cacert.pem' >> kio/kssl/kssl/localcerts
+
 %build
+# merge cacert root certificate
+cd kio/kssl/kssl
+./mergelocal
+cd -
+
 cp /usr/share/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
