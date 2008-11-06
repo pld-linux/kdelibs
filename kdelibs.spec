@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	5
+Release:	6
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -356,6 +356,9 @@ KDE 3 and KDE 4 shared files.
 
 %description shared -l pl.UTF-8
 Pliki współdzielone między KDE 3 i KDE 4.
+
+# unresolved symbols in libkscreensaver.so.X (by design)
+%define	no_install_post_check_so	1
 
 %prep
 %setup -q -a1
