@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	4
+Release:	5
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -34,6 +34,7 @@ Source5:	https://www.cacert.org/certs/root.crt
 Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
+Patch2:		%{name}-inotify.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
@@ -360,6 +361,7 @@ Pliki współdzielone między KDE 3 i KDE 4.
 %setup -q -a1
 #%patch100 -p0
 %patch0 -p1
+%patch2 -p1
 %patch1 -p1
 %patch3 -p1
 %patch4 -p1
