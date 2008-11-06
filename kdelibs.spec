@@ -69,6 +69,8 @@ BuildRequires:	ed
 BuildRequires:	fam-devel
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
+# <sys/inotify.h>
+BuildRequires:	glibc-devel >= 6:2.4
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
