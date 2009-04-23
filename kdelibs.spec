@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	9
+Release:	10
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -352,7 +352,7 @@ strony innych użytkowników lokalnych.
 
 %prep
 %setup -q -a1
-#%patch100 -p0
+%patch100 -p0
 %patch0 -p1
 %patch2 -p1
 %patch1 -p1
