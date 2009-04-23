@@ -3321,26 +3321,6 @@ diff -urN kdelibs-3.5.8.org/kate/data/bash.xml kdelibs-3.5.8/kate/data/bash.xml
 +    <keywords casesensitive="1" weakDeliminator="^%#[]$._{}:-/" additionalDeliminator="`"/>
    </general>
  </language>
-diff -urN kdelibs-3.5.8.org/kate/data/cmake.xml kdelibs-3.5.8/kate/data/cmake.xml
---- kdelibs-3.5.8.org/kate/data/cmake.xml	2007-05-14 09:52:27.000000000 +0200
-+++ kdelibs-3.5.8/kate/data/cmake.xml	2007-05-11 12:00:07.000000000 +0200
-@@ -3,7 +3,7 @@
- <!-- Author: Alexander Neundorf <neundorf@kde.org> //-->
- <!-- cmake 2.0.3 syntax highlighting -->
- <!-- dsKeyword, dsDataType, dsDecVal, dsBaseN, dsFloat, dsChar, dsString, dsComment, dsOthers, new in KDE 3.3: dsAlert, dsFunction, dsRegionMarker, dsError -->
--<language name="CMake" version="1.03" kateversion="2.4" section="Other" extensions="CMakeLists.txt;*.cmake;" mimetype="">
-+<language name="CMake" version="1.04" kateversion="2.4" section="Other" extensions="CMakeLists.txt;*.cmake;" mimetype="">
-   <highlighting>
- 
-     <list name = "commands">
-@@ -167,6 +167,7 @@
-       <item> MATCHES </item>
-       <item> MODULE </item>
-       <item> NAME </item>
-+      <item> NAMES </item>
-       <item> NAME_WE </item>
-       <item> NOT </item>
-       <item> NOTEQUAL </item>
 diff -urN kdelibs-3.5.8.org/kate/data/cpp.xml kdelibs-3.5.8/kate/data/cpp.xml
 --- kdelibs-3.5.8.org/kate/data/cpp.xml	2007-10-08 11:51:56.000000000 +0200
 +++ kdelibs-3.5.8/kate/data/cpp.xml	2007-10-18 00:00:29.000000000 +0200
