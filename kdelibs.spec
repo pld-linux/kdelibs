@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	12
+Release:	13
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -76,7 +76,7 @@ BuildRequires:	glibc-devel >= 6:2.4
 %{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
-%{?with_kerberos5:BuildRequires:	krb5-devel}
+%{?with_kerberos5:BuildRequires:	heimdal-devel}
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
