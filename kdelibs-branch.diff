@@ -1,7 +1,7 @@
 Index: kate/data/cmake.xml
 ===================================================================
---- kate/data/cmake.xml	(.../tags/KDE/3.5.10/kdelibs)	(revision 958029)
-+++ kate/data/cmake.xml	(.../branches/KDE/3.5/kdelibs)	(revision 958029)
+--- kate/data/cmake.xml	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kate/data/cmake.xml	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
 @@ -1,13 +1,34 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE language SYSTEM "language.dtd">
@@ -300,10 +300,32 @@ Index: kate/data/cmake.xml
        <item> WRAP_EXCLUDE </item>
        <item> WRITE </item>
      </list>
+Index: kioslave/ftp/ftp.cc
+===================================================================
+--- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+@@ -876,7 +876,7 @@
+   // The usual answer is '227 Entering Passive Mode. (160,39,200,55,6,245)'
+   // but anonftpd gives '227 =160,39,200,55,6,245'
+   int i[6];
+-  char *start = strchr(ftpResponse(3), '(');
++  const char *start = strchr(ftpResponse(3), '(');
+   if ( !start )
+     start = strchr(ftpResponse(3), '=');
+   if ( !start ||
+@@ -931,7 +931,7 @@
+     return ERR_INTERNAL;
+   }
+ 
+-  char *start = strchr(ftpResponse(3), '|');
++  const char *start = strchr(ftpResponse(3), '|');
+   if ( !start || sscanf(start, "|||%d|", &portnum) != 1)
+     return ERR_INTERNAL;
+ 
 Index: kinit/start_kdeinit.c
 ===================================================================
---- kinit/start_kdeinit.c	(.../tags/KDE/3.5.10/kdelibs)	(revision 958029)
-+++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(revision 958029)
+--- kinit/start_kdeinit.c	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
 @@ -44,7 +44,7 @@
  {
     char buf[ 1024 ];
@@ -323,8 +345,8 @@ Index: kinit/start_kdeinit.c
        if( enable )
 Index: kio/kio/configure.in.in
 ===================================================================
---- kio/kio/configure.in.in	(.../tags/KDE/3.5.10/kdelibs)	(revision 958029)
-+++ kio/kio/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(revision 958029)
+--- kio/kio/configure.in.in	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kio/kio/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
 @@ -139,8 +139,30 @@
    AC_LANG_RESTORE
    ])
@@ -359,8 +381,8 @@ Index: kio/kio/configure.in.in
      AC_MSG_RESULT(no)
 Index: kio/kio/kdirwatch.cpp
 ===================================================================
---- kio/kio/kdirwatch.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 958029)
-+++ kio/kio/kdirwatch.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 958029)
+--- kio/kio/kdirwatch.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kio/kio/kdirwatch.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
 @@ -64,11 +64,13 @@
  // debug
  #include <sys/ioctl.h>
@@ -395,10 +417,36 @@ Index: kio/kio/kdirwatch.cpp
  #endif
  
  #include <sys/utsname.h>
+Index: kdecore/kstringhandler.cpp
+===================================================================
+--- kdecore/kstringhandler.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kdecore/kstringhandler.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+@@ -558,7 +558,7 @@
+   QString result;
+   const QChar *unicode = str.unicode();
+   for ( uint i = 0; i < str.length(); ++i )
+-    result += ( unicode[ i ].unicode() < 0x21 ) ? unicode[ i ] :
++    result += ( unicode[ i ].unicode() <= 0x21 ) ? unicode[ i ] :
+         QChar( 0x1001F - unicode[ i ].unicode() );
+ 
+   return result;
+Index: khtml/html/htmltokenizer.cpp
+===================================================================
+--- khtml/html/htmltokenizer.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ khtml/html/htmltokenizer.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+@@ -736,7 +736,7 @@
+ #ifdef TOKEN_DEBUG
+                 kdDebug( 6036 ) << "unknown entity!" << endl;
+ #endif
+-                checkBuffer(10);
++                checkBuffer(11);
+                 // ignore the sequence, add it to the buffer as plaintext
+                 *dest++ = '&';
+                 for(unsigned int i = 0; i < cBufferPos; i++)
 Index: khtml/rendering/table_layout.cpp
 ===================================================================
---- khtml/rendering/table_layout.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 958029)
-+++ khtml/rendering/table_layout.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 958029)
+--- khtml/rendering/table_layout.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ khtml/rendering/table_layout.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
 @@ -297,7 +297,8 @@
  #endif
          for ( int i = 0; available > 0 && i < nEffCols; i++ ) {
@@ -421,8 +469,8 @@ Index: khtml/rendering/table_layout.cpp
  		totalVariable--;
 Index: kdoctools/customization/pt-BR/user.entities
 ===================================================================
---- kdoctools/customization/pt-BR/user.entities	(.../tags/KDE/3.5.10/kdelibs)	(revision 958029)
-+++ kdoctools/customization/pt-BR/user.entities	(.../branches/KDE/3.5/kdelibs)	(revision 958029)
+--- kdoctools/customization/pt-BR/user.entities	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kdoctools/customization/pt-BR/user.entities	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
 @@ -17,7 +17,7 @@
  <!ENTITY Esc   "<keycap>Esc</keycap>">
  <!ENTITY etc     "<abbrev>etc</abbrev>">
@@ -441,6 +489,64 @@ Index: kdoctools/customization/pt-BR/user.entities
  <!ENTITY Shift   "<keycap>Shift</keycap>">
  <!ENTITY systemtray "<application>bandeja do sistema</application>">
  <!ENTITY Tab	"<keycap>Tab</keycap>">
+Index: kdeui/kdatetbl.cpp
+===================================================================
+--- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
++++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+@@ -47,6 +47,7 @@
+ #include "kdatetbl.h"
+ #include "kpopupmenu.h"
+ #include <qdatetime.h>
++#include <qguardedptr.h>
+ #include <qstring.h>
+ #include <qpen.h>
+ #include <qpainter.h>
+@@ -310,7 +311,7 @@
+            painter->setPen(colorGroup().highlight());
+            painter->setBrush(colorGroup().highlight());
+ 	   }
+-	   else 
++	   else
+ 	   {
+ 	   painter->setPen(colorGroup().text());
+            painter->setBrush(colorGroup().text());
+@@ -366,7 +367,7 @@
+ void KDateTable::endOfWeek()
+ {
+   setDate(date.addDays(7 - date.dayOfWeek()));
+-}    
++}
+ 
+ void
+ KDateTable::keyPressEvent( QKeyEvent *e )
+@@ -482,14 +483,14 @@
+   // old selected date:
+   temp = posFromDate( date );
+   // new position and date
+-  pos = (7 * (row - 1)) + col; 
++  pos = (7 * (row - 1)) + col;
+   QDate clickedDate = dateFromPos( pos );
+ 
+   // set the new date. If it is in the previous or next month, the month will
+   // automatically be changed, no need to do that manually...
+   setDate( clickedDate );
+ 
+-  // call updateCell on the old and new selection. If setDate switched to a different 
++  // call updateCell on the old and new selection. If setDate switched to a different
+   // month, these cells will be painted twice, but that's no problem.
+   updateCell( temp/7+1, temp%7 );
+   updateCell( row, col );
+@@ -1007,7 +1008,10 @@
+   popup(pos);
+   repaint();
+   d->exec = true;
++  const QGuardedPtr<QObject> that = this;
+   qApp->enter_loop();
++  if ( !that )
++    return QDialog::Rejected;
+   hide();
+   return result;
+ }
 
 Property changes on: .
 ___________________________________________________________________

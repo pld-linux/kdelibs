@@ -47,7 +47,6 @@ Patch10:	%{name}-kate-syntax.patch
 Patch11:	%{name}-konqueror-ti-agent.patch
 Patch12:	%{name}-konqueror-agent.patch
 Patch13:	kde-am.patch
-Patch14:	%{name}-gcc44.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -372,8 +371,8 @@ strony innych użytkowników lokalnych.
 %patch12 -p1
 %endif
 %patch13 -p1
-%patch14 -p1
 
+sed -i -e 's#AH_CHECK_HEADERS#AC_CHECK_HEADERS#g' admin/acinclude.m4.in
 mv -f configure{,.dist}
 
 # add https://www.cacert.org/ root certificate
