@@ -64,7 +64,7 @@ BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	docbook-utils
+%{?with_apidocs:BuildRequires:	docbook-utils}
 %{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	ed
 BuildRequires:	fam-devel
