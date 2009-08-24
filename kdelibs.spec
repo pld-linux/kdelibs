@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	14
+Release:	15
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -372,7 +372,6 @@ strony innych użytkowników lokalnych.
 %endif
 %patch13 -p1
 
-sed -i -e 's#AH_CHECK_HEADERS#AC_CHECK_HEADERS#g' admin/acinclude.m4.in
 mv -f configure{,.dist}
 
 # add https://www.cacert.org/ root certificate
