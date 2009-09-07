@@ -1,7 +1,7 @@
 Index: kate/data/cmake.xml
 ===================================================================
---- kate/data/cmake.xml	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kate/data/cmake.xml	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kate/data/cmake.xml	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kate/data/cmake.xml	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -1,13 +1,34 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE language SYSTEM "language.dtd">
@@ -302,8 +302,8 @@ Index: kate/data/cmake.xml
      </list>
 Index: kioslave/ftp/ftp.cc
 ===================================================================
---- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kioslave/ftp/ftp.cc	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kioslave/ftp/ftp.cc	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -876,7 +876,7 @@
    // The usual answer is '227 Entering Passive Mode. (160,39,200,55,6,245)'
    // but anonftpd gives '227 =160,39,200,55,6,245'
@@ -324,8 +324,8 @@ Index: kioslave/ftp/ftp.cc
  
 Index: kinit/start_kdeinit.c
 ===================================================================
---- kinit/start_kdeinit.c	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kinit/start_kdeinit.c	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kinit/start_kdeinit.c	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -44,7 +44,7 @@
  {
     char buf[ 1024 ];
@@ -345,8 +345,8 @@ Index: kinit/start_kdeinit.c
        if( enable )
 Index: kio/kio/configure.in.in
 ===================================================================
---- kio/kio/configure.in.in	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kio/kio/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kio/kio/configure.in.in	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kio/kio/configure.in.in	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -139,8 +139,30 @@
    AC_LANG_RESTORE
    ])
@@ -381,8 +381,8 @@ Index: kio/kio/configure.in.in
      AC_MSG_RESULT(no)
 Index: kio/kio/kdirwatch.cpp
 ===================================================================
---- kio/kio/kdirwatch.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kio/kio/kdirwatch.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kio/kio/kdirwatch.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kio/kio/kdirwatch.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -64,11 +64,13 @@
  // debug
  #include <sys/ioctl.h>
@@ -419,8 +419,8 @@ Index: kio/kio/kdirwatch.cpp
  #include <sys/utsname.h>
 Index: kdecore/kstringhandler.cpp
 ===================================================================
---- kdecore/kstringhandler.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kdecore/kstringhandler.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kdecore/kstringhandler.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kdecore/kstringhandler.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -558,7 +558,7 @@
    QString result;
    const QChar *unicode = str.unicode();
@@ -430,10 +430,59 @@ Index: kdecore/kstringhandler.cpp
          QChar( 0x1001F - unicode[ i ].unicode() );
  
    return result;
+Index: kdecore/Mainpage.dox
+===================================================================
+--- kdecore/Mainpage.dox	(.../tags/KDE/3.5.10/kdelibs)	(revision 0)
++++ kdecore/Mainpage.dox	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
+@@ -0,0 +1,44 @@
++/** \mainpage The KDE Core Library
++
++All KDE programs use this library to provide basic functionality such
++as the configuration system, IPC, internationalization and locale
++support, site-independent access to the filesystem and a large number
++of other (but no less important) things.
++<p>
++All KDE applications should link to the kdecore library. Also, using a
++KApplication derived class instead of QApplication is almost
++mandatory if you expect your application to behave nicely within the
++KDE environment.
++
++If you are unsure where to start, have a look at the
++<a href="http://techbase.kde.org/Development/Tutorials">tutorials on
++TechBase</a> to get you going.
++
++If you know what you are looking for, you should be able to find it in
++the <a href="annotated.html">class list</a> or the
++<a href="modules.html">modules list</a>.
++
++@authors
++Various: see copyrights on individual files for more information
++
++@maintainers
++See the
++<a href="http://websvn.kde.org/trunk/KDE/kdelibs/kdecore/MAINTAINERS?view=markup">MAINTAINERS</a>
++file.
++
++@licenses
++Library: @lgpl<br>
++Some helper utilities: @gpl
++
++*/
++
++/**
++
++\defgroup KDEMacros KDE Macros
++
++*/
++
++// DOXYGEN_EXCLUDE = malloc kde_file.h
++// DOXYGEN_SET_INPUT += @topdir@/kdemacros.h.cmake
++// DOXYGEN_SET_PROJECT_NAME = KDECore
++// vim:ts=4:sw=4:expandtab:filetype=doxygen
 Index: khtml/html/htmltokenizer.cpp
 ===================================================================
---- khtml/html/htmltokenizer.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ khtml/html/htmltokenizer.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- khtml/html/htmltokenizer.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ khtml/html/htmltokenizer.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -736,7 +736,7 @@
  #ifdef TOKEN_DEBUG
                  kdDebug( 6036 ) << "unknown entity!" << endl;
@@ -445,8 +494,8 @@ Index: khtml/html/htmltokenizer.cpp
                  for(unsigned int i = 0; i < cBufferPos; i++)
 Index: khtml/rendering/table_layout.cpp
 ===================================================================
---- khtml/rendering/table_layout.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ khtml/rendering/table_layout.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- khtml/rendering/table_layout.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ khtml/rendering/table_layout.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -297,7 +297,8 @@
  #endif
          for ( int i = 0; available > 0 && i < nEffCols; i++ ) {
@@ -469,8 +518,8 @@ Index: khtml/rendering/table_layout.cpp
  		totalVariable--;
 Index: kdoctools/customization/pt-BR/user.entities
 ===================================================================
---- kdoctools/customization/pt-BR/user.entities	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kdoctools/customization/pt-BR/user.entities	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kdoctools/customization/pt-BR/user.entities	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kdoctools/customization/pt-BR/user.entities	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -17,7 +17,7 @@
  <!ENTITY Esc   "<keycap>Esc</keycap>">
  <!ENTITY etc     "<abbrev>etc</abbrev>">
@@ -491,8 +540,8 @@ Index: kdoctools/customization/pt-BR/user.entities
  <!ENTITY Tab	"<keycap>Tab</keycap>">
 Index: kdeui/kdatetbl.cpp
 ===================================================================
---- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1007401)
-+++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1007401)
+--- kdeui/kdatetbl.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kdeui/kdatetbl.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
 @@ -47,6 +47,7 @@
  #include "kdatetbl.h"
  #include "kpopupmenu.h"
@@ -547,6 +596,19 @@ Index: kdeui/kdatetbl.cpp
    hide();
    return result;
  }
+Index: kdeui/kmenubar.cpp
+===================================================================
+--- kdeui/kmenubar.cpp	(.../tags/KDE/3.5.10/kdelibs)	(revision 1021033)
++++ kdeui/kmenubar.cpp	(.../branches/KDE/3.5/kdelibs)	(revision 1021033)
+@@ -308,7 +308,7 @@
+         if( d->fallback_mode )
+         {
+             d->fallback_mode = false;
+-//            KWin::setStrut( winId(), 0, 0, 0, 0 ); KWin will set strut as it will see fit
++            KWin::setStrut( winId(), 0, 0, 0, 0 );
+             setMinimumSize( 0, 0 );
+             setMaximumSize( QWIDGETSIZE_MAX, QWIDGETSIZE_MAX );
+             updateMenuBarSize();
 
 Property changes on: .
 ___________________________________________________________________
