@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	15
+Release:	16
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -47,6 +47,7 @@ Patch10:	%{name}-kate-syntax.patch
 Patch11:	%{name}-konqueror-ti-agent.patch
 Patch12:	%{name}-konqueror-agent.patch
 Patch13:	kde-am.patch
+Patch14:	ac264.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -371,6 +372,7 @@ strony innych użytkowników lokalnych.
 %patch12 -p1
 %endif
 %patch13 -p1
+%patch14 -p1
 
 mv -f configure{,.dist}
 
