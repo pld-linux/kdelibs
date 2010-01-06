@@ -178,6 +178,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # confuses OpenEXR detection
 %undefine	configure_cache
 
+# build broken with spaces in CC
+%undefine	with_ccache
+
 %description
 This package includes libraries that are central to the development
 and execution of a KDE program, misc HTML documentation and theme
