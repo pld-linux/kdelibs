@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	16
+Release:	17
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -74,9 +74,9 @@ BuildRequires:	gettext-devel
 # <sys/inotify.h>
 BuildRequires:	glibc-devel >= 6:2.4
 %{?with_apidocs:BuildRequires:	graphviz}
+%{?with_kerberos5:BuildRequires:	heimdal-devel}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
-%{?with_kerberos5:BuildRequires:	heimdal-devel}
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
@@ -108,8 +108,8 @@ BuildConflicts:	kdebase-core < 9:3.4.0
 BuildConflicts:	kdepim-korganizer-libs
 BuildConflicts:	kdepim-libkdepim < 3:3.3.0
 %endif
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	arts >= %{artsver}
+Requires:	cups-lib >= 1:1.3.0
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
@@ -121,6 +121,7 @@ Requires:	setup >= 2.4.6-7
 Requires:	xorg-app-iceauth
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
+Obsoletes:	kdebase-libs < 9:3.5.10-17
 Obsoletes:	kdelibs-kabc
 Obsoletes:	kdelibs-shared
 Obsoletes:	kdelibs-sound
@@ -230,18 +231,6 @@ aplicativo KDE.
 - khtmlw (робота з HTML),
 - kimgio (обробка зображень).
 - kspell (перевірка орфографії),
-
-%package libs
-Summary:	KDE libraries
-Summary(pl.UTF-8):	Biblioteki KDE
-Group:		Libraries
-Requires:	cups-lib >= 1:1.3.0
-
-%description libs
-KDE libraries.
-
-%description libs -l pl.UTF-8
-Biblioteki KDE.
 
 %package devel
 Summary:	kdelibs - header files and development documentation
@@ -472,8 +461,8 @@ fi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -714,8 +703,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kresources/kabc
 %{_desktopdir}/kde/kresources.desktop
 
-%files libs
-%defattr(644,root,root,755)
 %dir %{_libdir}/kde3
 %dir %{_libdir}/kde3/plugins
 %dir %{_libdir}/kde3/plugins/designer
