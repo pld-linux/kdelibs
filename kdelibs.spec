@@ -18,7 +18,7 @@ Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	17
+Release:	18
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
@@ -121,8 +121,8 @@ Requires:	setup >= 2.4.6-7
 Requires:	xorg-app-iceauth
 Obsoletes:	arts-kde
 Obsoletes:	kde-theme-keramik
-Obsoletes:	kdebase-libs < 9:3.5.10-17
 Obsoletes:	kdelibs-kabc
+Obsoletes:	kdelibs-libs < 9:3.5.10-17
 Obsoletes:	kdelibs-shared
 Obsoletes:	kdelibs-sound
 Obsoletes:	kdelibs2
