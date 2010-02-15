@@ -48,6 +48,9 @@ Patch11:	%{name}-konqueror-ti-agent.patch
 Patch12:	%{name}-konqueror-agent.patch
 Patch13:	kde-am.patch
 Patch14:	ac264.patch
+Patch15:	dcopobject-destruct-crash.patch
+Patch16:	kdelibs-3.5.10-gcc_4.4-2.patch
+Patch17:	kdelibs-3.5.10-LDFLAG_fix-1.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -365,6 +368,9 @@ strony innych użytkowników lokalnych.
 %endif
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
 
 mv -f configure{,.dist}
 
