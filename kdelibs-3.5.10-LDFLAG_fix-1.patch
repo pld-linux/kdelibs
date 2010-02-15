@@ -1,0 +1,31 @@
+Submitted By: zippo zippo@oppiz.net
+Initial Package Version: kdelibs-3.5.8
+Date: 2007-12-29
+Upstream Status: Unknown
+Origin: zippo zippo@oppiz.net
+Description: Fixes a LDFLAGS and RPATH issued in locating the QT library.
+
+diff -Naur kdelibs-3.5.8/dcop/dcopidl/Makefile.am kdelibs-3.5.8-mod/dcop/dcopidl/Makefile.am
+--- kdelibs-3.5.8/dcop/dcopidl/Makefile.am	2005-09-10 08:27:23.000000000 +0000
++++ kdelibs-3.5.8-mod/dcop/dcopidl/Makefile.am	2007-12-29 20:43:54.000000000 +0000
+@@ -11,7 +11,7 @@
+ noinst_HEADERS = yacc.cc.h
+ 
+ dcopidl_LDADD = $(LIB_QT)
+-dcopidl_LDFLAGS = $(KDE_RPATH)
++dcopidl_LDFLAGS = $(KDE_LDFLAGS) $(QT_LDFLAGS)
+ 
+ ####### Build rules
+ 
+diff -Naur kdelibs-3.5.8/dcop/dcopidl2cpp/Makefile.am kdelibs-3.5.8-mod/dcop/dcopidl2cpp/Makefile.am
+--- kdelibs-3.5.8/dcop/dcopidl2cpp/Makefile.am	2005-09-10 08:27:22.000000000 +0000
++++ kdelibs-3.5.8-mod/dcop/dcopidl2cpp/Makefile.am	2007-12-29 20:44:12.000000000 +0000
+@@ -10,7 +10,7 @@
+ noinst_HEADERS = main.h
+ 
+ dcopidl2cpp_LDADD = $(LIB_QT)
+-dcopidl2cpp_LDFLAGS = $(KDE_RPATH)
++dcopidl2cpp_LDFLAGS = $(KDE_LDFLAGS) $(QT_LDFLAGS)
+ 
+ dcopidl_output.kidl: ../dcopidl/dcopidl $(srcdir)/dcopidl_test.h
+ 	../dcopidl/dcopidl $(srcdir)/dcopidl_test.h > dcopidl_output.kidl
