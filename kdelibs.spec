@@ -64,19 +64,15 @@ BuildRequires:	automake >= 1.6.1
 BuildRequires:	boost-devel >= 1.35.0
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel >= 1:1.3.0
-BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
-%{?with_apidocs:BuildRequires:	docbook-utils}
 %{?with_apidocs:BuildRequires:	doxygen}
-BuildRequires:	ed
 BuildRequires:	fam-devel
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
 # <sys/inotify.h>
 BuildRequires:	glibc-devel >= 6:2.4
-%{?with_apidocs:BuildRequires:	graphviz}
 %{?with_kerberos5:BuildRequires:	heimdal-devel}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
