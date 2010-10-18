@@ -432,6 +432,7 @@ if [ ! -f installed.stamp ]; then
 		$RPM_BUILD_ROOT/etc/security \
 		$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
 		$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
+		$RPM_BUILD_ROOT%{_datadir}/services/.hidden \
 		$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
 		$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
 		$RPM_BUILD_ROOT%{_datadir}/apps/remotes \
@@ -574,6 +575,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
+%dir %{_datadir}/services/.hidden
 %{_datadir}/services/kresources/kabc_manager.desktop
 %{_datadir}/services/kded
 %{_datadir}/services/http_cache_cleaner.desktop
