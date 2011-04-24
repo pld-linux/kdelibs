@@ -1,5 +1,3 @@
-# TODO
-# - switch to kde trinity: http://trinity.pearsoncomputing.net/
 #
 # Conditional build:
 %bcond_without	alsa			# build without ALSA support
@@ -20,13 +18,13 @@ Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE
 Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
 Name:		kdelibs
-Version:	3.5.10
-Release:	23
+Version:	3.5.12
+Release:	0.4
 Epoch:		9
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	43cd55ed15f63b5738d620ef9f9fd568
+Source0:	http://mirror2.quickbuild.pearsoncomputing.net/trinity/releases/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	d072e836ff592a3ead3bd015617034e2
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -34,28 +32,19 @@ Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
 Source5:	https://www.cacert.org/certs/root.crt
 # Source5-md5:	fb262d55709427e2e9acadf2c1298c99
-Patch100:	%{name}-branch.diff
+#Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
-Patch1:		%{name}-kstandarddirs.patch
-Patch2:		%{name}-inotify.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
-Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
-Patch8:		kde-ac260-lt.patch
 Patch9:		%{name}-lib_loader.patch
-# http://kate-editor.org/downloads/syntax_highlighting?kateversion=2.5
-Patch10:	%{name}-kate-syntax.patch
 Patch11:	%{name}-konqueror-ti-agent.patch
 Patch12:	%{name}-konqueror-agent.patch
-Patch13:	kde-am.patch
 Patch14:	ac264.patch
 Patch15:	dcopobject-destruct-crash.patch
-Patch16:	kdelibs-3.5.10-gcc_4.4-2.patch
-Patch17:	kdelibs-3.5.10-LDFLAG_fix-1.patch
-# http://www.thel.ro/kde3-fedora/SOURCES/kdelibs-3.5.10-ossl-1.x.patch
-Patch18:	kdelibs-3.5.10-ossl-1.x.patch
+Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
+Patch18:	gcc45.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -66,6 +55,7 @@ BuildRequires:	aspell-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
+BuildRequires:	avahi-qt-devel >= 0.4
 BuildRequires:	boost-devel >= 1.35.0
 BuildRequires:	bzip2-devel
 BuildRequires:	cups-devel >= 1:1.3.0
@@ -88,7 +78,8 @@ BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool >= 2:1.5-2
+BuildRequires:	libtool >= 2:2.2
+BuildRequires:	libtqtinterface-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	libwmf-devel >= 2:0.2.0
 BuildRequires:	libxml2-devel >= 2.4.9
@@ -183,6 +174,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # build broken with spaces in CC
 %undefine	with_ccache
+
+# unresolved symbols in libkscreensaver.so.X (by design)
+%define	no_install_post_check_so	1
 
 %description
 This package includes libraries that are central to the development
@@ -343,40 +337,33 @@ Zainstaluj ten pakiet jeżeli korzystasz z nietypowej konfiguracji
 nieobsługującej pts-ów typu Unix98 i obawiasz się inwigilacji ze
 strony innych użytkowników lokalnych.
 
-# unresolved symbols in libkscreensaver.so.X (by design)
-%define	no_install_post_check_so	1
-
 %prep
-%setup -q -a1
-%patch100 -p0
+%setup -q -n %{name} -a1
+#%patch100 -p0
 %patch0 -p1
-%patch2 -p1
-%patch1 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 %patch7 -p1
-%patch8 -p1
 %patch9 -p1
-%patch10 -p1
 %if "%{pld_release}" == "ti"
 %patch11 -p1
 %else
 %patch12 -p1
 %endif
-%patch13 -p1
 %patch14 -p1
 %patch15 -p1
-%patch16 -p1
 %patch17 -p1
 %patch18 -p1
 
-mv -f configure{,.dist}
+test -f configure && mv -f configure{,.dist}
 
 # add https://www.cacert.org/ root certificate
 cp -a %{SOURCE5} kio/kssl/kssl/cacert.pem
 echo 'cacert.pem' >> kio/kssl/kssl/localcerts
+
+# /usr/include/tqt/tqt.h contains c++ style comments
+sed -i -e /std=iso9899:1990/d admin/acinclude.m4.in
 
 %build
 # merge cacert root certificate
@@ -388,6 +375,8 @@ cp /usr/share/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
 export kde_libs_htmldir=%{_kdedocdir}
 if [ ! -f configure ]; then
+	cp -p /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -p /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	%{__make} -f admin/Makefile.common cvs
 fi
 
@@ -396,20 +385,25 @@ export path_sudo=/usr/bin/sudo
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
 	%{!?debug:--disable-rpath} \
 	--disable-final \
+	--enable-closure \
 	%{?with_hidden_visibility:--enable-gcc-hidden-visibility} \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
+	--with-extra-includes=%{_includedir}/tqt \
 	--enable-mitshm \
 	--with%{!?with_alsa:out}-alsa \
 	--with%{!?with_arts:out}-arts \
 	--with-distribution="PLD Linux Distribution" \
-	--with-ldap=no \
 	--with-lua-includes=%{_includedir}/lua50 \
 	--with-qt-libraries=%{_libdir} \
 	--with-sudo-kdesu-backend
 
-%{__make}
+#configure: WARNING: unrecognized options: --with-ldap
+
+# -j1 or random truncation occours, like uiserver.h is partial
+%{__make} -j1
+
 %{?with_apidocs:%{__make} apidox}
 rm -f makeinstall.stamp
 
