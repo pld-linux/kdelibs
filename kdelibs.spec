@@ -45,7 +45,7 @@ Patch14:	ac264.patch
 Patch15:	dcopobject-destruct-crash.patch
 Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 Patch18:	gcc45.patch
-URL:		http://www.kde.org/
+URL:		http://www.trinitydesktop.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
