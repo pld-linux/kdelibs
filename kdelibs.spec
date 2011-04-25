@@ -1,5 +1,5 @@
 # TODO
-# - switch to kde trinity: http://trinity.pearsoncomputing.net/
+# - switch to kde trinity: http://trinity.pearsoncomputing.net/ (see TRINITY branch of kdelibs.spec)
 #
 # Conditional build:
 %bcond_without	alsa			# build without ALSA support
