@@ -12,18 +12,18 @@
 %define		_state		stable
 %define		artsver		13:1.5.10
 
-Summary:	K Desktop Environment - libraries
-Summary(es.UTF-8):	K Desktop Environment - bibliotecas
-Summary(ko.UTF-8):	KDE - 라이브러리
-Summary(pl.UTF-8):	K Desktop Environment - biblioteki
-Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE
-Summary(ru.UTF-8):	K Desktop Environment - Библиотеки
-Summary(uk.UTF-8):	K Desktop Environment - Бібліотеки
+Summary:	K Desktop Environment 3 libraries
+Summary(es.UTF-8):	K Desktop Environment 3 - bibliotecas
+Summary(ko.UTF-8):	KDE 3 - 라이브러리
+Summary(pl.UTF-8):	Biblioteki K Desktop Environment 3
+Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE 3
+Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
+Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	24
+Release:	25
 Epoch:		9
-License:	LGPL
+License:	LGPL v2
 Group:		X11/Libraries
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	43cd55ed15f63b5738d620ef9f9fd568
@@ -56,6 +56,7 @@ Patch16:	kdelibs-3.5.10-gcc_4.4-2.patch
 Patch17:	kdelibs-3.5.10-LDFLAG_fix-1.patch
 # http://www.thel.ro/kde3-fedora/SOURCES/kdelibs-3.5.10-ossl-1.x.patch
 Patch18:	kdelibs-3.5.10-ossl-1.x.patch
+Patch19:	kdelibs-gcc4.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -186,7 +187,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package includes libraries that are central to the development
-and execution of a KDE program, misc HTML documentation and theme
+and execution of a KDE 3 programs, misc HTML documentation and theme
 modules.
 
 Included in this package are among others:
@@ -196,11 +197,12 @@ Included in this package are among others:
 - kwallet - KDE password manager.
 
 %description -l es.UTF-8
-Bibliotecas para KDE.
+Bibliotecas para KDE 3.
 
 %description -l pl.UTF-8
 Ten pakiet zawiera biblioteki potrzebne do rozwijania i uruchamiania
-aplikacji KDE, różną dokumentację oraz moduły z motywami wyglądu KDE.
+aplikacji KDE 3, różną dokumentację oraz moduły z motywami wyglądu
+KDE.
 
 Pakiet ten zawiera między innymi:
 - kdecore - podstawową bibliotekę KDE,
@@ -209,11 +211,11 @@ Pakiet ten zawiera między innymi:
 - kwallet - system zarządzania hasłami w KDE.
 
 %description -l pt_BR.UTF-8
-Bibliotecas de fundação do KDE requeridas por todo e qualquer
+Bibliotecas de fundação do KDE 3 requeridas por todo e qualquer
 aplicativo KDE.
 
 %description -l ru.UTF-8
-Библиотеки для K Desktop Environment.
+Библиотеки для K Desktop Environment 3.
 
 Включены библиотеки KDE:
 - jscript (javascript),
@@ -224,7 +226,7 @@ aplicativo KDE.
 - kspell (проверка орфографии),
 
 %description -l uk.UTF-8
-Бібліотеки для K Desktop Environment.
+Бібліотеки для K Desktop Environment 3.
 
 Включені такі бібліотеки KDE:
 - jscript (javascript),
@@ -235,11 +237,11 @@ aplicativo KDE.
 - kspell (перевірка орфографії),
 
 %package devel
-Summary:	kdelibs - header files and development documentation
-Summary(pl.UTF-8):	kdelibs - pliki nagłówkowe i dokumentacja do kdelibs
-Summary(pt_BR.UTF-8):	Arquivos de inclusão e documentação para compilar aplicativos KDE
-Summary(ru.UTF-8):	Хедеры и документация для компилляции программ KDE
-Summary(uk.UTF-8):	Хедери та документація для компіляції програм KDE
+Summary:	kdelibs 3 - header files and development documentation
+Summary(pl.UTF-8):	kdelibs 3 - pliki nagłówkowe i dokumentacja do kdelibs
+Summary(pt_BR.UTF-8):	Arquivos de inclusão e documentação para compilar aplicativos KDE 3
+Summary(ru.UTF-8):	Хедеры и документация для компилляции программ KDE 3
+Summary(uk.UTF-8):	Хедери та документація для компіляції програм KDE 3
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	acl-devel
@@ -371,6 +373,7 @@ strony innych użytkowników lokalnych.
 %patch16 -p1
 %patch17 -p1
 %patch18 -p1
+%patch19 -p1
 
 mv -f configure{,.dist}
 
@@ -456,13 +459,13 @@ if [ ! -f installed.stamp ]; then
 	fi
 
 	# packaged by hicolor-icon-theme
-	rm $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
+	%{__rm} $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 	# remove *.la for dynamic plugins. kde lib loader handles .so now.
-	rm $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+	%{__rm} $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 	# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
-	rm $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
-	rm $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
+	%{__rm} $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
+	%{__rm} $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
 
 	# remove unwanted boost deps from .la
 	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
