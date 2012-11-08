@@ -22,7 +22,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.10
-Release:	26
+Release:	27
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
