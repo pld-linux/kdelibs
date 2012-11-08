@@ -13644,17 +13644,6 @@ diff -urN kdelibs-3.5.8.org/kate/data/html.xml kdelibs-3.5.8/kate/data/html.xml
      <RegExpr attribute="Element" context="El Close" String="&lt;/&name;" />
      <!-- as long as kde gives DTDs the text/html mimetype--><IncludeRules context="FindDTDRules" />
      <IncludeRules context="FindEntityRefs" />
-diff -urN kdelibs-3.5.8.org/kate/data/inform.xml kdelibs-3.5.8/kate/data/inform.xml
---- kdelibs-3.5.8.org/kate/data/inform.xml	2005-09-10 10:26:35.000000000 +0200
-+++ kdelibs-3.5.8/kate/data/inform.xml	2006-04-14 21:49:08.000000000 +0200
-@@ -2,7 +2,6 @@
- <!DOCTYPE language SYSTEM "language.dtd">
- <!-- author: Giancarlo Niccolai (giancarlo@niccolai.ws) -->
- <!-- This file is released under GPL license 2.0 or any later version at your choice. -->
--<!-- $Id$ -->
- <language name="Inform" version="1.23" kateversion="2.3" section="Sources" extensions="*.inf;*.h" mimetype="text/x-inform-src" author="Giancarlo Niccolai (giancarlo@niccolai.ws)" license="GPL">
- <highlighting>
-    <list name="keywords">
 diff -urN kdelibs-3.5.8.org/kate/data/javascript.xml kdelibs-3.5.8/kate/data/javascript.xml
 --- kdelibs-3.5.8.org/kate/data/javascript.xml	2005-09-10 10:26:35.000000000 +0200
 +++ kdelibs-3.5.8/kate/data/javascript.xml	2007-10-18 18:00:12.000000000 +0200

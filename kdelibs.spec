@@ -182,8 +182,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # confuses OpenEXR detection
 %undefine	configure_cache
 
-# build broken with spaces in CC
-%undefine	with_ccache
+# kde3 does not work well with ccache (CC with spaces)
+%unglobal      with_ccache
 
 %description
 This package includes libraries that are central to the development
