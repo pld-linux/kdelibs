@@ -57,6 +57,7 @@ Patch17:	kdelibs-3.5.10-LDFLAG_fix-1.patch
 # http://www.thel.ro/kde3-fedora/SOURCES/kdelibs-3.5.10-ossl-1.x.patch
 Patch18:	kdelibs-3.5.10-ossl-1.x.patch
 Patch19:	kdelibs-gcc4.patch
+Patch20:	boost-1.50.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.4.0.a
 BuildRequires:	acl-devel
@@ -374,6 +375,7 @@ strony innych użytkowników lokalnych.
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
+%patch20 -p1
 
 mv -f configure{,.dist}
 
