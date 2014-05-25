@@ -53,11 +53,11 @@ Patch12:	%{name}-konqueror-agent.patch
 Patch13:	kde-am.patch
 Patch14:	ac264.patch
 Patch15:	dcopobject-destruct-crash.patch
-Patch16:	kdelibs-3.5.10-gcc_4.4-2.patch
-Patch17:	kdelibs-3.5.10-LDFLAG_fix-1.patch
+Patch16:	%{name}-3.5.10-gcc_4.4-2.patch
+Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 # http://www.thel.ro/kde3-fedora/SOURCES/kdelibs-3.5.10-ossl-1.x.patch
-Patch18:	kdelibs-3.5.10-ossl-1.x.patch
-Patch19:	kdelibs-gcc4.patch
+Patch18:	%{name}-3.5.10-ossl-1.x.patch
+Patch19:	%{name}-gcc4.patch
 Patch20:	boost-1.50.patch
 URL:		http://www.kde.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
@@ -579,7 +579,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config
 %dir %{_datadir}/emoticons
 %{_datadir}/emoticons/Default
-%{_datadir}/locale/all_languages
+%{_localedir}/all_languages
 %{_datadir}/mimelnk
 %dir %{_datadir}/services
 %dir %{_datadir}/services/kresources
