@@ -379,6 +379,7 @@ strony innych użytkowników lokalnych.
 %patch20 -p1
 
 mv -f configure{,.dist}
+:>admin/test-driver
 
 # add https://www.cacert.org/ root certificate
 cp -a %{SOURCE5} kio/kssl/kssl/cacert.pem
