@@ -1,5 +1,8 @@
 # TODO
 # - switch to kde trinity: http://trinity.pearsoncomputing.net/ (see TRINITY branch of kdelibs.spec)
+# - unpakcaged:
+#        /etc/xdg/menus/applications.menu
+#        /usr/share/apps/kconf_update
 #
 # Conditional build:
 %bcond_without	alsa			# build without ALSA support
