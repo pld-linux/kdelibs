@@ -201,8 +201,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # kde3 does not work well with ccache (CC with spaces)
 %unglobal	with_ccache
 
-# unresolved symbols in libkscreensaver.so.X (by design)
-%define		no_install_post_check_so 1
+# unresolved kss_* symbols in libkscreensaver.so.X (by design)
+%define		skip_post_check_so libkscreensaver.so.4.2.0
 
 %description
 This package includes libraries that are central to the development
