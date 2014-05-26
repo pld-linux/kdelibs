@@ -198,6 +198,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # unresolved kss_* symbols in libkscreensaver.so.X (by design)
 %define		skip_post_check_so libkscreensaver.so.4.2.0
 
+# ssp flags, fix this later
+%undefine	_ssp_cflags
+
 %description
 This package includes libraries that are central to the development
 and execution of a KDE 3 programs, misc HTML documentation and theme
