@@ -195,12 +195,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/kde3
 
-# confuses OpenEXR detection
-%undefine	configure_cache
-
-# kde3 does not work well with ccache (CC with spaces)
-%unglobal	with_ccache
-
 # unresolved kss_* symbols in libkscreensaver.so.X (by design)
 %define		skip_post_check_so libkscreensaver.so.4.2.0
 
