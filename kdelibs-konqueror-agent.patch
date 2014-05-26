@@ -1,11 +1,11 @@
---- kdelibs-3.5.6/kio/kio/kprotocolmanager.cpp.orig	2006-01-19 18:06:11.000000000 +0100
-+++ kdelibs-3.5.6/kio/kio/kprotocolmanager.cpp	2007-03-22 01:37:08.000000000 +0100
+--- kdelibs-trinity-3.5.13.2/kio/kio/kprotocolmanager.cpp~	2012-09-16 12:38:15.000000000 +0300
++++ kdelibs-trinity-3.5.13.2/kio/kio/kprotocolmanager.cpp	2014-05-26 12:35:26.638836529 +0300
 @@ -72,7 +72,7 @@
  
  // DEFAULT USERAGENT STRING
  #define CFG_DEFAULT_UAGENT(X) \
--QString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko)") \
-+QString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko) PLD/3.0 (Th)") \
+-TQString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko)") \
++TQString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko) PLD/3.0 (Th)") \
          .arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(X).arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(KDE_VERSION_RELEASE)
  
  void KProtocolManager::reparseConfiguration()

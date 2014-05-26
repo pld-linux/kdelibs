@@ -24,13 +24,13 @@ Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE 3
 Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
-Version:	3.5.10
-Release:	27
+Version:	3.5.13.2
+Release:	0.1
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	43cd55ed15f63b5738d620ef9f9fd568
+Source0:	http://ftp.fau.de/trinity/releases/%{version}/%{name}-trinity-%{version}.tar.xz
+# Source0-md5:	0449c1386d15c744b76ba35c227b14a6
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -38,20 +38,16 @@ Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
 Source5:	https://www.cacert.org/certs/root.crt
 # Source5-md5:	fb262d55709427e2e9acadf2c1298c99
-Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
-Patch2:		%{name}-inotify.patch
 Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
-Patch6:		%{name}-kbugreport-https.patch
 Patch7:		%{name}-xgl.patch
 Patch8:		kde-ac260-lt.patch
 Patch9:		%{name}-lib_loader.patch
 # http://kate-editor.org/downloads/syntax_highlighting?kateversion=2.5
 Patch10:	%{name}-kate-syntax.patch
-Patch11:	%{name}-konqueror-ti-agent.patch
 Patch12:	%{name}-konqueror-agent.patch
 Patch13:	kde-am.patch
 Patch14:	ac264.patch
@@ -62,7 +58,7 @@ Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 Patch18:	%{name}-3.5.10-ossl-1.x.patch
 Patch19:	%{name}-gcc4.patch
 Patch20:	boost-1.50.patch
-Patch21:	kdelibs-cups16.patch
+Patch21:	%{name}-cups16.patch
 URL:		http://www.kde.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
 BuildRequires:	acl-devel
@@ -83,6 +79,8 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	fam-devel
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 # <sys/inotify.h>
 BuildRequires:	glibc-devel >= 6:2.4
 %{?with_kerberos5:BuildRequires:	heimdal-devel}
@@ -189,7 +187,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %undefine	configure_cache
 
 # kde3 does not work well with ccache (CC with spaces)
-%unglobal      with_ccache
+%unglobal	with_ccache
+
+# unresolved symbols in libkscreensaver.so.X (by design)
+%define		no_install_post_check_so 1
 
 %description
 This package includes libraries that are central to the development
@@ -351,39 +352,29 @@ Zainstaluj ten pakiet jeżeli korzystasz z nietypowej konfiguracji
 nieobsługującej pts-ów typu Unix98 i obawiasz się inwigilacji ze
 strony innych użytkowników lokalnych.
 
-# unresolved symbols in libkscreensaver.so.X (by design)
-%define	no_install_post_check_so	1
-
 %prep
-%setup -q -a1
-%patch100 -p0
+%setup -q -n %{name}-trinity-%{version} -a1
 %patch0 -p1
-%patch2 -p1
 %patch1 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%if "%{pld_release}" == "ti"
-%patch11 -p1
-%else
+#%patch7 -p1 CHECK if needed
+#%patch8 -p1 # assume it's outdated ed5e85d7833180d4cb5a21a77758f95f50a2087c in admin repo
+#%patch9 -p1 PORT IT
+#%patch10 -p1 does not apply, drop
 %patch12 -p1
-%endif
-%patch13 -p1
-%patch14 -p1
+#%patch13 -p1 assume outdated
+#%patch14 -p1 assume outdated
 %patch15 -p1
-%patch16 -p1
+#%patch16 -p1 assume outdated
 %patch17 -p1
-%patch18 -p1
+#%patch18 -p1 assume outdated
 %patch19 -p1
-%patch20 -p1
-%patch21 -p1
+#%patch20 -p1 # MERGE WITH lib_loader.patch 
+#%patch21 -p1 seems outdated
 
-mv -f configure{,.dist}
+#mv -f configure{,.dist}
 :>admin/test-driver
 
 # add https://www.cacert.org/ root certificate

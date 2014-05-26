@@ -1,10 +1,10 @@
---- kdelibs-030623/kdecore/kstandarddirs.cpp.orig1	2003-08-01 18:26:36.000000000 +0200
-+++ kdelibs-030623/kdecore/kstandarddirs.cpp	2003-08-01 18:29:23.000000000 +0200
-@@ -822,7 +822,7 @@
-     if (!strcmp(type, "data"))
- 	return "share/apps/";
+--- kdelibs-trinity-3.5.13.2/kdecore/kstandarddirs.cpp~	2012-09-16 12:38:12.000000000 +0300
++++ kdelibs-trinity-3.5.13.2/kdecore/kstandarddirs.cpp	2014-05-26 12:23:16.870502052 +0300
+@@ -1039,7 +1039,7 @@
+     if (!strcmp(type, "html-bundle"))
+ 	return "share/doc-bundle/HTML/";
      if (!strcmp(type, "html"))
--	return "share/doc/HTML/";
+-	return "share/doc/tde/HTML/";
 +	return "share/doc/kde/HTML/";
      if (!strcmp(type, "icon"))
  	return "share/icons/";
