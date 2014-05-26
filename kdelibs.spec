@@ -183,6 +183,8 @@ Conflicts:	pixieplus < 0.3-4
 Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_libexecdir	%{_libdir}/kde3
+
 # confuses OpenEXR detection
 %undefine	configure_cache
 
@@ -462,13 +464,13 @@ if [ ! -f installed.stamp ]; then
 	%{__rm} $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 	# remove *.la for dynamic plugins. kde lib loader handles .so now.
-	%{__rm} $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
-	# keep $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidget.la for kdebase and others.
-	%{__rm} $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/styles/*.la
+	%{__rm} $RPM_BUILD_ROOT%{_libexecdir}/*.la
+	# keep $RPM_BUILD_ROOT%{_libexecdir}/plugins/designer/kdewidget.la for kdebase and others.
+	%{__rm} $RPM_BUILD_ROOT%{_libexecdir}/plugins/styles/*.la
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/libkdeinit_*.la
 
 	# remove unwanted boost deps from .la
-	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/kde3/plugins/designer/kdewidgets.la
+	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libexecdir}/plugins/designer/kdewidgets.la
 	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
 
 	touch installed.stamp
@@ -720,81 +722,81 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kresources/kabc
 %{_desktopdir}/kde/kresources.desktop
 
-%dir %{_libdir}/kde3
-%dir %{_libdir}/kde3/plugins
-%dir %{_libdir}/kde3/plugins/designer
-%attr(755,root,root) %{_libdir}/kde3/plugins/designer/kdewidgets.so
-%dir %{_libdir}/kde3/plugins/styles
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcolor.so
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/highcontrast.so
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/keramik.so
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/kthemestyle.so
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/light.so
-%attr(755,root,root) %{_libdir}/kde3/plugins/styles/plastik.so
-%attr(755,root,root) %{_libdir}/kde3/cupsdconf.so
-%attr(755,root,root) %{_libdir}/kde3/dcopserver.so
-%attr(755,root,root) %{_libdir}/kde3/kaddprinterwizard.so
-%attr(755,root,root) %{_libdir}/kde3/kbuildsycoca.so
-%attr(755,root,root) %{_libdir}/kde3/kbzip2filter.so
-%attr(755,root,root) %{_libdir}/kde3/kcmshell.so
-%attr(755,root,root) %{_libdir}/kde3/kconf_update.so
-%attr(755,root,root) %{_libdir}/kde3/kcookiejar.so
-%attr(755,root,root) %{_libdir}/kde3/kded.so
-%attr(755,root,root) %{_libdir}/kde3/kded_kcookiejar.so
-%attr(755,root,root) %{_libdir}/kde3/kded_kdeprintd.so
-%attr(755,root,root) %{_libdir}/kde3/kded_kdetrayproxy.so
-%attr(755,root,root) %{_libdir}/kde3/kded_kpasswdserver.so
-%attr(755,root,root) %{_libdir}/kde3/kded_kssld.so
-%attr(755,root,root) %{_libdir}/kde3/kded_kwalletd.so
-%attr(755,root,root) %{_libdir}/kde3/kded_proxyscout.so
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_cups.so
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_ext.so
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_lpdunix.so
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_lpr.so
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_rlpr.so
-%attr(755,root,root) %{_libdir}/kde3/kdeprint_tool_escputil.so
-%attr(755,root,root) %{_libdir}/kde3/kgzipfilter.so
-%attr(755,root,root) %{_libdir}/kde3/khtmlimagepart.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_dds.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_eps.so
-%{?with_openexr:%attr(755,root,root) %{_libdir}/kde3/kimg_exr.so}
-%attr(755,root,root) %{_libdir}/kde3/kimg_hdr.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_ico.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_jp2.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_pcx.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_psd.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_rgb.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_tga.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_tiff.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_xcf.so
-%attr(755,root,root) %{_libdir}/kde3/kimg_xview.so
-%attr(755,root,root) %{_libdir}/kde3/kio_file.so
-%attr(755,root,root) %{_libdir}/kde3/kio_ftp.so
-%attr(755,root,root) %{_libdir}/kde3/kio_ghelp.so
-%attr(755,root,root) %{_libdir}/kde3/kio_help.so
-%attr(755,root,root) %{_libdir}/kde3/kio_http.so
-%attr(755,root,root) %{_libdir}/kde3/kio_http_cache_cleaner.so
-%attr(755,root,root) %{_libdir}/kde3/kio_metainfo.so
-%attr(755,root,root) %{_libdir}/kde3/kio_uiserver.so
-%attr(755,root,root) %{_libdir}/kde3/kjavaappletviewer.so
-%attr(755,root,root) %{_libdir}/kde3/klauncher.so
-%attr(755,root,root) %{_libdir}/kde3/knotify.so
-%attr(755,root,root) %{_libdir}/kde3/kspell_aspell.so
-%attr(755,root,root) %{_libdir}/kde3/kspell_ispell.so
-%attr(755,root,root) %{_libdir}/kde3/kspell_hspell.so
-%attr(755,root,root) %{_libdir}/kde3/kstyle_highcontrast_config.so
-%attr(755,root,root) %{_libdir}/kde3/kstyle_plastik_config.so
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_docwordcompletion.so
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_insertfile.so
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_isearch.so
-%attr(755,root,root) %{_libdir}/kde3/ktexteditor_kdatatool.so
-%attr(755,root,root) %{_libdir}/kde3/libkatepart.so
-%attr(755,root,root) %{_libdir}/kde3/libkcertpart.so
-%attr(755,root,root) %{_libdir}/kde3/libkdeprint_management_module.so
-%attr(755,root,root) %{_libdir}/kde3/libkhtmlpart.so
-%attr(755,root,root) %{_libdir}/kde3/libkmultipart.so
-%attr(755,root,root) %{_libdir}/kde3/libshellscript.so
-%attr(755,root,root) %{_libdir}/kde3/wmfthumbnail.so
+%dir %{_libexecdir}
+%dir %{_libexecdir}/plugins
+%dir %{_libexecdir}/plugins/designer
+%attr(755,root,root) %{_libexecdir}/plugins/designer/kdewidgets.so
+%dir %{_libexecdir}/plugins/styles
+%attr(755,root,root) %{_libexecdir}/plugins/styles/highcolor.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/highcontrast.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/keramik.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/kthemestyle.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/light.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/plastik.so
+%attr(755,root,root) %{_libexecdir}/cupsdconf.so
+%attr(755,root,root) %{_libexecdir}/dcopserver.so
+%attr(755,root,root) %{_libexecdir}/kaddprinterwizard.so
+%attr(755,root,root) %{_libexecdir}/kbuildsycoca.so
+%attr(755,root,root) %{_libexecdir}/kbzip2filter.so
+%attr(755,root,root) %{_libexecdir}/kcmshell.so
+%attr(755,root,root) %{_libexecdir}/kconf_update.so
+%attr(755,root,root) %{_libexecdir}/kcookiejar.so
+%attr(755,root,root) %{_libexecdir}/kded.so
+%attr(755,root,root) %{_libexecdir}/kded_kcookiejar.so
+%attr(755,root,root) %{_libexecdir}/kded_kdeprintd.so
+%attr(755,root,root) %{_libexecdir}/kded_kdetrayproxy.so
+%attr(755,root,root) %{_libexecdir}/kded_kpasswdserver.so
+%attr(755,root,root) %{_libexecdir}/kded_kssld.so
+%attr(755,root,root) %{_libexecdir}/kded_kwalletd.so
+%attr(755,root,root) %{_libexecdir}/kded_proxyscout.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_cups.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_ext.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_lpdunix.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_lpr.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_rlpr.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_tool_escputil.so
+%attr(755,root,root) %{_libexecdir}/kgzipfilter.so
+%attr(755,root,root) %{_libexecdir}/khtmlimagepart.so
+%attr(755,root,root) %{_libexecdir}/kimg_dds.so
+%attr(755,root,root) %{_libexecdir}/kimg_eps.so
+%{?with_openexr:%attr(755,root,root) %{_libexecdir}/kimg_exr.so}
+%attr(755,root,root) %{_libexecdir}/kimg_hdr.so
+%attr(755,root,root) %{_libexecdir}/kimg_ico.so
+%attr(755,root,root) %{_libexecdir}/kimg_jp2.so
+%attr(755,root,root) %{_libexecdir}/kimg_pcx.so
+%attr(755,root,root) %{_libexecdir}/kimg_psd.so
+%attr(755,root,root) %{_libexecdir}/kimg_rgb.so
+%attr(755,root,root) %{_libexecdir}/kimg_tga.so
+%attr(755,root,root) %{_libexecdir}/kimg_tiff.so
+%attr(755,root,root) %{_libexecdir}/kimg_xcf.so
+%attr(755,root,root) %{_libexecdir}/kimg_xview.so
+%attr(755,root,root) %{_libexecdir}/kio_file.so
+%attr(755,root,root) %{_libexecdir}/kio_ftp.so
+%attr(755,root,root) %{_libexecdir}/kio_ghelp.so
+%attr(755,root,root) %{_libexecdir}/kio_help.so
+%attr(755,root,root) %{_libexecdir}/kio_http.so
+%attr(755,root,root) %{_libexecdir}/kio_http_cache_cleaner.so
+%attr(755,root,root) %{_libexecdir}/kio_metainfo.so
+%attr(755,root,root) %{_libexecdir}/kio_uiserver.so
+%attr(755,root,root) %{_libexecdir}/kjavaappletviewer.so
+%attr(755,root,root) %{_libexecdir}/klauncher.so
+%attr(755,root,root) %{_libexecdir}/knotify.so
+%attr(755,root,root) %{_libexecdir}/kspell_aspell.so
+%attr(755,root,root) %{_libexecdir}/kspell_ispell.so
+%attr(755,root,root) %{_libexecdir}/kspell_hspell.so
+%attr(755,root,root) %{_libexecdir}/kstyle_highcontrast_config.so
+%attr(755,root,root) %{_libexecdir}/kstyle_plastik_config.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_docwordcompletion.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_insertfile.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_isearch.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_kdatatool.so
+%attr(755,root,root) %{_libexecdir}/libkatepart.so
+%attr(755,root,root) %{_libexecdir}/libkcertpart.so
+%attr(755,root,root) %{_libexecdir}/libkdeprint_management_module.so
+%attr(755,root,root) %{_libexecdir}/libkhtmlpart.so
+%attr(755,root,root) %{_libexecdir}/libkmultipart.so
+%attr(755,root,root) %{_libexecdir}/libshellscript.so
+%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libDCOP.so.4
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
@@ -887,16 +889,16 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/kconf_update_bin
 
 # merged kabc files
-%attr(755,root,root) %{_libdir}/kde3/kabc_dir.so
-%attr(755,root,root) %{_libdir}/kde3/kabc_file.so
-%attr(755,root,root) %{_libdir}/kde3/kabc_ldapkio.so
-%attr(755,root,root) %{_libdir}/kde3/kabcformat_binary.so
-%attr(755,root,root) %{_libdir}/kde3/kcm_kresources.so
+%attr(755,root,root) %{_libexecdir}/kabc_dir.so
+%attr(755,root,root) %{_libexecdir}/kabc_file.so
+%attr(755,root,root) %{_libexecdir}/kabc_ldapkio.so
+%attr(755,root,root) %{_libexecdir}/kabcformat_binary.so
+%attr(755,root,root) %{_libexecdir}/kcm_kresources.so
 
 %if %{with arts}
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libartskde.so.1
-%attr(755,root,root) %{_libdir}/kde3/kfileaudiopreview.so
+%attr(755,root,root) %{_libexecdir}/kfileaudiopreview.so
 # http://blog.flameeyes.eu/2009/01/02/bundling-libraries-for-despair-and-insecurity
 %endif
 
@@ -906,7 +908,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
 %{_includedir}/[!a]*
-%{_libdir}/kde3/plugins/designer/kdewidgets.la
+%{_libexecdir}/plugins/designer/kdewidgets.la
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so
 %{_libdir}/libkabc.la
