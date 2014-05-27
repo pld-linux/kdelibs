@@ -193,6 +193,7 @@ Conflicts:	sim < 0.9.3-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_libexecdir	%{_libdir}/kde3
+%define		_applnkdir	%{_datadir}/applnk
 
 # unresolved kss_* symbols in libkscreensaver.so.X (by design)
 %define		skip_post_check_so libkscreensaver.so.4.2.0
@@ -444,7 +445,7 @@ if [ ! -f installed.stamp ]; then
 	install -d \
 		$RPM_BUILD_ROOT/etc/security \
 		$RPM_BUILD_ROOT%{_libdir}/kconf_update_bin \
-		$RPM_BUILD_ROOT%{_datadir}/applnk/.hidden \
+		$RPM_BUILD_ROOT%{_applnkdir}/.hidden \
 		$RPM_BUILD_ROOT%{_datadir}/services/.hidden \
 		$RPM_BUILD_ROOT%{_datadir}/apps/khtml/kpartplugins \
 		$RPM_BUILD_ROOT%{_datadir}/apps/profiles \
