@@ -500,6 +500,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %ghost /etc/security/fileshare.conf
+%attr(2755,root,fileshare) %{_bindir}/filesharelist
+%attr(2755,root,fileshare) %{_bindir}/fileshareset
+%attr(4755,root,root) %{_bindir}/start_kdeinit
 %attr(755,root,root) %{_bindir}/checkXML
 %attr(755,root,root) %{_bindir}/cupsdconf
 %attr(755,root,root) %{_bindir}/cupsdoprint
@@ -513,9 +516,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
-#%attr(755,root,root) %{_bindir}/ghns
-%attr(2755,root,fileshare) %{_bindir}/filesharelist
-%attr(2755,root,fileshare) %{_bindir}/fileshareset
 %attr(755,root,root) %{_bindir}/imagetops
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
@@ -534,8 +534,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kfile
 %attr(755,root,root) %{_bindir}/kfmexec
 %attr(755,root,root) %{_bindir}/khotnewstuff
-# removed?
-#%attr(755,root,root) %{_bindir}/kimage_concat
 %attr(755,root,root) %{_bindir}/kinstalltheme
 %attr(755,root,root) %{_bindir}/kio_http_cache_cleaner
 %attr(755,root,root) %{_bindir}/kio_uiserver
@@ -558,7 +556,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
 %attr(755,root,root) %{_bindir}/preparetips
-%attr(4755,root,root) %{_bindir}/start_kdeinit
 %attr(755,root,root) %{_bindir}/start_kdeinit_wrapper
 
 %dir %{_datadir}/apps
