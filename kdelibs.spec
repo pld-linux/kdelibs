@@ -25,6 +25,7 @@
 %bcond_without	lua		# Enable LUA support
 %bcond_without	tiff		# Enable tiff support
 %bcond_without	sudo		# Use sudo as backend for kdesu (default is su)
+%bcond_with	wmf		# with wmfplugin (needs porting to CMake)
 
 %define		artsver		13:1.5.10
 Summary:	K Desktop Environment 3 libraries
@@ -109,7 +110,7 @@ BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 2:1.5-2
 BuildRequires:	libvorbis-devel
-BuildRequires:	libwmf-devel >= 2:0.2.0
+%{?with_wmf:BuildRequires:	libwmf-devel >= 2:0.2.0}
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
@@ -366,7 +367,7 @@ nieobsługującej pts-ów typu Unix98 i obawiasz się inwigilacji ze
 strony innych użytkowników lokalnych.
 
 %prep
-%setup -q -n %{name}-trinity-%{version} -a1
+%setup -q -n %{name}-trinity-%{version} %{?with_wmf:-a1}
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
@@ -611,14 +612,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmailservice.protocol
 %{_datadir}/services/kmultipart.desktop
 %{_datadir}/services/knotify.desktop
-%{_datadir}/services/kspell_aspell.desktop
+%{?with_aspell:%{_datadir}/services/kspell_aspell.desktop}
 %{_datadir}/services/kspell_ispell.desktop
 %{_datadir}/services/kspell_hspell.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
 %{_datadir}/services/ktexteditor_kdatatool.desktop
-%{_datadir}/services/wmfthumbnail.desktop
+%{?with_wmf:%{_datadir}/services/wmfthumbnail.desktop}
 %{_datadir}/services/bmp.kimgio
 %{_datadir}/services/dds.kimgio
 %{_datadir}/services/eps.kimgio
@@ -795,7 +796,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/kjavaappletviewer.so
 %attr(755,root,root) %{_libexecdir}/klauncher.so
 %attr(755,root,root) %{_libexecdir}/knotify.so
-%attr(755,root,root) %{_libexecdir}/kspell_aspell.so
+%{?with_aspell:%attr(755,root,root) %{_libexecdir}/kspell_aspell.so}
 %attr(755,root,root) %{_libexecdir}/kspell_ispell.so
 %attr(755,root,root) %{_libexecdir}/kspell_hspell.so
 %attr(755,root,root) %{_libexecdir}/kstyle_highcontrast_config.so
@@ -810,7 +811,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/libkhtmlpart.so
 %attr(755,root,root) %{_libexecdir}/libkmultipart.so
 %attr(755,root,root) %{_libexecdir}/libshellscript.so
-%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so
+%{?with_wmf:%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so}
 %attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libDCOP.so.4
 %attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
