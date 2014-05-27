@@ -36,7 +36,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.3
+Release:	0.4
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -428,8 +428,11 @@ cd build
 	..
 
 %{__make}
+rm -f makeinstall.stamp
 
 %install
+test -f makeinstall.stamp -a %{_specdir}/%{name}.spec -nt makeinstall.stamp && rm -f makeinstall.stamp
+
 if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
 	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
 
