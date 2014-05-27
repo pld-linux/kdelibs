@@ -195,6 +195,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_libexecdir	%{_libdir}/kde3
 %define		_applnkdir	%{_datadir}/applnk
 
+# avoid java dependency
+# TODO: split to kjava subpackage
+%define		_noautoreqfiles %{_datadir}/apps/kjava/kjava.jar
+
 # unresolved kss_* symbols in libkscreensaver.so.X (by design)
 %define		skip_post_check_so libkscreensaver.so.4.2.0
 
