@@ -529,6 +529,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kdeinit_shutdown
 %attr(755,root,root) %{_bindir}/kdeinit_wrapper
 %attr(755,root,root) %{_bindir}/kdesu_stub
+%attr(755,root,root) %{_bindir}/kdetcompmgr
 %attr(755,root,root) %{_bindir}/kdontchangethehostname
 %attr(755,root,root) %{_bindir}/kdostartupconfig
 %attr(755,root,root) %{_bindir}/kfile
@@ -541,6 +542,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kioslave
 %attr(755,root,root) %{_bindir}/klauncher
 %attr(755,root,root) %{_bindir}/kmailservice
+%attr(755,root,root) %{_bindir}/kmimelist
 %attr(755,root,root) %{_bindir}/kpac_dhcp_helper
 %attr(755,root,root) %{_bindir}/ksendbugmail
 %attr(755,root,root) %{_bindir}/kshell
@@ -555,6 +557,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/make_driver_db_lpr
 %attr(755,root,root) %{_bindir}/makekdewidgets
 %attr(755,root,root) %{_bindir}/meinproc
+%attr(755,root,root) %{_bindir}/networkstatustestservice
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/start_kdeinit_wrapper
 
@@ -616,6 +619,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
 %{_datadir}/services/ktexteditor_kdatatool.desktop
+%{_datadir}/services/kxzfilter.desktop
 %{?with_wmf:%{_datadir}/services/wmfthumbnail.desktop}
 %{_datadir}/services/bmp.kimgio
 %{_datadir}/services/dds.kimgio
@@ -626,7 +630,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/ico.kimgio
 %{_datadir}/services/jp2.kimgio
 %{_datadir}/services/jpeg.kimgio
-#%{_datadir}/services/krl.kimgio
 %{_datadir}/services/mng.kimgio
 %{_datadir}/services/pbm.kimgio
 %{_datadir}/services/pcx.kimgio
@@ -739,6 +742,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libexecdir}/plugins/designer
 %attr(755,root,root) %{_libexecdir}/plugins/designer/kdewidgets.so
 %dir %{_libexecdir}/plugins/styles
+%attr(755,root,root) %{_libexecdir}/plugins/styles/asteroid.so
 %attr(755,root,root) %{_libexecdir}/plugins/styles/highcolor.so
 %attr(755,root,root) %{_libexecdir}/plugins/styles/highcontrast.so
 %attr(755,root,root) %{_libexecdir}/plugins/styles/keramik.so
@@ -760,6 +764,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/kded_kpasswdserver.so
 %attr(755,root,root) %{_libexecdir}/kded_kssld.so
 %attr(755,root,root) %{_libexecdir}/kded_kwalletd.so
+%attr(755,root,root) %{_libexecdir}/kded_networkstatus.so
 %attr(755,root,root) %{_libexecdir}/kded_proxyscout.so
 %attr(755,root,root) %{_libexecdir}/kdeprint_cups.so
 %attr(755,root,root) %{_libexecdir}/kdeprint_ext.so
@@ -788,6 +793,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/kio_help.so
 %attr(755,root,root) %{_libexecdir}/kio_http.so
 %attr(755,root,root) %{_libexecdir}/kio_http_cache_cleaner.so
+%attr(755,root,root) %{_libexecdir}/kio_iso.so
 %attr(755,root,root) %{_libexecdir}/kio_metainfo.so
 %attr(755,root,root) %{_libexecdir}/kio_uiserver.so
 %attr(755,root,root) %{_libexecdir}/kjavaappletviewer.so
@@ -802,6 +808,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/ktexteditor_insertfile.so
 %attr(755,root,root) %{_libexecdir}/ktexteditor_isearch.so
 %attr(755,root,root) %{_libexecdir}/ktexteditor_kdatatool.so
+%attr(755,root,root) %{_libexecdir}/kxzfilter.so
 %attr(755,root,root) %{_libexecdir}/libkatepart.so
 %attr(755,root,root) %{_libexecdir}/libkcertpart.so
 %attr(755,root,root) %{_libexecdir}/libkdeprint_management_module.so
@@ -809,24 +816,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/libkmultipart.so
 %attr(755,root,root) %{_libexecdir}/libshellscript.so
 %{?with_wmf:%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so}
-%attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libDCOP.so.4
-%attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkabc.so.1
-%attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkabc_dir.so.1
-%attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkabc_file.so.1
-%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkabc_ldapkio.so.1
-%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkatepartinterfaces.so.0
-%attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkdecore.so.4
-%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkdefakes.so.4
-%attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkdefx.so.4
+
 %attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
 %attr(755,root,root) %{_libdir}/libkdeinit_kaddprinterwizard.so
@@ -838,6 +828,29 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_kio_http_cache_cleaner.so
 %attr(755,root,root) %{_libdir}/libkdeinit_kio_uiserver.so
 %attr(755,root,root) %{_libdir}/libkdeinit_klauncher.so
+
+%attr(755,root,root) %{_libdir}/libDCOP.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libDCOP.so.4
+%attr(755,root,root) %{_libdir}/libconnectionmanager.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libconnectionmanager.so.0
+%attr(755,root,root) %{_libdir}/libkabc.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc.so.1
+%attr(755,root,root) %{_libdir}/libkabc_dir.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_dir.so.1
+%attr(755,root,root) %{_libdir}/libkabc_file.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_file.so.1
+%attr(755,root,root) %{_libdir}/libkabc_ldapkio.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_ldapkio.so.1
+%attr(755,root,root) %{_libdir}/libkabc_net.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkabc_net.so.1
+%attr(755,root,root) %{_libdir}/libkatepartinterfaces.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkatepartinterfaces.so.0
+%attr(755,root,root) %{_libdir}/libkdecore.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdecore.so.4
+%attr(755,root,root) %{_libdir}/libkdefakes.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdefakes.so.4
+%attr(755,root,root) %{_libdir}/libkdefx.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkdefx.so.4
 %attr(755,root,root) %{_libdir}/libkdeprint.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkdeprint.so.4
 %attr(755,root,root) %{_libdir}/libkdeprint_management.so.*.*.*
@@ -850,6 +863,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libkdeui.so.4
 %attr(755,root,root) %{_libdir}/libkdnssd.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkdnssd.so.1
+%attr(755,root,root) %{_libdir}/libkglib.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkglib.so.0
 %attr(755,root,root) %{_libdir}/libkhtml.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkhtml.so.4
 %attr(755,root,root) %{_libdir}/libkimproxy.so.*.*.*
@@ -874,8 +889,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libkntlm.so.0
 %attr(755,root,root) %{_libdir}/libkparts.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkparts.so.2
+%attr(755,root,root) %{_libdir}/libkrandr.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkrandr.so.0
 %attr(755,root,root) %{_libdir}/libkresources.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkresources.so.1
+%attr(755,root,root) %{_libdir}/libkrsync.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkrsync.so.0
 %attr(755,root,root) %{_libdir}/libkscreensaver.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkscreensaver.so.4
 %attr(755,root,root) %{_libdir}/libkscript.so.*.*.*
@@ -894,6 +913,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libkwalletbackend.so.1
 %attr(755,root,root) %{_libdir}/libkwalletclient.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libkwalletclient.so.1
+%attr(755,root,root) %{_libdir}/libnetworkstatus.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libnetworkstatus.so.0
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvcard.so.0
 
@@ -904,6 +925,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/kabc_dir.so
 %attr(755,root,root) %{_libexecdir}/kabc_file.so
 %attr(755,root,root) %{_libexecdir}/kabc_ldapkio.so
+%attr(755,root,root) %{_libexecdir}/kabc_net.so
 %attr(755,root,root) %{_libexecdir}/kabcformat_binary.so
 %attr(755,root,root) %{_libexecdir}/kcm_kresources.so
 
@@ -914,15 +936,30 @@ rm -rf $RPM_BUILD_ROOT
 # http://blog.flameeyes.eu/2009/01/02/bundling-libraries-for-despair-and-insecurity
 %endif
 
+# new files from trinity
+%dir %{_applnkdir}
+%{_applnkdir}/kio_iso.desktop
+%dir %{_datadir}/apps/konqueror
+%dir %{_datadir}/apps/konqueror/servicemenus
+%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
+%{_datadir}/services/iso.protocol
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dcopidl
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/kconfig_compiler
 %{_includedir}/[!a]*
+%{_datadir}/cmake/kdelibs.cmake
 %{_libexecdir}/plugins/designer/kdewidgets.la
+
+%{_libdir}/libkdefakes_pic.a
+%{_libdir}/libkdefakes_nonpic.a
+
 %{_libdir}/libDCOP.la
 %attr(755,root,root) %{_libdir}/libDCOP.so
+%{_libdir}/libconnectionmanager.la
+%attr(755,root,root) %{_libdir}/libconnectionmanager.so
 %{_libdir}/libkabc.la
 %attr(755,root,root) %{_libdir}/libkabc.so
 %{_libdir}/libkabc_dir.la
@@ -931,13 +968,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkabc_file.so
 %{_libdir}/libkabc_ldapkio.la
 %attr(755,root,root) %{_libdir}/libkabc_ldapkio.so
+%{_libdir}/libkabc_net.la
+%attr(755,root,root) %{_libdir}/libkabc_net.so
 %{_libdir}/libkatepartinterfaces.la
 %attr(755,root,root) %{_libdir}/libkatepartinterfaces.so
 %{_libdir}/libkdecore.la
 %attr(755,root,root) %{_libdir}/libkdecore.so
 %{_libdir}/libkdefakes.la
 %attr(755,root,root) %{_libdir}/libkdefakes.so
-%{_libdir}/libkdefakes_nonpic.a
 %{_libdir}/libkdefx.la
 %attr(755,root,root) %{_libdir}/libkdefx.so
 %{_libdir}/libkdeprint.la
@@ -952,6 +990,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeui.so
 %{_libdir}/libkdnssd.la
 %attr(755,root,root) %{_libdir}/libkdnssd.so
+%{_libdir}/libkglib.la
+%attr(755,root,root) %{_libdir}/libkglib.so
 %{_libdir}/libkhtml.la
 %attr(755,root,root) %{_libdir}/libkhtml.so
 %{_libdir}/libkimproxy.la
@@ -976,8 +1016,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkntlm.so
 %{_libdir}/libkparts.la
 %attr(755,root,root) %{_libdir}/libkparts.so
+%{_libdir}/libkrandr.la
+%attr(755,root,root) %{_libdir}/libkrandr.so
 %{_libdir}/libkresources.la
 %attr(755,root,root) %{_libdir}/libkresources.so
+%{_libdir}/libkrsync.la
+%attr(755,root,root) %{_libdir}/libkrsync.so
 %{_libdir}/libkscreensaver.la
 %attr(755,root,root) %{_libdir}/libkscreensaver.so
 %{_libdir}/libkscript.la
@@ -996,6 +1040,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwalletbackend.so
 %{_libdir}/libkwalletclient.la
 %attr(755,root,root) %{_libdir}/libkwalletclient.so
+%{_libdir}/libnetworkstatus.la
+%attr(755,root,root) %{_libdir}/libnetworkstatus.so
 %{_libdir}/libvcard.la
 %attr(755,root,root) %{_libdir}/libvcard.so
 
