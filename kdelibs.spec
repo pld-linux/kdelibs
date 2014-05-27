@@ -1,5 +1,4 @@
 # TODO
-# - switch to kde trinity: http://trinity.pearsoncomputing.net/ (see TRINITY branch of kdelibs.spec)
 # - unpakcaged:
 #        /etc/xdg/menus/applications.menu
 #        /usr/share/apps/kconf_update
@@ -37,7 +36,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.1
+Release:	0.3
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -397,6 +396,9 @@ install -d build
 cd build
 
 %cmake \
+	-DPLUGIN_INSTALL_DIR=%{_libexecdir} \
+	-DHTML_INSTALL_DIR=%{_kdedocdir} \
+	-DAPPS_INSTALL_DIR=%{_applnkdir} \
 	-DWITH_ALL_OPTIONS=ON \
 	-DWITH_ARTS=O%{!?with_arts:FF}%{?with_arts:N} \
 	%{?with_alsa:-DWITH_ALSA=ON} \
