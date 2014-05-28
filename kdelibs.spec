@@ -37,7 +37,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.4
+Release:	0.5
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -373,9 +373,9 @@ strony innych użytkowników lokalnych.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-#%patch7 -p1 CHECK if needed
+%patch7 -p1
 #%patch8 -p1 # assume it's outdated ed5e85d7833180d4cb5a21a77758f95f50a2087c in admin repo
-#%patch9 -p1 PORT IT
+%patch9 -p1
 #%patch10 -p1 does not apply, drop
 %patch12 -p1
 #%patch13 -p1 assume outdated
@@ -385,7 +385,8 @@ strony innych użytkowników lokalnych.
 %patch17 -p1
 #%patch18 -p1 assume outdated
 %patch19 -p1
-#%patch20 -p1 # MERGE WITH lib_loader.patch
+# TODO: MERGE WITH lib_loader.patch
+%patch20 -p1
 #%patch21 -p1 seems outdated
 
 #mv -f configure{,.dist}
@@ -402,6 +403,7 @@ install -d build
 cd build
 
 %cmake \
+	-Wno-dev \
 	-DPLUGIN_INSTALL_DIR=%{_libexecdir} \
 	-DHTML_INSTALL_DIR=%{_kdedocdir} \
 	-DAPPS_INSTALL_DIR=%{_applnkdir} \
