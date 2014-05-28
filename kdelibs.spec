@@ -69,7 +69,6 @@ Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 # http://www.thel.ro/kde3-fedora/SOURCES/kdelibs-3.5.10-ossl-1.x.patch
 Patch18:	%{name}-3.5.10-ossl-1.x.patch
 Patch19:	%{name}-gcc4.patch
-Patch20:	boost-1.50.patch
 Patch21:	%{name}-cups16.patch
 URL:		http://www.kde.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
@@ -385,8 +384,6 @@ strony innych użytkowników lokalnych.
 %patch17 -p1
 #%patch18 -p1 assume outdated
 %patch19 -p1
-# TODO: MERGE WITH lib_loader.patch
-%patch20 -p1
 #%patch21 -p1 seems outdated
 
 #mv -f configure{,.dist}
