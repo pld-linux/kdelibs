@@ -373,15 +373,11 @@ strony innych użytkowników lokalnych.
 %patch17 -p1
 %patch19 -p1
 
-:>admin/test-driver
-
 # add https://www.cacert.org/ root certificate
 cp -a %{SOURCE5} kio/kssl/kssl/cacert.pem
 echo 'cacert.pem' >> kio/kssl/kssl/localcerts
 
 %build
-export QTDIR=%{_prefix}
-
 install -d build
 cd build
 
@@ -431,9 +427,9 @@ if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
 fi
 
 if [ ! -f installed.stamp ]; then
-	cp -a %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
-	cp -a %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
-	cp -a %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
+	cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/services
+	cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-icq.desktop
+	cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/mimelnk/application
 
 	install -d \
 		$RPM_BUILD_ROOT/etc/security \
@@ -918,7 +914,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libartskde.so.1
 %attr(755,root,root) %{_libexecdir}/kfileaudiopreview.so
-# http://blog.flameeyes.eu/2009/01/02/bundling-libraries-for-despair-and-insecurity
 %endif
 
 # new files from trinity
