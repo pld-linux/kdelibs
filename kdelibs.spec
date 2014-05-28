@@ -63,7 +63,6 @@ Patch12:	%{name}-konqueror-agent.patch
 Patch15:	dcopobject-destruct-crash.patch
 Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 Patch19:	%{name}-gcc4.patch
-Patch21:	%{name}-cups16.patch
 URL:		http://www.kde.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
 BuildRequires:	acl-devel
@@ -373,9 +372,7 @@ strony innych użytkowników lokalnych.
 %patch15 -p1
 %patch17 -p1
 %patch19 -p1
-#%patch21 -p1 seems outdated
 
-#mv -f configure{,.dist}
 :>admin/test-driver
 
 # add https://www.cacert.org/ root certificate
