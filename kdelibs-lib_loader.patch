@@ -12,6 +12,23 @@
  libkdecore_la_NMCHECK = $(srcdir)/libkdecore.nmcheck
  libkdecore_la_NMCHECKWEAK = $(srcdir)/libkdecore_weak.nmcheck $(srcdir)/libqt-mt_weak.nmcheck \
  	$(top_srcdir)/dcop/libDCOP_weak.nmcheck $(top_srcdir)/kdecore/standard_weak.nmcheck
+--- kdelibs-trinity-3.5.13.2/kdecore/CMakeLists.txt	2012-09-16 12:38:11.000000000 +0300
++++ kdelibs-trinity-3.5.13.2/kdecore/CMakeLists.txt	2014-05-28 11:47:09.882367608 +0300
+@@ -125,11 +125,13 @@
+   kqiodevicegzip_p.cpp ktimezones.cpp
+ )
+ 
++add_definitions(-fexceptions)
++
+ tde_add_library( ${target} SHARED AUTOMOC
+   SOURCES ${${target}_SRCS}
+   VERSION 4.2.0
+   EMBED kdecorenetwork-static
+-  LINK ltdlc-static ${KDESVGICONS} DCOP-shared kdefx-shared ${ZLIB_LIBRARIES} ${LIBIDN_LIBRARIES} ${XCOMPOSITE_LIBRARIES} ICE SM
++  LINK ltdlc-static ${KDESVGICONS} DCOP-shared kdefx-shared ${ZLIB_LIBRARIES} ${LIBIDN_LIBRARIES} ${XCOMPOSITE_LIBRARIES} ICE SM boost_filesystem boost_regex boost_system
+   DEPENDENCIES dcopidl dcopidl2cpp
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
 --- kdelibs-3.5.5/kdecore/klibloader.h.orig	2005-10-10 17:06:03.000000000 +0200
 +++ kdelibs-3.5.5/kdecore/klibloader.h	2007-01-04 23:19:39.868039250 +0100
 @@ -270,7 +270,7 @@
