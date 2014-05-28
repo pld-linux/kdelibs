@@ -56,18 +56,12 @@ Patch3:		%{name}-use_system_sgml.patch
 Patch4:		%{name}-fileshareset.patch
 Patch5:		%{name}-appicon_themable.patch
 Patch7:		%{name}-xgl.patch
-Patch8:		kde-ac260-lt.patch
 Patch9:		%{name}-lib_loader.patch
 # http://kate-editor.org/downloads/syntax_highlighting?kateversion=2.5
 Patch10:	%{name}-kate-syntax.patch
 Patch12:	%{name}-konqueror-agent.patch
-Patch13:	kde-am.patch
-Patch14:	ac264.patch
 Patch15:	dcopobject-destruct-crash.patch
-Patch16:	%{name}-3.5.10-gcc_4.4-2.patch
 Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
-# http://www.thel.ro/kde3-fedora/SOURCES/kdelibs-3.5.10-ossl-1.x.patch
-Patch18:	%{name}-3.5.10-ossl-1.x.patch
 Patch19:	%{name}-gcc4.patch
 Patch21:	%{name}-cups16.patch
 URL:		http://www.kde.org/
@@ -373,16 +367,11 @@ strony innych użytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 %patch7 -p1
-#%patch8 -p1 # assume it's outdated ed5e85d7833180d4cb5a21a77758f95f50a2087c in admin repo
 %patch9 -p1
 #%patch10 -p1 does not apply, drop
 %patch12 -p1
-#%patch13 -p1 assume outdated
-#%patch14 -p1 assume outdated
 %patch15 -p1
-#%patch16 -p1 assume outdated
 %patch17 -p1
-#%patch18 -p1 assume outdated
 %patch19 -p1
 #%patch21 -p1 seems outdated
 
