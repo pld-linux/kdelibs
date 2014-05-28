@@ -447,6 +447,7 @@ if [ ! -f installed.stamp ]; then
 
 	# should be hardlinked, not copied
 	ln -nf $RPM_BUILD_ROOT%{_bindir}/{kdeinit_wrapper,kdeinit_shutdown}
+	ln -nf $RPM_BUILD_ROOT%{_bindir}/{ktelnetservice,filesharelist}
 
 	# For fileshare
 	touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
