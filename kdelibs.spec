@@ -395,7 +395,7 @@ cd build
 	-DWITH_CUPS=ON \
 	-DWITH_LUA=OFF \
 	-DWITH_TIFF=ON \
-	-DWITH_SUDO_KDESU_BACKEND=ON \
+	-DWITH_SUDO_KDESU_BACKEND=%{!?with_sudo:OFF}%{?with_sudo:ON} \
 	%{?with_jasper:-DWITH_JASPER=ON} \
 	%{?with_openexr:-DWITH_OPENEXR=ON} \
 	-DWITH_UTEMPTER=O%{!?with_utempter:FF}%{?with_utempter:N} \
@@ -403,7 +403,6 @@ cd build
 	%{!?with_pcre:-DWITH_PCRE=OFF} \
 	%{!?with_inotify:-DWITH_INOTIFY=OFF} \
 	%{!?with_gamin:-DWITH_GAMIN=OFF} \
-	-DWITH_SUDO_KDESU_BACKEND=OFF \
 	%{!?with_lzma:-DWITH_LZMA=OFF} \
 	-DWITH_ASPELL=O%{!?with_aspell:FF}%{?with_aspell:N} \
 	%{!?with_hspell:-DWITH_HSPELL=OFF} \
