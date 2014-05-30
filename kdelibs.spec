@@ -15,7 +15,7 @@
 %bcond_without	inotify		# Enable inotify support for kio
 %bcond_without	gamin		# Enable FAM/GAMIN support
 %bcond_without	lzma		# Enable support for LZMA/XZ
-%bcond_with	aspell		# Enable aspell support
+%bcond_without	aspell		# Enable aspell support
 %bcond_without	hspell		# Enable hspell support
 %bcond_with	utempter	# Use utempter for utmp management
 %bcond_without	libart		# Enable libart support (for SVG icons)
@@ -37,7 +37,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.6
+Release:	0.7
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -70,6 +70,7 @@ BuildRequires:	acl-devel
 %{?with_arts:BuildRequires:	arts-qt-devel >= %{artsver}}
 %{?with_arts:BuildRequires:	artsc-devel >= %{artsver}}
 %{?with_aspell:BuildRequires:	aspell-devel}
+%{?with_aspell:BuildRequires:	aspell}
 BuildRequires:	audiofile-devel
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.6.1
