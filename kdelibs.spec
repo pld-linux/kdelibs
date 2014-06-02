@@ -17,7 +17,7 @@
 %bcond_without	lzma		# Enable support for LZMA/XZ
 %bcond_without	aspell		# Enable aspell support
 %bcond_without	hspell		# Enable hspell support
-%bcond_with	utempter	# Use utempter for utmp management
+%bcond_without	utempter	# Use utempter for utmp management
 %bcond_without	libart		# Enable libart support (for SVG icons)
 %bcond_without	libidn		# Enable support for libidn
 %bcond_without	ssl		# Enable support for SSL
@@ -37,7 +37,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.7
+Release:	0.8
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
