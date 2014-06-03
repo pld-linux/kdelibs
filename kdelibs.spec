@@ -71,9 +71,6 @@ BuildRequires:	acl-devel
 %{?with_arts:BuildRequires:	artsc-devel >= %{artsver}}
 %{?with_aspell:BuildRequires:	aspell-devel}
 %{?with_aspell:BuildRequires:	aspell}
-BuildRequires:	audiofile-devel
-BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1.6.1
 BuildRequires:	boost-devel >= 1.35.0
 BuildRequires:	bzip2-devel
 BuildRequires:	cmake >= 2.8
@@ -83,11 +80,13 @@ BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 %{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	fam-devel
-BuildRequires:	gettext-devel
+BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:4.1.0-0.20051206r108118.1
 BuildRequires:	libtqtinterface-devel >= %{version}
 %{?with_utempter:BuildRequires:	libutempter-devel}
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libXcomposite-devel
+BuildRequires:	xorg-proto-compositeproto-devel
 BuildRequires:	xz
 # <sys/inotify.h>
 BuildRequires:	glibc-devel >= 6:2.4
@@ -97,28 +96,20 @@ BuildRequires:	jasper-devel >= 1.600
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
-BuildRequires:	libmad-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libstdc++-devel >= 2.0
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool >= 2:1.5-2
-BuildRequires:	libvorbis-devel
 %{?with_wmf:BuildRequires:	libwmf-devel >= 2:0.2.0}
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
-BuildRequires:	lua50-devel
-BuildRequires:	mdns-bonjour-devel
-BuildRequires:	motif-devel
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
-BuildRequires:	qt-devel >= 6:3.3.3-4
 BuildRequires:	qt-devel >= 6:3.3.5.051113-1
 %{?with_apidocs:BuildRequires:	qt-doc}
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.129
-#BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 %{?with_arts:Requires:	arts >= %{artsver}}
 Requires:	cups-lib >= 1:1.3.0
