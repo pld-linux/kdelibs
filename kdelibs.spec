@@ -37,7 +37,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.8
+Release:	0.9
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -433,6 +433,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopserver_shutdown
 %attr(755,root,root) %{_bindir}/dcopstart
 %attr(755,root,root) %{_bindir}/imagetops
+%attr(755,root,root) %{_bindir}/kab2kabc
 %attr(755,root,root) %{_bindir}/kaddprinterwizard
 %attr(755,root,root) %{_bindir}/kbuildsycoca
 %attr(755,root,root) %{_bindir}/kcmshell
@@ -477,25 +478,28 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/start_kdeinit_wrapper
 
+
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
-%dir %{_datadir}/apps/dcopidlng
 %attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
+%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
+%dir %{_datadir}/apps/dcopidlng
+%dir %{_datadir}/emoticons
+%dir %{_datadir}/autostart
 %{_datadir}/apps/dcopidlng/*.pm
+%{_datadir}/apps/kabc
 %{_datadir}/apps/katepart
 %{_datadir}/apps/kcertpart
 %{_datadir}/apps/kcm_componentchooser
 %{_datadir}/apps/kconf_update/*.upd
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
-%attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %{_datadir}/apps/kdeprint
 %{_datadir}/apps/kdeui
 %{_datadir}/apps/kdewidgets
-# also contains 3rdparty kpartplugins dir
 %{_datadir}/apps/khtml
-%{_datadir}/apps/knewstuff
 %{_datadir}/apps/kio_uiserver
 %{_datadir}/apps/kjava
+%{_datadir}/apps/knewstuff
 %{_datadir}/apps/knotify
 %{_datadir}/apps/ksgmltools2
 %{_datadir}/apps/kssl
@@ -505,21 +509,43 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ktexteditor_isearch
 %{_datadir}/apps/ktexteditor_kdatatool
 %{_datadir}/apps/proxyscout
-%dir %{_datadir}/autostart
+
+%dir %{_datadir}/apps/konqueror
+%dir %{_datadir}/apps/konqueror/servicemenus
+%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
+
+%{_datadir}/autostart/kab2kabc.desktop
+
 %{_datadir}/config
-%dir %{_datadir}/emoticons
 %{_datadir}/emoticons/Default
-%{_localedir}/all_languages
 %{_datadir}/mimelnk
+
 %dir %{_datadir}/services
-%dir %{_datadir}/services/kresources
 %dir %{_datadir}/services/.hidden
-%{_datadir}/services/kresources/kabc_manager.desktop
-%{_datadir}/services/kded
+%dir %{_datadir}/services/kconfiguredialog
+%dir %{_datadir}/services/kresources
+%{_datadir}/services/kresources/kabc
+%{_datadir}/services/bmp.kimgio
+%{_datadir}/services/data.protocol
+%{_datadir}/services/dds.kimgio
+%{_datadir}/services/eps.kimgio
+%{?with_openexr:%{_datadir}/services/exr.kimgio}
+%{_datadir}/services/file.protocol
+%{_datadir}/services/ftp.protocol
+%{_datadir}/services/ghelp.protocol
+%{_datadir}/services/gif.kimgio
+%{_datadir}/services/hdr.kimgio
+%{_datadir}/services/help.protocol
+%{_datadir}/services/http.protocol
 %{_datadir}/services/http_cache_cleaner.desktop
+%{_datadir}/services/https.protocol
+%{_datadir}/services/ico.kimgio
+%{_datadir}/services/jp2.kimgio
+%{_datadir}/services/jpeg.kimgio
 %{_datadir}/services/katepart.desktop
 %{_datadir}/services/kbzip2filter.desktop
 %{_datadir}/services/kcertpart.desktop
+%{_datadir}/services/kded
 %{_datadir}/services/kgzipfilter.desktop
 %{_datadir}/services/khtml.desktop
 %{_datadir}/services/khtmlimage.desktop
@@ -528,210 +554,54 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmailservice.protocol
 %{_datadir}/services/kmultipart.desktop
 %{_datadir}/services/knotify.desktop
+%{_datadir}/services/kresources/kabc_manager.desktop
 %{?with_aspell:%{_datadir}/services/kspell_aspell.desktop}
-%{_datadir}/services/kspell_ispell.desktop
 %{_datadir}/services/kspell_hspell.desktop
+%{_datadir}/services/kspell_ispell.desktop
 %{_datadir}/services/ktexteditor_docwordcompletion.desktop
 %{_datadir}/services/ktexteditor_insertfile.desktop
 %{_datadir}/services/ktexteditor_isearch.desktop
 %{_datadir}/services/ktexteditor_kdatatool.desktop
 %{_datadir}/services/kxzfilter.desktop
-%{?with_wmf:%{_datadir}/services/wmfthumbnail.desktop}
-%{_datadir}/services/bmp.kimgio
-%{_datadir}/services/dds.kimgio
-%{_datadir}/services/eps.kimgio
-%{?with_openexr:%{_datadir}/services/exr.kimgio}
-%{_datadir}/services/gif.kimgio
-%{_datadir}/services/hdr.kimgio
-%{_datadir}/services/ico.kimgio
-%{_datadir}/services/jp2.kimgio
-%{_datadir}/services/jpeg.kimgio
+%{_datadir}/services/metainfo.protocol
+%{_datadir}/services/mms.protocol
+%{_datadir}/services/mmst.protocol
+%{_datadir}/services/mmsu.protocol
 %{_datadir}/services/mng.kimgio
 %{_datadir}/services/pbm.kimgio
 %{_datadir}/services/pcx.kimgio
 %{_datadir}/services/pgm.kimgio
 %{_datadir}/services/png.kimgio
+%{_datadir}/services/pnm.protocol
 %{_datadir}/services/ppm.kimgio
 %{_datadir}/services/psd.kimgio
 %{_datadir}/services/rgb.kimgio
+%{_datadir}/services/rlogin.protocol
+%{_datadir}/services/rtsp.protocol
+%{_datadir}/services/rtspt.protocol
+%{_datadir}/services/rtspu.protocol
+%{_datadir}/services/shellscript.desktop
+%{_datadir}/services/ssh.protocol
+%{_datadir}/services/telnet.protocol
 %{_datadir}/services/tga.kimgio
 %{_datadir}/services/tiff.kimgio
+%{_datadir}/services/webdav.protocol
+%{_datadir}/services/webdavs.protocol
+%{?with_wmf:%{_datadir}/services/wmfthumbnail.desktop}
 %{_datadir}/services/xbm.kimgio
 %{_datadir}/services/xcf.kimgio
 %{_datadir}/services/xpm.kimgio
 %{_datadir}/services/xv.kimgio
-%{_datadir}/services/data.protocol
-%{_datadir}/services/file.protocol
-%{_datadir}/services/ftp.protocol
-%{_datadir}/services/ghelp.protocol
-%{_datadir}/services/help.protocol
-%{_datadir}/services/http.protocol
-%{_datadir}/services/https.protocol
-%{_datadir}/services/metainfo.protocol
-%{_datadir}/services/mms.protocol
-%{_datadir}/services/pnm.protocol
-%{_datadir}/services/rlogin.protocol
-%{_datadir}/services/rtsp.protocol
-%{_datadir}/services/shellscript.desktop
-%{_datadir}/services/ssh.protocol
-%{_datadir}/services/telnet.protocol
-%{_datadir}/services/webdav.protocol
-%{_datadir}/services/webdavs.protocol
-%{_datadir}/services/mmst.protocol
-%{_datadir}/services/mmsu.protocol
-%{_datadir}/services/rtspt.protocol
-%{_datadir}/services/rtspu.protocol
+%{_datadir}/services/iso.protocol
 %{_datadir}/servicetypes
-%dir %{_desktopdir}/kde
-# contains also 3rdparty hicolor & crystalsvg/apps trees
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.kde
-%dir %{_docdir}/kde
-%dir %{_kdedocdir}
-%dir %{_kdedocdir}/en
-%lang(en) %{_kdedocdir}/en/common
-%lang(en) %{_kdedocdir}/en/kspell
+%{_localedir}/all_languages
 
-%lang(ca) %dir %{_kdedocdir}/ca
-%lang(ca) %dir %{_kdedocdir}/ca/common
-%lang(cs) %dir %{_kdedocdir}/cs
-%lang(cs) %dir %{_kdedocdir}/cs/common
-%lang(da) %dir %{_kdedocdir}/da
-%lang(da) %dir %{_kdedocdir}/da/common
-%lang(de) %dir %{_kdedocdir}/de
-%lang(de) %dir %{_kdedocdir}/de/common
-%lang(es) %dir %{_kdedocdir}/es
-%lang(es) %dir %{_kdedocdir}/es/common
-%lang(en_GB) %dir %{_kdedocdir}/en_GB
-%lang(en_GB) %dir %{_kdedocdir}/en_GB/common
-%lang(et) %dir %{_kdedocdir}/et
-%lang(et) %dir %{_kdedocdir}/et/common
-%lang(fi) %dir %{_kdedocdir}/fi
-%lang(fi) %dir %{_kdedocdir}/fi/common
-%lang(fr) %dir %{_kdedocdir}/fr
-%lang(fr) %dir %{_kdedocdir}/fr/common
-%lang(hu) %dir %{_kdedocdir}/hu
-%lang(hu) %dir %{_kdedocdir}/hu/common
-%lang(it) %dir %{_kdedocdir}/it
-%lang(it) %dir %{_kdedocdir}/it/common
-%lang(ja) %dir %{_kdedocdir}/ja
-%lang(ja) %dir %{_kdedocdir}/ja/common
-%lang(nb) %dir %{_kdedocdir}/nb
-%lang(nb) %dir %{_kdedocdir}/nb/common
-%lang(nl) %dir %{_kdedocdir}/nl
-%lang(nl) %dir %{_kdedocdir}/nl/common
-%lang(pl) %dir %{_kdedocdir}/pl
-%lang(pl) %dir %{_kdedocdir}/pl/common
-%lang(pt) %dir %{_kdedocdir}/pt
-%lang(pt) %dir %{_kdedocdir}/pt/common
-%lang(pt_BR) %dir %{_kdedocdir}/pt_BR
-%lang(pt_BR) %dir %{_kdedocdir}/pt_BR/common
-%lang(ro) %dir %{_kdedocdir}/ro
-%lang(ro) %dir %{_kdedocdir}/ro/common
-%lang(ru) %dir %{_kdedocdir}/ru
-%lang(ru) %dir %{_kdedocdir}/ru/common
-%lang(sk) %dir %{_kdedocdir}/sk
-%lang(sk) %dir %{_kdedocdir}/sk/common
-%lang(sl) %dir %{_kdedocdir}/sl
-%lang(sl) %dir %{_kdedocdir}/sl/common
-%lang(sv) %dir %{_kdedocdir}/sv
-%lang(sv) %dir %{_kdedocdir}/sv/common
-%lang(tr) %dir %{_kdedocdir}/tr
-%lang(tr) %dir %{_kdedocdir}/tr/common
-%lang(uk) %dir %{_kdedocdir}/uk
-%lang(uk) %dir %{_kdedocdir}/uk/common
-%lang(zh_TW) %dir %{_kdedocdir}/zh_TW
-%lang(zh_TW) %dir %{_kdedocdir}/zh_TW/common
-
-# 3rdparty directories
-%dir %{_datadir}/services/kconfiguredialog
-
-# merged kabc files
-%attr(755,root,root) %{_bindir}/kab2kabc
-%{_datadir}/apps/kabc
-%{_datadir}/autostart/kab2kabc.desktop
-%{_datadir}/services/kresources/kabc
+%dir %{_desktopdir}/kde
 %{_desktopdir}/kde/kresources.desktop
-
-%dir %{_libexecdir}
-%dir %{_libexecdir}/plugins
-%dir %{_libexecdir}/plugins/designer
-%attr(755,root,root) %{_libexecdir}/plugins/designer/kdewidgets.so
-%dir %{_libexecdir}/plugins/styles
-%attr(755,root,root) %{_libexecdir}/plugins/styles/asteroid.so
-%attr(755,root,root) %{_libexecdir}/plugins/styles/highcolor.so
-%attr(755,root,root) %{_libexecdir}/plugins/styles/highcontrast.so
-%attr(755,root,root) %{_libexecdir}/plugins/styles/keramik.so
-%attr(755,root,root) %{_libexecdir}/plugins/styles/kthemestyle.so
-%attr(755,root,root) %{_libexecdir}/plugins/styles/light.so
-%attr(755,root,root) %{_libexecdir}/plugins/styles/plastik.so
-%attr(755,root,root) %{_libexecdir}/cupsdconf.so
-%attr(755,root,root) %{_libexecdir}/dcopserver.so
-%attr(755,root,root) %{_libexecdir}/kaddprinterwizard.so
-%attr(755,root,root) %{_libexecdir}/kbuildsycoca.so
-%attr(755,root,root) %{_libexecdir}/kbzip2filter.so
-%attr(755,root,root) %{_libexecdir}/kcmshell.so
-%attr(755,root,root) %{_libexecdir}/kconf_update.so
-%attr(755,root,root) %{_libexecdir}/kcookiejar.so
-%attr(755,root,root) %{_libexecdir}/kded.so
-%attr(755,root,root) %{_libexecdir}/kded_kcookiejar.so
-%attr(755,root,root) %{_libexecdir}/kded_kdeprintd.so
-%attr(755,root,root) %{_libexecdir}/kded_kdetrayproxy.so
-%attr(755,root,root) %{_libexecdir}/kded_kpasswdserver.so
-%attr(755,root,root) %{_libexecdir}/kded_kssld.so
-%attr(755,root,root) %{_libexecdir}/kded_kwalletd.so
-%attr(755,root,root) %{_libexecdir}/kded_networkstatus.so
-%attr(755,root,root) %{_libexecdir}/kded_proxyscout.so
-%attr(755,root,root) %{_libexecdir}/kdeprint_cups.so
-%attr(755,root,root) %{_libexecdir}/kdeprint_ext.so
-%attr(755,root,root) %{_libexecdir}/kdeprint_lpdunix.so
-%attr(755,root,root) %{_libexecdir}/kdeprint_lpr.so
-%attr(755,root,root) %{_libexecdir}/kdeprint_rlpr.so
-%attr(755,root,root) %{_libexecdir}/kdeprint_tool_escputil.so
-%attr(755,root,root) %{_libexecdir}/kgzipfilter.so
-%attr(755,root,root) %{_libexecdir}/khtmlimagepart.so
-%attr(755,root,root) %{_libexecdir}/kimg_dds.so
-%attr(755,root,root) %{_libexecdir}/kimg_eps.so
-%{?with_openexr:%attr(755,root,root) %{_libexecdir}/kimg_exr.so}
-%attr(755,root,root) %{_libexecdir}/kimg_hdr.so
-%attr(755,root,root) %{_libexecdir}/kimg_ico.so
-%attr(755,root,root) %{_libexecdir}/kimg_jp2.so
-%attr(755,root,root) %{_libexecdir}/kimg_pcx.so
-%attr(755,root,root) %{_libexecdir}/kimg_psd.so
-%attr(755,root,root) %{_libexecdir}/kimg_rgb.so
-%attr(755,root,root) %{_libexecdir}/kimg_tga.so
-%attr(755,root,root) %{_libexecdir}/kimg_tiff.so
-%attr(755,root,root) %{_libexecdir}/kimg_xcf.so
-%attr(755,root,root) %{_libexecdir}/kimg_xview.so
-%attr(755,root,root) %{_libexecdir}/kio_file.so
-%attr(755,root,root) %{_libexecdir}/kio_ftp.so
-%attr(755,root,root) %{_libexecdir}/kio_ghelp.so
-%attr(755,root,root) %{_libexecdir}/kio_help.so
-%attr(755,root,root) %{_libexecdir}/kio_http.so
-%attr(755,root,root) %{_libexecdir}/kio_http_cache_cleaner.so
-%attr(755,root,root) %{_libexecdir}/kio_iso.so
-%attr(755,root,root) %{_libexecdir}/kio_metainfo.so
-%attr(755,root,root) %{_libexecdir}/kio_uiserver.so
-%attr(755,root,root) %{_libexecdir}/kjavaappletviewer.so
-%attr(755,root,root) %{_libexecdir}/klauncher.so
-%attr(755,root,root) %{_libexecdir}/knotify.so
-%{?with_aspell:%attr(755,root,root) %{_libexecdir}/kspell_aspell.so}
-%attr(755,root,root) %{_libexecdir}/kspell_ispell.so
-%attr(755,root,root) %{_libexecdir}/kspell_hspell.so
-%attr(755,root,root) %{_libexecdir}/kstyle_highcontrast_config.so
-%attr(755,root,root) %{_libexecdir}/kstyle_plastik_config.so
-%attr(755,root,root) %{_libexecdir}/ktexteditor_docwordcompletion.so
-%attr(755,root,root) %{_libexecdir}/ktexteditor_insertfile.so
-%attr(755,root,root) %{_libexecdir}/ktexteditor_isearch.so
-%attr(755,root,root) %{_libexecdir}/ktexteditor_kdatatool.so
-%attr(755,root,root) %{_libexecdir}/kxzfilter.so
-%attr(755,root,root) %{_libexecdir}/libkatepart.so
-%attr(755,root,root) %{_libexecdir}/libkcertpart.so
-%attr(755,root,root) %{_libexecdir}/libkdeprint_management_module.so
-%attr(755,root,root) %{_libexecdir}/libkhtmlpart.so
-%attr(755,root,root) %{_libexecdir}/libkmultipart.so
-%attr(755,root,root) %{_libexecdir}/libshellscript.so
-%{?with_wmf:%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so}
+%dir %{_applnkdir}
+%{_applnkdir}/kio_iso.desktop
 
 %attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
@@ -834,30 +704,157 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libvcard.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvcard.so.0
 
-# 3rdparty directories
-%dir %{_libdir}/kconf_update_bin
-
-# merged kabc files
-%attr(755,root,root) %{_libexecdir}/kabc_dir.so
-%attr(755,root,root) %{_libexecdir}/kabc_file.so
-%attr(755,root,root) %{_libexecdir}/kabc_ldapkio.so
-%attr(755,root,root) %{_libexecdir}/kabc_net.so
-%attr(755,root,root) %{_libexecdir}/kabcformat_binary.so
-%attr(755,root,root) %{_libexecdir}/kcm_kresources.so
-
 %if %{with arts}
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libartskde.so.1
 %attr(755,root,root) %{_libexecdir}/kfileaudiopreview.so
 %endif
 
-# new files from trinity
-%dir %{_applnkdir}
-%{_applnkdir}/kio_iso.desktop
-%dir %{_datadir}/apps/konqueror
-%dir %{_datadir}/apps/konqueror/servicemenus
-%{_datadir}/apps/konqueror/servicemenus/isoservice.desktop
-%{_datadir}/services/iso.protocol
+%dir %{_libdir}/kconf_update_bin
+
+%dir %{_libexecdir}
+%attr(755,root,root) %{_libexecdir}/cupsdconf.so
+%attr(755,root,root) %{_libexecdir}/dcopserver.so
+%attr(755,root,root) %{_libexecdir}/kabc_dir.so
+%attr(755,root,root) %{_libexecdir}/kabc_file.so
+%attr(755,root,root) %{_libexecdir}/kabc_ldapkio.so
+%attr(755,root,root) %{_libexecdir}/kabc_net.so
+%attr(755,root,root) %{_libexecdir}/kabcformat_binary.so
+%attr(755,root,root) %{_libexecdir}/kaddprinterwizard.so
+%attr(755,root,root) %{_libexecdir}/kbuildsycoca.so
+%attr(755,root,root) %{_libexecdir}/kbzip2filter.so
+%attr(755,root,root) %{_libexecdir}/kcm_kresources.so
+%attr(755,root,root) %{_libexecdir}/kcmshell.so
+%attr(755,root,root) %{_libexecdir}/kconf_update.so
+%attr(755,root,root) %{_libexecdir}/kcookiejar.so
+%attr(755,root,root) %{_libexecdir}/kded.so
+%attr(755,root,root) %{_libexecdir}/kded_kcookiejar.so
+%attr(755,root,root) %{_libexecdir}/kded_kdeprintd.so
+%attr(755,root,root) %{_libexecdir}/kded_kdetrayproxy.so
+%attr(755,root,root) %{_libexecdir}/kded_kpasswdserver.so
+%attr(755,root,root) %{_libexecdir}/kded_kssld.so
+%attr(755,root,root) %{_libexecdir}/kded_kwalletd.so
+%attr(755,root,root) %{_libexecdir}/kded_networkstatus.so
+%attr(755,root,root) %{_libexecdir}/kded_proxyscout.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_cups.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_ext.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_lpdunix.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_lpr.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_rlpr.so
+%attr(755,root,root) %{_libexecdir}/kdeprint_tool_escputil.so
+%attr(755,root,root) %{_libexecdir}/kgzipfilter.so
+%attr(755,root,root) %{_libexecdir}/khtmlimagepart.so
+%attr(755,root,root) %{_libexecdir}/kimg_dds.so
+%attr(755,root,root) %{_libexecdir}/kimg_eps.so
+%{?with_openexr:%attr(755,root,root) %{_libexecdir}/kimg_exr.so}
+%attr(755,root,root) %{_libexecdir}/kimg_hdr.so
+%attr(755,root,root) %{_libexecdir}/kimg_ico.so
+%attr(755,root,root) %{_libexecdir}/kimg_jp2.so
+%attr(755,root,root) %{_libexecdir}/kimg_pcx.so
+%attr(755,root,root) %{_libexecdir}/kimg_psd.so
+%attr(755,root,root) %{_libexecdir}/kimg_rgb.so
+%attr(755,root,root) %{_libexecdir}/kimg_tga.so
+%attr(755,root,root) %{_libexecdir}/kimg_tiff.so
+%attr(755,root,root) %{_libexecdir}/kimg_xcf.so
+%attr(755,root,root) %{_libexecdir}/kimg_xview.so
+%attr(755,root,root) %{_libexecdir}/kio_file.so
+%attr(755,root,root) %{_libexecdir}/kio_ftp.so
+%attr(755,root,root) %{_libexecdir}/kio_ghelp.so
+%attr(755,root,root) %{_libexecdir}/kio_help.so
+%attr(755,root,root) %{_libexecdir}/kio_http.so
+%attr(755,root,root) %{_libexecdir}/kio_http_cache_cleaner.so
+%attr(755,root,root) %{_libexecdir}/kio_iso.so
+%attr(755,root,root) %{_libexecdir}/kio_metainfo.so
+%attr(755,root,root) %{_libexecdir}/kio_uiserver.so
+%attr(755,root,root) %{_libexecdir}/kjavaappletviewer.so
+%attr(755,root,root) %{_libexecdir}/klauncher.so
+%attr(755,root,root) %{_libexecdir}/knotify.so
+%{?with_aspell:%attr(755,root,root) %{_libexecdir}/kspell_aspell.so}
+%attr(755,root,root) %{_libexecdir}/kspell_hspell.so
+%attr(755,root,root) %{_libexecdir}/kspell_ispell.so
+%attr(755,root,root) %{_libexecdir}/kstyle_highcontrast_config.so
+%attr(755,root,root) %{_libexecdir}/kstyle_plastik_config.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_docwordcompletion.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_insertfile.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_isearch.so
+%attr(755,root,root) %{_libexecdir}/ktexteditor_kdatatool.so
+%attr(755,root,root) %{_libexecdir}/kxzfilter.so
+%attr(755,root,root) %{_libexecdir}/libkatepart.so
+%attr(755,root,root) %{_libexecdir}/libkcertpart.so
+%attr(755,root,root) %{_libexecdir}/libkdeprint_management_module.so
+%attr(755,root,root) %{_libexecdir}/libkhtmlpart.so
+%attr(755,root,root) %{_libexecdir}/libkmultipart.so
+%attr(755,root,root) %{_libexecdir}/libshellscript.so
+%{?with_wmf:%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so}
+
+%dir %{_libexecdir}/plugins
+%dir %{_libexecdir}/plugins/designer
+%attr(755,root,root) %{_libexecdir}/plugins/designer/kdewidgets.so
+%dir %{_libexecdir}/plugins/styles
+%attr(755,root,root) %{_libexecdir}/plugins/styles/asteroid.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/highcolor.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/highcontrast.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/keramik.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/kthemestyle.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/light.so
+%attr(755,root,root) %{_libexecdir}/plugins/styles/plastik.so
+
+%dir %{dirname:%{_kdedocdir}}
+%dir %{_kdedocdir}
+%dir %{_kdedocdir}/en
+%lang(en) %{_kdedocdir}/en/common
+%lang(en) %{_kdedocdir}/en/kspell
+
+%lang(ca) %dir %{_kdedocdir}/ca
+%lang(ca) %dir %{_kdedocdir}/ca/common
+%lang(cs) %dir %{_kdedocdir}/cs
+%lang(cs) %dir %{_kdedocdir}/cs/common
+%lang(da) %dir %{_kdedocdir}/da
+%lang(da) %dir %{_kdedocdir}/da/common
+%lang(de) %dir %{_kdedocdir}/de
+%lang(de) %dir %{_kdedocdir}/de/common
+%lang(en_GB) %dir %{_kdedocdir}/en_GB
+%lang(en_GB) %dir %{_kdedocdir}/en_GB/common
+%lang(es) %dir %{_kdedocdir}/es
+%lang(es) %dir %{_kdedocdir}/es/common
+%lang(et) %dir %{_kdedocdir}/et
+%lang(et) %dir %{_kdedocdir}/et/common
+%lang(fi) %dir %{_kdedocdir}/fi
+%lang(fi) %dir %{_kdedocdir}/fi/common
+%lang(fr) %dir %{_kdedocdir}/fr
+%lang(fr) %dir %{_kdedocdir}/fr/common
+%lang(hu) %dir %{_kdedocdir}/hu
+%lang(hu) %dir %{_kdedocdir}/hu/common
+%lang(it) %dir %{_kdedocdir}/it
+%lang(it) %dir %{_kdedocdir}/it/common
+%lang(ja) %dir %{_kdedocdir}/ja
+%lang(ja) %dir %{_kdedocdir}/ja/common
+%lang(nb) %dir %{_kdedocdir}/nb
+%lang(nb) %dir %{_kdedocdir}/nb/common
+%lang(nl) %dir %{_kdedocdir}/nl
+%lang(nl) %dir %{_kdedocdir}/nl/common
+%lang(pl) %dir %{_kdedocdir}/pl
+%lang(pl) %dir %{_kdedocdir}/pl/common
+%lang(pt) %dir %{_kdedocdir}/pt
+%lang(pt) %dir %{_kdedocdir}/pt/common
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR
+%lang(pt_BR) %dir %{_kdedocdir}/pt_BR/common
+%lang(ro) %dir %{_kdedocdir}/ro
+%lang(ro) %dir %{_kdedocdir}/ro/common
+%lang(ru) %dir %{_kdedocdir}/ru
+%lang(ru) %dir %{_kdedocdir}/ru/common
+%lang(sk) %dir %{_kdedocdir}/sk
+%lang(sk) %dir %{_kdedocdir}/sk/common
+%lang(sl) %dir %{_kdedocdir}/sl
+%lang(sl) %dir %{_kdedocdir}/sl/common
+%lang(sv) %dir %{_kdedocdir}/sv
+%lang(sv) %dir %{_kdedocdir}/sv/common
+%lang(tr) %dir %{_kdedocdir}/tr
+%lang(tr) %dir %{_kdedocdir}/tr/common
+%lang(uk) %dir %{_kdedocdir}/uk
+%lang(uk) %dir %{_kdedocdir}/uk/common
+%lang(zh_TW) %dir %{_kdedocdir}/zh_TW
+%lang(zh_TW) %dir %{_kdedocdir}/zh_TW/common
 
 %files devel
 %defattr(644,root,root,755)
