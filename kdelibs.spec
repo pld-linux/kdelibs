@@ -66,11 +66,13 @@ Patch19:	%{name}-gcc4.patch
 URL:		http://www.kde.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
 BuildRequires:	acl-devel
+BuildRequires:	alsa-lib-devel
 %{?with_alsa:BuildRequires:	alsa-lib-devel}
 %{?with_arts:BuildRequires:	arts-qt-devel >= %{artsver}}
 %{?with_arts:BuildRequires:	artsc-devel >= %{artsver}}
 %{?with_aspell:BuildRequires:	aspell-devel}
 %{?with_aspell:BuildRequires:	aspell}
+%{?with_avahi:BuildRequires:	avahi-devel}
 BuildRequires:	boost-devel >= 1.35.0
 BuildRequires:	bzip2-devel
 BuildRequires:	cmake >= 2.8
@@ -80,36 +82,39 @@ BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
 %{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	fam-devel
-BuildRequires:	libltdl-devel
-BuildRequires:	libstdc++-devel >= 5:4.1.0-0.20051206r108118.1
-BuildRequires:	libtqtinterface-devel >= %{version}
-%{?with_utempter:BuildRequires:	libutempter-devel}
-BuildRequires:	tar >= 1:1.22
-BuildRequires:	xorg-lib-libXcomposite-devel
-BuildRequires:	xorg-proto-compositeproto-devel
-BuildRequires:	xz
-# <sys/inotify.h>
+BuildRequires:	gamin-devel
+BuildRequires:	glib2-devel
 BuildRequires:	glibc-devel >= 6:2.4
 %{?with_kerberos5:BuildRequires:	heimdal-devel}
 BuildRequires:	hspell-devel
 BuildRequires:	jasper-devel >= 1.600
+%{?with_jasper:BuildRequires:	jasper-devel}
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
+BuildRequires:	libltdl-devel
 BuildRequires:	libpng-devel
-BuildRequires:	libstdc++-devel >= 2.0
+BuildRequires:	libstdc++-devel >= 5:4.1.0-0.20051206r108118.1
 BuildRequires:	libtiff-devel
+BuildRequires:	libtqtinterface-devel >= %{version}
+%{?with_utempter:BuildRequires:	libutempter-devel}
 %{?with_wmf:BuildRequires:	libwmf-devel >= 2:0.2.0}
 BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	openssl-devel >= 0.9.7d
+BuildRequires:	pcre-devel
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
 BuildRequires:	qt-devel >= 6:3.3.5.051113-1
 %{?with_apidocs:BuildRequires:	qt-doc}
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libXcomposite-devel
+BuildRequires:	xorg-proto-compositeproto-devel
+BuildRequires:	xorg-proto-xproto-devel
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 %{?with_arts:Requires:	arts >= %{artsver}}
 Requires:	cups-lib >= 1:1.3.0
