@@ -38,7 +38,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.11
+Release:	0.12
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -130,7 +130,7 @@ Requires:	setup >= 2.4.6-7
 Requires:	xorg-app-iceauth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_libexecdir	%{_libdir}/kde3
+%define		_libexecdir	%{_libdir}/trinity
 %define		_applnkdir	%{_datadir}/applnk
 
 # avoid java dependency
