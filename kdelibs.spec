@@ -26,6 +26,7 @@
 %bcond_without	tiff		# Enable tiff support
 %bcond_without	sudo		# Use sudo as backend for kdesu (default is su)
 %bcond_with	wmf		# with wmfplugin (needs porting to CMake)
+%bcond_without	lib_loader		# use lib_loader patch
 
 %define		artsver		13:1.5.10
 Summary:	K Desktop Environment 3 libraries
@@ -37,7 +38,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.9
+Release:	0.11
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -301,7 +302,7 @@ strony innych użytkowników lokalnych.
 %patch4 -p1
 %patch5 -p1
 %patch7 -p1
-%patch9 -p1
+%{?with_lib_loader:%patch9 -p1}
 #%patch10 -p1 does not apply, drop
 %patch12 -p1
 %patch15 -p1
@@ -395,6 +396,7 @@ if [ ! -f installed.stamp ]; then
 	%{__rm} $RPM_BUILD_ROOT%{_iconsdir}/hicolor/index.theme
 
 	# remove *.la for dynamic plugins. kde lib loader handles .so now.
+%if %{with lib_loader}
 	%{__rm} $RPM_BUILD_ROOT%{_libexecdir}/*.la
 	# keep $RPM_BUILD_ROOT%{_libexecdir}/plugins/designer/kdewidget.la for kdebase and others.
 	%{__rm} $RPM_BUILD_ROOT%{_libexecdir}/plugins/styles/*.la
@@ -403,6 +405,7 @@ if [ ! -f installed.stamp ]; then
 	# remove unwanted boost deps from .la
 	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libexecdir}/plugins/designer/kdewidgets.la
 	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
+%endif
 
 	touch installed.stamp
 fi
@@ -477,7 +480,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/networkstatustestservice
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/start_kdeinit_wrapper
-
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
@@ -708,6 +710,99 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libartskde.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libartskde.so.1
 %attr(755,root,root) %{_libexecdir}/kfileaudiopreview.so
+%endif
+
+%if %{without lib_loader}
+%{_libdir}/libkdeinit_cupsdconf.la
+%{_libdir}/libkdeinit_dcopserver.la
+%{_libdir}/libkdeinit_kaddprinterwizard.la
+%{_libdir}/libkdeinit_kbuildsycoca.la
+%{_libdir}/libkdeinit_kcmshell.la
+%{_libdir}/libkdeinit_kconf_update.la
+%{_libdir}/libkdeinit_kcookiejar.la
+%{_libdir}/libkdeinit_kded.la
+%{_libdir}/libkdeinit_kio_http_cache_cleaner.la
+%{_libdir}/libkdeinit_kio_uiserver.la
+%{_libdir}/libkdeinit_klauncher.la
+%{_libexecdir}/cupsdconf.la
+%{_libexecdir}/dcopserver.la
+%{_libexecdir}/kabc_dir.la
+%{_libexecdir}/kabc_file.la
+%{_libexecdir}/kabc_ldapkio.la
+%{_libexecdir}/kabc_net.la
+%{_libexecdir}/kabcformat_binary.la
+%{_libexecdir}/kaddprinterwizard.la
+%{_libexecdir}/kbuildsycoca.la
+%{_libexecdir}/kbzip2filter.la
+%{_libexecdir}/kcm_kresources.la
+%{_libexecdir}/kcmshell.la
+%{_libexecdir}/kconf_update.la
+%{_libexecdir}/kcookiejar.la
+%{_libexecdir}/kded.la
+%{_libexecdir}/kded_kcookiejar.la
+%{_libexecdir}/kded_kdeprintd.la
+%{_libexecdir}/kded_kdetrayproxy.la
+%{_libexecdir}/kded_kpasswdserver.la
+%{_libexecdir}/kded_kssld.la
+%{_libexecdir}/kded_kwalletd.la
+%{_libexecdir}/kded_networkstatus.la
+%{_libexecdir}/kded_proxyscout.la
+%{_libexecdir}/kdeprint_cups.la
+%{_libexecdir}/kdeprint_ext.la
+%{_libexecdir}/kdeprint_lpdunix.la
+%{_libexecdir}/kdeprint_lpr.la
+%{_libexecdir}/kdeprint_rlpr.la
+%{_libexecdir}/kdeprint_tool_escputil.la
+%{_libexecdir}/kgzipfilter.la
+%{_libexecdir}/khtmlimagepart.la
+%{_libexecdir}/kimg_dds.la
+%{_libexecdir}/kimg_eps.la
+%{_libexecdir}/kimg_exr.la
+%{_libexecdir}/kimg_hdr.la
+%{_libexecdir}/kimg_ico.la
+%{_libexecdir}/kimg_jp2.la
+%{_libexecdir}/kimg_pcx.la
+%{_libexecdir}/kimg_psd.la
+%{_libexecdir}/kimg_rgb.la
+%{_libexecdir}/kimg_tga.la
+%{_libexecdir}/kimg_tiff.la
+%{_libexecdir}/kimg_xcf.la
+%{_libexecdir}/kimg_xview.la
+%{_libexecdir}/kio_file.la
+%{_libexecdir}/kio_ftp.la
+%{_libexecdir}/kio_ghelp.la
+%{_libexecdir}/kio_help.la
+%{_libexecdir}/kio_http.la
+%{_libexecdir}/kio_http_cache_cleaner.la
+%{_libexecdir}/kio_iso.la
+%{_libexecdir}/kio_metainfo.la
+%{_libexecdir}/kio_uiserver.la
+%{_libexecdir}/kjavaappletviewer.la
+%{_libexecdir}/klauncher.la
+%{_libexecdir}/knotify.la
+%{_libexecdir}/kspell_aspell.la
+%{_libexecdir}/kspell_hspell.la
+%{_libexecdir}/kspell_ispell.la
+%{_libexecdir}/kstyle_highcontrast_config.la
+%{_libexecdir}/kstyle_plastik_config.la
+%{_libexecdir}/ktexteditor_docwordcompletion.la
+%{_libexecdir}/ktexteditor_insertfile.la
+%{_libexecdir}/ktexteditor_isearch.la
+%{_libexecdir}/ktexteditor_kdatatool.la
+%{_libexecdir}/kxzfilter.la
+%{_libexecdir}/libkatepart.la
+%{_libexecdir}/libkcertpart.la
+%{_libexecdir}/libkdeprint_management_module.la
+%{_libexecdir}/libkhtmlpart.la
+%{_libexecdir}/libkmultipart.la
+%{_libexecdir}/libshellscript.la
+%{_libexecdir}/plugins/styles/asteroid.la
+%{_libexecdir}/plugins/styles/highcolor.la
+%{_libexecdir}/plugins/styles/highcontrast.la
+%{_libexecdir}/plugins/styles/keramik.la
+%{_libexecdir}/plugins/styles/kthemestyle.la
+%{_libexecdir}/plugins/styles/light.la
+%{_libexecdir}/plugins/styles/plastik.la
 %endif
 
 %dir %{_libdir}/kconf_update_bin
