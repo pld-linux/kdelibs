@@ -1,0 +1,13 @@
+--- kdelibs-trinity-3.5.13.2/kded/vfolder_menu.cpp~	2012-09-08 18:01:25.000000000 +0300
++++ kdelibs-trinity-3.5.13.2/kded/vfolder_menu.cpp	2014-06-06 21:03:23.723980824 +0300
+@@ -774,9 +774,7 @@
+ 
+    TQString result;
+ 
+-   //TQString xdgMenuPrefix = TQString::fromLocal8Bit(getenv("XDG_MENU_PREFIX"));
+-   // hardcode xdgMenuPrefix to "kde-" string until proper upstream fix
+-   TQString xdgMenuPrefix = "kde-";
++   TQString xdgMenuPrefix = TQString::fromLocal8Bit(getenv("XDG_MENU_PREFIX"));
+    if (!xdgMenuPrefix.isEmpty())
+    {
+       TQFileInfo fileInfo(fileName);

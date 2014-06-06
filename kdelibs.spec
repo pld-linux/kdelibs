@@ -1,6 +1,3 @@
-# TODO
-# - unpakcaged:
-#        /etc/xdg/menus/applications.menu
 #
 # Conditional build:
 %bcond_without	alsa			# ALSA support
@@ -37,7 +34,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.16
+Release:	0.18
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -63,6 +60,7 @@ Patch12:	%{name}-konqueror-agent.patch
 Patch15:	dcopobject-destruct-crash.patch
 Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 Patch19:	%{name}-gcc4.patch
+Patch20:	xdg-menu-prefix.patch
 URL:		http://www.kde.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
 BuildRequires:	acl-devel
@@ -307,6 +305,7 @@ strony innych użytkowników lokalnych.
 %patch15 -p1
 %patch17 -p1
 %patch19 -p1
+%patch20 -p1
 
 # add https://www.cacert.org/ root certificate
 cp -a %{SOURCE5} kio/kssl/kssl/cacert.pem
@@ -382,6 +381,8 @@ if [ ! -f installed.stamp ]; then
 	# should be hardlinked, not copied
 	ln -nf $RPM_BUILD_ROOT%{_bindir}/{kdeinit_wrapper,kdeinit_shutdown}
 	ln -nf $RPM_BUILD_ROOT%{_bindir}/{ktelnetservice,filesharelist}
+
+	mv $RPM_BUILD_ROOT/etc/xdg/menus/{,kde-}applications.menu
 
 	# For fileshare
 	touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
@@ -605,6 +606,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_applnkdir}
 %dir %{_applnkdir}/.hidden
 %{_applnkdir}/kio_iso.desktop
+/etc/xdg/menus/kde-applications.menu
 
 %attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
 %attr(755,root,root) %{_libdir}/libkdeinit_dcopserver.so
