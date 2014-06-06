@@ -1,7 +1,6 @@
 # TODO
 # - unpakcaged:
 #        /etc/xdg/menus/applications.menu
-#        /usr/share/apps/kconf_update
 #
 # Conditional build:
 %bcond_without	alsa			# ALSA support
@@ -38,7 +37,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.12
+Release:	0.16
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -123,7 +122,7 @@ Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
-Requires:	kde-common-dirs
+#Requires:	kde-common-dirs
 Requires:	libxml2-progs
 Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
@@ -484,6 +483,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
 %attr(755,root,root) %{_datadir}/apps/dcopidlng/kalyptus
+%dir %{_datadir}/apps/kconf_update
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.pl
 %attr(755,root,root) %{_datadir}/apps/kconf_update/*.sh
 %dir %{_datadir}/apps/dcopidlng
@@ -603,6 +603,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_desktopdir}/kde
 %{_desktopdir}/kde/kresources.desktop
 %dir %{_applnkdir}
+%dir %{_applnkdir}/.hidden
 %{_applnkdir}/kio_iso.desktop
 
 %attr(755,root,root) %{_libdir}/libkdeinit_cupsdconf.so
