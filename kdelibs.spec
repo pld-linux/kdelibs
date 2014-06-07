@@ -34,7 +34,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.18
+Release:	0.20
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -45,8 +45,6 @@ Source1:	%{name}-wmfplugin.tar.bz2
 Source2:	pnm.protocol
 Source3:	x-icq.mimelnk
 Source4:	x-mplayer2.desktop
-Source5:	https://www.cacert.org/certs/root.crt
-# Source5-md5:	fb262d55709427e2e9acadf2c1298c99
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-kstandarddirs.patch
 Patch3:		%{name}-use_system_sgml.patch
@@ -115,12 +113,12 @@ BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 %{?with_arts:Requires:	arts >= %{artsver}}
+Requires:	ca-certificates
 Requires:	cups-lib >= 1:1.3.0
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
-#Requires:	kde-common-dirs
 Requires:	libxml2-progs
 Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
@@ -307,10 +305,6 @@ strony innych użytkowników lokalnych.
 %patch19 -p1
 %patch20 -p1
 
-# add https://www.cacert.org/ root certificate
-cp -a %{SOURCE5} kio/kssl/kssl/cacert.pem
-echo 'cacert.pem' >> kio/kssl/kssl/localcerts
-
 %build
 install -d build
 cd build
@@ -383,6 +377,10 @@ if [ ! -f installed.stamp ]; then
 	ln -nf $RPM_BUILD_ROOT%{_bindir}/{ktelnetservice,filesharelist}
 
 	mv $RPM_BUILD_ROOT/etc/xdg/menus/{,kde-}applications.menu
+
+	# use ca-certificates' ca-bundle.crt, symlink as what most other
+	# distros do these days (http://bugzilla.redhat.com/521902)
+	ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT%{_datadir}/apps/kssl/ca-bundle.crt
 
 	# For fileshare
 	touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
