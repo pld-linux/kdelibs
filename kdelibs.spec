@@ -34,7 +34,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	3.5.13.2
-Release:	0.20
+Release:	0.21
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -381,6 +381,7 @@ if [ ! -f installed.stamp ]; then
 	# use ca-certificates' ca-bundle.crt, symlink as what most other
 	# distros do these days (http://bugzilla.redhat.com/521902)
 	ln -sf /etc/certs/ca-certificates.crt $RPM_BUILD_ROOT%{_datadir}/apps/kssl/ca-bundle.crt
+	%{__rm} $RPM_BUILD_ROOT%{_datadir}/config/ksslcalist
 
 	# For fileshare
 	touch $RPM_BUILD_ROOT/etc/security/fileshare.conf
