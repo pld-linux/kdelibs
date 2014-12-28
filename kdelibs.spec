@@ -82,7 +82,7 @@ BuildRequires:	docbook-style-xsl
 %{?with_apidocs:BuildRequires:	doxygen}
 BuildRequires:	fam-devel
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 # <sys/inotify.h>
 BuildRequires:	glibc-devel >= 6:2.4
 %{?with_kerberos5:BuildRequires:	heimdal-devel}
