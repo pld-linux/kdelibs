@@ -1,5 +1,5 @@
---- kdelibs/kio/misc/fileshareset.orig	2003-11-21 19:38:11.000000000 +0100
-+++ kdelibs/kio/misc/fileshareset	2003-11-21 19:41:50.000000000 +0100
+--- kdelibs/tdeio/misc/fileshareset.orig	2003-11-21 19:38:11.000000000 +0100
++++ kdelibs/tdeio/misc/fileshareset	2003-11-21 19:41:50.000000000 +0100
 @@ -80,15 +80,19 @@
      $< = $>;
      @ARGV == 2 && ($cmd eq '--add' || $cmd eq '--remove') or error($usage);

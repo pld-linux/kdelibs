@@ -1,5 +1,5 @@
---- kdelibs-3.5.12/kdeui/ksystemtray.cpp~	2011-01-04 19:06:54.000000000 +0200
-+++ kdelibs-3.5.12/kdeui/ksystemtray.cpp	2011-01-04 19:09:28.517100570 +0200
+--- kdelibs-3.5.12/tdeui/ksystemtray.cpp~	2011-01-04 19:06:54.000000000 +0200
++++ kdelibs-3.5.12/tdeui/ksystemtray.cpp	2011-01-04 19:09:28.517100570 +0200
 @@ -32,6 +32,7 @@
  #include <kwin.h>
  #include <kwinmodule.h>

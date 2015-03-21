@@ -1,5 +1,5 @@
---- kdelibs-031105/kdoctools/customization/dtd/kdex.dtd.orig	2002-12-10 12:16:25.000000000 +0100
-+++ kdelibs-031105/kdoctools/customization/dtd/kdex.dtd	2003-11-06 00:21:35.000000000 +0100
+--- tdelibs-031105/kdoctools/customization/dtd/kdex.dtd.orig	2002-12-10 12:16:25.000000000 +0100
++++ tdelibs-031105/kdoctools/customization/dtd/kdex.dtd	2003-11-06 00:21:35.000000000 +0100
 @@ -97,7 +97,7 @@
  
  <!ENTITY % DocBookDTD	    PUBLIC
@@ -9,8 +9,8 @@
  %DocBookDTD;
  
  
---- kdelibs-031105/kdoctools/customization/kde-chunk.xsl.orig	2002-01-09 13:29:06.000000000 +0100
-+++ kdelibs-031105/kdoctools/customization/kde-chunk.xsl	2003-11-05 22:58:50.000000000 +0100
+--- tdelibs-R14.0.0/kdoctools/customization/tde-chunk.xsl~	2014-01-30 04:18:32.000000000 +0200
++++ tdelibs-R14.0.0/kdoctools/customization/tde-chunk.xsl	2015-03-21 10:30:53.436180279 +0200
 @@ -1,8 +1,8 @@
  <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  		version="1.0">
@@ -19,11 +19,11 @@
 -<xsl:import href="../docbook/xsl/html/chunk.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/autoidx.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl"/>
- <xsl:include href="kde-navig.xsl"/>
- <xsl:include href="kde-ttlpg.xsl"/>
- <xsl:include href="kde-style.xsl"/>
---- kdelibs-031105/kdoctools/customization/kde-chunk-online.xsl.orig	2002-12-19 22:23:58.000000000 +0100
-+++ kdelibs-031105/kdoctools/customization/kde-chunk-online.xsl	2003-11-06 13:06:54.000000000 +0100
+ <xsl:include href="tde-navig.xsl"/>
+ <xsl:include href="tde-ttlpg.xsl"/>
+ <xsl:include href="tde-style.xsl"/>
+--- tdelibs-031105/kdoctools/customization/tde-chunk-online.xsl.orig	2002-12-19 22:23:58.000000000 +0100
++++ tdelibs-031105/kdoctools/customization/tde-chunk-online.xsl	2003-11-06 13:06:54.000000000 +0100
 @@ -1,8 +1,8 @@
  <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  		version="1.0">
@@ -32,11 +32,11 @@
 -<xsl:import href="../docbook/xsl/html/chunk.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/autoidx.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl"/>
- <xsl:include href="kde-navig-online.xsl"/>
- <xsl:include href="kde-ttlpg.xsl"/>
- <xsl:include href="kde-style.xsl"/>
---- kdelibs-031105/kdoctools/customization/kde-nochunk.xsl.orig	2002-03-30 14:19:21.000000000 +0100
-+++ kdelibs-031105/kdoctools/customization/kde-nochunk.xsl	2003-11-06 11:41:43.000000000 +0100
+ <xsl:include href="tde-navig-online.xsl"/>
+ <xsl:include href="tde-ttlpg.xsl"/>
+ <xsl:include href="tde-style.xsl"/>
+--- tdelibs-031105/kdoctools/customization/tde-nochunk.xsl.orig	2002-03-30 14:19:21.000000000 +0100
++++ tdelibs-031105/kdoctools/customization/tde-nochunk.xsl	2003-11-06 11:41:43.000000000 +0100
 @@ -1,8 +1,8 @@
  <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  		version="1.0">
@@ -45,11 +45,11 @@
 -<xsl:import href="../docbook/xsl/html/docbook.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/autoidx.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/docbook.xsl"/>
- <!-- <xsl:include href="kde-print-navig.xsl"/> -->
- <xsl:include href="kde-ttlpg.xsl"/>
- <xsl:include href="kde-style.xsl"/>
---- kdelibs-031105/kdoctools/customization/kde-web.xsl.orig	2003-10-02 23:40:02.000000000 +0200
-+++ kdelibs-031105/kdoctools/customization/kde-web.xsl	2003-11-06 11:41:19.000000000 +0100
+ <!-- <xsl:include href="tde-print-navig.xsl"/> -->
+ <xsl:include href="tde-ttlpg.xsl"/>
+ <xsl:include href="tde-style.xsl"/>
+--- tdelibs-031105/kdoctools/customization/tde-web.xsl.orig	2003-10-02 23:40:02.000000000 +0200
++++ tdelibs-031105/kdoctools/customization/tde-web.xsl	2003-11-06 11:41:19.000000000 +0100
 @@ -1,8 +1,8 @@
  <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  		version="1.0">
@@ -58,11 +58,11 @@
 -<xsl:import href="../docbook/xsl/html/chunk.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/autoidx.xsl"/>
 +<xsl:import href="/usr/share/sgml/docbook/xsl-stylesheets/html/chunk.xsl"/>
- <xsl:include href="kde-web-navig.xsl"/>
- <xsl:include href="kde-ttlpg.xsl"/>
- <xsl:include href="kde-style.xsl"/>
---- kdelibs-031105/kdoctools/customization/obsolete/kdex.dtd.orig	2002-12-11 16:10:26.000000000 +0100
-+++ kdelibs-031105/kdoctools/customization/obsolete/kdex.dtd	2003-11-06 01:02:56.000000000 +0100
+ <xsl:include href="tde-web-navig.xsl"/>
+ <xsl:include href="tde-ttlpg.xsl"/>
+ <xsl:include href="tde-style.xsl"/>
+--- tdelibs-031105/kdoctools/customization/obsolete/kdex.dtd.orig	2002-12-11 16:10:26.000000000 +0100
++++ tdelibs-031105/kdoctools/customization/obsolete/kdex.dtd	2003-11-06 01:02:56.000000000 +0100
 @@ -89,7 +89,7 @@
  
  <!ENTITY % DocBookDTD	    PUBLIC
@@ -72,8 +72,8 @@
  %DocBookDTD;
  
  
---- kdelibs-031105/kdoctools/customization/obsolete/kdex-412-10.dtd.orig	2002-12-13 15:01:55.000000000 +0100
-+++ kdelibs-031105/kdoctools/customization/obsolete/kdex-412-10.dtd	2003-11-06 02:29:29.000000000 +0100
+--- tdelibs-031105/kdoctools/customization/obsolete/kdex-412-10.dtd.orig	2002-12-13 15:01:55.000000000 +0100
++++ tdelibs-031105/kdoctools/customization/obsolete/kdex-412-10.dtd	2003-11-06 02:29:29.000000000 +0100
 @@ -24,7 +24,7 @@
  
  <!ENTITY % DocBookDTD	    PUBLIC
@@ -83,34 +83,34 @@
  %DocBookDTD;
  
  <!-- The current obsolete version will do (see below) -->
---- kdelibs-031105/kdoctools/meinproc.cpp.orig	2003-10-27 01:03:48.000000000 +0100
-+++ kdelibs-031105/kdoctools/meinproc.cpp	2003-11-05 22:46:59.000000000 +0100
-@@ -142,7 +142,7 @@
-         QString catalogs;
-         catalogs += locate( "dtd", "customization/catalog" );
+--- kdelibs-R14.0.0/kdoctools/meinproc.cpp~	2014-07-26 03:30:43.000000000 +0300
++++ kdelibs-R14.0.0/kdoctools/meinproc.cpp	2015-03-21 10:35:11.412867331 +0200
+@@ -155,7 +155,7 @@
+         TQString catalogs;
+         catalogs += locate( "dtd", "customization/catalog.xml" );
          catalogs += " ";
--        catalogs += locate( "dtd", "docbook/xml-dtd-4.1.2/docbook.cat" );
+-        catalogs += locate( "dtd", "docbook/xml-dtd-4.1.2/catalog.xml" );
 +        catalogs += "/usr/share/sgml/docbook/xml-dtd-4.1.2/catalog";
  
-         setenv( "SGML_CATALOG_FILES", QFile::encodeName( catalogs ).data(), 1);
-         QString exe;
---- kdelibs-031105/kdoctools/xslt.cpp.orig	2003-10-19 23:31:11.000000000 +0200
-+++ kdelibs-031105/kdoctools/xslt.cpp	2003-11-05 22:55:13.000000000 +0100
-@@ -182,10 +182,10 @@
+         setenv( "XML_CATALOG_FILES", TQFile::encodeName( catalogs ).data(), 1);
+         TQString exe;
+--- kdelibs-R14.0.0/kdoctools/xslt.cpp~	2014-07-26 03:30:43.000000000 +0300
++++ kdelibs-R14.0.0/kdoctools/xslt.cpp	2015-03-21 10:35:56.258522034 +0200
+@@ -185,10 +185,10 @@
      if ( srcdir.isEmpty() ) {
-         catalogs += ins.dirs()->findResource("data", "ksgmltools2/customization/catalog");
+         catalogs += ins.dirs()->findResource("data", "ksgmltools2/customization/catalog.xml");
          catalogs += ':';
--        catalogs += ins.dirs()->findResource("data", "ksgmltools2/docbook/xml-dtd-4.2/docbook.cat");
+-        catalogs += ins.dirs()->findResource("data", "ksgmltools2/docbook/xml-dtd-4.2/catalog.xml");
 +        catalogs += "/usr/share/sgml/docbook/xml-dtd-4.2/catalog";
-         ins.dirs()->addResourceType("dtd", KStandardDirs::kde_default("data") + "ksgmltools2");
+         ins.dirs()->addResourceType("dtd", TDEStandardDirs::kde_default("data") + "ksgmltools2");
      } else {
--        catalogs += srcdir +"/customization/catalog:" + srcdir + "/docbook/xml-dtd-4.2/docbook.cat";
+-        catalogs += srcdir +"/customization/catalog.xml:" + srcdir + "/docbook/xml-dtd-4.2/catalog.xml";
 +        catalogs += srcdir +"/customization/catalog:" + "/usr/share/sgml/docbook/xml-dtd-4.2/catalog";
          ins.dirs()->addResourceDir("dtd", srcdir);
      }
  
---- kdelibs/kdoctools/Makefile.am.orig	2005-06-20 14:12:01.000000000 +0200
-+++ kdelibs/kdoctools/Makefile.am	2005-06-20 15:14:29.000000000 +0200
+--- tdelibs/kdoctools/Makefile.am.orig	2005-06-20 14:12:01.000000000 +0200
++++ tdelibs/kdoctools/Makefile.am	2005-06-20 15:14:29.000000000 +0200
 @@ -45,7 +45,7 @@
  	$(XGETTEXT) *.cpp -o $(podir)/kio_help.pot
  
@@ -118,5 +118,5 @@
 -	@(for subdir in customization docbook; do \
 +	@(for subdir in customization; do \
  	   for dir in `( cd $(srcdir)/$$subdir && find . -type d ! -name CVS | grep -v '\.svn' )`; do \
- 		$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/ksgmltools2/$$subdir/$$dir ;\
+ 		$(mkinstalldirs) $(DESTDIR)$(tde_datadir)/ksgmltools2/$$subdir/$$dir ;\
  		for file in `(cd $(srcdir)/$$subdir && ls -1 $$dir/*)`; do \

@@ -1,5 +1,5 @@
---- kdelibs-3.2.3/kdecore/kiconloader.cpp.orig	2004-06-02 13:15:48.869011792 +0000
-+++ kdelibs-3.2.3/kdecore/kiconloader.cpp	2004-06-02 13:22:09.558138248 +0000
+--- kdelibs-3.2.3/tdecore/kiconloader.cpp.orig	2004-06-02 13:15:48.869011792 +0000
++++ kdelibs-3.2.3/tdecore/kiconloader.cpp	2004-06-02 13:22:09.558138248 +0000
 @@ -216,7 +216,11 @@
  	if (!d->mpGroups[i].size)
  	    d->mpGroups[i].size = d->mpThemeRoot->theme->defaultSize(i);

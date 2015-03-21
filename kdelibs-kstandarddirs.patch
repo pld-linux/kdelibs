@@ -1,5 +1,5 @@
---- kdelibs-trinity-3.5.13.2/kdecore/kstandarddirs.cpp~	2012-09-16 12:38:12.000000000 +0300
-+++ kdelibs-trinity-3.5.13.2/kdecore/kstandarddirs.cpp	2014-05-26 12:23:16.870502052 +0300
+--- tdelibs-R14.0.0/tdecore/kstandarddirs.cpp~	2013-01-31 21:40:07.000000000 +0200
++++ tdelibs-R14.0.0/tdecore/kstandarddirs.cpp	2015-03-21 10:26:51.180307355 +0200
 @@ -1039,7 +1039,7 @@
      if (!strcmp(type, "html-bundle"))
  	return "share/doc-bundle/HTML/";

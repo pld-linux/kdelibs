@@ -33,13 +33,13 @@ Summary(pt_BR.UTF-8):	Bibliotecas de fundação do KDE 3
 Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
-Version:	3.5.13.2
+Version:	R14.0.0
 Release:	0.21
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
-Source0:	http://ftp.fau.de/trinity/releases/%{version}/%{name}-trinity-%{version}.tar.xz
-# Source0-md5:	0449c1386d15c744b76ba35c227b14a6
+Source0:	http://tde-mirror.yosemite.net/trinity/releases/%{version}/tdelibs-%{version}.tar.bz2
+# Source0-md5:	64b4550fb22ba700f38027379eab246e
 Source1:	%{name}-wmfplugin.tar.bz2
 # Source1-md5:	df0d7c2a13bb68fe25e1d6c009df5b8d
 Source2:	pnm.protocol
@@ -59,7 +59,7 @@ Patch15:	dcopobject-destruct-crash.patch
 Patch17:	%{name}-3.5.10-LDFLAG_fix-1.patch
 Patch19:	%{name}-gcc4.patch
 Patch20:	xdg-menu-prefix.patch
-URL:		http://www.kde.org/
+URL:		https://www.trinitydesktop.org/
 %{?with_openexr:BuildRequires:	OpenEXR-devel >= 1.4.0.a}
 BuildRequires:	acl-devel
 BuildRequires:	alsa-lib-devel
@@ -290,7 +290,8 @@ nieobsługującej pts-ów typu Unix98 i obawiasz się inwigilacji ze
 strony innych użytkowników lokalnych.
 
 %prep
-%setup -q -n %{name}-trinity-%{version} %{?with_wmf:-a1}
+%setup -q -c %{?with_wmf:-a1}
+mv tdelibs/* .
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1

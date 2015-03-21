@@ -1,11 +1,11 @@
---- kdelibs-trinity-3.5.13.2/kio/kio/kprotocolmanager.cpp~	2012-09-16 12:38:15.000000000 +0300
-+++ kdelibs-trinity-3.5.13.2/kio/kio/kprotocolmanager.cpp	2014-05-26 12:35:26.638836529 +0300
+--- kdelibs-R14.0.0/tdeio/tdeio/tdeprotocolmanager.cpp~	2014-12-10 01:18:24.000000000 +0200
++++ kdelibs-R14.0.0/tdeio/tdeio/tdeprotocolmanager.cpp	2015-03-21 11:17:49.675253931 +0200
 @@ -72,7 +72,7 @@
  
  // DEFAULT USERAGENT STRING
  #define CFG_DEFAULT_UAGENT(X) \
--TQString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko)") \
-+TQString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/%4.%5.%6 (like Gecko) PLD/3.0 (Th)") \
-         .arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(X).arg(KDE_VERSION_MAJOR).arg(KDE_VERSION_MINOR).arg(KDE_VERSION_RELEASE)
+-TQString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/TDEHTML/%4.%5.%6 (like Gecko)") \
++TQString("Mozilla/5.0 (compatible; Konqueror/%1.%2%3) KHTML/TDEHTML/%4.%5.%6 (like Gecko) PLD/3.0 (Th)") \
+         .arg(TDE_VERSION_MAJOR).arg(TDE_VERSION_MINOR).arg(X).arg(TDE_VERSION_MAJOR).arg(TDE_VERSION_MINOR).arg(TDE_VERSION_RELEASE)
  
  void KProtocolManager::reparseConfiguration()

@@ -1,5 +1,5 @@
---- kdelibs-trinity-3.5.13.2/admin/acinclude.m4.in~	2014-05-26 12:13:20.000000000 +0300
-+++ kdelibs-trinity-3.5.13.2/admin/acinclude.m4.in	2014-05-26 12:14:18.383811167 +0300
+--- kdelibs-R14.0.0/admin/acinclude.m4.in~	2015-03-21 10:12:32.000000000 +0200
++++ kdelibs-R14.0.0/admin/acinclude.m4.in	2015-03-21 10:14:49.202936534 +0200
 @@ -468,7 +468,7 @@
  if test "$1" = "default"; then
  
@@ -109,11 +109,11 @@
  ])
  
  
-@@ -5536,7 +5478,7 @@
+@@ -5975,7 +5975,7 @@
    kde_qtdir="$with_qt_dir"
  fi
  
--AC_FIND_FILE(qsql.html, [ $kde_qtdir/doc/html $QTDIR/doc/html /usr/share/doc/packages/qt3/html /usr/lib/qt/doc /usr/lib/qt3/doc /usr/lib/qt3/doc/html /usr/doc/qt3/html /usr/doc/qt3 /usr/share/doc/qt3-doc /usr/share/qt3/doc/html /usr/X11R6/share/doc/qt/html ], QTDOCDIR)
+-AC_FIND_FILE(qsql.html, [ $kde_qtdir/doc/html $QTDIR/doc/html /usr/share/doc/packages/tqt3/html /usr/share/doc/packages/qt3/html /usr/lib/qt/doc /usr/lib/tqt3/doc /usr/lib/qt3/doc /usr/lib/tqt3/doc/html /usr/lib/qt3/doc/html /usr/doc/tqt3/html /usr/doc/qt3/html /usr/doc/tqt3 /usr/doc/qt3 /usr/share/doc/tqt3-doc /usr/share/doc/qt3-doc /usr/share/tqt3/doc/html /usr/share/qt3/doc/html /usr/X11R6/share/doc/qt/html ], QTDOCDIR)
 +AC_FIND_FILE(qsql.html, [ /usr/share/doc/qt-doc/html ], QTDOCDIR)
  AC_MSG_RESULT($QTDOCDIR)
  
