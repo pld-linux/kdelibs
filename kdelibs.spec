@@ -21,6 +21,7 @@
 %bcond_without	lua		# Enable LUA support
 %bcond_without	tiff		# Enable tiff support
 %bcond_without	sudo		# Use sudo as backend for kdesu (default is su)
+%bcond_without	elficon		# with ELF Icon support
 %bcond_with	wmf		# with wmfplugin (needs porting to CMake)
 %bcond_without	lib_loader		# use lib_loader patch
 
@@ -90,6 +91,7 @@ BuildRequires:	libidn-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libpng-devel
+%{?with_elficon:BuildRequires:	libr-devel >= 0.6.0}
 BuildRequires:	libstdc++-devel >= 5:4.1.0-0.20051206r108118.1
 BuildRequires:	libtiff-devel
 BuildRequires:	libtqtinterface-devel >= %{version}
@@ -99,7 +101,6 @@ BuildRequires:	libxml2-devel >= 2.4.9
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-devel >= 1.0.7
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	pcre-devel
 BuildRequires:	pcre-devel >= 3.5
 BuildRequires:	pkgconfig
 BuildRequires:	qt-devel >= 6:3.3.5.051113-1
@@ -324,6 +325,7 @@ cd build
 	-DWITH_CUPS=ON \
 	-DWITH_LUA=OFF \
 	-DWITH_TIFF=ON \
+	-DWITH_GCC_VISIBILITY=ON \
 	-DWITH_SUDO_KDESU_BACKEND=%{!?with_sudo:OFF}%{?with_sudo:ON} \
 	%{?with_jasper:-DWITH_JASPER=ON} \
 	%{?with_openexr:-DWITH_OPENEXR=ON} \
@@ -334,6 +336,7 @@ cd build
 	%{!?with_gamin:-DWITH_GAMIN=OFF} \
 	%{!?with_lzma:-DWITH_LZMA=OFF} \
 	-DWITH_ASPELL=O%{!?with_aspell:FF}%{?with_aspell:N} \
+	-DWITH_ELFICON=O%{!?with_elficon:FF}%{?with_elficon:N} \
 	%{!?with_hspell:-DWITH_HSPELL=OFF} \
 	..
 
