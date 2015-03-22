@@ -1,9 +1,9 @@
---- kdelibs-R14.0.0/tdecore/kiconloader.cpp~	2015-03-22 11:42:49.000000000 +0200
-+++ kdelibs-R14.0.0/tdecore/kiconloader.cpp	2015-03-22 11:42:59.774075564 +0200
-@@ -238,6 +238,11 @@
- 	if (!d->mpGroups[i].size)
+--- kdelibs-R14.0.0/tdecore/kiconloader.cpp~	2014-10-18 21:00:57.000000000 +0300
++++ kdelibs-R14.0.0/tdecore/kiconloader.cpp	2015-03-22 13:44:00.492426502 +0200
+@@ -239,6 +239,11 @@
  	    d->mpGroups[i].size = d->mpThemeRoot->theme->defaultSize(i);
      }
+ 
 +    // Make the app icons themable!!!
 +    d->mpDirs->addResourceType("appicon", TDEStandardDirs::kde_default("icon") +
 +		TDEIconTheme::current() + appname + "/pics/");
