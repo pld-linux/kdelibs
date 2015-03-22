@@ -35,7 +35,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	R14.0.0
-Release:	0.21
+Release:	0.22
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -423,6 +423,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %ghost /etc/security/fileshare.conf
+/etc/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
+%{_datadir}/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
 %attr(2755,root,fileshare) %{_bindir}/filesharelist
 %attr(2755,root,fileshare) %{_bindir}/fileshareset
 %attr(4755,root,root) %{_bindir}/start_tdeinit
@@ -484,6 +486,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/networkstatustestservice
 %attr(755,root,root) %{_bindir}/preparetips
 %attr(755,root,root) %{_bindir}/start_tdeinit_wrapper
+%attr(755,root,root) %{_bindir}/tde_dbus_hardwarecontrol
+%attr(755,root,root) %{_bindir}/tdeiso_info
+%attr(755,root,root) %{_bindir}/tdelfeditor
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
@@ -516,6 +521,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/tdetexteditor_isearch
 %{_datadir}/apps/tdetexteditor_kdatatool
 %{_datadir}/apps/proxyscout
+%{_datadir}/apps/tdehwlib
 
 %dir %{_datadir}/apps/konqueror
 %dir %{_datadir}/apps/konqueror/servicemenus
@@ -600,6 +606,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/xpm.kimgio
 %{_datadir}/services/xv.kimgio
 %{_datadir}/services/iso.protocol
+%{_datadir}/services/tdefile_elf.desktop
 %{_datadir}/servicetypes
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.tde
@@ -803,6 +810,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/libtdehtmlpart.la
 %{_libexecdir}/libtdemultipart.la
 %{_libexecdir}/libshellscript.la
+%{_libexecdir}/tdefile_elf.la
 %{_libexecdir}/plugins/styles/asteroid.la
 %{_libexecdir}/plugins/styles/highcolor.la
 %{_libexecdir}/plugins/styles/highcontrast.la
@@ -888,6 +896,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/libtdemultipart.so
 %attr(755,root,root) %{_libexecdir}/libshellscript.so
 %{?with_wmf:%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so}
+%attr(755,root,root) %{_libexecdir}/tdefile_elf.so
 
 %dir %{_libexecdir}/plugins
 %dir %{_libexecdir}/plugins/designer
@@ -964,6 +973,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dcopidl2cpp
 %attr(755,root,root) %{_bindir}/tdeconfig_compiler
 %{_includedir}/[!a]*
+%{_pkgconfigdir}/tdelibs.pc
 %{_datadir}/cmake/tdelibs.cmake
 %{_libexecdir}/plugins/designer/tdewidgets.la
 
