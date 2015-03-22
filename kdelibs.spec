@@ -73,7 +73,7 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	boost-devel >= 1.35.0
 BuildRequires:	bzip2-devel
 BuildRequires:	cmake >= 2.8
-BuildRequires:	cups-devel >= 1:1.3.0
+%{?with_cups:BuildRequires:	cups-devel >= 1:1.3.0}
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd42-xml
 BuildRequires:	docbook-style-xsl
@@ -94,7 +94,7 @@ BuildRequires:	libpng-devel
 %{?with_elficon:BuildRequires:	libr-devel >= 0.6.0}
 BuildRequires:	libstdc++-devel >= 5:4.1.0-0.20051206r108118.1
 BuildRequires:	libtiff-devel
-BuildRequires:	libtqtinterface-devel >= %{version}
+BuildRequires:	libtqtinterface-devel >= 4.2.0
 %{?with_utempter:BuildRequires:	libutempter-devel}
 %{?with_wmf:BuildRequires:	libwmf-devel >= 2:0.2.0}
 BuildRequires:	libxml2-devel >= 2.4.9
@@ -115,7 +115,7 @@ BuildRequires:	xz
 BuildRequires:	zlib-devel
 %{?with_arts:Requires:	arts >= %{artsver}}
 Requires:	ca-certificates
-Requires:	cups-lib >= 1:1.3.0
+%{?with_cups:Requires:	cups-lib >= 1:1.3.0}
 Requires:	docbook-dtd412-xml
 Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
@@ -322,7 +322,7 @@ cd build
 	-DWITH_LIBART=ON \
 	-DWITH_LIBIDN=ON \
 	-DWITH_SSL=ON \
-	-DWITH_CUPS=ON \
+	-DWITH_CUPS=O%{!?with_cups:FF}%{?with_cups:N} \
 	-DWITH_LUA=OFF \
 	-DWITH_TIFF=ON \
 	-DWITH_GCC_VISIBILITY=ON \
