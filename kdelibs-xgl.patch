@@ -22,26 +22,26 @@
  #endif
  
 +		{
-+			XGrabServer (qt_xdisplay());
-+			static Atom selection =  XInternAtom( qt_xdisplay(), "_NET_SYSTEM_TRAY_S" + QCString().setNum( qt_xscreen()), False );
++			XGrabServer (tqt_xdisplay());
++			static Atom selection =  XInternAtom( tqt_xdisplay(), "_NET_SYSTEM_TRAY_S" + TQCString().setNum( tqt_xscreen()), False );
 +
 +			/* look for the system tray window */
-+			Window tray = XGetSelectionOwner (qt_xdisplay(), selection);
++			Window tray = XGetSelectionOwner (tqt_xdisplay(), selection);
 +
 +			if (tray != None)
 +			{
 +				/* found it */
-+				XSelectInput (qt_xdisplay(), tray, StructureNotifyMask);
++				XSelectInput (tqt_xdisplay(), tray, StructureNotifyMask);
 +			}
 +
-+			XUngrabServer (qt_xdisplay());
-+			XFlush (qt_xdisplay());
++			XUngrabServer (tqt_xdisplay());
++			XFlush (tqt_xdisplay());
 +
 +			if ( tray != None )
 +			{
 +				XEvent ev;
 +				memset(&ev, 0, sizeof( ev ));
-+				static Atom atom = XInternAtom( qt_xdisplay(), "_NET_SYSTEM_TRAY_OPCODE", False );
++				static Atom atom = XInternAtom( tqt_xdisplay(), "_NET_SYSTEM_TRAY_OPCODE", False );
 +				ev.xclient.type = ClientMessage;
 +				ev.xclient.window = tray;
 +				ev.xclient.message_type = atom;
@@ -52,8 +52,8 @@
 +				ev.xclient.data.l[ 3 ] = 0; // unused
 +				ev.xclient.data.l[ 4 ] = 0; // unused
 +
-+				XSendEvent( qt_xdisplay(), tray, False, NoEventMask, (XEvent *)&ev );
-+				XSync(qt_xdisplay(), FALSE );
++				XSendEvent( tqt_xdisplay(), tray, False, NoEventMask, (XEvent *)&ev );
++				XSync(tqt_xdisplay(), FALSE );
 +			}
 +		}
 +
