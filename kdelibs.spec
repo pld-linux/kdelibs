@@ -35,7 +35,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	R14.0.0
-Release:	0.23
+Release:	0.24
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -407,7 +407,7 @@ if [ ! -f installed.stamp ]; then
 	%{__rm} $RPM_BUILD_ROOT%{_libdir}/libtdeinit_*.la
 
 	# remove unwanted boost deps from .la
-	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libexecdir}/plugins/designer/kdewidgets.la
+	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libexecdir}/plugins/designer/tdewidgets.la
 	sed -i 's:-lboost_filesystem -lboost_regex::' $RPM_BUILD_ROOT%{_libdir}/*.la
 %endif
 

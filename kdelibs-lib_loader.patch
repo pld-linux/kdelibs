@@ -46,7 +46,7 @@
  #include "tdeapplication.h"
  #include "klibloader.h"
  #include "kstandarddirs.h"
-@@ -331,46 +337,57 @@
+@@ -331,46 +337,58 @@
      d = 0L;
  }
  
@@ -89,6 +89,7 @@
 -{
 -    TQCString libname = makeLibName( name );
 +TQString KLibLoader::findLibrary( const char * name, const TDEInstance * instance )
++{
  
 -    // only look up the file if it is not an absolute filename
 -    // (mhk, 20000228)
@@ -137,7 +138,7 @@
  KLibrary* KLibLoader::globalLibrary( const char *name )
  {
  KLibrary *tmp;
-@@ -418,11 +434,7 @@
+@@ -418,11 +435,7 @@
        TQString libfile = findLibrary( name );
        if ( libfile.isEmpty() )
        {
