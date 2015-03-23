@@ -35,7 +35,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	R14.0.0
-Release:	0.22
+Release:	0.23
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -124,7 +124,7 @@ Requires:	docbook-dtd42-xml
 Requires:	docbook-style-xsl
 Requires:	hicolor-icon-theme
 Requires:	libxml2-progs
-Requires:	qt >= 6:3.3.3-4
+#Requires:	qt >= 6:3.3.3-4
 Requires:	setup >= 2.4.6-7
 Requires:	xorg-app-iceauth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -209,7 +209,7 @@ Requires:	libart_lgpl-devel
 Requires:	libidn-devel
 Requires:	mdns-bonjour-devel
 Requires:	pcre-devel
-Requires:	qt-devel >= 6:3.3.3-4
+#Requires:	qt-devel >= 6:3.3.3-4
 Requires:	xorg-lib-libXmu-devel
 Requires:	xorg-lib-libXt-devel
 
