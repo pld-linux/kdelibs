@@ -17,11 +17,11 @@
 %bcond_without	libart		# Enable libart support (for SVG icons)
 %bcond_without	libidn		# Enable support for libidn
 %bcond_without	ssl		# Enable support for SSL
-%bcond_without	cups		# Enable CUPS support
+%bcond_with	cups		# Enable CUPS support
 %bcond_without	lua		# Enable LUA support
 %bcond_without	tiff		# Enable tiff support
 %bcond_without	sudo		# Use sudo as backend for kdesu (default is su)
-%bcond_without	elficon		# with ELF Icon support
+%bcond_with	elficon		# with ELF Icon support
 %bcond_with	wmf		# with wmfplugin (needs porting to CMake)
 %bcond_without	lib_loader		# use lib_loader patch
 
@@ -35,7 +35,7 @@ Summary(ru.UTF-8):	K Desktop Environment 3 - Библиотеки
 Summary(uk.UTF-8):	K Desktop Environment 3 - Бібліотеки
 Name:		kdelibs
 Version:	R14.0.0
-Release:	0.24
+Release:	0.25
 Epoch:		9
 License:	LGPL v2
 Group:		X11/Libraries
@@ -310,6 +310,8 @@ mv tdelibs/* .
 %patch19 -p1
 %patch20 -p1
 
+%{!?with_elficon:rm -rf tdelfeditor}
+
 %build
 install -d build
 cd build
@@ -488,7 +490,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/start_tdeinit_wrapper
 %attr(755,root,root) %{_bindir}/tde_dbus_hardwarecontrol
 %attr(755,root,root) %{_bindir}/tdeiso_info
-%attr(755,root,root) %{_bindir}/tdelfeditor
+%{?with_elficon:%attr(755,root,root) %{_bindir}/tdelfeditor}
 
 %dir %{_datadir}/apps
 %{_datadir}/apps/LICENSES
@@ -606,7 +608,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/xpm.kimgio
 %{_datadir}/services/xv.kimgio
 %{_datadir}/services/iso.protocol
-%{_datadir}/services/tdefile_elf.desktop
+%{?with_elficon:%{_datadir}/services/tdefile_elf.desktop}
 %{_datadir}/servicetypes
 %{_iconsdir}/crystalsvg
 %{_iconsdir}/default.tde
@@ -810,7 +812,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/libtdehtmlpart.la
 %{_libexecdir}/libtdemultipart.la
 %{_libexecdir}/libshellscript.la
-%{_libexecdir}/tdefile_elf.la
+%{?with_elficon:%{_libexecdir}/tdefile_elf.la}
 %{_libexecdir}/plugins/styles/asteroid.la
 %{_libexecdir}/plugins/styles/highcolor.la
 %{_libexecdir}/plugins/styles/highcontrast.la
@@ -896,7 +898,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libexecdir}/libtdemultipart.so
 %attr(755,root,root) %{_libexecdir}/libshellscript.so
 %{?with_wmf:%attr(755,root,root) %{_libexecdir}/wmfthumbnail.so}
-%attr(755,root,root) %{_libexecdir}/tdefile_elf.so
+%{?with_elficon:%attr(755,root,root) %{_libexecdir}/tdefile_elf.so}
 
 %dir %{_libexecdir}/plugins
 %dir %{_libexecdir}/plugins/designer
